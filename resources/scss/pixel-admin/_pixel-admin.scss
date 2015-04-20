@@ -1,0 +1,81 @@
+// Note: Some variables are overriding in the "partials/_variables.scss" file
+
+// ### Pixel Admin"s stylesheets
+@import "./partials/mixins";
+@import "./partials/base";
+@import "./partials/main_navbar";
+@import "./partials/main_menu";
+@import "./partials/navbar";
+@import "./partials/buttons";
+@import "./partials/progress_bars";
+@import "./partials/labels";
+@import "./partials/badges";
+@import "./partials/breadcrumb";
+@import "./partials/alerts";
+@import "./partials/tables";
+@import "./partials/navs";
+@import "./partials/dropdowns";
+@import "./partials/button_groups";
+@import "./partials/pagination";
+@import "./partials/list_groups";
+@import "./partials/forms";
+@import "./partials/input_groups";
+@import "./partials/panels";
+@import "./partials/wells";
+@import "./partials/popovers";
+@import "./partials/tooltips";
+@import "./partials/modals";
+@import "./partials/accordions";
+@import "./partials/notes";
+@import "./partials/counters";
+@import "./partials/colors";
+@import "./partials/stats";
+@import "./partials/utils";
+
+@import "./partials/demo";
+
+// jQuery UI
+//
+
+@import "./partials/plugins/jquery_ui/common";
+@import "./partials/plugins/jquery_ui/sliders";
+@import "./partials/plugins/jquery_ui/accordions";
+@import "./partials/plugins/jquery_ui/autocomplete";
+@import "./partials/plugins/jquery_ui/menus";
+@import "./partials/plugins/jquery_ui/spinners";
+@import "./partials/plugins/jquery_ui/progress_bars";
+@import "./partials/plugins/jquery_ui/tabs";
+@import "./partials/plugins/jquery_ui/datepicker";
+@import "./partials/plugins/jquery_ui/tooltips";
+
+
+// Plugins
+//
+
+@import "./partials/plugins/pa.switcher";
+@import "./partials/plugins/pa.limiter";
+@import "./partials/plugins/pa.expanding_input";
+@import "./partials/plugins/pa.wizard";
+@import "./partials/plugins/pa.file_input";
+@import "./partials/plugins/jquery.select2";
+@import "./partials/plugins/bootstrap_datepicker";
+@import "./partials/plugins/bootstrap_timepicker";
+@import "./partials/plugins/bootstrap_datepaginator";
+@import "./partials/plugins/bootstrap_tabdrop";
+@import "./partials/plugins/jquery.minicolors";
+// {
+  @import "./partials/plugins/bootstrap_editable/bootstrap_editable";
+  @import "./partials/plugins/bootstrap_editable/address";
+  @import "./partials/plugins/bootstrap_editable/typeahead";
+// }
+@import "./partials/plugins/bootbox";
+@import "./partials/plugins/jquery.datatables";
+@import "./partials/plugins/jquery.growl";
+@import "./partials/plugins/dropzone";
+@import "./partials/plugins/summernote";
+@import "./partials/plugins/bootstrap_markdown";
+@import "./partials/plugins/jquery.sparkline";
+@import "./partials/plugins/easy_pie_chart";
+@import "./partials/plugins/morris";
+@import "./partials/plugins/jquery.flot";
+@import "./partials/plugins/slim_scroll";

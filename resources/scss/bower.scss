@@ -1,0 +1,12 @@
+@import "overrides/*";
+
+@import "pixel-admin/partials/variables";
+
+// bower:scss
+// endbower
+
+@import "pixel-admin/pixel-admin";
+@import "pixel-admin/widgets";
+@import "pixel-admin/pages";
+@import "pixel-admin/rtl";
+@import "pixel-admin/themes";
