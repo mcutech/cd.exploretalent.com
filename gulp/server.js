@@ -7,6 +7,7 @@ var gulp = require('gulp'),
 gulp.task('serve', function(callback) {
 	runSequence(
 		'clean',
+		'clean.artifact',
 		'fonts',
 		['sass', 'browserify.serve'],
 		'inject',

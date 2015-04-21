@@ -13,7 +13,7 @@
     "tests"
   ],
   "dependencies": {
-	"pixel-admin-base-assets": "git@gitlab.com:utech/pixel-admin-base-assets.git#v0.0.1"
+	"pixel-admin-base-assets": "git@gitlab.com:utech/pixel-admin-base-assets.git#v0.0.2"
   },
   "overrides": {
     "bootstrap-select": {

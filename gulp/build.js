@@ -31,7 +31,10 @@ function clean(done) {
 }
 
 function cleanArtifact(done) {
-	del([ destination + '/assets' ], function() {
+	del([
+		destination + '/assets',
+		destination + '/layouts'
+	], function() {
 		done();
 	});
 }
