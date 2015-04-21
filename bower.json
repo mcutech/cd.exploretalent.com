@@ -106,6 +106,7 @@
     "bootstrap": "~3",
     "jquery": "~1.10.2",
     "moment": "~2.0.0",
-    "bootstrap-datepicker": "~1.2.0"
+    "bootstrap-datepicker": "~1.2.0",
+	"components-font-awesome": "~4.2.0"
   }
 }
