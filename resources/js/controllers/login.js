@@ -1,3 +1,5 @@
-module.exports = function() {
-	console.log('login');
+var $ = require('jquery');
+
+module.exports = function(core) {
+
 };
