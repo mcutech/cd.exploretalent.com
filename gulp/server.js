@@ -40,7 +40,6 @@ gulp.task('serve.start', function() {
 
 	browserSync({
 		proxy: host,
-		files: files,
 		ghostMode: false
 	});
 
