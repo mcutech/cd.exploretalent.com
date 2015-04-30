@@ -4,6 +4,7 @@ var gulp = require('gulp'),
 	$ = require('gulp-load-plugins')(),
 	vinylSource = require('vinyl-source-stream'),
 	vinylBuffer = require('vinyl-buffer'),
+	pkg = require('../package.json'),
 
 	bundler,
 	source = './resources/js/index.js',
@@ -24,7 +25,7 @@ function browserifyServe() {
 		.on('error', function(err) { console.log(err); })
 		.pipe(vinylSource('index.js'))
 		.pipe(vinylBuffer())
-		.pipe($.preprocess({context: { ENV: 'development', DEBUG: true}}))
+		.pipe($.preprocess({context: pkg.preprocess.development}))
 		.pipe(gulp.dest(destination));
 	}
 }
@@ -35,6 +36,6 @@ function browserifyBuild() {
 	.on('error', function(err) { console.log(err); })
 	.pipe(vinylSource('index.js'))
 	.pipe(vinylBuffer())
-	.pipe($.preprocess({context: { ENV: 'production', DEBUG: false}}))
+	.pipe($.preprocess({context: pkg.preprocess.production}))
 	.pipe(gulp.dest(destination));
 }
