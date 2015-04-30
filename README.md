@@ -1,7 +1,8 @@
 ## Development ##
 
-1. Open terminal
-2. Go to pixel-admin-base directory
+[1] Open terminal
+
+[2] Go to pixel-admin-base directory
 
 ```sh
 cd <pixel-admin-base directory>
@@ -19,7 +20,7 @@ composer install
 ./update
 ```
 
-3. Run command below to start server
+[3] Run command below to start server
 
 ```sh
 ./server
@@ -27,8 +28,8 @@ composer install
 
 ## PRODUCTION ##
 
-1. Follow `Development` steps 1 - 2.
-2. Run command below to build the project
+[1] Follow `Development` steps 1 - 2.
+[2] Run command below to build the project
 
 ```sh
 ./build
