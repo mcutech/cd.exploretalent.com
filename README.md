@@ -7,13 +7,13 @@
 cd <pixel-admin-base directory>
 ```
 
-2.1 Run composer install for laravel dependencies
+* Run composer install for laravel dependencies
 
 ```sh
 composer install
 ```
 
-2.2 Update fron-end dependencies
+* Update fron-end dependencies
 
 ```sh
 ./update
