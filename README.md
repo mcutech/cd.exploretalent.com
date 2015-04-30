@@ -28,10 +28,17 @@ composer install
 
 ## PRODUCTION ##
 
-[1] Follow `Development` steps 1 - 2.
+[1] Follow [development](#development) steps 1 - 2.
 
 [2] Run command below to build the project
 
 ```sh
 ./build
 ```
+
+## What developers need to learn ##
+
+[1] [npm](https://www.npmjs.com/) - Node Package Manager
+[2] [bower](http://bower.io/) - Front End Package Manager
+[3] [composer](https://getcomposer.org/) - PHP Dependency Manager
+[4] [gulp](http://gulpjs.com/) - The streaming build system
