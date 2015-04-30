@@ -38,7 +38,12 @@ composer install
 
 ## What developers need to learn ##
 
-[1] [npm](https://www.npmjs.com/) - Node Package Manager
-[2] [bower](http://bower.io/) - Front End Package Manager
-[3] [composer](https://getcomposer.org/) - PHP Dependency Manager
-[4] [gulp](http://gulpjs.com/) - The streaming build system
+[1] [nodejs](https://nodejs.org/) - Only the basics
+
+[2] [npm](https://www.npmjs.com/) - Node Package Manager
+
+[3] [bower](http://bower.io/) - Front End Package Manager
+
+[4] [composer](https://getcomposer.org/) - PHP Dependency Manager
+
+[5] [gulp](http://gulpjs.com/) - The streaming build system
