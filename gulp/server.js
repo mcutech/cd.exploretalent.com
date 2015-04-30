@@ -21,14 +21,6 @@ gulp.task('serve.start', function() {
 
 	var host = '127.0.0.1:' + (args.port || 8000);
 
-	var files = [
-		'.tmp/**/*.css',
-		'.tmp/**/*.js',
-		'.tmp/**/*.php',
-		'resources/views/**/*.php',
-		'app/**/*.php'
-	];
-
 	var phpServer = spawn('php', ['-S', host, '-t', 'public', 'router.php']);
 
 	var killPhpServer = function() {

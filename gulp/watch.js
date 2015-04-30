@@ -6,6 +6,6 @@ gulp.task('watch', watch);
 function watch() {
 	gulp.watch(['resources/scss/**/*.scss'], ['sass']);
 	gulp.watch(['resources/views/layouts/master.blade.php'], ['inject']);
-	gulp.watch(['.tmp/**/*', 'src/**/*.html', '!src/index.html'])
+	gulp.watch(['.tmp/**/*', 'resources/**/*.php', 'app/**/*.php'])
 		.on('change', reload);
 }

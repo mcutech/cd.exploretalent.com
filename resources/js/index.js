@@ -1,5 +1,4 @@
-var jscore = require('jscore'),
-	crossroads = require('crossroads');
+var jscore = require('jscore');
 
 jscore.config(function(core) {
 	// @if ENV='development'
@@ -20,7 +19,10 @@ jscore.run(function(core) {
 		}
 	};
 
+	// registers all controllers for the router to recognize
 	core.service.router.$$controllers = require('./controllers/**/*.js', { hash: true });
+
+	// default parameters for all controllers
 	core.service.router.$$params = [core];
 
 	core.service.router
