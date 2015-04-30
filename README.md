@@ -29,6 +29,7 @@ composer install
 ## PRODUCTION ##
 
 [1] Follow `Development` steps 1 - 2.
+
 [2] Run command below to build the project
 
 ```sh
