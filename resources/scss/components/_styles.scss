@@ -1,0 +1,531 @@
+/*general purpose*/
+.background-icon-back{
+	font-size:60px !important;
+	line-height:80px !important;
+	height:80px !important;
+}
+
+.datepicker{
+	z-index: 9999 !important;
+}
+
+.height-auto{
+	height: auto !important;
+}
+
+.scroll-y-table{
+	max-height: 450px;
+	overflow: auto;
+}
+
+/*font restyle*/
+.text-sxs{
+	font-size: 8px !important;
+}
+/*end font xs*/
+
+/*margin style*/
+.margin-t-xs{
+	margin-top:5px !important;
+}
+
+.margin-t-sm{
+	margin-top:10px !important;
+}
+
+.margin-t-md{
+	margin-top:15px !important;
+}
+
+.margin-b-xs{
+	margin-bottom: 5px !important;
+}
+
+.margin-b-sm{
+	margin-bottom: 10px !important;
+}
+
+.margin-b-md{
+	margin-bottom: 15px !important;
+}
+
+.margin-right-xs{
+	margin-right: 5px !important;
+}
+
+.margin-right-sm{
+	margin-right: 10px !important;
+}
+
+.margin-vr-xs{
+	margin: 5px 0 !important;
+}
+
+.margin-vr-sm{
+	margin: 10px 0 !important;
+}
+
+/*end margin style*/
+.text-color-white{
+	color: #fff !important;
+}
+
+/*switcher styles*/
+.paused-not-paused-style .switcher, .email-campaign-switcher .switcher{
+	width: 80px !important;
+}
+
+.active-inactive-style .switcher{
+	width: 60px !important;
+}
+
+.active-inactive-style .switcher .switcher-inner .switcher-state-on,
+.active-inactive-style .switcher .switcher-inner .switcher-state-off,
+.paused-not-paused-style .switcher .switcher-inner .switcher-state-on,
+.paused-not-paused-style .switcher .switcher-inner .switcher-state-off{
+	font-size: 9px !important;
+}
+
+
+/*padding-style*/
+
+.padding-t-xs{
+	padding-top: 5px !important;	
+}
+
+.padding-t-sm{
+	padding-top: 10px !important;	
+}
+
+.padding-vr-sxs{
+	padding-top: 2px !important;
+	padding-bottom: 2px !important;
+}
+
+.padding-vr-xs{
+	padding-top: 5px !important;
+	padding-bottom: 5px !important;
+}
+
+.no-padding-r{
+	padding-right: 0px !important;
+}
+
+.no-padding-l-i{
+	padding-left: 0px !important;
+}
+
+.padding-sxs{
+	padding: 1px !important;
+}
+
+.padding-xs{
+	padding: 5px !important;
+}
+
+/* end padding-style*/
+
+/*fixed navigation*/
+.fixed-area-navigation{
+	position: fixed !important;
+}
+/*fixed navigation*/
+
+.bg-facebook{
+	background-color: #425F9C;
+	color: #fff;
+}
+
+.bg-facebook.darker{
+	background-color: #3C5488;
+}
+
+.bg-facebook.darken{
+	background-color: #425C94;
+}
+
+@media all and (min-width:1200px ){
+	.gauge-meter-position{
+		text-align: right !important;
+	}
+	.gauge-text-style{
+		text-align: left;
+	}	
+}
+
+@media all and (max-width:992px ){
+	.smallen-heading-text{
+		font-size: 24px;
+	}
+	.gauge-meter-position{
+		text-align: center !important;
+	}
+	.gauge-text-style{
+		text-align: center;
+	}
+}
+
+@media all and(min-width: 768px ){
+	.smallen-heading-text-on-box-functions{
+		font-size: 14px !important;
+	}	
+}
+
+@media all and (max-width: 480px){
+	.m-over-flow-x-scroll{
+		overflow-x: scroll;
+	}
+}
+
+/* end general purpose*/
+
+/*----------------------------------------------*/
+
+/*vicidial on top*/
+.theme-dust #main-navbar .vicidial-on-top .nav>li>a{
+	color: #fff;
+	background-color: none;
+	width: 100%;
+}
+
+.theme-dust #main-navbar .vicidial-on-top .nav>li>a:hover{
+	background-color: transparent;
+}
+
+.vicidial-on-top .alert{
+	margin-bottom: 0px;
+	padding: 12px 20px;
+	float: left;
+	margin: 0px 0px;
+	border-radius: 0px;
+}
+
+.vicidial-on-top .alert button{
+	margin-left: 10px;
+}
+
+.vicidial-on-top .pause{
+	background-color: #e45847;
+}
+
+.vicidial-on-top .resume{
+	background-color: #53b953;
+}
+
+.vicidial-on-top .manual-call{
+	background-color: #726868;
+}
+
+.vicidial-on-top .manual-call{
+	background-color: #726868;
+}
+
+/*vicidial on top*/
+
+
+.revenue-content-transaction-container{
+	position: relative;
+}
+
+.revenue-content-transaction-container .revenue-content-transaction{
+	position: absolute;
+	top: 1px;
+	right: 6px;
+	color: #E7E3EA;
+}
+
+.revenue-content-transaction-container .revenue-content-transaction-subs{
+	position: absolute;
+	bottom: 4px;
+	right: 60px;
+	color: #E7E3EA;
+}
+
+/*----------------------------------------------*/
+
+.company-content-table-container{
+	border-color: #f4b04f !important;
+}
+
+.company-content-table-container .panel-body.company-content-table-container-body{
+	background-color: #f4b04f !important;
+}
+
+.company-content-table-container .company-content-table-heading{
+	background-color:#E59B32 !important;
+}
+
+.company-content-table-container .company-content-table-heading span.panel-title{
+	color: #fff;
+}
+
+.company-content-table-container .company-content-table-body{
+	background-color: #f4b04f !important;
+}
+
+.company-content-table-container .company-content-table-container-body .company-location-info{
+	padding-left: 0px !important;
+}
+
+/*----------------------------------------------*/
+
+/*gauge style*/
+.gauge-text-style{
+	margin-top:10px;
+}
+/*end gauge style */
+
+.smallen-heading-text-on-box-functions{
+	font-size: 14px !important;
+}	
+
+.signups-by-market-container{
+	overflow-y: scroll;
+	overflow-x: hidden;
+	max-height: 450px;
+}
+
+/*----------------------------------------------*/
+
+/*Colored Labels*/
+
+.colored-labels-container{
+	display: block;
+	border-top: 1px solid #ddd;
+}
+
+.colored-labels-container ul li{
+	margin-bottom: 2px;
+	min-width: 195px;
+}
+
+.colored-label-text{
+	font-weight: bold;
+}
+
+.colored-label-content{
+	display: block;
+}
+
+.waiting-for-call{
+	background-color: #C5F1FF !important;
+	width: 30px;
+	height: 15px;
+	position: relative;
+	float: left
+}
+
+.waiting-for-call-greater-1-min{
+	background-color: #CFCFFF !important;
+	width: 30px;
+	height: 15px;
+	position: relative;
+	float: left;
+}
+
+.waiting-for-call-greater-5-min{
+	background-color: #8C8CB0 !important;
+	width: 30px;
+	height: 15px;
+	position: relative;
+	float: left;
+}
+
+.on-call-greater-10-sec{
+	background-color: #d8bfd8 !important;
+	width: 30px;
+	height: 15px;
+	position: relative;
+	float: left;
+}
+
+.on-call-greater-1-min{
+	background-color: #EF99EF !important;
+	width: 30px;
+	height: 15px;
+	position: relative;
+	float: left;
+}
+
+.on-call-greater-5-min{
+	background-color: #A352A3 !important;
+	width: 30px;
+	height: 15px;
+	position: relative;
+	float: left;
+}
+
+.paused-greater-10-sec{
+	background-color: #f0e68c !important;
+	width: 30px;
+	height: 15px;
+	position: relative;
+	float: left;
+}
+
+.paused-greater-1-min{
+	background-color: #BD8B30 !important;
+	width: 30px;
+	height: 15px;
+	position: relative;
+	float: left;
+}
+
+.paused-greater-5-min{
+	background-color: #EA9040 !important;
+	width: 30px;
+	height: 15px;
+	position: relative;
+	float: left;
+}
+
+.in-3-way-greater-10-seconds{
+	background-color: #9DCB9D !important;
+	width: 30px;
+	height: 15px;
+	position: relative;
+	float: left;
+}
+
+.on-a-dead-call{
+	background-color: #3A3836 !important;
+	width: 30px;
+	height: 15px;
+	position: relative;
+	float: left;
+}
+
+/*End Colored Labels*/
+
+/*Colored Table on Highlight*/
+.colored-table-highlight-container{
+	color: #111;
+}
+
+
+/*small-table-padding*/
+.colored-table-highlight-container table tbody tr td, .real-time-container table tbody tr td{
+	padding: 5px 8px;
+}
+/*end-small-table-padding*/ 
+
+/*no-padding-on-heading-table*/
+.colored-table-highlight-container table thead tr th, .real-time-container table thead tr th{
+	padding-top:0px !important;
+}
+/*end-no-padding-on-heading*/
+
+
+.colored-table-highlight-container table tbody tr.waiting-for-call-table-highlight td{
+	background-color: #C5F1FF !important;
+	border-top: 0px;
+	vertical-align: middle;
+}
+
+.colored-table-highlight-container table tbody tr.waiting-for-call-greater-1-min-table-highlight td{
+	background-color: #CFCFFF !important;
+	border-top: 0px;
+	vertical-align: middle;
+}
+
+.colored-table-highlight-container table tbody tr.waiting-for-call-greater-5-min-table-highlight td{
+	background-color: #8C8CB0 !important;
+	border-top: 0px;
+	color: #111;
+	vertical-align: middle;
+}
+
+.colored-table-highlight-container table tbody tr.on-call-greater-10-sec-table-highlight td{
+	background-color: #d8bfd8 !important;
+	border-top: 0px;
+	vertical-align: middle;
+}
+
+.colored-table-highlight-container table tbody tr.on-call-greater-1-min-table-highlight td{
+	background-color: #EF99EF !important;
+	border-top: 0px;
+	vertical-align: middle;
+}
+
+.colored-table-highlight-container table tbody tr.on-call-greater-5-min-table-highlight td{
+	background-color: #A352A3 !important;
+	border-top: 0px;
+	vertical-align: middle;
+}
+
+.colored-table-highlight-container table tbody tr.paused-greater-10-sec-table-highlight td{
+	background-color: #f0e68c !important;
+	border-top: 0px;
+	vertical-align: middle;
+}
+
+.colored-table-highlight-container table tbody tr.paused-greater-1-min-table-highlight td{
+	background-color: #BD8B30 !important;
+	border-top: 0px;
+	vertical-align: middle;
+}
+
+.colored-table-highlight-container table tbody tr.paused-greater-5-min-table-highlight td{
+	background-color: #EA9040 !important;
+	border-top: 0px;
+	vertical-align: middle;
+}
+
+.colored-table-highlight-container table tbody tr.in-3-way-greater-10-seconds-table-highlight td{
+	background-color: #9DCB9D !important;
+	border-top: 0px;
+	vertical-align: middle;
+}
+
+.colored-table-highlight-container table tbody tr.on-a-dead-call-table-highlight td{
+	background-color: #3A3836 !important;
+	color: #fff;
+	border-top: 0px;
+	vertical-align: middle;
+}
+/*End Colored Table on Highlight*/
+
+/*highlight on real time campaign*/
+.real-time-container table tbody tr.highlight-real-time-choosen-1 td{
+	background-color: #F5DDFF !important;
+}
+
+.real-time-container table tbody tr.highlight-real-time-choosen-2 td{
+	background-color: #DFFFD7 !important;
+}
+/*End highlight on real time campaign*/
+
+/*commission page*/
+.commission-container{
+	display: block;
+}
+
+.commission-convertion-area{
+	display: block;
+}
+.commission-container .commission-convertion-area form .convertion-label{
+	margin-right: 5px;
+}
+
+.commission-container .commission-convertion-area form input{
+	width: 100px !important;
+}
+
+.commission-search-area{
+	display: block;
+}
+/*/commission page*/
+
+/*email campaign*/
+a.exploretalent{
+	background-color: #4A9BCA;
+}
+
+a.auditions{
+	background-color: #3787EA;
+}
+
+a.cebumodeling{
+	background-color: #262729;
+}
+/* /email campaign*/
