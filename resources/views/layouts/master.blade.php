@@ -17,8 +17,8 @@
 <!-- endbuild -->
 
 </head>
-<body class="theme-default main-menu-animated @yield('page.class')">
-@yield('body')
+<body class="theme-default main-menu-animated @yield('master.class')">
+@yield('master.body')
 
 <!-- build:js /assets/index.js -->
 <!-- bower:js -->
