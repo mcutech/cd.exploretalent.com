@@ -18,7 +18,9 @@
 
 </head>
 <body class="theme-default main-menu-animated @yield('master.class')">
-@yield('master.body')
+	<div id="main-wrapper">
+		@yield('master.body')
+	</div>
 
 <!-- build:js /assets/index.js -->
 <!-- bower:js -->

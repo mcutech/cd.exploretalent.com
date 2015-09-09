@@ -1,0 +1,15 @@
+// for panels on projects
+
+.panel-blue{
+	.panel-heading{
+		background-color: #1976B3;
+		a, a:after{
+			color: #fff;
+
+			&:hover, &:active, &:focus, &:visited:after, &:hover:after, &:active:after, &:focus:after, &:visited:after {
+				color: #fff;
+			    cursor: pointer;
+			}
+		}
+	}
+}
