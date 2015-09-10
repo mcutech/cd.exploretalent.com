@@ -17,7 +17,7 @@
 <!-- endbuild -->
 
 </head>
-<body class="theme-default main-menu-animated @yield('master.class')">
+<body class="theme-default cd-custom-template main-menu-animated @yield('master.class')">
 	<div id="main-wrapper">
 		@yield('master.body')
 	</div>
