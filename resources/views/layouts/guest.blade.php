@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('body')
+@section('master.body')
 
 	@yield('guest.body')
 
