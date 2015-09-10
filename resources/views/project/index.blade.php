@@ -160,13 +160,13 @@
 													<div class="details-label"><span>Talents:</span> 5</div>
 												</div>
 
-												<div class="col-md-3 details-label-container">
+												{{-- <div class="col-md-3 details-label-container">
 													<div class="details-label"><span>Ethnicity:</span> Any</div>
 												</div>
 
 												<div class="col-md-3 details-label-container">
 													<div class="details-label"><span>Body Type:</span> Athletic</div>
-												</div>
+												</div> --}}
 											</div>
 										</div>
 									</div>{{-- roles-item --}}
