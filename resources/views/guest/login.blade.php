@@ -1,6 +1,6 @@
 @extends('layouts.guest')
 
-@section('page.class', 'page-signin')
+@section('master.class', 'page-signin')
 
 @section('guest.body')
 
