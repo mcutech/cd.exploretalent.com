@@ -1,0 +1,31 @@
+.create-wrapper{
+	.roles-container{
+		.roles-item{
+			margin-bottom: 10px;
+
+			ul.description{
+				li{
+					font-weight: 400;
+					.title{
+						font-weight: bold;
+						display: inline-block;
+					}
+				}
+			}
+			.details-label-container{
+				text-align: center;
+				margin-bottom: 5px;
+				padding-right: 0px;
+
+				.details-label{
+					padding: 6px 10px;
+					background-color: #E8E8E8;
+				}
+
+				&:nth-child(4n){
+					padding-right: 11px;
+				}
+			}
+		}
+	} //roles-container
+}
