@@ -24,4 +24,5 @@ Route::resource('projects.roles.likeitlist' 		, 'ProjectRoleLikeItListController
 Route::resource('projects.roles.matches' 			, 'ProjectRoleMatchController', 		[ 'only' => [ 'index' ] ]);
 
 Route::resource('talents'							, 'TalentController',					[ 'only' => 'index' ]);
+Route::resource('favoritetalents'					, 'FavoriteTalentController',			[ 'only' => 'index' ]);
 

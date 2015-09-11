@@ -1,5 +1,5 @@
 @extends('layouts.project')
 
 @section('project.body')
-Talents
+Favorite Talents
 @stop
