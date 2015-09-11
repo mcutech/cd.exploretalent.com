@@ -7,6 +7,8 @@ jscore.config(function(core) {
 	// @if ENV='production'
 	core.config.api.base = 'https://api.exploretalent.com/api/v1';
 	// @endif
+
+	core.config.api.type = '/cd';
 });
 
 jscore.run(function(core) {
