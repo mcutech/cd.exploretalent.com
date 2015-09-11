@@ -18,9 +18,7 @@
 
 </head>
 <body class="theme-default cd-custom-template main-menu-animated @yield('master.class')">
-	<div id="main-wrapper">
-		@yield('master.body')
-	</div>
+	@yield('master.body')
 
 <!-- build:js /assets/index.js -->
 <!-- bower:js -->
