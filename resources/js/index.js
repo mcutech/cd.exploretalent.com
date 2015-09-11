@@ -2,15 +2,15 @@ var jscore = require('jscore');
 
 jscore.config(function(core) {
 	// @if ENV='development'
-	core.config.api.base = 'http://localhost:9000';
+	core.config.api.base = 'http://localhost:8000/api/v1';
 	// @endif
 	// @if ENV='production'
-	core.config.api.base = 'http://localhost:9002';
+	core.config.api.base = 'http://stage-cd.exploretalent.com/api/v1';
 	// @endif
+	core.config.api.type = '/cd'
 });
 
 jscore.run(function(core) {
-
 	core.service.rest.settings.statusCode = {
 		401: function() {
 			if(window.location.pathname !== '/login') {
