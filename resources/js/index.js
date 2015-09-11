@@ -5,7 +5,7 @@ jscore.config(function(core) {
 	core.config.api.base = 'http://localhost:9000';
 	// @endif
 	// @if ENV='production'
-	core.config.api.base = 'http://localhost:9002';
+	core.config.api.base = 'https://api.exploretalent.com';
 	// @endif
 });
 
