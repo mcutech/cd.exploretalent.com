@@ -1,5 +1,5 @@
 @extends('layouts.sidebar')
 
-@section('sidebar.body')
-Talents
+@section('sidebar.page')
+	Messages
 @stop

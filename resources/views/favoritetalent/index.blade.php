@@ -1,5 +1,5 @@
-@extends('layouts.project')
+@extends('layouts.sidebar')
 
-@section('project.body')
+@section('sidebar.body')
 Favorite Talents
 @stop
