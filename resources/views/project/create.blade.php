@@ -90,21 +90,6 @@
 									</div>
 								</div>
 
-{{-- 								<div class="form-group">
-									<label class="control-label">General Audition Info / Storyline / Synopsis / Logline</label>
-									<textarea class="form-control" rows="5" placeholder="Message"></textarea>
-								</div>
-
-								<div class="form-group">
-									<label class="control-label">Audition Location <span class="text-success">*</span></label>
-									<div class="input-group">
-										<input type="text" class="form-control" placeholder="Enter Zip Code">
-										<span class="input-group-btn">
-											<button class="btn" type="button">Auto Select Markets</button>
-										</span>
-									</div>
-								</div> --}}
-
 							</div> {{-- col-md-6 --}}
 							<div class="col-md-6">
 								<div class="form-group">
@@ -182,8 +167,6 @@
 										<input type="radio" name="optionsRadios" id="self-submission-option" value="option1" checked="" class="px" >
 										<span class="lbl">Self Submission</span>
 									</label>
-								</div>
-								<div class="form-group">
 									<label class="radio checkbox-inline">
 										<input type="radio" name="optionsRadios" id="open-call-option" value="option2" class="px">
 										<span class="lbl">Open Call</span>
@@ -226,6 +209,27 @@
 							</div>
 
 						</div> {{-- row-fluid --}}
+
+						<div class="row-fluid">
+							<div class="col-md-6">
+								<div class="form-group">
+									<label class="control-label">Audition Location <span class="text-success">*</span></label>
+									<div class="input-group">
+										<input type="text" class="form-control" placeholder="Enter Zip Code">
+										<span class="input-group-btn">
+											<button class="btn" type="button">Auto Select Markets</button>
+										</span>
+									</div>
+								</div>					
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<label class="control-label">General Audition Info / Storyline / Synopsis / Logline</label>
+									<textarea class="form-control" rows="5" placeholder="Message"></textarea>
+								</div>	
+							</div>
+						</div>
+
 						<div class="row-fluid">
 							<div class="col-md-12">
 								<div class="pull-right">
