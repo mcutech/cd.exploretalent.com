@@ -1,4 +1,3 @@
-
 module.exports = function(core) {
 	$("#sign-in").click(function(e){
 		e.preventDefault();
@@ -10,12 +9,12 @@ module.exports = function(core) {
 			$("#invalid-email").delay(5000).fadeOut();
 			return;
 		}
+
 		if(!pass){
 			$('#invalid-pass').show();
 			$("#invalid-pass").delay(5000).fadeOut();
 			return;
 		}
-
 
 		core.service.rest.post(core.config.api.base + '/sessions', { email : email, password : pass })
 			.then(function(result) {

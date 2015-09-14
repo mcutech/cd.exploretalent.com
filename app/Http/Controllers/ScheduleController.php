@@ -1,6 +1,6 @@
 <?php namespace App\Http\Controllers;
 
-class ProjectScheduleController extends Controller {
+class ScheduleController extends Controller {
 	public function index()
 	{
 		return view('project.schedule.index');
