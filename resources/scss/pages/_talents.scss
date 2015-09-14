@@ -4,7 +4,9 @@
 			.panel-heading{
 				background-color: #23272D;
 				.panel-title{
-					color:#fff;
+					&.talents-refine-title{
+						color:#fff;
+					}
 				}
 				.panel-heading-controls{
 					.panel-heading-icon{
@@ -14,6 +16,46 @@
 					}
 				}
 			}
-		}
-	}
+		} //panel-talents-search
+		
+		.talents-search-result{
+			.talent-item-container{
+				font-size: 12px;
+				
+				.panel-body{
+					padding: 10px;
+				}
+
+				.talent-photo{
+					background-color: #FFF;
+					border: 1px solid #DDD;
+					padding: 3px;
+
+					img{
+						background-color: #ddd;
+						min-height: 130px;
+						max-height: 130px;
+						width: 100%;
+					}
+				}
+
+				.talent-name{
+
+				}
+
+				.talent-location{
+
+				}
+
+				.talent-information{
+					
+				}
+
+				.like-it-list-container{
+
+				}	
+			}
+		} //talents-search-results
+
+	} //talents-search-filter-content
 }

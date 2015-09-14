@@ -2,15 +2,16 @@ var jscore = require('jscore');
 
 jscore.config(function(core) {
 	// @if ENV='development'
-	core.config.api.base = 'https://api.exploretalent.com/api/v1';
+	core.config.api.base = 'http://localhost:8000/api/v1';
 	// @endif
 	// @if ENV='production'
 	core.config.api.base = 'https://api.exploretalent.com/api/v1';
 	// @endif
+
+	core.config.api.type = '/cd';
 });
 
 jscore.run(function(core) {
-
 	core.service.rest.settings.statusCode = {
 		401: function() {
 			if(window.location.pathname !== '/login') {

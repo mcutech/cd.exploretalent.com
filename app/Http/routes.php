@@ -17,12 +17,18 @@ Route::get('/', function() {
 
 Route::get('login', 'LoginController@index');
 
+Route::group(['prefix' => 'roles'], function() {
+	Route::get('{id}/selfsubmissions',	'RoleController@selfsubmissions');
+	Route::get('{id}/likeitlist',		'RoleController@likeitlist');
+	Route::get('{id}/matches',			'RoleController@matches');
+});
+
 Route::resource('projects'							, 'ProjectController');
-Route::resource('projects.roles'					, 'ProjectRoleController',				[ 'only' => [ 'edit', 'create' ] ]);
-Route::resource('projects.roles.selfsubmissions' 	, 'ProjectRoleSelfSubmissionController',[ 'only' => [ 'index' ] ]);
-Route::resource('projects.roles.likeitlist' 		, 'ProjectRoleLikeItListController', 	[ 'only' => [ 'index' ] ]);
-Route::resource('projects.roles.matches' 			, 'ProjectRoleMatchController', 		[ 'only' => [ 'index' ] ]);
+Route::resource('projects.roles'					, 'RoleController', [ 'only' => [ 'edit', 'create' ] ]);
+Route::resource('projects.schedules' 				, 'ScheduleController');
 
-Route::resource('talents'							, 'TalentController',					[ 'only' => 'index' ]);
-Route::resource('favoritetalents'					, 'FavoriteTalentController',			[ 'only' => 'index' ]);
+Route::resource('talents'							, 'TalentController');
+Route::resource('favoritetalents'					, 'FavoriteTalentController');
+Route::resource('messages'							, 'MessageController');
 
+Route::get('settings'								, 'ProfileController@settings');
