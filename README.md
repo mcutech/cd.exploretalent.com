@@ -24,7 +24,7 @@ cd <cd.exploretalent.com directory>
 
 ## PRODUCTION ##
 
-[1] Follow [development](#development) steps 1 - 2.
+[1] Follow [development](#development) steps 1 & 3.
 
 [2] Run command below to build the project
 
