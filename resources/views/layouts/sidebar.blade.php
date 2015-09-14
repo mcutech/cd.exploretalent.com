@@ -50,7 +50,7 @@
 	</div>
 
 	<div id="content-wrapper" class="margin-bottom-large">
-		@include('layouts.components.breadcrumbs', isset($pages) ? $pages : ['pages' => $pages])
+		@include('layouts.components.breadcrumbs', isset($pages) ? ['pages' => $pages] : ['pages' => null])
 
 		@include('layouts.components.page-header')
 
