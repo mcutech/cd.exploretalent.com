@@ -2,25 +2,21 @@
 
 [1] Open terminal
 
-[2] Go to pixel-admin-base directory
+[2] Run api.exploretalent.com in port 8000
+
+[3] Go to cd.exploretalent.com directory
 
 ```sh
-cd <pixel-admin-base directory>
+cd <cd.exploretalent.com directory>
 ```
 
-* Run composer install for laravel dependencies
-
-```sh
-composer install
-```
-
-* Update fron-end dependencies
+* Update dependencies
 
 ```sh
 ./update
 ```
 
-[3] Run command below to start server
+[4] Run command below to start server
 
 ```sh
 ./server
