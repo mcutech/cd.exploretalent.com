@@ -19,7 +19,7 @@
 					<div class="row">
 						<hr class="visible-xs no-grid-gutter-h">
 						<div class="pull-right col-xs-12 col-sm-auto">
-							<a href="/cd/projects/create" class="btn btn-primary btn-labeled" style="width: 100%;">
+							<a href="/projects/create" class="btn btn-primary btn-labeled" style="width: 100%;">
 								<span class="btn-label icon fa fa-plus"></span>
 								Create Project
 							</a>
@@ -115,7 +115,7 @@
 								</div>
 							</div>
 
-							<div id="roles-container" class="row-fluid col-no-padding clearfix margin-top-normal">
+							<div class="roles-container" class="row-fluid col-no-padding clearfix margin-top-normal">
 								<div class="col-md-12">
 									
 									<?php for($x=0; $x<5; $x++) { ?>

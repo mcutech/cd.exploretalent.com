@@ -17,30 +17,16 @@ Route::get('/', function() {
 
 Route::get('login', 'LoginController@index');
 
-Route::resource('projects'                      , 'ProjectController');
-Route::resource('projects.overview'             , 'ProjectOverviewController');
-Route::resource('projects.selfsubmissions'      , 'ProjectSelfSubmissionsController');
-Route::resource('projects.likeitlist'           , 'ProjectLikeItListController');
-Route::resource('projects.likeitlistpublic'		, 'ProjectLikeItListPublicController');
-Route::resource('projects.rolematches'          , 'ProjectRoleMatchesController');
-Route::resource('projects.worksheets'           , 'ProjectWorksheetsController');
-Route::resource('project.auditions'             , 'ProjectAuditionsController');
+Route::resource('projects'							, 'ProjectController');
+Route::resource('projects.roles'					, 'ProjectRoleController'				,[ 'only' => [ 'edit', 'create' ] ]);
+Route::resource('projects.roles.selfsubmissions' 	, 'ProjectRoleSelfSubmissionController'	,[ 'only' => [ 'index' ] ]);
+Route::resource('projects.roles.likeitlist' 		, 'ProjectRoleLikeItListController'		,[ 'only' => [ 'index' ] ]);
+Route::resource('projects.roles.matches' 			, 'ProjectRoleMatchController'			,[ 'only' => [ 'index' ] ]);
+Route::resource('projects.schedules' 				, 'ProjectScheduleController');
 
-Route::resource('quickpost'                     , 'QuickPostController');
+Route::resource('talents'							, 'TalentController'					,[ 'only' => 'index' ]);
+Route::resource('favoritetalents'					, 'FavoriteTalentController'			,[ 'only' => 'index' ]);
 
-/** talents **/
-Route::resource('talents'                       , 'TalentController');
-Route::resource('favetalents'                   , 'FaveTalentController');
+Route::resource('messages'							, 'MessageController'					,[ 'only' => 'index' ]);
 
-Route::resource('projects.jobs'                 , 'JobController');
-Route::resource('settings'                      , 'SettingController');
-
-/** schedule **/
-Route::resource('schedules'                     , 'ScheduleController');
-Route::resource('projects.schedules'            , 'ProjectSchedulesController');
-Route::resource('projects.schedules.timeframes' , 'TimeframeController');
-Route::resource('projects.schedules.auditions'  , 'AuditionController');
-
-/** Conversation **/
-Route::resource('conversations'                 , 'ConversationController');
-Route::resource('conversations.messages'        , 'ConversationMessageController');
+Route::get('settings'								, 'ProfileController@settings');

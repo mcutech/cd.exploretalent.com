@@ -43,14 +43,23 @@
 				</div>
 
 				<div class="form-actions">
-					<input type="submit" value="SIGN IN" class="signin-btn bg-primary">
+					<input type="button" value="SIGN IN" class="signin-btn bg-primary" id="sign-in">
 					<a href="#" class="forgot-password" id="forgot-password-link">Forgot your password?</a>
 				</div>
-			</form>
 
-			<div class="signin-with">
-				<a href="index.html" class="signin-with-btn" style="background:#4f6faa;background:rgba(79, 111, 170, .8);">Sign In with <span>Facebook</span></a>
-			</div>
+				<div id="invalid-user" style="display:none;" class="margin-top-small">
+					<p>Invalid Username or Password</p>
+				</div>
+
+				<div id="invalid-email" style="display:none;" class="margin-top-small">
+					<p>Invalid Email</p>
+				</div>
+
+				<div id="invalid-pass" style="display:none;" class="margin-top-small">
+					<p>Invalid Password</p>
+				</div>
+
+			</form>
 
 			<div class="password-reset-form" id="password-reset-form">
 				<div class="header">
@@ -78,7 +87,7 @@
 	</div>
 
 	<div class="not-a-member">
-		Not a member? <a href="/signup">Sign Up</a>
+		Not a member? <a href="/register">Sign Up</a>
 	</div>
 
 @stop
