@@ -40,6 +40,7 @@ jscore.run(function(core) {
 		// add routes here
 
 		.add('/login', 'login')
+		.add('/settings', 'settings')
 
 		// project pages
 
