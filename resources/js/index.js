@@ -37,11 +37,15 @@ jscore.run(function(core) {
 
 		core.service.router
 
-			// add routes here
+		// add routes here
 
-			.add('/login', 'login')
+		.add('/login', 'login')
 
-			// end routes
+		// project pages
+
+		.add('/projects/create', 'projects.create')
+
+		// end routes
 
 			.finalize();
 	}
