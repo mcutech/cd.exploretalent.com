@@ -12,37 +12,39 @@ jscore.config(function(core) {
 });
 
 jscore.run(function(core) {
-	core.service.rest.settings.statusCode = {
-		401: function() {
-			if(window.location.pathname !== '/login') {
-				window.location.href = '/login';
+	core.resource.user.get({ userId : 'me', withs : [ 'bam_cd_user' ] })
+		.then(init, init);
+
+	function init() {
+		core.service.rest.settings.statusCode = {
+			401: function() {
+				if(window.location.pathname !== '/login') {
+					window.location.href = '/login';
+				}
 			}
-		}
-	};
+		};
+		var components = require('./components/**/*.js', { hash : true });
 
-	// registers all controllers for the router to recognize
-	core.service.router.$$controllers = require('./controllers/**/*.js', { hash: true });
+		_.each(components, function(component) {
+			component(core);
+		});
 
-	// default parameters for all controllers
-	core.service.router.$$params = [core];
+		// registers all controllers for the router to recognize
+		core.service.router.$$controllers = require('./controllers/**/*.js', { hash: true });
 
-	core.service.router
+		// default parameters for all controllers
+		core.service.router.$$params = [core];
 
-		// add routes here
+		core.service.router
 
-		.add('/login', 'login')
+			// add routes here
 
-		// end routes
+			.add('/login', 'login')
 
-		.finalize();
+			// end routes
 
-
-	var components = require('./components/**/*.js', { hash : true });
-
-	_.each(components, function(component) {
-		component(core);
-	});
-
+			.finalize();
+	}
 });
 
 jscore.initialize();

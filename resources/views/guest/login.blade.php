@@ -13,7 +13,7 @@
 
 		<div class="signin-info">
 			<a href="index.html" class="logo">
-				Pixel Admin
+				CD Exploretalent
 			</a>
 			<div class="slogan" style="font-size: 1em;">
 				World&#39;s Largest Talent Resource
@@ -43,45 +43,30 @@
 				</div>
 
 				<div class="form-actions">
-					<input type="button" value="SIGN IN" class="signin-btn bg-primary" id="sign-in">
+					<input type="submit" value="SIGN IN" class="signin-btn bg-primary" id="sign-in">
 					<a href="#" class="forgot-password" id="forgot-password-link">Forgot your password?</a>
 				</div>
 
-				<div id="invalid-user" style="display:none;" class="margin-top-small">
-					<p>Invalid Username or Password</p>
-				</div>
+				<div class="row margin-top-small">
+					<div id="invalid-user" style="display:none;" class="alert alert-danger" role="alert">
+						<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+						<span class="sr-only">Error:</span>
+						Invalid Username or Password
+					</div>
 
-				<div id="invalid-email" style="display:none;" class="margin-top-small">
-					<p>Invalid Email</p>
-				</div>
+					<div id="invalid-email" style="display:none;" class="alert alert-danger" role="alert">
+						<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+						<span class="sr-only">Error:</span>
+						Invalid Email
+					</div>
 
-				<div id="invalid-pass" style="display:none;" class="margin-top-small">
-					<p>Invalid Password</p>
+					<div id="invalid-pass" style="display:none;" class="alert alert-danger" role="alert">
+						<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+						<span class="sr-only">Error:</span>
+						Invalid Password
+					</div>
 				</div>
-
 			</form>
-
-			<div class="password-reset-form" id="password-reset-form">
-				<div class="header">
-					<div class="signin-text">
-						<span>Password reset</span>
-						<div class="close">&times;</div>
-					</div>
-				</div>
-
-				<form action="index.html" id="password-reset-form_id">
-					<div class="form-group w-icon">
-						<input type="text" name="password_reset_email" id="p_email_id" class="form-control input-lg" placeholder="Enter your email">
-						<span class="fa fa-envelope signin-form-icon"></span>
-					</div>
-
-					<div class="form-actions">
-						<input type="submit" value="SEND PASSWORD RESET LINK" class="signin-btn bg-primary">
-					</div>
-				</form>
-
-			</div>
-
 		</div>
 
 	</div>
