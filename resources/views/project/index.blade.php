@@ -37,17 +37,17 @@
 			  					</div>
 			  					<div class="col-md-6">
 			  						<div class="float-right">
-			  							<a href="/cd/projects/1497936/overview" class="btn btn-outline btn-sm font-size-small-normal-zz padding-small-zz margin-top-small-zz-xs">
+			  							<a href="/projects/1497936" class="btn btn-outline btn-sm font-size-small-normal-zz padding-small-zz margin-top-small-zz-xs">
 			  								Project Overview
 			  							</a>
-			  							<a href="/cd/projects/1497936/selfsubmissions/4920223" class="btn btn-outline btn-sm font-size-small-normal-zz padding-small-zz btn-submissions margin-top-small-zz-xs">
+			  							<a href="/projects/1497936/selfsubmissions/4920223" class="btn btn-outline btn-sm font-size-small-normal-zz padding-small-zz btn-submissions margin-top-small-zz-xs">
 			  								Submissions
 			  							</a>
-			  							<a href="/cd/projects/1497936/schedules/create" class="btn btn-outline btn-sm font-size-small-normal-zz padding-small-zz margin-top-small-zz-xs">
+			  							<a href="/projects/1497936/schedules/create" class="btn btn-outline btn-sm font-size-small-normal-zz padding-small-zz margin-top-small-zz-xs">
 			  								<i class="fa fa-plus"></i>
 			  								Create Schedule
 			  							</a>
-			  							<a href="/cd/projects/1497936/likeitlist" class="btn btn-success btn-sm font-size-small-normal-zz padding-small-zz">
+			  							<a href="/projects/1497936/likeitlist" class="btn btn-success btn-sm font-size-small-normal-zz padding-small-zz">
 			  								View Like it List
 			  							</a>
 			  						</div>
@@ -81,11 +81,11 @@
 			  					</div>
 
 			  					<div class="col-sm-12 margin-top-small">
-			  						<a class="btn btn-lg btn-outline font-size-normal padding-small-zz" href="/cd/projects/1497936/jobs/create">
+			  						<a class="btn btn-lg btn-outline font-size-normal padding-small-zz" href="/projects/1497936/roles/create">
 			  							<i class="fa fa-plus"></i>
 			  							Add Role
 			  						</a>
-			  						<a class="btn btn-lg btn-outline font-size-normal padding-small-zz" href="/cd/projects/1497936/edit">
+			  						<a class="btn btn-lg btn-outline font-size-normal padding-small-zz" href="/projects/1497936/edit">
 			  							<i class="fa fa-pencil"></i>
 			  							Edit Project
 			  						</a>

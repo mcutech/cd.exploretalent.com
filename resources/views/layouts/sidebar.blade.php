@@ -1,5 +1,7 @@
 @extends('layouts.navbar')
 
+@section('title', 'CD ExploreTalent')
+
 @section('navbar.body')
 
 	<div id="main-menu" role="navigation">
