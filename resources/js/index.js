@@ -41,10 +41,10 @@ jscore.run(function(core) {
 
 		// add routes here
 
+		//projects
+
 		.add('/login', 'login')
 		.add('/settings', 'settings')
-
-		//projects
 		.add('/projects', 'projects')
 
 		// project pages
