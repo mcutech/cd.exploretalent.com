@@ -20,7 +20,7 @@ jscore.run(function(core) {
 		core.service.rest.settings.statusCode = {
 			401: function() {
 				if(window.location.pathname !== '/login') {
-					window.location.href = '/login';
+					window.location.href = '/login?redirect=' + encodeURIComponent(window.location);
 				}
 			}
 		};

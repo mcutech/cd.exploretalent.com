@@ -5,14 +5,12 @@ module.exports = function(core) {
 		var pass = $('#password').val();
 
 		if(!email){
-			$('#invalid-email').show();
-			$("#invalid-email").delay(5000).fadeOut();
+			$('#invalid-email').fadeIn().delay(5000).fadeOut();
 			return;
 		}
 
 		if(!pass){
-			$('#invalid-pass').show();
-			$("#invalid-pass").delay(5000).fadeOut();
+			$('#invalid-pass').fadeIn().delay(5000).fadeOut();
 			return;
 		}
 
