@@ -1,11 +1,23 @@
 var jscore = require('jscore');
 
 jscore.config(function(core) {
-	// @if ENV='development'
+/*	// @if ENV='development'
 	core.config.api.base = 'http://localhost:8000/api/v1';
 	// @endif
 	// @if ENV='production'
 	core.config.api.base = 'https://api.exploretalent.com/api/v1';
+	// @endif
+
+	core.config.api.type = '/cd';*/
+
+	// @if ENV='development'
+
+	// core.config.api.base = 'http://localhost:8000/api/v1';
+
+	core.config.api.base = 'https://stage-cd.exploretalent.com/api/v1';
+	// @endif
+	// @if ENV='production'
+	core.config.api.base = 'https://stage-cd.exploretalent.com/api/v1';
 	// @endif
 
 	core.config.api.type = '/cd';
@@ -47,7 +59,7 @@ jscore.run(function(core) {
 		.add('/login', 'login')
 		.add('/settings', 'settings')
 		.add('/projects', 'projects')
-
+		.add('/talents', 'talents')
 		// project pages
 		.add('/projects/create', 'projects.create')
 
