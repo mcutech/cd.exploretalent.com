@@ -42,13 +42,15 @@ jscore.run(function(core) {
 		.add('/login', 'login')
 		.add('/settings', 'settings')
 
-		// project pages
+		//projects
+		.add('/projects', 'projects')
 
+		// project pages
 		.add('/projects/create', 'projects.create')
 
 		// end routes
 
-			.finalize();
+		.finalize();
 	}
 });
 
