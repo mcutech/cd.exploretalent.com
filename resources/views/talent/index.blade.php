@@ -1,37 +1,7 @@
 @extends('layouts.sidebar')
 
+
 @section('sidebar.body')
-
-	{{-- Slider Style --}}
-		<!-- css -->
-		<style>
-			.cd-range-slider { margin-bottom: 20px; }
-		</style>
-		<!-- / css -->
-
-		<!-- Javascript -->
-		<script>
-			init.push(function () {
-				var range_sliders_options = {
-					'range': true,
-					'min': 0,
-					'max': 500,
-					'values': [ 125, 300 ]
-				};
-				$('.cd-range-slider').slider(range_sliders_options);
-		</script>
-		<!-- / Javascript -->
-	{{-- /Slider Style --}}
-		<script>
-			init.push(function () {
-				$('#switchers-colors-default > input').switcher();
-				$('#switchers-colors-square > input').switcher({ theme: 'square' });
-				$('#switchers-colors-modern > input').switcher({ theme: 'modern' });
-			});
-		</script>
-	{{-- Switcher Style --}}
-
-
 	<ul class="breadcrumb breadcrumb-page">
 		<li><a href="">Home</a></li>
 		<li class="active">

@@ -44,14 +44,14 @@
 							</a>
 							<ul class="dropdown-menu">
 								<li>
-									<a href="">
+									<a href="/settings">
 										<i class="dropdown-icon fa fa-cog"></i>
 										&nbsp;&nbsp;Settings
 									</a>
 								</li>
 								<li class="divider"></li>
 								<li>
-									<a class="logout-btn">
+									<a href="#" class="logout">
 										<i class="dropdown-icon fa fa-power-off"></i>
 										&nbsp;&nbsp;Log Out
 									</a>
