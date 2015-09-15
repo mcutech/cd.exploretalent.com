@@ -22,7 +22,6 @@ jscore.run(function(core) {
 				if(window.location.pathname !== '/login') {
 					window.location.href = '/login';
 				}
-
 			}
 		};
 		var components = require('./components/**/*.js', { hash : true });
