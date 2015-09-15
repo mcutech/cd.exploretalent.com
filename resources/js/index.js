@@ -12,6 +12,7 @@ jscore.config(function(core) {
 });
 
 jscore.run(function(core) {
+
 	core.resource.user.get({ userId : 'me', withs : [ 'bam_cd_user' ] })
 		.then(init, init);
 
@@ -21,6 +22,7 @@ jscore.run(function(core) {
 				if(window.location.pathname !== '/login') {
 					window.location.href = '/login';
 				}
+
 			}
 		};
 		var components = require('./components/**/*.js', { hash : true });

@@ -43,9 +43,29 @@
 				</div>
 
 				<div class="form-actions">
+<<<<<<< HEAD
+					<input type="button" value="SIGN IN" class="signin-btn bg-primary" id="sign-in">
+					<a href="#" class="forgot-password" id="forgot-password-link">Forgot your password?</a>
+				</div>
+
+				<div id="invalid-user" style="display:none;" class="margin-top-small">
+					<p>Invalid Username or Password</p>
+				</div>
+
+				<div id="invalid-email" style="display:none;" class="margin-top-small">
+					<p>Invalid Email</p>
+				</div>
+
+				<div id="invalid-pass" style="display:none;" class="margin-top-small">
+					<p>Invalid Password</p>
+				</div>
+
+			</form>
+=======
 					<input type="submit" value="SIGN IN" class="signin-btn bg-primary" id="sign-in">
 					<a href="#" class="forgot-password" id="forgot-password-link">Forgot your password?</a>
 				</div>
+>>>>>>> d431e242ac04bce49e69c35e673d9f0a096d074c
 
 				<div class="row margin-top-small">
 					<div id="invalid-user" style="display:none;" class="alert alert-danger" role="alert">
