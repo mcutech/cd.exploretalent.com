@@ -7,7 +7,7 @@
 			<div class="menu-content top" id="menu-content-demo">
 				<div>
 					<div class="text-bg">
-						<span class="text-normal" title="">Humpman</span>
+						<span class="text-normal" title="" data-bind="<%= getFullName() %>"></span>
 					</div>
 					<img src="/images/128x128.jpg" alt="" class="">
 					<div class="btn-group">

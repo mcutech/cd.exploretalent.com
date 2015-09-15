@@ -24,10 +24,12 @@ jscore.run(function(core) {
 				}
 			}
 		};
+
+		// run all components
 		var components = require('./components/**/*.js', { hash : true });
 
 		_.each(components, function(component) {
-			component(core);
+			component(core, user);
 		});
 
 		// registers all controllers for the router to recognize

@@ -16,9 +16,9 @@
 		<div class="navbar-inner">
 			<div class="navbar-header">
 
-				<a href="index.html"
+				<a href="/"
 					class="navbar-brand">
-					Explore Talent
+					CD ExploreTalent
 				</a>
 
 				<button type="button"
@@ -30,7 +30,7 @@
 
 			</div>
 
-			<div id="main-navbar-collapse"
+			<div id="main-navbar"
 				class="collapse navbar-collapse main-navbar-collapse">
 				<div class="right clearfix">
 					<ul class="nav navbar-nav pull-right right-navbar-nav">
@@ -40,7 +40,7 @@
 								data-toggle="dropdown">
 								<img src="/images/128x128.jpg"
 									alt="">
-								<span>Humpman</span>
+								<span data-bind="<%= getFullName() %>"></span>
 							</a>
 							<ul class="dropdown-menu">
 								<li>
