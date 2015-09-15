@@ -19,6 +19,16 @@
 		} //panel-talents-search
 		
 		.talents-search-result{
+			.top-results-heading{
+				.pagination{
+					vertical-align: bottom;
+				}
+				.results-counter{
+					display: inline-block;
+					padding-bottom: 2px;
+				}
+			}
+
 			.talent-item-container{
 				font-size: 12px;
 				
@@ -48,11 +58,17 @@
 				}
 
 				.talent-information{
-					
+					.talents-list-details{
+						li{
+							line-height: 19px;
+						}
+					}
 				}
 
 				.like-it-list-container{
-
+					.title{
+						font-size: 11px;
+					}
 				}	
 			}
 		} //talents-search-results

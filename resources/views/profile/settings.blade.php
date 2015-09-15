@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-@extends('layouts.sidebar')
-
-@section('layouts.sidebar')
-	Settings
-=======
 @extends('layouts.sidebar', [ 'pages' => [ [ 'name' => 'Settings', 'url' => '/settings', 'active' => true] ] ])
 
 @section('sidebar.page-header')
@@ -135,5 +129,4 @@
 		</form>
 	</div>
 </div>
->>>>>>> d431e242ac04bce49e69c35e673d9f0a096d074c
 @stop

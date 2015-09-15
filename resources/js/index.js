@@ -12,12 +12,7 @@ jscore.config(function(core) {
 });
 
 jscore.run(function(core) {
-<<<<<<< HEAD
-	core.service.rest.settings.statusCode = {
-		401: function() {
-			if(window.location.pathname !== '/login') {
-				window.location.href = '/login';
-=======
+
 	core.resource.user.get({ userId : 'me', withs : [ 'bam_cd_user' ] })
 		.then(init, init);
 
@@ -27,7 +22,7 @@ jscore.run(function(core) {
 				if(window.location.pathname !== '/login') {
 					window.location.href = '/login';
 				}
->>>>>>> d431e242ac04bce49e69c35e673d9f0a096d074c
+
 			}
 		};
 		var components = require('./components/**/*.js', { hash : true });

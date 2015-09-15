@@ -1,21 +1,13 @@
-@extends('layouts.sidebar')
+@extends('layouts.sidebar', [ 'pages' => [ [ 'name' => 'Browse Talents', 'url' => '/talents', 'active' => true] ] ])
+
+@section('sidebar.page-header')
+<i class="fa fa-search"></i> Browse Talents
+@stop
 
 
 @section('sidebar.body')
-	<ul class="breadcrumb breadcrumb-page">
-		<li><a href="">Home</a></li>
-		<li class="active">
-			<a href=""> Browse Talents</a>
-		</li>
-	</ul>
+
 	<div class="talents-wrapper">
-		<div class="page-header">
-			<div class="row">
-				<h1 class="col-xs-12 col-sm-4 text-center text-left-sm">
-					<i class="fa fa-search"></i> Browse Talents
-				</h1>
-			</div>
-		</div>
 
 		<div class="talents-search-filter-content">
 			<div class="row-fluid">
@@ -259,20 +251,34 @@
 					</div>
 				</div> {{-- refine-search-sidebar --}}
 				<div class="col-md-9 talents-search-result">
-					<div class="row-fluid clearfix">
+					<div class="row-fluid clearfix top-results-heading margin-bottom-normal">
 						<div class="col-md-12">
-							<div class="pull-right">Showing: 1 to 25 of 7862526</div>
+							<div class="float-right">
+								<ul class="pagination pagination-xs">
+									<li class="disabled"><a href="#">«</a></li>
+									<li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+									<li><a href="#">2</a></li>
+									<li><a href="#">3</a></li>
+									<li><a href="#">4</a></li>
+									<li><a href="#">5</a></li>
+									<li><a href="#">»</a></li>
+								</ul>
+								<div class="results-counter">Showing: 1 to 25 of 7862526</div>
+							</div>
 						</div>
 					</div>
 					<div class="row-fluid clearfix">
+						<?php for($x=0; $x<12; $x++ ) { ?>
 						<div class="col-md-4 talent-item-container">
 							<div class="panel">
 								<div class="panel-body">
-									<div class="head-area padding-zero padding-bottom-small col-md-12">
-										<div class="talent-name font-size-normal-medium text-semibold float-left">Angelique Augusto <span class="age-area">, 22</span></div>
+									<div class="row-fluid clearfix">
+										<div class="head-area padding-zero padding-bottom-small col-md-12">
+											<div class="talent-name font-size-normal text-semibold float-left text-succes">Angelique Augusto <span class="age-area">, 22</span></div>
 
-										<div class="favorite-indicator float-right">
-											<i class="fa fa-star-o font-size-medium text-light-gray"></i>
+											<div class="favorite-indicator float-right">
+												<i class="fa fa-star-o font-size-medium-large text-light-gray"></i>
+											</div>
 										</div>
 									</div>
 									
@@ -281,14 +287,14 @@
 											<img src="images/talents-sample-image.jpg" alt="" class="img-responsive">
 										</div>
 										
-										<div class="col-lg-6 col-md-12 col-sm-12 padding-right-zero talent-information">
+										<div class="col-lg-6 col-md-12 col-sm-12 padding-right-zero talent-information padding-top-small">
 											<div class="talent-location">
 												<i class="fa fa-map-marker"></i> Los Angeles, CA
 											</div>
 										
-											<ul class="list-unstyled">
-												<li>H: 5' 10"</li>
-												<li>W: 138 lbs.</li>
+											<ul class="list-unstyled talents-list-details">
+												<li>5' 10"</li>
+												<li>138 lbs.</li>
 												<li>Caucasian</li>
 												<li>Athletic Body</li>
 												<li>Green Eyes</li>
@@ -296,28 +302,39 @@
 											
 										</div>
 									</div>
-									<div class="like-it-list-container col-lg-6 padding-zero">
-										<div class="text-left">
-											<div class="display-block"> Add To Like List </div>
-											<div class="btn-group btn-group-xs like-it-buttons">
-												<button class="btn btn-xs btn-danger " data-rating="1">1</button>
-												<button class="btn btn-xs btn-warning " data-rating="2">2</button>
-												<button class="btn btn-xs btn-info " data-rating="3">3</button>
-												<button class="btn btn-xs btn-primary " data-rating="4">4</button>
-												<button class="btn btn-xs btn-success " data-rating="5">5</button>
-												<button class="btn btn-xs btn-default btn-close display-none">×</button>
+									<div class="row-fluid clearfix">
+										<div class="col-md-6 padding-zero">
+											<div class="like-it-list-container">
+												<div class="text-left">
+													<div class="display-block title"> Add to like list </div>
+													<div class="btn-group btn-group-xs">
+														<button class="btn btn-xs btn-danger disabled" data-rating="1">1</button>
+														<button class="btn btn-xs btn-warning disabled" data-rating="2">2</button>
+														<button class="btn btn-xs btn-info disabled" data-rating="3">3</button>
+														<button class="btn btn-xs btn-primary disabled" data-rating="4">4</button>
+														<button class="btn btn-xs btn-success disabled" data-rating="5">5</button>
+													</div>
+												</div>
 											</div>
 										</div>
-									</div>
-									<div class="col-lg-6 padding-zero">
-										<div class="text-center col-xs-12">
-											<button class="btn btn-default"><span class="fa fa-file-text-o"></span></button>
-											<button class="btn btn-default"><span class="fa fa-picture-o"></span></button>
+										<div class="col-md-6 padding-zero">
+											<div class="like-it-list-container">
+												<div class="float-right-md-lg">
+													<div class="display-block title">&nbsp;</div>
+													<div class="btn-group btn-group-xs">
+														<button class="btn btn-xs btn-default " data-rating="1"><span class="fa fa-file-text-o"></span></button>
+														<button class="btn btn-xs btn-default " data-rating="2"><span class="fa fa-picture-o"></span></button>
+														<button class="btn btn-xs btn-default " data-rating="1"><span class="fa fa-calendar"></span></button>
+														<button class="btn btn-xs btn-default " data-rating="2"><span class="fa fa-envelope-o"></span></button>
+													</div>
+												</div>
+											</div>
 										</div>
 									</div>
 								</div>
 							</div>
-						</div>
+						</div> {{-- talent item container --}}
+						<?php } ?>
 					</div>
 				</div> {{-- talents-search-results --}}
 			</div>
