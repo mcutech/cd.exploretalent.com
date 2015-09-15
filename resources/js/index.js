@@ -15,7 +15,7 @@ jscore.run(function(core) {
 	core.resource.user.get({ userId : 'me', withs : [ 'bam_cd_user' ] })
 		.then(init, init);
 
-	function init() {
+	function init(user) {
 		core.service.rest.settings.statusCode = {
 			401: function() {
 				if(window.location.pathname !== '/login') {
@@ -33,15 +33,20 @@ jscore.run(function(core) {
 		core.service.router.$$controllers = require('./controllers/**/*.js', { hash: true });
 
 		// default parameters for all controllers
-		core.service.router.$$params = [core];
+		core.service.router.$$params = [core, user];
 
 		core.service.router
 
-			// add routes here
+		// add routes here
 
-			.add('/login', 'login')
+		.add('/login', 'login')
+		.add('/settings', 'settings')
 
-			// end routes
+		// project pages
+
+		.add('/projects/create', 'projects.create')
+
+		// end routes
 
 			.finalize();
 	}
