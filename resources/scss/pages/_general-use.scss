@@ -1,8 +1,61 @@
 //custom template
 .cd-custom-template{
+	//custom-checkbox-inline-no-margin
+	.checkbox-inline-no-margin{
+		position: relative;
+		display: inline-block;
+		padding-right: 20px;
+		margin-bottom: 0;
+		vertical-align: middle;
+		font-weight: normal;
+		cursor: pointer;
 
-	//custom a link
+	}
 
+	//project-view
+	.project-details-container{
+		ul.unions{
+			li{
+				display: inline-block;
+				.title{
+					display: inline-block;
+				}
+				&:nth-child(odd):after{
+					content: " | "
+				}
+			}
+		}
+		ul.additional-details{
+			li{
+				padding: 6px 5px;
+				font-weight: 500;
+				background-color: #F9F9F9;
+				.title{
+					font-weight: 400;
+					min-width: 115px;
+					display: inline-block;
+				}
+
+				&:nth-child(odd){
+					background-color: #e8e8e8;	
+				}
+			}
+		}
+
+		ul.description{
+			li{
+				padding: 6px 5px;
+				font-weight: 400;
+				background-color: #e8e8e8;
+				.title{
+					font-weight: 400;
+					min-width: 115px;
+					display: inline-block;
+				}
+			}
+		}
+
+	}
 
 	// custom panels
 	.panel{
