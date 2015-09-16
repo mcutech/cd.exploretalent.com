@@ -3,7 +3,7 @@
 @section('sidebar.page-header')
 	<div class="text-semibold">Pre-Submissions</div>
 	<div class="display-block-inline">
-		<h5 class="text-normal">Casting: Runway Fashion Show</h5>
+		<h5 class="text-normal margin-top-zero-small margin-bottom-small">Casting: Runway Fashion Show</h5>
 		<h5 class="text-normal margin-zero">Role: Dragon Ball Models</h5>
 	</div>	
 @stop
