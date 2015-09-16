@@ -62,6 +62,7 @@ jscore.run(function(core) {
 		.add('/talents', 'talents')
 		// project pages
 		.add('/projects/create', 'projects.create')
+		.add('/projects/{projectId}/edit', 'projects.edit')
 
 		// end routes
 

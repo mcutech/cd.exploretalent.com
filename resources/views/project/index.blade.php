@@ -81,11 +81,11 @@
 			  					</div>
 
 			  					<div class="col-sm-12 margin-top-small">
-			  						<a class="btn btn-lg btn-outline font-size-normal padding-small-zz" href="/projects/1497936/roles/create">
+			  						<a class="btn btn-lg btn-outline font-size-normal padding-small-zz" data-bind="/projects/<%= casting_id %>/roles/create">
 			  							<i class="fa fa-plus"></i>
 			  							Add Role
 			  						</a>
-			  						<a class="btn btn-lg btn-outline font-size-normal padding-small-zz" href="/projects/1497936/edit">
+			  						<a class="btn btn-lg btn-outline font-size-normal padding-small-zz" data-bind="/projects/<%= casting_id %>/edit">
 			  							<i class="fa fa-pencil"></i>
 			  							Edit Project
 			  						</a>

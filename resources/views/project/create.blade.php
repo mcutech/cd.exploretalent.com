@@ -118,7 +118,7 @@
 										<input type="text" id="project-rate" class="form-control">
 										<span class="padding-left-small padding-right-small">per</span>
 										<select name="" id="project-rate-desc" class="form-control">
-											<option value="">n/a</option>
+											<option value="0">n/a</option>
 											<option value="1">event</option>
 											<option value="2">hour</option>
 											<option value="3">day</option>
