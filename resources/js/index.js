@@ -22,13 +22,11 @@ jscore.run(function(core) {
 					window.location.href = '/login?redirect=' + encodeURIComponent(window.location);
 				}
 			}
-		};
-
-		// run all components
+		}
 		var components = require('./components/**/*.js', { hash : true });
 
 		_.each(components, function(component) {
-			component(core, user);
+			component(core);
 		});
 
 		// registers all controllers for the router to recognize
@@ -41,13 +39,13 @@ jscore.run(function(core) {
 
 		// add routes here
 
-		//projects
-
 		.add('/login', 'login')
+		.add('/register', 'register')
 		.add('/settings', 'settings')
-		.add('/projects', 'projects')
+
 		.add('/talents', 'talents')
 		// project pages
+		.add('/projects', 'projects')
 		.add('/projects/create', 'projects.create')
 		.add('/projects/{projectId}/edit', 'projects.edit')
 

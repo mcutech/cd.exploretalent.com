@@ -16,6 +16,7 @@ Route::get('/', function() {
 });
 
 Route::get('login', 'LoginController@index');
+Route::get('register', 'RegisterController@index');
 
 Route::group(['prefix' => 'roles'], function() {
 	Route::get('{id}/selfsubmissions',	'RoleController@selfsubmissions');

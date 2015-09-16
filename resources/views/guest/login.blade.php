@@ -33,18 +33,15 @@
 					<span>Sign In to your account</span>
 				</div>
 
-				<div class="form-group w-icon">
-					<input type="text" name="email" id="email" class="form-control input-lg" placeholder="Email" autofocus data-required> <span class="fa fa-user signin-form-icon"></span>
+				<div class="form-group ">
+					<input type="text" name="email" id="email" class="form-control input-lg" placeholder="Email" autofocus data-required> 
 				</div>
 
-				<div class="form-group w-icon">
+				<div class="form-group ">
 					<input type="password" name="password" id="password" class="form-control input-lg" placeholder="Password" data-required>
-					<span class="fa fa-lock signin-form-icon"></span>
 				</div>
-
 				<div class="form-actions">
-					<input type="submit" value="SIGN IN" class="signin-btn bg-primary" id="sign-in">
-					<a href="#" class="forgot-password" id="forgot-password-link">Forgot your password?</a>
+					<button type="submit" class="signin-btn btn-primary">SIGN IN</button>
 				</div>
 
 				<div class="row margin-top-small">
