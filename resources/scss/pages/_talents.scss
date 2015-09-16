@@ -1,4 +1,4 @@
-.talents-wrapper, .favorite-talents-wrapper, .role-matches-talent-view-wrapper, .self-submissions-talent-view-wrapper{
+.talents-wrapper, .favorite-talents-wrapper, .role-matches-talent-view-wrapper, .self-submissions-talent-view-wrapper, .like-it-list-talents-wrapper{
 	.talents-search-filter-content{
 		.panel-talents-search{
 			.panel-heading{
@@ -17,7 +17,7 @@
 				}
 			}
 		} //panel-talents-search
-		
+
 		.talents-search-result{
 			.top-results-heading{
 				.pagination{
@@ -31,7 +31,7 @@
 
 			.talent-item-container{
 				font-size: 12px;
-				
+
 				.panel-body{
 					padding: 10px;
 				}
@@ -69,7 +69,7 @@
 					.title{
 						font-size: 11px;
 					}
-				}	
+				}
 			}
 		} //talents-search-results
 
