@@ -16,8 +16,8 @@ class ProjectController extends Controller {
 		return view('project.create');
 	}
 
-	public function edit()
+	public function edit($projectId)
 	{
-		return view('project.edit');
+		return view('project.edit', ['projectId' => $projectId]);
 	}
 }

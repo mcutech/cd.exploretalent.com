@@ -1,15 +1,55 @@
 'use strict';
-// var layoutInit = require('./layout.js');
 
-function handler(core, user, talentlogin) {
+function handler(core, user, projectId) {
 	self = this;
 	self.core = core;
 	self.user = user;
+	self.projectId = projectId;
 
-	console.log(self.user);
+	self.getProjectInfo();
 }
 
-handler.prototype.createNewProject = function(e){
+handler.prototype.getProjectInfo = function(e) {
+
+	var data = {
+		withs : [
+			'bam_roles'
+		],
+		wheres : [
+			[ 'where', 'casting_id', '=', self.projectId ]
+		]
+	};
+
+	return self.core.resource.project.get(data)
+		.then(function(res) {
+			if (res.total > 0) {
+				var casting = res.data[0];
+
+				console.log(casting);
+
+				casting.date = self.core.service.date;
+
+				if(casting.app_date_time) {
+					casting.app_date_time = $(casting.app_date_time).text();
+				}
+
+				// determines which div to show for Submission details (self-response or open call div)
+				if(casting.project_type == "8") {
+					$("#open-call-option-content").show();
+        			$("#self-submissions-option-content").hide();
+				}
+				else {
+					$("#self-submissions-option-content").show();
+        			$("#open-call-option-content").hide();
+				}
+
+				self.core.service.databind('.edit-project-wrapper', casting);
+				return $.when();
+			}
+		});
+}
+
+handler.prototype.updateProject = function(e){
 
 	e.preventDefault();
 
@@ -24,11 +64,12 @@ handler.prototype.createNewProject = function(e){
 	var shootdate = $('#bs-datepicker-shootdate').val();
 	var shoottimestamp = new Date(shootdate) / 1000;
 	var union = $('input[type="radio"][name="radioUnion"]:checked').val();
-	var projecttype = $('input[type="radio"][name="radioSubmissionType"]:checked').val();
+	// var projecttype = $('input[type="radio"][name="radioSubmissionType"]:checked').val();
 	var zipcode = $('#zip-code').val();
 	var auditiondesc = $('#audition-description').val();
 
 	var data = {
+		projectId : self.projectId,
 		user_id : self.user.bam_cd_user_id,
 		name : projectname,
 		name_original : projectname,
@@ -38,10 +79,10 @@ handler.prototype.createNewProject = function(e){
 		asap : submissiontimestamp,
 		rate : rate,
 		rate_des: ratedes,
-		aud_timestamp: auditiontimestamp,
-		shoot_timestamp: shoottimestamp,
-		union2: union,
-		project_type : projecttype,
+		aud_timestamp : auditiontimestamp,
+		shoot_timestamp : shoottimestamp,
+		union2 : union,
+		// project_type : projecttype,
 		zip : zipcode,
 		location : zipcode,
 		des: auditiondesc,
@@ -113,7 +154,7 @@ handler.prototype.createNewProject = function(e){
 	}
 
 	else {
-		if(projecttype == "3") {
+		if($('#self-submissions-option-content').is(':visible')) {
 
 			data["snr_email"] = $('#self-sub-email').val();
 
@@ -130,26 +171,31 @@ handler.prototype.createNewProject = function(e){
 				data["address2"] = $('#self-sub-address').val();
 				data["srn_address"] = $('#self-sub-address').val();
 				
-				return self.core.resource.project.post(data)
+				return self.core.resource.project.patch(data)
 				.then(function(res) {
+
 					console.log(res);
-					window.location = "/projects";
+
+					$('#update-profile-success-text').fadeIn();
+
+					setTimeout(function() {
+						$('#update-profile-success-text').fadeOut();
+					}, 3000);
+
 				});
 			}
 
 		}
 
-		else if(projecttype == "8") {
+		else if($('#open-call-option-content').is(':visible')) {
 
-			if($('#bs-datepicker-open-call').val().length < 1) {
+			if($('#open-call-details').val().length < 1) {
 
 				$('.open-call-date-error-required').fadeIn();
-				$('#bs-datepicker-open-call').focus();
-				$('.ui-datepicker').hide();
+				$('#open-call-details').focus();
 
 				setTimeout(function(){
 					$('.open-call-date-error-required').fadeOut();
-					$('.ui-datepicker').fadeIn();
 				}, 1500);
 			}
 
@@ -164,13 +210,19 @@ handler.prototype.createNewProject = function(e){
 			}
 			
 			else {
-				data["app_date_time"] = '<p>' + $('#bs-datepicker-open-call').val() + " from " + $('#bs-timepicker-open-call-from').val() + " to " + $('#bs-timepicker-open-call-to').val() + '</p>';
+				data["app_date_time"] = '<p>' + $('#open-call-details').val() + '</p>';
 				data["app_loc"] = $('#open-call-location').val();
 
-				return self.core.resource.project.post(data)
+				return self.core.resource.project.patch(data)
 				.then(function(res) {
+
 					console.log(res);
-					window.location = "/projects";
+					$('#update-profile-success-text').fadeIn();
+
+					setTimeout(function() {
+						$('#update-profile-success-text').fadeOut();
+					}, 3000);
+
 				});
 			}
 
@@ -178,6 +230,6 @@ handler.prototype.createNewProject = function(e){
 	}
 }
 
-module.exports = function(core, user, talentlogin) {
-	return new handler(core, user, talentlogin);
+module.exports = function(core, user, projectId) {
+	return new handler(core, user, projectId);
 };

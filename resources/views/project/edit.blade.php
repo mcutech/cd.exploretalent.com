@@ -1,11 +1,11 @@
-@extends('layouts.project', ['pages' => [ [ 'name' => 'My Projects', 'url' => '/projects' ], [ 'name' => 'Edit Project', 'url' => '/projects/12345/edit', 'active' => true ] ] ])
+@extends('layouts.project', ['pages' => [ [ 'name' => 'My Projects', 'url' => '/projects' ], [ 'name' => 'Edit Project', 'url' => '/projects/'.$projectId.'/edit', 'active' => true ] ] ])
 
 @section('sidebar.page-header')
 <i class="fa fa-file-text"></i> Edit Project
 @stop
 
 @section('project.body')
-<div class="create-wrapper">
+<div class="edit-project-wrapper">
 	<div class="projects-content">
 		<div class="panel">
 			<div class="panel-body">
@@ -14,7 +14,7 @@
 						<div class="col-md-6">
 							<div class="form-group">
 								<label class="control-label">Project Name <span class="text-success">*</span></label>
-								<input type="text" class="form-control" id="project-name" placeholder="Enter Project Name">
+								<input type="text" class="form-control" id="project-name" placeholder="Enter Project Name" data-bind="<%= project %>">
 								<div class="alert alert-page alert-danger project-name-error-five" style="display:none;">This field must be at least 5 characters.</div>
 								<div class="alert alert-page alert-danger project-name-error-required" style="display:none;">This field is required.</div>
 							</div>
@@ -22,7 +22,7 @@
 							<div class="form-group">
 								<label class="control-label">Submission Deadline <span class="text-success">*</span></label>
 								<div class="input-group date">
-									<input type="text" id="bs-datepicker-submissiondeadline" class="form-control" readonly="true" style="cursor: pointer; background-color: #fff"><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+									<input type="text" id="bs-datepicker-submissiondeadline" class="form-control" readonly="true" style="cursor: pointer; background-color: #fff" data-bind="<%= date.formatYMD(asap) %>"><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
 								</div>
 								<div class="alert alert-page alert-danger submission-deadline-error-required" style="display:none;">This field is required.</div>
 							</div>
@@ -30,14 +30,14 @@
 							<div class="form-group col-md-6 padding-left-zero-md-lg">
 								<label class="control-label">Audition Date</label>
 								<div class="input-group date">
-									<input type="text" id="bs-datepicker-audition" class="form-control" readonly="true" style="cursor: pointer; background-color: #fff"><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+									<input type="text" id="bs-datepicker-audition" class="form-control" readonly="true" style="cursor: pointer; background-color: #fff" data-bind="<%= date.formatYMD(aud_timestamp) %>"><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
 								</div>
 							</div>
 
 							<div class="form-group col-md-6 padding-right-zero-md-lg">
 								<label class="control-label">Shoot Date</label>
 								<div class="input-group date">
-									<input type="text" id="bs-datepicker-shootdate" class="form-control" readonly="true" style="cursor: pointer; background-color: #fff"><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+									<input type="text" id="bs-datepicker-shootdate" class="form-control" readonly="true" style="cursor: pointer; background-color: #fff" data-bind="<%= date.formatYMD(shoot_timestamp) %>"><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
 								</div>
 							</div>
 
@@ -45,7 +45,7 @@
 						<div class="col-md-6">
 							<div class="form-group">
 								<label class="control-label">Category <span class="text-success">*</span></label>
-								<select class="form-control" id="project-category" name="cat">
+								<select class="form-control" id="project-category" name="cat" data-bind="<%= cat %>">
 									<option value="43">Acting - Acrobatics/Stunts</option>
 									<option value="41">Acting - Comedy/Clown</option>
 									<option value="61">Acting - Other</option>
@@ -115,11 +115,15 @@
 								<form class="form-inline">
 									<div class="form-group">
 										<span class="display-inline font-size-normal">$</span>
-										<input type="text" id="project-rate" class="form-control">
+										<input type="text" id="project-rate" class="form-control" data-bind="<%= rate %>">
 										<span class="padding-left-small padding-right-small">per</span>
-										<select name="" id="" class="form-control">
-											<option value="1">n/a</option>
-											<option value="2">event</option>
+										<select name="" id="project-rate-desc" class="form-control" data-bind="<%= rate_des %>">
+											<option value="0">n/a</option>
+											<option value="1">event</option>
+											<option value="2">hour</option>
+											<option value="3">day</option>
+											<option value="4">week</option>
+											<option value="5">month</option>
 										</select>
 										<div class="alert alert-page alert-danger rate-error-required" style="display:none;">This field is required.</div>
 									</div>
@@ -130,11 +134,11 @@
 								<label class="control-label">Union <span class="text-success">*</span></label>
 								<div class="margin-bottom-small-normal form-inline">
 									<label class="radio checkbox-inline">
-										<input type="radio" name="radioUnion" value="0" class="px" checked="">
+										<input type="radio" name="radioUnion" value="0" class="px" data-bind="<%= (union2 == '0') ? '1' : '0' %>">
 										<span class="lbl">No</span>
 									</label>
 									<label class="radio checkbox-inline">
-										<input type="radio" name="radioUnion" value="1" class="px">
+										<input type="radio" name="radioUnion" value="1" class="px" data-bind="<%= (union2 == '1') ? '1' : '0' %>">
 										<span class="lbl">Yes</span>
 									</label>
 								</div>
@@ -144,50 +148,34 @@
 					</div> {{-- row-fluid --}}
 
 					<div class="row-fluid">
-						<div class="col-md-3">
+						<div class="col-md-12">
 							<div class="form-group">
-								<label class="control-label">Submission Type<span class="text-success">*</span></label>
-								<label class="radio checkbox-inline">
-									<input type="radio" name="radioSubmissionType" id="self-submission-option" value="3" class="px">
-									<span class="lbl">Self Submission</span>
-								</label>
-								<label class="radio checkbox-inline">
-									<input type="radio" name="radioSubmissionType" id="open-call-option" value="8" class="px">
-									<span class="lbl">Open Call</span>
-								</label>
-							</div>
-						</div>
-						<div class="col-md-9">
-							<div class="form-group">
-								<div class="panel" id="self-submissions-option-content">
+								<strong><p class="control-label" data-bind="<%= (project_type == '8') ? 'Open Call Details' : 'Self Submission Details' %>"></p></strong>
+								<div class="panel display-none" id="self-submissions-option-content">
 									<div class="panel-body">
-										<div class="form-group">
-											<label class="control-label">Email Address</label>
-											<input type="text" id="self-sub-email" class="form-control" placeholder="Enter Email Address">
+										<div class="col-md-4">
+											<div class="form-group">
+												<label class="control-label">Email Address</label>
+												<input type="text" id="self-sub-email" class="form-control" placeholder="Enter Email Address" data-bind="<%= (snr_email) ? snr_email : '' %>">
+											</div>
 										</div>
-										<div class="form-group">
-											<label class="control-label">and / or postal address <span class="text-success">*</span></label>
-											<textarea id="self-sub-address" class="form-control" rows="5" placeholder="Address" style="resize: none;"></textarea>
-											<div class="alert alert-page alert-danger self-sub-error-required" style="display:none;">This field is required.</div>
+										<div class="col-md-8">
+											<div class="form-group">
+												<label class="control-label">and / or postal address <span class="text-success">*</span></label>
+												<textarea id="self-sub-address" class="form-control" rows="5" placeholder="Address" style="resize: none;" data-bind="<%= (srn_address) ? srn_address : '' %>"></textarea>
+												<div class="alert alert-page alert-danger self-sub-error-required" style="display:none;">This field is required.</div>
+											</div>
 										</div>
 									</div>
 								</div> {{-- self-submission-option-content --}}
 
-								<div class="panel" id="open-call-option-content">
+								<div class="panel display-none" id="open-call-option-content">
 									<div class="panel-body">
 										<div class="col-md-4">
 											<div class="form-group">
 												<label class="control-label">Date and Time of Open Call <span class="text-success">*</span></label>
-												<div class="input-group date">
-													<input type="text" id="bs-datepicker-open-call" class="form-control" readonly="true" title="Date" style="cursor: pointer; background-color: #fff" placeholder="Date"><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-												</div>
+												<textarea id="open-call-details" class="form-control" rows="5" placeholder="Details" style="resize: none;" data-bind="<%= (app_date_time) ? app_date_time : '' %>"></textarea>
 												<div class="alert alert-page alert-danger open-call-date-error-required" style="display:none;">This field is required.</div>
-												<div class="input-group date margin-top-small">
-													<input type="text" id="bs-timepicker-open-call-from" class="form-control" readonly="true" title="Time" style="cursor: pointer; background-color: #fff" placeholder="From"><span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
-												</div>
-												<div class="input-group date margin-top-small">
-													<input type="text" id="bs-timepicker-open-call-to" class="form-control" readonly="true" title="Time" style="cursor: pointer; background-color: #fff" placeholder="To"><span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
-												</div>
 											</div>
 											<div class="form-group">
 												<label class="checkbox-inline">
@@ -198,7 +186,7 @@
 										<div class="col-md-8">
 											<div class="form-group">
 												<label class="control-label">Enter location(s) & telephone(s) <span class="text-success">*</span></label>
-												<textarea id="open-call-location" class="form-control" rows="5" placeholder="Address & Telephone" style="resize: none;"></textarea>
+												<textarea id="open-call-location" class="form-control" rows="5" placeholder="Address & Telephone" style="resize: none;" data-bind="<%= (app_loc) ? app_loc : '' %>"></textarea>
 												<div class="alert alert-page alert-danger open-call-location-error-required" style="display:none;">This field is required.</div>
 											</div>
 										</div>
@@ -206,7 +194,6 @@
 								</div>
 							</div>
 						</div>
-
 					</div> {{-- row-fluid --}}
 
 					<div class="row-fluid">
@@ -214,7 +201,7 @@
 							<div class="form-group">
 								<label class="control-label">Audition Location <span class="text-success">*</span></label>
 								<div class="input-group">
-									<input type="text" id="zip-code" class="form-control" placeholder="Enter Zip Code">
+									<input type="text" id="zip-code" class="form-control" placeholder="Enter Zip Code" data-bind="<%= zip %>">
 									<span class="input-group-btn">
 										<button class="btn" type="button">Auto Select Markets</button>
 									</span>
@@ -225,7 +212,7 @@
 						<div class="col-md-6">
 							<div class="form-group">
 								<label class="control-label">General Audition Info / Storyline / Synopsis / Logline <span class="text-success">*</span></label>
-								<textarea id="audition-description" class="form-control" rows="5" placeholder="Message" style="resize: none;"></textarea>
+								<textarea id="audition-description" class="form-control" rows="5" placeholder="Message" style="resize: none;" data-bind="<%= des %>"></textarea>
 								<div class="alert alert-page alert-danger audition-description-error-required" style="display:none;">This field is required.</div>
 							</div>
 						</div>
@@ -234,7 +221,10 @@
 					<div class="row-fluid">
 						<div class="col-md-12">
 							<div class="pull-right">
-								<a href="#" id="create-project-btn" class="btn btn-success btn-lg">Update</a>
+								<a href="#" id="update-project-btn" class="btn btn-success btn-lg">Update</a>
+							</div>
+							<div id="update-profile-success-text" class="pull-right margin-right-normal margin-top-normal" style="display: none;">
+								<span class="text-success">Profile details updated.</span>
 							</div>
 						</div>
 					</div>
