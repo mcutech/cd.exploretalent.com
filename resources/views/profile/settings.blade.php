@@ -119,7 +119,7 @@
 					<div class="col-sm-6">
 						<div class="form-group no-margin-hr">
 							<label for="pass" class="control-label">Password</label>
-							<input data-bind="<%= pass %>" type="password" class="form-control" name="pass" id="pass" placeholder="Password">
+							<input data-bind="<%= pass %>" type="password" class="form-control" id="pass" placeholder="Password">
 						</div>
 					</div>
 				</div>
