@@ -5,4 +5,9 @@ class TalentController extends Controller {
 	{
 		return view('talent.index');
 	}
+
+	public function favorite()
+	{
+		return view('talent.favorite');
+	}
 }

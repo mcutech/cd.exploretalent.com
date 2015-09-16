@@ -27,8 +27,8 @@ Route::resource('projects'							, 'ProjectController');
 Route::resource('projects.roles'					, 'RoleController', [ 'only' => [ 'edit', 'create' ] ]);
 Route::resource('projects.schedules' 				, 'ScheduleController');
 
-Route::resource('talents'							, 'TalentController');
-Route::resource('favoritetalents'					, 'FavoriteTalentController');
+Route::get('talents'								, 'TalentController@index');
+Route::get('talents/favorite'						, 'TalentController@favorite');
 Route::resource('messages'							, 'MessageController');
 
 Route::get('settings'								, 'ProfileController@settings');

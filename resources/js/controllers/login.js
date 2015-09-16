@@ -1,5 +1,5 @@
 module.exports = function(core) {
-	$("#sign-in").click(function(e){
+	$("#login-form").on('submit', function(e){
 		e.preventDefault();
 		var email = $('#email').val();
 		var pass = $('#password').val();
@@ -18,7 +18,9 @@ module.exports = function(core) {
 
 		core.service.rest.post(core.config.api.base + '/sessions', { email : email, password : pass })
 			.then(function(result) {
-				window.location = '/projects';
+				var qs = core.service.query_string.toObject();
+
+				window.location = qs.redirect ? decodeURIComponent(qs.redirect) : '/projects';
 
 			},
 			function(){
