@@ -1,0 +1,56 @@
+.like-it-list-page-wrapper{
+	.talents-search-result {
+		.talent-item-container {
+			ul.nav-tabs{
+				li{
+					&.active{
+						a{
+							color: #555555;
+							background-color: #ffffff;
+							border: 1px solid #dddddd;
+							border-bottom-color: transparent;
+							cursor: default;
+						}
+					}
+				}
+			}
+
+			.item-container-holder {
+				height:193px;
+				overflow-y: scroll;
+			
+				.note-item {
+						padding-bottom: 10px;
+						margin-bottom: 10px;
+					.note-header {
+						 .name-date {
+						 	  display: inline-block;
+							  vertical-align: top;
+							  margin-top: 3px;
+							  margin-left: 2px;
+						 }
+						.photo{
+							  display: inline-block;
+							  width: 20px;
+							  height: 20px;
+							  background-color: #ddd;
+						}
+						.name{
+							display: inline-block;
+ 							 color: #4083a9;
+						
+						}
+						.date {
+						  display: inline-block;
+						  color: #898989;
+						  font-size: 9px;
+						}
+					}
+				}		
+			}			
+		}
+	}
+
+
+}	
+
