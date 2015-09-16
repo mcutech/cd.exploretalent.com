@@ -117,9 +117,13 @@
 										<span class="display-inline font-size-normal">$</span>
 										<input type="text" id="project-rate" class="form-control">
 										<span class="padding-left-small padding-right-small">per</span>
-										<select name="" id="" class="form-control">
-											<option value="1">n/a</option>
-											<option value="2">event</option>
+										<select name="" id="project-rate-desc" class="form-control">
+											<option value="">n/a</option>
+											<option value="1">event</option>
+											<option value="2">hour</option>
+											<option value="3">day</option>
+											<option value="4">week</option>
+											<option value="5">month</option>
 										</select>
 										<div class="alert alert-page alert-danger rate-error-required" style="display:none;">This field is required.</div>
 									</div>
