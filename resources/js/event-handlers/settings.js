@@ -14,14 +14,17 @@ handler.prototype.refresh = function() {
 
 handler.prototype.updateUser = function(e) {
 	e.preventDefault();
-	var form = self.core.service.form.serializeObject('#settings-form');
 
-	form.cdUserId = self.user.bam_cd_user_id;
+	if (self.core.service.form.validate('#settings-form')) {
+		var form = self.core.service.form.serializeObject('#settings-form');
 
-	self.core.resource.cd_user.patch(form)
-		.then(function(res) {
-			$('#update-settings-success').fadeIn().delay(5000).fadeOut();
-		});
+		form.cdUserId = self.user.bam_cd_user_id;
+
+		self.core.resource.cd_user.patch(form)
+			.then(function(res) {
+				$('#update-settings-success').fadeIn().delay(5000).fadeOut();
+			});
+	}
 }
 
 module.exports = function(core, user) {

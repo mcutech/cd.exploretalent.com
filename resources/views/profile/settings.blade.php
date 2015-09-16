@@ -15,7 +15,7 @@
 					<div class="col-sm-12">
 						<div class="form-group no-margin-hr">
 							<label for="company" class="control-label">Company name *</label>
-							<input data-bind="<%= company %>" type="text" class="form-control" name="company" id="company" placeholder="Company name" data-required>
+							<input data-bind="<%= company %>" type="text" class="form-control" name="company" placeholder="Company name" data-validate="required" data-validate-error="This field is required." />
 						</div>
 					</div>
 				</div>
@@ -23,13 +23,13 @@
 					<div class="col-sm-6">
 						<div class="form-group no-margin-hr">
 							<label for="fname" class="control-label">First name *</label>
-							<input data-bind="<%= fname %>" type="text" class="form-control" name="fname" id="fname" placeholder="First name" data-required>
+							<input data-bind="<%= fname %>" type="text" class="form-control" name="fname" placeholder="First name" data-validate="text" data-validate-error="This is not a valid first name." />
 						</div>
 					</div>
 					<div class="col-sm-6">
 						<div class="form-group no-margin-hr">
 							<label for="lname" class="control-label">Last name *</label>
-							<input data-bind="<%= lname %>" type="text" class="form-control" name="lname" id="lname" placeholder="Last name" data-required>
+							<input data-bind="<%= lname %>" type="text" class="form-control" name="lname" placeholder="Last name" data-validate="text" data-validate-error="This is not a valid last name." />
 						</div>
 					</div>
 				</div>
@@ -67,7 +67,7 @@
 					<div class="col-sm-2">
 						<div class="form-group no-margin-hr">
 							<label for="zip" class="control-label">Zip</label>
-							<input data-bind="<%= zip %>" type="text" class="form-control" name="zip" id="zip" placeholder="Zip">
+							<input data-bind="<%= zip %>" type="text" class="form-control" name="zip" placeholder="Zip" data-validate="zip" data-validate-error="This is not a valid zip code." />
 						</div>
 					</div>
 				</div>
@@ -75,13 +75,13 @@
 					<div class="col-sm-6">
 						<div class="form-group no-margin-hr">
 							<label for="phone1" class="control-label">Phone 1 *</label>
-							<input data-bind="<%= phone1 %>" type="text" class="form-control" name="phone1" id="phone1" placeholder="Phone 1" data-required>
+							<input data-bind="<%= phone1 %>" type="text" class="form-control" name="phone1" placeholder="Phone 1" data-validate="phone" data-validate-error="This is not a valid phone number." />
 						</div>
 					</div>
 					<div class="col-sm-6">
 						<div class="form-group no-margin-hr">
 							<label for="phone2" class="control-label">Phone 2</label>
-							<input data-bind="<%= phone2 %>" type="text" class="form-control" name="phone2" id="phone2" placeholder="Phone 2">
+							<input data-bind="<%= phone2 %>" type="text" class="form-control" name="phone2" placeholder="Phone 2" data-validate="phone" data-validate-error="This is not a valid phone number." />
 						</div>
 					</div>
 				</div>
@@ -95,7 +95,7 @@
 					<div class="col-sm-6">
 						<div class="form-group no-margin-hr">
 							<label for="fax" class="control-label">Fax</label>
-							<input data-bind="<%= fax %>" type="text" class="form-control" name="fax" id="fax" placeholder="Fax">
+							<input data-bind="<%= fax %>" type="text" class="form-control" name="fax" placeholder="Fax" data-validate="phone" data-validate-error="This is not a valid fax number." />
 						</div>
 					</div>
 				</div>
@@ -105,13 +105,13 @@
 					<div class="col-sm-6">
 						<div class="form-group no-margin-hr">
 							<label for="email1" class="control-label">Email 1 *</label>
-							<input data-bind="<%= email1 %>" type="email" class="form-control" name="email1" id="email1" placeholder="Email 1" data-required>
+							<input data-bind="<%= email1 %>" type="email" class="form-control" name="email1" placeholder="Email 1" data-validate="email" data-validate-error="This is not a valid e-mail address." />
 						</div>
 					</div>
 					<div class="col-sm-6">
 						<div class="form-group no-margin-hr">
 							<label for="email2" class="control-label">Email 2</label>
-							<input data-bind="<%= email2 %>" type="email" class="form-control" name="email2" id="email2" placeholder="Email 2">
+							<input data-bind="<%= email2 %>" type="email" class="form-control" name="email2" placeholder="Email 2" data-validate="email" data-validate-error="This is not a valid e-mail address." />
 						</div>
 					</div>
 				</div>
