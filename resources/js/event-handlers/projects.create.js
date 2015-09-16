@@ -18,6 +18,7 @@ handler.prototype.createNewProject = function(e){
 	var submissiondeadline = $('#bs-datepicker-submissiondeadline').val();
 	var submissiontimestamp = new Date(submissiondeadline).getTime() / 1000;
 	var rate = $('#project-rate').val();
+	var ratedes = $('#project-rate-desc').val();
 	var auditiondate = $('#bs-datepicker-audition').val();
 	var auditiontimestamp = new Date(auditiondate).getTime() / 1000;
 	var shootdate = $('#bs-datepicker-shootdate').val();
@@ -34,12 +35,16 @@ handler.prototype.createNewProject = function(e){
 		project : projectname,
 		cat : category,
 		sub_timestamp : submissiontimestamp,
+		asap : submissiontimestamp,
 		rate : rate,
+		rate_des: ratedes,
 		aud_timestamp: auditiontimestamp,
 		shoot_timestamp: shoottimestamp,
 		union2: union,
 		project_type : projecttype,
-		zip : zipcode
+		zip : zipcode,
+		location : zipcode,
+		des: auditiondesc,
 	};
 
 	if(projectname.length < 1) {
@@ -123,10 +128,12 @@ handler.prototype.createNewProject = function(e){
 
 			else {
 				data["address2"] = $('#self-sub-address').val();
+				data["srn_address"] = $('#self-sub-address').val();
 				
 				return self.core.resource.project.post(data)
 				.then(function(res) {
 					console.log(res);
+					window.location = "/projects";
 				});
 			}
 
@@ -163,6 +170,7 @@ handler.prototype.createNewProject = function(e){
 				return self.core.resource.project.post(data)
 				.then(function(res) {
 					console.log(res);
+					window.location = "/projects";
 				});
 			}
 
