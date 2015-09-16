@@ -122,7 +122,7 @@
 				  									</div>
 				  									<div class="col-md-6">
 				  										<div class="float-right">
-				  											<a class="btn btn-lg btn-outline font-size-normal" href="#">
+				  											<a class="btn btn-lg btn-outline font-size-normal" href="/projects/123/roles/123/edit">
 				  												<i class="fa fa-pencil"></i> Edit
 				  											</a>
 
