@@ -12,7 +12,6 @@ jscore.config(function(core) {
 });
 
 jscore.run(function(core) {
-
 	core.resource.user.get({ userId : 'me', withs : [ 'bam_cd_user' ] })
 		.then(init, init);
 
@@ -23,13 +22,11 @@ jscore.run(function(core) {
 					window.location.href = '/login';
 				}
 			}
-		};
-
-		// run all components
+		}
 		var components = require('./components/**/*.js', { hash : true });
 
 		_.each(components, function(component) {
-			component(core, user);
+			component(core);
 		});
 
 		// registers all controllers for the router to recognize
@@ -42,15 +39,12 @@ jscore.run(function(core) {
 
 		// add routes here
 
-		//projects
-
 		.add('/login', 'login')
 		.add('/settings', 'settings')
-		.add('/projects', 'projects')
 
 		// project pages
+		.add('/register', 'register')
 		.add('/projects/create', 'projects.create')
-
 		// end routes
 
 		.finalize();
