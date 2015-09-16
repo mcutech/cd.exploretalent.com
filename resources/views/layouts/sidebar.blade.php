@@ -27,8 +27,7 @@
 		@include('layouts.components.breadcrumbs', isset($pages) ? ['pages' => $pages] : ['pages' => null])
 
 		@include('layouts.components.page-header')
-
-		@yield('sidebar.body')
+			@yield('sidebar.body')
 	</div>
 
 	<div id="main-menu-bg"></div>

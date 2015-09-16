@@ -1,5 +1,5 @@
 <div class="page-header">
-	<div class="row">
+	<div class="row-fluid clearix">
 		<h1 class="col-xs-12 col-sm-4 text-center text-left-sm">
 			@yield('sidebar.page-header')
 		</h1>
