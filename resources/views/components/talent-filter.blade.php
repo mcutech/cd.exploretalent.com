@@ -40,10 +40,10 @@
 					<div class="panel-body padding-small no-border-hr no-padding-hr">
 						<div class="tab-content no-padding-hr padding-top-zero-zz-lg no-padding-b">
 							<div class="tab-pane fade active in">
-								<label class="text-bold margin-bottom-zero">Age Range <span class="text-normal">1 - 100 y.o</span></label>
+								<label class="text-bold margin-bottom-zero">Age Range <span id="text-age-min" class="text-normal">0</span> - <span id="text-age-max" class="text-normal">100</span></label>
 								<div class="row">
 									<div class="col-md-12">
-										<div class="ui-slider-range-demo"></div>
+										<div class="ui-slider-range-age"></div>
 									</div>
 								</div>
 							</div>
@@ -57,10 +57,10 @@
 								<div class="row">
 									<div class="col-md-12">
 										<label class="checkbox-inline">
-											<input type="checkbox" id="inlineCheckbox1" value="option1" class="px"> <span class="lbl">Male</span>
+											<input type="checkbox" id="checkbox-gender" value="Male" class="px"> <span class="lbl">Male</span>
 										</label>
 										<label class="checkbox-inline">
-											<input type="checkbox" id="inlineCheckbox2" value="option2" checked="" class="px"> <span class="lbl">Female</span>
+											<input type="checkbox" id="checkbox-gender" value="Female" checked="" class="px"> <span class="lbl">Female</span>
 										</label>
 									</div>
 								</div>
@@ -74,7 +74,7 @@
 								<label class="text-bold margin-bottom-zero">Has Picture</label>
 								<div class="row">
 									<div class="col-md-12">
-										<input type="checkbox" data-class="switcher-success" checked="checked">
+										<input type="checkbox" id="has-pic" value="picture" data-class="switcher-success" checked="checked">
 									</div>
 								</div>
 							</div>
@@ -84,10 +84,11 @@
 					<div class="panel-body padding-small no-border-hr no-padding-hr">
 						<div class="tab-content no-padding-hr padding-top-zero-zz-lg no-padding-b">
 							<div class="tab-pane fade active in">
-								<label class="text-bold margin-bottom-zero">Height Range <span class="text-normal">1'0" - 8'0"</span></label>
+								<label class="text-bold margin-bottom-zero">Height Range <span id="text-height-min" class="text-normal">2'0'</span> - <span id="text-height-max" class="text-normal">8'0'</span></label>
+								<span id="val-height-min" class="hide text-normal">24</span><span id="val-height-max" class="hide text-normal">96</span>
 								<div class="row">
 									<div class="col-md-12">
-										<div class="ui-slider-range-demo"></div>
+										<div class="ui-slider-range-height"></div>
 									</div>
 								</div>
 							</div>
@@ -99,50 +100,50 @@
 							<div class="tab-pane fade active in">
 								<label class="text-bold margin-bottom-zero">Body Type</label>
 								<div class="row">
-									<div class="col-md-12">
+									<div class="col-md-12 body-type-checkbox">
 										<div class="checkbox">
 											<label>
-												<input type="checkbox" id="inlineCheckbox1" value="option1" class="px"> <span class="lbl">Average</span>
+												<input type="checkbox" id="checkbox-body" value="Average" class="px"> <span class="lbl">Average</span>
 											</label>
 										</div>
 										<div class="checkbox">
 											<label>
-												<input type="checkbox" id="inlineCheckbox1" value="option1" class="px"> <span class="lbl">Athletic</span>
+												<input type="checkbox" id="checkbox-body" value="Athletic" class="px"> <span class="lbl">Athletic</span>
 											</label>
 										</div>
 										<div class="checkbox">
 											<label>
-												<input type="checkbox" id="inlineCheckbox1" value="option1" class="px"> <span class="lbl">Muscular</span>
+												<input type="checkbox" id="checkbox-body" value="Muscular" class="px"> <span class="lbl">Muscular</span>
 											</label>
 										</div>
 										<div class="checkbox">
 											<label>
-												<input type="checkbox" id="inlineCheckbox1" value="option1" class="px"> <span class="lbl">Extra-Large</span>
+												<input type="checkbox" id="checkbox-body" value="Extra-Large" class="px"> <span class="lbl">Extra-Large</span>
 											</label>
 										</div>
 										<div class="checkbox">
 											<label>
-												<input type="checkbox" id="inlineCheckbox1" value="option1" class="px"> <span class="lbl">Large</span>
+												<input type="checkbox" id="checkbox-body" value="Large" class="px"> <span class="lbl">Large</span>
 											</label>
 										</div>
 										<div class="checkbox">
 											<label>
-												<input type="checkbox" id="inlineCheckbox1" value="option1" class="px"> <span class="lbl">Lean-Muscle</span>
+												<input type="checkbox" id="checkbox-body" value="Lean-Muscle" class="px"> <span class="lbl">Lean-Muscle</span>
 											</label>
 										</div>
 										<div class="checkbox">
 											<label>
-												<input type="checkbox" id="inlineCheckbox1" value="option1" class="px"> <span class="lbl">Medium</span>
+												<input type="checkbox" id="checkbox-body" value="Medium" class="px"> <span class="lbl">Medium</span>
 											</label>
 										</div>
 										<div class="checkbox">
 											<label>
-												<input type="checkbox" id="inlineCheckbox1" value="option1" class="px"> <span class="lbl">Petite</span>
+												<input type="checkbox" id="checkbox-body" value="Petite" class="px"> <span class="lbl">Petite</span>
 											</label>
 										</div>
 										<div class="checkbox">
 											<label>
-												<input type="checkbox" id="inlineCheckbox1" value="option1" class="px"> <span class="lbl">Slim</span>
+												<input type="checkbox" id="checkbox-body" value="Slim" class="px"> <span class="lbl">Slim</span>
 											</label>
 										</div>
 									</div>
@@ -156,40 +157,45 @@
 							<div class="tab-pane fade active in">
 								<label class="text-bold margin-bottom-zero">Ethnic Appearance</label>
 								<div class="row">
-									<div class="col-md-12">
+									<div class="col-md-12 ethnnicity-checkbox">
 										<div class="checkbox">
 											<label>
-												<input type="checkbox" id="inlineCheckbox1" value="option1" class="px"> <span class="lbl">African</span>
+												<input type="checkbox" id="checkbox-ethnicity" value="African" class="px"> <span class="lbl">African</span>
 											</label>
 										</div>
 										<div class="checkbox">
 											<label>
-												<input type="checkbox" id="inlineCheckbox1" value="option1" class="px"> <span class="lbl">African American</span>
+												<input type="checkbox" id="checkbox-ethnicity" value="African-American" class="px"> <span class="lbl">African American</span>
 											</label>
 										</div>
 										<div class="checkbox">
 											<label>
-												<input type="checkbox" id="inlineCheckbox1" value="option1" class="px"> <span class="lbl">Asian</span>
+												<input type="checkbox" id="checkbox-ethnicity" value="American Indian" class="px"> <span class="lbl">American Indian</span>
 											</label>
 										</div>
 										<div class="checkbox">
 											<label>
-												<input type="checkbox" id="inlineCheckbox1" value="option1" class="px"> <span class="lbl">Caucasian</span>
+												<input type="checkbox" id="checkbox-ethnicity" value="Asian" class="px"> <span class="lbl">Asian</span>
 											</label>
 										</div>
 										<div class="checkbox">
 											<label>
-												<input type="checkbox" id="inlineCheckbox1" value="option1" class="px"> <span class="lbl">East Indian</span>
+												<input type="checkbox" id="checkbox-ethnicity" value="Caucasian" class="px"> <span class="lbl">Caucasian</span>
 											</label>
 										</div>
 										<div class="checkbox">
 											<label>
-											<input type="checkbox" id="inlineCheckbox1" value="option1" class="px"> <span class="lbl">Hispanic</span>
+												<input type="checkbox" id="checkbox-ethnicity" value="Eastern Indian" class="px"> <span class="lbl">East Indian</span>
 											</label>
 										</div>
 										<div class="checkbox">
 											<label>
-												<input type="checkbox" id="inlineCheckbox1" value="option1" class="px"> <span class="lbl">Middle Eastern</span>
+												<input type="checkbox" id="checkbox-ethnicity" value="Hispanic" class="px"> <span class="lbl">Hispanic</span>
+											</label>
+										</div>
+										<div class="checkbox">
+											<label>
+												<input type="checkbox" id="checkbox-ethnicity" value="Middle Eastern" class="px"> <span class="lbl">Middle Eastern</span>
 											</label>
 										</div>
 									</div>
@@ -209,15 +215,15 @@
 						<div class="tab-content no-padding-hr padding-top-zero-zz-lg no-padding-b">
 							<div class="tab-pane fade active in">
 								<div class="row">
-									<div class="col-md-12">
+									<div class="col-md-12 member-checkbox">
 										<div class="checkbox">
 											<label>
-												<input type="checkbox" id="inlineCheckbox1" value="option1" class="px"> <span class="lbl">Pro Member</span>
+												<input type="checkbox" id="checkbox-member" value="pro" class="px"> <span class="lbl">Pro Member</span>
 											</label>
 										</div>
 										<div class="checkbox">
 											<label>
-												<input type="checkbox" id="inlineCheckbox2" value="option2" checked="" class="px"> <span class="lbl">Amateur Member</span>
+												<input type="checkbox" id="checkbox-member" value="non-pro" checked="" class="px"> <span class="lbl">Amateur Member</span>
 											</label>
 										</div>
 									</div>
@@ -229,7 +235,7 @@
 
 				<div class="row-fluid clearfix">
 					<div class="col-md-12 padding-zero">
-						<a href="#" class="btn btn-success btn-block">Search</a>
+						<a href="#" id="search-talents" class="btn btn-success btn-block">Search</a>
 					</div>
 				</div>
 

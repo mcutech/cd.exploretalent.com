@@ -34,14 +34,15 @@
 				</div>
 
 				<div class="form-group ">
-					<input type="text" name="email" id="email" class="form-control input-lg" placeholder="Email" autofocus data-required> 
+					<input type="text" name="email" id="email" class="form-control input-lg" placeholder="Email" autofocus data-required>
 				</div>
 
 				<div class="form-group ">
 					<input type="password" name="password" id="password" class="form-control input-lg" placeholder="Password" data-required>
 				</div>
 				<div class="form-actions">
-					<button type="submit" class="signin-btn btn-primary">SIGN IN</button>
+					<input type="submit" value="SIGN IN" class="signin-btn bg-primary" id="sign-in">
+					<a href="#" class="forgot-password" id="forgot-password-link">Forgot your password?</a>
 				</div>
 
 				<div class="row margin-top-small">

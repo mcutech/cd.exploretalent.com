@@ -10,7 +10,7 @@ jscore.config(function(core) {
 	// // @endif
 
 	// core.config.api.type = '/cd';
-	
+
 	core.config.api.base = 'https://stage-cd.exploretalent.com/api/v1';
 	// @endif
 	// @if ENV='production'
@@ -32,11 +32,13 @@ jscore.run(function(core) {
 					window.location.href = '/login?redirect=' + encodeURIComponent(window.location);
 				}
 			}
-		}
+		};
+
+		// run all components
 		var components = require('./components/**/*.js', { hash : true });
 
 		_.each(components, function(component) {
-			component(core);
+			component(core, user);
 		});
 
 		// registers all controllers for the router to recognize
