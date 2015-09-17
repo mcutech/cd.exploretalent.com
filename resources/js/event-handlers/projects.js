@@ -27,9 +27,16 @@ handler.prototype.refreshList = function(){
 			_.each(res.data, function(value, index){
 				res.data[index].date = self.core.service.date;
 			})
-
+			console.log(res);
 			self.core.service.databind('#project-listing', res);
 		});
+}
+
+handler.prototype.roleMatches = function() {
+	var cast_id = $(this).parent().attr('id');
+	var ids = $(this).attr('id');
+	
+	window.location = 'projects/'+cast_id+'/roles/'+ids+'/matches';
 }
 
 module.exports = function(core, user) {
