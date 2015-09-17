@@ -1,5 +1,7 @@
 @extends('layouts.guest')
 
+@section('title', 'Register')
+
 @section('master.class', 'page-signup')
 
 @section('guest.body')
@@ -32,7 +34,7 @@
 				<div class="signup-text">
 					<span>Create an account</span>
 				</div>
-                
+
                 <div class="alert alert-success" style="display:none;">
                     <p>Account createad! Please login  using your email and password</p>
                 </div>
@@ -67,7 +69,7 @@
 					<span class="sr-only">Error:</span>
 					<span id="req-usernametxt" style="display:none;"></span>
 				</div>
-                
+
 				<div class="form-group w-icon">
 					<input type="text" name="email" id="email" class="form-control input-lg" placeholder="Email Address" data-required>
 					<span class="fa fa-envelope signup-form-icon"></span>
@@ -102,7 +104,7 @@
                 <div class="form-actions" id="form-action-signup-btn">
 					<input type="submit" id="sign-up" value="SIGN UP" class="signup-btn bg-primary">
 				</div>
-                
+
                 <div class="form-group text-center loader" style="display:none">
                     <p><small>Preparing your account, please wait ...</small> <i class="fa fa-spin fa-refresh"></i></p>
                 </div>

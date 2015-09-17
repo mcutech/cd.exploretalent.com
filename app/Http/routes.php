@@ -18,14 +18,11 @@ Route::get('/', function() {
 Route::get('login', 'LoginController@index');
 Route::get('register', 'RegisterController@index');
 
-Route::group(['prefix' => 'roles'], function() {
-	Route::get('{id}/selfsubmissions',	'RoleController@selfsubmissions');
-	Route::get('{id}/likeitlist',		'RoleController@likeitlist');
-	Route::get('{id}/matches',			'RoleController@matches');
-});
-
 Route::resource('projects'							, 'ProjectController');
 Route::resource('projects.roles'					, 'RoleController', [ 'only' => [ 'edit', 'create' ] ]);
+Route::get('projects/{projectId}/roles/{roleId}/selfsubmissions',	'RoleController@selfsubmissions');
+Route::get('projects/{projectId}/roles/{roleId}/like-it-list',		'RoleController@likeitlist');
+Route::get('projects/{projectId}/roles/{roleId}/matches',			'RoleController@matches');
 Route::resource('projects.schedules' 				, 'ScheduleController');
 
 Route::get('talents'								, 'TalentController@index');

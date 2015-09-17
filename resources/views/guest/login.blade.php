@@ -1,5 +1,7 @@
 @extends('layouts.guest')
 
+@section('title', 'Login')
+
 @section('master.class', 'page-signin')
 
 @section('guest.body')

@@ -3,8 +3,8 @@
 @section('sidebar.page-header')
 	<div class="text-semibold">Like it List</div>
 	<div class="display-block-inline">
-		<h5 class="text-normal margin-top-zero-small margin-bottom-small">Casting: Runway Fashion Show</h5>
-		<h5 class="text-normal margin-zero">Role: Dragon Ball Models</h5>
+		<h5 class="text-normal margin-top-zero-small margin-bottom-small">Casting: <span data-bind="<%= name %>"></span></h5>
+		<h5 class="text-normal margin-zero">Role: <span data-bind="<%= role.name %>"></span></h5>
 	</div>
 @stop
 
@@ -61,7 +61,7 @@
 			</div>
 
 			<div class="row-fluid clearfix">
-				
+
 				<div class="col-md-12 talents-search-result">
 					<div class="row-fluid clearfix top-results-heading margin-bottom-normal">
 						<div class="col-md-6">
@@ -86,10 +86,10 @@
 									</li>
 									<li>
 										<a href="#like-it-note" data-toggle="tab">My Notes</a>
-									</li>	
+									</li>
 								</ul>
 							<!-- </div>	 -->
-								
+
 							<div class="panel">
 								<div class="panel-body">
 									<div class="row-fluid clearfix">
@@ -150,7 +150,7 @@
 																</div>
 															</div>
 														</div>
-														
+
 													</div>
 													<a href="#"><div class="add-casting-note padding-top-small padding-bottom-small bordered text-align-center"><i class="fa fa-plus"></i> Add Casting Note</div></a>
 												</div>
