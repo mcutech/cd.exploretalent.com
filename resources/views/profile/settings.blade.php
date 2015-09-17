@@ -5,7 +5,7 @@
 @stop
 
 @section('sidebar.body')
-<div id="settings" class="row"> <div class="col-lg-offset-2 col-lg-8 col-md-offset-1 col-md-10">
+<div id="settings" class="row"> <div class="col-lg-10">
 		<form class="panel form-horizontal" action="#" id="settings-form" role="form" novalidate>
 			<div class="panel-heading">
 				<span class="panel-title"><i class="fa fa-fw fa-user"></i> User Information</span>

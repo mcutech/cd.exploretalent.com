@@ -1,23 +1,25 @@
 @extends('layouts.master')
 
 @section('master.body')
-<div class="container">
+<div class="container public-view-like-it-list padding-top-large">
 	<div class="row-fluid clearfix padding-left-normal padding-right-normal">		
 		<div class="col-md-12 clearfix">
 			<div class="row-fluid clearfix">
 				<div class="panel">
 					<div class="panel-heading">
-						<span class="panel-title">EXPLORE TALENT</span>
+						<span class="panel-title">
+							<img src="../../../../../images/logo-home.png" alt="" width="120px">
+						</span>
 					</div>
-					<div class="panel-body">
+					<div class="panel-body padding-top-normal padding-bottom-normal">
 						<div class="row">
-							<div class="col-md-4 col-xs-12 col-sm-6">
-								<h4><span class="text-normal">Project:</span> Name 1</h4>
-								<h4>Role: Main Role</h4>
+							<div class="col-md-5 col-xs-12 col-sm-6">
+								<h5><span class="text-normal">Project:</span> Name 1</h4>
+								<h5>Role: Main Role</h4>
 							</div>
-							<div class="col-md-8 col-xs-12 col-sm-6 mt-5">
-								<h4><span class="text-600">Company:</span> Casting Company Name</h4>
-								<h4><span class="text-normal">Casting Director: Michael Smith</span> </h4>	
+							<div class="col-md-7 col-xs-12 col-sm-6 mt-5">
+								<h5><span class="text-600">Company:</span> Casting Company Name</h4>
+								<h5><span class="text-normal">Casting Director: Michael Smith</span> </h4>	
 							</div>
 						</div>
 					</div>
@@ -52,9 +54,9 @@
 													</div>
 												</div>
 												<div class="row-fluid clearfix">
-													<div class="row col-md-11">
+													<div class="">
 														<div class="talent-photo col-lg-6 col-md-12 col-sm-12">
-															<img src="../../images/talents-sample-image.jpg" alt="" class="img-responsive">
+															<img src="../../../../images/talents-sample-image.jpg" alt="" class="img-responsive">
 														</div>
 														<div class="col-lg-6 col-md-12 col-sm-12 padding-right-zero talent-information padding-top-small">
 															<div class="talent-location">
@@ -69,16 +71,19 @@
 															</ul>	
 														</div>		
 													</div>
-													<div class="side-button col-xs-1">
-														<div class="padding-top-zero-small"><button class="btn btn-default btn-sm" type="button" data-toggle="modal" data-target="#talentResumeModal"><i class="fa fa-file-text"></i></button></div>
-														<div class="padding-top-zero-small"><button class="btn btn-default btn-sm" type="button" data-toggle="modal" data-target="#talentResumeModal"><i class="fa fa-camera"></i></button></div>
-													</div>
 												</div>
-												<div class="submission-note">
+												<div class="row-fluid clearfix submission-note padding-top-small padding-bottom-small">
 													<div class="sub-note"><strong>Submission Note</strong></div>
-													<span class="short float-left">I am perfect for the role...</span>
-													<button class="btn btn-xs btn-default pull-right pop-top" data-container="body" rel="tooltip" data-placement="right" data-content="I am perfect for the role. I fit all of the requirements needed." data-original-title="" title=""><i class="fa fa-plus"></i></button>
-				
+													<span class="short float-left">I am perfect for the role lorem sitam...</span>
+													<a href="" class="padding-left-small"><i class="fa fa-chevron-right"></i><i class="fa fa-chevron-right"></i></a>
+												</div>
+												<div class="row-fluid clearfix">
+													<div class="col-md-6 padding-left-zero padding-right-zero-small">
+														<button class="btn btn-default btn-sm btn-outline btn-block"><i class="fa fa-file-text"></i> View Resume</button>
+													</div>
+													<div class="col-md-6 padding-right-zero padding-left-zero-small">
+														<button class="btn btn-default btn-sm btn-outline btn-block"><i class="fa fa-camera"></i> View Photos</button>
+													</div>
 												</div>
 											</div>
 											<div class="tab-pane fade" id="like-it-note">
