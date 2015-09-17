@@ -22,6 +22,7 @@ Route::resource('projects'							, 'ProjectController');
 Route::resource('projects.roles'					, 'RoleController', [ 'only' => [ 'edit', 'create' ] ]);
 Route::get('projects/{projectId}/roles/{roleId}/selfsubmissions',	'RoleController@selfsubmissions');
 Route::get('projects/{projectId}/roles/{roleId}/like-it-list',		'RoleController@likeitlist');
+Route::get('projects/{projectId}/roles/{roleId}/public-like-it-list',		'RoleController@publiclikeitlist');
 Route::get('projects/{projectId}/roles/{roleId}/matches',			'RoleController@matches');
 Route::resource('projects.schedules' 				, 'ScheduleController');
 
