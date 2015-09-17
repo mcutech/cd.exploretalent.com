@@ -20,7 +20,10 @@ class RoleController extends Controller {
 	{
 		return view('project.role.likeitlist.index');
 	}
-
+	public function publiclikeitlist()
+	{
+		return view('project.role.likeitlist.public');
+	}
 	public function matches()
 	{
 		return view('project.role.match.index');
