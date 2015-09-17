@@ -105,6 +105,12 @@
 					<input type="submit" id="sign-up" value="SIGN UP" class="signup-btn bg-primary">
 				</div>
 
+				<div id="req-confirmpass" style="display:none;" class="alert alert-danger form-group" role="alert">
+					<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+					<span class="sr-only">Error:</span>
+					<span id="error-signup" style="display:none;">An unknown error has occured.</span>
+				</div>
+
                 <div class="form-group text-center loader" style="display:none">
                     <p><small>Preparing your account, please wait ...</small> <i class="fa fa-spin fa-refresh"></i></p>
                 </div>
