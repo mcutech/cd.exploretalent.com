@@ -15,7 +15,7 @@ module.exports = function(core, user) {
 
     $("#self-submission-option").click();
 
-	$('#bs-datepicker-submissiondeadline').datepicker();
+	$('#bs-datepicker-submissiondeadline').datepicker({});
 	$('#bs-datepicker-audition').datepicker();
 	$('#bs-datepicker-shootdate').datepicker();
 	$('#bs-datepicker-open-call').datepicker({
@@ -44,5 +44,7 @@ module.exports = function(core, user) {
 
 	dontAllowLetters($("#project-rate"));
 	dontAllowLetters($("#zip-code"));
+
+	$('#find-markets-btn').on('click', handler.autoSelectMarkets);
 			
 };

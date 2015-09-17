@@ -59,7 +59,7 @@
 			  							<li><div class="title">Project Type:</div>Print</li>
 			  							<li><div class="title">Location:</div><span data-bind="<%= location %>"></span></li>
 			  							<li><div class="title">Rate/Pay:</div>$<span data-bind="<%= rate %>"></span> <span data-bind="<%= (rate_des) ? 'per ' + getRate() : '' %>"></span></li>
-			  							<li><div class="title">Audition Date:</div><span data-bind="<%= (aud_timestamp == 0) ? 'N/A' : aud_timestamp %>"></span></li>
+			  							<li><div class="title">Audition Date:</div><span data-bind="<%= (aud_timestamp == 0) ? 'N/A' : date.formatYMD(aud_timestamp) %>"></span></li>
 			  							<li><div class="title">Casting Category:</div><span data-bind="<%= (cat) ? getCategory() : 'N/A' %>"></span></li>
 			  							<li><div class="title">Market In:</div><span data-bind="<%= (market) ? market : 'N/A' %>"></span></li>
 			  						</ul>
@@ -69,7 +69,7 @@
 			  						<ul class="list-unstyled additional-details margin-zero">
 			  							<li><div class="title">Submission Type:</div><span data-bind="<%= (project_type == 8) ? 'Open Call' : 'Self Response' %>"></span></li>
 			  							<li><div class="title">Union:</div><span data-bind="<%= (union2 == 0) ? 'No' : 'Yes' %>"></span></li>
-			  							<li><div class="title">Release Date:</div><span data-bind="<%= date.formatYMD(parseInt(date_created)) %>"></span></li>
+			  							<li><div class="title">Release Date:</div><span data-bind="<%= date.formatYMD(parseInt(sub_timestamp)) %>"></span></li>
 			  							<li><div class="title">Deadline:</div><span id="text-date-type"><span data-bind="<%= date.formatYMD(parseInt(asap)) %>"></span></span></li>
 			  						</ul>
 			  					</div>

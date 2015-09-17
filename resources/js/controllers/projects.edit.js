@@ -33,5 +33,7 @@ module.exports = function(core, user, projectId) {
 
 	dontAllowLetters($("#project-rate"));
 	dontAllowLetters($("#zip-code"));
+
+	$('#find-markets-btn').on('click', handler.autoSelectMarkets);
 			
 };

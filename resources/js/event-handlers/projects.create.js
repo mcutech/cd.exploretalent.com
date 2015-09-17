@@ -16,17 +16,30 @@ handler.prototype.createNewProject = function(e){
 	var projectname = $('#project-name').val();
 	var category = $('#project-category').val();
 	var submissiondeadline = $('#bs-datepicker-submissiondeadline').val();
-	var submissiontimestamp = new Date(submissiondeadline) / 1000;
+	var asaptimestamp = Math.floor((new Date(submissiondeadline)).getTime() / 1000);
+	var submissiontimestamp = Math.floor((new Date()).getTime() / 1000);
 	var rate = $('#project-rate').val();
 	var ratedes = $('#project-rate-desc').val();
 	var auditiondate = $('#bs-datepicker-audition').val();
-	var auditiontimestamp = new Date(auditiondate) / 1000;
+	var auditiontimestamp = Math.floor((new Date(auditiondate)).getTime() / 1000);
 	var shootdate = $('#bs-datepicker-shootdate').val();
-	var shoottimestamp = new Date(shootdate) / 1000;
+	var shoottimestamp = Math.floor((new Date(shootdate)).getTime() / 1000);
 	var union = $('input[type="radio"][name="radioUnion"]:checked').val();
 	var projecttype = $('input[type="radio"][name="radioSubmissionType"]:checked').val();
 	var zipcode = $('#zip-code').val();
 	var auditiondesc = $('#audition-description').val();
+
+	// sets checked boxes as market (after Auto Select Markets button is clicked (will check zipcode))
+	var markets = [];
+
+	$('input[type="checkbox"][name="market-checkbox"]:checked').next('span').each(function() {
+		markets.push($(this).text());
+	});
+
+	var markets = markets.join('>');
+		// because checkboxes are checked by default, the first hidden div in loop is included.. this will remove it from the value of market sent to data
+		while(markets.charAt(0) === '>')
+	    markets = markets.substr(1);
 
 	var data = {
 		user_id : self.user.bam_cd_user_id,
@@ -35,7 +48,7 @@ handler.prototype.createNewProject = function(e){
 		project : projectname,
 		cat : category,
 		sub_timestamp : submissiontimestamp,
-		asap : submissiontimestamp,
+		asap : asaptimestamp,
 		rate : rate,
 		rate_des: ratedes,
 		aud_timestamp: auditiontimestamp,
@@ -43,6 +56,7 @@ handler.prototype.createNewProject = function(e){
 		union2: union,
 		project_type : projecttype,
 		zip : zipcode,
+		market: markets,
 		location : zipcode,
 		des: auditiondesc,
 	};
@@ -100,6 +114,15 @@ handler.prototype.createNewProject = function(e){
 
 		setTimeout(function(){
 			$('.zipcode-error-required').fadeOut();
+		}, 3000);
+	}
+
+	else if(markets.length < 1) {
+		$('.markets-error-required').fadeIn();
+		$('.auto-markets-div').focus();
+
+		setTimeout(function(){
+			$('.markets-error-required').fadeOut();
 		}, 3000);
 	}
 
@@ -176,6 +199,48 @@ handler.prototype.createNewProject = function(e){
 
 		}
 	}
+}
+
+handler.prototype.autoSelectMarkets = function(){
+	
+	var zipcode = $('#zip-code').val();
+
+	if(zipcode.length < 1) {
+		$('.zipcode-error-required').fadeIn();
+		$('#zip-code').focus();
+
+		setTimeout(function(){
+			$('.zipcode-error-required').fadeOut();
+		}, 3000);
+	}
+
+	else {
+
+		var data = {
+			zip : zipcode,
+			distance: 500,
+		}
+
+		return self.core.resource.market.get(data)
+		.then(function(res) {
+
+			if(res.length < 1) {
+
+				$('.zipcode-error-invalid').fadeIn();
+				$('#zip-code').focus();
+
+				setTimeout(function(){
+					$('.zipcode-error-invalid').fadeOut();
+				}, 3000);
+
+			}
+
+			self.core.service.databind('.auto-markets-div', { data : res });
+
+		});
+
+	}
+
 }
 
 module.exports = function(core, user, talentlogin) {
