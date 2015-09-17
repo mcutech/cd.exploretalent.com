@@ -65,6 +65,9 @@ handler.prototype.refreshList = function(group){
 handler.prototype.ApplyData = function(e) {
 
 	e.preventDefault();
+	var dates = new Date().getFullYear();
+	var agesmin = dates - parseInt($('#text-age-min').html());
+	var agesmax = dates - parseInt($('#text-age-max').html());
 	var group = [];
 	var group1 = [];
 	var group2 = [];	

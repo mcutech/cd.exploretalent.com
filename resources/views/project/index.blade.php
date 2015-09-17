@@ -121,7 +121,7 @@
 				  										</ul>
 				  									</div>
 				  									<div class="col-md-6">
-				  										<div class="float-right">
+				  										<div class="float-right" data-bind="<%= casting_id %>" data-bind-target="id">
 				  											<a class="btn btn-lg btn-outline font-size-normal" href="/projects/123/roles/123/edit">
 				  												<i class="fa fa-pencil"></i> Edit
 				  											</a>
@@ -129,8 +129,8 @@
 				  											<a class="btn btn-lg btn-outline font-size-normal" href="#">
 				  												<i class="fa fa-trash-o"></i> Delete
 				  											</a>
-
-				  											<a href="#" class="btn btn-success padding-small-normal">View matches</a>
+															
+				  											<a class="btn btn-success padding-small-normal view-role-matches" data-bind="<%= role_id %>" data-bind-target="id">View matches</a>
 				  										</div>
 				  									</div>
 				  								</div> {{-- roles header --}}

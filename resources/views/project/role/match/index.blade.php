@@ -84,10 +84,10 @@
 							</div>
 						</div>
 					</div>
-					<div class="row-fluid clearfix">
-						<?php for($x=0; $x<12; $x++ ) { ?>
-						@include('components.talent')
-						<?php } ?>
+					<div class="row-fluid clearfix" id="talent-search-wrap">
+						<div id="talent-search-list" class="hide" data-bind-template="#talent-search-wrap" data-bind-value="data">
+							@include('components.talent')
+						</div>
 					</div>
 				</div> {{-- talents-search-results --}}
 			</div>

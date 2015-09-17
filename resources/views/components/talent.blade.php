@@ -3,7 +3,7 @@
 		<div class="panel-body">
 			<div class="row-fluid clearfix">
 				<div class="head-area padding-zero padding-bottom-small col-md-12">
-					<div class="talent-name font-size-normal text-semibold float-left text-succes">Angelique Augusto <span class="age-area">, 22</span></div>
+					<div class="talent-name font-size-normal text-semibold float-left text-succes"><span data-bind="<%= getFullName() %>"></span> <span class="age-area">, <span data-bind="<%= getAge() %>"></span></span></div>
 
 					<div class="favorite-indicator float-right">
 						<i class="fa fa-star-o font-size-medium-large text-light-gray"></i>
@@ -13,20 +13,20 @@
 
 			<div class="row-fluid clearfix">
 				<div class="talent-photo col-lg-6 col-md-12 col-sm-12">
-					<img src="/images/talents-sample-image.jpg" alt="" class="img-responsive">
+					<img data-bind="<%= getPrimaryPhoto() %>" alt="" class="img-responsive">
 				</div>
 
 				<div class="col-lg-6 col-md-12 col-sm-12 padding-right-zero talent-information padding-top-small">
 					<div class="talent-location">
-						<i class="fa fa-map-marker"></i> Los Angeles, CA
+						<i class="fa fa-map-marker"></i> <span data-bind="<%= getLocation() %>"></span>
 					</div>
 
 					<ul class="list-unstyled talents-list-details">
-						<li>5' 10"</li>
-						<li>138 lbs.</li>
-						<li>Caucasian</li>
-						<li>Athletic Body</li>
-						<li>Green Eyes</li>
+						<li><span data-bind="<%= heightText() %>"></span></li>
+						<li><span data-bind="<%= (bam_talentinfo1.weightpounds) ? bam_talentinfo1.weightpounds : 'N/A'  %>"></span>.</li>
+						<li><span data-bind="<%= (bam_talentinfo2.ethnicity) ? bam_talentinfo2.ethnicity : 'N/A' %>"></span></li>
+						<li><span data-bind="<%= (bam_talentinfo1.build) ? bam_talentinfo1.build : 'N/A' %>"></span></li>
+						<li><span data-bind="<%= (bam_talentinfo1.eyecolor) ? bam_talentinfo1.eyecolor + 'Eyes' : 'N/A' %>"></span></li>
 					</ul>
 
 				</div>
