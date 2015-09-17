@@ -118,26 +118,25 @@ module.exports = function(core) {
 		}
 		core.resource.user.post(user)
 			.then(function(result) {
-				core.service.rest.post(core.config.api.base + '/sessions', { email : email, password : pass })
-				.then(function(result){
-					var data = {
-						lname	: lname ,
-						fname	: fname ,
-						login	: username,
-						email1	: email,
-						pass	: pass
-					};
-					core.resource.cd_user.post(data)
-						.then(function(result) {
-						console.log(result);
-					});	
-				})
-
-				
-			
+				setTimeout(function(){
+					core.service.rest.post(core.config.api.base + '/sessions', { email : email, password : pass })
+					.then(function(result){
+						var data = {
+							lname	: lname ,
+							fname	: fname ,
+							login	: username,
+							email1	: email,
+							pass	: pass
+						};
+						core.resource.cd_user.post(data)
+							.then(function(result) {
+							console.log(result);
+							window.location = '/login';
+						});	
+					})
+				}, 1000);
 
 			});
-
 		
 	});
 };
