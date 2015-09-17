@@ -21,6 +21,7 @@ Route::get('register', 'RegisterController@index');
 Route::group(['prefix' => 'roles'], function() {
 	Route::get('{id}/selfsubmissions',	'RoleController@selfsubmissions');
 	Route::get('{id}/likeitlist',		'RoleController@likeitlist');
+	Route::get('{id}/publiclikeitlist',		'RoleController@publiclikeitlist');
 	Route::get('{id}/matches',			'RoleController@matches');
 });
 
