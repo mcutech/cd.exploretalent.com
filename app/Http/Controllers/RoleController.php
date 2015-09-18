@@ -28,4 +28,8 @@ class RoleController extends Controller {
 	{
 		return view('project.role.match.index');
 	}
+	public function auditionworksheet()
+	{
+		return view('project.role.auditionworksheet.index');
+	}	
 }
