@@ -18,7 +18,7 @@
 			.item-container-holder {
 				height:193px;
 				overflow-y: scroll;
-			
+
 				.note-item {
 						padding-bottom: 10px;
 						margin-bottom: 10px;
@@ -38,7 +38,7 @@
 						.name{
 							display: inline-block;
  							 color: #4083a9;
-						
+
 						}
 						.date {
 						  display: inline-block;
@@ -46,11 +46,17 @@
 						  font-size: 9px;
 						}
 					}
-				}		
-			}			
+				}
+			}
 		}
 	}
 
+}
 
-}	
+.rating-button {
+	opacity:0.5;
 
+	&.active {
+		opacity:1;
+	}
+}

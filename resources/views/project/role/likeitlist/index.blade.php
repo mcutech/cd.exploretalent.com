@@ -10,12 +10,12 @@
 
 @section('sidebar.page-extra')
 <div class="row-fluid clearfix">
-	<div class="col-md-6 float-right">
+	<div class="col-md-12 float-right">
 		<div class="panel margin-bottom-zero display-block-inline">
 			<div class="padding-sm">
 				<h5 class="text-primary"><i class="fa fa-thumbs-o-up"></i> Like It List for this Role: <b><span data-bind="<%= role.getLikeItList().length %>"></span></b></h5>
-				<a href="" class="btn btn-default btn-xs">View Lists & Contact Talent</a>
-				<a href="" class="btn btn-default btn-xs">Remove All</a>
+				<a href="" class="btn btn-default">View Lists & Contact Talent</a>
+				<button id="remove-all-likeitlist" class="btn btn-danger"><i class="fa fa-times"></i> Remove All</button>
 			</div>
 		</div>
 	</div>
@@ -48,7 +48,7 @@
 							Select Role
 						</label>
 						<div class="col-md-9 padding-left-zero">
-							<select id="roles-list" class="form-control" data-bind="<%= role.role_id %>">
+							<select id="roles-list" class="form-control">
 								<option data-bind-template="#roles-list" data-bind-value="bam_roles" data-bind="<%= JSON.stringify({ key : role_id, value : name }) %>"></option>
 							</select>
 						</div>
