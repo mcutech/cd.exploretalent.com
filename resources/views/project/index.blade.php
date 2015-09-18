@@ -23,7 +23,6 @@
 			<div class="panel-group panel-group-primary project-item panel-blue" id="accordion-castings">
 			  	<div class="panel hide" data-bind-template="#accordion-castings" data-bind-value="data" data-bind="project-<%= casting_id %>" data-bind-target="id">
 			  		<div class="panel-heading">
-			  			<!-- <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#project-item-1497936" aria-expanded="false"> -->
 			  			<a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion-castings" data-bind="#jobs-collapse-<%= casting_id %>">
 			  			<span data-bind="<%= name %>"></span>
 			  			</a>
@@ -37,10 +36,10 @@
 			  					</div>
 			  					<div class="col-md-6">
 			  						<div class="float-right">
-			  							<a href="/projects/1497936" class="btn btn-outline btn-sm font-size-small-normal-zz padding-small-zz margin-top-small-zz-xs">
+										<a data-bind="/projects/<%= casting_id %>" class="btn btn-outline btn-sm font-size-small-normal-zz padding-small-zz margin-top-small-zz-xs">
 			  								Project Overview
 			  							</a>
-			  							<a href="/projects/1497936/selfsubmissions/4920223" class="btn btn-outline btn-sm font-size-small-normal-zz padding-small-zz btn-submissions margin-top-small-zz-xs">
+			  							<a data-bind="/projects/<%= casting_id %>/roles/123/selfsubmissiosn" class="btn btn-outline btn-sm font-size-small-normal-zz padding-small-zz btn-submissions margin-top-small-zz-xs">
 			  								Submissions
 			  							</a>
 			  							<a href="/projects/1497936/schedules/create" class="btn btn-outline btn-sm font-size-small-normal-zz padding-small-zz margin-top-small-zz-xs">
@@ -129,7 +128,7 @@
 				  											<a class="btn btn-lg btn-outline font-size-normal" href="#">
 				  												<i class="fa fa-trash-o"></i> Delete
 				  											</a>
-															
+
 				  											<a class="btn btn-success padding-small-normal view-role-matches" data-bind="<%= role_id %>" data-bind-target="id">View matches</a>
 				  										</div>
 				  									</div>

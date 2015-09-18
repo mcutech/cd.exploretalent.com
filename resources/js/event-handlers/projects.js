@@ -21,13 +21,9 @@ handler.prototype.refreshList = function(){
 
 	return self.core.resource.project.get(data)
 		.then(function(res){
-
-			console.log(res.data);
-			
 			_.each(res.data, function(value, index){
 				res.data[index].date = self.core.service.date;
 			})
-			console.log(res);
 			self.core.service.databind('#project-listing', res);
 		});
 }
@@ -35,7 +31,7 @@ handler.prototype.refreshList = function(){
 handler.prototype.roleMatches = function() {
 	var cast_id = $(this).parent().attr('id');
 	var ids = $(this).attr('id');
-	
+
 	window.location = 'projects/'+cast_id+'/roles/'+ids+'/matches';
 }
 
