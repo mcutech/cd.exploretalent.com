@@ -25,6 +25,18 @@ handler.prototype.refreshList = function(){
 			_.each(res.data, function(value, index){
 				res.data[index].date = self.core.service.date;
 			})
+			_.each(res.data, function(res1){
+				var i = (new Date(res1.asap*1000));
+				var d = i.getDate();
+				var m = i.getMonth()+1;
+				var y = i.getFullYear();
+				//
+				
+				res1.asap1 = y + "-" + m + "-" + d;
+				//console.log(newdate);											
+				//res1.asap = i;
+				//console.log(i);
+			});
 			self.core.service.databind('#project-listing', res);
 		});
 }

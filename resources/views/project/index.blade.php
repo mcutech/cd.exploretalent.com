@@ -69,7 +69,7 @@
 			  							<li><div class="title">Submission Type:</div><span data-bind="<%= (project_type == 8) ? 'Open Call' : 'Self Response' %>"></span></li>
 			  							<li><div class="title">Union:</div><span data-bind="<%= (union2 == 0) ? 'Non-union' : 'Union' %>"></span></li>
 			  							<li><div class="title">Release Date:</div><span data-bind="<%= date.formatYMD(parseInt(sub_timestamp)) %>"></span></li>
-			  							<li><div class="title">Deadline:</div><span id="text-date-type"><span data-bind="<%= date.formatYMD(parseInt(asap)) %>"></span></span></li>
+			  							<li><div class="title">Deadline:</div><span id="text-date-type"><span data-bind="<%= asap1 %>"></span></span></li>
 			  						</ul>
 			  					</div>
 
