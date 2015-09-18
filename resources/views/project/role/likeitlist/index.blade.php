@@ -68,7 +68,7 @@
 							</div>
 						</div>
 						<div class="col-md-6 text-align-right">
-							<a href="" class="btn btn-primary">Share Like It List</a>
+							<a href="#share-like-it-list" class="btn btn-primary" data-toggle="modal">Share Like It List</a>
 							<a href="" class="btn btn-primary"><i class="fa fa-envelope-o"></i> Invite to Audition</a>
 						</div>
 					</div>
@@ -85,6 +85,9 @@
 		</div>
 
 	</div>
-@stop
+
+	@include('components.modals.share-like-it-list')
+	@include('components.modals.talent-photos')
+	@include('components.modals.talent-resume')
 
 @stop

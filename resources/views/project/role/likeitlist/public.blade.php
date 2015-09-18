@@ -75,7 +75,7 @@
 												<div class="row-fluid clearfix submission-note padding-top-small padding-bottom-small">
 													<div class="sub-note"><strong>Submission Note</strong></div>
 													<span class="short float-left">I am perfect for the role lorem sitam...</span>
-													<a href="" class="padding-left-small"><i class="fa fa-chevron-right"></i><i class="fa fa-chevron-right"></i></a>
+													<a href="" class="padding-left-small"><i class="fa fa-question-circle font-size-medium"></i></a>
 												</div>
 												<div class="row-fluid clearfix">
 													<div class="col-md-6 padding-left-zero padding-right-zero-small">

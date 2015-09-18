@@ -98,4 +98,9 @@
 		</div>
 
 	</div>
+	
+	@include('components.modals.share-like-it-list')
+	@include('components.modals.talent-photos')
+	@include('components.modals.talent-resume')
+
 @stop
