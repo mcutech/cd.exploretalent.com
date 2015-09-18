@@ -6,9 +6,9 @@ class RoleController extends Controller {
 		return view('project.role.create');
 	}
 
-	public function edit()
+	public function edit($projectId, $roleId)
 	{
-		return view('project.role.edit');
+		return view('project.role.edit', ['projectId' => $projectId, 'roleId' => $roleId]);
 	}
 
 	public function selfsubmissions()
