@@ -54,14 +54,14 @@ jscore.run(function(core) {
 		.add('/projects/{projectId}/edit', 'projects.edit')
 
 
+		.add('/projects/{projectId}/roles/{roleId}/matches', 'role.match')
 		.add('/projects/{projectId}/roles/{roleId}/like-it-list', 'role.likeitlist')
-		.add('/projects/{projectId}/roles/{roleId}/self-submissions', 'role.selfsubmissions')
+		.add('/projects/{projectId}/roles/{roleId}/self-submissions', 'role.selfsubmission')
 
 
 		// roles pages
 		.add('/projects/{projectId}/roles/create', 'roles.create')
 		.add('/projects/{projectId}/roles/{roleId}/edit', 'roles.edit')
-		.add('/projects/{projectId}/roles/{roleId}/matches', 'rolematches')
 
 		// end routes
 

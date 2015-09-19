@@ -1,65 +1,15 @@
-@extends('layouts.sidebar', [ 'pages' => [ [ 'name' => 'Pre-Submissions', 'url' => '/roles/1/matches', 'active' => true] ] ])
+@extends('layouts.role', [ 'pages' => [ [ 'name' => 'Pre-Submissions', 'url' => '/roles/1/matches', 'active' => true] ] ])
 
-@section('sidebar.page-header')
-	<div class="text-semibold">Pre-Submissions</div>
-	<div class="display-block-inline">
-		<h5 class="text-normal margin-top-zero-small margin-bottom-small">Casting: Runway Fashion Show</h5>
-		<h5 class="text-normal margin-zero">Role: Dragon Ball Models</h5>
-	</div>	
-@stop
-
-@section('sidebar.page-extra')
-<div class="row-fluid clearfix">
-	<div class="col-md-6 float-right">
-		<div class="panel margin-bottom-zero display-block-inline">
-			<div class="padding-sm">
-				<h5 class="text-primary"><i class="fa fa-thumbs-o-up"></i> Like It List for this Role: <b>64</b></h5>
-				<a href="" class="btn btn-default btn-xs">View Lists & Contact Talent</a>
-				<a href="" class="btn btn-default btn-xs">Remove All</a>
-			</div>
-		</div>
-	</div>
-</div>
-@stop
+@section('header.title', 'Pre Submissions')
 
 @section('sidebar.body')
 
 	<div class="role-matches-wrapper role-matches-talent-view-wrapper">
 
 		<div class="talents-search-filter-content">
+			@parent
 			<div class="row-fluid clearfix">
-				<div class="col-md-6">
-					<ul class="nav nav-tabs negate-padding border-zero">
-						<li role="presentation" class="active font-size-small-normal-zz font-size-small-normal-xs submissions-link">
-							<a href="">Pre-Submissions</a>
-						</li>
-						<li role="presentation" class="font-size-small-normal-zz font-size-small-normal-xs submissions-link">
-							<a href="">Self Submissions</a>
-						</li>
-						<li role="presentation" class="font-size-small-normal-zz font-size-small-normal-xs submissions-link">
-							<a href="">Like It List</a>
-						</li>
-					</ul>
-				</div>
-				<div class="col-md-6">
-					<div class="form-group margin-bottom-zero row-fluid">
-						<label for="select-role" class="col-md-3 margin-top-small control-label text-align-right">
-							Select Role
-						</label>
-						<div class="col-md-9 padding-left-zero">
-							<select class="form-control">
-								<option value="1">Select Role 1</option>
-								<option value="2">Select Role 2</option>
-							</select>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-12">
-					<div class="margin-bottom-normal padding-bottom-normal bordered no-border-hr no-border-t"></div>
-				</div>
-			</div>
-			<div class="row-fluid clearfix">
-			
+
 				@include('components.talent-filter')
 
 				<div class="col-md-9 talents-search-result">
@@ -84,21 +34,14 @@
 							</div>
 						</div>
 					</div>
-					<div class="row-fluid clearfix" id="talent-search-wrap">
-						<div id="talent-search-list" class="hide" data-bind-template="#talent-search-wrap" data-bind-value="data">
-							@include('components.talent')
-						</div>
+					<div class="row-fluid clearfix" id="matches-list">
+						@include('components.talent', [ 'databind' => [ 'template' => '#matches-list', 'value' => 'data' ] ])
 					</div>
 				</div> {{-- talents-search-results --}}
 			</div>
 		</div>
-
-		<div class="talents-content">
-
-		</div>
-
 	</div>
-	
+
 	@include('components.modals.share-like-it-list')
 	@include('components.modals.talent-photos')
 	@include('components.modals.talent-resume')

@@ -58,10 +58,10 @@
 								<div class="row">
 									<div class="col-md-12">
 										<label class="checkbox-inline">
-											<input type="checkbox" name="sex" value="Male" class="px"> <span class="lbl">Male</span>
+											<input type="checkbox" name="sex" value="Male" class="px" data-bind="<%= role.getGenders().indexOf('Male') != -1 ? 1 : 0 %>"> <span class="lbl">Male</span>
 										</label>
 										<label class="checkbox-inline">
-											<input type="checkbox" name="sex" value="Female" class="px"> <span class="lbl">Female</span>
+											<input type="checkbox" name="sex" value="Female" class="px" data-bind="<%= role.getGenders().indexOf('Female') != -1 ? 1 : 0 %>"> <span class="lbl">Female</span>
 										</label>
 									</div>
 								</div>
@@ -104,47 +104,47 @@
 									<div class="col-md-12 body-type-checkbox">
 										<div class="checkbox">
 											<label>
-												<input type="checkbox" name="build" value="Average" class="px"> <span class="lbl">Average</span>
+												<input type="checkbox" name="build" value="Average" class="px" data-bind="<%= role.getBuilds().indexOf('Average') != -1 ? 1 : 0 %>"> <span class="lbl">Average</span>
 											</label>
 										</div>
 										<div class="checkbox">
 											<label>
-												<input type="checkbox" name="build" value="Athletic" class="px"> <span class="lbl">Athletic</span>
+												<input type="checkbox" name="build" value="Athletic" class="px" data-bind="<%= role.getBuilds().indexOf('Athletic') != -1 ? 1 : 0 %>"> <span class="lbl">Athletic</span>
 											</label>
 										</div>
 										<div class="checkbox">
 											<label>
-												<input type="checkbox" name="build" value="Muscular" class="px"> <span class="lbl">Muscular</span>
+												<input type="checkbox" name="build" value="Muscular" class="px" data-bind="<%= role.getBuilds().indexOf('Muscular') != -1 ? 1 : 0 %>"> <span class="lbl">Muscular</span>
 											</label>
 										</div>
 										<div class="checkbox">
 											<label>
-												<input type="checkbox" name="build" value="Extra-Large" class="px"> <span class="lbl">Extra-Large</span>
+												<input type="checkbox" name="build" value="Extra Large" class="px" data-bind="<%= role.getBuilds().indexOf('Extra Large') != -1 ? 1 : 0 %>"> <span class="lbl">Extra-Large</span>
 											</label>
 										</div>
 										<div class="checkbox">
 											<label>
-												<input type="checkbox" name="build" value="Large" class="px"> <span class="lbl">Large</span>
+												<input type="checkbox" name="build" value="Large" class="px" data-bind="<%= role.getBuilds().indexOf('Large') != -1 ? 1 : 0 %>"> <span class="lbl">Large</span>
 											</label>
 										</div>
 										<div class="checkbox">
 											<label>
-												<input type="checkbox" name="build" value="Lean-Muscle" class="px"> <span class="lbl">Lean-Muscle</span>
+												<input type="checkbox" name="build" value="Lean Muscle" class="px" data-bind="<%= role.getBuilds().indexOf('Lean Muscle') != -1 ? 1 : 0 %>"> <span class="lbl">Lean-Muscle</span>
 											</label>
 										</div>
 										<div class="checkbox">
 											<label>
-												<input type="checkbox" name="build" value="Medium" class="px"> <span class="lbl">Medium</span>
+												<input type="checkbox" name="build" value="Medium" class="px" data-bind="<%= role.getBuilds().indexOf('Medium') != -1 ? 1 : 0 %>"> <span class="lbl">Medium</span>
 											</label>
 										</div>
 										<div class="checkbox">
 											<label>
-												<input type="checkbox" name="build" value="Petite" class="px"> <span class="lbl">Petite</span>
+												<input type="checkbox" name="build" value="Petite" class="px" data-bind="<%= role.getBuilds().indexOf('Petite') != -1 ? 1 : 0 %>"> <span class="lbl">Petite</span>
 											</label>
 										</div>
 										<div class="checkbox">
 											<label>
-												<input type="checkbox" name="build" value="Slim" class="px"> <span class="lbl">Slim</span>
+												<input type="checkbox" name="build" value="Slim" class="px" data-bind="<%= role.getBuilds().indexOf('Slim') != -1 ? 1 : 0 %>"> <span class="lbl">Slim</span>
 											</label>
 										</div>
 									</div>
@@ -161,42 +161,42 @@
 									<div class="col-md-12 ethnnicity-checkbox">
 										<div class="checkbox">
 											<label>
-												<input type="checkbox" name="ethnicity" value="African" class="px"> <span class="lbl">African</span>
+												<input type="checkbox" name="ethnicity" value="African" class="px" data-bind="<%= role.getEthnicities().indexOf('African') != -1 ? 1 : 0 %>"> <span class="lbl">African</span>
 											</label>
 										</div>
 										<div class="checkbox">
 											<label>
-												<input type="checkbox" name="ethnicity" value="African-American" class="px"> <span class="lbl">African American</span>
+												<input type="checkbox" name="ethnicity" value="African American" class="px" data-bind="<%= role.getEthnicities().indexOf('African American') != -1 ? 1 : 0 %>"> <span class="lbl">African American</span>
 											</label>
 										</div>
 										<div class="checkbox">
 											<label>
-												<input type="checkbox" name="ethnicity" value="American Indian" class="px"> <span class="lbl">American Indian</span>
+												<input type="checkbox" name="ethnicity" value="American Indian" class="px" data-bind="<%= role.getEthnicities().indexOf('American Indian') != -1 ? 1 : 0 %>"> <span class="lbl">American Indian</span>
 											</label>
 										</div>
 										<div class="checkbox">
 											<label>
-												<input type="checkbox" name="ethnicity" value="Asian" class="px"> <span class="lbl">Asian</span>
+												<input type="checkbox" name="ethnicity" value="Asian" class="px" data-bind="<%= role.getEthnicities().indexOf('Asian') != -1 ? 1 : 0 %>"> <span class="lbl">Asian</span>
 											</label>
 										</div>
 										<div class="checkbox">
 											<label>
-												<input type="checkbox" name="ethnicity" value="Caucasian" class="px"> <span class="lbl">Caucasian</span>
+												<input type="checkbox" name="ethnicity" value="Caucasian" class="px" data-bind="<%= role.getEthnicities().indexOf('Caucasian') != -1 ? 1 : 0 %>"> <span class="lbl">Caucasian</span>
 											</label>
 										</div>
 										<div class="checkbox">
 											<label>
-												<input type="checkbox" name="ethnicity" value="Eastern Indian" class="px"> <span class="lbl">East Indian</span>
+												<input type="checkbox" name="ethnicity" value="Eastern Indian" class="px" data-bind="<%= role.getEthnicities().indexOf('Eastern Indian') != -1 ? 1 : 0 %>"> <span class="lbl">East Indian</span>
 											</label>
 										</div>
 										<div class="checkbox">
 											<label>
-												<input type="checkbox" name="ethnicity" value="Hispanic" class="px"> <span class="lbl">Hispanic</span>
+												<input type="checkbox" name="ethnicity" value="Hispanic" class="px" data-bind="<%= role.getEthnicities().indexOf('Hispanic') != -1 ? 1 : 0 %>"> <span class="lbl">Hispanic</span>
 											</label>
 										</div>
 										<div class="checkbox">
 											<label>
-												<input type="checkbox" name="ethnicity" value="Middle Eastern" class="px"> <span class="lbl">Middle Eastern</span>
+												<input type="checkbox" name="ethnicity" value="Middle Eastern" class="px" data-bind="<%= role.getEthnicities().indexOf('Middle Eastern') != -1 ? 1 : 0 %>"> <span class="lbl">Middle Eastern</span>
 											</label>
 										</div>
 									</div>

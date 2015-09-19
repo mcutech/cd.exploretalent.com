@@ -1,34 +1,64 @@
-<div class="col-md-4 talent-item-container">
+<div class="col-md-3 talent-item-container" data-bind-template="{{ $databind['template'] or '' }}" data-bind-value="{{ $databind['value'] or '' }}">
+	<ul class="nav nav-tabs" style="width:90%;">
+		<li class="active">
+			<a data-bind="#talent-body-<%= talentnum %>" href="#talent-body" data-toggle="tab">Photo</a>
+		</li>
+		<li>
+			<a data-bind="#like-it-note-<%= talentnum %>" data-toggle="tab">My Notes</a>
+		</li>
+	</ul>
+
 	<div class="panel">
 		<div class="panel-body">
 			<div class="row-fluid clearfix">
-				<div class="head-area padding-zero padding-bottom-small col-md-12">
-					<div class="talent-name font-size-normal text-semibold float-left text-succes"><span data-bind="<%= getFullName() %>"></span> <span class="age-area">, <span data-bind="<%= getAge() %>"></span></span></div>
+				<div class="tab-content padding-top-zero padding-bottom-small">
+					<div class="tab-pane fade active in" data-bind="talent-body-<%= talentnum %>" data-bind-target="id">
+						<div class="head-area padding-zero padding-bottom-zero col-md-12">
+							<div class="talent-name font-size-normal text-semibold float-left text-succes"><span data-bind="<%= getFullName() %>"></span>, <span data-bind="<%= getAge() %>" class="age-area"></span></div>
+							<div class="favorite-indicator float-right">
+								<i class="fa fa-star-o font-size-medium-large text-light-gray"></i>
+							</div>
+						</div>
+						<div class="row-fluid clearfix">
+							<div class="talent-photo col-lg-6 col-md-12 col-sm-12">
+								<img data-bind="<%= getPrimaryPhoto() %>" class="img-responsive" />
+							</div>
 
-					<div class="favorite-indicator float-right">
-						<i class="fa fa-star-o font-size-medium-large text-light-gray"></i>
+							<div class="col-lg-6 col-md-12 col-sm-12 padding-right-zero talent-information padding-top-small">
+								<div class="talent-location">
+									<i class="fa fa-map-marker"></i> <span data-bind="<%= stateText() %>"></span>
+								</div>
+
+								<ul class="list-unstyled talents-list-details">
+									<li><span data-bind="<%= heightText() %>"></span></li>
+									<li><span data-bind="<%= bam_talentinfo1.weightpounds %>"></span> lbs.</li>
+									<li><span data-bind="<%= bam_talentinfo2.ethnicity %>"></span></li>
+									<li><span data-bind="<%= bam_talentinfo1.build %>"></span></li>
+									<li><span data-bind="<%= bam_talentinfo1.eyecolor %>"></span></li>
+								</ul>
+							</div>
+						</div>
 					</div>
-				</div>
-			</div>
-
-			<div class="row-fluid clearfix">
-				<div class="talent-photo col-lg-6 col-md-12 col-sm-12">
-					<img data-bind="<%= getPrimaryPhoto() %>" alt="" class="img-responsive">
-				</div>
-
-				<div class="col-lg-6 col-md-12 col-sm-12 padding-right-zero talent-information padding-top-small">
-					<div class="talent-location">
-						<i class="fa fa-map-marker"></i> <span data-bind="<%= getLocation() %>"></span>
+					<div class="tab-pane fade" data-bind="like-it-note-<%= talentnum %>" data-bind-target="id">
+						<div class="tab-pane" id=tab-content-2">
+							<div class="item-container-holder">
+								<div id="schedule-notes" class="talent-item note-item-container padding-small">
+									<div class="note-item" data-bind-template="#schedule-notes" data-bind-value="schedule_notes">
+										<div class="note-header">
+											<div class="photo"></div>
+											<div class="name-date">
+												<div class="name" data-bind="<%= user.bam_cd_user.getFullName() %>"></div>
+												<div class="date" data-bind="<%= created_at %>"></div>
+											</div>
+											<div class="note-body" data-bind="<%= body %>">
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<a href="#"><div class="add-casting-note padding-top-small padding-bottom-small bordered text-align-center"><i class="fa fa-plus"></i> Add Casting Note</div></a>
+						</div>
 					</div>
-
-					<ul class="list-unstyled talents-list-details">
-						<li><span data-bind="<%= heightText() %>"></span></li>
-						<li><span data-bind="<%= (bam_talentinfo1.weightpounds) ? bam_talentinfo1.weightpounds : 'N/A'  %>"></span>.</li>
-						<li><span data-bind="<%= (bam_talentinfo2.ethnicity) ? bam_talentinfo2.ethnicity : 'N/A' %>"></span></li>
-						<li><span data-bind="<%= (bam_talentinfo1.build) ? bam_talentinfo1.build : 'N/A' %>"></span></li>
-						<li><span data-bind="<%= (bam_talentinfo1.eyecolor) ? bam_talentinfo1.eyecolor + 'Eyes' : 'N/A' %>"></span></li>
-					</ul>
-
 				</div>
 			</div>
 			<div class="row-fluid clearfix">
@@ -36,12 +66,12 @@
 					<div class="like-it-list-container">
 						<div class="text-left">
 							<div class="display-block title"> Add to like list </div>
-							<div class="btn-group btn-group-xs">
-								<button class="btn btn-xs btn-danger disabled" data-rating="1">1</button>
-								<button class="btn btn-xs btn-warning disabled" data-rating="2">2</button>
-								<button class="btn btn-xs btn-info disabled" data-rating="3">3</button>
-								<button class="btn btn-xs btn-primary disabled" data-rating="4">4</button>
-								<button class="btn btn-xs btn-success disabled" data-rating="5">5</button>
+							<div class="btn-group btn-group-xs" data-bind="rating-<%= user.id %>" data-bind-target="id">
+								<button class="btn btn-xs btn-danger rating-button rate-1">1</button>
+								<button class="btn btn-xs btn-warning rating-button rate-2">2</button>
+								<button class="btn btn-xs btn-info rating-button rate-3">3</button>
+								<button class="btn btn-xs btn-primary rating-button rate-4">4</button>
+								<button class="btn btn-xs btn-success rating-button rate-5">5</button>
 							</div>
 						</div>
 					</div>
@@ -51,10 +81,10 @@
 						<div class="float-right-md-lg">
 							<div class="display-block title">&nbsp;</div>
 							<div class="btn-group btn-group-xs">
-								<button class="btn btn-xs btn-default " data-rating="1"><span class="fa fa-file-text-o"></span></button>
-								<button class="btn btn-xs btn-default " data-rating="2"><span class="fa fa-picture-o"></span></button>
-								<button class="btn btn-xs btn-default " data-rating="1"><span class="fa fa-calendar"></span></button>
-								<button class="btn btn-xs btn-default " data-rating="2"><span class="fa fa-envelope-o"></span></button>
+								<button class="btn btn-xs btn-default"><span class="fa fa-file-text-o"></span></button>
+								<button class="btn btn-xs btn-default"><span class="fa fa-picture-o"></span></button>
+								<button class="btn btn-xs btn-default"><span class="fa fa-calendar"></span></button>
+								<button class="btn btn-xs btn-default"><span class="fa fa-envelope-o"></span></button>
 							</div>
 						</div>
 					</div>
@@ -62,4 +92,5 @@
 			</div>
 		</div>
 	</div>
-</div>
+</div> {{-- talent item container --}}
+
