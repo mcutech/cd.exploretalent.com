@@ -121,7 +121,7 @@
 				  									</div>
 				  									<div class="col-md-6">
 				  										<div class="float-right" data-bind="<%= casting_id %>" data-bind-target="id">
-				  											<a class="btn btn-lg btn-outline font-size-normal" href="/projects/123/roles/123/edit">
+				  											<a class="btn btn-lg btn-outline font-size-normal" data-bind="/projects/<%= casting_id %>/roles/<%= role_id %>/edit">
 				  												<i class="fa fa-pencil"></i> Edit
 				  											</a>
 

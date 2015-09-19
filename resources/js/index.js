@@ -58,6 +58,8 @@ jscore.run(function(core) {
 
 
 		// roles pages
+		.add('/projects/{projectId}/roles/create', 'roles.create')
+		.add('/projects/{projectId}/roles/{roleId}/edit', 'roles.edit')
 		.add('/projects/{projectId}/roles/{roleId}/matches', 'rolematches')
 
 		// end routes
