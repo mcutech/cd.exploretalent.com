@@ -50,6 +50,7 @@ jscore.run(function(core) {
 		// project pages
 		.add('/projects', 'projects')
 		.add('/projects/create', 'projects.create')
+		.add('/projects/{projectId}', 'project.show')
 		.add('/projects/{projectId}/edit', 'projects.edit')
 
 
