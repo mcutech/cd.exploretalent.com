@@ -1,5 +1,7 @@
 <div class="col-md-3 talent-item-container" data-bind-template="{{ $databind['template'] or '' }}" data-bind-value="{{ $databind['value'] or '' }}">
+	@if (isset($unrate) && $unrate)
 	<a class="btn btn-danger btn-xs pull-right unrate-button" type="button" data-bind="<%= id %>" data-bind-target="data-id"><i class="fa fa-times"></i></a>
+	@endif
 	<ul class="nav nav-tabs" style="width:90%;">
 		<li class="active">
 			<a data-bind="#talent-body-<%= getTalent().bam_talentnum %>" href="#talent-body" data-toggle="tab">Photo</a>

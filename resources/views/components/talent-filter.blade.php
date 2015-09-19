@@ -1,4 +1,5 @@
 <div class="col-md-3 refine-search-sidebar">
+	<form id="talent-filter-form">
 	<div class="panel panel-talents-search">
 		<div class="panel-heading">
 			<span class="panel-title talents-refine-title">Refine Search</span>
@@ -19,7 +20,7 @@
 								<div class="row">
 									<div class="col-md-12">
 										<div class="input-group">
-											<input type="text" class="form-control" name="zip_code" placeholder="Enter Zip Code" id="zip-code" max="5" maxlength="5">
+											<input type="text" class="form-control" name="zip" placeholder="Enter Zip Code" id="zip-code" max="5" maxlength="5">
 											<span class="input-group-btn">
 												<button class="btn" type="button" id="auto-select-markets">
 													<i class="fa fa-caret-right"></i>
@@ -57,10 +58,10 @@
 								<div class="row">
 									<div class="col-md-12">
 										<label class="checkbox-inline">
-											<input type="checkbox" id="checkbox-gender" value="Male" class="px"> <span class="lbl">Male</span>
+											<input type="checkbox" name="sex" value="Male" class="px"> <span class="lbl">Male</span>
 										</label>
 										<label class="checkbox-inline">
-											<input type="checkbox" id="checkbox-gender" value="Female" checked="" class="px"> <span class="lbl">Female</span>
+											<input type="checkbox" name="sex" value="Female" class="px"> <span class="lbl">Female</span>
 										</label>
 									</div>
 								</div>
@@ -74,7 +75,7 @@
 								<label class="text-bold margin-bottom-zero">Has Picture</label>
 								<div class="row">
 									<div class="col-md-12">
-										<input type="checkbox" id="has-pic" value="picture" data-class="switcher-success" checked="checked">
+										<input type="checkbox" name="has_photo" value="picture" data-class="switcher-success" />
 									</div>
 								</div>
 							</div>
@@ -103,47 +104,47 @@
 									<div class="col-md-12 body-type-checkbox">
 										<div class="checkbox">
 											<label>
-												<input type="checkbox" id="checkbox-body" value="Average" class="px"> <span class="lbl">Average</span>
+												<input type="checkbox" name="build" value="Average" class="px"> <span class="lbl">Average</span>
 											</label>
 										</div>
 										<div class="checkbox">
 											<label>
-												<input type="checkbox" id="checkbox-body" value="Athletic" class="px"> <span class="lbl">Athletic</span>
+												<input type="checkbox" name="build" value="Athletic" class="px"> <span class="lbl">Athletic</span>
 											</label>
 										</div>
 										<div class="checkbox">
 											<label>
-												<input type="checkbox" id="checkbox-body" value="Muscular" class="px"> <span class="lbl">Muscular</span>
+												<input type="checkbox" name="build" value="Muscular" class="px"> <span class="lbl">Muscular</span>
 											</label>
 										</div>
 										<div class="checkbox">
 											<label>
-												<input type="checkbox" id="checkbox-body" value="Extra-Large" class="px"> <span class="lbl">Extra-Large</span>
+												<input type="checkbox" name="build" value="Extra-Large" class="px"> <span class="lbl">Extra-Large</span>
 											</label>
 										</div>
 										<div class="checkbox">
 											<label>
-												<input type="checkbox" id="checkbox-body" value="Large" class="px"> <span class="lbl">Large</span>
+												<input type="checkbox" name="build" value="Large" class="px"> <span class="lbl">Large</span>
 											</label>
 										</div>
 										<div class="checkbox">
 											<label>
-												<input type="checkbox" id="checkbox-body" value="Lean-Muscle" class="px"> <span class="lbl">Lean-Muscle</span>
+												<input type="checkbox" name="build" value="Lean-Muscle" class="px"> <span class="lbl">Lean-Muscle</span>
 											</label>
 										</div>
 										<div class="checkbox">
 											<label>
-												<input type="checkbox" id="checkbox-body" value="Medium" class="px"> <span class="lbl">Medium</span>
+												<input type="checkbox" name="build" value="Medium" class="px"> <span class="lbl">Medium</span>
 											</label>
 										</div>
 										<div class="checkbox">
 											<label>
-												<input type="checkbox" id="checkbox-body" value="Petite" class="px"> <span class="lbl">Petite</span>
+												<input type="checkbox" name="build" value="Petite" class="px"> <span class="lbl">Petite</span>
 											</label>
 										</div>
 										<div class="checkbox">
 											<label>
-												<input type="checkbox" id="checkbox-body" value="Slim" class="px"> <span class="lbl">Slim</span>
+												<input type="checkbox" name="build" value="Slim" class="px"> <span class="lbl">Slim</span>
 											</label>
 										</div>
 									</div>
@@ -160,42 +161,42 @@
 									<div class="col-md-12 ethnnicity-checkbox">
 										<div class="checkbox">
 											<label>
-												<input type="checkbox" id="checkbox-ethnicity" value="African" class="px"> <span class="lbl">African</span>
+												<input type="checkbox" name="ethnicity" value="African" class="px"> <span class="lbl">African</span>
 											</label>
 										</div>
 										<div class="checkbox">
 											<label>
-												<input type="checkbox" id="checkbox-ethnicity" value="African-American" class="px"> <span class="lbl">African American</span>
+												<input type="checkbox" name="ethnicity" value="African-American" class="px"> <span class="lbl">African American</span>
 											</label>
 										</div>
 										<div class="checkbox">
 											<label>
-												<input type="checkbox" id="checkbox-ethnicity" value="American Indian" class="px"> <span class="lbl">American Indian</span>
+												<input type="checkbox" name="ethnicity" value="American Indian" class="px"> <span class="lbl">American Indian</span>
 											</label>
 										</div>
 										<div class="checkbox">
 											<label>
-												<input type="checkbox" id="checkbox-ethnicity" value="Asian" class="px"> <span class="lbl">Asian</span>
+												<input type="checkbox" name="ethnicity" value="Asian" class="px"> <span class="lbl">Asian</span>
 											</label>
 										</div>
 										<div class="checkbox">
 											<label>
-												<input type="checkbox" id="checkbox-ethnicity" value="Caucasian" class="px"> <span class="lbl">Caucasian</span>
+												<input type="checkbox" name="ethnicity" value="Caucasian" class="px"> <span class="lbl">Caucasian</span>
 											</label>
 										</div>
 										<div class="checkbox">
 											<label>
-												<input type="checkbox" id="checkbox-ethnicity" value="Eastern Indian" class="px"> <span class="lbl">East Indian</span>
+												<input type="checkbox" name="ethnicity" value="Eastern Indian" class="px"> <span class="lbl">East Indian</span>
 											</label>
 										</div>
 										<div class="checkbox">
 											<label>
-												<input type="checkbox" id="checkbox-ethnicity" value="Hispanic" class="px"> <span class="lbl">Hispanic</span>
+												<input type="checkbox" name="ethnicity" value="Hispanic" class="px"> <span class="lbl">Hispanic</span>
 											</label>
 										</div>
 										<div class="checkbox">
 											<label>
-												<input type="checkbox" id="checkbox-ethnicity" value="Middle Eastern" class="px"> <span class="lbl">Middle Eastern</span>
+												<input type="checkbox" name="ethnicity" value="Middle Eastern" class="px"> <span class="lbl">Middle Eastern</span>
 											</label>
 										</div>
 									</div>
@@ -218,12 +219,12 @@
 									<div class="col-md-12 member-checkbox">
 										<div class="checkbox">
 											<label>
-												<input type="checkbox" id="checkbox-member" value="pro" class="px"> <span class="lbl">Pro Member</span>
+												<input type="checkbox" name="join_status" value="5" class="px"> <span class="lbl">Pro Member</span>
 											</label>
 										</div>
 										<div class="checkbox">
 											<label>
-												<input type="checkbox" id="checkbox-member" value="non-pro" checked="" class="px"> <span class="lbl">Amateur Member</span>
+												<input type="checkbox" name="join_status" value="0" class="px"> <span class="lbl">Amateur Member</span>
 											</label>
 										</div>
 									</div>
@@ -235,11 +236,12 @@
 
 				<div class="row-fluid clearfix">
 					<div class="col-md-12 padding-zero">
-						<a href="#" id="search-talents" class="btn btn-success btn-block">Search</a>
+						<button id="talent-filter-button" type="button" class="btn btn-success btn-block">Search</button>
 					</div>
 				</div>
 
 			</div> {{-- location --}}
 		</div>
 	</div>
+	</form>
 </div> {{-- refine-search-sidebar --}}

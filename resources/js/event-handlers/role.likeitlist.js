@@ -14,38 +14,46 @@ function handler(core, user, projectId, roleId) {
 handler.prototype.refreshProjectDetails = function() {
 	var data = {
 		projectId : self.projectId,
-		withs : [ 'bam_roles.schedules' ]
+		withs : [ 'bam_roles' ]
 	};
 
 	self.core.resource.project.get(data)
 		.then(function(result) {
 			self.project = result;
 			self.core.service.databind('#roles-list', self.project);
+			// get current role object
+			self.project.role = _.find(self.project.bam_roles, function (role) {
+				return role.role_id == self.roleId;
+			});
+			$('#roles-list').val(self.project.role.role_id);
+
 			return self.refreshLikeItList();
 		})
 }
 
 handler.prototype.refreshLikeItList = function() {
 	var data = {
-		projectId : self.projectId,
 		jobId : self.roleId,
 		withs : [
-			'schedules.invitee.bam_talentci.bam_talentinfo1',
-			'schedules.invitee.bam_talentci.bam_talentinfo2',
-			'schedules.invitee.bam_talentci.bam_talent_media2',
-			'schedules.inviter.bam_talentci.bam_talentinfo1',
-			'schedules.inviter.bam_talentci.bam_talentinfo2',
-			'schedules.inviter.bam_talentci.bam_talent_media2',
-			'schedules.schedule_notes.user.bam_cd_user'
+			'invitee.bam_talentci.bam_talentinfo1',
+			'invitee.bam_talentci.bam_talentinfo2',
+			'invitee.bam_talentci.bam_talent_media2',
+			'inviter.bam_talentci.bam_talentinfo1',
+			'inviter.bam_talentci.bam_talentinfo2',
+			'inviter.bam_talentci.bam_talent_media2',
+			'schedule_notes.user.bam_cd_user'
+		],
+		wheres : [
+			[ 'where', 'rating', '<>', 0 ]
 		]
 	};
 
-	return self.core.resource.job.get(data)
+	return self.core.resource.schedule.get(data)
 		.then(function(result) {
-			self.project.role = result;
+			self.project.role.likeitlist = result;
 			self.core.service.databind('.page-header', self.project);
-			$('#roles-list').val(self.project.role.role_id);
-			self.core.service.databind('#like-it-list', { data : self.project.role.getLikeItList() });
+			self.core.service.databind('#submissions-sub-menu', self.project);
+			self.core.service.databind('#like-it-list', self.project);
 		});
 }
 
@@ -65,7 +73,7 @@ handler.prototype.rateSchedule = function(e) {
 handler.prototype.removeAllLikeItList = function() {
 	if (confirm('Are you sure you want to remove all Like It List entries?')) {
 		var promises = [];
-		_.each(self.project.role.schedules, function(schedule) {
+		_.each(self.project.role.likeitlist.data, function(schedule) {
 			promises.push(self.core.resource.schedule.patch({ jobId : schedule.bam_role_id, scheduleId : schedule.id, rating : 0 }));
 		});
 

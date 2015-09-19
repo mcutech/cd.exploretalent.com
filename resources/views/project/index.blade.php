@@ -39,14 +39,14 @@
 										<a data-bind="/projects/<%= casting_id %>" class="btn btn-outline btn-sm font-size-small-normal-zz padding-small-zz margin-top-small-zz-xs">
 			  								Project Overview
 			  							</a>
-			  							<a data-bind="/projects/<%= casting_id %>/roles/123/selfsubmissiosn" class="btn btn-outline btn-sm font-size-small-normal-zz padding-small-zz btn-submissions margin-top-small-zz-xs">
+										<a data-bind="/projects/<%= casting_id %>/roles/<%= _.first(bam_roles) ? _.first(bam_roles).role_id : '' %>/self-submissions" class="btn btn-outline btn-sm font-size-small-normal-zz padding-small-zz btn-submissions margin-top-small-zz-xs">
 			  								Submissions
 			  							</a>
-			  							<a href="/projects/1497936/schedules/create" class="btn btn-outline btn-sm font-size-small-normal-zz padding-small-zz margin-top-small-zz-xs">
+										<a data-bind="/projects/<%= casting_id %>/schedules/create" class="btn btn-outline btn-sm font-size-small-normal-zz padding-small-zz margin-top-small-zz-xs">
 			  								<i class="fa fa-plus"></i>
 			  								Create Schedule
 			  							</a>
-			  							<a href="/projects/1497936/likeitlist" class="btn btn-success btn-sm font-size-small-normal-zz padding-small-zz">
+			  							<a data-bind="/projects/<%= casting_id %>/roles/<%= _.first(bam_roles) ? _.first(bam_roles).role_id : '' %>/like-it-list" class="btn btn-success btn-sm font-size-small-normal-zz padding-small-zz">
 			  								View Like it List
 			  							</a>
 			  						</div>
