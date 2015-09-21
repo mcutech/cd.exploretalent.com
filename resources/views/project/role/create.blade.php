@@ -35,7 +35,7 @@
 					<div class="row-fluid col-no-padding clearfix project-details-container">
 						<div class="col-sm-12 col-md-6">
 							<ul class="list-unstyled additional-details margin-zero">
-								<li><div class="title">Project Type:</div>Print</li>
+								<li><div class="title">Project Type:</div><span data-bind="<%= (cat) ? getCategory().split(' ',1) : 'N/A' %>"></span></li>
 								<li><div class="title">Location:</div><span data-bind="<%= (location) ? location : 'Not Specified' %>"></span></li>
 								<li><div class="title">Rate/Pay:</div><span data-bind="$<%= rate %>"></span><span data-bind="<%= (rate_des != 0) ? ' per ' + rate_des : '' %>"></span></li>	
 								<li><div class="title">Audition Date:</div><span data-bind="<%= (aud_timestamp) ? date.formatYMD(aud_timestamp) : 'Not Specified' %>"></span></li>
@@ -49,7 +49,7 @@
 								<li><div class="title">Submission Type:</div><span data-bind="<%= (project_type == 8) ? 'Open Call' : 'Self Response' %>"></span></li>	
 								<li><div class="title">Union:</div><span data-bind="<%= (union2 == 0) ? 'Non-Union' : 'Union' %>"></span></li>
 								<li><div class="title">Release Date:</div><span data-bind="<%= date.formatYMD(parseInt(sub_timestamp)) %>"></span></li>
-								<li><div class="title">Deadline:</div><span class="text-danger" data-bind="<%= (asap) ? date.formatYMD(parseInt(asap)) : '' %>"></span></li>
+								<li><div class="title">Deadline:</div><span class="text-danger" data-bind="<%= asap1 %>"></span></li>
 							</ul>
 						</div>
 
