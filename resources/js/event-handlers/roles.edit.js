@@ -77,6 +77,14 @@ handler.prototype.getRoleInfo = function(e) {
 
 handler.prototype.updateRole = function() {
 
+
+	// to make sure all previous checked checkboxes are still saved
+	var checkedCheckboxes = $('input[type="checkbox"]:checked');
+
+	checkedCheckboxes.each(function(){
+		$(this).val(1);
+	});
+
 	var height = $('#heightinches').val(),
 		height = height.split(",");
 
@@ -150,6 +158,7 @@ handler.prototype.updateRole = function() {
 			return self.core.resource.job.patch(data)
 			.then(function(res) {
 				console.log(res);
+
 				$('.role-updated-success').fadeIn();
 
 				setTimeout(function(){
