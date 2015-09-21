@@ -51,6 +51,13 @@ handler.prototype.getProjectInfo = function(e) {
 					casting.rate_des = 0;
 				}
 
+				var i = (new Date(casting.asap*1000));
+				var d = i.getDate();
+				var m = i.getMonth()+1;
+				var y = i.getFullYear();
+				
+				casting.asap1 = y + "-" + m + "-" + d;
+
 				self.core.service.databind('.project-details-div', casting)
 				return $.when();
 			}
@@ -68,6 +75,8 @@ handler.prototype.getRoleInfo = function(e) {
 		.then(function(res) {
 
 			console.log(res);
+
+			console.log(res.height_min % 12);
 
 			self.core.service.databind('#edit-role-div', res)
 			return $.when();
