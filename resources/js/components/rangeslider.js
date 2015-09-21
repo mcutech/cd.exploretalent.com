@@ -1,34 +1,41 @@
 module.exports = function(core) {
+	$('[data-slider]').each(function() {
+		var options = {
+			disabled	: $(this).data('disabled'),
+			max 		: $(this).data('max'),
+			min 		: $(this).data('min'),
+			orientation : $(this).data('orientation'),
+			range 		: $(this).data('range'),
+			step 		: $(this).data('step'),
+			value 		: $(this).data('value'),
+			values 		: $(this).data('values'),
+		};
 
-	var range_sliders_age = {
-		'range': true,
-		'min': 0,
-		'max': 100,
-		'values': [ 0, 100 ],
-		slide: function( event, ui ) {
-	      $( "#text-age-min" ).html( ui.values[ 0 ] );
-	      $( "#text-age-max" ).html( ui.values[ 1 ] );
-	    }
-	};
+		switch($(this).data('type')) {
+			case 'age':
+				options.slide = function(event, ui) {
+					$('#age-min-text').text(ui.values[0]);
+					$('[name="age_min"]').val(ui.values[0]);
+					$('#age-max-text').text(ui.values[1])
+					$('[name="age_max"]').val(ui.values[1]);
+				}
 
-	$('.ui-slider-range-age').slider(range_sliders_age);
+				break;
+			case 'height':
+				options.slide = function(event, ui) {
+					var feet1 = Math.floor(ui.values[0] / 12);
+					var inches1 = ui.values[0] % 12;
+					var feet2 = Math.floor(ui.values[1] / 12);
+					var inches2 = ui.values[1] % 12;
 
-	var range_sliders_height = {
-		'range': true,
-		'min': 24,
-		'max': 96,
-		'values': [ 24, 96 ],
-		slide: function( event, ui ) {
-			var val1 = (Math.floor(ui.values[0]/12)) + "'" + (((ui.values[0]/12)-(Math.floor(ui.values[0]/12)))*12).toFixed() + "'";
-			var val2 = (Math.floor(ui.values[1]/12)) + "'" + (((ui.values[1]/12)-(Math.floor(ui.values[1]/12)))*12).toFixed() + "'";
-		    $( "#text-height-min" ).html( val1 );
-		    $( "#text-height-max" ).html( val2 );
-		    $( "#val-height-min" ).html( ui.values[0] );
-		    $( "#val-height-max" ).html( ui.values[1] );
-		    console.log(val1);
-	    }
-	};
+					$('#height-min-text').text(feet1 + "'" + inches1 + '"');
+					$('#height-max-text').text(feet2 + "'" + inches2 + '"');
+					$('[name="height_min"]').val(ui.values[0]);
+					$('[name="height_max"]').val(ui.values[1]);
+				}
+				break;
+		}
 
-	$('.ui-slider-range-height').slider(range_sliders_height);
-
+		$(this).slider(options);
+	});
 };

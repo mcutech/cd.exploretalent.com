@@ -1,4 +1,4 @@
-@extends('layouts.role', [ 'pages' => [ [ 'name' => 'Self Submissions', 'url' => '/roles/1/selfsubmissions', 'active' => true] ] ])
+@extends('layouts.role', [ 'pages' => [ [ 'name' => 'My Projects', 'url' => '/projects' ], [ 'name' => 'Project', 'url' => '/projects/' . $projectId ], [ 'name' => 'Self Submissions', 'url' => '/projects/' . $projectId . '/roles/' . $roleId . '/selfsubmissions', 'active' => true] ] ])
 
 @section('header.title', 'Self Submissions')
 

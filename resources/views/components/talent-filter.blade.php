@@ -41,10 +41,12 @@
 					<div class="panel-body padding-small no-border-hr no-padding-hr">
 						<div class="tab-content no-padding-hr padding-top-zero-zz-lg no-padding-b">
 							<div class="tab-pane fade active in">
-								<label class="text-bold margin-bottom-zero">Age Range <span id="text-age-min" class="text-normal">0</span> - <span id="text-age-max" class="text-normal">100</span></label>
+								<label class="text-bold margin-bottom-zero">Age Range <span id="age-min-text" data-bind="<%= role.age_min %>" class="text-normal">0</span> - <span id="age-max-text" data-bind="<%= role.age_max %>" class="text-normal">100</span></label>
 								<div class="row">
 									<div class="col-md-12">
-										<div class="ui-slider-range-age"></div>
+										<div data-range="true" data-values="[0, 100]" data-min="0" data-max="100" data-bind="[<%= role.age_min %>, <%= role.age_max %>]" data-type="age" data-slider></div>
+										<input type="hidden" name="age_min" data-bind="<%= role.age_min %>" />
+										<input type="hidden" name="age_max" data-bind="<%= role.age_max %>" />
 									</div>
 								</div>
 							</div>
@@ -85,11 +87,15 @@
 					<div class="panel-body padding-small no-border-hr no-padding-hr">
 						<div class="tab-content no-padding-hr padding-top-zero-zz-lg no-padding-b">
 							<div class="tab-pane fade active in">
-								<label class="text-bold margin-bottom-zero">Height Range <span id="text-height-min" class="text-normal">2'0'</span> - <span id="text-height-max" class="text-normal">8'0'</span></label>
-								<span id="val-height-min" class="hide text-normal">24</span><span id="val-height-max" class="hide text-normal">96</span>
+								<label class="text-bold margin-bottom-zero">Height Range
+									<span id="height-min-text" class="text-normal" data-bind="<%= parseInt(role.height_min) ? role.getHeightMinText() : '2\'0&quot;' %>">2'0"</span> -
+									<span id="height-max-text" class="text-normal" data-bind="<%= parseInt(role.height_max) ? role.getHeightMaxText() : '8\'0&quot;' %>">8'0"</span>
+								</label>
 								<div class="row">
 									<div class="col-md-12">
-										<div class="ui-slider-range-height"></div>
+										<div class="ui-slider-range-height" data-slider data-range="true" data-min="24" data-max="96" data-values="[24,96]" data-type="height" data-bind="[<%= parseInt(role.height_min) ? role.height_min : 24 %>, <%= parseInt(role.height_max) ? role.height_max : 96 %>]"></div>
+										<input type="hidden" name="height_min" data-bind="<%= role.height_min %>" />
+										<input type="hidden" name="height_max" data-bind="<%= role.height_max %>" />
 									</div>
 								</div>
 							</div>

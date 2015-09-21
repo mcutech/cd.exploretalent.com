@@ -1,4 +1,4 @@
-@extends('layouts.role', [ 'pages' => [ [ 'name' => 'Pre-Submissions', 'url' => '/roles/1/matches', 'active' => true] ] ])
+@extends('layouts.role', [ 'pages' => [ [ 'name' => 'My Projects', 'url' => '/projects' ], [ 'name' => 'Project', 'url' => '/projects/' . $projectId ], [ 'name' => 'Pre Submissions', 'url' => '/projects/' . $projectId . '/roles/' . $roleId . '/matches', 'active' => true] ] ])
 
 @section('header.title', 'Pre Submissions')
 

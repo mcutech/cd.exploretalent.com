@@ -129,7 +129,7 @@
 				  												<i class="fa fa-trash-o"></i> Delete
 				  											</a>
 
-				  											<a class="btn btn-success padding-small-normal view-role-matches" data-bind="<%= role_id %>" data-bind-target="id">View matches</a>
+															<a class="btn btn-success padding-small-normal view-role-matches" data-bind="/projects/<%= casting_id %>/roles/<%= role_id %>/matches">View matches</a>
 				  										</div>
 				  									</div>
 				  								</div> {{-- roles header --}}

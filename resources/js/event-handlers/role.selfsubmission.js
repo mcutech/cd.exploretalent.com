@@ -42,9 +42,6 @@ handler.prototype.refreshLikeItList = function() {
 			'inviter.bam_talentci.bam_talentinfo2',
 			'inviter.bam_talentci.bam_talent_media2',
 			'schedule_notes.user.bam_cd_user'
-		],
-		wheres : [
-			[ 'where', 'rating', '<>', 0 ]
 		]
 	};
 
@@ -94,6 +91,13 @@ handler.prototype.updateFilter = function() {
 		]);
 	}
 
+	if (parseInt(form.age_min)) {
+		filter.push([ 'where', 'talentinfo1.dobyyyy', '<=', new Date().getFullYear() - parseInt(form.age_min) ]);
+	}
+
+	if (parseInt(form.age_max)) {
+		filter.push([ 'where', 'talentinfo1.dobyyyy', '>=', new Date().getFullYear() - parseInt(form.age_max) ]);
+	}
 	if (form.sex) {
 		if (form.sex instanceof Array) {
 			// do nothing, if its an array then items is => 2, only 2 items so select all
@@ -104,6 +108,14 @@ handler.prototype.updateFilter = function() {
 				]
 			]);
 		}
+	}
+
+	if (parseInt(form.height_min)) {
+		filter.push([ 'where', 'talentinfo1.heightinches', '>=', form.height_min ]);
+	}
+
+	if (parseInt(form.height_max)) {
+		filter.push([ 'where', 'talentinfo1.heightinches', '<=', form.height_max ]);
 	}
 
 	if (form.build) {

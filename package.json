@@ -1,14 +1,14 @@
 {
   "private": true,
   "preprocess": {
-	  "development": {
-		  "ENV": "development",
-		  "DEBUG": true
-	  },
-	  "production": {
-		  "ENV": "production",
-		  "DEBUG": false
-	  }
+    "development": {
+      "ENV": "development",
+      "DEBUG": true
+    },
+    "production": {
+      "ENV": "production",
+      "DEBUG": false
+    }
   },
   "devDependencies": {
     "aliasify": "^1.7.2",
@@ -63,8 +63,9 @@
   },
   "dependencies": {
     "crossroads": "^0.12.0",
+    "gulp": "^3.9.0",
     "jquery": "^2.1.3",
-    "lodash": "^3.0.1",
-    "jscore": "git+ssh://git@gitlab.com/utech/jscore.exploretalent.com.git"
+    "jscore": "git+ssh://git@gitlab.com/utech/jscore.exploretalent.com.git",
+    "lodash": "^3.0.1"
   }
 }

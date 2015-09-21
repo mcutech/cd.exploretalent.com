@@ -85,11 +85,21 @@ handler.prototype.refreshMatches = function() {
 
 handler.prototype.updateFilter = function() {
 	var form = self.core.service.form.serializeObject('#talent-filter-form');
+	console.log(form);
 	var filter = [];
 
 	if (form.zip) {
 		filter.push([ 'where', 'talentci.zip', '=', form.zip ]);
 	}
+
+	if (parseInt(form.age_min)) {
+		filter.push([ 'where', 'talentinfo1.dobyyyy', '<=', new Date().getFullYear() - parseInt(form.age_min) ]);
+	}
+
+	if (parseInt(form.age_max)) {
+		filter.push([ 'where', 'talentinfo1.dobyyyy', '>=', new Date().getFullYear() - parseInt(form.age_max) ]);
+	}
+
 
 	if (form.sex) {
 		if (form.sex instanceof Array) {
@@ -98,6 +108,14 @@ handler.prototype.updateFilter = function() {
 		else {
 			filter.push([ 'where', 'talentinfo1.sex', '=', form.sex ]);
 		}
+	}
+
+	if (parseInt(form.height_min)) {
+		filter.push([ 'where', 'talentinfo1.heightinches', '>=', form.height_min ]);
+	}
+
+	if (parseInt(form.height_max)) {
+		filter.push([ 'where', 'talentinfo1.heightinches', '<=', form.height_max ]);
 	}
 
 	if (form.build) {
