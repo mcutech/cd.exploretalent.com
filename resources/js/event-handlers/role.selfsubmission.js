@@ -42,6 +42,9 @@ handler.prototype.refreshLikeItList = function() {
 			'inviter.bam_talentci.bam_talentinfo2',
 			'inviter.bam_talentci.bam_talent_media2',
 			'schedule_notes.user.bam_cd_user'
+		],
+		wheres : [
+			[ 'where', 'rating', '<>', 0 ]
 		]
 	};
 
@@ -63,9 +66,6 @@ handler.prototype.refreshSelfSubmissions = function() {
 			'invitee.bam_talentci.bam_talentinfo2',
 			'invitee.bam_talentci.bam_talent_media2',
 			'schedule_notes.user.bam_cd_user'
-		],
-		wheres : [
-			[ 'where', 'rating', '=', 0 ]
 		]
 	};
 
