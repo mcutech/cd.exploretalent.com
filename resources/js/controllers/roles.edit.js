@@ -38,8 +38,8 @@ module.exports = function(core, user, projectId, roleId) {
 		inches1 %= 12;
 		inches2 %= 12;
 
-		$( '#height-min-span' ).html(feet1 + ' ft ' + inches1 + ' in');
-		$( '#height-max-span' ).html(feet2 + ' ft ' + inches2 + ' in');
+		$( '#height-min-span' ).html(feet1 + "' " + inches1 + '"');
+		$( '#height-max-span' ).html(feet2 + "' " + inches2 + '"');
 		$('#heightinches').val(ui.values[0] + "," + ui.values[1]);
 	});
 
