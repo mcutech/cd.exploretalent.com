@@ -74,10 +74,15 @@
 					<div class="panel-body padding-small no-border-hr no-padding-hr">
 						<div class="tab-content no-padding-hr padding-top-zero-zz-lg no-padding-b">
 							<div class="tab-pane fade active in">
-								<label class="text-bold margin-bottom-zero">Has Picture</label>
+								<label class="text-bold margin-bottom-zero">Picture</label>
 								<div class="row">
 									<div class="col-md-12">
-										<input type="checkbox" name="has_photo" value="picture" data-class="switcher-success" />
+										<label class="checkbox-inline">
+											<input type="checkbox" name="has_photo" value="1" class="px" data-class="switcher-success" /> <span class="lbl">Has Photo</span>
+										</label>
+										<label class="checkbox-inline">
+											<input type="checkbox" name="has_photo" value="0" class="px" data-class="switcher-success" /> <span class="lbl">No Photo</span>
+										</label>
 									</div>
 								</div>
 							</div>

@@ -62,10 +62,17 @@ handler.prototype.refreshSelfSubmissions = function() {
 	var data = {
 		jobId : self.roleId,
 		withs : [
-			'invitee.bam_talentci.bam_talentinfo1',
-			'invitee.bam_talentci.bam_talentinfo2',
-			'invitee.bam_talentci.bam_talent_media2',
+			'inviter.bam_talentci.bam_talentinfo1',
+			'inviter.bam_talentci.bam_talentinfo2',
+			'inviter.bam_talentci.bam_talent_media2',
 			'schedule_notes.user.bam_cd_user'
+		],
+		wheres : [
+			[
+				'whereHas', 'inviter', [
+					[ 'where', 'bam_talentnum', '<>', 0 ]
+				]
+			]
 		]
 	};
 
@@ -75,6 +82,7 @@ handler.prototype.refreshSelfSubmissions = function() {
 
 	return self.core.resource.schedule.get(data)
 		.then(function(result) {
+			console.log(result);
 			self.project.role.selfsubmissions = result;
 			self.core.service.databind('#self-submissions', self.project);
 		});
@@ -85,7 +93,7 @@ handler.prototype.updateFilter = function() {
 	var filter = [];
 
 	if (form.zip) {
-		filter.push([ 'whereHas', 'invitee.bam_talentci', [
+		filter.push([ 'whereHas', 'inviter.bam_talentci', [
 				[ 'where', 'talentci.zip', '=', form.zip ]
 			]
 		]);
@@ -98,15 +106,36 @@ handler.prototype.updateFilter = function() {
 	if (parseInt(form.age_max)) {
 		filter.push([ 'where', 'talentinfo1.dobyyyy', '>=', new Date().getFullYear() - parseInt(form.age_max) ]);
 	}
+
 	if (form.sex) {
 		if (form.sex instanceof Array) {
 			// do nothing, if its an array then items is => 2, only 2 items so select all
 		}
 		else {
-			filter.push([ 'whereHas', 'invitee.bam_talentci.bam_talentinfo1', [
+			filter.push([ 'whereHas', 'inviter.bam_talentci.bam_talentinfo1', [
 					[ 'where', 'talentinfo1.sex', '=', form.sex ]
 				]
 			]);
+		}
+	}
+
+	if (form.has_photo) {
+		if (form.has_photo instanceof Array) {
+			// do nothing, if its an array then items is => 2, only 2 items so select all
+		}
+		else {
+			if (parseInt(form.has_photo)) {
+				filter.push([ 'whereHas', 'inviter.bam_talentci.bam_talent_media2', [
+						[ 'where', 'talent_media2.media_path', '<>', null ]
+					]
+				]);
+			}
+			else {
+				filter.push([ 'whereHas', 'inviter.bam_talentci.bam_talent_media2', [
+						[ 'where', 'talent_media2.media_path', '=', null ]
+					]
+				]);
+			}
 		}
 	}
 
@@ -130,13 +159,13 @@ handler.prototype.updateFilter = function() {
 				}
 			});
 
-			filter.push([ 'whereHas', 'invitee.bam_talentci.bam_talentinfo1', [
+			filter.push([ 'whereHas', 'inviter.bam_talentci.bam_talentinfo1', [
 					[ 'where', subfilter ]
 				]
 			]);
 		}
 		else {
-			filter.push([ 'whereHas', 'invitee.bam_talentci.bam_talentinfo1', [
+			filter.push([ 'whereHas', 'inviter.bam_talentci.bam_talentinfo1', [
 					[ 'where', 'talentinfo1.build', '=', form.build ]
 				]
 			]);
@@ -155,13 +184,13 @@ handler.prototype.updateFilter = function() {
 				}
 			});
 
-			filter.push([ 'whereHas', 'invitee.bam_talentci.bam_talentinfo2', [
+			filter.push([ 'whereHas', 'inviter.bam_talentci.bam_talentinfo2', [
 					[ 'where', subfilter ]
 				]
 			]);
 		}
 		else {
-			filter.push([ 'whereHas', 'invitee.bam_talentci.bam_talentinfo2', [
+			filter.push([ 'whereHas', 'inviter.bam_talentci.bam_talentinfo2', [
 					[ 'where', 'talentinfo2.ethnicity', '=', form.ethnicity ]
 				]
 			]);
@@ -174,13 +203,13 @@ handler.prototype.updateFilter = function() {
 		}
 		else {
 			if (form.join_status == 5) {
-				filter.push([ 'whereHas', 'invitee.bam_talentci', [
+				filter.push([ 'whereHas', 'inviter.bam_talentci', [
 						[ 'where', 'talentci.join_status', '=', 5 ]
 					]
 				]);
 			}
 			else {
-				filter.push([ 'whereHas', 'invitee.bam_talentci', [
+				filter.push([ 'whereHas', 'inviter.bam_talentci', [
 						[ 'where', 'talentci.join_status', '<>', 5 ]
 					]
 				]);

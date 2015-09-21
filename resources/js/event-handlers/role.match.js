@@ -110,6 +110,20 @@ handler.prototype.updateFilter = function() {
 		}
 	}
 
+	if (form.has_photo) {
+		if (form.has_photo instanceof Array) {
+			// do nothing, if its an array then items is => 2, only 2 items so select all
+		}
+		else {
+			if (parseInt(form.has_photo)) {
+				filter.push([ 'where', 'talent_media2.media_path', '<>', null ]);
+			}
+			else {
+				filter.push([ 'where', 'talent_media2.media_path', '=', null ]);
+			}
+		}
+	}
+
 	if (parseInt(form.height_min)) {
 		filter.push([ 'where', 'talentinfo1.heightinches', '>=', form.height_min ]);
 	}
