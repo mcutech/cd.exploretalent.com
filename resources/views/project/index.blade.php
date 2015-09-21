@@ -125,7 +125,7 @@
 				  												<i class="fa fa-pencil"></i> Edit
 				  											</a>
 
-				  											<a class="btn btn-lg btn-outline font-size-normal" href="#">
+				  											<a class="btn btn-lg btn-outline font-size-normal delete-role" href="#" data-bind="<%= role_id %>" data-bind-target="id">
 				  												<i class="fa fa-trash-o"></i> Delete
 				  											</a>
 

@@ -48,6 +48,21 @@ handler.prototype.roleMatches = function() {
 	window.location = 'projects/'+cast_id+'/roles/'+ids+'/matches';
 }
 
+handler.prototype.deleteRole = function(e) {
+	e.preventDefault();
+	var cast_id = $(this).parent().attr('id');
+	var ids = $(this).attr('id');
+
+	console.log(ids);
+
+	if(confirm("Are you sure you want to delete this role?")){
+		self.core.resource.job.delete({ projectId : cast_id, jobId : ids})
+			.then(function(res){
+				self.refreshList();
+			});
+	}
+}
+
 module.exports = function(core, user) {
 	return new handler(core, user);
 };
