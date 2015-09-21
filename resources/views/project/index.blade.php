@@ -23,12 +23,12 @@
 			<div class="panel-group panel-group-primary project-item panel-blue" id="accordion-castings">
 			  	<div class="panel hide" data-bind-template="#accordion-castings" data-bind-value="data" data-bind="project-<%= casting_id %>" data-bind-target="id">
 			  		<div class="panel-heading">
-			  			<a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion-castings" data-bind="#jobs-collapse-<%= casting_id %>">
+			  			<a class="accordion-toggle collapsed" data-toggle="collapse" data-bind="#jobs-collapse-<%= casting_id %>">
 			  			<span data-bind="<%= name %>"></span>
 			  			</a>
 			  		</div>
 
-			  		<div class="panel-collapse collapse in" data-bind="jobs-collapse-<%= casting_id %>" data-bind-target="id" aria-expanded="false" style="height: 0px;">
+			  		<div class="panel-collapse collapse in" data-bind="jobs-collapse-<%= casting_id %>" data-bind-target="id" aria-expanded="true" style="">
 			  			<div class="panel-body padding-left-zero-zz-xs padding-right-zero-zz-xs">
 			  				<div class="row-fluid clearfix margin-bottom-normal">
 			  					<div class="col-md-6">
