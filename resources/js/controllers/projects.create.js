@@ -46,5 +46,7 @@ module.exports = function(core, user) {
 	dontAllowLetters($("#zip-code"));
 
 	$('#find-markets-btn').on('click', handler.autoSelectMarkets);
+
+	$('#toggle-manual-markets-div').on('click', handler.toggleManualMarketsDiv);
 			
 };

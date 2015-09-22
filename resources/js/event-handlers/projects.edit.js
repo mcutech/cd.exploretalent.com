@@ -8,9 +8,9 @@ function handler(core, user, projectId) {
 
 	self.getProjectInfo();
 
-	setTimeout(function(){
-		self.autoSelectMarkets();
-	}, 1000);
+	// setTimeout(function(){
+	// 	self.autoSelectMarkets();
+	// }, 1000);
 }
 
 handler.prototype.getProjectInfo = function(e) {
@@ -28,6 +28,14 @@ handler.prototype.getProjectInfo = function(e) {
 		.then(function(res) {
 			if (res.total > 0) {
 				var casting = res.data[0];
+
+				casting.market = casting.market.split(">");
+
+				// convert each market in object to lowercase and strip space and comma, then check checkbox of markets
+				_.each(casting.market, function(data){
+					data = data.toLowerCase().replace(/[^a-zA-Z]+/g, "_");
+					$('#market_'+data).prop('checked', 'checked');
+				});
 
 				console.log(casting);
 
@@ -73,201 +81,196 @@ handler.prototype.updateProject = function(e){
 	var zipcode = $('#zip-code').val();
 	var auditiondesc = $('#audition-description').val();
 
+	var promise = $.when();
+
 	// sets checked boxes as market (after Auto Select Markets button is clicked (will check zipcode))
 	var markets = [];
 
-	$('input[type="checkbox"][name="market-checkbox"]:checked').next('span').each(function() {
-		markets.push($(this).text());
-	});
+	if(!$('.auto-markets-div').is(':visible')) { // if auto select markets btn was not clicked (save btn is clicked)
 
-	var markets = markets.join('>');
+		promise = self.autoSelectMarkets()
+		.then(function(res) {
+
+			_.each(res, function(data) {
+
+				markets.push(data.city + ", " + data.state);
+
+			});
+
+			// for manually selected markets
+			$('input[type="checkbox"][name="manual-market-checkbox"]:checked').next('span').each(function() {
+
+				var text = $(this).text();
+				if(markets.indexOf(text) == -1) {
+					markets.push($(this).text());
+				}
+				
+			});
+
+			markets = markets.join('>');
+
+			return $.when();
+		});
+
+	}
+
+	else {
+
+		$('input[type="checkbox"][name="market-checkbox"]:checked').next('span').each(function() {
+			markets.push($(this).text());
+		});
+
+		// for manually selected markets
+		$('input[type="checkbox"][name="manual-market-checkbox"]:checked').next('span').each(function() {
+
+			var text = $(this).text();
+			if(markets.indexOf(text) == -1) {
+				markets.push($(this).text());
+			}
+
+		});
+
+		markets = markets.join('>');
 		// because checkboxes are checked by default, the first hidden div in loop is included.. this will remove it from the value of market sent to data
 		while(markets.charAt(0) === '>')
 	    markets = markets.substr(1);
 
-	var data = {
-		projectId : self.projectId,
-		user_id : self.user.bam_cd_user_id,
-		name : projectname,
-		name_original : projectname,
-		project : projectname,
-		cat : category,
-		sub_timestamp : submissiontimestamp,
-		asap : asaptimestamp,
-		rate : rate,
-		rate_des: ratedes,
-		aud_timestamp : auditiontimestamp,
-		shoot_timestamp : shoottimestamp,
-		union2 : union,
-		// project_type : projecttype,
-		zip : zipcode,
-		market: markets,
-		location : zipcode,
-		des: auditiondesc,
-	};
-
-	if(projectname.length < 1) {
-		$('.project-name-error-required').fadeIn();
-		$('#project-name').focus();
-
-		setTimeout(function(){
-			$('.project-name-error-required').fadeOut();
-		}, 3000);
 	}
 
-	else if(projectname.length < 5) {
-		$('.project-name-error-five').fadeIn();
-		$('#project-name').focus();
+	promise.then(function() {
+	
+		var data = {
+			projectId : self.projectId,
+			user_id : self.user.bam_cd_user_id,
+			name : projectname,
+			name_original : projectname,
+			project : projectname,
+			cat : category,
+			sub_timestamp : submissiontimestamp,
+			asap : asaptimestamp,
+			rate : rate,
+			rate_des: ratedes,
+			aud_timestamp: auditiontimestamp,
+			shoot_timestamp: shoottimestamp,
+			union2: union,
+			// project_type : projecttype,
+			zip : zipcode,
+			market: markets,
+			location : zipcode,
+			des: auditiondesc,
+		};
 
-		setTimeout(function(){
-			$('.project-name-error-five').fadeOut();
-		}, 3000);
-	}
+		if(projectname.length < 1) {
+			$('.project-name-error-required').fadeIn().delay(3000).fadeOut();
+			$('#project-name').focus();
+		}
 
-	else if(category.length < 1) {
-		$('.category-error-required').fadeIn();
-		$('#project-category').focus();
+		else if(projectname.length < 5) {
+			$('.project-name-error-five').fadeIn().delay(3000).fadeOut();
+			$('#project-name').focus();
+		}
 
-		setTimeout(function(){
-			$('.category-error-required').fadeOut();
-		}, 3000);
-	}
+		else if(category.length < 1) {
+			$('.category-error-required').fadeIn().delay(3000).fadeOut();
+			$('#project-category').focus();
+		}
 
-	else if(submissiondeadline.length < 1) {
-		$('.submission-deadline-error-required').fadeIn();
-		$('#bs-datepicker-submissiondeadline').focus();
-		$('.ui-datepicker').hide();
+		else if(submissiondeadline.length < 1) {
+			$('.submission-deadline-error-required').fadeIn().delay(3000).fadeOut();
+			$('#bs-datepicker-submissiondeadline').focus();
+			$('.ui-datepicker').hide().delay(3000).fadeIn();;
+		}
 
-		setTimeout(function(){
-			$('.submission-deadline-error-required').fadeOut();
-			$('.ui-datepicker').fadeIn();
-		}, 1500);
-	}
+		else if(rate.length < 1) {
+			$('.rate-error-required').fadeIn().delay(3000).fadeOut();
+			$('#project-rate').focus();
+		}
 
-	else if(rate.length < 1) {
-		$('.rate-error-required').fadeIn();
-		$('#project-rate').focus();
+		else if(zipcode.length < 1) {
+			$('.zipcode-error-required').fadeIn().delay(3000).fadeOut();
+			$('#zip-code').focus();
+		}
 
-		setTimeout(function(){
-			$('.rate-error-required').fadeOut();
-		}, 3000);
-	}
+		else if(markets.length < 1) {
+			$('.markets-error-required').fadeIn().delay(3000).fadeOut();
+			$('.auto-markets-div').focus();
+		}
 
-	else if(zipcode.length < 1) {
-		$('.zipcode-error-required').fadeIn();
-		$('#zip-code').focus();
+		else if(auditiondesc.length < 1) {
+			$('.audition-description-error-required').fadeIn().delay(3000).fadeOut();
+			$('#audition-description').focus();
+		}
 
-		setTimeout(function(){
-			$('.zipcode-error-required').fadeOut();
-		}, 3000);
-	}
+		else {
+			if($('#self-submissions-option-content').is(':visible')) {
 
-	else if(markets.length < 1) {
-		$('.markets-error-required').fadeIn();
-		$('.auto-markets-div').focus();
+				data["snr_email"] = $('#self-sub-email').val();
 
-		setTimeout(function(){
-			$('.markets-error-required').fadeOut();
-		}, 3000);
-	}
+				if($('#self-sub-address').val().length < 1) {
+					$('.self-sub-error-required').fadeIn().delay(3000).fadeOut();
+					$('#self-sub-address').focus();
+				}
 
-	else if(auditiondesc.length < 1) {
-		$('.audition-description-error-required').fadeIn();
-		$('#audition-description').focus();
+				else {
+					data["address2"] = $('#self-sub-address').val();
+					data["srn_address"] = $('#self-sub-address').val();
+					
+					return self.core.resource.project.patch(data)
+					.then(function(res) {
 
-		setTimeout(function(){
-			$('.audition-description-error-required').fadeOut();
-		}, 3000);
-	}
+						console.log(res);
 
-	else {
-		if($('#self-submissions-option-content').is(':visible')) {
+						$('#update-profile-success-text').fadeIn().delay(3000).fadeOut();
 
-			data["snr_email"] = $('#self-sub-email').val();
+					});
+				}
 
-			if($('#self-sub-address').val().length < 1) {
-				$('.self-sub-error-required').fadeIn();
-				$('#self-sub-address').focus();
-
-				setTimeout(function(){
-					$('.self-sub-error-required').fadeOut();
-				}, 3000);
 			}
 
-			else {
-				data["address2"] = $('#self-sub-address').val();
-				data["srn_address"] = $('#self-sub-address').val();
+			else if($('#open-call-option-content').is(':visible')) {
+
+				if($('#open-call-details').val().length < 1) {
+
+					$('.open-call-date-error-required').fadeIn().delay(3000).fadeOut();
+					$('#open-call-details').focus();
+
+				}
+
+				else if($('#open-call-location').val().length < 1) {
+
+					$('.open-call-location-error-required').fadeIn().delay(3000).fadeOut();
+					$('#open-call-location').focus();
+
+				}
 				
-				return self.core.resource.project.patch(data)
-				.then(function(res) {
+				else {
+					data["app_date_time"] = '<p>' + $('#open-call-details').val() + '</p>';
+					data["app_loc"] = $('#open-call-location').val();
 
-					console.log(res);
+					return self.core.resource.project.patch(data)
+					.then(function(res) {
 
-					$('#update-profile-success-text').fadeIn();
+						console.log(res);
+						$('#update-profile-success-text').fadeIn().delay(3000).fadeOut();
 
-					setTimeout(function() {
-						$('#update-profile-success-text').fadeOut();
-					}, 3000);
-
-				});
+					});
+				}
 			}
-
 		}
-
-		else if($('#open-call-option-content').is(':visible')) {
-
-			if($('#open-call-details').val().length < 1) {
-
-				$('.open-call-date-error-required').fadeIn();
-				$('#open-call-details').focus();
-
-				setTimeout(function(){
-					$('.open-call-date-error-required').fadeOut();
-				}, 1500);
-			}
-
-			else if($('#open-call-location').val().length < 1) {
-
-				$('.open-call-location-error-required').fadeIn();
-				$('#open-call-location').focus();
-
-				setTimeout(function(){
-					$('.open-call-location-error-required').fadeOut();
-				}, 3000);
-			}
-			
-			else {
-				data["app_date_time"] = '<p>' + $('#open-call-details').val() + '</p>';
-				data["app_loc"] = $('#open-call-location').val();
-
-				return self.core.resource.project.patch(data)
-				.then(function(res) {
-
-					console.log(res);
-					$('#update-profile-success-text').fadeIn();
-
-					setTimeout(function() {
-						$('#update-profile-success-text').fadeOut();
-					}, 3000);
-
-				});
-			}
-
-		}
-	}
+	});
 }
 
 handler.prototype.autoSelectMarkets = function(){
 	
+	var deferred = $.Deferred();
+	
 	var zipcode = $('#zip-code').val();
 
 	if(zipcode.length < 1) {
-		$('.zipcode-error-required').fadeIn();
+		$('.zipcode-error-required').fadeIn().delay(3000).fadeOut();
 		$('#zip-code').focus();
 
-		setTimeout(function(){
-			$('.zipcode-error-required').fadeOut();
-		}, 3000);
+		deferred.resolve();
 	}
 
 	else {
@@ -277,24 +280,38 @@ handler.prototype.autoSelectMarkets = function(){
 			distance: 500,
 		}
 
-		return self.core.resource.market.get(data)
+		self.core.resource.market.get(data)
 		.then(function(res) {
 
 			if(res.length < 1) {
 
-				$('.zipcode-error-invalid').fadeIn();
+				$('.zipcode-error-invalid').fadeIn().delay(3000).fadeOut();
 				$('#zip-code').focus();
-
-				setTimeout(function(){
-					$('.zipcode-error-invalid').fadeOut();
-				}, 3000);
 
 			}
 
 			self.core.service.databind('.auto-markets-div', { data : res });
 
+			deferred.resolve(res);
+
 		});
 
+	}
+
+	return deferred.promise();
+
+}
+
+handler.prototype.toggleManualMarketsDiv = function(e) {
+
+	e.preventDefault();
+	$('.manual-markets-div').toggleClass('display-none');
+
+	if($('.manual-markets-div').hasClass('display-none')) {
+		$(this).text("Manually select markets");
+	}
+	else {
+		$(this).text("Hide markets");
 	}
 
 }
