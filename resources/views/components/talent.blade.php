@@ -16,7 +16,9 @@
 						<div class="head-area padding-zero padding-bottom-zero col-md-12">
 							<div class="talent-name font-size-normal text-semibold float-left text-succes"><span data-bind="<%= getFullName() %>"></span>, <span data-bind="<%= getAge() %>" class="age-area"></span></div>
 							<div class="favorite-indicator float-right">
-								<i class="fa fa-star-o font-size-medium-large text-light-gray"></i>
+								<button class="btn-link" data-bind="<%= favorite %>" data-bind-target="data-id">
+									<i class="fa fa-star-o font-size-medium-large" data-bind="<%= favorite ? 'text-warning' : 'text-light-gray' %>" data-bind-target="class"></i>
+								</button>
 							</div>
 						</div>
 						<div class="row-fluid clearfix">
@@ -66,12 +68,12 @@
 					<div class="like-it-list-container">
 						<div class="text-left">
 							<div class="display-block title"> Add to like list </div>
-							<div class="btn-group btn-group-xs" data-bind="rating-<%= user.id %>" data-bind-target="id">
-								<button class="btn btn-xs btn-danger rating-button rate-1">1</button>
-								<button class="btn btn-xs btn-warning rating-button rate-2">2</button>
-								<button class="btn btn-xs btn-info rating-button rate-3">3</button>
-								<button class="btn btn-xs btn-primary rating-button rate-4">4</button>
-								<button class="btn btn-xs btn-success rating-button rate-5">5</button>
+							<div class="btn-group btn-group-xs" data-bind="<%= schedule_id1 || schedule_id2 ? 'schedule-' + (schedule_id1 || schedule_id2) : 'user-' + user.id %>" data-bind-target="data-id">
+								<button class="btn btn-xs btn-danger rating-button"  data-bind="<%= parseInt(rating1 || rating2) == 1 ? 'active' : '' %>" data-bind-target="class">1</button>
+								<button class="btn btn-xs btn-warning rating-button" data-bind="<%= parseInt(rating1 || rating2) == 2 ? 'active' : '' %>" data-bind-target="class">2</button>
+								<button class="btn btn-xs btn-info rating-button" data-bind="<%= parseInt(rating1 || rating2) == 3 ? 'active' : '' %>" data-bind-target="class">3</button>
+								<button class="btn btn-xs btn-primary rating-button" data-bind="<%= parseInt(rating1 || rating2) == 4 ? 'active' : '' %>" data-bind-target="class">4</button>
+								<button class="btn btn-xs btn-success rating-button" data-bind="<%= parseInt(rating1 || rating2) == 5 ? 'active' : '' %>" data-bind-target="class">5</button>
 							</div>
 						</div>
 					</div>

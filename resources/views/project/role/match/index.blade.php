@@ -12,30 +12,20 @@
 
 				@include('components.talent-filter')
 
-				<div class="col-md-9 talents-search-result">
+				<div id="role-match" class="col-md-9 talents-search-result">
 					<div class="row-fluid clearfix top-results-heading margin-bottom-normal">
-						<div class="col-md-6">
+						<div class="col-md-12">
 							<div class="padding-top-small">
-								<h5 class="margin-zero"><span class="text-normal">Matches for Role:</span> Name of Role Display Here</h5>
-							</div>
-						</div>
-						<div class="col-md-6 padding-left-zero">
-							<div class="float-right">
-								<ul class="pagination pagination-xs">
-									<li class="disabled"><a href="#">«</a></li>
-									<li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
-									<li><a href="#">2</a></li>
-									<li><a href="#">3</a></li>
-									<li><a href="#">4</a></li>
-									<li><a href="#">5</a></li>
-									<li><a href="#">»</a></li>
-								</ul>
-								<div class="results-counter">Showing: 1 to 25 of 7,862,526</div>
+								<span class="text-normal">There are</span>
+								<span data-bind="<%= role.matches.total %>"></span>
+								<span class="text-normal"> matches for role </span>
+								<span data-bind="<%= role.name %>"></span>.
+								<button id="rate-all-button" class="btn btn-defaut">Add all to Like It List</button>
 							</div>
 						</div>
 					</div>
-					<div class="row-fluid clearfix" id="matches-list">
-						@include('components.talent', [ 'databind' => [ 'template' => '#matches-list', 'value' => 'data' ] ])
+					<div class="row-fluid clearfix" id="role-match-result">
+						@include('components.talent', [ 'databind' => [ 'template' => '#role-match-result', 'value' => 'role.matches.data' ] ])
 					</div>
 				</div> {{-- talents-search-results --}}
 			</div>

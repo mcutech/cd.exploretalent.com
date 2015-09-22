@@ -62,11 +62,25 @@ handler.prototype.refreshLikeItList = function() {
 handler.prototype.refreshMatches = function() {
 	var data = {
 		withs	: [
+			'user',
 			'bam_talentinfo1',
 			'bam_talentinfo2',
 			'bam_talent_media2'
 		],
 		wheres : [
+			[ 'leftJoin', 'laret_users', 'laret_users.bam_talentnum', '=', 'talentci.talentnum' ],
+			[ 'select', '*', 'laret_favorite_talents.id AS favorite', 's1.id AS schedule_id1', 's2.id AS schedule_id2', 's1.rating AS rating1', 's2.rating AS rating2' ],
+			[ 'leftJoin', 'laret_favorite_talents', 'laret_favorite_talents.bam_talentnum', '=', 'talentci.talentnum' ],
+			[ 'leftJoin', 'laret_schedules AS s1', 's1.invitee_id', '=', 'laret_users.id' ],
+			[ 'leftJoin', 'laret_schedules AS s2', 's2.inviter_id', '=', 'laret_users.id' ],
+			[ 'where', [
+					[ 'where', 'laret_favorite_talents.bam_cd_user_id', '=', self.user.bam_cd_user_id ],
+					[ 'orWhere', [
+							[ 'whereNull', 'laret_favorite_talents.bam_cd_user_id']
+						]
+					]
+				]
+			]
 		]
 	}
 
@@ -76,16 +90,14 @@ handler.prototype.refreshMatches = function() {
 
 	self.core.resource.talent.get(data)
 		.then(function(result) {
+			console.log(result);
 			self.project.role.matches = result;
-			self.core.service.databind('#matches-list', self.project.role.matches);
-
-			self.getSchedules();
+			self.core.service.databind('#role-match', self.project);
 		});
 }
 
 handler.prototype.updateFilter = function() {
 	var form = self.core.service.form.serializeObject('#talent-filter-form');
-	console.log(form);
 	var filter = [];
 
 	if (form.zip) {
@@ -188,35 +200,14 @@ handler.prototype.updateFilter = function() {
 	self.refreshMatches();
 }
 
-
-handler.prototype.getSchedules = function() {
-	_.each(self.project.role.matches.data, function(match) {
-		var data = {
-			jobId	: self.project.role.role_id,
-			wheres	: [
-				[ 'where', 'invitee_id', '=', match.user.id ]
-			]
-		};
-
-		self.core.resource.schedule.get(data)
-			.then(function(result) {
-				if (result.total) {
-					var schedule = _.first(result.data);
-					$('#rating-' + match.user.id).attr('data-schedule', schedule.id);
-					$('#rating-' + match.user.id + ' .rating-button.rate-' + schedule.rating).addClass('active');
-				}
-			});
-	});
-}
-
 handler.prototype.rateSchedule = function(e) {
 	var $btn = $(e.target);
 	var $parent = $btn.parent();
-	var scheduleId = $parent.attr('data-schedule');
+	var scheduleId = $parent.attr('data-id').replace('schedule-', '');
 	var rating = $btn.text();
-	var userId = $parent.attr('id').replace('rating-', '');
 
-	if (scheduleId) {
+	if (parseInt(scheduleId)) {
+		console.log({ jobId : self.roleId, scheduleId : scheduleId, rating : rating });
 		self.core.resource.schedule.patch({ jobId : self.roleId, scheduleId : scheduleId, rating : rating })
 			.then(function() {
 				$parent.find('.rating-button').removeClass('active');
@@ -224,6 +215,7 @@ handler.prototype.rateSchedule = function(e) {
 			});
 	}
 	else {
+		var userId = $parent.attr('data-id').replace('user-', '');
 		self.core.resource.schedule.post({ jobId : self.roleId, invitee_id : userId, inviter_id : self.user.id, rating : rating })
 			.then(function() {
 				$parent.find('.rating-button').removeClass('active');
@@ -232,6 +224,36 @@ handler.prototype.rateSchedule = function(e) {
 	}
 
 	self.refreshLikeItList();
+}
+
+handler.prototype.removeAllLikeItList = function() {
+	if (confirm('Are you sure you want to remove all Like It List entries?')) {
+		var promises = [];
+		_.each(self.project.role.likeitlist.data, function(schedule) {
+			promises.push(self.core.resource.schedule.patch({ jobId : schedule.bam_role_id, scheduleId : schedule.id, rating : 0 }));
+		});
+
+		$.when.apply($, promises).then(function() {
+			alert('Like It List entries removed');
+			self.refreshLikeItList();
+		});
+	}
+}
+
+handler.prototype.rateAll = function() {
+	var data = {
+		withs	: [
+			'bam_talentinfo1',
+			'bam_talentinfo2',
+			'bam_talent_media2'
+		],
+		wheres : self.filter
+	}
+
+	self.core.service.rest.post(self.core.config.api.base + '/cd/talentci/import/' + self.roleId, data)
+		.then(function(result) {
+			self.refreshLikeItList();
+		});
 }
 
 module.exports = function(core, user, projectId, roleId) {
