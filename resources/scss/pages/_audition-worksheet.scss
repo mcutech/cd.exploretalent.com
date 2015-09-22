@@ -1,3 +1,61 @@
 .audition-worksheet-wrapper{
-	
+	.audition-worksheet-talent-item{
+		a.label{
+			vertical-align: sub;
+		}
+		
+		.header-talent-item{
+			background-color: #23272D;
+			color: #fff;
+		}
+
+		.talent-content{
+			.talent-name{
+				margin-bottom: 5px;
+				font-size: 13px;
+				font-weight: 500;
+			}
+
+			.talent-photo{
+				background-color: #FFF;
+				border: 1px solid #DDD;
+				padding: 3px;
+				
+				img{
+					background-color: #ddd;
+					max-height: 135px;
+					width: 100%;
+				}
+			}
+
+			.talent-button-functions{
+
+			}
+		}
+
+		.role-schedule-content{
+			.submission-note-container{
+				position: relative;
+				.note-title{
+				
+				}
+				.note-description{
+					font-size: 12px;
+					display: inline-block;
+				}
+			}
+
+			.schedule-log{
+				background-color: #eee;
+				color: #555;
+			}
+
+		}
+
+		.notes-content{
+			.notes-container{
+				font-size: 12px;
+			}
+		}
+	}
 }
