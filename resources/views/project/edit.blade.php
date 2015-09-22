@@ -229,6 +229,238 @@
 					</div>
 
 					<div class="row-fluid">
+						<div class="col-md-12 input-group margin-top-normal">
+							<label for="manual-markets-div">
+								or <a href="" id="toggle-manual-markets-div" style="text-decoration: underline;">Hide markets</a>
+							</label>
+							<div class="manual-markets-div">
+								<div class="col-md-2">
+									<label>
+										<input type="checkbox" name="manual-market-checkbox" id="market_albany_ny"> <span class="lbl">Albany, NY</span>
+									</label>
+									<label>
+										<input type="checkbox" name="manual-market-checkbox" id="market_albuquerque_nm"> <span class="lbl">Albuquerque, NM</span>
+									</label>
+									<label>
+										<input type="checkbox" name="manual-market-checkbox" id="market_atlanta_ga"> <span class="lbl">Atlanta, GA</span>
+									</label>
+									<label>
+										<input type="checkbox" name="manual-market-checkbox" id="market_augusta_me"> <span class="lbl">Augusta, ME</span>
+									</label>
+									<label>
+										<input type="checkbox" name="manual-market-checkbox" id="market_baltimore_md"> <span class="lbl">Baltimore, MD</span>
+									</label>
+									<label>
+										<input type="checkbox" name="manual-market-checkbox" id="market_billings_mt"> <span class="lbl">Billings, MT</span>
+									</label>
+									<label>
+										<input type="checkbox" name="manual-market-checkbox" id="market_birmingham_al"> <span class="lbl">Birmingham, AL</span>
+									</label>
+									<label>
+										<input type="checkbox" name="manual-market-checkbox" id="market_boise_id"> <span class="lbl">Boise, ID</span>
+									</label>
+									<label>
+										<input type="checkbox" name="manual-market-checkbox" id="market_boston_ma"> <span class="lbl">Boston, MA</span>
+									</label>
+									<label>
+										<input type="checkbox" name="manual-market-checkbox" id="market_buffalo_ny"> <span class="lbl">Buffalo, NY</span>
+									</label>
+									<label>
+										<input type="checkbox" name="manual-market-checkbox" id="market_charleston_sc"> <span class="lbl">Charleston, SC</span>
+									</label>
+									<label>
+										<input type="checkbox" name="manual-market-checkbox" id="market_charleston_wv"> <span class="lbl">Charleston, WV</span>
+									</label>
+								</div>
+								<div class="col-md-2">
+									<label>
+										<input type="checkbox" name="manual-market-checkbox" id="market_charlotte_nc"> <span class="lbl">Charlotte, NC</span>
+									</label>
+									<label>
+										<input type="checkbox" name="manual-market-checkbox" id="market_chicago_il"> <span class="lbl">Chicago, IL</span>
+									</label>
+									<label>
+										<input type="checkbox" name="manual-market-checkbox" id="market_cleveland_oh"> <span class="lbl">Cleveland, OH</span>
+									</label>
+									<label>
+										<input type="checkbox" name="manual-market-checkbox" id="market_columbia_sc"> <span class="lbl">Columbia, SC</span>
+									</label>
+									<label>
+										<input type="checkbox" name="manual-market-checkbox" id="market_columbus_oh"> <span class="lbl">Columbus, OH</span>
+									</label>
+									<label>
+										<input type="checkbox" name="manual-market-checkbox" id="market_dallas_tx"> <span class="lbl">Dallas, TX</span>
+									</label>
+									<label>
+										<input type="checkbox" name="manual-market-checkbox" id="market_denver_co"> <span class="lbl">Denver, CO</span>
+									</label>
+									<label>
+										<input type="checkbox" name="manual-market-checkbox" id="market_des_moines_ia"> <span class="lbl">Des Moines, IA</span>
+									</label>
+									<label>
+										<input type="checkbox" name="manual-market-checkbox" id="market_detroit_mi"> <span class="lbl">Detroit, MI</span>
+									</label>
+									<label>
+										<input type="checkbox" name="manual-market-checkbox" id="market_el_paso_tx"> <span class="lbl">El Paso, TX</span>
+									</label>
+									<label>
+										<input type="checkbox" name="manual-market-checkbox" id="market_fargo_nd"> <span class="lbl">Fargo, ND</span>
+									</label>
+									<label>
+										<input type="checkbox" name="manual-market-checkbox" id="market_grand_junct_co"> <span class="lbl">Grand Junct, CO</span>
+									</label>
+								</div>
+								<div class="col-md-2">
+									<label>
+										<input type="checkbox" name="manual-market-checkbox" id="market_harford_ct"> <span class="lbl">Harford, CT</span>
+									</label>
+									<label>
+										<input type="checkbox" name="manual-market-checkbox" id="market_honolulu_hi"> <span class="lbl">Honolulu, HI</span>
+									</label>
+									<label>
+										<input type="checkbox" name="manual-market-checkbox" id="market_houston_tx"> <span class="lbl">Houston, TX</span>
+									</label>
+									<label>
+										<input type="checkbox" name="manual-market-checkbox" id="market_indianapolis_in"> <span class="lbl">Indianapolis, IN</span>
+									</label>
+									<label>
+										<input type="checkbox" name="manual-market-checkbox" id="market_jackson_ms"> <span class="lbl">Jackson, MS</span>
+									</label>
+									<label>
+										<input type="checkbox" name="manual-market-checkbox" id="market_jacksonville_fl"> <span class="lbl">Jacksonville, FL</span>
+									</label>
+									<label>
+										<input type="checkbox" name="manual-market-checkbox" id="market_kansas_city_ks"> <span class="lbl">Kansas City, KS</span>
+									</label>
+									<label>
+										<input type="checkbox" name="manual-market-checkbox" id="market_kansas_city_mo"> <span class="lbl">Kansas City, MO</span>
+									</label>
+									<label>
+										<input type="checkbox" name="manual-market-checkbox" id="market_las_vegas_nv"> <span class="lbl">Las Vegas, NV</span>
+									</label>
+									<label>
+										<input type="checkbox" name="manual-market-checkbox" id="market_little_rock_ar"> <span class="lbl">Little Rock, AR</span>
+									</label>
+									<label>
+										<input type="checkbox" name="manual-market-checkbox" id="market_los_angeles_ca"> <span class="lbl">Los Angeles, CA</span>
+									</label>
+									<label>
+										<input type="checkbox" name="manual-market-checkbox" id="market_louisville_ky"> <span class="lbl">Louisville, KY</span>
+									</label>
+								</div>
+								<div class="col-md-2">
+									<label>
+										<input type="checkbox" name="manual-market-checkbox" id="market_memphis_tn"> <span class="lbl">Memphis, TN</span>
+									</label>
+									<label>
+										<input type="checkbox" name="manual-market-checkbox" id="market_miami_fl"> <span class="lbl">Miami, FL</span>
+									</label>
+									<label>
+										<input type="checkbox" name="manual-market-checkbox" id="market_milwaukee_wi"> <span class="lbl">Milwaukee, WI</span>
+									</label>
+									<label>
+										<input type="checkbox" name="manual-market-checkbox" id="market_minneapolis_mn"> <span class="lbl">Minneapolis, MN</span>
+									</label>
+									<label>
+										<input type="checkbox" name="manual-market-checkbox" id="market_nashville_tn"> <span class="lbl">Nashville, TN</span>
+									</label>
+									<label>
+										<input type="checkbox" name="manual-market-checkbox" id="market_new_orleans_la"> <span class="lbl">New Orleans, LA</span>
+									</label>
+									<label>
+										<input type="checkbox" name="manual-market-checkbox" id="market_new_york_city_ny"> <span class="lbl">New York City, NY</span>
+									</label>
+									<label>
+										<input type="checkbox" name="manual-market-checkbox" id="market_norfolk_va"> <span class="lbl">Norfolk, VA</span>
+									</label>
+									<label>
+										<input type="checkbox" name="manual-market-checkbox" id="market_oklahoma_city_ok"> <span class="lbl">Oklahoma City, OK</span>
+									</label>
+									<label>
+										<input type="checkbox" name="manual-market-checkbox" id="market_omaha_ne"> <span class="lbl">Omaha, NE</span>
+									</label>
+									<label>
+										<input type="checkbox" name="manual-market-checkbox" id="market_orlando_fl"> <span class="lbl">Orlando, FL</span>
+									</label>
+									<label>
+										<input type="checkbox" name="manual-market-checkbox" id="market_philadelphia_pa"> <span class="lbl">Philadelphia, PA</span>
+									</label>
+								</div>
+								<div class="col-md-2">
+									<label>
+										<input type="checkbox" name="manual-market-checkbox" id="market_phoenix_az"> <span class="lbl">Phoenix, AZ</span>
+									</label>
+									<label>
+										<input type="checkbox" name="manual-market-checkbox" id="market_pittsburgh_pa"> <span class="lbl">Pittsburgh, PA</span>
+									</label>
+									<label>
+										<input type="checkbox" name="manual-market-checkbox" id="market_portland_me"> <span class="lbl">Portland, ME</span>
+									</label>
+									<label>
+										<input type="checkbox" name="manual-market-checkbox" id="market_portland_or"> <span class="lbl">Portland, OR</span>
+									</label>
+									<label>
+										<input type="checkbox" name="manual-market-checkbox" id="market_raleigh_nc"> <span class="lbl">Raleigh, NC</span>
+									</label>
+									<label>
+										<input type="checkbox" name="manual-market-checkbox" id="market_rapid_city_sd"> <span class="lbl">Rapid City, SD</span>
+									</label>
+									<label>
+										<input type="checkbox" name="manual-market-checkbox" id="market_reno_nv"> <span class="lbl">Reno, NV</span>
+									</label>
+									<label>
+										<input type="checkbox" name="manual-market-checkbox" id="market_st_louis_mo"> <span class="lbl">St Louis, MO</span>
+									</label>
+									<label>
+										<input type="checkbox" name="manual-market-checkbox" id="market_salt_lake_city_ut"> <span class="lbl">Salt Lake City, UT</span>
+									</label>
+									<label>
+										<input type="checkbox" name="manual-market-checkbox" id="market_san_antonio_tx"> <span class="lbl">San Antonio, TX</span>
+									</label>
+									<label>
+										<input type="checkbox" name="manual-market-checkbox" id="market_san_diego_ca"> <span class="lbl">San Diego, CA</span>
+									</label>
+									<label>
+										<input type="checkbox" name="manual-market-checkbox" id="market_san_francisco_ca"> <span class="lbl">San Francisco, CA</span>
+									</label>
+								</div>
+								<div class="col-md-2">
+									<label>
+										<input type="checkbox" name="manual-market-checkbox" id="market_seattle_wa"> <span class="lbl">Seattle, WA</span>
+									</label>
+									<label>
+										<input type="checkbox" name="manual-market-checkbox" id="market_tampa_fl"> <span class="lbl">Tampa, FL</span>
+									</label>
+									<label>
+										<input type="checkbox" name="manual-market-checkbox" id="market_washington_dc"> <span class="lbl">Washington, DC</span>
+									</label>
+									<label>
+										<input type="checkbox" name="manual-market-checkbox" id="market_wichita_ks"> <span class="lbl">Wichita, KS</span>
+									</label>
+									<label>
+										<input type="checkbox" name="manual-market-checkbox" id="market_all_markets"> <span class="lbl">All Markets</span>
+									</label>
+									<label>
+										<input type="checkbox" name="manual-market-checkbox" id="market_calgary_edm_ab"> <span class="lbl">Calgary-Edm, AB</span>
+									</label>
+									<label>
+										<input type="checkbox" name="manual-market-checkbox" id="market_ottawa_on"> <span class="lbl">Ottawa, ON</span>
+									</label>
+									<label>
+										<input type="checkbox" name="manual-market-checkbox" id="market_montreal_qc"> <span class="lbl">Montreal, QC</span>
+									</label>
+									<label>
+										<input type="checkbox" name="manual-market-checkbox" id="market_toronto_on"> <span class="lbl">Toronto, ON</span>
+									</label>
+									<label>
+										<input type="checkbox" name="manual-market-checkbox" id="market_vancouver_bc"> <span class="lbl">Vancouver, BC</span>
+									</label>
+								</div>
+							</div>	
+						</div>
+					</div>
+
+					<div class="row-fluid">
 						<div class="col-md-12">
 							<div class="pull-right">
 								<a href="#" id="update-project-btn" class="btn btn-success btn-lg">Update</a>
