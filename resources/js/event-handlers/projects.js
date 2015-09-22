@@ -45,7 +45,7 @@ handler.prototype.roleMatches = function() {
 	var cast_id = $(this).parent().attr('id');
 	var ids = $(this).attr('id');
 
-	window.location = 'projects/'+cast_id+'/roles/'+ids+'/matches';
+	window.location.replace('projects/'+cast_id+'/roles/'+ids+'/matches');
 }
 
 module.exports = function(core, user) {

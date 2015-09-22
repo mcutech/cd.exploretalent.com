@@ -31,8 +31,8 @@
 					<ul class="list-unstyled">
 						<li><span class="font-size-normal-medium" data-bind="<%= name %>">Role Name 1</span></li>
 						<li>
-						  <button type="button" class="btn btn-primary btn-xs">Edit</button>
-						  <button type="button" class="btn btn-default btn-xs btn-outline">Archive</button>								
+						  <button type="button" class="btn btn-primary btn-xs edit-role" data-bind="<%= role_id %>" data-bind-target="id">Edit</button>
+						  <button type="button" class="btn btn-default btn-xs btn-outline archive-role" data-bind="<%= role_id %>" data-bind-target="id">Archive</button>								
 						</li>
 					</ul>			
 				</div>
@@ -70,7 +70,6 @@
 				<!-- Summary2 -->
 				<div class="col-md-2 summary">
 					<ul class="list-unstyled">
-						<li><a href="#" class="text-bold">100</a> Scheduled</li>
 						<li><a href="#" class="text-bold">1</a> Callbacks</li>
 						<li><a href="#" class="text-bold">1</a> Booked</li>
 					</ul>	
@@ -80,7 +79,7 @@
 				<div class="col-md-6 details">
 					<dl class="">
 					  <dt>Preferences</dt>
-					  <dd>Male / Lead / Asians, Mixed / 22 to 30 / 5'0" 6'0" / 200 to 300 lbs. / Muscular, Large</dd>
+					  <dd><span data-bind="<%= gender %>"></span> / <span data-bind="<%= (ethnicity) ? ethnicity : 'Any' %>"></span> / <span data-bind="<%= age_min %> to <%= age_max %>"></span> / <span data-bind="<%= getHeightMinText() %> to <%= getHeightMaxText() %>"></span> / <span data-bind="<%= (build) ? build : 'Any' %>"></span></dd>
 					</dl>
 
 					<dl class="">
@@ -118,7 +117,7 @@
 							</div>
 
 							<div class="col-sm-12 col-md-4">
-								<a href="#" class="btn btn-default btn-block btn-outline">Edit Project</a>
+								<a href="#" class="btn btn-default btn-block btn-outline edit-project" data-bind="<%= casting_id %>" data-bind-target="id">Edit Project</a>
 							</div>
 
 							<div class="col-md-12 margin-top-large">
@@ -134,65 +133,67 @@
 								  <dd><p data-bind="<%= location %>"></p></dd>
 								</dl>								
 							</div>
-
-
-							<div class="col-md-12 margin-top-large">
-								<span class="text-bold">Open Call Casting</span>
-								<div class="col-sm-12 col-md-12 margin-top-small padding-zero">
-									<div class="row-fluid clearfix bordered padding-small text-bold">
-										<div class="col-md-4">
-											Schedule
-										</div>
-										<div class="col-md-4">
-											Location
-										</div>
-										<div class="col-md-4">
-											Phone
-										</div>
-									</div>
-
-									<ul class="list-unstyled additional-details margin-zero">
-										<li>
-											<div class="row-fluid clearfix">
-												<div class="col-md-4">
-													12:00 PM April 010, 2015
-												</div>
-												<div class="col-md-4">
-													100th FLoor COC Building
-												</div>
-												<div class="col-md-4">
-													123-456-1234
-												</div>
+							
+							<!-- for open call -->
+							<div data-bind="<%= (project_type == 8) ? 1 : 0 %>" data-bind-target="visibility">
+								<div class="col-md-12 margin-top-large">
+									<span class="text-bold">Open Call Casting</span>
+									<div class="col-sm-12 col-md-12 margin-top-small padding-zero">
+										<div class="row-fluid clearfix bordered padding-small text-bold">
+											<div class="col-md-6">
+												Date/Time
 											</div>
-										</li>
-										<li>
-											<div class="row-fluid clearfix">
-												<div class="col-md-4">
-													11:00 PM April 010, 2015
-												</div>
-												<div class="col-md-4">
-													101th FLoor COC Building
-												</div>
-												<div class="col-md-4">
-													124-456-1234
-												</div>
+											<div class="col-md-6">
+												Address
 											</div>
-										<li>
-											<div class="row-fluid clearfix">
-												<div class="col-md-4">
-													1:00 PM April 010, 2015
+										</div>
+
+										<ul class="list-unstyled additional-details margin-zero">
+											<li>
+												<div class="row-fluid clearfix">
+													<div class="col-md-6">
+														<span data-bind="<%= date.formatYMD(parseInt(sub_timestamp)) %>"></span>
+													</div>
+													<div class="col-md-6">
+														<span data-bind="<%= (srn_address) ? srn_address : 'Not Set' %>"></span>
+													</div>
 												</div>
-												<div class="col-md-4">
-													200th FLoor COC Building
-												</div>
-												<div class="col-md-4">
-													323-456-1234
-												</div>
-											</div>
-										</li>	
-									</ul>
+											</li>
+										</ul>
+									</div>	
 								</div>	
-							</div>											
+							</div>
+
+							<!-- for self submission -->
+							<div data-bind="<%= (project_type != 8) ? 1 : 0 %>" data-bind-target="visibility">
+								<div class="col-md-12 margin-top-large">
+									<span class="text-bold">Open Call Casting</span>
+									<div class="col-sm-12 col-md-12 margin-top-small padding-zero">
+										<div class="row-fluid clearfix bordered padding-small text-bold">
+											<div class="col-md-6">
+												Email Address
+											</div>
+											<div class="col-md-6">
+												Postal Address
+											</div>
+										</div>
+
+										<ul class="list-unstyled additional-details margin-zero">
+											<li>
+												<div class="row-fluid clearfix">
+													<div class="col-md-6">
+														<span data-bind="<%= snr_email %>"></span>
+													</div>
+													<div class="col-md-6">
+														<span data-bind="<%= (srn_address) ? srn_address : 'Not Set' %>"></span>
+													</div>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+
 						</div>			
 
 																				
