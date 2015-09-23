@@ -119,22 +119,20 @@ handler.prototype.saveNewRole = function() {
 	        $('.gender-error-required').focus();
 		}
 
-		else if($('input[type="checkbox"][name="ethnicity"]:checked').length < 1) {
-	        $('.ethnicity-error-required').fadeIn().delay(3000).fadeOut();
-	        $('.ethnicity-error-required').focus();
-		}
-
-		else if($('input[type="checkbox"][name="built"]:checked').length < 1) {
-	        $('.built-error-required').fadeIn().delay(3000).fadeOut();
-	        $('.built-error-required').focus();
-		}
-
-		else if($('input[type="checkbox"][name="hair-color"]:checked').length < 1) {
-	        $('.hair-color-error-required').fadeIn().delay(3000).fadeOut();
-	        $('.hair-color-error-required').focus();
-		}
-
 		else {
+
+			if($('input[type="checkbox"][name="ethnicity"]:checked').length < 1) {
+		        data["ethnicity_any"] = 1;
+			}
+
+			if($('input[type="checkbox"][name="built"]:checked').length < 1) {
+		        data["built_any"] = 1;
+			}
+
+			if($('input[type="checkbox"][name="hair-color"]:checked').length < 1) {
+		        data["hair_any"] = 1;
+			}
+
 			return self.core.resource.job.post(data)
 			.then(function(res) {
 				console.log(res);
