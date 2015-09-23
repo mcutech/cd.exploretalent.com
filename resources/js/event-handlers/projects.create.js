@@ -151,16 +151,18 @@ handler.prototype.createNewProject = function(e){
 		else {
 			if(projecttype == "3") {
 
-				data["snr_email"] = $('#self-sub-email').val();
+				var selfSubEmail = $('#self-sub-email').val();
+				var selfSubAddress = $('#self-sub-address').val();
 
-				if($('#self-sub-address').val().length < 1) {
+				if(selfSubEmail.length < 1 && selfSubAddress.length < 1) {
 					$('.self-sub-error-required').fadeIn().delay(3000).fadeOut();
-					$('#self-sub-address').focus();
+					$('#self-sub-email').focus();
 				}
 
 				else {
-					data["address2"] = $('#self-sub-address').val();
-					data["srn_address"] = $('#self-sub-address').val();
+					data["snr_email"] = selfSubEmail;
+					data["address2"] = selfSubAddress;
+					data["srn_address"] = selfSubAddress;
 					
 					return self.core.resource.project.post(data)
 					.then(function(res) {
