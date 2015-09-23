@@ -272,7 +272,7 @@
 
 							<div class="col-md-2 actions-content">
 								<button type="button" class="btn btn-sm btn-outline btn-block margin-bottom-small"><i class="fa fa-clock-o"></i> Callback</button>
-								<button type="button" class="btn btn-sm btn-outline btn-block margin-bottom-small"><i class="fa fa-thumbs-up-o"></i> Hired</button>
+								<button type="button" class="btn btn-sm btn-outline btn-block margin-bottom-small"><i class="fa fa-thumbs-o-up"></i> Hired</button>
 								<button type="button" class="btn btn-sm btn-outline btn-block"><i class="fa fa-envelope-o"></i> Message</button>
 							</div><!--/actions-content-->
 						</div>
