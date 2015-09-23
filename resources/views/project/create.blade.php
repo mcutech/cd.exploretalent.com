@@ -170,7 +170,7 @@
 											<input type="text" id="self-sub-email" class="form-control" placeholder="Enter Email Address">
 										</div>
 										<div class="form-group">
-											<label class="control-label">and / or postal address <span class="text-success">*</span></label>
+											<label class="control-label">and / or postal address</label>
 											<textarea id="self-sub-address" class="form-control" rows="5" placeholder="Address" style="resize: none;"></textarea>
 											<div class="alert alert-page alert-danger self-sub-error-required" style="display:none;">This field is required.</div>
 										</div>
