@@ -1,0 +1,16 @@
+.project-schedules-wrapper{
+	.header-schedules-item{
+		background-color: #E0E0E0;
+		color: #4A4A4A;
+		font-weight: 600;	
+	}
+	.body-schedules-container{
+		border: 1px solid #ddd;
+		.body-schedules-item{
+			background-color: #fff;
+			&:nth-child(even){
+				background-color: #EFEFEF;
+			}
+		}
+	}
+}
