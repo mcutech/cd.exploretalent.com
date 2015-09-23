@@ -16,6 +16,22 @@
 	"pixel-admin-base-assets": "git@gitlab.com:utech/pixel-admin-base-assets.git#v0.0.5"
   },
   "overrides": {
+	"bootstrap-sass-official" : {
+		"main": [
+			"./assets/javascripts/bootstrap/transition.js",
+			"./assets/javascripts/bootstrap/alert.js",
+			"./assets/javascripts/bootstrap/button.js",
+			"./assets/javascripts/bootstrap/carousel.js",
+			"./assets/javascripts/bootstrap/collapse.js",
+			"./assets/javascripts/bootstrap/dropdown.js",
+			"./assets/javascripts/bootstrap/tooltip.js",
+			"./assets/javascripts/bootstrap/popover.js",
+			"./assets/javascripts/bootstrap/scrollspy.js",
+			"./assets/javascripts/bootstrap/tab.js",
+			"./assets/javascripts/bootstrap/affix.js",
+			"./assets/stylesheets/_bootstrap.scss"
+		]
+	},
     "bootstrap-select": {
       "main": [
 		"dist/css/bootstrap-select.css",
