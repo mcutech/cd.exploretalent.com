@@ -56,6 +56,7 @@ jscore.run(function(core) {
 
 		.add('/projects/{projectId}/roles/{roleId}/matches', 'role.match')
 		.add('/projects/{projectId}/roles/{roleId}/like-it-list', 'role.likeitlist')
+		.add('/projects/{projectId}/roles/{roleId}/public-like-it-list', 'role.publiclikeitlist')
 		.add('/projects/{projectId}/roles/{roleId}/self-submissions', 'role.selfsubmission')
 
 
