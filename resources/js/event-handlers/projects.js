@@ -41,6 +41,34 @@ handler.prototype.refreshList = function(){
 		});
 }
 
+handler.prototype.deleteProject = function() {
+
+	var castingId = $(this).attr('id');
+		castingId = castingId.split('_');
+		castingId = castingId[1];
+
+	var data = {
+		projectId : castingId
+	}
+
+	var con = confirm("Are you sure you want to delete this project?");
+
+	if (con) {
+		return self.core.resource.project.delete(data)
+		.then(function(res) {
+			alert("Project has been deleted!");
+			setTimeout(function() {
+				location.reload();
+			}, 3000);
+		});
+	}
+	else {
+		return false;
+	}
+
+
+}
+
 handler.prototype.roleMatches = function() {
 	var cast_id = $(this).parent().attr('id');
 	var ids = $(this).attr('id');
