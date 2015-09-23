@@ -16,7 +16,7 @@
 						<div class="head-area padding-zero padding-bottom-zero col-md-12">
 							<div class="talent-name font-size-normal text-semibold float-left text-succes"><span data-bind="<%= getFullName() %>"></span>, <span data-bind="<%= getAge() %>" class="age-area"></span></div>
 							<div class="favorite-indicator float-right">
-								<i class="fa fa-star-o font-size-medium-large text-light-gray"></i>
+								<a href="#" class="favorite-talent" data-bind="<%= talentnum %>" data-bind-target="id"><i class="fa fa-star-o font-size-medium-large text-light-gray"></i></a>
 							</div>
 						</div>
 						<div class="row-fluid clearfix">

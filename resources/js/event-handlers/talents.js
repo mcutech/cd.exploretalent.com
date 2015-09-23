@@ -28,7 +28,7 @@ handler.prototype.refreshAdvancedSearchValues = function() {
 		});
 }
 
-handler.prototype.refreshList = function(group){
+handler.prototype.refreshList = function(){
 	var data = {
 		//page : $.queryToObject().talent_page ? $.queryToObject().talent_page : 1,
 		withs : [
@@ -37,8 +37,8 @@ handler.prototype.refreshList = function(group){
 			'bam_talent_resume',
 			'bam_talent_media2',
 		],
-		wheres : group,
-		//wheres : [['join', 'talentinfo1', 'talentci.talentnum', '=', 'talentinfo1.talentnum'],groups,
+		//wheres : group,
+		//wheres : [['join', 'laret_favorite_talents', 'talentci.talentnum', '=', 'laret_favorite_talents.bam_talentnum'], data],
 		orders : {
 			'talentci.talentnum' : 'asc',
 			'talentinfo1.rating' : 'desc'
@@ -57,8 +57,8 @@ handler.prototype.refreshList = function(group){
 					name 	 : 'talent_page',
 					per_page : 24
 				});*/
-				self.core.service.databind('.talents-search-result', list);
-				return $.when();
+				self.core.service.databind('#talents-list', list);
+				//return $.when();
 			});
 };
 

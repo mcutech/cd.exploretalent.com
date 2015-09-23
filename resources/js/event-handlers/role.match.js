@@ -76,6 +76,7 @@ handler.prototype.refreshMatches = function() {
 
 	self.core.resource.talent.get(data)
 		.then(function(result) {
+		console.log(result);
 			self.project.role.matches = result;
 			self.core.service.databind('#matches-list', self.project.role.matches);
 
