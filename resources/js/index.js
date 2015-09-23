@@ -2,8 +2,8 @@ var jscore = require('jscore');
 
 jscore.config(function(core) {
 	// @if ENV='development'
-	core.config.api.base = 'http://localhost:8000/api/v1';
-	// core.config.api.base = 'https://dev-api.exploretalent.com/api/v1';
+	// core.config.api.base = 'http://localhost:8000/api/v1';
+	core.config.api.base = 'https://dev-api.exploretalent.com/api/v1';
 	// @endif
 	// @if ENV='production'
 	core.config.api.base = 'https://api.exploretalent.com/api/v1';
@@ -56,6 +56,7 @@ jscore.run(function(core) {
 
 		.add('/projects/{projectId}/roles/{roleId}/matches', 'role.match')
 		.add('/projects/{projectId}/roles/{roleId}/like-it-list', 'role.likeitlist')
+		.add('/projects/{projectId}/roles/{roleId}/public-like-it-list', 'role.publiclikeitlist')
 		.add('/projects/{projectId}/roles/{roleId}/self-submissions', 'role.selfsubmission')
 
 

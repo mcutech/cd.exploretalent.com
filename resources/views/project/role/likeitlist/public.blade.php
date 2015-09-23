@@ -82,7 +82,7 @@
 														<button class="btn btn-default btn-sm btn-outline btn-block"><i class="fa fa-file-text"></i> View Resume</button>
 													</div>
 													<div class="col-md-6 padding-right-zero padding-left-zero-small">
-														<button class="btn btn-default btn-sm btn-outline btn-block"><i class="fa fa-camera"></i> View Photos</button>
+														<button class="btn btn-default btn-sm btn-outline btn-block view-all-modal"><i class="fa fa-camera"></i> View Photos</button>
 													</div>
 												</div>
 											</div>
@@ -133,6 +133,6 @@
 	</div>
 </div>
 
-@stop
+	@include('components.modals.view-all-photos')
 
 @stop
