@@ -1,6 +1,23 @@
 .projects-wrapper{
 
 	#project-listing{
+
+		.panel-active {
+			background-color: #1976B3;
+			a {
+				color: #fff;
+				text-decoration: none !important; 
+			}
+		}
+
+		.panel-inactive {
+			background-color: #e66454;
+			a {
+				color: #fff;
+				text-decoration: none !important; 
+			}
+		}
+
 		.project-details-container{
 			ul.unions{
 				li{

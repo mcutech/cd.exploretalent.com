@@ -20,10 +20,15 @@
 	<div class="projects-wrapper">
 		<div id="project-listing">
 
-			<div class="panel-group panel-group-primary project-item panel-blue" id="accordion-castings">
+			<div class="panel-group panel-group-primary project-item" id="accordion-castings">
 			  	<div class="panel hide" data-bind-template="#accordion-castings" data-bind-value="data" data-bind="project-<%= casting_id %>" data-bind-target="id">
-			  		<div class="panel-heading">
+			  		<div class="panel-heading panel-active" data-bind="<%= (status == '1') ? '1' : '0' %>" data-bind-target="visibility">
 			  			<a class="accordion-toggle collapsed" data-toggle="collapse" data-bind="#jobs-collapse-<%= casting_id %>">
+			  			<span data-bind="<%= name %>"></span>
+			  			</a>
+			  		</div>
+			  		<div class="panel-heading panel-inactive" data-bind="<%= (status == '0') ? '1' : '0' %>" data-bind-target="visibility">
+				  		<a class="accordion-toggle collapsed" data-toggle="collapse" data-bind="#jobs-collapse-<%= casting_id %>">
 			  			<span data-bind="<%= name %>"></span>
 			  			</a>
 			  		</div>
@@ -169,22 +174,6 @@
 			  		</div>
 			  	</div>
 			  </div> {{-- panel 1 --}}
-
-
-			<!-- <div class="panel-group panel-group-primary project-item panel-blue" id="accordion-jobs">
-				<div class="panel" data-bind-value="data" data-bind="casting_<%= casting_id %>" data-bind-target="id">
-					<div class="panel-heading">
-						<a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion-jobs" data-bind="#find-jobs-collapse-<%= casting_id %>">
-
-						</a>
-						<a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#project-item-1497936" aria-expanded="false">
-			  				Tralalala
-			  			</a>
-					</div>
-				</div>
-			</div> -->
-
-
 
 		{{-- project listing --}}
 
