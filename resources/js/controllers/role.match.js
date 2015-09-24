@@ -6,4 +6,5 @@ module.exports = function(core, user, projectId, roleId) {
 	$('#rate-all-button').on('click', handler.rateAll);
 	$('#remove-all-likeitlist').on('click', handler.removeAllLikeItList);
 	$(document).on('click', '.rating-button', handler.rateSchedule);
+	$(document).on('click', '.btn-link', handler.addToFav);
 }

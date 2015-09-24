@@ -30,9 +30,9 @@
 						</div>
 					</div>
 					<div class="row-fluid clearfix">
-						<?php for($x=0; $x<12; $x++ ) { ?>
+						<div id="talent-search-list" class="hide" data-bind-template="#talent-search-wrap" data-bind-value="bam_talentci">
 							@include('components.talent')
-						<?php } ?>
+						</div>
 					</div>
 				</div> {{-- talents-search-results --}}
 			</div>

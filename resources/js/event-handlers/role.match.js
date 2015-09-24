@@ -90,7 +90,7 @@ handler.prototype.refreshMatches = function() {
 
 	self.core.resource.talent.get(data)
 		.then(function(result) {
-			console.log(result);
+		console.log(result);
 			self.project.role.matches = result;
 			self.core.service.databind('#role-match', self.project);
 		});
@@ -254,6 +254,30 @@ handler.prototype.rateAll = function() {
 		.then(function(result) {
 			self.refreshLikeItList();
 		});
+}
+
+handler.prototype.addToFav = function(e) {
+	e.preventDefault();
+	/*var talentnum = $(this).attr('id');
+	console.log(talentnum);*/
+	var favId = $(this).attr('data-id');
+	var b = $(this).closest('.talent-tab').attr('id');
+	var ids = (b.split('-')[2]);
+	console.log(favId);
+	console.log(ids);
+	if(favId){
+		console.log('deleted');
+		self.core.resource.favorite_talent.delete({ favoriteId : ids })
+			.then(function(){
+				self.refreshMatches();
+			});
+	} else {
+		console.log('added');
+		self.core.resource.favorite_talent.post({ bam_cd_user_id : self.user.bam_cd_user_id, bam_talentnum : ids})
+			.then(function(){
+				self.refreshMatches();
+			});
+	}
 }
 
 module.exports = function(core, user, projectId, roleId) {
