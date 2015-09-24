@@ -44,6 +44,7 @@
 										<a data-bind="/projects/<%= casting_id %>" class="btn btn-outline btn-sm font-size-small-normal-zz padding-small-zz margin-top-small-zz-xs">
 			  								Project Overview
 			  							</a>
+			  							<span data-bind="<%= (bam_roles.length > 0) ? 1 : 0 %>" data-bind-target="visibility">
 										<a data-bind="/projects/<%= casting_id %>/roles/<%= _.first(bam_roles) ? _.first(bam_roles).role_id : '' %>/self-submissions" class="btn btn-outline btn-sm font-size-small-normal-zz padding-small-zz btn-submissions margin-top-small-zz-xs">
 			  								Submissions
 			  							</a>
@@ -54,6 +55,7 @@
 			  							<a data-bind="/projects/<%= casting_id %>/roles/<%= _.first(bam_roles) ? _.first(bam_roles).role_id : '' %>/like-it-list" class="btn btn-success btn-sm font-size-small-normal-zz padding-small-zz">
 			  								View Like it List
 			  							</a>
+			  							</span>
 			  						</div>
 			  					</div>
 			  				</div>
