@@ -33,23 +33,7 @@ handler.prototype.refreshProjectDetails = function() {
 }
 
 handler.prototype.refreshLikeItList = function() {
-	var data = {
-		jobId : self.roleId,
-		withs : [
-			'invitee.bam_talentci.bam_talentinfo1',
-			'invitee.bam_talentci.bam_talentinfo2',
-			'invitee.bam_talentci.bam_talent_media2',
-			'inviter.bam_talentci.bam_talentinfo1',
-			'inviter.bam_talentci.bam_talentinfo2',
-			'inviter.bam_talentci.bam_talent_media2',
-			'schedule_notes.user.bam_cd_user'
-		],
-		wheres : [
-			[ 'where', 'rating', '<>', 0 ]
-		]
-	};
-
-	return self.core.resource.schedule.get(data)
+	return self.project.role.getLikeItList()
 		.then(function(result) {
 			self.project.role.likeitlist = result;
 			self.core.service.databind('.page-header', self.project);
@@ -90,7 +74,6 @@ handler.prototype.refreshMatches = function() {
 
 	self.core.resource.talent.get(data)
 		.then(function(result) {
-			console.log(result);
 			self.project.role.matches = result;
 			self.core.service.databind('#role-match', self.project);
 		});
@@ -207,7 +190,6 @@ handler.prototype.rateSchedule = function(e) {
 	var rating = $btn.text();
 
 	if (parseInt(scheduleId)) {
-		console.log({ jobId : self.roleId, scheduleId : scheduleId, rating : rating });
 		self.core.resource.schedule.patch({ jobId : self.roleId, scheduleId : scheduleId, rating : rating })
 			.then(function() {
 				$parent.find('.rating-button').removeClass('active');
