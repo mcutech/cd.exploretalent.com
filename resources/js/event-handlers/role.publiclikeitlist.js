@@ -1,6 +1,5 @@
 'use strict';
 
-<<<<<<< HEAD
 function handler(core, user, projectId, roleId) {
 	self = this;
 	self.core = core;

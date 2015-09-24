@@ -17,19 +17,20 @@ handler.prototype.refreshProjectDetails = function() {
 		withs : [ 'bam_roles' ]
 	};
 
-	self.core.resource.project.get(data) .then(function(result) {
-		self.project = result;
-		self.core.service.databind('#roles-list', self.project);
-		// get current role object
-		self.project.role = _.find(self.project.bam_roles, function (role) {
-			return role.role_id == self.roleId;
-		});
+	self.core.resource.project.get(data)
+		.then(function(result) {
+			self.project = result;
+			self.core.service.databind('#roles-list', self.project);
+			// get current role object
+			self.project.role = _.find(self.project.bam_roles, function (role) {
+				return role.role_id == self.roleId;
+			});
 
-		$('#roles-list').val(self.project.role.role_id);
-		self.core.service.databind('#talent-filter-form', self.project);
+			$('#roles-list').val(self.project.role.role_id);
+			self.core.service.databind('#talent-filter-form', self.project);
 
-		return self.refreshLikeItList();
-	})
+			return self.refreshLikeItList();
+		})
 }
 
 handler.prototype.refreshLikeItList = function() {
