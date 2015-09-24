@@ -1,5 +1,6 @@
 'use strict';
 
+<<<<<<< HEAD
 function handler(core, user, projectId, roleId) {
 	self = this;
 	self.core = core;
@@ -101,6 +102,11 @@ handler.prototype.unrateSchedule = function(e) {
 				self.refreshLikeItList();
 			});
 	}
+}
+
+handler.prototype.viewAllModal = function() {
+	// fire modal code
+    $(".modal-photos").modal();
 }
 
 module.exports = function(core, user, projectId, roleId) {
