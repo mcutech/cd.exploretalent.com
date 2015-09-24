@@ -43,30 +43,8 @@ handler.prototype.refreshLikeItList = function() {
 }
 
 handler.prototype.refreshSelfSubmissions = function() {
-	var data = {
-		jobId : self.roleId,
-		withs : [
-			'inviter.bam_talentci.bam_talentinfo1',
-			'inviter.bam_talentci.bam_talentinfo2',
-			'inviter.bam_talentci.bam_talent_media2',
-			'schedule_notes.user.bam_cd_user'
-		],
-		wheres : [
-			[
-				'whereHas', 'inviter', [
-					[ 'where', 'bam_talentnum', '<>', 0 ]
-				]
-			]
-		]
-	};
-
-	if (self.filter) {
-		data.wheres = data.wheres.concat(self.filter);
-	}
-
-	return self.core.resource.schedule.get(data)
+	return self.project.role.getSelfSubmissions(self.filter)
 		.then(function(result) {
-			console.log(result);
 			self.project.role.selfsubmissions = result;
 			self.core.service.databind('#self-submissions', self.project);
 		});
