@@ -1,0 +1,29 @@
+//talent photo modal
+.talent-photo-modal-wrapper{
+	.modal-lg {
+		.modal-content {
+			.photos-wrap {
+				.photo-item {
+					background-color: #FFF;
+						border: 1px #ddd solid;
+						overflow: hidden;
+				}
+				.image-container {
+					display: flex;
+					justify-content: center;
+						@media only screen and (min-width: 1200px) {
+						min-height: 300px;
+						max-height: 300px;
+	  					}
+  					.image-container img {
+						flex: 0 1 auto;
+						align-self: center;
+						width: 100%;
+  					}
+				}
+			}
+		}	
+	}
+
+}
+// end talent photo modal

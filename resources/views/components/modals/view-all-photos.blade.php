@@ -1,4 +1,4 @@
-<div class="modal fade modal-photos" tabindex="-1" role="dialog" style="display: none;">
+<div class="modal fade modal-photos talent-photo-modal-wrapper" tabindex="-1" role="dialog" style="display: none;">
 	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -7,24 +7,18 @@
 			</div>
 			<div class="modal-body">
 				<div class="photos-wrap text-center">
-					<div class="row padding-top-zero-small">
-						<img src="http://rs285.pbsrc.com/albums/ll43/Username_31/hayleywilliams3.jpg~c200">
-						<img src="http://rs285.pbsrc.com/albums/ll43/Username_31/hayleywilliams3.jpg~c200">
-						<img src="http://rs285.pbsrc.com/albums/ll43/Username_31/hayleywilliams3.jpg~c200">
-						<img src="http://rs285.pbsrc.com/albums/ll43/Username_31/hayleywilliams3.jpg~c200">
+					<div class="row">
+						@for ($i = 0; $i < 16; $i++)
+						<div class="col-md-3 margin-bottom-normal-medium image-container">
+							<div class="photo-item">
+								<div class="image-container">
+									<img src="http://images5.fanpop.com/image/photos/25800000/Hayley-hayley-williams-25813741-526-670.png" class="img-responsive">
+								</div>
+							</div>
+						</div>
+						@endfor
+						
 					</div>	
-					<div class="row padding-top-zero-small">
-						<img src="http://rs285.pbsrc.com/albums/ll43/Username_31/hayleywilliams3.jpg~c200">
-						<img src="http://rs285.pbsrc.com/albums/ll43/Username_31/hayleywilliams3.jpg~c200">
-						<img src="http://rs285.pbsrc.com/albums/ll43/Username_31/hayleywilliams3.jpg~c200">
-						<img src="http://rs285.pbsrc.com/albums/ll43/Username_31/hayleywilliams3.jpg~c200">
-					</div>
-					<div class="row padding-top-zero-small">
-						<img src="http://rs285.pbsrc.com/albums/ll43/Username_31/hayleywilliams3.jpg~c200">
-						<img src="http://rs285.pbsrc.com/albums/ll43/Username_31/hayleywilliams3.jpg~c200">
-						<img src="http://rs285.pbsrc.com/albums/ll43/Username_31/hayleywilliams3.jpg~c200">
-						<img src="http://rs285.pbsrc.com/albums/ll43/Username_31/hayleywilliams3.jpg~c200">
-					</div>
 			    </div>
 			</div>
 		</div> <!-- / .modal-content -->
