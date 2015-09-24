@@ -47,7 +47,6 @@ handler.prototype.refreshSelfSubmissions = function() {
 		.then(function(result) {
 			self.project.role.selfsubmissions = result;
 
-			console.log(self.project.role.selfsubmissions);
 			self.core.service.databind('#self-submissions', self.project);
 		});
 }
@@ -190,14 +189,25 @@ handler.prototype.rateSchedule = function(e) {
 	var $btn = $(e.target);
 	var rating = $btn.text();
 	var $parent = $btn.parent();
-	var id = $parent.data('id');
+	var id = $parent.data('id').replace('schedule-', '');
 
-	self.core.resource.schedule.patch({ jobId : self.roleId, scheduleId : id, rating : rating })
-		.then(function() {
-			$parent.find('.rating-button').removeClass('active');
-			$btn.addClass('active');
-			self.refreshLikeItList();
-		});
+	if (parseInt(id)) {
+		self.core.resource.schedule.patch({ jobId : self.roleId, scheduleId : id, rating : rating })
+			.then(function() {
+				$parent.find('.rating-button').removeClass('active');
+				$btn.addClass('active');
+				self.refreshLikeItList();
+			});
+	}
+	else {
+		var userId = $parent.data('id').replace('user-', '');
+		self.core.resource.schedule.post({ jobId : self.roleId, invitee_id : userId, inviter_id : self.user.id, rating : rating })
+			.then(function() {
+				$parent.find('.rating-button').removeClass('active');
+				$btn.addClass('active');
+				self.refreshLikeItList();
+			});
+	}
 }
 
 handler.prototype.removeAllLikeItList = function() {

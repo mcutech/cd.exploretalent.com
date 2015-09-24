@@ -1,4 +1,8 @@
-module.exports = function(core) {
+module.exports = function(core, user) {
+	if (user.bam_cd_user_id) {
+		window.location = '/projects';
+	}
+
 	$("#login-form").on('submit', function(e){
 		e.preventDefault();
 		var email = $('#email').val();

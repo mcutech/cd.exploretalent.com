@@ -45,7 +45,7 @@ handler.prototype.rateSchedule = function(e) {
 	var $btn = $(e.target);
 	var rating = $btn.text();
 	var $parent = $btn.parent();
-	var id = $parent.data('id');
+	var id = $parent.data('id').replace('schedule-', '');
 
 	self.core.resource.schedule.patch({ jobId : self.roleId, scheduleId : id, rating : rating })
 		.then(function() {

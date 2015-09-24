@@ -69,7 +69,7 @@
 					<div class="like-it-list-container">
 						<div class="text-left">
 							<div class="display-block title"> Add to like list </div>
-							<div class="btn-group btn-group-xs" data-bind="<%= id %>" data-bind-target="data-id">
+							<div class="btn-group btn-group-xs" data-bind="<%= id ? 'schedule-' + id : 'user-' + inviter_id %>" data-bind-target="data-id">
 								<button class="btn btn-xs btn-danger rating-button" data-bind="<%= parseInt(rating) == 1 ? 'active' : '' %>" data-bind-target="class">1</button>
 								<button class="btn btn-xs btn-warning rating-button" data-bind="<%= parseInt(rating) == 2 ? 'active' : '' %>" data-bind-target="class">2</button>
 								<button class="btn btn-xs btn-info rating-button" data-bind="<%= parseInt(rating) == 3 ? 'active' : '' %>" data-bind-target="class">3</button>
