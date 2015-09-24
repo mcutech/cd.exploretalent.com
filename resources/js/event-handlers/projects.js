@@ -31,7 +31,14 @@ handler.prototype.refreshList = function(){
 				var m = i.getMonth()+1;
 				var y = i.getFullYear();
 				//
-				
+				if(res1.aud_timestamp){
+					var i1 = (new Date(res1.aud_timestamp*1000));
+					var d1 = i.getDate();
+					var m1 = i.getMonth()+1;
+					var y1 = i.getFullYear();
+					res1.aud_timestamp1 = y1 + "-" + m1 + "-" + d1;
+				}
+
 				res1.asap1 = y + "-" + m + "-" + d;
 				//console.log(newdate);											
 				//res1.asap = i;
