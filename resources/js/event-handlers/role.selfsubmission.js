@@ -46,6 +46,8 @@ handler.prototype.refreshSelfSubmissions = function() {
 	return self.project.role.getSelfSubmissions(self.filter)
 		.then(function(result) {
 			self.project.role.selfsubmissions = result;
+
+			console.log(self.project.role.selfsubmissions);
 			self.core.service.databind('#self-submissions', self.project);
 		});
 }
@@ -182,6 +184,7 @@ handler.prototype.updateFilter = function() {
 	self.filter = filter;
 	self.refreshSelfSubmissions();
 }
+
 
 handler.prototype.rateSchedule = function(e) {
 	var $btn = $(e.target);
