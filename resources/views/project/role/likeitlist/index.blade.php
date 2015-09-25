@@ -15,11 +15,10 @@
 							</div>
 						</div>
 						<div class="col-md-6 text-align-right">
-							<a data-toggle="modal" data-target="#share-like-it-list" data-bind="/projects/<%= casting_id %>/roles/<%= role.role_id %>/public-like-it-list" class="btn btn-primary" data-toggle="modal">Share Like It List</a>
-							<button class="btn btn-primary"><i class="fa fa-envelope-o"></i> Invite to Audition</button>
+							<a data-bind="/projects/<%= casting_id %>/roles/<%= role.role_id %>/public-like-it-list" class="btn btn-primary" data-toggle="modal">Share Like It List</a>
+							<a data-toggle="modal" data-target="#invite-to-audition" class="btn btn-primary"><i class="fa fa-envelope-o"></i> Invite to Audition</a>
 						</div>
 					</div>
-
 					<div class="row-fluid clearfix" id="like-it-list-results">
 						@include('components.talent2', [ 'databind' => [ 'template' => '#like-it-list-results', 'value' => 'role.likeitlist.data' ], 'unrate' => true ])
 					</div>
@@ -32,5 +31,6 @@
 	@include('components.modals.share-like-it-list')
 	@include('components.modals.talent-photos')
 	@include('components.modals.talent-resume')
+	@include('components.modals.invite-to-audition')
 
 @stop
