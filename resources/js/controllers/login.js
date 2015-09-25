@@ -20,7 +20,7 @@ module.exports = function(core, user) {
 
 		core.service.rest.post(core.config.api.base + '/sessions', { email : email, password : pass })
 			.then(function(result) {
-				var qs = core.service.query_string.toObject();
+				var qs = core.service.query_string();
 
 				window.location = qs.redirect ? decodeURIComponent(qs.redirect) : '/projects';
 

@@ -11,7 +11,7 @@
 				<div id="like-it-list" class="col-md-12 talents-search-result">
 					<div class="row-fluid clearfix top-results-heading margin-bottom-normal">
 						<div class="col-md-6">
-							<div class="padding-top-small">
+							<div id="like-it-list-pagination">
 							</div>
 						</div>
 						<div class="col-md-6 text-align-right">
@@ -23,6 +23,7 @@
 					<div class="row-fluid clearfix" id="like-it-list-results">
 						@include('components.talent2', [ 'databind' => [ 'template' => '#like-it-list-results', 'value' => 'role.likeitlist.data' ], 'unrate' => true ])
 					</div>
+
 				</div> {{-- talents-search-results --}}
 			</div>
 		</div>

@@ -32,12 +32,19 @@ handler.prototype.refreshProjectDetails = function() {
 }
 
 handler.prototype.refreshLikeItList = function() {
-	return self.project.role.getLikeItList()
+	var qs = self.core.service.query_string();
+	var data = {
+		page : qs.page || 1
+	};
+
+	return self.project.role.getLikeItList(data)
 		.then(function(result) {
 			self.project.role.likeitlist = result;
 			self.core.service.databind('.page-header', self.project);
 			self.core.service.databind('#submissions-sub-menu', self.project);
 			self.core.service.databind('#like-it-list', self.project);
+
+			self.core.service.paginate('#like-it-list-pagination', { class : 'pagination', total : result.total, name : 'page' });
 		});
 }
 

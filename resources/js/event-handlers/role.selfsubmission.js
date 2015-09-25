@@ -43,11 +43,19 @@ handler.prototype.refreshLikeItList = function() {
 }
 
 handler.prototype.refreshSelfSubmissions = function() {
-	return self.project.role.getSelfSubmissions(self.filter)
+	var qs = self.core.service.query_string();
+
+	var data = {
+		where	: self.filter,
+		page	: qs.page || 1
+	}
+
+	return self.project.role.getSelfSubmissions(data)
 		.then(function(result) {
 			self.project.role.selfsubmissions = result;
-
 			self.core.service.databind('#self-submissions', self.project);
+
+			self.core.service.paginate('#self-submissions-pagination', { class : 'pagination', total : result.total, name : 'page' });
 		});
 }
 

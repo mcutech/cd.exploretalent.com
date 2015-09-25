@@ -45,6 +45,7 @@ handler.prototype.refreshLikeItList = function() {
 }
 
 handler.prototype.refreshMatches = function() {
+	var qs = self.core.service.query_string();
 	var data = {
 		withs	: [
 			'user',
@@ -82,7 +83,8 @@ handler.prototype.refreshMatches = function() {
 					]
 				]
 			]
-		]
+		],
+		page : qs.page || 0
 	}
 
 	if (self.filter) {
@@ -93,6 +95,8 @@ handler.prototype.refreshMatches = function() {
 		.then(function(result) {
 			self.project.role.matches = result;
 			self.core.service.databind('#role-match', self.project);
+
+			self.core.service.paginate('#matches-pagination', { total : result.total, class : 'pagination', name : 'page' });
 		});
 }
 

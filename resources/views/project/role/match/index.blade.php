@@ -14,13 +14,17 @@
 
 				<div id="role-match" class="col-md-9 talents-search-result">
 					<div class="row-fluid clearfix top-results-heading margin-bottom-normal">
-						<div class="col-md-12">
+						<div class="col-md-6">
 							<div class="padding-top-small">
 								<span class="text-normal">There are</span>
 								<span data-bind="<%= role.matches.total %>"></span>
 								<span class="text-normal"> matches for role </span>
 								<span data-bind="<%= role.name %>"></span>.
 								<button id="rate-all-button" class="btn btn-defaut">Add all to Like It List</button>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div id="matches-pagination">
 							</div>
 						</div>
 					</div>

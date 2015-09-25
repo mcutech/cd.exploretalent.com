@@ -18,17 +18,7 @@
 							</div>
 						</div>
 						<div class="col-md-6 padding-left-zero">
-							<div class="float-right">
-								<ul class="pagination pagination-xs">
-									<li class="disabled"><a href="#">«</a></li>
-									<li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
-									<li><a href="#">2</a></li>
-									<li><a href="#">3</a></li>
-									<li><a href="#">4</a></li>
-									<li><a href="#">5</a></li>
-									<li><a href="#">»</a></li>
-								</ul>
-								<div class="results-counter">Showing: 1 to 25 of 7,862,526</div>
+							<div id="self-submissions-pagination">
 							</div>
 						</div>
 					</div>
