@@ -255,6 +255,10 @@ handler.prototype.rateAll = function() {
 		});
 }
 
+handler.prototype.changeRole = function() {
+	window.location = '/projects/' + self.projectId + '/roles/' + $('#roles-list').val() + '/matches';
+}
+
 module.exports = function(core, user, projectId, roleId) {
 	return new handler(core, user, projectId, roleId);
 }

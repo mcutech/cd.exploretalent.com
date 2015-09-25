@@ -85,6 +85,10 @@ handler.prototype.unrateSchedule = function(e) {
 	}
 }
 
+handler.prototype.changeRole = function() {
+	window.location = '/projects/' + self.projectId + '/roles/' + $('#roles-list').val() + '/like-it-list';
+}
+
 module.exports = function(core, user, projectId, roleId) {
 	return new handler(core, user, projectId, roleId);
 }

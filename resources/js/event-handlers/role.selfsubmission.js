@@ -224,6 +224,10 @@ handler.prototype.removeAllLikeItList = function() {
 	}
 }
 
+handler.prototype.changeRole = function() {
+	window.location = '/projects/' + self.projectId + '/roles/' + $('#roles-list').val() + '/self-submissions';
+}
+
 module.exports = function(core, user, projectId, roleId) {
 	return new handler(core, user, projectId, roleId);
 }
