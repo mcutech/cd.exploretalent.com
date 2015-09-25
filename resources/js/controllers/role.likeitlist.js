@@ -5,4 +5,7 @@ module.exports = function(core, user, projectId, roleId) {
 	$(document).on('click', '.rating-button', handler.rateSchedule);
 	$('#remove-all-likeitlist').on('click', handler.removeAllLikeItList);
 	$(document).on('click', '.unrate-button', handler.unrateSchedule);
+	$(document).on('click', '#send-sms-slidetoggle', function() {
+		$("#sms-message-textarea").slideToggle('fast');
+	});
 }
