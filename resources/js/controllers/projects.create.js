@@ -15,9 +15,15 @@ module.exports = function(core, user) {
 
     $("#self-submission-option").click();
 
-	$('#bs-datepicker-submissiondeadline').datepicker({});
-	$('#bs-datepicker-audition').datepicker();
-	$('#bs-datepicker-shootdate').datepicker();
+	$('#bs-datepicker-submissiondeadline').datepicker({
+		dateFormat: 'yy-mm-dd'
+	});
+	$('#bs-datepicker-audition').datepicker({
+		dateFormat: 'yy-mm-dd'
+	});
+	$('#bs-datepicker-shootdate').datepicker({
+		dateFormat: 'yy-mm-dd'
+	});
 	$('#bs-datepicker-open-call').datepicker({
 		dateFormat: 'DD, MM dth'
 	});
