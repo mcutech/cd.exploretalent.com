@@ -59,12 +59,19 @@ handler.prototype.getProjectInfo = function(e) {
 				casting.asap1 = y + "-" + m + "-" + d;
 
 				self.core.service.databind('.project-details-div', casting)
+				self.core.service.databind('.action-buttons-div', casting)
 				return $.when();
 			}
 		});
 }
 
-handler.prototype.saveNewRole = function() {
+handler.prototype.saveNewRole = function(e) {
+
+	e.preventDefault();
+
+	//to be used later to determine where to link page
+	var buttonId = $(this).attr('id'); 
+	var whereToLink = $(this).attr('href');
 
 	var height = $('#heightinches').val(),
 		height = height.split(",");
@@ -138,9 +145,18 @@ handler.prototype.saveNewRole = function() {
 				console.log(res);
 				$('.role-saved-success').fadeIn();
 
-				setTimeout(function(){
-					location.reload();
-				}, 3000);
+				if(buttonId == 'save-role-btn') { // link to project overview page
+					setTimeout(function(){
+						window.location = whereToLink;
+					}, 3000);
+					
+				}
+
+				else { // 'save-and-add-role-btn' just reloads page
+					setTimeout(function(){
+						location.reload();
+					}, 3000);
+				}
 
 			});
 		}	

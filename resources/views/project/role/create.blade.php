@@ -226,11 +226,11 @@
 	</div>
 </div>
 
-<div class="row-fluid clearfix">
+<div class="row-fluid clearfix action-buttons-div">
 	<div class="col-md-12">
 		<div class="form-group margin-top-normal">
-			<a class="btn btn-success display-none" id="save-and-add-btn">Save &amp; Add another Role</a>
-			<button id="save-role-btn" class="btn btn-primary margin-left-small" type="submit">Save</button>
+			<a data-bind="/projects/<%= casting_id %>" id="save-role-btn" class="btn btn-primary">Save</a>
+			<button id="save-and-add-role-btn" class="btn btn-success margin-left-small" type="submit">Save and Add a New Role</button>
 			<a href="/projects" id="cancel-role-btn" class="btn btn-default margin-left-small">Cancel</a>
 			<span class="text-success margin-left-normal role-saved-success" style="display: none;">New role has been saved.</span>
 		</div>			
