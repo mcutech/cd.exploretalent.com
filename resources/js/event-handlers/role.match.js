@@ -65,6 +65,22 @@ handler.prototype.refreshMatches = function() {
 						]
 					]
 				]
+			],
+			[ 'where', [
+					[ 'where', 's1.bam_role_id', '=', self.roleId ],
+					[ 'orWhere', [
+							[ 'whereNull', 's1.bam_role_id' ]
+						]
+					]
+				]
+			],
+			[ 'where', [
+					[ 'where', 's2.bam_role_id', '=', self.roleId ],
+					[ 'orWhere', [
+							[ 'whereNull', 's2.bam_role_id' ]
+						]
+					]
+				]
 			]
 		]
 	}
