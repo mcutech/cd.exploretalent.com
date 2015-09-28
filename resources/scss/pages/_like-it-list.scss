@@ -1,20 +1,6 @@
 .like-it-list-page-wrapper,  .self-submissions-notes-view-wrapper {
 	.talents-search-result {
 		.talent-item-container {
-			ul.nav-tabs{
-				li{
-					&.active{
-						a{
-							color: #555555;
-							background-color: #ffffff;
-							border: 1px solid #dddddd;
-							border-bottom-color: transparent;
-							cursor: default;
-						}
-					}
-				}
-			}
-
 			.item-container-holder {
 				height:193px;
 				overflow-y: scroll;

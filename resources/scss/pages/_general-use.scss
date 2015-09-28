@@ -1,6 +1,12 @@
 [data-bind-template] {
 	display:none !important;
 }
+
+.pagination li a.active {
+	background: #1d89cf;
+	color:#fff;
+}
+
 //custom template
 .cd-custom-template{
 	//custom-checkbox-inline-no-margin
