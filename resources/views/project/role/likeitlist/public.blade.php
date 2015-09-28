@@ -31,12 +31,13 @@
 		<div class="talents-search-filter-content">
 			@parent
 			<div class="row-fluid clearfix">
-
 				<div id="like-it-list" class="col-md-12 talents-search-result">
 					<div class="row-fluid clearfix" id="like-it-list-results">
-						@include('components.talent2', [ 'databind' => [ 'template' => '#like-it-list-results', 'value' => 'role.likeitlist.data' ], 'unrate' => true ])
+						@include('components.talent2', [ 'databind' => [ 'template' => '#like-it-list-results', 'value' => 'role.likeitlist.data' ] ])
 					</div>
 				</div> {{-- talents-search-results --}}
+				<div id="like-it-list-pagination" class="col-md-12">
+				</div>
 			</div>
 		</div>
 	</div>
