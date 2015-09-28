@@ -1,10 +1,14 @@
+'use strict';
+
 function handler(core, user, projectId){
 	self = this;
 	self.core = core;
 	self.user = user;
 	self.projectId = projectId;
+	self.project;
 	self.refresh();
 }
+
 handler.prototype.refresh = function(){
 	var data = {
 		projectId	: self.projectId,
@@ -13,12 +17,13 @@ handler.prototype.refresh = function(){
 
 	self.core.resource.project.get(data)
 	.then(function(result){
+		self.project = result;
 		result.date = self.core.service.date;
 		var eths = ['ethnicity_african', 'ethnicity_african_am', 'ethnicity_american_in', 'ethnicity_asian', 'ethnicity_caribbian', 'ethnicity_caucasian', 'ethnicity_east_indian', 'ethnicity_hispanic', 'ethnicity_mediterranean', 'ethnicity_middle_est', 'ethnicity_mixed', 'ethnicity_native_am'];
 		var builds = ['built_athletic', 'built_average', 'built_bb', 'built_large', 'built_lm', 'built_medium', 'built_petite', 'built_thin', 'built_xlarge'];
-		
+
 		_.each(result.bam_roles, function(res){
-			
+
 			var group1 = [], group2 = [];
 			//for gender
 			if(res.gender_male == 1 && res.gender_female == 1){
@@ -50,7 +55,7 @@ handler.prototype.refresh = function(){
 						res.ethnicity = group1;
 					}
 				});
-				
+
 			}
 
 			//for build
@@ -76,27 +81,37 @@ handler.prototype.refresh = function(){
 
 
 		self.core.service.databind('.project-overview-wrapper', result);
-		console.log(result);
+		self.refreshStats();
 	})
 }
 
-handler.prototype.editRole = function(){
-	var pathname = window.location.pathname;
-	var i = pathname.split('/');
-	var cast_id = i[2];
-	console.log(cast_id);
-	var roleId = $(this).attr('id');
+handler.prototype.refreshStats = function() {
+	var promises = [];
 
-	window.location = '/projects/'+cast_id+'/roles/'+roleId+'/edit';
-}
+	_.each(self.project.bam_roles, function(role) {
+		promises.push(role.getLikeItList());
+		promises.push(role.getSelfSubmissions());
+	});
 
-handler.prototype.editProject = function(e){
-	e.preventDefault();
-	var pathname = window.location.pathname;
-	var i = pathname.split('/');
-	var cast_id = i[2];
+	$.when.apply($, promises)
+		.then(function() {
+			_.each(arguments, function(arg, index) {
+				if (arg.total > 0) {
+					var role_id = _.first(arg.data).bam_role_id;
 
-	window.location = '/projects/'+cast_id+'/edit';
+					switch(index % 2) {
+						case 0: // likeitlist
+							$('#role-' + role_id + ' .like-it-list').text(arg.total);
+							break;
+						case 1: // self submissions
+							$('#role-' + role_id + ' .self-submissions').text(arg.total);
+							break;
+						default:
+							break;
+					}
+				}
+			});
+		});
 }
 
 module.exports = function(core, user, projectId){

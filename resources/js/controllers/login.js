@@ -1,5 +1,5 @@
 module.exports = function(core, user) {
-	if (user.bam_cd_user_id) {
+	if (parseInt(user.bam_cd_user_id)) {
 		window.location = '/projects';
 	}
 
