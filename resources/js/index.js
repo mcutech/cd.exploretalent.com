@@ -47,6 +47,7 @@ jscore.run(function(core) {
 		.add('/settings', 'settings')
 
 		.add('/talents', 'talents')
+		.add('/talents/favorite', 'talent.favorite')
 		// project pages
 		.add('/projects', 'projects')
 		.add('/projects/create', 'projects.create')
