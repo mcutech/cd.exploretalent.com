@@ -76,7 +76,6 @@ handler.prototype.removeAllLikeItList = function() {
 }
 
 handler.prototype.unrateSchedule = function(e) {
-	if (confirm('Are you sure you want to remove this entry?')) {
 		var id;
 		if ($(e.target).is('a'))
 			id = $(e.target).attr('data-id');
@@ -89,7 +88,6 @@ handler.prototype.unrateSchedule = function(e) {
 				alert('Entry removed.');
 				self.refreshLikeItList();
 			});
-	}
 }
 
 handler.prototype.changeRole = function() {
