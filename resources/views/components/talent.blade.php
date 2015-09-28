@@ -14,7 +14,7 @@
 				<div class="tab-content padding-top-zero padding-bottom-small">
 					<div class="tab-pane fade active in" data-bind="talent-body-<%= talentnum %>" data-bind-target="id">
 						<div class="head-area padding-zero padding-bottom-zero col-md-12">
-							<div class="talent-name font-size-normal text-semibold float-left text-succes"><span data-bind="<%= getFullName() %>"></span>, <span data-bind="<%= getAge() %>" class="age-area"></span></div>
+							<div class="talent-name font-size-normal text-semibold float-left text-succes"><span data-bind="<%= getFullName() %>"></span>, <span data-bind="" class="age-area"></span></div>
 							<div class="favorite-indicator float-right">
 								<button class="btn-link" data-bind="<%= favorite %>" data-bind-target="data-id">
 									<i class="fa fa-star-o font-size-medium-large" data-bind="<%= favorite ? 'text-warning' : 'text-light-gray' %>" data-bind-target="class"></i>
@@ -42,7 +42,7 @@
 						</div>
 					</div>
 					<div class="tab-pane fade" data-bind="like-it-note-<%= talentnum %>" data-bind-target="id">
-						<div class="tab-pane" id=tab-content-2">
+						<div class="tab-pane" id="tab-content-2">
 							<div class="item-container-holder">
 								<div id="schedule-notes" class="talent-item note-item-container padding-small">
 									<div class="note-item" data-bind-template="#schedule-notes" data-bind-value="schedule_notes">

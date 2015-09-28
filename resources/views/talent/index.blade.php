@@ -30,10 +30,8 @@
 							</div>
 						</div>
 					</div>
-					<div class="row-fluid clearfix" id="talent-search-wrap">
-						<div id="talent-search-list" class="hide" data-bind-template="#talent-search-wrap" data-bind-value="data">
-							@include('components.talent')
-						</div>	
+					<div class="row-fluid clearfix" id="talent-results">
+						@include('components.talent', [ 'databind' => [ 'template' => '#talent-results', 'value' => 'data' ], 'unrate' => true ])
 					</div>
 				</div> {{-- talents-search-results --}}
 			</div>
