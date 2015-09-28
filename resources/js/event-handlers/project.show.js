@@ -64,7 +64,7 @@ handler.prototype.refresh = function(){
 						} else if(val == 'built_lm'){
 							group2.push('Lean Muscle');
 						} else if(val == 'built_xlarge'){
-							gorup2.push('Extra Large');
+							group2.push('Extra Large');
 						} else {
 							group2.push(val.split('built_')[1].replace(/^[a-z]/, function(m){ return m.toUpperCase() }));
 						}
