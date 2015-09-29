@@ -8,16 +8,15 @@
 			<div class="modal-body">
 				<div class="photos-wrap text-center">
 					<div class="row">
-						@for ($i = 0; $i < 16; $i++)
-						<div class="col-md-3 margin-bottom-normal-medium image-container">
-							<div class="photo-item">
-								<div class="image-container">
-									<img src="http://images5.fanpop.com/image/photos/25800000/Hayley-hayley-williams-25813741-526-670.png" class="img-responsive">
+						<div id="talent-photos">
+							<div data-bind-template="#talent-photos" data-bind-value="bam_talent_media2" class="col-md-3 margin-bottom-normal-medium image-container">
+								<div class="photo-item">
+									<div class="image-container">
+										<img data-bind="https://etdownload.s3.amazonaws.com/<%= bam_media_path_full %>" class="img-responsive">
+									</div>
 								</div>
 							</div>
 						</div>
-						@endfor
-
 					</div>
 			    </div>
 			</div>
