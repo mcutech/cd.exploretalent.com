@@ -20,7 +20,7 @@
 						</div>
 					</div>
 					<div class="row-fluid clearfix" id="like-it-list-results">
-						@include('components.talent2', [ 'databind' => [ 'template' => '#like-it-list-results', 'value' => 'role.likeitlist.data' ], 'unrate' => true ])
+						@include('components.talent2', [ 'databind' => [ 'template' => '#like-it-list-results', 'value' => 'role.likeitlist.data' ], 'unrate' => true, 'class' => 'col-md-3' ])
 					</div>
 
 				</div> {{-- talents-search-results --}}

@@ -22,7 +22,7 @@
 						</div>
 					</div>
 					<div class="row-fluid clearfix" id="self-submissions-results">
-						@include('components.talent2', [ 'databind' => [ 'template' => '#self-submissions-results', 'value' => 'role.selfsubmissions.data' ] ])
+						@include('components.talent2', [ 'databind' => [ 'template' => '#self-submissions-results', 'value' => 'role.selfsubmissions.data' ], 'class' => 'col-md-4' ])
 					</div>
 				</div> {{-- talents-search-results --}}
 			</div>

@@ -29,7 +29,7 @@
 						</div>
 					</div>
 					<div class="row-fluid clearfix" id="role-match-result">
-						@include('components.talent', [ 'databind' => [ 'template' => '#role-match-result', 'value' => 'role.matches.data' ] ])
+						@include('components.talent', [ 'databind' => [ 'template' => '#role-match-result', 'value' => 'role.matches.data' ], 'class' => 'col-md-4' ])
 					</div>
 				</div> {{-- talents-search-results --}}
 			</div>
