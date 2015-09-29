@@ -19,6 +19,7 @@ handler.prototype.refreshProjectDetails = function() {
 
 	self.core.resource.project.get(data)
 		.then(function(result) {
+			console.log(result);
 			self.project = result;
 			self.core.service.databind('#roles-list', self.project);
 			// get current role object
@@ -29,6 +30,7 @@ handler.prototype.refreshProjectDetails = function() {
 
 			return self.refreshLikeItList();
 		})
+
 }
 
 handler.prototype.refreshLikeItList = function() {
@@ -93,7 +95,29 @@ handler.prototype.unrateSchedule = function(e) {
 handler.prototype.changeRole = function() {
 	window.location = '/projects/' + self.projectId + '/roles/' + $('#roles-list').val() + '/like-it-list';
 }
+handler.prototype.refreshTalentPhotos = function(e){
+	console.log('photos');
+	var id;
+	if ($(e.target).is('a'))
+		id = $(e.target).attr('data-id');
+	else {
+		id = $(e.target).parents('a').attr('data-id');
+	}
+	var data = {
+		talentId :id,
+		withs : [
+			'bam_talent_media2'
+		]
+	};
+	console.log(data);
+	return self.core.resource.talent.get(data)
 
+		.then(function(talent) {
+			console.log(talent);
+
+			self.core.service.databind('#talent-photos', talent);
+		});
+}
 module.exports = function(core, user, projectId, roleId) {
 	return new handler(core, user, projectId, roleId);
 }
