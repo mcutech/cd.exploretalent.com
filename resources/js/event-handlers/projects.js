@@ -33,9 +33,9 @@ handler.prototype.refreshList = function(){
 				//
 				if(res1.aud_timestamp){
 					var i1 = (new Date(res1.aud_timestamp*1000));
-					var d1 = i.getDate();
-					var m1 = i.getMonth()+1;
-					var y1 = i.getFullYear();
+					var d1 = i1.getDate();
+					var m1 = i1.getMonth()+1;
+					var y1 = i1.getFullYear();
 					res1.aud_timestamp1 = y1 + "-" + m1 + "-" + d1;
 				}
 
