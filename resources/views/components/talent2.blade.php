@@ -1,8 +1,8 @@
-<div class="col-md-3 talent-item-container" data-bind-template="{{ $databind['template'] or '' }}" data-bind-value="{{ $databind['value'] or '' }}">
+<div class="col-md-4 talent-item-container" data-bind-template="{{ $databind['template'] or '' }}" data-bind-value="{{ $databind['value'] or '' }}">
 	@if (isset($unrate) && $unrate)
 	<a class="btn btn-danger btn-xs pull-right unrate-button" type="button" data-bind="<%= id %>" data-bind-target="data-id"><i class="fa fa-times"></i></a>
 	@endif
-	<ul class="nav nav-tabs" style="width:90%;">
+	<ul class="nav nav-tabs">
 		<li class="active">
 			<a data-bind="#talent-body-<%= getTalent().bam_talentnum %>" href="#talent-body" data-toggle="tab">Photo</a>
 		</li>
@@ -16,20 +16,24 @@
 			<div class="row-fluid clearfix">
 				<div class="tab-content padding-top-zero padding-bottom-small">
 					<div class="tab-pane fade active in" data-bind="talent-body-<%= getTalent().bam_talentnum %>" data-bind-target="id">
-						<div class="head-area padding-zero padding-bottom-zero col-md-12">
+						<div class="head-area padding-zero padding-bottom-zero display-inline-block col-md-12">
 							<div class="talent-name font-size-normal text-semibold float-left text-succes"><span data-bind="<%= getTalent().bam_talentci.getFullName() %>"></span>, <span data-bind="<%= getTalent().bam_talentci.getAge() %>" class="age-area"></span></div>
 							<div class="favorite-indicator float-right">
 								<i class="fa fa-star-o font-size-medium-large text-light-gray"></i>
 							</div>
 						</div>
 						<div class="row-fluid clearfix">
-							<div class="talent-photo col-lg-6 col-md-12 col-sm-12">
-								<img data-bind="<%= getTalent().bam_talentci.getPrimaryPhoto() %>" class="img-responsive" />
+							<div class="talent-photo col-lg-6 col-md-12 col-sm-4 col-xs-12">
+								<div class="photo-user-container">
+									<img data-bind="<%= getTalent().bam_talentci.getPrimaryPhoto() %>" class="img-responsive" />
+								</div>
 							</div>
 
-							<div class="col-lg-6 col-md-12 col-sm-12 padding-right-zero talent-information padding-top-small">
+							<div class="col-lg-6 col-md-12 col-sm-8 col-xs-12 padding-right-zero talent-information padding-top-small">
 								<div class="talent-location">
+									<div class="photo-user-container">
 									<i class="fa fa-map-marker"></i> <span data-bind="<%= getTalent().bam_talentci.stateText() %>"></span>
+									</div>
 								</div>
 
 								<ul class="list-unstyled talents-list-details">

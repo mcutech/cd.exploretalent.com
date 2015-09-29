@@ -1,4 +1,4 @@
-<div class="col-md-3 talent-item-container" data-bind-template="{{ $databind['template'] or '' }}" data-bind-value="{{ $databind['value'] or '' }}">
+<div class="col-md-4 talent-item-container" data-bind-template="{{ $databind['template'] or '' }}" data-bind-value="{{ $databind['value'] or '' }}">
 	<ul class="nav nav-tabs" style="width:90%;">
 		<li class="active">
 			<a data-bind="#talent-body-<%= talentnum %>" href="#talent-body" data-toggle="tab">Photo</a>
@@ -22,11 +22,13 @@
 							</div>
 						</div>
 						<div class="row-fluid clearfix">
-							<div class="talent-photo col-lg-6 col-md-12 col-sm-12">
-								<img data-bind="<%= getPrimaryPhoto() %>" class="img-responsive" />
+							<div class="talent-photo col-lg-6 col-md-12 col-sm-4 col-xs-12">
+								<div class="photo-user-container">
+									<img data-bind="<%= getPrimaryPhoto() %>" class="img-responsive" />
+								</div>
 							</div>
 
-							<div class="col-lg-6 col-md-12 col-sm-12 padding-right-zero talent-information padding-top-small">
+							<div class="col-lg-6 col-md-12 col-sm-6 padding-right-zero talent-information padding-top-small">
 								<div class="talent-location">
 									<i class="fa fa-map-marker"></i> <span data-bind="<%= stateText() %>"></span>
 								</div>
