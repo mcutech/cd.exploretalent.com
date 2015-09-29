@@ -4,14 +4,13 @@ module.exports = function(core, user, projectId, roleId) {
 	$(document).on('click', '.conversation', handler.showMessages);
 	$(document).on('click', '#send-btn', handler.postMessage);
 
-	$(function () {
 		$("#message-text").keypress(function (e) {
+			// e.preventDefault();
 			var code = (e.keyCode ? e.keyCode : e.which);
-			if (code == 13) {
+			if (code == 13 && !e.shiftKey){
 				$("#send-btn").trigger('click');
 				return true;
 			}
 		});
-	});
 
 };
