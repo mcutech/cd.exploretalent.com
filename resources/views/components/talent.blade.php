@@ -12,7 +12,7 @@
 		<div class="panel-body">
 			<div class="row-fluid clearfix">
 				<div class="tab-content padding-top-zero padding-bottom-small">
-					<div class="tab-pane fade active in" data-bind="talent-body-<%= talentnum %>" data-bind-target="id">
+					<div class="talent-tab tab-pane fade active in" data-bind="talent-body-<%= talentnum %>" data-bind-target="id">
 						<div class="head-area padding-zero padding-bottom-zero col-md-12">
 							<div class="talent-name font-size-normal text-semibold float-left text-succes"><span data-bind="<%= getFullName() %>"></span>, <span data-bind="<%= getAge() %>" class="age-area"></span></div>
 							<div class="favorite-indicator float-right">
