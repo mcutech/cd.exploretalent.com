@@ -29,10 +29,8 @@
 							</div>
 						</div>
 					</div>
-					<div class="row-fluid clearfix">
-						<?php for($x=0; $x<12; $x++ ) { ?>
-							@include('components.talent')
-						<?php } ?>
+					<div class="row-fluid clearfix" id="favorite-result">
+						@include('components.talent', [ 'databind' => [ 'template' => '#favorite-result', 'value' => 'data' ] ])
 					</div>
 				</div> {{-- talents-search-results --}}
 			</div>
