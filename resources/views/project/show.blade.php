@@ -42,10 +42,11 @@
 					<ul class="list-unstyled" data-bind="role-<%= role_id %>" data-bind-target="id">
 						<li class="">
 							<div class="text-right data-value">
-								<a data-bind="/projects/<%= casting_id %>/roles/<%= role_id %>/matches" class="text-bold matches">0</a>
 							</div>
 							<div class="data-name">
-								Matches
+								<a data-bind="/projects/<%= casting_id %>/roles/<%= role_id %>/matches" class="text-bold matches">
+									Role Matches
+								</a>
 							</div>
 						</li>
 						<li class="text-left">

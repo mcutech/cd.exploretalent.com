@@ -12,25 +12,26 @@
 					    Select by Rating
 					  </label>
 					  <div class="col-sm-9">
-					    <label class="checkbox-inline"><input type="checkbox" checked=""> 1</label>
-					    <label class="checkbox-inline"><input type="checkbox" checked=""> 2</label>
-					    <label class="checkbox-inline"><input type="checkbox"> 3</label>
-					    <label class="checkbox-inline"><input type="checkbox"> 4</label>
-					    <label class="checkbox-inline"><input type="checkbox" checked=""> 5</label>
-					    <label class="checkbox-inline"><input type="checkbox"> all</label>
+					    <label class="checkbox-inline"><input type="checkbox" /> 1</label>
+					    <label class="checkbox-inline"><input type="checkbox" /> 2</label>
+					    <label class="checkbox-inline"><input type="checkbox" /> 3</label>
+					    <label class="checkbox-inline"><input type="checkbox" /> 4</label>
+					    <label class="checkbox-inline"><input type="checkbox" /> 5</label>
+					    <label class="checkbox-inline"><input type="checkbox" checked /> all</label>
 					  </div>
 					</div>
 					<h4>Review Details</h4>
 					<div class="form-group">
 						<label class="col-md-3">Casting Date</label>
-						<div class="col-md-9"><input type="text" class="form-control input-sm">
+						<div class="col-md-9">
+							<input type="text" class="form-control input-sm" data-date-picker data-date-format="yy-mm-dd" readonly style="cursor: pointer; background-color: #fff">
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="control-label col-md-3">Address</label>
 						<div class="col-md-9">
 							<input type="text" class="form-control input-sm margin-bottom-normal" placeholder="Address line 1">
-							<input type="text" class="form-control input-sm" placeholder="Address line 2">	
+							<input type="text" class="form-control input-sm" placeholder="Address line 2">
 						</div>
 					</div>
 					<div class="form-group">
@@ -40,7 +41,7 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="control-label col-md-3">State</label>	
+						<label class="control-label col-md-3">State</label>
 						<div class="col-md-4">
 							<select type="text" class="form-control input-sm">
 								<option></option>
@@ -55,32 +56,32 @@
 					<div class="form-group">
 						<label class="control-label col-md-3">Role Name 1</label>
 						<div class="col-md-9">
-							<textarea type="text"  class="form-control input-sm"></textarea> 
+							<textarea type="text"  class="form-control input-sm"></textarea>
 						</div>
-					</div>	
+					</div>
 					<h4>Message</h4>
 					<div class="form-group">
 						<label class="control-label col-md-3">Subject</label>
 						<div class="col-md-9">
-							<input type="text" class="form-control input-sm"></input> 
+							<input type="text" class="form-control input-sm"></input>
 						</div>
-					</div>	
+					</div>
 					<div class="form-group">
 						<label class="control-label col-md-3">Message</label>
 						<div class="col-md-9">
-							<textarea type="text" rows="4" class="form-control input-sm"></textarea> 
+							<textarea type="text" rows="4" class="form-control input-sm"></textarea>
 						</div>
-					</div>	
+					</div>
 					<div class="form-group">
 						<label class="control-label col-md-3">Send SMS</label>
 						<div class="col-md-9">
-							<label class="inline-checkbox"><input type="checkbox" id="send-sms-slidetoggle">  Text Message to Talent</input></label> 
+							<label class="inline-checkbox"><input type="checkbox" id="send-sms-slidetoggle">  Text Message to Talent</input></label>
 						</div>
-					</div>	
+					</div>
 					<div id="sms-message-textarea" class="form-group display-none">
 						<label class="control-label col-md-3">SMS Message</label>
 						<div class="col-md-9">
-							<textarea type="text" rows="4" class="form-control input-sm"></textarea> 
+							<textarea type="text" rows="4" class="form-control input-sm"></textarea>
 						</div>
 					</div>
 					<hr>
