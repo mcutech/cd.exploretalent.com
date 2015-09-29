@@ -7,8 +7,7 @@
 	<div class="self-submissions-wrapper self-submissions-talent-view-wrapper self-submissions-notes-view-wrapper">
 		<div class="talents-search-filter-content">
 			@parent
-			<div class="row-fluid clearfix">
-				@include('components.talent-filter')
+			<div class="row-fluid clearfix"> @include('components.talent-filter')
 
 				<div id="self-submissions" class="col-md-9 talents-search-result">
 					<div class="row-fluid clearfix top-results-heading margin-bottom-normal">
@@ -30,8 +29,8 @@
 		</div>
 	</div>
 
-	@include('components.modals.share-like-it-list')
 	@include('components.modals.talent-photos')
 	@include('components.modals.talent-resume')
+	@include('components.modals.invite-to-audition')
 
 @stop

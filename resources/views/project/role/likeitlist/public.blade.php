@@ -14,12 +14,12 @@
 					<div class="panel-body padding-top-normal padding-bottom-normal" id="header">
 						<div class="row">
 							<div class="col-md-5 col-xs-12 col-sm-6">
-								<h5><span class="text-normal">Project:</span> <span  data-bind="<%= name %>"> Name 1</span></h4>
-								<h5> Role: <span data-bind="<%= role.name %>"> Main Role</span></h4>
+								<h5><span class="text-normal">Project:</span> <span  data-bind="<%= name %>"> Name 1</span></h5>
+								<h5> Role: <span data-bind="<%= role.name %>"> Main Role</span></h5>
 							</div>
 							<div class="col-md-7 col-xs-12 col-sm-6 mt-5">
-								<h5><span class="text-600">Company:</span> <span data-bind="<%= bam_cd_user.company %>"> Casting Company Name</span></h4>
-								<h5><span class="text-normal">Casting Director:</span> <span data-bind="<%= bam_cd_user.fname +' '+ bam_cd_user.lname  %>"> Michael Smith</span> </h4>
+								<h5><span class="text-600">Company:</span> <span data-bind="<%= bam_cd_user.company %>"> Casting Company Name</span></h5>
+								<h5><span class="text-normal">Casting Director:</span> <span data-bind="<%= bam_cd_user.fname +' '+ bam_cd_user.lname  %>"> Michael Smith</span> </h5>
 							</div>
 						</div>
 					</div>
@@ -43,6 +43,8 @@
 	</div>
 </div>
 
-@include('components.modals.view-all-photos')
+	@include('components.modals.talent-photos')
+	@include('components.modals.talent-resume')
+	@include('components.modals.invite-to-audition')
 
 @stop

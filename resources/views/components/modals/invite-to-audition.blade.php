@@ -8,48 +8,48 @@
 			<div class="modal-body">
 				<form role="form" class="invite-to-audition-form">
 					<div class="row form-group">
-					  <label class="col-sm-3">
-					    Select by Rating
-					  </label>
-					  <div class="col-sm-9">
-					    <label class="checkbox-inline"><input type="checkbox" /> 1</label>
-					    <label class="checkbox-inline"><input type="checkbox" /> 2</label>
-					    <label class="checkbox-inline"><input type="checkbox" /> 3</label>
-					    <label class="checkbox-inline"><input type="checkbox" /> 4</label>
-					    <label class="checkbox-inline"><input type="checkbox" /> 5</label>
-					    <label class="checkbox-inline"><input type="checkbox" checked /> all</label>
-					  </div>
+						<label class="col-sm-3">
+							Select by Rating
+						</label>
+						<div class="col-sm-9">
+							<label class="checkbox-inline"><input name="rating" type="checkbox" /> 1</label>
+							<label class="checkbox-inline"><input name="rating" type="checkbox" /> 2</label>
+							<label class="checkbox-inline"><input name="rating" type="checkbox" /> 3</label>
+							<label class="checkbox-inline"><input name="rating" type="checkbox" /> 4</label>
+							<label class="checkbox-inline"><input name="rating" type="checkbox" /> 5</label>
+							<label class="checkbox-inline"><input name="rating" type="checkbox" checked /> all</label>
+						</div>
 					</div>
 					<h4>Review Details</h4>
 					<div class="form-group">
 						<label class="col-md-3">Casting Date</label>
 						<div class="col-md-9">
-							<input type="text" class="form-control input-sm" data-date-picker data-date-format="yy-mm-dd" readonly style="cursor: pointer; background-color: #fff">
+							<input name="casting_date" type="text" class="form-control input-sm" data-date-picker data-date-format="yy-mm-dd" readonly style="cursor: pointer; background-color: #fff">
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="control-label col-md-3">Address</label>
 						<div class="col-md-9">
-							<input type="text" class="form-control input-sm margin-bottom-normal" placeholder="Address line 1">
-							<input type="text" class="form-control input-sm" placeholder="Address line 2">
+							<input name="address1" type="text" class="form-control input-sm margin-bottom-normal" placeholder="Address line 1">
+							<input name="address2" type="text" class="form-control input-sm" placeholder="Address line 2">
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="control-label col-md-3">City</label>
 						<div class="col-md-4">
-							<input type="text" class="form-control input-sm">
+							<input name="city" type="text" class="form-control input-sm">
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="control-label col-md-3">State</label>
 						<div class="col-md-4">
-							<select type="text" class="form-control input-sm">
-								<option></option>
+							<select name="state" type="text" class="form-control input-sm">
+								<option>New York</option>
 							</select>
 						</div>
 						<label class="col-md-2"> Zipcode</label>
 						<div class="col-md-3">
-							<input type="text" class="form-control input-sm">
+							<input name="zip" type="text" class="form-control input-sm">
 						</div>
 					</div>
 					<h4>Wardrobes</h4>
