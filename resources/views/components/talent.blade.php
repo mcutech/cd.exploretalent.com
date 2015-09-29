@@ -83,10 +83,10 @@
 						<div class="float-right-md-lg">
 							<div class="display-block title">&nbsp;</div>
 							<div class="btn-group btn-group-xs">
-								<button class="btn btn-xs btn-default"><span class="fa fa-file-text-o"></span></button>
-								<button class="btn btn-xs btn-default"><span class="fa fa-picture-o"></span></button>
-								<button class="btn btn-xs btn-default"><span class="fa fa-calendar"></span></button>
-								<button class="btn btn-xs btn-default"><span class="fa fa-envelope-o"></span></button>
+								<a data-toggle="modal" data-target="#talent-resume-modal" class="btn btn-xs btn-default"><span class="fa fa-file-text-o"></span></a>
+								<a data-toggle="modal" data-target="#talent-photos-modal" class="btn btn-xs btn-default"><span class="fa fa-picture-o"></span></a>
+								<a data-toggle="modal" data-target="#" class="btn btn-xs btn-default"><span class="fa fa-calendar"></span></a>
+								<a data-toggle="modal" data-target="#talent-message-modal" class="btn btn-xs btn-default"><span class="fa fa-envelope-o"></span></a>
 							</div>
 						</div>
 					</div>
