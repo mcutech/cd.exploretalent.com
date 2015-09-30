@@ -6,5 +6,4 @@ module.exports = function(core, user, projectId, roleId) {
 	$('#roles-list').on('change', handler.changeRole);
 	$('#remove-all-likeitlist').on('click', handler.removeAllLikeItList);
 	$('#talent-filter-button').on('click', handler.updateFilter);
-	$(document).on('click', '#talent-photo', handler.refreshTalentPhotos);
 }
