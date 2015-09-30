@@ -26,6 +26,8 @@ handler.prototype.refreshProjectDetails = function() {
 				return role.role_id == self.roleId;
 			});
 			$('#roles-list').val(self.project.role.role_id);
+			self.project.date = self.core.service.date;
+			self.core.service.databind('#invite-to-audition-modal', self.project);
 
 			return self.refreshLikeItList();
 		})
@@ -94,24 +96,106 @@ handler.prototype.unrateSchedule = function(e) {
 handler.prototype.changeRole = function() {
 	window.location = '/projects/' + self.projectId + '/roles/' + $('#roles-list').val() + '/like-it-list';
 }
+
 handler.prototype.refreshTalentPhotos = function(e){
 	var id;
-	if ($(e.target).is('a'))
+
+	if ($(e.target).is('a')) {
 		id = $(e.target).attr('data-id');
+	}
 	else {
 		id = $(e.target).parents('a').attr('data-id');
 	}
+
 	var data = {
 		talentId :id,
 		withs : [
 			'bam_talent_media2'
 		]
 	};
+
 	return self.core.resource.talent.get(data)
 		.then(function(talent) {
 			self.core.service.databind('#talent-photos', talent);
 		});
 }
+
+handler.prototype.sendInvites = function(e) {
+	e.preventDefault();
+
+	var form = self.core.service.form.serializeObject('.invite-to-audition-form');
+	var schedules = self.project.role.likeitlist.data;
+
+	// get schedules with rating
+	if (form.rating instanceof Array) {
+		// any not selected
+		if (form.rating.indexOf('all') == -1) {
+			schedules = _.filter(self.project.role.likeitlist.data, function(s) {
+				console.log(s.rating);
+				return form.rating.indexOf(s.rating + '') > -1;
+			});
+		}
+	}
+	else {
+		if (form.rating != 'all') {
+			schedules = _.filter(self.project.role.likeitlist.data, function(s) {
+				return s.rating == form.rating;
+			});
+		}
+	}
+
+	var body = [
+		'Casting: ' + form.casting_name + ' (ID #' + self.project.casting_id + ')',
+		'Role: ' + form.role_name + ' (ID #' + self.project.role.role_id + ')',
+		form.role_des,
+		'Date: ' + form.casting_date,
+		'Address: ' + form.address1 + ' ' + form.address2 + ' ' + form.city + ' ' + form.state + ' ' + form.zip,
+		'\r\n',
+		'Message from Casting Director:',
+		'\r\n',
+		form.message
+	];
+
+	body = body.join('\r\n');
+
+	// create conversations for each schedule
+	_.each(schedules, function(s) {
+		var conversation;
+
+		self.core.resource.conversation.get({ schedule_id : s.id })
+			.then(function(result) {
+				if (result.total > 0) {
+					conversation = _.first(result.data);
+					return $.when();
+				}
+				else {
+					var data = {
+						schedule_id : s.id,
+						user_ids : [
+							schedule.invitee_id,
+							schedule.inviter_id
+						]
+					};
+					return self.core.resource.conversation.post(data);
+				}
+			})
+			.then(function(result) {
+				if (result) {
+					conversation = result;
+				}
+
+				var data = {
+					conversationId : conversation.id,
+					body : body
+				}
+
+				return self.core.resource.message.post(data);
+			});
+	});
+
+	$('#send-invites-success').fadeIn().delay(3000).fadeOut();
+}
+
 module.exports = function(core, user, projectId, roleId) {
 	return new handler(core, user, projectId, roleId);
 }
