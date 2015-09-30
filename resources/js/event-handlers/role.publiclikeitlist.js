@@ -49,6 +49,25 @@ handler.prototype.viewAllModal = function() {
 	// fire modal code
     $(".modal-photos").modal();
 }
+handler.prototype.refreshTalentPhotos = function(e){
+	var id;
+	if ($(e.target).is('a'))
+		id = $(e.target).attr('data-id');
+	else {
+		id = $(e.target).parents('a').attr('data-id');
+	}
+	var data = {
+		talentId :id,
+		withs : [
+			'bam_talent_media2'
+		]
+	};
+	return self.core.resource.talent.get(data)
+		.then(function(talent) {
+			console.log(talent.getFullName());
+			self.core.service.databind('#talent-photos-modal', talent);
+		});
+}
 
 module.exports = function(core, user, projectId, roleId) {
 	return new handler(core, user, projectId, roleId);

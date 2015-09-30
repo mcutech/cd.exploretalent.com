@@ -33,7 +33,8 @@
 			<div class="row-fluid clearfix">
 				<div id="like-it-list" class="col-md-12 talents-search-result">
 					<div class="row-fluid clearfix" id="like-it-list-results">
-						@include('components.talent2', [ 'databind' => [ 'template' => '#like-it-list-results', 'value' => 'role.likeitlist.data' ] ])
+						@include('components.talent2', [ 'databind' => [ 'template' => '#like-it-list-results', 'value' => 'role.likeitlist.data' ], 'unrate' => true, 'class' => 'col-md-3' ])
+
 					</div>
 				</div> {{-- talents-search-results --}}
 				<div id="like-it-list-pagination" class="col-md-12">
@@ -43,6 +44,7 @@
 	</div>
 </div>
 
+	@include('components.modals.share-like-it-list')
 	@include('components.modals.talent-photos')
 	@include('components.modals.talent-resume')
 	@include('components.modals.invite-to-audition')
