@@ -197,6 +197,22 @@ handler.prototype.sendInvites = function(e) {
 	$('#send-invites-success').fadeIn().delay(3000).fadeOut();
 }
 
+handler.prototype.addToFav = function(){
+	var b = $(this).closest('.talent-tab').attr('id');
+	var talentnum = (b.split('-')[2]);
+	if(!$(this).find('i').hasClass('text-light-gray')){
+		self.core.resource.favorite_talent.delete({ favoriteId : talentnum})
+			.then(function(res){
+				self.refreshLikeItList();
+			});
+	} else {
+		self.core.resource.favorite_talent.post({ bam_cd_user_id : self.user.bam_cd_user_id, bam_talentnum : talentnum})
+			.then(function(res){
+				self.refreshLikeItList();
+			});
+	}
+}
+
 module.exports = function(core, user, projectId, roleId) {
 	return new handler(core, user, projectId, roleId);
 }

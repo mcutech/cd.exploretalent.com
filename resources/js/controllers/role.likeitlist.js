@@ -10,4 +10,5 @@ module.exports = function(core, user, projectId, roleId) {
 		$("#sms-message-textarea").slideToggle('fast');
 	});
 	$('#send-invites-button').on('click', handler.sendInvites);
+	$(document).on('click', '.btn-link', handler.addToFav);
 }

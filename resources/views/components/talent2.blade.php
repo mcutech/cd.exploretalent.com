@@ -15,11 +15,13 @@
 		<div class="panel-body">
 			<div class="row-fluid clearfix">
 				<div class="tab-content padding-top-zero padding-bottom-small">
-					<div class="tab-pane fade active in" data-bind="talent-body-<%= getTalent().bam_talentnum %>" data-bind-target="id">
+					<div class="talent-tab tab-pane fade active in" data-bind="talent-body-<%= getTalent().bam_talentnum %>" data-bind-target="id">
 						<div class="head-area padding-zero padding-bottom-zero display-inline-block col-md-12">
 							<div class="talent-name font-size-normal text-semibold float-left text-succes"><span data-bind="<%= getTalent().bam_talentci.getFullName() %>"></span>, <span data-bind="<%= getTalent().bam_talentci.getAge() %>" class="age-area"></span></div>
 							<div class="favorite-indicator float-right">
-								<i class="fa fa-star-o font-size-medium-large text-light-gray" data-bind="favorite-<%= getTalent().id %>" data-bind-target="id"></i>
+								<button class="btn-link">
+									<i class="fa fa-star-o font-size-medium-large text-light-gray" data-bind="favorite-<%= getTalent().id %>" data-bind-target="id"></i>
+								</button>
 							</div>
 						</div>
 						<div class="row-fluid clearfix">
