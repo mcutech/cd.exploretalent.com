@@ -18,14 +18,14 @@ module.exports = function(core) {
 			$('#req-lname').show().delay(5000).fadeOut();
 			$('#req-lnametxt').text('This field is required.').show().delay(5000).fadeOut();
 			return;
-		}else{ 
+		}else{
 			if ( !regexName.test(lname) ){
 				$('#last-name').focus().css("border-color","#b94a48");
 				$('#req-lname').show().delay(5000).fadeOut();
 				$('#req-lnametxt').text('Invalid Last Name').show().delay(5000).fadeOut();
 				return;
 			}
-			$('#last-name').css("border-color","#d6d6d6"); 
+			$('#last-name').css("border-color","#d6d6d6");
 		}
 
 		if(!fname){
@@ -82,7 +82,7 @@ module.exports = function(core) {
 			if ( !regexUsername.test(pass) ){
 				$('#password').focus().css("border-color","#b94a48");
 				$('#req-pass').show().delay(5000).fadeOut();
-				$('#req-passtxt').text('Invalid Password.').show().delay(5000).fadeOut(); 
+				$('#req-passtxt').text('Invalid Password.').show().delay(5000).fadeOut();
 				return;
 			}
 			$('#password').css("border-color","#d6d6d6");
@@ -104,14 +104,12 @@ module.exports = function(core) {
 		}
 
 		if(pass != confirmpass){
-			console.log('pass not match')
 			$('#password, #confirm-password').focus().css("border-color","#b94a48");
 			$('#req-confirmpass').show().delay(5000).fadeOut();
 			$('#req-unmatchtxt').text('Password doesn\'t match.').show().delay(5000).fadeOut();
 			return;
 		}
-			console.log('ok');
-		
+
 		var user = {
 			email: email,
 			password: pass
@@ -128,17 +126,16 @@ module.exports = function(core) {
 								email1	: email,
 								pass	: pass
 							};
-							return core.resource.cd_user.post(data);								
+							return core.resource.cd_user.post(data);
 						})
 						.then(function(result) {
-							console.log(result);
 							window.location = '/projects';
 						}, function(){
 							$('#error-signup').show().delay(5000).fadeOut();
-						});	
+						});
 				}, 1000);
 
 			});
-		
+
 	});
 };

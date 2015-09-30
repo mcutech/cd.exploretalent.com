@@ -6,7 +6,6 @@ function handler(core, user, talentlogin) {
 	self.core = core;
 	self.user = user;
 
-	console.log(self.user);
 }
 
 handler.prototype.createNewProject = function(e){
@@ -55,7 +54,7 @@ handler.prototype.createNewProject = function(e){
 				if(markets.indexOf(text) == -1) {
 					markets.push($(this).text());
 				}
-				
+
 			});
 
 			markets = markets.join('>');
@@ -89,7 +88,7 @@ handler.prototype.createNewProject = function(e){
 	}
 
 	promise.then(function() {
-	
+
 		var data = {
 			user_id : self.user.bam_cd_user_id,
 			name : projectname,
@@ -166,10 +165,9 @@ handler.prototype.createNewProject = function(e){
 					data["snr_email"] = selfSubEmail;
 					data["address2"] = selfSubAddress;
 					data["srn_address"] = selfSubAddress;
-					
+
 					return self.core.resource.project.post(data)
 					.then(function(res) {
-						console.log(res);
 						window.location = "/projects";
 					});
 				}
@@ -190,14 +188,13 @@ handler.prototype.createNewProject = function(e){
 					$('.open-call-location-error-required').fadeIn().delay(3000).fadeOut();
 					$('#open-call-location').focus();
 				}
-				
+
 				else {
 					data["app_date_time"] = '<p>' + $('#bs-datepicker-open-call').val() + " from " + $('#bs-timepicker-open-call-from').val() + " to " + $('#bs-timepicker-open-call-to').val() + '</p>';
 					data["app_loc"] = $('#open-call-location').val();
 
 					return self.core.resource.project.post(data)
 					.then(function(res) {
-						console.log(res);
 						window.location = "/projects";
 					});
 				}
@@ -210,7 +207,7 @@ handler.prototype.createNewProject = function(e){
 handler.prototype.autoSelectMarkets = function(){
 
 	var deferred = $.Deferred();
-	
+
 	var zipcode = $('#zip-code').val();
 
 	if(zipcode.length < 1) {

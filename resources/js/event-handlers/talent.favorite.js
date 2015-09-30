@@ -48,17 +48,15 @@ handler.prototype.refresh = function(){
 			res.bam_talentci.rating2 = null;
 			talent.data.push(res.bam_talentci);
 		});
-		console.log(talent);
 		self.core.service.databind('#favorite-result', talent);
-	}) 
-	
+	})
+
 };
 
 handler.prototype.addToFav = function(){
 	var favId = $(this).attr('data-id');
 	var b = $(this).closest('.talent-tab').attr('id');
 	var talentnum = (b.split('-')[2]);
-	console.log(self.user);
 	if(favId){
 		self.core.resource.favorite_talent.delete({ favoriteId : talentnum})
 			.then(function(res){

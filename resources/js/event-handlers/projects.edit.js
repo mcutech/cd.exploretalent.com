@@ -37,8 +37,6 @@ handler.prototype.getProjectInfo = function(e) {
 					$('#market_'+data).prop('checked', 'checked');
 				});
 
-				console.log(casting);
-
 				casting.date = self.core.service.date;
 
 				if(casting.app_date_time) {
@@ -107,7 +105,7 @@ handler.prototype.updateProject = function(e){
 				if(markets.indexOf(text) == -1) {
 					markets.push($(this).text());
 				}
-				
+
 			});
 
 			markets = markets.join('>');
@@ -141,7 +139,7 @@ handler.prototype.updateProject = function(e){
 	}
 
 	promise.then(function() {
-	
+
 		var data = {
 			projectId : self.projectId,
 			user_id : self.user.bam_cd_user_id,
@@ -219,11 +217,9 @@ handler.prototype.updateProject = function(e){
 					data["snr_email"] = selfSubEmail;
 					data["address2"] = selfSubAddress;
 					data["srn_address"] = selfSubAddress;
-					
+
 					return self.core.resource.project.patch(data)
 					.then(function(res) {
-
-						console.log(res);
 
 						$('#update-profile-success-text').fadeIn().delay(3000).fadeOut();
 
@@ -247,7 +243,7 @@ handler.prototype.updateProject = function(e){
 					$('#open-call-location').focus();
 
 				}
-				
+
 				else {
 					data["app_date_time"] = '<p>' + $('#open-call-details').val() + '</p>';
 					data["app_loc"] = $('#open-call-location').val();
@@ -255,7 +251,6 @@ handler.prototype.updateProject = function(e){
 					return self.core.resource.project.patch(data)
 					.then(function(res) {
 
-						console.log(res);
 						$('#update-profile-success-text').fadeIn().delay(3000).fadeOut();
 
 					});
@@ -266,9 +261,9 @@ handler.prototype.updateProject = function(e){
 }
 
 handler.prototype.autoSelectMarkets = function(){
-	
+
 	var deferred = $.Deferred();
-	
+
 	var zipcode = $('#zip-code').val();
 
 	if(zipcode.length < 1) {

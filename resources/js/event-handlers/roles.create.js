@@ -28,24 +28,22 @@ handler.prototype.getProjectInfo = function(e) {
 			if (res.total > 0) {
 				var casting = res.data[0];
 
-				console.log(casting);
-
 				casting.date = self.core.service.date;
 
 				if(casting.rate_des == '1') {
-					casting.rate_des = 'event'; 
+					casting.rate_des = 'event';
 				}
 				else if(casting.rate_des == '2') {
-					casting.rate_des = 'hour'; 
+					casting.rate_des = 'hour';
 				}
 				else if(casting.rate_des == '3') {
-					casting.rate_des = 'day'; 
+					casting.rate_des = 'day';
 				}
 				else if(casting.rate_des == '4') {
-					casting.rate_des = 'week'; 
+					casting.rate_des = 'week';
 				}
 				else if(casting.rate_des == '5') {
-					casting.rate_des = 'month'; 
+					casting.rate_des = 'month';
 				}
 				else {
 					casting.rate_des = 0;
@@ -55,7 +53,7 @@ handler.prototype.getProjectInfo = function(e) {
 				var d = i.getDate();
 				var m = i.getMonth()+1;
 				var y = i.getFullYear();
-				
+
 				casting.asap1 = y + "-" + m + "-" + d;
 
 				self.core.service.databind('.project-details-div', casting)
@@ -70,7 +68,7 @@ handler.prototype.saveNewRole = function(e) {
 	e.preventDefault();
 
 	//to be used later to determine where to link page
-	var buttonId = $(this).attr('id'); 
+	var buttonId = $(this).attr('id');
 	var whereToLink = $(this).attr('href');
 
 	var height = $('#heightinches').val(),
@@ -142,14 +140,13 @@ handler.prototype.saveNewRole = function(e) {
 
 			return self.core.resource.job.post(data)
 			.then(function(res) {
-				console.log(res);
 				$('.role-saved-success').fadeIn();
 
 				if(buttonId == 'save-role-btn') { // link to project overview page
 					setTimeout(function(){
 						window.location = whereToLink;
 					}, 3000);
-					
+
 				}
 
 				else { // 'save-and-add-role-btn' just reloads page
@@ -159,8 +156,8 @@ handler.prototype.saveNewRole = function(e) {
 				}
 
 			});
-		}	
-	}	
+		}
+	}
 
 }
 

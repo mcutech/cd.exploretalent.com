@@ -21,7 +21,6 @@ handler.prototype.refreshList = function(){
 
 	return self.core.resource.project.get(data)
 		.then(function(res){
-			console.log(res);
 			_.each(res.data, function(value, index){
 				res.data[index].date = self.core.service.date;
 			})
@@ -40,7 +39,7 @@ handler.prototype.refreshList = function(){
 				}
 
 				res1.asap1 = y + "-" + m + "-" + d;
-				//console.log(newdate);											
+				//console.log(newdate);
 				//res1.asap = i;
 				//console.log(i);
 			});
@@ -87,8 +86,6 @@ handler.prototype.deleteRole = function(e) {
 	e.preventDefault();
 	var cast_id = $(this).parent().attr('id');
 	var ids = $(this).attr('id');
-
-	console.log(ids);
 
 	if(confirm("Are you sure you want to delete this role?")){
 		self.core.resource.job.delete({ projectId : cast_id, jobId : ids})

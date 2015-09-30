@@ -76,7 +76,6 @@ handler.prototype.refreshList = function(group){
 	}
 		return self.core.resource.talent.get(data)
 			.then(function(list){
-				console.log(list);
 				/*$('#talent-list').databind(list);
 				$('#talent-pagination').paginate({
 					class 	 : 'pagination float-right margin-top-medium',
@@ -124,7 +123,6 @@ handler.prototype.ApplyData = function(e) {
 
 	if(checkedbody.length > 0 && checkedbody.length < 9 ){
 		_.each(checkedbody, function(val, index){
-			console.log(val);
 			group1.push(['orWhere', 'talentinfo1.build', '=', val]);
 		});
 		group.push(['where', group1]);
@@ -137,7 +135,6 @@ handler.prototype.ApplyData = function(e) {
 
 	if(checkedethnicity.length > 0 && checkedethnicity.length < 8 ){
 		_.each(checkedethnicity, function(val, index){
-			console.log(val);
 			group2.push(['orWhere', 'talentinfo2.ethnicity', '=', val]);
 		});
 		group.push(['where', group2]);
@@ -154,9 +151,6 @@ handler.prototype.ApplyData = function(e) {
 			group.push(['where', 'join_status', '<', 5]);
 		}
 	}
-
-	console.log(group);
-
 
 	//retrieve data
 	var qs = self.core.service.query_string();
@@ -207,8 +201,6 @@ handler.prototype.ApplyData = function(e) {
 
 	return self.core.resource.talent.get(data)
 	.then(function(list){
-		console.log(list);
-		console.log(group);
 		/*$('#talent-list').databind(list);
 		$('#talent-pagination').paginate({
 			class 	 : 'pagination float-right margin-top-medium',
@@ -229,7 +221,6 @@ handler.prototype.addToFav = function(){
 	var favId = $(this).attr('data-id');
 	var b = $(this).closest('.talent-tab').attr('id');
 	var talentnum = (b.split('-')[2]);
-	console.log(self.user);
 	if(favId){
 		self.core.resource.favorite_talent.delete({ favoriteId : talentnum})
 			.then(function(res){

@@ -28,24 +28,22 @@ handler.prototype.getProjectInfo = function(e) {
 			if (res.total > 0) {
 				var casting = res.data[0];
 
-				console.log(casting);
-
 				casting.date = self.core.service.date;
 
 				if(casting.rate_des == '1') {
-					casting.rate_des = 'event'; 
+					casting.rate_des = 'event';
 				}
 				else if(casting.rate_des == '2') {
-					casting.rate_des = 'hour'; 
+					casting.rate_des = 'hour';
 				}
 				else if(casting.rate_des == '3') {
-					casting.rate_des = 'day'; 
+					casting.rate_des = 'day';
 				}
 				else if(casting.rate_des == '4') {
-					casting.rate_des = 'week'; 
+					casting.rate_des = 'week';
 				}
 				else if(casting.rate_des == '5') {
-					casting.rate_des = 'month'; 
+					casting.rate_des = 'month';
 				}
 				else {
 					casting.rate_des = 0;
@@ -55,7 +53,7 @@ handler.prototype.getProjectInfo = function(e) {
 				var d = i.getDate();
 				var m = i.getMonth()+1;
 				var y = i.getFullYear();
-				
+
 				casting.asap1 = y + "-" + m + "-" + d;
 
 				self.core.service.databind('.project-details-div', casting)
@@ -73,11 +71,6 @@ handler.prototype.getRoleInfo = function(e) {
 
 	return self.core.resource.job.get(data)
 		.then(function(res) {
-
-			console.log(res);
-
-			console.log(res.height_min % 12);
-
 			self.core.service.databind('#edit-role-div', res)
 			return $.when();
 
@@ -161,11 +154,9 @@ handler.prototype.updateRole = function() {
 			if($('input[type="checkbox"][name="hair-color"]:checked').length < 1) {
 		        data["hair_any"] = 1;
 			}
-			
+
 			return self.core.resource.job.patch(data)
 			.then(function(res) {
-				console.log(res);
-
 				$('.role-updated-success').fadeIn();
 
 				setTimeout(function(){
@@ -173,8 +164,8 @@ handler.prototype.updateRole = function() {
 				}, 3000);
 
 			});
-		}	
-	}	
+		}
+	}
 
 }
 

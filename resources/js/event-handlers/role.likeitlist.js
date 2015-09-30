@@ -19,7 +19,6 @@ handler.prototype.refreshProjectDetails = function() {
 
 	self.core.resource.project.get(data)
 		.then(function(result) {
-			console.log(result);
 			self.project = result;
 			self.core.service.databind('#roles-list', self.project);
 			// get current role object
@@ -96,7 +95,6 @@ handler.prototype.changeRole = function() {
 	window.location = '/projects/' + self.projectId + '/roles/' + $('#roles-list').val() + '/like-it-list';
 }
 handler.prototype.refreshTalentPhotos = function(e){
-	console.log('photos');
 	var id;
 	if ($(e.target).is('a'))
 		id = $(e.target).attr('data-id');
@@ -109,12 +107,8 @@ handler.prototype.refreshTalentPhotos = function(e){
 			'bam_talent_media2'
 		]
 	};
-	console.log(data);
 	return self.core.resource.talent.get(data)
-
 		.then(function(talent) {
-			console.log(talent);
-
 			self.core.service.databind('#talent-photos', talent);
 		});
 }
