@@ -3,4 +3,5 @@
 
 	$(document).on('click', '.view-all-modal', handler.viewAllModal);
 	$(document).on('click', '#talent-photo', handler.refreshTalentPhotos);
+	$(document).on('click', '.btn-link', handler.addToFav);
 };
