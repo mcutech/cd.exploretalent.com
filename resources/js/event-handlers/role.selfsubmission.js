@@ -54,7 +54,7 @@ handler.prototype.refreshSelfSubmissions = function() {
 		.then(function(result) {
 			self.project.role.selfsubmissions = result;
 			self.core.service.databind('#self-submissions', self.project);
-
+			console.log(result);
 			self.core.service.paginate('#self-submissions-pagination', { class : 'pagination', total : result.total, name : 'page' });
 		});
 }
@@ -234,6 +234,23 @@ handler.prototype.removeAllLikeItList = function() {
 
 handler.prototype.changeRole = function() {
 	window.location = '/projects/' + self.projectId + '/roles/' + $('#roles-list').val() + '/self-submissions';
+}
+
+handler.prototype.addToFav = function(){
+	var favId = $(this).attr('data-id');
+	var b = $(this).closest('.talent-tab').attr('id');
+	var talentnum = (b.split('-')[2]);
+	if(favId){
+		self.core.resource.favorite_talent.delete({ favoriteId : talentnum})
+			.then(function(res){
+				self.refreshSelfSubmissions();
+			});
+	} else {
+		self.core.resource.favorite_talent.post({ bam_cd_user_id : self.user.bam_cd_user_id, bam_talentnum : talentnum})
+			.then(function(res){
+				self.refreshSelfSubmissions();
+			});
+	}
 }
 
 module.exports = function(core, user, projectId, roleId) {

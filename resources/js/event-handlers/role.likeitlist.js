@@ -112,6 +112,24 @@ handler.prototype.refreshTalentPhotos = function(e){
 			self.core.service.databind('#talent-photos', talent);
 		});
 }
+
+handler.prototype.addToFav = function(){
+	var favId = $(this).attr('data-id');
+	var b = $(this).closest('.talent-tab').attr('id');
+	var talentnum = (b.split('-')[2]);
+	if(favId){
+		self.core.resource.favorite_talent.delete({ favoriteId : talentnum})
+			.then(function(res){
+				self.refreshLikeItList();
+			});
+	} else {
+		self.core.resource.favorite_talent.post({ bam_cd_user_id : self.user.bam_cd_user_id, bam_talentnum : talentnum})
+			.then(function(res){
+				self.refreshLikeItList();
+			});
+	}
+}
+
 module.exports = function(core, user, projectId, roleId) {
 	return new handler(core, user, projectId, roleId);
 }

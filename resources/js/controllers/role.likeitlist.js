@@ -10,4 +10,5 @@ module.exports = function(core, user, projectId, roleId) {
 		$("#sms-message-textarea").slideToggle('fast');
 	});
 	$(document).on('click', '#talent-photo', handler.refreshTalentPhotos);
+	$(document).on('click', '.btn-link', handler.addToFav);
 }
