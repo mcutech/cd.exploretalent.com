@@ -44,7 +44,7 @@
 						</div>
 					</div>
 					<div class="tab-pane fade" data-bind="like-it-note-<%= talentnum %>" data-bind-target="id">
-						<div class="tab-pane" id=tab-content-2">
+						<div class="tab-pane" id="tab-content-2">
 							<div class="item-container-holder">
 								<div id="schedule-notes" class="talent-item note-item-container padding-small">
 									<div class="note-item" data-bind-template="#schedule-notes" data-bind-value="schedule_notes">
