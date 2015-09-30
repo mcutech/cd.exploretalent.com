@@ -44,7 +44,7 @@
 						</div>
 					</div>
 					<div class="tab-pane fade" data-bind="like-it-note-<%= talentnum %>" data-bind-target="id">
-						<div class="tab-pane" id=tab-content-2">
+						<div class="tab-pane" id="tab-content-2">
 							<div class="item-container-holder">
 								<div id="schedule-notes" class="talent-item note-item-container padding-small">
 									<div class="note-item" data-bind-template="#schedule-notes" data-bind-value="schedule_notes">
@@ -86,7 +86,7 @@
 							<div class="display-block title">&nbsp;</div>
 							<div class="btn-group btn-group-xs">
 								<a data-toggle="modal" data-target="#talent-resume-modal" class="btn btn-xs btn-default"><span class="fa fa-file-text-o"></span></a>
-								<a data-toggle="modal" data-target="#talent-photos-modal" class="btn btn-xs btn-default"><span class="fa fa-picture-o"></span></a>
+								<a data-toggle="modal" data-bind="<%= talentnum %>" data-bind-target="data-id" id="talent-photo" data-target="#talent-photos-modal" class="btn btn-xs btn-default"><span class="fa fa-picture-o"></span></a>
 								<a data-toggle="modal" data-target="#" class="btn btn-xs btn-default"><span class="fa fa-calendar"></span></a>
 								<a data-toggle="modal" data-target="#talent-message-modal" class="btn btn-xs btn-default"><span class="fa fa-envelope-o"></span></a>
 							</div>

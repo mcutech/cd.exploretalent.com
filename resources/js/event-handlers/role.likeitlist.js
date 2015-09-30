@@ -109,7 +109,8 @@ handler.prototype.refreshTalentPhotos = function(e){
 	};
 	return self.core.resource.talent.get(data)
 		.then(function(talent) {
-			self.core.service.databind('#talent-photos', talent);
+			console.log(talent.getFullName());
+			self.core.service.databind('#talent-photos-modal', talent);
 		});
 }
 module.exports = function(core, user, projectId, roleId) {

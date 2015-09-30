@@ -37,7 +37,10 @@
 		</div>
 
 		<div class="talents-content">
-
+			@include('components.modals.share-like-it-list')
+			@include('components.modals.talent-photos')
+			@include('components.modals.talent-resume')
+			@include('components.modals.invite-to-audition')
 		</div>
 
 	</div>
