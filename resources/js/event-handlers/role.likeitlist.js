@@ -48,7 +48,31 @@ handler.prototype.refreshLikeItList = function() {
 			self.core.service.databind('#like-it-list', self.project);
 
 			self.core.service.paginate('#like-it-list-pagination', { class : 'pagination', total : result.total, name : 'page' });
+
+			self.getFavoriteTalents();
 		});
+}
+
+handler.prototype.getFavoriteTalents = function() {
+	var talents = _.map(self.project.role.likeitlist.data, function(n) {
+		return n.invitee.bam_talentnum;
+	});
+
+	if (talents.length > 0) {
+		var data = {
+			query : [
+				[ 'with', 'bam_talentci.user' ],
+				[ 'whereIn', 'bam_talentnum', talents ]
+			]
+		};
+
+		self.core.resource.favorite_talent.get(data)
+			.then(function(result) {
+				_.each(result.data, function(talent) {
+					$('#favorite-' + talent.bam_talentci.user.id).removeClass('text-light-gray').addClass('text-warning');
+				});
+			});
+	}
 }
 
 handler.prototype.rateSchedule = function(e) {
