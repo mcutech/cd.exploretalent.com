@@ -1,0 +1,46 @@
+.messaging-modal-wrapper{
+
+	.prof-pic{
+		margin-left:-11px;
+	}
+	.prof-info{
+		margin-left:-35px;
+		color: #FFF;
+		.prof-name{
+			font-weight: bold;
+		}
+	}	
+	.message{
+		height: 200px;
+		overflow-y: auto;
+			.per-message{
+				border-bottom: 1px solid #ddd;    
+				// padding-bottom: 5px;
+				padding-bottom: 10px;
+				.time{
+				  float: right;
+				  color: #B1B1B1;					
+				}				
+				.name{
+				  font-weight: bold;
+				  color: #868686;					
+				}
+				&:nth-of-type(odd){
+					background-color:#F5F5F5;
+				}
+				&:first-child{
+					margin-top: 10px;
+				}	
+				&:last-child{
+					border: 0px;
+				}							
+				.margin-top-0{
+					margin-top:0px;
+				}			
+			}				
+	}
+	.enter-message{
+		border-top: 1px solid #ddd;
+	}
+
+}
