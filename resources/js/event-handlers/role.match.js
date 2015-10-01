@@ -96,7 +96,7 @@ handler.prototype.refreshMatches = function() {
 			console.log(result);
 			self.project.role.matches = result;
 			self.core.service.databind('#role-match', self.project);
-
+			console.log(self.project);
 			self.core.service.paginate('#matches-pagination', { total : result.total, class : 'pagination', name : 'page' });
 		});
 }
