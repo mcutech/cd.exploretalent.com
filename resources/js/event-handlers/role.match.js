@@ -73,7 +73,7 @@ handler.prototype.refreshMatches = function() {
 				}
 			});
 
-			if (talents) {
+			if (talents.length > 0) {
 				var data = {
 					jobId : self.project.role.role_id,
 					query : [
@@ -103,7 +103,7 @@ handler.prototype.refreshMatches = function() {
 				return n.talentnum;
 			});
 
-			if (talents) {
+			if (talents.length > 0) {
 				var data = {
 					query : [
 						[ 'with', 'bam_talentci.user' ],
