@@ -21,6 +21,7 @@ handler.prototype.refreshProjectDetails = function() {
 		.then(function(result) {
 			self.project = result;
 			self.core.service.databind('#roles-list', self.project);
+			// console.log(result);
 			// get current role object
 			self.project.role = _.find(self.project.bam_roles, function (role) {
 				return role.role_id == self.roleId;
@@ -28,9 +29,8 @@ handler.prototype.refreshProjectDetails = function() {
 
 			$('#roles-list').val(self.project.role.role_id);
 			self.core.service.databind('#talent-filter-form', self.project);
-
 			return self.refreshLikeItList();
-		})
+		});
 }
 
 handler.prototype.refreshLikeItList = function() {
