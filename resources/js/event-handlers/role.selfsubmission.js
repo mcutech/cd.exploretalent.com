@@ -34,6 +34,7 @@ handler.prototype.refreshProjectDetails = function() {
 handler.prototype.refreshLikeItList = function() {
 	return self.project.role.getLikeItList()
 		.then(function(result) {
+
 			self.project.role.likeitlist = result;
 			self.core.service.databind('.page-header', self.project);
 			self.core.service.databind('#submissions-sub-menu', self.project);
@@ -52,6 +53,7 @@ handler.prototype.refreshSelfSubmissions = function() {
 
 	return self.project.role.getSelfSubmissions(data)
 		.then(function(result) {
+
 			self.project.role.selfsubmissions = result;
 			self.core.service.databind('#self-submissions', self.project);
 
@@ -236,7 +238,6 @@ handler.prototype.changeRole = function() {
 	window.location = '/projects/' + self.projectId + '/roles/' + $('#roles-list').val() + '/self-submissions';
 }
 
-
 handler.prototype.rateAll = function() {
 	var talents = [];
 
@@ -261,6 +262,126 @@ handler.prototype.rateAll = function() {
 			});
 	}
 }
+
+handler.prototype.getDetailsForAddNoteModal = function() {
+
+	self.core.service.databind('#cd-full-name-span', self.user);
+
+	var scheduleId = $(this).attr('id');
+		scheduleId = scheduleId.split("_");
+		scheduleId = scheduleId[1];
+
+	var data = {
+		scheduleId : scheduleId
+	};
+
+
+	_.find(self.project.role.selfsubmissions.data, function(obj) {
+	  if(obj.id == scheduleId) {
+	  	self.core.service.databind('#utility-buttons', obj);
+	  }
+	});
+
+}
+
+handler.prototype.getDetailsForEditNoteModal = function() {
+	var ids = $(this).attr('id');
+		ids = ids.split("_");
+
+	var scheduleId = ids[1];
+	var noteId = ids[2];
+
+	var data = {
+		scheduleId: scheduleId,
+		noteId: noteId,
+	};
+
+	self.core.resource.schedule_note.get(data)
+	.then(function(res) {
+
+		self.core.service.databind('.talent-note-body-edit', res);
+		self.core.service.databind('#note-created-at', res);
+		self.core.service.databind('#note-utility', res);
+
+		var data = {
+			cdUserId : self.user.bam_cd_user_id
+		}
+
+		self.core.resource.cd_user.get(data)
+		.then(function(res){
+			self.core.service.databind('#cd-full-name-span-edit', res);
+		});
+	});
+}
+
+handler.prototype.addNoteForTalent = function(e) {
+
+	e.preventDefault();
+
+	var scheduleId = $(this).attr('id');
+		scheduleId = scheduleId.split("_");
+		scheduleId = scheduleId[1];
+
+	var noteBody = $('.talent-note-body').val();
+
+	if(noteBody.length < 1) {
+		$('.talent-note-body').focus();
+		$('.note-required').fadeIn().delay(3000).fadeOut();
+	}
+
+	else {
+		var data = {
+			scheduleId: scheduleId,
+			body: noteBody,
+		};
+
+		self.core.resource.schedule_note.post(data)
+		.then(function(res) {
+			$('.note-required').hide();
+			$('.note-saved-success').fadeIn();
+			setTimeout(function() {
+				location.reload();
+			}, 3000);
+		});
+	}
+
+}
+
+handler.prototype.editNoteForTalent = function(e) {
+
+	e.preventDefault();
+
+	var ids = $(this).attr('id');
+		ids = ids.split("_");
+
+	var	scheduleId = ids[1];
+	var noteId = ids[2];
+
+	var noteBody = $('.talent-note-body-edit').val();
+
+	if(noteBody.length < 1) {
+		$('.talent-note-body-edit').focus();
+		$('.note-required').fadeIn().delay(3000).fadeOut();
+	}
+
+	else {
+		var data = {
+			scheduleId: scheduleId,
+			noteId: noteId,
+			body: noteBody,
+		};
+
+		self.core.resource.schedule_note.patch(data)
+		.then(function(res) {
+			$('.note-required').hide();
+			$('.note-saved-success').fadeIn();
+			setTimeout(function() {
+				location.reload();
+			}, 3000);
+		});
+	}
+}
+
 module.exports = function(core, user, projectId, roleId) {
 	return new handler(core, user, projectId, roleId);
 }

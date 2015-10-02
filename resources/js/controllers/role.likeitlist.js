@@ -10,4 +10,10 @@ module.exports = function(core, user, projectId, roleId) {
 		$("#sms-message-textarea").slideToggle('fast');
 	});
 	$('#send-invites-button').on('click', handler.sendInvites);
+
+	$(document).on('click', '.add-casting-note', handler.getDetailsForAddNoteModal);
+	$('.add-note-for-talent').on('click', handler.addNoteForTalent);
+
+	$(document).on('click', '.edit-note-link', handler.getDetailsForEditNoteModal);
+	$('.edit-note-for-talent').on('click', handler.editNoteForTalent);
 }
