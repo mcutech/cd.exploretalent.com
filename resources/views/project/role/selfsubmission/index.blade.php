@@ -14,6 +14,7 @@
 						<div class="col-md-6">
 							<div class="padding-top-small">
 								<h5 class="margin-zero"><span class="text-normal">Self Submissions for Role:</span> <span data-bind="<%= role.name %>"></span></h5>
+								<button id="rate-all-button" class="btn btn-defaut">Add all to Like It List</button>
 							</div>
 						</div>
 						<div class="col-md-6 padding-left-zero">

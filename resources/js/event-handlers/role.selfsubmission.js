@@ -236,6 +236,31 @@ handler.prototype.changeRole = function() {
 	window.location = '/projects/' + self.projectId + '/roles/' + $('#roles-list').val() + '/self-submissions';
 }
 
+
+handler.prototype.rateAll = function() {
+	var talents = [];
+
+	talents = _.map(self.project.role.selfsubmissions.data, function(n) {
+		return n.getTalent().bam_talentnum;
+	});
+
+	if (talents.length) {
+		var data = {
+			query : [
+				[ 'whereIn', 'talentci.talentnum', talents ]
+			]
+		}
+		self.core.resource.talent.get(data)
+		.then(function(result) {
+			console.log(result);
+		});
+
+		self.core.service.rest.post(self.core.config.api.base + '/cd/talentci/import/' + self.roleId, data)
+			.then(function(result) {
+				self.refreshLikeItList();
+			});
+	}
+}
 module.exports = function(core, user, projectId, roleId) {
 	return new handler(core, user, projectId, roleId);
 }
