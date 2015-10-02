@@ -277,8 +277,8 @@ handler.prototype.addToFav = function(){
 				self.refreshSelfSubmissions();
 			});
 		}
-	}
 }
+
 
 handler.prototype.rateAll = function() {
 	var talents = [];
