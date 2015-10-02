@@ -17,7 +17,7 @@
 				<div class="tab-content padding-top-zero padding-bottom-small">
 					<div class="talent-tab tab-pane fade active in" data-bind="talent-body-<%= getTalent().bam_talentnum %>" data-bind-target="id">
 						<div class="head-area padding-zero padding-bottom-zero display-inline-block col-md-12">
-							<div class="talent-name font-size-normal text-semibold float-left text-succes"><span data-bind="<%= getTalent().bam_talentci.getFullName() %>"></span>, <span data-bind="<%= getTalent().bam_talentci.getAge() %>" class="age-area"></span></div>
+							<div class="talent-name font-size-normal text-semibold float-left text-success"><span data-bind="<%= getTalent().bam_talentci.getFullName() %>"></span>, <span data-bind="<%= getTalent().bam_talentci.getAge() %>" class="age-area"></span></div>
 							<div class="favorite-indicator float-right">
 								<button class="btn-link">
 									<i class="fa fa-star-o font-size-medium-large text-light-gray" data-bind="favorite-<%= getTalent().id %>" data-bind-target="id"></i>
@@ -50,21 +50,21 @@
 					</div>
 
 					<div class="tab-pane fade" data-bind="like-it-note-<%= getTalent().bam_talentnum %>" data-bind-target="id">
-						<div class="tab-pane" id="tab-content-2">
+						<div class="tab-pane">
 							<div class="item-container-holder">
 								<div id="schedule-notes" class="talent-item note-item-container padding-small">
-									<div class="note-item" data-bind-template="#schedule-notes" data-bind-value="schedule_notes">
+									<div class="note-item" data-bind-template="#schedule-notes" data-bind-value="schedule_notes" style="border-bottom: 1px solid #ccc;">
 										<div class="name-date">
 											<div class="name" data-bind="<%= user.bam_cd_user.getFullName() %>"></div>
 											<div class="date" data-bind="<%= created_at %>"></div>
 										</div>
 										<div class="note-body" data-bind="<%= body %>">
 										</div>
-										<a class="btn-link"><i class="fa fa-pencil"></i> Edit this note</a>
+										<a data-toggle="modal" data-target="#talent-edit-note-modal" class="btn-link edit-note-link" data-bind="edit-note_<%= schedule_id + '_' + id %>" data-bind-target="id"><i class="fa fa-pencil"></i> Edit this note</a>
 									</div>
 								</div>
 							</div>
-							<a data-toggle="modal" data-target="#talent-add-note-modal" class="btn btn-outline btn-default btn-block"><div class="add-casting-note"><i class="fa fa-plus"></i> Add Casting Note</div></a>
+							<a data-toggle="modal" data-target="#talent-add-note-modal" class="add-casting-note btn btn-outline btn-default btn-block" data-bind="add-casting-note_<%= id %>" data-bind-target="id"><i class="fa fa-plus"></i> Add Casting Note</a>
 						</div>
 					</div>
 
@@ -90,8 +90,8 @@
 						<div class="float-right-md-lg">
 							<div class="display-block title">&nbsp;</div>
 							<div class="btn-group btn-group-xs">
-								<a data-toggle="modal" data-target="#talent-resume-modal" class="btn btn-xs btn-default"><span class="fa fa-file-text-o"></span></a>
-								<a data-toggle="modal" data-bind="<%= invitee.bam_talentnum %>" data-bind-target="data-id" id="talent-photo" data-target="#talent-photos-modal" class="btn btn-xs btn-default"><span class="fa fa-picture-o"></span></a>
+								<a data-toggle="modal" data-bind="<%= getTalent().bam_talentnum %>" data-bind-target="data-id" id="talent-resume" data-target="#talent-resume-modal" class="btn btn-xs btn-default"><span class="fa fa-file-text-o"></span></a>
+								<a data-toggle="modal" data-bind="<%= getTalent().bam_talentnum %>" data-bind-target="data-id" id="talent-photo" data-target="#talent-photos-modal" class="btn btn-xs btn-default"><span class="fa fa-picture-o"></span></a>
 								<a data-toggle="modal" data-target="#" class="btn btn-xs btn-default"><span class="fa fa-calendar"></span></a>
 								<a data-toggle="modal" data-target="#talent-message-modal" class="btn btn-xs btn-default"><span class="fa fa-envelope-o"></span></a>
 							</div>

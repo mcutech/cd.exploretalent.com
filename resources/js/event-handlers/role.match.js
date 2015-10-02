@@ -54,35 +54,6 @@ handler.prototype.refreshMatches = function() {
 			'bam_talent_media2'
 		],
 		wheres : [
-			[ 'leftJoin', 'laret_users', 'laret_users.bam_talentnum', '=', 'talentci.talentnum' ],
-			[ 'select', '*', 'laret_favorite_talents.id AS favorite', 's1.id AS schedule_id1', 's2.id AS schedule_id2', 's1.rating AS rating1', 's2.rating AS rating2' ],
-			[ 'leftJoin', 'laret_favorite_talents', 'laret_favorite_talents.bam_talentnum', '=', 'talentci.talentnum' ],
-			[ 'leftJoin', 'laret_schedules AS s1', 's1.invitee_id', '=', 'laret_users.id' ],
-			[ 'leftJoin', 'laret_schedules AS s2', 's2.inviter_id', '=', 'laret_users.id' ],
-			[ 'where', [
-					[ 'where', 'laret_favorite_talents.bam_cd_user_id', '=', self.user.bam_cd_user_id ],
-					[ 'orWhere', [
-							[ 'whereNull', 'laret_favorite_talents.bam_cd_user_id']
-						]
-					]
-				]
-			],
-			[ 'where', [
-					[ 'where', 's1.bam_role_id', '=', self.roleId ],
-					[ 'orWhere', [
-							[ 'whereNull', 's1.bam_role_id' ]
-						]
-					]
-				]
-			],
-			[ 'where', [
-					[ 'where', 's2.bam_role_id', '=', self.roleId ],
-					[ 'orWhere', [
-							[ 'whereNull', 's2.bam_role_id' ]
-						]
-					]
-				]
-			]
 		],
 		page : qs.page || 0
 	}
@@ -94,9 +65,72 @@ handler.prototype.refreshMatches = function() {
 	self.core.resource.talent.get(data)
 		.then(function(result) {
 			self.project.role.matches = result;
+
+			// get talent user ids to get schedule
+			var talents = _.map(self.project.role.matches.data, function(n) {
+				if (n.user) {
+					return n.user.id;
+				}
+			});
+
+			if (talents.length > 0) {
+				var data = {
+					jobId : self.project.role.role_id,
+					query : [
+						[ 'whereIn', 'invitee_id', talents ]
+					]
+				};
+
+				return self.core.resource.schedule.get(data);
+			}
+			else {
+				return $.when();
+			}
+		})
+		.then(function(result) {
+			// assign each schedule to respective talent
+			_.each(self.project.role.matches.data, function(talent, index) {
+				self.project.role.matches.data[index].schedule = null;
+				_.each(result.data, function(s) {
+					if (talent.user && talent.user.id == s.invitee_id) {
+						self.project.role.matches.data[index].schedule = s;
+					}
+				});
+			});
+
+			// get talentnum to get favorite_talent
+			var talents = _.map(self.project.role.matches.data, function(n) {
+				return n.talentnum;
+			});
+
+			if (talents.length > 0) {
+				var data = {
+					query : [
+						[ 'with', 'bam_talentci.user' ],
+						[ 'whereIn', 'bam_talentnum', talents ]
+					]
+				}
+
+				return self.core.resource.favorite_talent.get(data);
+			}
+			else {
+				return $.when();
+			}
+		})
+		.then(function(result) {
+			// asssign each favorite object to respective talent
+			_.each(self.project.role.matches.data, function(talent, index) {
+				self.project.role.matches.data[index].favorite = null;
+				_.each(result.data, function(n) {
+					if (talent.talentnum == n.bam_talentnum) {
+						self.project.role.matches.data[index].favorite = n;
+					}
+				});
+			});
+
 			self.core.service.databind('#role-match', self.project);
 
-			self.core.service.paginate('#matches-pagination', { total : result.total, class : 'pagination', name : 'page' });
+			self.core.service.paginate('#matches-pagination', { total : self.project.role.matches.total, class : 'pagination', name : 'page' });
 		});
 }
 
