@@ -10,20 +10,20 @@
 		<div class="row-fluid clearfix font-size-small-normal">
 			<div class="col-md-4 padding-zero">
 				<ul class="list-unstyled margin-zero">
-					<li>Gender: <span>Male or Female</span></li>
-					<li>Age Range: <span>20 to 32</span></li>
+					<li>Gender: <span data-bind="<%= (role.gender_female === 1) ? 'Female' : 'Male' %>"></span></li>
+					<li>Age Range: <span data-bind="<%= role.age_min %>"></span> to <span data-bind="<%= role.age_max %>"></span></li>
 				</ul>
 			</div>
 			<div class="col-md-4 padding-zero">
 				<ul class="list-unstyled margin-zero">
-					<li>Height Range: <span>4' 2" to 6' 2"</span></li>
-					<li>Ethnicity: <span>Male or Female</span></li>
+					<li>Height Range: <span data-bind="<%= role.getHeightMinText() %>"></span> to <span data-bind="<%= role.getHeightMaxText() %>"></span></li>
+					<li>Ethnicity: <span data-bind="<%=role.getEthnicities()%>"></span></li>
 				</ul>				
 			</div>
 			<div class="col-md-4 padding-zero">
 				<ul class="list-unstyled">
-					<li>Body Type: <span>20 to 32</span></li>
-					<li>Hair Color: <span>4' 2" to 6' 2"</span></li>
+					<li>Body Type: <span data-bind = "<%=role.getBuilds() %>"></span></li>
+					<li>Hair Color: <span data-bind = "<%=role.getHairColors() %>"></span></li>
 				</ul>
 			</div>
 		</div>

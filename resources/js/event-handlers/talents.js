@@ -20,7 +20,7 @@ handler.prototype.refreshAdvancedSearchValues = function() {
 	return self.core.resource.talent.get(data)
 
 		.then(function(talent) {
-			//console.log(talent);
+			console.log(talent);
 			//layoutInit(self.core, self.user, talent);
 			//$('.search-talents-div').databind(talent);
 			return $.when();
