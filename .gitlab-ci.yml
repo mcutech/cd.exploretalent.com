@@ -1,0 +1,21 @@
+deploy-development:
+  script:
+  - ssh webber@www03 -C "cd ~/dev-cd/ && git fetch && git checkout -f origin/development && ./buildate"
+  type: deploy
+  tags:
+  only:
+  - development
+deploy-testing:
+  script:
+  - ssh webber@www03 -C "cd ~/stage-cd/ && git fetch && git checkout -f origin/testing && ./buildate"
+  type: deploy
+  tags:
+  only:
+  - testing
+deploy-production:
+  script:
+  - ssh webber@www03 -C "cd ~/cd/ && git fetch && git checkout -f $CI_BUILD_REF_NAME && ./buildate"
+  type: deploy
+  tags:
+  only:
+  - /^v([0-9]+).([0-9]+).([0-9]+)$/
