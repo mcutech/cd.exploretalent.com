@@ -53,19 +53,18 @@ handler.prototype.refreshSelfSubmissions = function() {
 
 	return self.project.role.getSelfSubmissions(data)
 		.then(function(result) {
-
 			self.project.role.selfsubmissions = result;
 			self.core.service.databind('#self-submissions', self.project);
 
 			self.core.service.paginate('#self-submissions-pagination', { class : 'pagination', total : result.total, name : 'page' });
-			
+
 			self.getFavoriteTalents();
 		});
 }
 
 handler.prototype.getFavoriteTalents = function() {
 	var talents = _.map(self.project.role.selfsubmissions.data, function(n) {
-		return n.invitee.bam_talentnum;
+		return n.inviter.bam_talentnum;
 	});
 
 	if (talents.length > 0) {
