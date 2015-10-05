@@ -27,7 +27,7 @@
 						<div class="row-fluid clearfix">
 							<div class="talent-photo col-lg-6 col-md-12 col-sm-4 col-xs-12">
 								<div class="photo-user-container">
-									<img data-bind="<%= getTalent().bam_talentci.getPrimaryPhoto() %>" class="img-responsive" />
+									<a href="" data-toggle="modal" data-bind="<%= getTalent().bam_talentnum %>" data-bind-target="data-id" id="talent-photo" data-target="#talent-photos-modal"><img data-bind="<%= getTalent().bam_talentci.getPrimaryPhoto() %>" class="img-responsive" /></a>
 								</div>
 							</div>
 
