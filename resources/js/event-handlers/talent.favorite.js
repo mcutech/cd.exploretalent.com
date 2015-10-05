@@ -49,6 +49,8 @@ handler.prototype.refresh = function(){
 			talent.data.push(res.bam_talentci);
 		});
 		self.core.service.databind('#favorite-result', talent);
+
+		$('#loading-div').hide();
 	})
 
 };

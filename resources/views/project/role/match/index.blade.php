@@ -29,6 +29,16 @@
 							</div>
 						</div>
 					</div>
+					<div id="loading-div">
+						<div class="f_circleG" id="frotateG_01"></div>
+						<div class="f_circleG" id="frotateG_02"></div>
+						<div class="f_circleG" id="frotateG_03"></div>
+						<div class="f_circleG" id="frotateG_04"></div>
+						<div class="f_circleG" id="frotateG_05"></div>
+						<div class="f_circleG" id="frotateG_06"></div>
+						<div class="f_circleG" id="frotateG_07"></div>
+						<div class="f_circleG" id="frotateG_08"></div>
+					</div>
 					<div class="row-fluid clearfix" id="role-match-result">
 						@include('components.talent', [ 'databind' => [ 'template' => '#role-match-result', 'value' => 'role.matches.data' ], 'class' => 'col-md-4' ])
 					</div>

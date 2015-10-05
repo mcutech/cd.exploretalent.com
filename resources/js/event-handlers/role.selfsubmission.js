@@ -60,6 +60,8 @@ handler.prototype.refreshSelfSubmissions = function() {
 			self.core.service.paginate('#self-submissions-pagination', { class : 'pagination', total : result.total, name : 'page' });
 			
 			self.getFavoriteTalents();
+
+			$('#loading-div').hide();
 		});
 }
 
