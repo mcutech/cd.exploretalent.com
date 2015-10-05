@@ -83,7 +83,11 @@ handler.prototype.refreshList = function(group){
 					name 	 : 'talent_page',
 					per_page : 24
 				});*/
+				_.each(list.data, function(val, ind){
+					list.data[ind].schedule = null;
+				});
 				self.core.service.databind('#talent-result', list);
+				console.log(list);
 				return $.when();
 			});
 };
