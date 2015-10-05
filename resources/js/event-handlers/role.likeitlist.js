@@ -51,6 +51,8 @@ handler.prototype.refreshLikeItList = function() {
 			self.core.service.paginate('#like-it-list-pagination', { class : 'pagination', total : result.total, name : 'page' });
 
 			self.getFavoriteTalents();
+
+			$('#loading-div').hide();
 		});
 }
 

@@ -84,6 +84,7 @@ handler.prototype.refreshList = function(group){
 					per_page : 24
 				});*/
 				self.core.service.databind('#talent-result', list);
+				$('#loading-div').hide();
 				return $.when();
 			});
 };
