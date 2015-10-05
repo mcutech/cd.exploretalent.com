@@ -67,7 +67,6 @@
 			  							<li><div class="title">Rate/Pay:</div>$<span data-bind="<%= rate %>"></span> <span data-bind="<%= (rate_des) ? 'per ' + getRate() : '' %>"></span></li>
 			  							<li><div class="title">Audition Date:</div><span data-bind="<%= (!aud_timestamp1) ? 'N/A' : aud_timestamp1 %>"></span></li>
 			  							<li><div class="title">Casting Category:</div><span data-bind="<%= (cat) ? getCategory() : 'N/A' %>"></span></li>
-			  							<li><div class="title">Market In:</div><span data-bind="<%= (market) ? market : 'N/A' %>"></span></li>
 			  						</ul>
 			  					</div>
 
@@ -80,9 +79,11 @@
 			  						</ul>
 			  					</div>
 
-			  					<div class="col-md-12">
-			  						<ul class="list-unstyled description">
-			  							<li><div class="title">Description:</div><span data-bind="<%= (des) ? des : 'N/A' %>"></span></li>
+			  					<div class="col-md-12 margin-top-small">
+			  						<ul class="list-unstyled additional-details market-description">
+			  							<li class="display-none"></li>
+			  							<li><div class="title display-block">Market In:</div><span data-bind="<%= (market) ? market : 'N/A' %>"></span></li>
+			  							<li><div class="title display-block">Description:</div><span data-bind="<%= (des) ? des : 'N/A' %>"></span></li>
 			  						</ul>
 			  					</div>
 
@@ -120,13 +121,13 @@
 				  						<div class="panel roles-item">
 				  							<div class="padding-normal">
 				  								<div class="row-fluid clearfix roles-header">
-				  									<div class="col-md-6 text-bold">
+				  									<div class="col-md-8 text-bold">
 				  										<span>Role ID#<span data-bind="<%= role_id %>"></span></span> - <span><span data-bind="<%= (name) ? name : 'N/A' %>"></span></span>
 				  										<ul class="list-unstyled description">
 				  											<li><div class="title">Description:</div> <span data-bind="<%= (des) ? des : 'N/A' %>"></span>.</li>
 				  										</ul>
 				  									</div>
-				  									<div class="col-md-6">
+				  									<div class="col-md-4">
 				  										<div class="float-right" data-bind="<%= casting_id %>" data-bind-target="id">
 				  											<a class="btn btn-lg btn-outline font-size-normal" data-bind="/projects/<%= casting_id %>/roles/<%= role_id %>/edit">
 				  												<i class="fa fa-pencil"></i> Edit
