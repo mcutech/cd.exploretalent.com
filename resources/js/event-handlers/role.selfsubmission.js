@@ -58,7 +58,31 @@ handler.prototype.refreshSelfSubmissions = function() {
 			self.core.service.databind('#self-submissions', self.project);
 
 			self.core.service.paginate('#self-submissions-pagination', { class : 'pagination', total : result.total, name : 'page' });
+			
+			self.getFavoriteTalents();
 		});
+}
+
+handler.prototype.getFavoriteTalents = function() {
+	var talents = _.map(self.project.role.selfsubmissions.data, function(n) {
+		return n.invitee.bam_talentnum;
+	});
+
+	if (talents.length > 0) {
+		var data = {
+			query : [
+				[ 'with', 'bam_talentci.user' ],
+				[ 'whereIn', 'bam_talentnum', talents ]
+			]
+		};
+
+		self.core.resource.favorite_talent.get(data)
+			.then(function(result) {
+				_.each(result.data, function(talent) {
+					$('#favorite-' + talent.bam_talentci.user.id).removeClass('text-light-gray').addClass('text-warning');
+				});
+			});
+	}
 }
 
 handler.prototype.updateFilter = function() {
@@ -238,6 +262,24 @@ handler.prototype.changeRole = function() {
 	window.location = '/projects/' + self.projectId + '/roles/' + $('#roles-list').val() + '/self-submissions';
 }
 
+
+handler.prototype.addToFav = function(){
+	var b = $(this).closest('.talent-tab').attr('id');
+	var talentnum = (b.split('-')[2]);
+	if(!$(this).find('i').hasClass('text-light-gray')){
+		self.core.resource.favorite_talent.delete({ favoriteId : talentnum})
+			.then(function(res){
+				self.refreshSelfSubmissions();
+			});
+	} else {
+		self.core.resource.favorite_talent.post({ bam_cd_user_id : self.user.bam_cd_user_id, bam_talentnum : talentnum})
+			.then(function(res){
+				self.refreshSelfSubmissions();
+			});
+		}
+}
+
+
 handler.prototype.rateAll = function() {
 	var talents = [];
 
@@ -259,6 +301,7 @@ handler.prototype.rateAll = function() {
 		self.core.service.rest.post(self.core.config.api.base + '/cd/talentci/import/' + self.roleId, data)
 			.then(function(result) {
 				self.refreshLikeItList();
+
 			});
 	}
 }
