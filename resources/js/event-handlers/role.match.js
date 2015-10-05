@@ -129,7 +129,6 @@ handler.prototype.refreshMatches = function() {
 			});
 
 			self.core.service.databind('#role-match', self.project);
-
 			self.core.service.paginate('#matches-pagination', { total : self.project.role.matches.total, class : 'pagination', name : 'page' });
 		});
 }
