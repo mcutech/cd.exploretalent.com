@@ -42,6 +42,7 @@ handler.prototype.refreshLikeItList = function() {
 
 	return self.project.role.getLikeItList(data)
 		.then(function(result) {
+			console.log(result);
 			self.project.role.likeitlist = result;
 			self.core.service.databind('.page-header', self.project);
 			self.core.service.databind('#submissions-sub-menu', self.project);
@@ -50,6 +51,8 @@ handler.prototype.refreshLikeItList = function() {
 			self.core.service.paginate('#like-it-list-pagination', { class : 'pagination', total : result.total, name : 'page' });
 
 			self.getFavoriteTalents();
+
+			$('#loading-div').hide();
 		});
 }
 
@@ -222,7 +225,7 @@ handler.prototype.getDetailsForAddNoteModal = function() {
 		scheduleId = scheduleId.split("_");
 		scheduleId = scheduleId[1];
 
-	var data = { 
+	var data = {
 		scheduleId : scheduleId
 	};
 
@@ -281,7 +284,7 @@ handler.prototype.addNoteForTalent = function(e) {
 	}
 
 	else {
-		var data = { 
+		var data = {
 			scheduleId: scheduleId,
 			body: noteBody,
 		};
@@ -295,7 +298,7 @@ handler.prototype.addNoteForTalent = function(e) {
 			}, 3000);
 		});
 	}
-	
+
 }
 
 handler.prototype.editNoteForTalent = function(e) {
@@ -316,7 +319,7 @@ handler.prototype.editNoteForTalent = function(e) {
 	}
 
 	else {
-		var data = { 
+		var data = {
 			scheduleId: scheduleId,
 			noteId: noteId,
 			body: noteBody,
@@ -330,7 +333,7 @@ handler.prototype.editNoteForTalent = function(e) {
 				location.reload();
 			}, 3000);
 		});
-	}	
+	}
 
 }
 

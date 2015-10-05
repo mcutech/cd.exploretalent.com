@@ -10,8 +10,6 @@ module.exports = function(core, user, projectId, roleId) {
 
 	$(document).on('click', '.btn-link', handler.addToFav);
 
-	$(document).on('click', '#talent-photo', handler.refreshTalentPhotos);
-
 	$(document).on('click', '.add-casting-note', handler.getDetailsForAddNoteModal);
 	$('.add-note-for-talent').on('click', handler.addNoteForTalent);
 

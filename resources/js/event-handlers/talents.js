@@ -87,7 +87,7 @@ handler.prototype.refreshList = function(group){
 					list.data[ind].schedule = null;
 				});
 				self.core.service.databind('#talent-result', list);
-				console.log(list);
+				$('#loading-div').hide();
 				return $.when();
 			});
 };
