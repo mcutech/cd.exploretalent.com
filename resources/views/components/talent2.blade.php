@@ -11,7 +11,7 @@
 		</li>
 	</ul>
 
-	<div class="panel">
+	<div class="panel margin-bottom-zero">
 		<div class="panel-body">
 			<div class="row-fluid clearfix">
 				<div class="tab-content padding-top-zero padding-bottom-small">
@@ -25,13 +25,13 @@
 							</div>
 						</div>
 						<div class="row-fluid clearfix">
-							<div class="talent-photo col-lg-6 col-md-12 col-sm-4 col-xs-12">
+							<div class="talent-photo col-lg-6 col-md-6 col-sm-4 col-xs-12">
 								<div class="photo-user-container">
 									<img data-bind="<%= getTalent().bam_talentci.getPrimaryPhoto() %>" class="img-responsive" />
 								</div>
 							</div>
 
-							<div class="col-lg-6 col-md-12 col-sm-8 col-xs-12 padding-right-zero talent-information padding-top-small">
+							<div class="col-lg-6 col-md-6 col-sm-8 col-xs-12 padding-right-zero talent-information padding-top-small">
 								<div class="talent-location">
 									<div class="photo-user-container">
 									<i class="fa fa-map-marker"></i> <span data-bind="<%= getTalent().bam_talentci.stateText() %>"></span>
@@ -51,27 +51,27 @@
 
 					<div class="tab-pane fade" data-bind="like-it-note-<%= getTalent().bam_talentnum %>" data-bind-target="id">
 						<div class="tab-pane">
-							<div class="item-container-holder">
+							<div class="note-item-container-holder">
 								<div id="schedule-notes" class="talent-item note-item-container padding-small">
-									<div class="note-item" data-bind-template="#schedule-notes" data-bind-value="schedule_notes" style="border-bottom: 1px solid #ccc;">
+									<div class="note-item" data-bind-template="#schedule-notes" data-bind-value="schedule_notes">
 										<div class="name-date">
 											<div class="name" data-bind="<%= user.bam_cd_user.getFullName() %>"></div>
 											<div class="date" data-bind="<%= created_at %>"></div>
 										</div>
 										<div class="note-body" data-bind="<%= body %>">
 										</div>
-										<a data-toggle="modal" data-target="#talent-edit-note-modal" class="btn-link edit-note-link" data-bind="edit-note_<%= schedule_id + '_' + id %>" data-bind-target="id"><i class="fa fa-pencil"></i> Edit this note</a>
+										<a data-toggle="modal" data-target="#talent-edit-note-modal" class="edit-note-link" data-bind="edit-note_<%= schedule_id + '_' + id %>" data-bind-target="id"><i class="fa fa-pencil"></i> Edit this note</a>
 									</div>
 								</div>
 							</div>
-							<a data-toggle="modal" data-target="#talent-add-note-modal" class="add-casting-note btn btn-outline btn-default btn-block" data-bind="add-casting-note_<%= id %>" data-bind-target="id"><i class="fa fa-plus"></i> Add Casting Note</a>
+							<a data-toggle="modal" data-target="#talent-add-note-modal" class="add-casting-note padding-small font-size-normal btn-block btn btn-outline" data-bind="add-casting-note_<%= id %>" data-bind-target="id"><i class="fa fa-plus"></i> Add Casting Note</a>
 						</div>
 					</div>
 
 				</div>
 			</div>
 			<div class="row-fluid clearfix">
-				<div class="col-md-6 padding-zero">
+				<div class="col-md-6 col-sm-6 padding-zero">
 					<div class="like-it-list-container">
 						<div class="text-left">
 							<div class="display-block title"> Add to like list </div>
@@ -85,7 +85,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-md-6 padding-zero">
+				<div class="col-md-6 col-sm-6 padding-zero">
 					<div class="like-it-list-container">
 						<div class="float-right-md-lg">
 							<div class="display-block title">&nbsp;</div>
