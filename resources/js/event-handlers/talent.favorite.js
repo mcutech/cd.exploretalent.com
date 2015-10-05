@@ -46,6 +46,7 @@ handler.prototype.refresh = function(){
 			res.bam_talentci.rating = null;
 			res.bam_talentci.rating1 = null;
 			res.bam_talentci.rating2 = null;
+			res.bam_talentci.schedule = null;
 			talent.data.push(res.bam_talentci);
 		});
 		self.core.service.databind('#favorite-result', talent);
