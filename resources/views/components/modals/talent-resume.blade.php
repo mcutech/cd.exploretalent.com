@@ -19,10 +19,10 @@
 							<li class="active">
 								<a href="#uidemo-tabs-default-demo-acting-modeling" data-toggle="tab">Acting/Modeling</a>
 							</li>
-							<li class="" data-bind="<%= (bam_talent_music[0].genre && bam_talent_music[0].genre2 && bam_talent_music[0].genre3 && bam_talent_music[0].genre4 && bam_talent_music[0].des_1 && bam_talent_music[0].des_2 && bam_talent_music[0].des_3) ? 1 : 0 %>" data-bind-target="visibility">
+							<li class="" data-bind="<%= (bam_talent_music[0].genre && bam_talent_music[0].genre2 && bam_talent_music[0].genre3 && bam_talent_music[0].genre4 && bam_talent_music[0].des_1 && bam_talent_music[0].des_2 && bam_talent_music[0].des_3) ? 0 : 1 %>" data-bind-target="visibility">
 									<a href="#uidemo-tabs-default-demo-musician" data-toggle="tab">Musician</a>
 							</li>
-							<li class="" data-bind="<%= (bam_talent_dance[0].dance_style_1 && bam_talent_dance[0].dance_style_2 && bam_talent_dance[0].dance_style_3 && bam_talent_dance[0].dance_style_4 && bam_talent_dance[0].dance_style_5 && bam_talent_dance[0].dancer_background && bam_talent_dance[0].influences) ? 1 : 0 %>" data-bind-target="visibility">
+							<li class="" data-bind="<%= (bam_talent_dance[0].dance_style_1 && bam_talent_dance[0].dance_style_2 && bam_talent_dance[0].dance_style_3 && bam_talent_dance[0].dance_style_4 && bam_talent_dance[0].dance_style_5 && bam_talent_dance[0].dancer_background && bam_talent_dance[0].influences) ? 0 : 1 %>" data-bind-target="visibility">
 								<a href="#uidemo-tabs-default-demo-dance" data-toggle="tab">Dance</a>
 							</li>
 						</ul>
@@ -102,7 +102,7 @@
 											<label style="width=20px;">Primary Role</label>
 										</div>
 										<div class="col-md-2 col-xs-3">
-											<span data-bind="<%= bam_talent_music[0].number_of_gigs %>"></span>
+											<span data-bind="<%= bam_talent_music[0].music_role %>"></span>
 										</div>
 										<div class="col-md-4 col-xs-3">
 											<label>Performances</label>
