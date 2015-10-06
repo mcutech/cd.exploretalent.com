@@ -315,6 +315,7 @@ handler.prototype.addToFav = function(){
 				self.refreshMatches();
 			});
 	}
+}
 
 handler.prototype.getDetailsForAddNoteModal = function() {
 
