@@ -1,3 +1,11 @@
+// input tagging on share like it list
+.bootstrap-tagsinput{
+	width: 100%;
+	.label-info{
+	  background: #B9B2B0;
+	}	
+}
+
 [data-bind-template] {
 	display:none !important;
 }

@@ -13,30 +13,31 @@
     "tests"
   ],
   "dependencies": {
-	"pixel-admin-base-assets": "git@gitlab.com:utech/pixel-admin-base-assets.git#v0.0.5"
+    "pixel-admin-base-assets": "git@gitlab.com:utech/pixel-admin-base-assets.git#v0.0.5",
+    "bootstrap-tagsinput": "~0.5.0"
   },
   "overrides": {
-	"bootstrap-sass-official" : {
-		"main": [
-			"./assets/javascripts/bootstrap/transition.js",
-			"./assets/javascripts/bootstrap/alert.js",
-			"./assets/javascripts/bootstrap/button.js",
-			"./assets/javascripts/bootstrap/carousel.js",
-			"./assets/javascripts/bootstrap/collapse.js",
-			"./assets/javascripts/bootstrap/dropdown.js",
-			"./assets/javascripts/bootstrap/tooltip.js",
-			"./assets/javascripts/bootstrap/popover.js",
-			"./assets/javascripts/bootstrap/scrollspy.js",
-			"./assets/javascripts/bootstrap/tab.js",
-			"./assets/javascripts/bootstrap/affix.js",
-			"./assets/stylesheets/_bootstrap.scss"
-		]
-	},
+    "bootstrap-sass-official": {
+      "main": [
+        "./assets/javascripts/bootstrap/transition.js",
+        "./assets/javascripts/bootstrap/alert.js",
+        "./assets/javascripts/bootstrap/button.js",
+        "./assets/javascripts/bootstrap/carousel.js",
+        "./assets/javascripts/bootstrap/collapse.js",
+        "./assets/javascripts/bootstrap/dropdown.js",
+        "./assets/javascripts/bootstrap/tooltip.js",
+        "./assets/javascripts/bootstrap/popover.js",
+        "./assets/javascripts/bootstrap/scrollspy.js",
+        "./assets/javascripts/bootstrap/tab.js",
+        "./assets/javascripts/bootstrap/affix.js",
+        "./assets/stylesheets/_bootstrap.scss"
+      ]
+    },
     "bootstrap-select": {
       "main": [
-		"dist/css/bootstrap-select.css",
-		"dist/js/bootstrap-select.js"
-	  ]
+        "dist/css/bootstrap-select.css",
+        "dist/js/bootstrap-select.js"
+      ]
     },
     "bootstrap-datepicker": {
       "main": "js/bootstrap-datepicker.js"
@@ -123,6 +124,6 @@
     "jquery": "~1.10.2",
     "moment": "~2.0.0",
     "bootstrap-datepicker": "~1.2.0",
-	"components-font-awesome": "~4.2.0"
+    "components-font-awesome": "~4.2.0"
   }
 }

@@ -15,7 +15,7 @@
 							</div>
 						</div>
 						<div class="col-md-6 text-align-right">
-							<a data-bind="/projects/<%= casting_id %>/roles/<%= role.role_id %>/public-like-it-list" class="btn btn-primary" data-toggle="modal">Share Like It List</a>
+							<a data-toggle="modal" data-target="#share-like-it-list" class="btn btn-primary">Share Like It List</a>
 							<a data-toggle="modal" data-target="#invite-to-audition-modal" class="btn btn-primary"><i class="fa fa-envelope-o"></i> Invite to Audition</a>
 						</div>
 					</div>
