@@ -15,5 +15,5 @@ module.exports = function(core, user, projectId, roleId) {
 
 	$(document).on('click', '.edit-note-link', handler.getDetailsForEditNoteModal);
 	$('.edit-note-for-talent').on('click', handler.editNoteForTalent);
-
+	$(document).on('click', '.fav-btn', handler.addToFav);
 }

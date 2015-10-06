@@ -16,7 +16,7 @@
 						<div class="head-area padding-zero padding-bottom-zero display-inline-block col-md-12">
 							<div class="talent-name font-size-normal text-semibold float-left text-succes"><span data-bind="<%= getFullName() %>"></span>, <span data-bind="<%= getAge() %>" class="age-area"></span></div>
 							<div class="favorite-indicator float-right">
-								<button class="btn-link" data-bind="<%= favorite ? favorite.id : '' %>" data-bind-target="data-id">
+								<button class="btn-link fav-btn" data-bind="<%= favorite ? favorite.id : '' %>" data-bind-target="data-id">
 									<i class="fa fa-star-o font-size-medium-large" data-bind="<%= favorite ? 'text-warning' : 'text-light-gray' %>" data-bind-target="class"></i>
 								</button>
 							</div>
