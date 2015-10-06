@@ -8,4 +8,10 @@ module.exports = function(core, user, projectId, roleId) {
 	$('#roles-list').on('change', handler.changeRole);
 	$(document).on('click', '.rating-button', handler.rateSchedule);
 	$(document).on('click', '.btn-link', handler.addToFav);
+
+	$(document).on('click', '.add-casting-note', handler.getDetailsForAddNoteModal);
+	$('.add-note-for-talent').on('click', handler.addNoteForTalent);
+
+	$(document).on('click', '.edit-note-link', handler.getDetailsForEditNoteModal);
+	$('.edit-note-for-talent').on('click', handler.editNoteForTalent);
 }

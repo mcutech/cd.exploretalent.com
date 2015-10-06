@@ -44,21 +44,24 @@
 						</div>
 					</div>
 					<div class="tab-pane fade" data-bind="like-it-note-<%= talentnum %>" data-bind-target="id">
-						<div class="tab-pane" id="tab-content-2">
-							<div class="note-item-container-holder">
+						<div class="tab-pane" id="note-container" data-bind="<%= schedule.id ? 'schedule-' + schedule.id : 'user-' + user.id %>" data-bind-target="data-id">
+							<div class="item-container-holder">
 								<div id="schedule-notes" class="talent-item note-item-container padding-small">
-									<div class="note-item" data-bind-template="#schedule-notes" data-bind-value="schedule_notes">
-										<div class="name-date">
-											<div class="name" data-bind="<%= user.bam_cd_user.getFullName() %>"></div>
-											<div class="date" data-bind="<%= created_at %>"></div>
+									<div class="note-item" data-bind-template="#schedule-notes" data-bind-value="schedule.schedule_notes" style="border-bottom: 1px solid #ccc;">
+										<div class="note-header">
+											<div class="photo"></div>
+											<div class="name-date">
+												<div class="name" data-bind="<%= user.bam_cd_user.getFullName() %>"></div>
+												<div class="date" data-bind="<%= created_at %>"></div>
+											</div>
+											<div class="note-body" data-bind="<%= body %>">
+											</div>
+											<a data-toggle="modal" data-target="#talent-edit-note-modal" class="btn-link edit-note-link" data-bind="edit-note_<%= schedule_id + '_' + id %>" data-bind-target="id"><i class="fa fa-pencil"></i> Edit this note</a>
 										</div>
-										<div class="note-body" data-bind="<%= body %>">
-										</div>
-										<a data-toggle="modal" data-target="#talent-edit-note-modal" class="edit-note-link" data-bind="edit-note_<%= schedule_id + '_' + id %>" data-bind-target="id"><i class="fa fa-pencil"></i> Edit this note</a>
 									</div>
 								</div>
 							</div>
-							<a href="#"><div class="add-casting-note padding-small font-size-normal btn-block btn btn-outline"><i class="fa fa-plus"></i> Add Casting Note</div></a>
+							<a data-toggle="modal" data-target="#talent-add-note-modal" class="add-casting-note btn btn-outline btn-default btn-block" data-bind="add-casting-note_<%= schedule.id ? 'schedule-' + schedule.id : 'user-' + user.id %>" data-bind-target="id"><i class="fa fa-plus"></i> Add Casting Note</a>
 						</div>
 					</div>
 				</div>
@@ -69,14 +72,13 @@
 						<div class="text-left">
 						<div data-bind="<%= (schedule) ? 1 : 0 %>" data-bind-target="visibility">
 							<div class="display-block title"> Add to like list </div>
-								<div class="btn-group btn-group-xs" data-bind="<%= schedule ? 'schedule-' + schedule.id : 'user-' + user.id %>" data-bind-target="data-id">
-									<button class="btn btn-xs btn-danger rating-button"  data-bind="<%= schedule && parseInt(schedule.rating) == 1 ? 'active' : '' %>" data-bind-target="class">1</button>
-									<button class="btn btn-xs btn-warning rating-button" data-bind="<%= schedule && parseInt(schedule.rating) == 2 ? 'active' : '' %>" data-bind-target="class">2</button>
-									<button class="btn btn-xs btn-info rating-button" data-bind="<%= schedule && parseInt(schedule.rating) == 3 ? 'active' : '' %>" data-bind-target="class">3</button>
-									<button class="btn btn-xs btn-primary rating-button" data-bind="<%= schedule && parseInt(schedule.rating) == 4 ? 'active' : '' %>" data-bind-target="class">4</button>
-									<button class="btn btn-xs btn-success rating-button" data-bind="<%= schedule && parseInt(schedule.rating) == 5 ? 'active' : '' %>" data-bind-target="class">5</button>
-								</div>
-						</div>
+							<div class="btn-group btn-group-xs" data-bind="<%= schedule.id ? 'schedule-' + schedule.id : 'user-' + user.id %>" data-bind-target="data-id">
+								<button class="btn btn-xs btn-danger rating-button"  data-bind="<%= schedule.id && parseInt(schedule.rating) == 1 ? 'active' : '' %>" data-bind-target="class">1</button>
+								<button class="btn btn-xs btn-warning rating-button" data-bind="<%= schedule.id && parseInt(schedule.rating) == 2 ? 'active' : '' %>" data-bind-target="class">2</button>
+								<button class="btn btn-xs btn-info rating-button" data-bind="<%= schedule.id && parseInt(schedule.rating) == 3 ? 'active' : '' %>" data-bind-target="class">3</button>
+								<button class="btn btn-xs btn-primary rating-button" data-bind="<%= schedule.id && parseInt(schedule.rating) == 4 ? 'active' : '' %>" data-bind-target="class">4</button>
+								<button class="btn btn-xs btn-success rating-button" data-bind="<%= schedule.id && parseInt(schedule.rating) == 5 ? 'active' : '' %>" data-bind-target="class">5</button>
+							</div>
 						</div>
 					</div>
 				</div>
