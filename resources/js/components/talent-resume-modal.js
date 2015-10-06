@@ -17,7 +17,9 @@ module.exports = function(core, user) {
 			query : [
 				['with', 'bam_talent_media2'],
 				['with', 'bam_talentinfo1'],
-				['with', 'bam_talentinfo2']
+				['with', 'bam_talentinfo2'],
+				['with', 'bam_talent_dance'],
+				['with', 'bam_talent_music']
 			]
 		};
 
