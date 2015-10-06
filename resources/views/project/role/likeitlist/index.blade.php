@@ -30,7 +30,7 @@
 						<div class="f_circleG" id="frotateG_08"></div>
 					</div>
 					<div class="row-fluid clearfix" id="like-it-list-results">
-						@include('components.talent2', [ 'databind' => [ 'template' => '#like-it-list-results', 'value' => 'role.likeitlist.data' ], 'unrate' => true, 'class' => 'col-md-3' ])
+						@include('components.talent2', [ 'databind' => [ 'template' => '#like-it-list-results', 'value' => 'role.likeitlist.data' ], 'unrate' => true, 'class' => 'col-lg-3 col-md-4 col-sm-6 col-xs-12 talent-item-container' ])
 					</div>
 
 				</div> {{-- talents-search-results --}}
