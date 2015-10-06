@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('master.body')
-<div class="container public-view-like-it-list padding-top-large">
+<div class="container public-view-like-it-list padding-top-large padding-bottom-large">
 	<div class="row-fluid clearfix padding-left-normal padding-right-normal">
 		<div class="col-md-12 clearfix">
 			<div class="row-fluid clearfix">
@@ -47,7 +47,7 @@
 
 					</div>
 				</div> {{-- talents-search-results --}}
-				<div id="like-it-list-pagination" class="col-md-12">
+				<div id="like-it-list-pagination" class="col-md-12 padding-left-large padding-right-large">
 				</div>
 			</div>
 		</div>

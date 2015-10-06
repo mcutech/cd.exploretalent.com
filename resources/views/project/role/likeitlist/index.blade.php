@@ -11,7 +11,9 @@
 				<div id="like-it-list" class="col-md-12 talents-search-result">
 					<div class="row-fluid clearfix top-results-heading margin-bottom-normal">
 						<div class="col-md-6">
-							<div id="like-it-list-pagination">
+							<div class="float-left">
+								<div id="like-it-list-pagination">
+								</div>
 							</div>
 						</div>
 						<div class="col-md-6 text-align-right">

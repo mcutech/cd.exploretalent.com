@@ -1,5 +1,5 @@
 <div class="{{ $class or 'col-md-3' }} talent-item-container" data-bind-template="{{ $databind['template'] or '' }}" data-bind-value="{{ $databind['value'] or '' }}">
-	<ul class="nav nav-tabs" style="width:90%;">
+	<ul class="nav nav-tabs">
 		<li class="active">
 			<a data-bind="#talent-body-<%= talentnum %>" href="#talent-body" data-toggle="tab">Photo</a>
 		</li>
@@ -13,7 +13,7 @@
 			<div class="row-fluid clearfix">
 				<div class="tab-content padding-top-zero padding-bottom-small">
 					<div class="talent-tab tab-pane fade active in" data-bind="talent-body-<%= talentnum %>" data-bind-target="id">
-						<div class="head-area padding-zero padding-bottom-zero col-md-12">
+						<div class="head-area padding-zero padding-bottom-zero display-inline-block col-md-12">
 							<div class="talent-name font-size-normal text-semibold float-left text-succes"><span data-bind="<%= getFullName() %>"></span>, <span data-bind="<%= getAge() %>" class="age-area"></span></div>
 							<div class="favorite-indicator float-right">
 								<button class="btn-link" data-bind="<%= favorite ? favorite.id : '' %>" data-bind-target="data-id">
@@ -22,7 +22,7 @@
 							</div>
 						</div>
 						<div class="row-fluid clearfix">
-							<div class="talent-photo col-lg-6 col-md-12 col-sm-4 col-xs-12">
+							<div class="talent-photo col-lg-6 col-md-12 col-sm-6 col-xs-12">
 								<div class="photo-user-container">
 									<img data-bind="<%= getPrimaryPhoto() %>" class="img-responsive" />
 								</div>
@@ -64,30 +64,25 @@
 				</div>
 			</div>
 			<div class="row-fluid clearfix">
-				<div class="col-md-6 col-sm-6 padding-zero">
+				<div class="col-md-12 col-sm-12 padding-zero">
 					<div class="like-it-list-container">
-						<div class="text-left">
-							<div class="display-block title"> Add to like list </div>
-								<div class="btn-group btn-group-xs" data-bind="<%= schedule ? 'schedule-' + schedule.id : 'user-' + user.id %>" data-bind-target="data-id">
-									<button class="btn btn-xs btn-danger rating-button"  data-bind="<%= schedule && parseInt(schedule.rating) == 1 ? 'active' : '' %>" data-bind-target="class">1</button>
-									<button class="btn btn-xs btn-warning rating-button" data-bind="<%= schedule && parseInt(schedule.rating) == 2 ? 'active' : '' %>" data-bind-target="class">2</button>
-									<button class="btn btn-xs btn-info rating-button" data-bind="<%= schedule && parseInt(schedule.rating) == 3 ? 'active' : '' %>" data-bind-target="class">3</button>
-									<button class="btn btn-xs btn-primary rating-button" data-bind="<%= schedule && parseInt(schedule.rating) == 4 ? 'active' : '' %>" data-bind-target="class">4</button>
-									<button class="btn btn-xs btn-success rating-button" data-bind="<%= schedule && parseInt(schedule.rating) == 5 ? 'active' : '' %>" data-bind-target="class">5</button>
-								</div>
+						<div class="display-block title"> Add to like list </div>
+						<div class="btn-group talent-function" data-bind="<%= schedule ? 'schedule-' + schedule.id : 'user-' + user.id %>" data-bind-target="data-id">
+							<button class="btn btn-xs btn-danger rating-button function-item"  data-bind="<%= schedule && parseInt(schedule.rating) == 1 ? 'active' : '' %>" data-bind-target="class">1</button>
+							<button class="btn btn-xs btn-warning rating-button function-item" data-bind="<%= schedule && parseInt(schedule.rating) == 2 ? 'active' : '' %>" data-bind-target="class">2</button>
+							<button class="btn btn-xs btn-info rating-button function-item" data-bind="<%= schedule && parseInt(schedule.rating) == 3 ? 'active' : '' %>" data-bind-target="class">3</button>
+							<button class="btn btn-xs btn-primary rating-button function-item" data-bind="<%= schedule && parseInt(schedule.rating) == 4 ? 'active' : '' %>" data-bind-target="class">4</button>
+							<button class="btn btn-xs btn-success rating-button function-item" data-bind="<%= schedule && parseInt(schedule.rating) == 5 ? 'active' : '' %>" data-bind-target="class">5</button>
 						</div>
 					</div>
 				</div>
-				<div class="col-md-6 col-sm-6 padding-zero">
+				<div class="col-md-12 col-sm-12 padding-zero margin-top-small">
 					<div class="like-it-list-container">
-						<div class="float-right-md-lg">
-							<div class="display-block title">&nbsp;</div>
-							<div class="btn-group btn-group-xs">
-								<a data-toggle="modal" data-bind="<%= talentnum %>" data-bind-target="data-id" id="talent-resume" data-target="#talent-resume-modal" class="btn btn-xs btn-default"><span class="fa fa-file-text-o"></span></a>
-								<a data-toggle="modal" data-bind="<%= talentnum %>" data-bind-target="data-id" id="talent-photo" data-target="#talent-photos-modal" class="btn btn-xs btn-default"><span class="fa fa-picture-o"></span></a>
-								<a data-toggle="modal" data-target="#" class="btn btn-xs btn-default"><span class="fa fa-calendar"></span></a>
-								<a data-toggle="modal" data-target="#talent-message-modal" class="btn btn-xs btn-default"><span class="fa fa-envelope-o"></span></a>
-							</div>
+						<div class="btn-group talent-function">
+							<a data-toggle="modal" data-bind="<%= talentnum %>" data-bind-target="data-id" id="talent-resume" data-target="#talent-resume-modal" class="btn btn-xs btn-outline function-item"><span class="fa fa-file-text-o"></span></a>
+							<a data-toggle="modal" data-bind="<%= talentnum %>" data-bind-target="data-id" id="talent-photo" data-target="#talent-photos-modal" class="btn btn-xs btn-outline function-item"><span class="fa fa-picture-o"></span></a>
+							<a data-toggle="modal" data-target="#" class="btn btn-xs btn-outline function-item"><span class="fa fa-calendar"></span></a>
+							<a data-toggle="modal" data-target="#talent-message-modal" class="btn btn-xs btn-outline function-item"><span class="fa fa-envelope-o"></span></a>
 						</div>
 					</div>
 				</div>
