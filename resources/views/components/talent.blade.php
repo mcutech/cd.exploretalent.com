@@ -45,9 +45,9 @@
 					</div>
 					<div class="tab-pane fade" data-bind="like-it-note-<%= talentnum %>" data-bind-target="id">
 						<div class="tab-pane" id="note-container" data-bind="<%= schedule.id ? 'schedule-' + schedule.id : 'user-' + user.id %>" data-bind-target="data-id">
-							<div class="item-container-holder">
+							<div class="note-item-container-holder">
 								<div id="schedule-notes" class="talent-item note-item-container padding-small">
-									<div class="note-item" data-bind-template="#schedule-notes" data-bind-value="schedule.schedule_notes" style="border-bottom: 1px solid #ccc;">
+									<div class="note-item" data-bind-template="#schedule-notes" data-bind-value="schedule.schedule_notes">
 										<div class="note-header">
 											<div class="photo"></div>
 											<div class="name-date">
