@@ -22,7 +22,7 @@
 									<span class="text-normal"> matches for role </span>
 									<span data-bind="<%= role.name %>"></span>.
 									<button id="rate-all-button" class="btn btn-defaut">Add all to Like It List</button>
-								<span class="text-primary"><a data-bind="/projects/<%= casting_id %>/roles/<%= role.role_id %>/like-it-list" href="">You have xxxx your like it list.</a></span>
+									<span class="text-primary"><a data-bind="/projects/<%= casting_id %>/roles/<%= role.role_id %>/like-it-list" href="">You have <span data-bind="<%= role.likeitlist.total %>"></span> in your like it list.</a></span>
 								</div>
 							</div>
 
