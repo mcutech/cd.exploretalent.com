@@ -21,7 +21,6 @@ handler.prototype.refreshProjectDetails = function() {
 		.then(function(result) {
 			self.project = result;
 			self.core.service.databind('#roles-list', self.project);
-			// console.log(result);
 			// get current role object
 			self.project.role = _.find(self.project.bam_roles, function (role) {
 				return role.role_id == self.roleId;
@@ -39,10 +38,10 @@ handler.prototype.refreshLikeItList = function() {
 			self.project.role.likeitlist = result;
 			self.core.service.databind('.page-header', self.project);
 			self.core.service.databind('#submissions-sub-menu', self.project);
-
 			self.updateFilter();
 		});
 }
+
 
 handler.prototype.refreshMatches = function() {
 	var qs = self.core.service.query_string();
@@ -76,8 +75,11 @@ handler.prototype.refreshMatches = function() {
 			if (talents.length > 0) {
 				var data = {
 					jobId : self.project.role.role_id,
+					withs : [
+						'schedule_notes.user.bam_cd_user'
+					],
 					query : [
-						[ 'whereIn', 'invitee_id', talents ]
+						[ 'whereIn', 'invitee_id', talents ],
 					]
 				};
 
@@ -90,7 +92,7 @@ handler.prototype.refreshMatches = function() {
 		.then(function(result) {
 			// assign each schedule to respective talent
 			_.each(self.project.role.matches.data, function(talent, index) {
-				self.project.role.matches.data[index].schedule = null;
+				self.project.role.matches.data[index].schedule = {};
 				_.each(result.data, function(s) {
 					if (talent.user && talent.user.id == s.invitee_id) {
 						self.project.role.matches.data[index].schedule = s;
@@ -126,6 +128,7 @@ handler.prototype.refreshMatches = function() {
 						self.project.role.matches.data[index].favorite = n;
 					}
 				});
+				console.log(talent);
 			});
 
 			self.core.service.databind('#role-match', self.project);
@@ -311,6 +314,136 @@ handler.prototype.addToFav = function(){
 			.then(function(res){
 				self.refreshMatches();
 			});
+	}
+}
+
+handler.prototype.getDetailsForAddNoteModal = function() {
+
+	self.core.service.databind('#cd-full-name-span', self.user);
+
+	var id = $(this).attr("id");
+		id = id.split("_");
+		id = id[1].split("-");
+
+	if(id[0] == "user") { // no existing schedule yet
+		var userId = id[1];
+		self.core.resource.schedule.post({ jobId : self.roleId, invitee_id : userId, inviter_id : self.user.id, rating : 0 })
+			.then(function(res) {
+				self.core.service.databind('#utility-buttons', res);
+			});
+	}
+
+	else { // existing schedule
+		var scheduleId = id[1];
+
+		var data = {
+			scheduleId : scheduleId
+		};
+
+		self.core.resource.schedule.get({ jobId : self.roleId, scheduleId : scheduleId })
+			.then(function(res) {
+				console.log(res);
+				self.core.service.databind('#utility-buttons', res);
+			});
+	}
+
+}
+
+handler.prototype.getDetailsForEditNoteModal = function() {
+	var ids = $(this).attr('id');
+		ids = ids.split("_");
+
+	var scheduleId = ids[1];
+	var noteId = ids[2];
+
+	var data = {
+		scheduleId: scheduleId,
+		noteId: noteId,
+	};
+
+	self.core.resource.schedule_note.get(data)
+	.then(function(res) {
+
+		self.core.service.databind('.talent-note-body-edit', res);
+		self.core.service.databind('#note-created-at', res);
+		self.core.service.databind('#note-utility', res);
+
+		var data = {
+			cdUserId : self.user.bam_cd_user_id
+		}
+
+		self.core.resource.cd_user.get(data)
+		.then(function(res){
+			self.core.service.databind('#cd-full-name-span-edit', res);
+		});
+	});
+}
+
+handler.prototype.addNoteForTalent = function(e) {
+
+	e.preventDefault();
+
+	var scheduleId = $(this).attr('id');
+		scheduleId = scheduleId.split("_");
+		scheduleId = scheduleId[1];
+
+	var noteBody = $('.talent-note-body').val();
+
+	if(noteBody.length < 1) {
+		$('.talent-note-body').focus();
+		$('.note-required').fadeIn().delay(3000).fadeOut();
+	}
+
+	else {
+		var data = {
+			scheduleId: scheduleId,
+			body: noteBody,
+		};
+
+		self.core.resource.schedule_note.post(data)
+		.then(function(res) {
+			$('.note-required').hide();
+			$('.note-saved-success').fadeIn();
+			setTimeout(function() {
+				location.reload();
+			}, 3000);
+		});
+	}
+
+}
+
+handler.prototype.editNoteForTalent = function(e) {
+
+	e.preventDefault();
+
+	var ids = $(this).attr('id');
+		ids = ids.split("_");
+
+	var	scheduleId = ids[1];
+	var noteId = ids[2];
+
+	var noteBody = $('.talent-note-body-edit').val();
+
+	if(noteBody.length < 1) {
+		$('.talent-note-body-edit').focus();
+		$('.note-required').fadeIn().delay(3000).fadeOut();
+	}
+
+	else {
+		var data = {
+			scheduleId: scheduleId,
+			noteId: noteId,
+			body: noteBody,
+		};
+
+		self.core.resource.schedule_note.patch(data)
+		.then(function(res) {
+			$('.note-required').hide();
+			$('.note-saved-success').fadeIn();
+			setTimeout(function() {
+				location.reload();
+			}, 3000);
+		});
 	}
 }
 

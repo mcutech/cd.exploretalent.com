@@ -18,7 +18,7 @@
 							<div class="panel margin-bottom-small">
 								<div class="padding-normal">
 									<button id="rate-all-button" class="btn btn-defaut">Add all to Like It List</button>
-									<span class="text-primary"><a data-bind="/projects/<%= casting_id %>/roles/<%= role.role_id %>/like-it-list" href="">You have xxxx your like it list.</a></span>
+									<span class="text-primary"><a data-bind="/projects/<%= casting_id %>/roles/<%= role.role_id %>/like-it-list" href="">You have <span data-bind="<%= role.likeitlist.total %>"></span> in your like it list.</a></span>
 								</div>
 							</div>
 
@@ -57,5 +57,7 @@
 	@include('components.modals.talent-photos')
 	@include('components.modals.talent-resume')
 	@include('components.modals.invite-to-audition')
+	@include('components.modals.talent-add-note')
+	@include('components.modals.talent-edit-note')
 
 @stop
