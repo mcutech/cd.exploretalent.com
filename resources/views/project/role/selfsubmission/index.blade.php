@@ -21,7 +21,9 @@
 							</div>
 						</div>
 						<div class="col-md-6 padding-left-zero">
-							<div id="self-submissions-pagination">
+							<div class="float-right">
+								<div id="self-submissions-pagination">
+								</div>
 							</div>
 						</div>
 					</div>
