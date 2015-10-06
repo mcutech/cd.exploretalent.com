@@ -37,6 +37,9 @@ handler.prototype.refreshList = function(){
 					var y1 = i1.getFullYear();
 					res1.aud_timestamp1 = y1 + "-" + m1 + "-" + d1;
 				}
+				else {
+					res1.aud_timestamp1 = '';
+				}
 
 				res1.asap1 = y + "-" + m + "-" + d;
 				//console.log(newdate);

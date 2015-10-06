@@ -11,9 +11,12 @@ module.exports = function(core, user, projectId, roleId) {
 	});
 	$('#send-invites-button').on('click', handler.sendInvites);
 
+	$(document).on('click', '.btn-link', handler.addToFav);
+
 	$(document).on('click', '.add-casting-note', handler.getDetailsForAddNoteModal);
 	$('.add-note-for-talent').on('click', handler.addNoteForTalent);
 
 	$(document).on('click', '.edit-note-link', handler.getDetailsForEditNoteModal);
 	$('.edit-note-for-talent').on('click', handler.editNoteForTalent);
+	
 }

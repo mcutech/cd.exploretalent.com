@@ -17,13 +17,13 @@
 			<div class="col-md-4 padding-zero">
 				<ul class="list-unstyled margin-zero">
 					<li>Height Range: <span data-bind="<%= role.getHeightMinText() %>"></span> to <span data-bind="<%= role.getHeightMaxText() %>"></span></li>
-					<li>Ethnicity: <span data-bind="<%=role.getEthnicities()%>"></span></li>
-				</ul>				
+					<li>Ethnicity: <span data-bind="<%=role.getEthnicities().join(', ') %>"></span></li>
+				</ul>
 			</div>
 			<div class="col-md-4 padding-zero">
 				<ul class="list-unstyled">
-					<li>Body Type: <span data-bind = "<%=role.getBuilds() %>"></span></li>
-					<li>Hair Color: <span data-bind = "<%=role.getHairColors() %>"></span></li>
+					<li>Body Type: <span data-bind = "<%=role.getBuilds().join(', ') %>"></span></li>
+					<li>Hair Color: <span data-bind = "<%=role.getHairColors().join(', ') %>"></span></li>
 				</ul>
 			</div>
 		</div>

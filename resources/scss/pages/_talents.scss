@@ -36,6 +36,7 @@
 
 			.talent-item-container{
 				font-size: 12px;
+				margin-bottom: 30px;
 
 				ul{
 					li{
@@ -49,8 +50,78 @@
 					}
 				}
 
-				.panel-body{
+				.panel-body {
 					padding: 10px;
+				    min-height: 290px;
+
+					.note-item-container-holder {
+						height: auto;
+						min-height: 165px;
+						max-height: 165px;
+						overflow-y: scroll;
+						
+						@media only screen and (max-width: 1200px){
+							min-height: 436px;
+							max-height: 436px;
+						}
+
+						@media only screen and (max-width: 992px){
+							min-height: 140px;
+							max-height: 140px;
+						}
+						@media only screen and (max-width: 768px){
+							min-height: 600px;
+							max-height: 600px;
+						}					
+						@media only screen and (max-width: 480px){
+							min-height: 260px;
+							max-height: 260px;
+						}
+						@media only screen and (max-width: 320px){
+							min-height: 260px;
+							max-height: 260px;
+						}
+
+						.note-item {
+							padding-bottom: 10px;
+							margin-bottom: 10px;
+						    border-bottom: 1px solid #ddd;
+						
+							 .name-date {
+							 	display: block;
+								vertical-align: top;
+								margin-top: 3px;
+								margin-left: 2px;
+
+								.name{
+									display: inline-block;
+		 							color: #4083a9;
+		 							font-weight: 600;
+								}
+								.date {
+									float: right;
+									display: inline-block;
+									color: #898989;
+									font-size: 9px;
+								}
+							}
+
+							.note-body{
+								margin-bottom: 5px;
+							}
+
+							.edit-note-link{
+								background-color: rgb(234, 234, 234);
+								padding: 2px 5px;
+								cursor: pointer;
+							}
+							
+							&:last-child{
+								border-bottom-width: 0px;
+							}
+						}
+					}
+
 				}
 
 				.talent-photo{
@@ -63,10 +134,10 @@
 						display: flex;
 						justify-content: center;
 					    overflow: hidden;
-					    min-height: 140px;
-						max-height: 140px;
+					    min-height: 150px;
+						max-height: 150px;
 
-						img{
+						img, a{
 							flex: 0 1 auto;
 							vertical-align: middle;
 							align-self: center;
@@ -78,8 +149,8 @@
 						}
 
 						@media only screen and (max-width: 1200px){
-							min-height: 210px;
-							max-height: 210px;
+							min-height: 320px;
+							max-height: 320px;
 						}
 
 						@media only screen and (max-width: 992px){
@@ -87,22 +158,22 @@
 							max-height: 140px;
 						}
 						@media only screen and (max-width: 768px){
-							min-height: 130px;
-							max-height: 130px;
+							min-height: 400px;
+							max-height: 400px;
 						}					
 						@media only screen and (max-width: 480px){
-							min-height: 120px;
-							max-height: 120px;
+							min-height: 260px;
+							max-height: 260px;
 						}
 						@media only screen and (max-width: 320px){
-							min-height: 110px;
-							max-height: 110px;
+							min-height: 260px;
+							max-height: 260px;
 						}	
 					}
 				}
 
 				.talent-name{
-
+				    padding-top: 3px;	
 				}
 
 				.talent-location{
@@ -121,8 +192,16 @@
 					.title{
 						font-size: 11px;
 					}
+
+					.talent-function{
+						display: flex;
+						
+						.function-item{
+							flex-grow: 1;
+						}
+					}
 				}
-			}
+			} //talent-item-container
 		} //talents-search-results
 
 	} //talents-search-filter-content

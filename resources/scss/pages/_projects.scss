@@ -6,7 +6,10 @@
 			background-color: #1976B3;
 			a {
 				color: #fff;
-				text-decoration: none !important; 
+				text-decoration: none !important;
+				&::after{
+					color: #fff;
+				}  
 			}
 		}
 
@@ -14,7 +17,10 @@
 			background-color: #e66454;
 			a {
 				color: #fff;
-				text-decoration: none !important; 
+				text-decoration: none !important;
+				&::after{
+					color: #fff;
+				} 
 			}
 		}
 
@@ -43,6 +49,12 @@
 
 					&:nth-child(odd){
 						background-color: #e8e8e8;	
+					}
+				}
+
+				&.market-description{
+					.title{
+						display: block;
 					}
 				}
 			}

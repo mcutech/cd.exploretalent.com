@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('master.body')
-<div class="container public-view-like-it-list padding-top-large">
+<div class="container public-view-like-it-list padding-top-large padding-bottom-large">
 	<div class="row-fluid clearfix padding-left-normal padding-right-normal">
 		<div class="col-md-12 clearfix">
 			<div class="row-fluid clearfix">
@@ -27,6 +27,16 @@
 			</div>
 		</div>
 	</div>
+	<div id="loading-div">
+		<div class="f_circleG" id="frotateG_01"></div>
+		<div class="f_circleG" id="frotateG_02"></div>
+		<div class="f_circleG" id="frotateG_03"></div>
+		<div class="f_circleG" id="frotateG_04"></div>
+		<div class="f_circleG" id="frotateG_05"></div>
+		<div class="f_circleG" id="frotateG_06"></div>
+		<div class="f_circleG" id="frotateG_07"></div>
+		<div class="f_circleG" id="frotateG_08"></div>
+	</div>
 	<div class="like-it-list-talents-wrapper like-it-list-page-wrapper">
 		<div class="talents-search-filter-content">
 			@parent
@@ -37,7 +47,7 @@
 
 					</div>
 				</div> {{-- talents-search-results --}}
-				<div id="like-it-list-pagination" class="col-md-12">
+				<div id="like-it-list-pagination" class="col-md-12 padding-left-large padding-right-large">
 				</div>
 			</div>
 		</div>

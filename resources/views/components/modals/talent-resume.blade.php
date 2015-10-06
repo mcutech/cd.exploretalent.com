@@ -6,9 +6,10 @@
 				<h4 class="modal-title">Talents Resume</h4>
 			</div>
 			<div class="modal-body">
+				<div class="row">
 				<div class="col-md-3">
 					<div class="">
-						<img data-bind="<%= getPrimaryPhoto() %>" class="margin-top-large"	src="" width="100%">
+						<img data-bind="<%= getPrimaryPhoto() %>" class="margin-top-large" width="100%">
 						<button class="btn btn-primary btn-xs btn-block mt-5 margin-top-small">View Full Profile</button>
 						<button class="btn btn-default btn-xs btn-block mt-5 view-photos">View Photos</button>
 					</div>
@@ -74,22 +75,22 @@
 										</div>
 									</div>
 									<div class="row">
+									<div data-bind="<%= (bam_talentinfo2.special_skills) ? '1' : '' %>" data-bind-target="visibility">
 										<div class="col-md-12 margin-top-normal-medium">
 											<h4>About</h4>
 										</div>
 										<div class="col-md-12 border-t">
-											<p data-bind="<%= bam_talentinfo2.special_skills%>" class="margin-top-large">
-											Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse auctor elementum felis, ac sagittis ligula aliquet quis. Aenean faucibus nisl ac eros tempus, ac tempus lectus volutpat.
-											</p>
+											<p data-bind="<%= bam_talentinfo2.special_skills%>" class="margin-top-large"></p>
 										</div>
+									</div>
+									<div data-bind="<%= (bam_talentinfo2.special_skills) ? '1' : '' %>" data-bind-target="visibility">
 										<div class="col-md-12 margin-top-large">
 											<h4>Short Resume</h4>
 										</div>
 										<div class="col-md-12 border-t">
-											<p data-bind="<%= bam_talentinfo2.experience %>"class="margin-top-normal-medium">
-											Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse auctor elementum felis, ac sagittis ligula aliquet quis. Aenean faucibus nisl ac eros tempus, ac tempus lectus volutpat.
-											</p>
+											<p data-bind="<%= bam_talentinfo2.experience %>"class="margin-top-normal-medium"></p>
 										</div>
+									</div>
 									</div>
 								</div>
 								<!-- Acting/Modeling -->
@@ -134,7 +135,7 @@
 										</div>
 									</div>
 									<div class="row">
-										<div data-bind="<%= (bam_talent_music[0].des_1) ? 1 : 0 %>" data-bind-target="visibility"> 
+										<div data-bind="<%= (bam_talent_music[0].des_1) ? 1 : 0 %>" data-bind-target="visibility">
 											<div class="col-md-12 margin-top-normal-medium">
 												<h4>Musician Information</h4>
 											</div>
@@ -154,7 +155,7 @@
 												<a href="#">Show more...</a>
 											</div>
 										</div>
-										<div data-bind="<%= (bam_talent_music[0].major_influence) ? 1 : 0 %>" data-bind-target="visibility"> 
+										<div data-bind="<%= (bam_talent_music[0].major_influence) ? 1 : 0 %>" data-bind-target="visibility">
 											<div class="col-md-12 margin-top-large">
 												<h4>Musical Influences</h4>
 											</div>
@@ -236,6 +237,7 @@
 						<div class="clearfix"></div>
 					</div>
 				</div> <!-- / .modal-content -->
+				</div>
 			</div> <!-- / .modal-dialog -->
 		</div> <!-- / .modal -->
 	</div>

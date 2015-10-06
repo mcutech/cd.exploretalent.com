@@ -1,3 +1,4 @@
+
 <div id="share-like-it-list" class="modal fade modal-blur" tabindex="-1" role="dialog" style="display: none;">
 	<div class="modal-dialog modal-medium">
 		<div class="modal-content">
@@ -5,44 +6,16 @@
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 				<h4 class="modal-title">Share Like it List</h4>
 			</div>
-			<div class="modal-body">			
+			<div class="modal-body">
+			<div class="row">
 				<form class="form-horizontal" role="form">
-
-			    		<div class="form-group">
-			    			<label class="control-label col-md-2">
-			    				To
-			    			</label>
-			    			<div class="col-xs-12 col-md-4">
-			    				<input class="form-control" type="text">
-			    			</div>
-			    			<label class="control-label col-md-1">
-			    				from
-			    			</label>
-			    			<div class="col-md-4">
-			    				<input class="form-control" type="text">
-			    			</div>			    			
-			    			<div class="clearfix"></div>
-			    		</div>
+	
 			    		<div class="form-group">
 			    			<label class="control-label col-xs-12 col-sm-2">
-			    				Rated
-			    			</label>
-			    			<div class="col-xs-12 col-sm-10">
-			    				<label class="checkbox-inline"><input type="checkbox"> 1</label>
-			    				<label class="checkbox-inline"><input type="checkbox"> 2</label>
-			    				<label class="checkbox-inline"><input type="checkbox"> 3</label>
-			    				<label class="checkbox-inline"><input type="checkbox"> 4</label>
-			    				<label class="checkbox-inline"><input type="checkbox" checked=""> 5</label>
-			    				<label class="checkbox-inline"><input type="checkbox"> all</label>
-			    			</div>
-			    			<div class="clearfix"></div>
-			    		</div>
-			    		<div class="form-group">
-			    			<label class="control-label col-xs-12 col-sm-2">
-			    				Subject
+			    				Recipient/s
 			    			</label>
 			    			<div class="col-md-9">
-			    				<input class="form-control" type="text">
+								<input type="text"  data-role="tagsinput" />
 			    			</div>
 			    			<div class="clearfix"></div>
 			    		</div>
@@ -51,11 +24,14 @@
 			    				Message
 			    			</label>
 			    			<div class="col-md-9">
-			    				<textarea class="form-control" rows="5"></textarea>
+			    				<textarea class="form-control" placeholder="Optional" rows="5"></textarea>
 			    			</div>
 			    			<div class="clearfix"></div>
 			    		</div>
-			    		<div class="border-t mb-5 margin-bottom-normal"></div>
+			    		<div class="col-md-offset-10 col-xs-offset-10">
+			    			<button class="margin-right-large" type="button" class="btn btn-default">Send</button>
+			    		</div>
+<!-- 			    		<div class="border-t mb-5 margin-bottom-normal"></div>
 			    		<div class="text-left margin-left-large padding-left-large">
 		    				<strong>Please Note:</strong><br>
 		    				* This modal generates an email with a link to view the selects for this role publicly.<br>
@@ -65,8 +41,10 @@
 			    		<div class="text-center margin-top-large">
 			    			<a href="like-it-list-public.html" class="btn btn-success">Share Like it List</a>
 			    			<button class="btn btn-default" data-dismiss="modal" aria-hidden="true">Cancel</button>
-			    		</div>
+			    		</div> -->
 			    	</form>
+				
+			</div>			
 
 				</div>
 		</div> <!-- / .modal-content -->

@@ -42,6 +42,7 @@ handler.prototype.refreshLikeItList = function() {
 
 	return self.project.role.getLikeItList(data)
 		.then(function(result) {
+			console.log(result);
 			self.project.role.likeitlist = result;
 			self.core.service.databind('.page-header', self.project);
 			self.core.service.databind('#submissions-sub-menu', self.project);
@@ -50,6 +51,8 @@ handler.prototype.refreshLikeItList = function() {
 			self.core.service.paginate('#like-it-list-pagination', { class : 'pagination', total : result.total, name : 'page' });
 
 			self.getFavoriteTalents();
+
+			$('#loading-div').hide();
 		});
 }
 
@@ -197,6 +200,23 @@ handler.prototype.sendInvites = function(e) {
 	$('#send-invites-success').fadeIn().delay(3000).fadeOut();
 }
 
+
+handler.prototype.addToFav = function(){
+	var b = $(this).closest('.talent-tab').attr('id');
+	var talentnum = (b.split('-')[2]);
+	if(!$(this).find('i').hasClass('text-light-gray')){
+		self.core.resource.favorite_talent.delete({ favoriteId : talentnum})
+			.then(function(res){
+				self.refreshLikeItList();
+			});
+	} else {
+		self.core.resource.favorite_talent.post({ bam_cd_user_id : self.user.bam_cd_user_id, bam_talentnum : talentnum})
+			.then(function(res){
+				self.refreshLikeItList();
+			});
+	}
+}
+
 handler.prototype.getDetailsForAddNoteModal = function() {
 
 	self.core.service.databind('#cd-full-name-span', self.user);
@@ -205,7 +225,7 @@ handler.prototype.getDetailsForAddNoteModal = function() {
 		scheduleId = scheduleId.split("_");
 		scheduleId = scheduleId[1];
 
-	var data = { 
+	var data = {
 		scheduleId : scheduleId
 	};
 
@@ -264,7 +284,7 @@ handler.prototype.addNoteForTalent = function(e) {
 	}
 
 	else {
-		var data = { 
+		var data = {
 			scheduleId: scheduleId,
 			body: noteBody,
 		};
@@ -278,7 +298,7 @@ handler.prototype.addNoteForTalent = function(e) {
 			}, 3000);
 		});
 	}
-	
+
 }
 
 handler.prototype.editNoteForTalent = function(e) {
@@ -299,7 +319,7 @@ handler.prototype.editNoteForTalent = function(e) {
 	}
 
 	else {
-		var data = { 
+		var data = {
 			scheduleId: scheduleId,
 			noteId: noteId,
 			body: noteBody,
@@ -313,7 +333,8 @@ handler.prototype.editNoteForTalent = function(e) {
 				location.reload();
 			}, 3000);
 		});
-	}	
+	}
+
 }
 
 module.exports = function(core, user, projectId, roleId) {
