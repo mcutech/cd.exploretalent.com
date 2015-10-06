@@ -9,7 +9,7 @@
 				<div class="row">
 				<div class="col-md-3">
 					<div class="">
-						<img data-bind="<%= getPrimaryPhoto() %>" class="margin-top-large" width="100%">
+						<img data-bind="<%= getPrimaryPhoto() %>" class="margin-top-large"	src="" width="100%">
 						<button class="btn btn-primary btn-xs btn-block mt-5 margin-top-small">View Full Profile</button>
 						<button class="btn btn-default btn-xs btn-block mt-5 view-photos">View Photos</button>
 					</div>
@@ -20,10 +20,10 @@
 							<li class="active">
 								<a href="#uidemo-tabs-default-demo-acting-modeling" data-toggle="tab">Acting/Modeling</a>
 							</li>
-							<li class="">
-								<a href="#uidemo-tabs-default-demo-musician" data-toggle="tab">Musician</a>
+							<li class="" data-bind="<%= (bam_talent_music[0].genre && bam_talent_music[0].genre2 && bam_talent_music[0].genre3 && bam_talent_music[0].genre4 && bam_talent_music[0].des_1 && bam_talent_music[0].des_2 && bam_talent_music[0].des_3) ? 1 : 0 %>" data-bind-target="visibility">
+									<a href="#uidemo-tabs-default-demo-musician" data-toggle="tab">Musician</a>
 							</li>
-							<li class="">
+							<li class="" data-bind="<%= (bam_talent_dance[0].dance_style_1 && bam_talent_dance[0].dance_style_2 && bam_talent_dance[0].dance_style_3 && bam_talent_dance[0].dance_style_4 && bam_talent_dance[0].dance_style_5 && bam_talent_dance[0].dancer_background && bam_talent_dance[0].influences) ? 1 : 0 %>" data-bind-target="visibility">
 								<a href="#uidemo-tabs-default-demo-dance" data-toggle="tab">Dance</a>
 							</li>
 						</ul>
@@ -103,13 +103,13 @@
 											<label style="width=20px;">Primary Role</label>
 										</div>
 										<div class="col-md-2 col-xs-3">
-											<span>Singer</span>
+											<span data-bind="<%= bam_talent_music[0].number_of_gigs %>"></span>
 										</div>
 										<div class="col-md-4 col-xs-3">
 											<label>Performances</label>
 										</div>
 										<div class="col-md-2 col-xs-3">
-											<span>20</span>
+											<span data-bind="<%= bam_talent_music[0].number_of_gigs %>"></span>
 										</div>
 									</div>
 									<div class="row">
@@ -117,13 +117,13 @@
 											<label style="width=20px;">Genres</label>
 										</div>
 										<div class="col-md-2 col-xs-3">
-											<span> Rock</span>
+											<span data-bind="<%= bam_talent_music[0].genre %>"> </span>
 										</div>
 										<div class="col-md-4 col-xs-3">
 											<label> Intruments</label>
 										</div>
 										<div class="col-md-2 col-xs-3">
-											<span>Guitar</span>
+											<span data-bind="<%= bam_talent_music[0].music_instruments %>"></span>
 										</div>
 									</div>
 									<div class="row">
@@ -131,36 +131,39 @@
 											<label style="width=20px;">Experience</label>
 										</div>
 										<div class="col-md-8 col-xs-3">
-											<span>1-2 years</span>
+											<span data-bind="<%= bam_talent_music[0].years_experience %>"></span>
 										</div>
 									</div>
 									<div class="row">
-										<div class="col-md-12 margin-top-normal-medium">
-											<h4>Musician Information</h4>
+										<div data-bind="<%= (bam_talent_music[0].des_1) ? 1 : 0 %>" data-bind-target="visibility"> 
+											<div class="col-md-12 margin-top-normal-medium">
+												<h4>Musician Information</h4>
+											</div>
+											<div class="col-md-12 border-t">
+												<p class="margin-top-large" data-bind="<%= bam_talent_music[0].des_1 %>">
+												</p>
+												<a href="">Show more...</a>
+											</div>
 										</div>
-										<div class="col-md-12 border-t">
-											<p class="margin-top-large">
-											Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse auctor elementum felis, ac sagittis ligula aliquet quis. Aenean faucibus nisl ac eros tempus, ac tempus lectus volutpat.
-											</p>
-											<a href="">Show more...</a>
+										<div data-bind="<%= (bam_talent_music[0].searching_gig_des) ? 1 : 0 %>" data-bind-target="visibility">
+											<div class="col-md-12 margin-top-large">
+												<h4>Looking for this kind of gig</h4>
+											</div>
+											<div class="col-md-12 border-t">
+												<p class="margin-top-normal-medium" data-bind="<%= bam_talent_music[0].searching_gig_des %>">
+												</p>
+												<a href="#">Show more...</a>
+											</div>
 										</div>
-										<div class="col-md-12 margin-top-large">
-											<h4>Looking for this kind of gig</h4>
-										</div>
-										<div class="col-md-12 border-t">
-											<p class="margin-top-normal-medium">
-											Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse auctor elementum felis, ac sagittis ligula aliquet quis. Aenean faucibus nisl ac eros tempus, ac tempus lectus volutpat.
-											</p>
-											<a href="#">Show more...</a>
-										</div>
-										<div class="col-md-12 margin-top-large">
-											<h4>Musical Influences</h4>
-										</div>
-										<div class="col-md-12 border-t">
-											<p class="margin-top-normal-medium">
-											Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse auctor elementum felis, ac sagittis ligula aliquet quis. Aenean faucibus nisl ac eros tempus, ac tempus lectus volutpat.
-											</p>
-											<a href="#">Show more...</a>
+										<div data-bind="<%= (bam_talent_music[0].major_influence) ? 1 : 0 %>" data-bind-target="visibility"> 
+											<div class="col-md-12 margin-top-large">
+												<h4>Musical Influences</h4>
+											</div>
+											<div class="col-md-12 border-t">
+												<p class="margin-top-normal-medium" data-bind="<%= bam_talent_music[0].major_influence %>">
+												</p>
+												<a href="#">Show more...</a>
+											</div>
 										</div>
 									</div>
 									<!-- Musician -->
@@ -174,7 +177,7 @@
 											<label style="width=20px;">Primary Style</label>
 										</div>
 										<div class="col-md-6 col-xs-3">
-											<span>House</span>
+											<span data-bind="<%= bam_talent_dance[0].dance_style_1 %>"></span>
 										</div>
 									</div>
 									<div class="row">
@@ -182,7 +185,7 @@
 											<label style="width=20px;">Experience</label>
 										</div>
 										<div class="col-md-6 col-xs-3">
-											<span> 1-2 years</span>
+											<span data-bind="<%= bam_talent_dance[0].years_experience %>"></span>
 										</div>
 
 									</div>
@@ -191,36 +194,39 @@
 											<label style="width=20px;">Performance</label>
 										</div>
 										<div class="col-md-8 col-xs-3">
-											<span>5 years</span>
+											<span data-bind="<%= bam_talent_dance[0].num_of_perfom %>"></span>
 										</div>
 									</div>
 									<div class="row">
-										<div class="col-md-12 margin-top-normal-medium">
-											<h4>Dancer Background</h4>
+										<div data-bind="<%= (bam_talent_dance[0].dancer_background) ? 1 : 0%>" data-bind-target="visibility">
+											<div class="col-md-12 margin-top-normal-medium">
+												<h4>Dancer Background</h4>
+											</div>
+											<div class="col-md-12 border-t">
+												<p class="margin-top-large" data-bind="<%= bam_talent_dance[0].dancer_background %>">
+												</p>
+												<a href="">Show more...</a>
+											</div>
 										</div>
-										<div class="col-md-12 border-t">
-											<p class="margin-top-large">
-											Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse auctor elementum felis, ac sagittis ligula aliquet quis. Aenean faucibus nisl ac eros tempus, ac tempus lectus volutpat.
-											</p>
-											<a href="">Show more...</a>
+										<div data-bind="<%= (bam_talent_dance[0].influences) ? 1 : 0 %>" data-bind-target="visibility">
+											<div class="col-md-12 margin-top-large">
+												<h4>Influences</h4>
+											</div>
+											<div class="col-md-12 border-t">
+												<p class="margin-top-normal-medium" data-bind="<%= bam_talent_dance[0].influences %>">
+												</p>
+												<a href="">Show more...</a>
+											</div>
 										</div>
-										<div class="col-md-12 margin-top-large">
-											<h4>Influences</h4>
-										</div>
-										<div class="col-md-12 border-t">
-											<p class="margin-top-normal-medium">
-											Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse auctor elementum felis, ac sagittis ligula aliquet quis. Aenean faucibus nisl ac eros tempus, ac tempus lectus volutpat.
-											</p>
-											<a href="">Show more...</a>
-										</div>
-										<div class="col-md-12 margin-top-large">
-											<h4>Gig Description</h4>
-										</div>
-										<div class="col-md-12 border-t">
-											<p class="margin-top-normal-medium">
-											Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse auctor elementum felis, ac sagittis ligula aliquet quis. Aenean faucibus nisl ac eros tempus, ac tempus lectus volutpat.
-											</p>
-											<a href="">Show more...</a>
+										<div data-bind="<%= (bam_talent_dance[0].searching_gig_des) ? 1 : 0 %>" data-bind-target="visibility">
+											<div class="col-md-12 margin-top-large">
+												<h4>Gig Description</h4>
+											</div>
+											<div class="col-md-12 border-t">
+												<p class="margin-top-normal-medium" data-bind="<%= bam_talent_dance[0].searching_gig_des %>">
+												</p>
+												<a href="">Show more...</a>
+											</div>
 										</div>
 									</div>
 									<!-- Dance -->
