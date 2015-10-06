@@ -25,9 +25,19 @@ module.exports = function(core, user) {
 				window.location = qs.redirect ? decodeURIComponent(qs.redirect) : '/projects';
 
 			},
-			function(){
-				$('#invalid-user').show();
-				$("#invalid-user").delay(5000).fadeOut();
+			function(error){
+				if (error.responseText) {
+					var error = JSON.parse(error.responseText);
+
+					if (error.errors && error.errors.auth && error.errors.auth == 'You shall not pass!') {
+						$('#invalid-user').show();
+						$("#invalid-user").delay(5000).fadeOut();
+					}
+					else {
+						$('#duplicate-email').show();
+						$("#duplicate-email").delay(5000).fadeOut();
+					}
+				}
 			});
 	});
 };

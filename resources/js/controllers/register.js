@@ -9,8 +9,7 @@ module.exports = function(core) {
 		var pass = $('#password').val();
 		var confirmpass = $('#confirm-password').val();
 
-		var regexName = new RegExp("[a-zA-Z]$");
-		var regexUsername = new RegExp("^[a-zA-Z0-9]*$");
+		var regexName = new RegExp("[a-zA-Z]$"); var regexUsername = new RegExp("^[a-zA-Z0-9]*$");
 		var regexEmail = new RegExp("^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$");
 
 		if(!lname){
@@ -124,7 +123,8 @@ module.exports = function(core) {
 								fname	: fname ,
 								login	: username,
 								email1	: email,
-								pass	: pass
+								pass	: pass,
+								status	: 1
 							};
 							return core.resource.cd_user.post(data);
 						})

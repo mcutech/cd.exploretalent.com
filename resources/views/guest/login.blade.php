@@ -54,6 +54,12 @@
 						Invalid Username or Password
 					</div>
 
+					<div id="duplicate-email" style="display:none;" class="alert alert-danger" role="alert">
+						<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+						<span class="sr-only">Error:</span>
+						Duplicate Email
+					</div>
+
 					<div id="invalid-email" style="display:none;" class="alert alert-danger" role="alert">
 						<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
 						<span class="sr-only">Error:</span>
