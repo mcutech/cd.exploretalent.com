@@ -19,10 +19,10 @@
 							<li class="active">
 								<a href="#uidemo-tabs-default-demo-acting-modeling" data-toggle="tab">Acting/Modeling</a>
 							</li>
-							<li class="" data-bind="<%= (bam_talent_music[0].genre && bam_talent_music[0].genre2 && bam_talent_music[0].genre3 && bam_talent_music[0].genre4 && bam_talent_music[0].des_1 && bam_talent_music[0].des_2 && bam_talent_music[0].des_3) ? 0 : 1 %>" data-bind-target="visibility">
+							<li class="" data-bind="<%= (bam_talent_music[0].genre && bam_talent_music[0].des_1 && bam_talent_music[0].music_role && bam_talent_music[0].searching_gig_des && bam_talent_music[0].major_influence ) ? 1 : 0 %>" data-bind-target="visibility">
 									<a href="#uidemo-tabs-default-demo-musician" data-toggle="tab">Musician</a>
 							</li>
-							<li class="" data-bind="<%= (bam_talent_dance[0].dance_style_1 && bam_talent_dance[0].dance_style_2 && bam_talent_dance[0].dance_style_3 && bam_talent_dance[0].dance_style_4 && bam_talent_dance[0].dance_style_5 && bam_talent_dance[0].dancer_background && bam_talent_dance[0].influences) ? 0 : 1 %>" data-bind-target="visibility">
+							<li class="" data-bind="<%= (bam_talent_dance[0].dance_style_1 && bam_talent_dance[0].dancer_background && bam_talent_dance[0].influences && bam_talent_dance[0].searching_gig_des) ? 1 : 0 %>" data-bind-target="visibility">
 								<a href="#uidemo-tabs-default-demo-dance" data-toggle="tab">Dance</a>
 							</li>
 						</ul>
@@ -139,9 +139,11 @@
 												<h4>Musician Information</h4>
 											</div>
 											<div class="col-md-12 border-t">
-												<p class="margin-top-large" data-bind="<%= bam_talent_music[0].des_1 %>">
+												<p class="margin-top-large main" data-bind="<%= (bam_talent_music[0].des_1.length > 145) ? bam_talent_music[0].des_1.substr(0, 145) + '...' : bam_talent_music[0].des_1 %>">
 												</p>
-												<a href="">Show more...</a>
+												<p class="margin-top-large extended hide" data-bind="<%= bam_talent_music[0].des_1 %>">
+												</p>
+												<a href="" class="show-more-btn" data-bind="<%= (bam_talent_music[0].des_1.length > 145) ? 1 : 0 %>" data-bind-target="visibility">Show more...</a>
 											</div>
 										</div>
 										<div data-bind="<%= (bam_talent_music[0].searching_gig_des) ? 1 : 0 %>" data-bind-target="visibility">
@@ -149,9 +151,11 @@
 												<h4>Looking for this kind of gig</h4>
 											</div>
 											<div class="col-md-12 border-t">
-												<p class="margin-top-normal-medium" data-bind="<%= bam_talent_music[0].searching_gig_des %>">
+												<p class="margin-top-normal-medium main" data-bind="<%= (bam_talent_music[0].searching_gig_des.length > 145) ? bam_talent_music[0].searching_gig_des.substr(0, 145) + '...' : bam_talent_music[0].searching_gig_des %>">
 												</p>
-												<a href="#">Show more...</a>
+												<p class="margin-top-normal-medium extended hide" data-bind="<%= bam_talent_music[0].searching_gig_des %>">
+												</p>
+												<a class="show-more-btn" href="" data-bind="<%= (bam_talent_music[0].searching_gig_des.length > 145) ? 1 : 0 %>" data-bind-target="visibility">Show more...</a>
 											</div>
 										</div>
 										<div data-bind="<%= (bam_talent_music[0].major_influence) ? 1 : 0 %>" data-bind-target="visibility"> 
@@ -159,9 +163,11 @@
 												<h4>Musical Influences</h4>
 											</div>
 											<div class="col-md-12 border-t">
-												<p class="margin-top-normal-medium" data-bind="<%= bam_talent_music[0].major_influence %>">
+												<p class="margin-top-normal-medium main" data-bind="<%= (bam_talent_music[0].major_influence.length > 145) ? bam_talent_music[0].major_influence.substr(0, 145) : bam_talent_music[0].major_influence.length %>">
 												</p>
-												<a href="#">Show more...</a>
+												<p class="margin-top-normal-medium extended hide" data-bind="<%= bam_talent_music[0].major_influence %>">
+												</p>
+												<a class="show-more-btn" href="" data-bind="<%= (bam_talent_music[0].major_influence.length > 145) ? 1 : 0 %>" data-bind-target="visibility">Show more...</a>
 											</div>
 										</div>
 									</div>
@@ -202,9 +208,11 @@
 												<h4>Dancer Background</h4>
 											</div>
 											<div class="col-md-12 border-t">
-												<p class="margin-top-large" data-bind="<%= bam_talent_dance[0].dancer_background %>">
+												<p class="margin-top-large main" data-bind="<%= (bam_talent_dance[0].dancer_background.length > 145) ? bam_talent_dance[0].dancer_background.substr(0, 145) : bam_talent_dance[0].dancer_background %>">
 												</p>
-												<a href="">Show more...</a>
+												<p class="margin-top-large extended hide" data-bind="<%= bam_talent_dance[0].dancer_background %>">
+												</p>
+												<a href="" class="show-more-btn">Show more...</a>
 											</div>
 										</div>
 										<div data-bind="<%= (bam_talent_dance[0].influences) ? 1 : 0 %>" data-bind-target="visibility">
@@ -212,9 +220,11 @@
 												<h4>Influences</h4>
 											</div>
 											<div class="col-md-12 border-t">
-												<p class="margin-top-normal-medium" data-bind="<%= bam_talent_dance[0].influences %>">
+												<p class="margin-top-normal-medium main" data-bind="<%= (bam_talent_dance[0].influences.length > 145) ? bam_talent_dance[0].influences.substr(0, 145) : bam_talent_dance[0].influences %>">
 												</p>
-												<a href="">Show more...</a>
+												<p class="margin-top-normal-medium extended hide" data-bind="<%= bam_talent_dance[0].influences %>">
+												</p>
+												<a href="" class="show-more-btn">Show more...</a>
 											</div>
 										</div>
 										<div data-bind="<%= (bam_talent_dance[0].searching_gig_des) ? 1 : 0 %>" data-bind-target="visibility">
@@ -222,9 +232,11 @@
 												<h4>Gig Description</h4>
 											</div>
 											<div class="col-md-12 border-t">
-												<p class="margin-top-normal-medium" data-bind="<%= bam_talent_dance[0].searching_gig_des %>">
+												<p class="margin-top-normal-medium main" data-bind="<%= (bam_talent_dance[0].searching_gig_des.length > 145) ? bam_talent_dance[0].searching_gig_des.substr(0, 145) : bam_talent_dance[0].searching_gig_des %>">
 												</p>
-												<a href="">Show more...</a>
+												<p class="margin-top-normal-medium extended hide" data-bind="<%= bam_talent_dance[0].searching_gig_des %>">
+												</p>
+												<a href="" class="show-more-btn">Show more...</a>
 											</div>
 										</div>
 									</div>
