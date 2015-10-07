@@ -163,7 +163,7 @@
 												<h4>Musical Influences</h4>
 											</div>
 											<div class="col-md-12 border-t">
-												<p class="margin-top-normal-medium main" data-bind="<%= (bam_talent_music[0].major_influence.length > 145) ? bam_talent_music[0].major_influence.substr(0, 145) : bam_talent_music[0].major_influence.length %>">
+												<p class="margin-top-normal-medium main" data-bind="<%= (bam_talent_music[0].major_influence.length > 145) + '...' ? bam_talent_music[0].major_influence.substr(0, 145) : bam_talent_music[0].major_influence.length %>">
 												</p>
 												<p class="margin-top-normal-medium extended hide" data-bind="<%= bam_talent_music[0].major_influence %>">
 												</p>
@@ -208,7 +208,7 @@
 												<h4>Dancer Background</h4>
 											</div>
 											<div class="col-md-12 border-t">
-												<p class="margin-top-large main" data-bind="<%= (bam_talent_dance[0].dancer_background.length > 145) ? bam_talent_dance[0].dancer_background.substr(0, 145) : bam_talent_dance[0].dancer_background %>">
+												<p class="margin-top-large main" data-bind="<%= (bam_talent_dance[0].dancer_background.length > 145) ? bam_talent_dance[0].dancer_background.substr(0, 145) + '...' : bam_talent_dance[0].dancer_background %>">
 												</p>
 												<p class="margin-top-large extended hide" data-bind="<%= bam_talent_dance[0].dancer_background %>">
 												</p>
@@ -220,7 +220,7 @@
 												<h4>Influences</h4>
 											</div>
 											<div class="col-md-12 border-t">
-												<p class="margin-top-normal-medium main" data-bind="<%= (bam_talent_dance[0].influences.length > 145) ? bam_talent_dance[0].influences.substr(0, 145) : bam_talent_dance[0].influences %>">
+												<p class="margin-top-normal-medium main" data-bind="<%= (bam_talent_dance[0].influences.length > 145) + '...' ? bam_talent_dance[0].influences.substr(0, 145) : bam_talent_dance[0].influences %>">
 												</p>
 												<p class="margin-top-normal-medium extended hide" data-bind="<%= bam_talent_dance[0].influences %>">
 												</p>
@@ -232,7 +232,7 @@
 												<h4>Gig Description</h4>
 											</div>
 											<div class="col-md-12 border-t">
-												<p class="margin-top-normal-medium main" data-bind="<%= (bam_talent_dance[0].searching_gig_des.length > 145) ? bam_talent_dance[0].searching_gig_des.substr(0, 145) : bam_talent_dance[0].searching_gig_des %>">
+												<p class="margin-top-normal-medium main" data-bind="<%= (bam_talent_dance[0].searching_gig_des.length > 145) + '...' ? bam_talent_dance[0].searching_gig_des.substr(0, 145) : bam_talent_dance[0].searching_gig_des %>">
 												</p>
 												<p class="margin-top-normal-medium extended hide" data-bind="<%= bam_talent_dance[0].searching_gig_des %>">
 												</p>
