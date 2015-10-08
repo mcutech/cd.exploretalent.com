@@ -67,7 +67,7 @@
 					<div class="col-sm-2">
 						<div class="form-group no-margin-hr">
 							<label for="zip" class="control-label">Zip</label>
-							<input data-bind="<%= zip %>" type="text" class="form-control" name="zip" placeholder="Zip" data-validate="zip" data-validate-error="This is not a valid zip code." />
+							<input  data-bind="<%= zip %>" type="text" class="form-control" name="zip" placeholder="Zip" data-validate="zip" data-validate-error="This is not a valid zip code." />
 						</div>
 					</div>
 				</div>
@@ -81,7 +81,7 @@
 					<div class="col-sm-6">
 						<div class="form-group no-margin-hr">
 							<label for="phone2" class="control-label">Phone 2</label>
-							<input data-bind="<%= phone2 %>" type="text" class="form-control" name="phone2" placeholder="Phone 2" data-validate="phone" data-validate-error="This is not a valid phone number." />
+							<input data-bind="<%= phone2 %>" type="text" class="form-control" name="phone2" placeholder="Phone 2" data-validate="phone-not-required" data-validate-error="This is not a valid phone number." />
 						</div>
 					</div>
 				</div>
@@ -95,7 +95,7 @@
 					<div class="col-sm-6">
 						<div class="form-group no-margin-hr">
 							<label for="fax" class="control-label">Fax</label>
-							<input data-bind="<%= fax %>" type="text" class="form-control" name="fax" placeholder="Fax" data-validate="phone" data-validate-error="This is not a valid fax number." />
+							<input  data-bind="<%= fax %>" type="text" class="form-control" name="fax" placeholder="Fax" data-validate="phone-not-required" data-validate-error="This is not a valid fax number." />
 						</div>
 					</div>
 				</div>
@@ -111,7 +111,7 @@
 					<div class="col-sm-6">
 						<div class="form-group no-margin-hr">
 							<label for="email2" class="control-label">Email 2</label>
-							<input data-bind="<%= email2 %>" type="email" class="form-control" name="email2" placeholder="Email 2" data-validate="email" data-validate-error="This is not a valid e-mail address." />
+							<input data-bind="<%= email2 %>" type="email" class="form-control" name="email2" placeholder="Email 2" data-validate="email-not-required" data-validate-error="This is not a valid e-mail address." />
 						</div>
 					</div>
 				</div>
