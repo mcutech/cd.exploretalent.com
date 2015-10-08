@@ -14,7 +14,6 @@ handler.prototype.refresh = function() {
 
 handler.prototype.updateUser = function(e) {
 	e.preventDefault();
-
 	if (self.core.service.form.validate('#settings-form')) {
 		var form = self.core.service.form.serializeObject('#settings-form');
 
