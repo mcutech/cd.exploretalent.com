@@ -34,12 +34,7 @@ module.exports = function(core, user) {
 						talent.bam_talent_music[ind].music_role = "Singer";
 					}
 					if(res.music_type2 == '3'){ 
-						talent.bam_talent_music[ind].music_role = "Song Writer";
-					}
-					if(res.music_type2 == '4'){
-						talent.bam_talent_music[ind].music_role = "Teacher";
-					}
-					if(res.music_type2 == '5'){
+						talent.bam_talent_music[ind].music_role = "Song Writer";3.
 						talent.bam_talent_music[ind].music_role = "Player";	
 					}
 					if(res.music_type2 == '6'){
@@ -60,6 +55,52 @@ module.exports = function(core, user) {
 				
 			});
 	});
+	
+	
+	$('#uidemo-tabs-default-demo-musician').find('a').on("click", function(e){
+		e.preventDefault();
+		if($(this).hasClass('show-more-btn')){
+			$(this).closest('div').find('p').each(function(){
+				if($(this).hasClass('main')){
+					$(this).addClass('hide');
+				} else {
+					$(this).removeClass('hide');
+				}
+			});
+			$(this).removeClass('show-more-btn').addClass('show-less-btn').html('Show less...');
+		} else {
+			$(this).closest('div').find('p').each(function(){
+				if($(this).hasClass('main')){
+					$(this).removeClass('hide');
+				} else {
+					$(this).addClass('hide');
+				}
+			});
+			$(this).removeClass('show-less-btn').addClass('show-more-btn').html('Show more...');
+		}
+	});
 
+	$('#uidemo-tabs-default-demo-dance').find('a').on("click", function(e){
+		e.preventDefault();
+		if($(this).hasClass('show-more-btn')){
+			$(this).closest('div').find('p').each(function(){
+				if($(this).hasClass('main')){
+					$(this).addClass('hide');
+				} else {
+					$(this).removeClass('hide');
+				}
+			});
+			$(this).removeClass('show-more-btn').addClass('show-less-btn').html('Show less...');
+		} else {
+			$(this).closest('div').find('p').each(function(){
+				if($(this).hasClass('main')){
+					$(this).removeClass('hide');
+				} else {
+					$(this).addClass('hide');
+				}
+			});
+			$(this).removeClass('show-less-btn').addClass('show-more-btn').html('Show more...');
+		}
+	});
 
 }
