@@ -24,7 +24,7 @@
 						<div class="row-fluid clearfix">
 							<div class="talent-photo col-lg-6 col-md-12 col-sm-6 col-xs-12">
 								<div class="photo-user-container">
-									<img data-bind="<%= getPrimaryPhoto() %>" class="img-responsive" />
+									<a href="" data-toggle="modal" data-bind="<%= talentnum %>" data-bind-target="data-id" id="talent-photo" data-target="#talent-photos-modal"><img data-bind="<%= getPrimaryPhoto() %>" class="img-responsive" /></a>
 								</div>
 							</div>
 
@@ -83,6 +83,7 @@
 					<div class="like-it-list-container">
 						<div class="btn-group talent-function">
 							<a data-toggle="modal" data-bind="<%= talentnum %>" data-bind-target="data-id" id="talent-resume" data-target="#talent-resume-modal" class="btn btn-xs btn-outline function-item"><span class="fa fa-file-text-o"></span></a>
+							
 							<a data-toggle="modal" data-bind="<%= talentnum %>" data-bind-target="data-id" id="talent-photo" data-target="#talent-photos-modal" class="btn btn-xs btn-outline function-item"><span class="fa fa-picture-o"></span></a>
 							<a data-toggle="modal" data-target="#" class="btn btn-xs btn-outline function-item"><span class="fa fa-calendar"></span></a>
 							<a data-toggle="modal" data-target="#talent-message-modal" class="btn btn-xs btn-outline function-item"><span class="fa fa-envelope-o"></span></a>
