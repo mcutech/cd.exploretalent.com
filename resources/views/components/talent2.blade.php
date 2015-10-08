@@ -19,7 +19,7 @@
 						<div class="head-area padding-zero padding-bottom-zero display-inline-block col-md-12">
 							<div class="talent-name font-size-normal text-semibold float-left"><span data-bind="<%= getTalent().bam_talentci.getFullName() %>"></span>, <span data-bind="<%= getTalent().bam_talentci.getAge() %>" class="age-area"></span></div>
 							<div class="favorite-indicator float-right">
-								<button class="btn-link">
+								<button class="btn-link fav-btn">
 									<i class="fa fa-star-o font-size-medium-large text-light-gray" data-bind="favorite-<%= getTalent().id %>" data-bind-target="id"></i>
 								</button>
 							</div>

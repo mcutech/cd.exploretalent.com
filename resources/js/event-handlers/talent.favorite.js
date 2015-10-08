@@ -2,6 +2,7 @@ function handler(core, user){
 	self = this;
 	self.core = core;
 	self.user = user;
+	self.talent = null;
 	self.refresh();
 }
 handler.prototype.refresh = function(){
@@ -50,17 +51,21 @@ handler.prototype.refresh = function(){
 			talent.data.push(res.bam_talentci);
 		});
 		self.core.service.databind('#favorite-result', talent);
-
+		self.talent = talent;
 		$('#loading-div').hide();
 	})
 
 };
 
 handler.prototype.addToFav = function(){
-	var favId = $(this).attr('data-id');
 	var b = $(this).closest('.talent-tab').attr('id');
 	var talentnum = (b.split('-')[2]);
-	if(favId){
+
+	var talents = _.find(self.talent.data, function(n){
+		return n.talentnum == talentnum;
+	});
+
+	if(talents){
 		self.core.resource.favorite_talent.delete({ favoriteId : talentnum})
 			.then(function(res){
 				self.refresh();

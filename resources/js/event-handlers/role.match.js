@@ -7,7 +7,7 @@ function handler(core, user, projectId, roleId) {
 	self.projectId = projectId;
 	self.roleId = roleId;
 	self.project = null;
-
+	self.favTalent = null;
 	self.refreshProjectDetails();
 }
 

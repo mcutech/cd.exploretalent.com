@@ -7,7 +7,7 @@ function handler(core, user, projectId, roleId) {
 	self.projectId = projectId;
 	self.roleId = roleId;
 	self.project = null;
-
+	self.favTalent = null;
 	self.refreshProjectDetails();
 }
 
@@ -51,7 +51,7 @@ handler.prototype.refreshLikeItList = function() {
 
 handler.prototype.getFavoriteTalents = function() {
 	var talents = _.map(self.project.role.likeitlist.data, function(n) {
-		return n.invitee.bam_talentnum;
+		return n.getTalent().bam_talentnum;
 	});
 
 	console.log(talents);
@@ -65,6 +65,7 @@ handler.prototype.getFavoriteTalents = function() {
 
 		self.core.resource.favorite_talent.get(data)
 			.then(function(result) {
+				self.favTalent = result;
 				_.each(result.data, function(talent) {
 					$('#favorite-' + talent.bam_talentci.user.id).removeClass('text-light-gray').addClass('text-warning');
 				});
@@ -100,15 +101,20 @@ handler.prototype.refreshTalentPhotos = function(e){
 handler.prototype.addToFav = function(){
 	var b = $(this).closest('.talent-tab').attr('id');
 	var talentnum = (b.split('-')[2]);
-	if(!$(this).find('i').hasClass('text-light-gray')){
+	
+	var talents = _.find(self.favTalent.data, function(n){
+		return n.bam_talentnum == talentnum;
+	});
+
+	if(talents){
 		self.core.resource.favorite_talent.delete({ favoriteId : talentnum})
 			.then(function(res){
-				self.refreshLikeItList();
+				self.refreshProjectDetails();
 			});
 	} else {
 		self.core.resource.favorite_talent.post({ bam_cd_user_id : self.user.bam_cd_user_id, bam_talentnum : talentnum})
 			.then(function(res){
-				self.refreshLikeItList();
+				self.refreshProjectDetails();
 			});
 	}
 }
