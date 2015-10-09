@@ -18,7 +18,7 @@
 					<div class="col-md-12 margin-top-normal">
 					  <div class="checkbox">
 					    <label for="acc-toggle">
-					      	<input type="checkbox" id="acc-toggle"> spanEnter Date and Location
+					      	<input type="checkbox" id="acc-toggle"> Enter Date and Location
 					    </label>
 					  </div>
 					</div>
