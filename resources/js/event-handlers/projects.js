@@ -12,10 +12,12 @@ handler.prototype.refreshList = function(){
 	if (!self.user.bam_cd_user_id)
 		window.location = '/login?redirect=' + encodeURIComponent(window.location);
 
+	var qs = self.core.service.query_string();
 	var data = {
 		withs : [
 			'bam_roles'
 		],
+		page : qs.page || 0,
 		per_page : 5
 	};
 
@@ -47,6 +49,7 @@ handler.prototype.refreshList = function(){
 				//console.log(i);
 			});
 			self.core.service.databind('#project-listing', res);
+			self.core.service.paginate('#projects-pagination', { total : res.total, class : 'pagination', name : 'page', per_page: res.per_page });
 		});
 }
 
