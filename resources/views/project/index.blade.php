@@ -180,34 +180,7 @@
 
 		{{-- project listing --}}
 
-		<div id="pagination" class="text-center">
-		<nav>
-			<ul class="pagination" id="pagination">
-				<li class="active">
-					<a href="http://stage-cd.exploretalent.com/cd/projects?pg=1&amp;per_pg=5">
-						1
-					</a>
-				</li>
-
-				<li class="">
-					<a href="http://stage-cd.exploretalent.com/cd/projects?pg=2&amp;per_pg=5">
-						2
-					</a>
-				</li>
-
-				<li class="">
-					<a href="http://stage-cd.exploretalent.com/cd/projects?pg=3&amp;per_pg=5">
-						3
-					</a>
-				</li>
-
-				<li class="">
-					<a href="http://stage-cd.exploretalent.com/cd/projects?pg=4&amp;per_pg=5">
-						4
-					</a>
-				</li>
-		  	</ul>
-		</nav>
+		<div id="projects-pagination" class="text-center"></div>
 	</div>
 
 	<div class="modal fade confirm-modal" tabindex="-1">
