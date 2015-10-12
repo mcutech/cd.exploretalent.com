@@ -27,7 +27,6 @@ handler.prototype.refreshProjectDetails = function() {
 			});
 			$('#roles-list').val(self.project.role.role_id);
 			self.project.date = self.core.service.date;
-			self.core.service.databind('#invite-to-audition-modal', self.project);
 
 			return self.refreshLikeItList();
 		})
@@ -46,6 +45,7 @@ handler.prototype.refreshLikeItList = function() {
 			self.core.service.databind('.page-header', self.project);
 			self.core.service.databind('#submissions-sub-menu', self.project);
 			self.core.service.databind('#like-it-list', self.project);
+			self.core.service.databind('#invite-to-audition-modal', self.project);
 
 			self.core.service.paginate('#like-it-list-pagination', { class : 'pagination', total : result.total, name : 'page' });
 
@@ -125,86 +125,13 @@ handler.prototype.changeRole = function() {
 }
 
 handler.prototype.sendInvites = function(e) {
-	e.preventDefault();
-
-	var form = self.core.service.form.serializeObject('.invite-to-audition-form');
-	var schedules = self.project.role.likeitlist.data;
-
-	// get schedules with rating
-	if (form.rating instanceof Array) {
-		// any not selected
-		if (form.rating.indexOf('all') == -1) {
-			schedules = _.filter(self.project.role.likeitlist.data, function(s) {
-				console.log(s.rating);
-				return form.rating.indexOf(s.rating + '') > -1;
-			});
-		}
-	}
-	else {
-		if (form.rating != 'all') {
-			schedules = _.filter(self.project.role.likeitlist.data, function(s) {
-				return s.rating == form.rating;
-			});
-		}
-	}
-
-	var body = [
-		'Casting: ' + form.casting_name + ' (ID #' + self.project.casting_id + ')',
-		'Role: ' + form.role_name + ' (ID #' + self.project.role.role_id + ')',
-		form.role_des,
-		'Date: ' + form.casting_date,
-		'Address: ' + form.address1 + ' ' + form.address2 + ' ' + form.city + ' ' + form.state + ' ' + form.zip,
-		'\r\n',
-		'Message from Casting Director:',
-		'\r\n',
-		form.message
-	];
-
-	body = body.join('\r\n');
-
-	// create conversations for each schedule
-	_.each(schedules, function(s) {
-		var conversation;
-
-		self.core.resource.conversation.get({ schedule_id : s.id })
-			.then(function(result) {
-				if (result.total > 0) {
-					conversation = _.first(result.data);
-					return $.when();
-				}
-				else {
-					var data = {
-						schedule_id : s.id,
-						user_ids : [
-							schedule.invitee_id,
-							schedule.inviter_id
-						]
-					};
-					return self.core.resource.conversation.post(data);
-				}
-			})
-			.then(function(result) {
-				if (result) {
-					conversation = result;
-				}
-
-				var data = {
-					conversationId : conversation.id,
-					body : body
-				}
-
-				return self.core.resource.message.post(data);
-			});
-	});
-
-	$('#send-invites-success').fadeIn().delay(3000).fadeOut();
 }
 
 
 handler.prototype.addToFav = function(){
 	var b = $(this).closest('.talent-tab').attr('id');
 	var talentnum = (b.split('-')[2]);
-	
+
 	var talents = _.find(self.favTalent.data, function(n){
 		return n.bam_talentnum == talentnum;
 	});
@@ -274,7 +201,6 @@ handler.prototype.getDetailsForEditNoteModal = function() {
 }
 
 handler.prototype.addNoteForTalent = function(e) {
-
 	e.preventDefault();
 
 	var scheduleId = $(this).attr('id');
@@ -303,11 +229,9 @@ handler.prototype.addNoteForTalent = function(e) {
 			}, 3000);
 		});
 	}
-
 }
 
 handler.prototype.editNoteForTalent = function(e) {
-
 	e.preventDefault();
 
 	var ids = $(this).attr('id');
@@ -322,7 +246,6 @@ handler.prototype.editNoteForTalent = function(e) {
 		$('.talent-note-body-edit').focus();
 		$('.note-required').fadeIn().delay(3000).fadeOut();
 	}
-
 	else {
 		var data = {
 			scheduleId: scheduleId,
@@ -339,19 +262,12 @@ handler.prototype.editNoteForTalent = function(e) {
 			}, 3000);
 		});
 	}
+}
+
+handler.prototype.sendInvites = function() {
 
 }
 
-// $(".display").hide();
-$("#acc-toggle").click(function(){
-   $("#date-location").toggleClass('hide');
-});
-
-// $(document).ready(function () {
-//     $("#foo").change(function () {
-//         $("#showOrHideMe").toggle(this.checked);
-//     });
-// });
 module.exports = function(core, user, projectId, roleId) {
 	return new handler(core, user, projectId, roleId);
 }

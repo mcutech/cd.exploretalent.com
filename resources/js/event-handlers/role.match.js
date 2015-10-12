@@ -246,6 +246,7 @@ handler.prototype.rateSchedule = function(e) {
 	var $parent = $btn.parent();
 	var scheduleId = $parent.attr('data-id').replace('schedule-', '');
 	var rating = $btn.text();
+	console.log(scheduleId);
 
 	if (parseInt(scheduleId)) {
 		self.core.resource.schedule.patch({ jobId : self.roleId, scheduleId : scheduleId, rating : rating })
