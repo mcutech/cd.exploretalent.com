@@ -342,6 +342,16 @@ handler.prototype.editNoteForTalent = function(e) {
 
 }
 
+// $(".display").hide();
+$("#acc-toggle").click(function(){
+   $("#date-location").toggleClass('hide');
+});
+
+// $(document).ready(function () {
+//     $("#foo").change(function () {
+//         $("#showOrHideMe").toggle(this.checked);
+//     });
+// });
 module.exports = function(core, user, projectId, roleId) {
 	return new handler(core, user, projectId, roleId);
 }
