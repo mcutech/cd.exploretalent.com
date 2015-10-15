@@ -1,63 +1,7 @@
 @extends('layouts.sidebar', [ 'pages' => [ [ 'name' => 'Pre-Submissions', 'url' => '/roles/1/matches', 'active' => true] ] ])
 
-@section('sidebar.page-header')
-	<div class="text-semibold">Audition Worksheet</div>
-	<div class="display-block-inline">
-		<h5 class="text-normal margin-top-zero-small margin-bottom-small">Casting: Runway Fashion Show</h5>
-		<h5 class="text-normal margin-zero">Role: Dragon Ball Models</h5>
-	</div>	
-@stop
-
-@section('sidebar.page-extra')
-<div class="row-fluid clearfix">
-	<div class="col-md-6 float-right">
-		<div class="panel margin-bottom-zero display-block-inline">
-			<div class="padding-sm">
-				<h5 class="text-primary"><i class="fa fa-thumbs-o-up"></i> Like It List for this Role: <b>64</b></h5>
-				<a href="" class="btn btn-default btn-xs">View Lists & Contact Talent</a>
-				<a href="" class="btn btn-default btn-xs">Remove All</a>
-			</div>
-		</div>
-	</div>
-</div>
-@stop
-
 @section('sidebar.body')
 	<div class="audition-worksheet-wrapper audition-worksheet-talents-wrapper">
-		<div class="row-fluid clearfix">
-			<div class="col-md-7">
-				<ul class="nav nav-tabs negate-padding border-zero">
-					<li role="presentation" class="font-size-small-normal-zz font-size-small-normal-xs submissions-link">
-						<a href="">Pre-Submissions</a>
-					</li>
-					<li role="presentation" class="font-size-small-normal-zz font-size-small-normal-xs submissions-link">
-						<a href="">Self Submissions</a>
-					</li>
-					<li role="presentation" class="font-size-small-normal-zz font-size-small-normal-xs submissions-link">
-						<a href="">Like It List</a>
-					</li>
-					<li role="presentation" class="active font-size-small-normal-zz font-size-small-normal-xs submissions-link">
-						<a href="">Audition Worksheet</a>
-					</li>
-				</ul>
-			</div>
-			<div class="col-md-5">
-				<div class="form-group margin-bottom-zero row-fluid">
-					<label for="select-role" class="col-md-3 margin-top-small control-label text-align-right">
-						Select Role
-					</label>
-					<div class="col-md-9 padding-left-zero">
-						<select id="roles-list" class="form-control" data-bind="<%= role.role_id %>">
-							<option data-bind-template="#roles-list" data-bind-value="bam_roles" data-bind="<%= JSON.stringify({ key : role_id, value : name }) %>"></option>
-						</select>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-12">
-				<div class="margin-bottom-normal padding-bottom-normal bordered no-border-hr no-border-t"></div>
-			</div>
-		</div>
-
 		<div class="row-fluid clearfix">
 			<div class="col-md-3 talents-search-filter-content">
 				<form id="talent-filter-form">
@@ -75,6 +19,26 @@
 									<input type="text" class="form-control" name="zip" placeholder="Enter Talent Name" id="talent-name-search-input" max="5" maxlength="5">
 								</div>
 							</div> <!--talent name input-->
+
+							<div class="panel panel-transparent">
+								<div class="panel-heading no-padding-hr padding-bottom-zero-small padding-top-zero">
+									<div class="panel-title text-uppercase"><strong>Projects</strong></div>
+								</div>
+								<div class="panel-body padding-small no-border-hr no-padding-hr">
+									<div class="tab-content no-padding-hr padding-top-zero-zz-lg no-padding-b">
+										<div class="tab-pane fade active in">
+											<div class="display-block margin-bottom-small talent-role">
+												<select name="" id="" class="form-control">
+													<option value="1">All Projects</option>
+													<option value="2">Role 1</option>
+													<option value="3">Role 2</option>
+													<option value="4">Role 3</option>
+												</select>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
 
 							<div class="panel panel-transparent">
 								<div class="panel-heading no-padding-hr padding-bottom-zero-small padding-top-zero">
@@ -100,7 +64,7 @@
 											</div>
 										</div>
 									</div>
-								</div> 
+								</div>
 							</div> <!--Roles-->
 
 							<div class="panel panel-transparent">
@@ -136,7 +100,7 @@
 											</div>
 										</div>
 									</div>
-								</div> 
+								</div>
 							</div> <!--Schedules-->
 
 							<div class="panel panel-transparent margin-zero">
@@ -151,8 +115,8 @@
 											</div>
 										</div>
 									</div>
-								</div> 
-							</div> <!--notes-->															
+								</div>
+							</div> <!--notes-->
 
 							<div class="row-fluid clearfix">
 								<div class="col-md-6 padding-left-zero">
@@ -209,76 +173,75 @@
 						</div>
 					</div>
 				</div>
-				<?php for($x=1; $x<10; $x++) { ?>
-				<div class="panel talent-item margin-bottom-small">
-					<div class="panel-body">
-						<div class="row-fluid clearfix">
-							<div class="col-md-2 talent-content margin-bottom">
-								<div class="talent-name">
-									John Smith
-								</div>
-								<div class="talent-photo">
-									<img src="../../../../images/talents-sample-image.jpg" alt="" class="img-responsive">
-								</div>
-								<div class="talent-button-functions margin-top-small">
-									<div class="col-md-12 padding-zero margin-bottom-small">
-										<a href="" class="btn btn-default btn-sm btn-outline btn-block border-radius-zero">
-											<i class="fa fa-file-text-o"></i> Resume
-										</a>
+				<div id="schedules">
+					<div class="panel talent-item margin-bottom-small" data-bind-template="#schedules" data-bind-value="data">
+						<div class="panel-body">
+							<div class="row-fluid clearfix">
+								<div class="col-md-2 talent-content margin-bottom">
+									<div class="talent-name" data-bind="<%= getTalent().bam_talentci.getFullName() %>">
 									</div>
-									<div class="col-md-12 padding-zero">
-										<a href="" class="btn btn-default btn-sm btn-outline btn-block border-radius-zero">
-											<i class="fa fa-camera"></i> Photos
-										</a>
+									<div class="talent-photo">
+										<img data-bind="<%= getTalent().bam_talentci.getPrimaryPhoto() %>" alt="" class="img-responsive">
 									</div>
-								</div>
-							</div> <!--/talent-content-->
-
-							<div class="col-md-5 role-schedule-content">
-								<div class="role-name margin-bottom-small">
-									<span class="text-semibold">Role: </span><a href="#">Main Role</a>
-								</div>
-								<div class="submission-note-container margin-bottom-small">
-									<div class="panel margin-zero">
-										<div class="padding-small">
-											<div class="text-semibold note-title">Submission Note</div>
-											<div class="note-description">I am perfect lorem ipsum dolor sit amit siako. Curabitur aliquet quam id dui posuere rolama blandit.Mauris blandit aliquet elit dui posuere blandit. Donec rutrum conguerias. Vestibulum ac diam sit amet quam vehicula.<a href="" class="padding-left-small"><i class="fa fa-question-circle font-size-normal"></i> See more</a></div>
+									<div class="talent-button-functions margin-top-small">
+										<div class="col-md-12 padding-zero margin-bottom-small">
+											<a href="" class="btn btn-default btn-sm btn-outline btn-block border-radius-zero">
+												<i class="fa fa-file-text-o"></i> Resume
+											</a>
+										</div>
+										<div class="col-md-12 padding-zero">
+											<a href="" class="btn btn-default btn-sm btn-outline btn-block border-radius-zero">
+												<i class="fa fa-camera"></i> Photos
+											</a>
 										</div>
 									</div>
-								</div>
-								<div class="schedule-log margin-bottom-small padding-small">
-									<span class="text-semibold">Schedule: </span>10:00 AM - September 22, 2015
-								</div>
-								<div class="btn-functions">
-									<div class="btn-group">
-										<button type="button" class="btn btn-sm btn-success"><i class="fa fa-check"></i> Confirmed</button>
-										<button type="button" class="btn btn-sm btn-outline"><i class="fa fa-times"></i> Declined</button>
-										<button type="button" class="btn btn-sm btn-outline"><i class="fa fa-clock-o"></i> Reschedule</button>
+								</div> <!--/talent-content-->
+
+								<div class="col-md-5 role-schedule-content">
+									<div class="role-name margin-bottom-small">
+										<span class="text-semibold">Role: </span><a data-bind="/projects/<%= bam_role.casting_id %>/roles/<%= bam_role.role_id %>" ><span data-bind="<%= bam_role.name %>"></span></a>
+									</div>
+									<div class="submission-note-container margin-bottom-small">
+										<div class="panel margin-zero">
+											<div class="padding-small">
+												<div class="text-semibold note-title">Submission Note</div>
+												<div class="note-description">I am perfect lorem ipsum dolor sit amit siako. Curabitur aliquet quam id dui posuere rolama blandit.Mauris blandit aliquet elit dui posuere blandit. Donec rutrum conguerias. Vestibulum ac diam sit amet quam vehicula.<a href="" class="padding-left-small"><i class="fa fa-question-circle font-size-normal"></i> See more</a></div>
+											</div>
+										</div>
+									</div>
+									<div class="schedule-log margin-bottom-small padding-small">
+										<span class="text-semibold">Schedule: </span>10:00 AM - September 22, 2015
+									</div>
+									<div class="btn-functions">
+										<div class="btn-group">
+											<button type="button" class="btn btn-sm btn-success" data-bind="<%= invitee_accepted == 1 ? 'btn-success' : 'btn-outline' %>" data-bind-target="class"><i class="fa fa-check"></i> Confirmed</button>
+											<button type="button" class="btn btn-sm btn-outline"><i class="fa fa-times"></i> Declined</button>
+											<button type="button" class="btn btn-sm btn-outline"><i class="fa fa-clock-o"></i> Reschedule</button>
+										</div>
+									</div>
+								</div><!--/role-schedule-content-->
+
+								<div class="col-md-3 notes-content">
+									<div class="margin-bottom-medium">
+
+									</div>
+									<div class="notes-container margin-bottom-small">
+										Reschedule due to personal reasons.
+									</div>
+									<div class="notes-action">
+										<a href="#" class="btn btn-outline btn-sm"><i class="fa fa-pencil"></i>  Edit Note</a>
 									</div>
 								</div>
-							</div><!--/role-schedule-content-->
 
-							<div class="col-md-3 notes-content">
-								<div class="margin-bottom-medium">
-									
-								</div>
-								<div class="notes-container margin-bottom-small">
-									Reschedule due to personal reasons.
-								</div>
-								<div class="notes-action">
-									<a href="#" class="btn btn-outline btn-sm"><i class="fa fa-pencil"></i>  Edit Note</a>
-								</div>
+								<div class="col-md-2 actions-content">
+									<button type="button" class="btn btn-sm btn-outline btn-block margin-bottom-small"><i class="fa fa-clock-o"></i> Callback</button>
+									<button type="button" class="btn btn-sm btn-outline btn-block margin-bottom-small"><i class="fa fa-thumbs-o-up"></i> Hired</button>
+									<button type="button" class="btn btn-sm btn-outline btn-block"><i class="fa fa-envelope-o"></i> Message</button>
+								</div><!--/actions-content-->
 							</div>
-
-							<div class="col-md-2 actions-content">
-								<button type="button" class="btn btn-sm btn-outline btn-block margin-bottom-small"><i class="fa fa-clock-o"></i> Callback</button>
-								<button type="button" class="btn btn-sm btn-outline btn-block margin-bottom-small"><i class="fa fa-thumbs-o-up"></i> Hired</button>
-								<button type="button" class="btn btn-sm btn-outline btn-block"><i class="fa fa-envelope-o"></i> Message</button>
-							</div><!--/actions-content-->
 						</div>
 					</div>
 				</div>
-				<?php } ?>
 			</div>
 
 		</div>

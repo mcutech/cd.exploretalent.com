@@ -265,7 +265,17 @@ handler.prototype.editNoteForTalent = function(e) {
 }
 
 handler.prototype.sendInvites = function() {
+	// create campaign
 
+	var campaignData = {
+		campaign_type_id 	: 2, // CD Invitation type
+		bam_role_id			: self.project.role.id,
+		name				: 'CD Invite Role #' + self.project.role.id,
+		description			: 'CD invitation for role #' + self.project.role.id,
+		model				: '',
+		query				: '',
+	}
+	// CD Invite Role # id
 }
 
 module.exports = function(core, user, projectId, roleId) {
