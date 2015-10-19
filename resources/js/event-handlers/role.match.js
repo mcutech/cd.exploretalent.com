@@ -128,7 +128,6 @@ handler.prototype.refreshMatches = function() {
 						self.project.role.matches.data[index].favorite = n;
 					}
 				});
-				console.log(talent);
 			});
 
 			self.core.service.databind('#role-match', self.project);
@@ -246,7 +245,6 @@ handler.prototype.rateSchedule = function(e) {
 	var $parent = $btn.parent();
 	var scheduleId = $parent.attr('data-id').replace('schedule-', '');
 	var rating = $btn.text();
-	console.log(scheduleId);
 
 	if (parseInt(scheduleId)) {
 		self.core.resource.schedule.patch({ jobId : self.roleId, scheduleId : scheduleId, rating : rating })
@@ -257,7 +255,16 @@ handler.prototype.rateSchedule = function(e) {
 	}
 	else {
 		var userId = $parent.attr('data-id').replace('user-', '');
-		self.core.resource.schedule.post({ jobId : self.roleId, invitee_id : userId, inviter_id : self.user.id, rating : rating })
+		var data = {
+			jobId 			: self.roleId,
+			invitee_id		: userId,
+			inviter_id		: self.user.id,
+			rating			: rating,
+			invitee_status	: self.core.resource.schedule_cd_status.PENDING,
+			inviter_status	: self.core.resource.schedule_cd_status.PENDING,
+			status			: self.core.resource.schedule_status.PENDING
+		}
+		self.core.resource.schedule.post(data)
 			.then(function() {
 				$parent.find('.rating-button').removeClass('active');
 				$btn.addClass('active');
@@ -328,7 +335,17 @@ handler.prototype.getDetailsForAddNoteModal = function() {
 
 	if(id[0] == "user") { // no existing schedule yet
 		var userId = id[1];
-		self.core.resource.schedule.post({ jobId : self.roleId, invitee_id : userId, inviter_id : self.user.id, rating : 0 })
+		var data = {
+			jobId 			: self.roleId,
+			invitee_id		: userId,
+			inviter_id		: self.user.id,
+			rating			: 0,
+			invitee_status	: self.core.resource.schedule_cd_status.PENDING,
+			inviter_status	: self.core.resource.schedule_cd_status.PENDING,
+			status			: self.core.resource.schedule_status.PENDING
+		}
+
+		self.core.resource.schedule.post(data)
 			.then(function(res) {
 				self.core.service.databind('#utility-buttons', res);
 			});

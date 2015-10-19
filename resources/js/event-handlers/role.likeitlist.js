@@ -265,17 +265,24 @@ handler.prototype.editNoteForTalent = function(e) {
 }
 
 handler.prototype.sendInvites = function() {
+	var form = self.core.service.form.serializeObject('#invite-to-audition-form');
 	// create campaign
-
 	var campaignData = {
-		campaign_type_id 	: 2, // CD Invitation type
-		bam_role_id			: self.project.role.id,
-		name				: 'CD Invite Role #' + self.project.role.id,
-		description			: 'CD invitation for role #' + self.project.role.id,
-		model				: '',
-		query				: '',
+		campaign_type_id 	: self.core.resource.campaign_type.CD_INVITE,
+		bam_cd_user_id		: self.user.bam_cd_user_id,
+		bam_role_id			: self.project.role.role_id,
+		when				: form.when,
+		where				: form.where,
+		name				: 'CD Invite Role #' + self.project.role.role_id,
+		description			: form.message,
+		model				: 'Schedules',
+		query				: 'TO DO',
 	}
-	// CD Invite Role # id
+
+	self.core.resource.campaign.post(campaignData)
+		.then(function(res) {
+			alert('Invitation sent!');
+		});
 }
 
 module.exports = function(core, user, projectId, roleId) {

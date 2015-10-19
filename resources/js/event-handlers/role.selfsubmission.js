@@ -237,7 +237,16 @@ handler.prototype.rateSchedule = function(e) {
 	}
 	else {
 		var userId = $parent.data('id').replace('user-', '');
-		self.core.resource.schedule.post({ jobId : self.roleId, invitee_id : userId, inviter_id : self.user.id, rating : rating })
+		var data = {
+			jobId 			: self.roleId,
+			invitee_id		: userId,
+			inviter_id		: self.user.id,
+			rating			: rating,
+			invitee_status	: self.core.resource.schedule_cd_status.PENDING,
+			inviter_status	: self.core.resource.schedule_cd_status.PENDING,
+			status			: self.core.resource.schedule_status.PENDING
+		}
+		self.core.resource.schedule.post(data)
 			.then(function() {
 				$parent.find('.rating-button').removeClass('active');
 				$btn.addClass('active');
@@ -268,7 +277,7 @@ handler.prototype.changeRole = function() {
 handler.prototype.addToFav = function(){
 	var b = $(this).closest('.talent-tab').attr('id');
 	var talentnum = (b.split('-')[2]);
-	
+
 	var talents = _.find(self.favTalent.data, function(n){
 		return n.bam_talentnum == talentnum;
 	});
