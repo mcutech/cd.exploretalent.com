@@ -124,10 +124,6 @@ handler.prototype.changeRole = function() {
 	window.location = '/projects/' + self.projectId + '/roles/' + $('#roles-list').val() + '/like-it-list';
 }
 
-handler.prototype.sendInvites = function(e) {
-}
-
-
 handler.prototype.addToFav = function(){
 	var b = $(this).closest('.talent-tab').attr('id');
 	var talentnum = (b.split('-')[2]);
@@ -265,6 +261,23 @@ handler.prototype.editNoteForTalent = function(e) {
 }
 
 handler.prototype.sendInvites = function() {
+	var talents;
+
+	if (self.project.role.likeitlist.total > 25) {
+		talents = [];
+	}
+	else {
+		talents = _.map(self.project.role.likeitlist.data, function(n) {
+			return n.getTalent().bam_talentnum;
+		});
+	}
+
+	var data = {
+		query : [
+			[ 'whereIn', 'talentci.talentnum', talents ]
+		]
+	};
+
 	var form = self.core.service.form.serializeObject('#invite-to-audition-form');
 	// create campaign
 	var campaignData = {
@@ -275,8 +288,8 @@ handler.prototype.sendInvites = function() {
 		where				: form.where,
 		name				: 'CD Invite Role #' + self.project.role.role_id,
 		description			: form.message,
-		model				: 'Schedules',
-		query				: 'TO DO',
+		model				: '\\Bam\\Talentci',
+		query				: JSON.stringify(data),
 	}
 
 	self.core.resource.campaign.post(campaignData)
