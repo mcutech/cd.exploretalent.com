@@ -47,7 +47,7 @@ handler.prototype.refreshSelfSubmissions = function() {
 	var qs = self.core.service.query_string();
 
 	var data = {
-		where	: self.filter,
+		query	: self.filter,
 		page	: qs.page || 1
 	}
 
@@ -66,7 +66,7 @@ handler.prototype.refreshSelfSubmissions = function() {
 
 handler.prototype.getFavoriteTalents = function() {
 	var talents = _.map(self.project.role.selfsubmissions.data, function(n) {
-		return n.inviter.bam_talentnum;
+		return n.invitee.bam_talentnum;
 	});
 
 	if (talents.length > 0) {
@@ -92,7 +92,7 @@ handler.prototype.updateFilter = function() {
 	var filter = [];
 
 	if (form.zip) {
-		filter.push([ 'whereHas', 'inviter.bam_talentci', [
+		filter.push([ 'whereHas', 'invitee.bam_talentci', [
 				[ 'where', 'talentci.zip', '=', form.zip ]
 			]
 		]);
@@ -111,7 +111,7 @@ handler.prototype.updateFilter = function() {
 			// do nothing, if its an array then items is => 2, only 2 items so select all
 		}
 		else {
-			filter.push([ 'whereHas', 'inviter.bam_talentci.bam_talentinfo1', [
+			filter.push([ 'whereHas', 'invitee.bam_talentci.bam_talentinfo1', [
 					[ 'where', 'talentinfo1.sex', '=', form.sex ]
 				]
 			]);
@@ -124,13 +124,13 @@ handler.prototype.updateFilter = function() {
 		}
 		else {
 			if (parseInt(form.has_photo)) {
-				filter.push([ 'whereHas', 'inviter.bam_talentci.bam_talent_media2', [
+				filter.push([ 'whereHas', 'invitee.bam_talentci.bam_talent_media2', [
 						[ 'where', 'talent_media2.media_path', '<>', null ]
 					]
 				]);
 			}
 			else {
-				filter.push([ 'whereHas', 'inviter.bam_talentci.bam_talent_media2', [
+				filter.push([ 'whereHas', 'invitee.bam_talentci.bam_talent_media2', [
 						[ 'where', 'talent_media2.media_path', '=', null ]
 					]
 				]);
@@ -158,13 +158,13 @@ handler.prototype.updateFilter = function() {
 				}
 			});
 
-			filter.push([ 'whereHas', 'inviter.bam_talentci.bam_talentinfo1', [
+			filter.push([ 'whereHas', 'invitee.bam_talentci.bam_talentinfo1', [
 					[ 'where', subfilter ]
 				]
 			]);
 		}
 		else {
-			filter.push([ 'whereHas', 'inviter.bam_talentci.bam_talentinfo1', [
+			filter.push([ 'whereHas', 'invitee.bam_talentci.bam_talentinfo1', [
 					[ 'where', 'talentinfo1.build', '=', form.build ]
 				]
 			]);
@@ -183,13 +183,13 @@ handler.prototype.updateFilter = function() {
 				}
 			});
 
-			filter.push([ 'whereHas', 'inviter.bam_talentci.bam_talentinfo2', [
+			filter.push([ 'whereHas', 'invitee.bam_talentci.bam_talentinfo2', [
 					[ 'where', subfilter ]
 				]
 			]);
 		}
 		else {
-			filter.push([ 'whereHas', 'inviter.bam_talentci.bam_talentinfo2', [
+			filter.push([ 'whereHas', 'invitee.bam_talentci.bam_talentinfo2', [
 					[ 'where', 'talentinfo2.ethnicity', '=', form.ethnicity ]
 				]
 			]);
@@ -202,13 +202,13 @@ handler.prototype.updateFilter = function() {
 		}
 		else {
 			if (form.join_status == 5) {
-				filter.push([ 'whereHas', 'inviter.bam_talentci', [
+				filter.push([ 'whereHas', 'invitee.bam_talentci', [
 						[ 'where', 'talentci.join_status', '=', 5 ]
 					]
 				]);
 			}
 			else {
-				filter.push([ 'whereHas', 'inviter.bam_talentci', [
+				filter.push([ 'whereHas', 'invitee.bam_talentci', [
 						[ 'where', 'talentci.join_status', '<>', 5 ]
 					]
 				]);
@@ -239,9 +239,10 @@ handler.prototype.rateSchedule = function(e) {
 		var userId = $parent.data('id').replace('user-', '');
 		var data = {
 			jobId 			: self.roleId,
-			invitee_id		: userId,
-			inviter_id		: self.user.id,
+			inviter_id		: userId,
+			invitee_id		: self.user.id,
 			rating			: rating,
+			submission		: 1,
 			invitee_status	: self.core.resource.schedule_cd_status.PENDING,
 			inviter_status	: self.core.resource.schedule_cd_status.PENDING,
 			status			: self.core.resource.schedule_status.PENDING
