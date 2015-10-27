@@ -84,7 +84,7 @@ handler.prototype.rateSchedule = function(e) {
 	var $parent = $btn.parent();
 	var id = $parent.data('id').replace('schedule-', '');
 
-	self.core.resource.schedule.patch({ jobId : self.roleId, scheduleId : id, rating : rating })
+	self.core.resource.schedule.patch({ scheduleId : id, rating : rating })
 		.then(function() {
 			$parent.find('.rating-button').removeClass('active');
 			$btn.addClass('active');
@@ -93,15 +93,10 @@ handler.prototype.rateSchedule = function(e) {
 
 handler.prototype.removeAllLikeItList = function() {
 	if (confirm('Are you sure you want to remove all Like It List entries?')) {
-		var promises = [];
-		_.each(self.project.role.likeitlist.data, function(schedule) {
-			promises.push(self.core.resource.schedule.patch({ jobId : schedule.bam_role_id, scheduleId : schedule.id, rating : 0 }));
-		});
-
-		$.when.apply($, promises).then(function() {
-			alert('Like It List entries removed');
-			self.refreshLikeItList();
-		});
+		self.project.role.deleteLikeItList()
+			.then(function() {
+				alert('Like It List entries removed.');
+			});
 	}
 }
 
@@ -113,7 +108,7 @@ handler.prototype.unrateSchedule = function(e) {
 			id = $(e.target).parents('a').attr('data-id');
 		}
 
-		self.core.resource.schedule.patch({ jobId : self.project.role.role_id, scheduleId : id, rating : 0 })
+		self.core.resource.schedule.patch({ scheduleId : id, rating : 0 })
 			.then(function() {
 				alert('Entry removed.');
 				self.refreshLikeItList();

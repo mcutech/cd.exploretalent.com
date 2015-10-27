@@ -74,7 +74,6 @@ handler.prototype.refreshMatches = function() {
 
 			if (talents.length > 0) {
 				var data = {
-					jobId : self.project.role.role_id,
 					withs : [
 						'schedule_notes.user.bam_cd_user'
 					],
@@ -247,7 +246,7 @@ handler.prototype.rateSchedule = function(e) {
 	var rating = $btn.text();
 
 	if (parseInt(scheduleId)) {
-		self.core.resource.schedule.patch({ jobId : self.roleId, scheduleId : scheduleId, rating : rating })
+		self.core.resource.schedule.patch({ scheduleId : scheduleId, rating : rating })
 			.then(function() {
 				$parent.find('.rating-button').removeClass('active');
 				$btn.addClass('active');
@@ -256,7 +255,7 @@ handler.prototype.rateSchedule = function(e) {
 	else {
 		var userId = $parent.attr('data-id').replace('user-', '');
 		var data = {
-			jobId 			: self.roleId,
+			bam_role_id		: self.roleId,
 			invitee_id		: userId,
 			inviter_id		: self.user.id,
 			rating			: rating,
@@ -276,15 +275,10 @@ handler.prototype.rateSchedule = function(e) {
 
 handler.prototype.removeAllLikeItList = function() {
 	if (confirm('Are you sure you want to remove all Like It List entries?')) {
-		var promises = [];
-		_.each(self.project.role.likeitlist.data, function(schedule) {
-			promises.push(self.core.resource.schedule.patch({ jobId : schedule.bam_role_id, scheduleId : schedule.id, rating : 0 }));
-		});
-
-		$.when.apply($, promises).then(function() {
-			alert('Like It List entries removed');
-			self.refreshLikeItList();
-		});
+		self.project.role.deleteLikeItList()
+			.then(function() {
+				alert('Like It List entries removed.');
+			});
 	}
 }
 
@@ -336,7 +330,7 @@ handler.prototype.getDetailsForAddNoteModal = function() {
 	if(id[0] == "user") { // no existing schedule yet
 		var userId = id[1];
 		var data = {
-			jobId 			: self.roleId,
+			bam_role_id		: self.roleId,
 			invitee_id		: userId,
 			inviter_id		: self.user.id,
 			rating			: 0,
@@ -358,7 +352,7 @@ handler.prototype.getDetailsForAddNoteModal = function() {
 			scheduleId : scheduleId
 		};
 
-		self.core.resource.schedule.get({ jobId : self.roleId, scheduleId : scheduleId })
+		self.core.resource.schedule.get({ scheduleId : scheduleId })
 			.then(function(res) {
 				console.log(res);
 				self.core.service.databind('#utility-buttons', res);
