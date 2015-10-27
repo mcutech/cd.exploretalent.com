@@ -256,22 +256,16 @@ handler.prototype.editNoteForTalent = function(e) {
 }
 
 handler.prototype.sendInvites = function() {
-	var talents;
-
-	if (self.project.role.likeitlist.total > 25) {
-		talents = [];
-	}
-	else {
-		talents = _.map(self.project.role.likeitlist.data, function(n) {
-			return n.getTalent().bam_talentnum;
-		});
-	}
-
 	var data = {
-		query : [
-			[ 'whereIn', 'talentci.talentnum', talents ]
+		query	: [
+			[ 'with', 'invitee.bam_talentci.bam_talentinfo1' ],
+			[ 'with', 'invitee.bam_talentci.bam_talentinfo2' ],
+			[ 'with', 'invitee.bam_talentci.bam_talent_media2' ],
+			[ 'with', 'schedule_notes.user.bam_cd_user' ],
+			[ 'where', 'rating', '<>', 0 ],
+			[ 'where', 'submission', '=', 0 ]
 		]
-	};
+	}
 
 	var form = self.core.service.form.serializeObject('#invite-to-audition-form');
 	// create campaign
@@ -283,7 +277,7 @@ handler.prototype.sendInvites = function() {
 		where				: form.where,
 		name				: 'CD Invite Role #' + self.project.role.role_id,
 		description			: form.message,
-		model				: '\\Bam\\Talentci',
+		model				: 'Schedule',
 		query				: JSON.stringify(data),
 	}
 
