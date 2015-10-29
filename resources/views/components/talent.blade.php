@@ -69,14 +69,14 @@
 				<div class="col-md-6 padding-zero">
 					<div class="like-it-list-container">
 						<div class="text-left">
-						<div data-bind="<%= (schedule) ? 1 : 0 %>" data-bind-target="visibility">
+						<div>
 							<div class="display-block title"> Add to like list </div>
-								<div class="btn-group btn-group-xs" data-bind="<%= schedule ? 'schedule-' + schedule.id : 'user-' + user.id %>" data-bind-target="data-id">
-									<button class="btn btn-xs btn-danger rating-button"  data-bind="<%= schedule && parseInt(schedule.rating) == 1 ? 'active' : '' %>" data-bind-target="class">1</button>
-									<button class="btn btn-xs btn-warning rating-button" data-bind="<%= schedule && parseInt(schedule.rating) == 2 ? 'active' : '' %>" data-bind-target="class">2</button>
-									<button class="btn btn-xs btn-info rating-button" data-bind="<%= schedule && parseInt(schedule.rating) == 3 ? 'active' : '' %>" data-bind-target="class">3</button>
-									<button class="btn btn-xs btn-primary rating-button" data-bind="<%= schedule && parseInt(schedule.rating) == 4 ? 'active' : '' %>" data-bind-target="class">4</button>
-									<button class="btn btn-xs btn-success rating-button" data-bind="<%= schedule && parseInt(schedule.rating) == 5 ? 'active' : '' %>" data-bind-target="class">5</button>
+								<div class="btn-group btn-group-xs" data-bind="<%= schedule && schedule.id ? 'schedule-' + schedule.id : 'user-' + user.id %>" data-bind-target="data-id">
+									<button class="btn btn-xs btn-danger rating-button"  data-bind="<%= schedule && schedule.id && parseInt(schedule.rating) == 1 ? 'active' : '' %>" data-bind-target="class">1</button>
+									<button class="btn btn-xs btn-warning rating-button" data-bind="<%= schedule && schedule.id && parseInt(schedule.rating) == 2 ? 'active' : '' %>" data-bind-target="class">2</button>
+									<button class="btn btn-xs btn-info rating-button" 	 data-bind="<%= schedule && schedule.id && parseInt(schedule.rating) == 3 ? 'active' : '' %>" data-bind-target="class">3</button>
+									<button class="btn btn-xs btn-primary rating-button" data-bind="<%= schedule && schedule.id && parseInt(schedule.rating) == 4 ? 'active' : '' %>" data-bind-target="class">4</button>
+									<button class="btn btn-xs btn-success rating-button" data-bind="<%= schedule && schedule.id && parseInt(schedule.rating) == 5 ? 'active' : '' %>" data-bind-target="class">5</button>
 								</div>
 						</div>
 						</div>

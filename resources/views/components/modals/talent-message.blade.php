@@ -7,6 +7,14 @@
 			</div>
 			<div class="modal-body">
 				<div class="messaging-modal-wrapper">	
+					<div class="row">
+						<div class="col-md-12">
+							<div class="casting-role">
+								<label class="casting-name"> Casting Name:</label>
+								<span clas="role-name">Role Name</span>
+							</div>
+						</div>
+					</div>
 					<div class="label-primary">
 						<div class="col-md-2 col-xs-2 prof-pic">
 							<img src="https://scontent-hkg3-1.xx.fbcdn.net/hphotos-frc3/v/t1.0-9/10556261_10205417864625453_4516271846724428730_n.jpg?oh=7b51b0795bb63169c7f40bc95a4facd9&oe=56A92EB4" width="70%">

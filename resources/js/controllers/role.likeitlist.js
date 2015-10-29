@@ -9,7 +9,6 @@ module.exports = function(core, user, projectId, roleId) {
 	$(document).on('click', '#send-sms-slidetoggle', function() {
 		$("#sms-message-textarea").slideToggle('fast');
 	});
-	$('#send-invites-button').on('click', handler.sendInvites);
 
 	$(document).on('click', '.add-casting-note', handler.getDetailsForAddNoteModal);
 	$('.add-note-for-talent').on('click', handler.addNoteForTalent);
@@ -17,4 +16,10 @@ module.exports = function(core, user, projectId, roleId) {
 	$(document).on('click', '.edit-note-link', handler.getDetailsForEditNoteModal);
 	$('.edit-note-for-talent').on('click', handler.editNoteForTalent);
 	$(document).on('click', '.fav-btn', handler.addToFav);
+
+	$("#acc-toggle").click(function(){
+	   $("#date-location").toggleClass('hide');
+	});
+
+	$('#send-invites-button').on('click', handler.sendInvites);
 }

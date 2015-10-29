@@ -6,53 +6,60 @@
 				<h4 class="modal-title">Talent to Invite</h4>
 			</div>
 			<div class="modal-body">
-				<div class="row">
-
-					<div class="col-md-6">
-						<span><strong>Casting Name:</strong> James Bandong</span>
+				<form id="invite-to-audition-form">
+					<div class="row">
+						<div class="col-md-6">
+							<span><strong>casting name:</strong> <span data-bind="<%= role.name %>"></span></span>
+						</div>
+						<div class="col-md-6">
+							<span><strong>talents:</strong> <span data-bind="<%= role.likeitlist.total %>"></span></span>
+						</div>
 					</div>
-					<div class="col-md-6">
-						<span><strong>Talents:</strong> ####</span>
-					</div>						
-
-					<div class="col-md-12 margin-top-normal">
-					  <div class="checkbox">
-					    <label for="acc-toggle">
-					      	<input type="checkbox" id="acc-toggle"> Enter Date and Location
-					    </label>
-					  </div>
-					</div>
-
-					<div id="date-location" class="hide">
-						<div class="col-md-4">
-							<div class="input-group date">
-								<input type="text" class="form-control" placeholder="date" data-date-picker data-date-format="yy/mm/dd">
-								<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+					<div class="row">
+						<div class="col-md-6 margin-top-small">
+							<div class="checkbox">
+								<label for="acc-toggle">
+									<input type="checkbox" id="acc-toggle"> enter date and location
+								</label>
 							</div>
 						</div>
-						<div class="col-md-8">
-							<textarea class="form-control" rows="3" placeholder="Location"></textarea>
-						</div>						
 					</div>
-
-					<div class="col-md-12 margin-top-normal">
-						<div>
-							<textarea class="form-control" rows="3" placeholder="Message"></textarea>
+					<div class="row">
+						<div id="date-location" class="hide">
+							<div class="col-md-4">
+								<div class="input-group date">
+									<input type="text" class="form-control" placeholder="date" data-date-picker data-date-format="yy/mm/dd" name="when">
+									<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+								</div>
+							</div>
+							<div class="col-md-8">
+								<textarea class="form-control" rows="3" placeholder="location" name="where"></textarea>
+							</div>
 						</div>
 					</div>
-
-					<div class="col-md-12">
-					  <div class="checkbox"> 
-					    <label>
-					      <input type="checkbox"> Allow Replies
-					    </label>
-					  </div>
-					</div>						
-
-
+					<div class="row">
+						<div class="col-md-12 margin-top-normal">
+							<div>
+								<textarea class="form-control" rows="3" placeholder="message" name="message"></textarea>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12 margin-top-normal">
+							<div class="checkbox">
+								<label>
+									<input type="checkbox"> allow replies
+								</label>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="panel-footer">
+				<div class="row">
 					<div class="col-md-12 text-align-right">
-						<button class="btn btn-default" type="submit">Send</button>
-					</div>										
+						<button class="btn btn-default" type="submit" id="send-invites-button">Send</button>
+					</div>
 				</div>
 			</div>
 		</div> <!-- / .modal-content -->

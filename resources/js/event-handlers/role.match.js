@@ -74,7 +74,6 @@ handler.prototype.refreshMatches = function() {
 
 			if (talents.length > 0) {
 				var data = {
-					jobId : self.project.role.role_id,
 					withs : [
 						'schedule_notes.user.bam_cd_user'
 					],
@@ -128,7 +127,6 @@ handler.prototype.refreshMatches = function() {
 						self.project.role.matches.data[index].favorite = n;
 					}
 				});
-				console.log(talent);
 			});
 
 			self.core.service.databind('#role-match', self.project);
@@ -248,7 +246,7 @@ handler.prototype.rateSchedule = function(e) {
 	var rating = $btn.text();
 
 	if (parseInt(scheduleId)) {
-		self.core.resource.schedule.patch({ jobId : self.roleId, scheduleId : scheduleId, rating : rating })
+		self.core.resource.schedule.patch({ scheduleId : scheduleId, rating : rating })
 			.then(function() {
 				$parent.find('.rating-button').removeClass('active');
 				$btn.addClass('active');
@@ -256,7 +254,16 @@ handler.prototype.rateSchedule = function(e) {
 	}
 	else {
 		var userId = $parent.attr('data-id').replace('user-', '');
-		self.core.resource.schedule.post({ jobId : self.roleId, invitee_id : userId, inviter_id : self.user.id, rating : rating })
+		var data = {
+			bam_role_id		: self.roleId,
+			invitee_id		: userId,
+			inviter_id		: self.user.id,
+			rating			: rating,
+			invitee_status	: self.core.resource.schedule_cd_status.PENDING,
+			inviter_status	: self.core.resource.schedule_cd_status.PENDING,
+			status			: self.core.resource.schedule_status.PENDING
+		}
+		self.core.resource.schedule.post(data)
 			.then(function() {
 				$parent.find('.rating-button').removeClass('active');
 				$btn.addClass('active');
@@ -268,15 +275,10 @@ handler.prototype.rateSchedule = function(e) {
 
 handler.prototype.removeAllLikeItList = function() {
 	if (confirm('Are you sure you want to remove all Like It List entries?')) {
-		var promises = [];
-		_.each(self.project.role.likeitlist.data, function(schedule) {
-			promises.push(self.core.resource.schedule.patch({ jobId : schedule.bam_role_id, scheduleId : schedule.id, rating : 0 }));
-		});
-
-		$.when.apply($, promises).then(function() {
-			alert('Like It List entries removed');
-			self.refreshLikeItList();
-		});
+		self.project.role.deleteLikeItList()
+			.then(function() {
+				alert('Like It List entries removed.');
+			});
 	}
 }
 
@@ -327,7 +329,17 @@ handler.prototype.getDetailsForAddNoteModal = function() {
 
 	if(id[0] == "user") { // no existing schedule yet
 		var userId = id[1];
-		self.core.resource.schedule.post({ jobId : self.roleId, invitee_id : userId, inviter_id : self.user.id, rating : 0 })
+		var data = {
+			bam_role_id		: self.roleId,
+			invitee_id		: userId,
+			inviter_id		: self.user.id,
+			rating			: 0,
+			invitee_status	: self.core.resource.schedule_cd_status.PENDING,
+			inviter_status	: self.core.resource.schedule_cd_status.PENDING,
+			status			: self.core.resource.schedule_status.PENDING
+		}
+
+		self.core.resource.schedule.post(data)
 			.then(function(res) {
 				self.core.service.databind('#utility-buttons', res);
 			});
@@ -340,7 +352,7 @@ handler.prototype.getDetailsForAddNoteModal = function() {
 			scheduleId : scheduleId
 		};
 
-		self.core.resource.schedule.get({ jobId : self.roleId, scheduleId : scheduleId })
+		self.core.resource.schedule.get({ scheduleId : scheduleId })
 			.then(function(res) {
 				console.log(res);
 				self.core.service.databind('#utility-buttons', res);

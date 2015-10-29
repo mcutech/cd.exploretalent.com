@@ -47,7 +47,7 @@ handler.prototype.refreshSelfSubmissions = function() {
 	var qs = self.core.service.query_string();
 
 	var data = {
-		where	: self.filter,
+		query	: self.filter,
 		page	: qs.page || 1
 	}
 
@@ -66,7 +66,7 @@ handler.prototype.refreshSelfSubmissions = function() {
 
 handler.prototype.getFavoriteTalents = function() {
 	var talents = _.map(self.project.role.selfsubmissions.data, function(n) {
-		return n.inviter.bam_talentnum;
+		return n.invitee.bam_talentnum;
 	});
 
 	if (talents.length > 0) {
@@ -92,7 +92,7 @@ handler.prototype.updateFilter = function() {
 	var filter = [];
 
 	if (form.zip) {
-		filter.push([ 'whereHas', 'inviter.bam_talentci', [
+		filter.push([ 'whereHas', 'invitee.bam_talentci', [
 				[ 'where', 'talentci.zip', '=', form.zip ]
 			]
 		]);
@@ -111,7 +111,7 @@ handler.prototype.updateFilter = function() {
 			// do nothing, if its an array then items is => 2, only 2 items so select all
 		}
 		else {
-			filter.push([ 'whereHas', 'inviter.bam_talentci.bam_talentinfo1', [
+			filter.push([ 'whereHas', 'invitee.bam_talentci.bam_talentinfo1', [
 					[ 'where', 'talentinfo1.sex', '=', form.sex ]
 				]
 			]);
@@ -124,13 +124,13 @@ handler.prototype.updateFilter = function() {
 		}
 		else {
 			if (parseInt(form.has_photo)) {
-				filter.push([ 'whereHas', 'inviter.bam_talentci.bam_talent_media2', [
+				filter.push([ 'whereHas', 'invitee.bam_talentci.bam_talent_media2', [
 						[ 'where', 'talent_media2.media_path', '<>', null ]
 					]
 				]);
 			}
 			else {
-				filter.push([ 'whereHas', 'inviter.bam_talentci.bam_talent_media2', [
+				filter.push([ 'whereHas', 'invitee.bam_talentci.bam_talent_media2', [
 						[ 'where', 'talent_media2.media_path', '=', null ]
 					]
 				]);
@@ -158,13 +158,13 @@ handler.prototype.updateFilter = function() {
 				}
 			});
 
-			filter.push([ 'whereHas', 'inviter.bam_talentci.bam_talentinfo1', [
+			filter.push([ 'whereHas', 'invitee.bam_talentci.bam_talentinfo1', [
 					[ 'where', subfilter ]
 				]
 			]);
 		}
 		else {
-			filter.push([ 'whereHas', 'inviter.bam_talentci.bam_talentinfo1', [
+			filter.push([ 'whereHas', 'invitee.bam_talentci.bam_talentinfo1', [
 					[ 'where', 'talentinfo1.build', '=', form.build ]
 				]
 			]);
@@ -183,13 +183,13 @@ handler.prototype.updateFilter = function() {
 				}
 			});
 
-			filter.push([ 'whereHas', 'inviter.bam_talentci.bam_talentinfo2', [
+			filter.push([ 'whereHas', 'invitee.bam_talentci.bam_talentinfo2', [
 					[ 'where', subfilter ]
 				]
 			]);
 		}
 		else {
-			filter.push([ 'whereHas', 'inviter.bam_talentci.bam_talentinfo2', [
+			filter.push([ 'whereHas', 'invitee.bam_talentci.bam_talentinfo2', [
 					[ 'where', 'talentinfo2.ethnicity', '=', form.ethnicity ]
 				]
 			]);
@@ -202,13 +202,13 @@ handler.prototype.updateFilter = function() {
 		}
 		else {
 			if (form.join_status == 5) {
-				filter.push([ 'whereHas', 'inviter.bam_talentci', [
+				filter.push([ 'whereHas', 'invitee.bam_talentci', [
 						[ 'where', 'talentci.join_status', '=', 5 ]
 					]
 				]);
 			}
 			else {
-				filter.push([ 'whereHas', 'inviter.bam_talentci', [
+				filter.push([ 'whereHas', 'invitee.bam_talentci', [
 						[ 'where', 'talentci.join_status', '<>', 5 ]
 					]
 				]);
@@ -228,7 +228,7 @@ handler.prototype.rateSchedule = function(e) {
 	var id = $parent.data('id').replace('schedule-', '');
 
 	if (parseInt(id)) {
-		self.core.resource.schedule.patch({ jobId : self.roleId, scheduleId : id, rating : rating })
+		self.core.resource.schedule.patch({ scheduleId : id, rating : rating })
 			.then(function() {
 				$parent.find('.rating-button').removeClass('active');
 				$btn.addClass('active');
@@ -237,7 +237,17 @@ handler.prototype.rateSchedule = function(e) {
 	}
 	else {
 		var userId = $parent.data('id').replace('user-', '');
-		self.core.resource.schedule.post({ jobId : self.roleId, invitee_id : userId, inviter_id : self.user.id, rating : rating })
+		var data = {
+			bam_role_id		: self.roleId,
+			inviter_id		: userId,
+			invitee_id		: self.user.id,
+			rating			: rating,
+			submission		: 1,
+			invitee_status	: self.core.resource.schedule_cd_status.PENDING,
+			inviter_status	: self.core.resource.schedule_cd_status.PENDING,
+			status			: self.core.resource.schedule_status.PENDING
+		}
+		self.core.resource.schedule.post(data)
 			.then(function() {
 				$parent.find('.rating-button').removeClass('active');
 				$btn.addClass('active');
@@ -248,15 +258,10 @@ handler.prototype.rateSchedule = function(e) {
 
 handler.prototype.removeAllLikeItList = function() {
 	if (confirm('Are you sure you want to remove all Like It List entries?')) {
-		var promises = [];
-		_.each(self.project.role.likeitlist.data, function(schedule) {
-			promises.push(self.core.resource.schedule.patch({ jobId : schedule.bam_role_id, scheduleId : schedule.id, rating : 0 }));
-		});
-
-		$.when.apply($, promises).then(function() {
-			alert('Like It List entries removed');
-			self.refreshLikeItList();
-		});
+		self.project.role.deleteLikeItList()
+			.then(function() {
+				alert('Like It List entries removed.');
+			});
 	}
 }
 
@@ -268,7 +273,7 @@ handler.prototype.changeRole = function() {
 handler.prototype.addToFav = function(){
 	var b = $(this).closest('.talent-tab').attr('id');
 	var talentnum = (b.split('-')[2]);
-	
+
 	var talents = _.find(self.favTalent.data, function(n){
 		return n.bam_talentnum == talentnum;
 	});

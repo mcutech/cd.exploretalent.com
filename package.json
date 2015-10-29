@@ -54,7 +54,8 @@
     "vinyl-source-stream": "^1.0.0",
     "watchify": "^2.2.1",
     "wiredep": "^2.2.2",
-    "yargs": "^3.7.2"
+    "yargs": "^3.7.2",
+    "jscore": "git+ssh://git@gitlab.com/utech/jscore.exploretalent.com.git#development"
   },
   "browserify": {
     "transform": [
