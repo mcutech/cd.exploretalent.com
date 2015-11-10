@@ -18,9 +18,9 @@ Route::get('/', function() {
 Route::get('login', 'LoginController@index');
 Route::get('register', 'RegisterController@index');
 
+Route::get('/audition-worksheet','WorksheetController@index');
 Route::resource('projects'							, 'ProjectController');
 Route::resource('projects.roles'					, 'RoleController', [ 'only' => [ 'edit', 'create' ] ]);
-Route::get('projects/{projectId}/roles/{roleId}/audition-worksheet','RoleController@auditionworksheet');
 Route::get('projects/{projectId}/roles/{roleId}/self-submissions',	'RoleController@selfsubmissions');
 Route::get('projects/{projectId}/roles/{roleId}/like-it-list',		'RoleController@likeitlist');
 Route::get('projects/{projectId}/roles/{roleId}/public-like-it-list',		'RoleController@publiclikeitlist');

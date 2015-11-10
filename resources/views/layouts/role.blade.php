@@ -56,7 +56,7 @@
 				<a data-bind="/projects/<%= casting_id %>/roles/<%= role.role_id %>/like-it-list" href="">Like It List</a>
 			</li>
 			<li role="presentation" class="font-size-small-normal-zz font-size-small-normal-xs auditions-worksheet-link ">
-				<a data-bind="/projects/<%= casting_id %>/roles/<%= role.role_id %>/audition-worksheet" href="">Audition Worksheet</a>
+				<a data-bind="/audition-worksheet" href="">Audition Worksheet</a>
 			</li>
 		</ul>
 	</div>
