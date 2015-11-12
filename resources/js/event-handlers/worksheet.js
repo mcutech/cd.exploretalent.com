@@ -26,6 +26,7 @@ handler.prototype.refresh = function() {
 	self.core.resource.campaign.get(data)
 		.then(function(res) {
 			var campaign = _.first(res.data);
+			console.log(res);
 			if (campaign && campaign.bam_role) {
 				_.each(campaign.bam_role.schedules, function(n) { n.bam_role = campaign.bam_role; n.campaign = campaign; });
 			}

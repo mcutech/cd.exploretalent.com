@@ -55,9 +55,12 @@
 									<div class="submission-note-container margin-bottom-small" >
 										<div class="panel margin-zero">
 											<div class="padding-small">
-												<div class="text-semibold note-title">Message</div>
+												<div class="text-semibold">
+													<span data-bind="<%= submission ? 'Self Submitted on ' : 'Added to Like It List on' %>"></span>
+													<span data-bind="<%= created_at %>"></span>
+												</div>
 												<div class="note-description">
-													<span data-bind="<%= conversation && _.first(conversation.messages) ? _.first(conversation.messages).body : campaign.description %>"></span>
+													<span data-bind="<%= conversation && _.last(conversation.messages) ? _.last(conversation.messages).body : campaign.description %>"></span>
 												</div>
 											</div>
 										</div>
