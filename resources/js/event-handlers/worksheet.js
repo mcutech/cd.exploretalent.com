@@ -26,14 +26,13 @@ handler.prototype.refresh = function() {
 	self.core.resource.campaign.get(data)
 		.then(function(res) {
 			var campaign = _.first(res.data);
-			console.log(res);
 			if (campaign && campaign.bam_role) {
 				_.each(campaign.bam_role.schedules, function(n) { n.bam_role = campaign.bam_role; n.campaign = campaign; });
 			}
-			else {
-				campaign = { bam_role : { schedules : [] } };
+			else { campaign = { bam_role : { schedules : [] } };
 			}
 			self.core.service.databind('#schedules', campaign);
+			self.campaign = campaign;
 		});
 }
 
@@ -148,6 +147,73 @@ handler.prototype.addNote = function() {
 	self.core.resource.schedule_note.post(data)
 		.then(function(res) {
 			self.refresh();
+		});
+}
+
+handler.prototype.showMessageModal = function(e) {
+	var $element = $(e.target);
+
+	if (!$element.is('button')) {
+		$element = $element.parents('button');
+	}
+
+	var scheduleId = $element.parents('.schedule').attr('data-id');
+	self.refreshMessages(scheduleId);
+}
+
+handler.prototype.refreshMessages = function(scheduleId) {
+	var data = {
+		query : [
+			[ 'where', 'schedule_id', '=', scheduleId ],
+			[ 'with', 'schedule.bam_role' ],
+			[ 'with', 'schedule.invitee.bam_talentci.bam_talentinfo2' ],
+			[ 'with', 'schedule.invitee.bam_talentci.bam_talentinfo1' ],
+			[ 'with', 'schedule.invitee.bam_talentci.bam_talent_media2' ],
+			[ 'with', 'messages.user.bam_talentci' ],
+			[ 'with', 'messages.user.bam_cd_user' ],
+		]
+	};
+
+	self.core.resource.conversation.get(data)
+		.then(function(res) {
+			if (res.total) {
+				return $.when(res);
+			}
+			else {
+				return self.core.resource.schedule.get({ scheduleId : scheduleId })
+					.then(function(res) {
+						// create new conversation
+						var data2 = {
+							schedule_id 	: scheduleId,
+							user_id 		: res.inviter_id,
+							user_ids		: [ res.inviter_id, res.invitee_id ]
+						};
+
+						return self.core.resource.conversation.post(data2);
+					})
+					.then(function() {
+						return self.core.resource.conversation.get(data);
+					});
+			}
+		})
+		.then(function(res) {
+			var conversation = _.first(res.data);
+			conversation.campaign = self.campaign;
+			self.core.service.databind('#message-modal', conversation);
+			self.conversation = conversation;
+		});
+}
+
+handler.prototype.reply = function() {
+	var data = {
+		conversationId 	: self.conversation.id,
+		user_id 		: self.user.id,
+		body			: $('#message-text').val()
+	};
+
+	self.core.resource.message.post(data)
+		.then(function() {
+			self.refreshMessages(self.conversation.schedule.id);
 		});
 }
 

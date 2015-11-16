@@ -90,7 +90,7 @@
 								<div class="col-md-2 actions-content">
 									<button type="button" class="btn btn-sm btn-block margin-bottom-small callback-button" data-bind="<%= status == 2 ? 'btn-success' : 'btn-outline' %>" data-bind-target="class"><i class="fa fa-clock-o"></i> Callback</button>
 									<button type="button" class="btn btn-sm btn-block margin-bottom-small hired-button" data-bind="<%= status == 3 ? 'btn-success' : 'btn-outline' %>" data-bind-target="class"><i class="fa fa-thumbs-o-up"></i> Hired</button>
-									<button type="button" class="btn btn-sm btn-outline btn-block"><i class="fa fa-envelope-o"></i> Message</button>
+									<button type="button" class="btn btn-sm btn-outline btn-block message-button" data-toggle="modal" data-target="#message-modal"><i class="fa fa-envelope-o"></i> Message</button>
 								</div><!--/actions-content-->
 							</div>
 						</div>
@@ -103,4 +103,5 @@
 	</div>
 @include('worksheet.modals.reschedule')
 @include('worksheet.modals.add-note')
+@include('worksheet.modals.message')
 @stop
