@@ -7,24 +7,24 @@
 		<h5 class="text-normal margin-zero">Role: <span data-bind="<%= role.name %>"></span></h5>
 	</div>
 	<div class="display-block project-roles-info">
-		<div class="row-fluid clearfix font-size-small-normal">
+		<div class="row-fluid clearfix">
 			<div class="col-md-4 padding-zero">
-				<ul class="list-unstyled margin-zero">
-					<li>Gender: <span data-bind="<%= (role.gender_female === 1) ? 'Female' : 'Male' %>"></span></li>
-					<li>Age Range: <span data-bind="<%= role.age_min %>"></span> to <span data-bind="<%= role.age_max %>"></span></li>
-				</ul>
+				<span class="text-slim">Gender: <span data-bind="<%= (role.gender_female === 1) ? 'Female' : 'Male' %>" class="text-normal"></span></span>
 			</div>
 			<div class="col-md-4 padding-zero">
-				<ul class="list-unstyled margin-zero">
-					<li>Height Range: <span data-bind="<%= role.getHeightMinText() %>"></span> to <span data-bind="<%= role.getHeightMaxText() %>"></span></li>
-					<li>Ethnicity: <span data-bind="<%=role.getEthnicities().join(', ') %>"></span></li>
-				</ul>
+				<span class="text-slim">Age Range: <span class="text-normal"><span data-bind="<%= role.age_min %>"></span> to <span data-bind="<%= role.age_max %>"></span></span></span>
 			</div>
 			<div class="col-md-4 padding-zero">
-				<ul class="list-unstyled">
-					<li>Body Type: <span data-bind = "<%=role.getBuilds().join(', ') %>"></span></li>
-					<li>Hair Color: <span data-bind = "<%=role.getHairColors().join(', ') %>"></span></li>
-				</ul>
+				<span class="text-slim">Height Range: <span class="text-normal"><span data-bind="<%= role.getHeightMinText() %>"></span> to <span data-bind="<%= role.getHeightMaxText() %>"></span></span></span>
+			</div>
+			<div class="col-md-12 padding-zero">
+				<span class="text-slim">Body Type: <span data-bind = "<%=role.getBuilds().join(', ') %>" class="text-normal"></span></span>
+			</div>
+			<div class="col-md-12 padding-zero">
+				<span class="text-slim">Ethnicity: <span data-bind="<%=role.getEthnicities().join(', ') %>" class="text-normal"></span></span>
+			</div>
+			<div class="col-md-12 padding-zero">
+				<span class="text-slim">Hair Color: <span data-bind = "<%=role.getHairColors().join(', ') %>" class="text-normal"></span></span>
 			</div>
 		</div>
 	</div>
@@ -44,7 +44,7 @@
 
 @section('sidebar.body')
 <div class="row-fluid clearfix">
-	<div class="col-md-6">
+	<div class="col-md-7">
 		<ul id="submissions-sub-menu" class="nav nav-tabs negate-padding border-zero">
 			<li role="presentation" class="font-size-small-normal-zz font-size-small-normal-xs matches-link">
 				<a data-bind="/projects/<%= casting_id %>/roles/<%= role.role_id %>/matches">Pre-Submissions</a>
@@ -56,11 +56,11 @@
 				<a data-bind="/projects/<%= casting_id %>/roles/<%= role.role_id %>/like-it-list" href="">Like It List</a>
 			</li>
 			<li role="presentation" class="font-size-small-normal-zz font-size-small-normal-xs auditions-worksheet-link ">
-				<a data-bind="/projects/<%= casting_id %>/roles/<%= role.role_id %>/audition-worksheet" href="">Audition Worksheet</a>
+				<a data-bind="/audition-worksheet" href="">Audition Worksheet</a>
 			</li>
 		</ul>
 	</div>
-	<div class="col-md-6">
+	<div class="col-md-5">
 		<div class="form-group margin-bottom-zero row-fluid">
 			<label for="select-role" class="col-md-3 margin-top-small control-label text-align-right">
 				Select Role

@@ -1,4 +1,4 @@
-@extends('layouts.sidebar', [ 'pages' => [ [ 'name' => 'Pre-Submissions', 'url' => '/roles/1/matches', 'active' => true] ] ])
+@extends('layouts.sidebar', [ 'pages' => [ [ 'name' => 'Worksheet', 'url' => '/worksheet', 'active' => true] ] ])
 
 @section('sidebar.body')
 	<div class="audition-worksheet-wrapper audition-worksheet-talents-wrapper">
