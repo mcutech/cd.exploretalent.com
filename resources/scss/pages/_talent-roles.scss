@@ -4,13 +4,15 @@
 		padding: 12px 10px;
 		margin-top: 5px;
 		border: 1px solid #ddd;
+		line-height: 20px;
+		font-size: 13px;
 		ul{
 			li{
 			    line-height: 25px;
 			    color: #333;
 			    font-size: 13px;
 			    &:last-child{
-			    	line-height: 6px;
+			    	line-height: 17px;
 			    }
 			}
 		}
