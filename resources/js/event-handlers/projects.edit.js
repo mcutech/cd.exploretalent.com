@@ -26,6 +26,7 @@ handler.prototype.getProjectInfo = function(e) {
 
 	return self.core.resource.project.get(data)
 		.then(function(res) {
+			console.log(res);
 			if (res.total > 0) {
 				var casting = res.data[0];
 
