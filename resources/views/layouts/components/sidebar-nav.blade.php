@@ -26,4 +26,11 @@
 			<span class="mm-text">Favorite Talents</span>
 		</a>
 	</li>
+
+	<li>
+		<a href="/audition-worksheet">
+			<i class="menu-icon fa fa-tasks"></i>
+			<span class="mm-text">Audition Worksheet</span>
+		</a>
+	</li>
 </ul>
