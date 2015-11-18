@@ -18,12 +18,18 @@ module.exports = function(core, user) {
 	$('#bs-datepicker-submissiondeadline').datepicker({
 		dateFormat: 'yy-mm-dd'
 	});
+	$('#bs-datepicker-submissiondeadline').mask('9999-99-99');
+	
 	$('#bs-datepicker-audition').datepicker({
 		dateFormat: 'yy-mm-dd'
 	});
+	$('#bs-datepicker-audition').mask('9999-99-99');
+
 	$('#bs-datepicker-shootdate').datepicker({
 		dateFormat: 'yy-mm-dd'
 	});
+	$('#bs-datepicker-shootdate').mask('9999-99-99');
+	
 	$('#bs-datepicker-open-call').datepicker({
 		dateFormat: 'DD, MM dth'
 	});

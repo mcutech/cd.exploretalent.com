@@ -16,6 +16,10 @@ handler.prototype.createNewProject = function(e){
 	var category = $('#project-category').val();
 	var submissiondeadline = $('#bs-datepicker-submissiondeadline').val();
 		submissiondeadline = submissiondeadline.split("-");
+
+	console.log(submissiondeadline);
+	
+	// return false;	
 	var asaptimestamp = new Date(submissiondeadline[0],submissiondeadline[1]-1,submissiondeadline[2]) / 1000;
 	var submissiontimestamp = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate()) / 1000;
 	var rate = $('#project-rate').val();
@@ -89,6 +93,8 @@ handler.prototype.createNewProject = function(e){
 
 	promise.then(function() {
 
+		var submissiondeadline = $('#bs-datepicker-submissiondeadline').val();
+
 		var data = {
 			user_id : self.user.bam_cd_user_id,
 			name : projectname,
@@ -108,6 +114,8 @@ handler.prototype.createNewProject = function(e){
 			location : zipcode,
 			des: auditiondesc,
 		};
+
+		console.log(data);
 
 		if(projectname.length < 1) {
 			$('.project-name-error-required').fadeIn().delay(3000).fadeOut();
