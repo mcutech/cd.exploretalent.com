@@ -1,4 +1,5 @@
 'use strict';
+var _ = require('lodash');
 
 function handler(core, user, projectId, roleId) {
 	self = this;
@@ -15,7 +16,8 @@ handler.prototype.refresh = function() {
 		query : [
 			[ 'with', 'bam_role.schedules.invitee.bam_talentci.bam_talent_media2' ],
 			[ 'with', 'bam_role.schedules.conversation.messages' ],
-			[ 'with', 'bam_role.schedules.schedule_notes' ]
+			[ 'with', 'bam_role.schedules.schedule_notes' ],
+			[ 'where', 'status', '=', 1 ]
 		]
 	};
 
@@ -27,9 +29,23 @@ handler.prototype.refresh = function() {
 		.then(function(res) {
 			var campaign = _.first(res.data);
 			if (campaign && campaign.bam_role) {
-				_.each(campaign.bam_role.schedules, function(n) { n.bam_role = campaign.bam_role; n.campaign = campaign; });
+				// assign bam_role and campaign objects so we don't have to query again
+				_.each(campaign.bam_role.schedules, function(n) {
+					n.bam_role = campaign.bam_role;
+					n.campaign = campaign;
+				});
+				// remove schedule with rating = 0
+				_.remove(campaign.bam_role.schedules, function(n) {
+					return n.rating == 0;
+				});
 			}
-			else { campaign = { bam_role : { schedules : [] } };
+			else {
+				// create empty object so we wont have problems in databind
+				campaign = {
+					bam_role : {
+						schedules : []
+					}
+				};
 			}
 			self.core.service.databind('#schedules', campaign);
 			self.campaign = campaign;
