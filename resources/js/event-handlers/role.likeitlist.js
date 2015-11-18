@@ -279,6 +279,7 @@ handler.prototype.sendInvites = function() {
 		description			: form.message,
 		model				: 'Schedule',
 		query				: JSON.stringify(data),
+		replies				: form.replies
 	}
 
 	self.core.resource.campaign.post(campaignData)

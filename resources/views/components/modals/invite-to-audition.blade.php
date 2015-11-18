@@ -48,7 +48,7 @@
 						<div class="col-md-12 margin-top-normal">
 							<div class="checkbox">
 								<label>
-									<input type="checkbox"> allow replies
+									<input name="replies" value="1" type="checkbox"> allow replies
 								</label>
 							</div>
 						</div>

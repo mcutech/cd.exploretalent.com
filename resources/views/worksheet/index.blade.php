@@ -56,7 +56,7 @@
 										<div class="panel margin-zero">
 											<div class="padding-small">
 												<div class="text-semibold">
-													<span data-bind="<%= submission ? 'Self Submitted on ' : 'Added to Like It List on' %>"></span>
+													<span data-bind="<%= submission ? 'Self Submitted on ' : 'Added to Like It List on ' %>"></span>
 													<span data-bind="<%= created_at %>"></span>
 												</div>
 												<div class="note-description">
