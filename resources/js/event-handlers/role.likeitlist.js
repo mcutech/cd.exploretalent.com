@@ -257,34 +257,47 @@ handler.prototype.editNoteForTalent = function(e) {
 
 handler.prototype.sendInvites = function() {
 	var data = {
-		query	: [
-			[ 'with', 'invitee.bam_talentci.bam_talentinfo1' ],
-			[ 'with', 'invitee.bam_talentci.bam_talentinfo2' ],
-			[ 'with', 'invitee.bam_talentci.bam_talent_media2' ],
-			[ 'with', 'schedule_notes.user.bam_cd_user' ],
-			[ 'where', 'rating', '<>', 0 ],
-			[ 'where', 'submission', '=', 0 ]
+		query 	: [
+			[ 'where', 'bam_role_id', self.project.role.role_id ]
 		]
-	}
+	};
 
-	var form = self.core.service.form.serializeObject('#invite-to-audition-form');
-	// create campaign
-	var campaignData = {
-		campaign_type_id 	: self.core.resource.campaign_type.CD_INVITE,
-		bam_cd_user_id		: self.user.bam_cd_user_id,
-		bam_role_id			: self.project.role.role_id,
-		when				: form.when,
-		where				: form.where,
-		name				: 'CD Invite Role #' + self.project.role.role_id,
-		description			: form.message,
-		model				: 'Schedule',
-		query				: JSON.stringify(data),
-		replies				: form.replies
-	}
-
-	self.core.resource.campaign.post(campaignData)
+	self.core.resource.campaign.get(data)
 		.then(function(res) {
-			alert('Invitation sent!');
+			var form = self.core.service.form.serializeObject('#invite-to-audition-form');
+
+			var data = {
+				query	: [
+					[ 'where', 'rating', '<>', 0 ]
+				]
+			}
+
+			var campaignData = {
+				campaign_type_id 	: self.core.resource.campaign_type.CD_INVITE,
+				bam_cd_user_id		: self.user.bam_cd_user_id,
+				bam_role_id			: self.project.role.role_id,
+				when				: form.when,
+				where				: form.where,
+				name				: 'CD Invite Role #' + self.project.role.role_id,
+				description			: form.message,
+				model				: 'Schedule',
+				query				: JSON.stringify(data),
+				replies				: form.replies,
+				status				: 0
+			}
+
+			// update campaign
+			if (res.total) {
+				campaignData.campaignId = _.first(res.data).id;
+				return self.core.resource.campaign.patch(campaignData);
+			}
+			// create campaign
+			else {
+				return self.core.resource.campaign.post(campaignData);
+			}
+		})
+		.then(function(res) {
+			alert('Invitations sent!');
 		});
 }
 
