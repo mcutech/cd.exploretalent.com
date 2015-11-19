@@ -48,7 +48,7 @@
 									<span class="name" data-bind="<%= user.bam_talentci ? user.bam_talentci.getFullName() : user.bam_cd_user.getFullName() %>"></span>
 									<span class="time" data-bind="<%= created_at %>"></span>
 								</div>
-								<div class="margin-top-small-normal margin-left-small" data-bind="<%= body %>">
+								<div class="margin-top-small-normal margin-left-small" data-bind="<%= body %>" data-bind-target="html">
 								</div>
 							</div>
 						</div>

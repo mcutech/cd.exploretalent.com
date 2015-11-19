@@ -27,6 +27,7 @@ handler.prototype.refresh = function() {
 
 	self.core.resource.campaign.get(data)
 		.then(function(res) {
+			console.log(res);
 			var campaign = _.first(res.data);
 			if (campaign && campaign.bam_role) {
 				// assign bam_role and campaign objects so we don't have to query again
@@ -148,6 +149,28 @@ handler.prototype.reschedule = function(e) {
 	};
 
 	self.core.resource.schedule.patch(data)
+		.then(function(res) {
+			// get conversation
+			var data = {
+				query : [
+					[ 'where', 'schedule_id', '=', self.scheduleId ]
+				]
+			};
+
+			return self.core.resource.conversation.get(data);
+		})
+		.then(function(res) {
+			var conversation = _.first(res.data);
+			// send reschedule message
+
+			var data = {
+				conversationId  : conversation.id,
+				user_id 		: self.user.id,
+				body 			: 'Rescheduled to <span style="color:#ffa500;font-weight:bold;">' + $('#reschedule-date').val() + '</span>'
+			};
+
+			return self.core.resource.message.post(data);
+		})
 		.then(function(res) {
 			self.refresh();
 		});
