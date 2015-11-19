@@ -282,8 +282,7 @@ handler.prototype.sendInvites = function() {
 				description			: form.message,
 				model				: 'Schedule',
 				query				: JSON.stringify(data),
-				replies				: form.replies,
-				status				: 0
+				replies				: form.replies
 			}
 
 			// update campaign

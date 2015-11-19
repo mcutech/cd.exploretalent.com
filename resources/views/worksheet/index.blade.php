@@ -60,7 +60,7 @@
 													<span data-bind="<%= created_at %>"></span>
 												</div>
 												<div class="note-description">
-													<span data-bind="<%= conversation && _.last(conversation.messages) ? _.last(conversation.messages).body : campaign.description %>"></span>
+													<span data-bind="<%= conversation && _.last(conversation.messages) ? _.last(conversation.messages).body : campaign.description %>" data-bind-target="html"></span>
 												</div>
 											</div>
 										</div>

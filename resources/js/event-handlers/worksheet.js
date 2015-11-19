@@ -1,4 +1,5 @@
 'use strict';
+var _ = require('lodash');
 
 function handler(core, user, projectId, roleId) {
 	self = this;
@@ -15,7 +16,8 @@ handler.prototype.refresh = function() {
 		query : [
 			[ 'with', 'bam_role.schedules.invitee.bam_talentci.bam_talent_media2' ],
 			[ 'with', 'bam_role.schedules.conversation.messages' ],
-			[ 'with', 'bam_role.schedules.schedule_notes' ]
+			[ 'with', 'bam_role.schedules.schedule_notes' ],
+			[ 'where', 'status', '=', 1 ]
 		]
 	};
 
@@ -25,11 +27,26 @@ handler.prototype.refresh = function() {
 
 	self.core.resource.campaign.get(data)
 		.then(function(res) {
+			console.log(res);
 			var campaign = _.first(res.data);
 			if (campaign && campaign.bam_role) {
-				_.each(campaign.bam_role.schedules, function(n) { n.bam_role = campaign.bam_role; n.campaign = campaign; });
+				// assign bam_role and campaign objects so we don't have to query again
+				_.each(campaign.bam_role.schedules, function(n) {
+					n.bam_role = campaign.bam_role;
+					n.campaign = campaign;
+				});
+				// remove schedule with rating = 0
+				_.remove(campaign.bam_role.schedules, function(n) {
+					return n.rating == 0;
+				});
 			}
-			else { campaign = { bam_role : { schedules : [] } };
+			else {
+				// create empty object so we wont have problems in databind
+				campaign = {
+					bam_role : {
+						schedules : []
+					}
+				};
 			}
 			self.core.service.databind('#schedules', campaign);
 			self.campaign = campaign;
@@ -132,6 +149,28 @@ handler.prototype.reschedule = function(e) {
 	};
 
 	self.core.resource.schedule.patch(data)
+		.then(function(res) {
+			// get conversation
+			var data = {
+				query : [
+					[ 'where', 'schedule_id', '=', self.scheduleId ]
+				]
+			};
+
+			return self.core.resource.conversation.get(data);
+		})
+		.then(function(res) {
+			var conversation = _.first(res.data);
+			// send reschedule message
+
+			var data = {
+				conversationId  : conversation.id,
+				user_id 		: self.user.id,
+				body 			: 'Rescheduled to <span style="color:#ffa500;font-weight:bold;">' + $('#reschedule-date').val() + '</span>'
+			};
+
+			return self.core.resource.message.post(data);
+		})
 		.then(function(res) {
 			self.refresh();
 		});
