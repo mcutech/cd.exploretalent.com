@@ -1,8 +1,8 @@
 @extends('layouts.project', ['pages' => [ [ 'name' => 'Project Name', 'url' => '/projects' ], [ 'name' => 'Project Overview', 'url' => '/projects/Overview', 'active' => true ] ] ])
 
 @section('sidebar.page-header')
-<div id="casting-title">
-	<i class="fa fa-file-text"></i> Project Overview <span data-bind="- <%= project %>"></span>
+<div class = "project-overview-wrapper">
+	<i class="fa fa-file-text"></i> Project Overview - <span data-bind="<%=name%>"></span>
 </div>
 @stop
 
