@@ -21,35 +21,59 @@ handler.prototype.refresh = function() {
 		]
 	};
 
+	if (parseInt(form.project)) {
+		data.query.push([ 'whereHas', 'bam_role', [
+				[ 'where', 'casting_id', '=', form.project ]
+			]
+		]);
+	}
+
 	if (parseInt(form.role)) {
 		data.query.push([ 'where', 'bam_role_id', '=', form.role ]);
 	}
 
+	if (form.talentname) {
+		data.query.push([ 'whereHas', 'bam_role.schedules.invitee.bam_talentci', [
+				[ 'where', [
+						[ 'where', 'fname', 'LIKE', '%' + form.talentname + '%' ],
+						[ 'orWhere', 'lname', 'LIKE', '%' + form.talentname + '%' ],
+					]
+				]
+			]
+		]);
+	}
+
+	if (parseInt(form.schedule_status)) {
+		data.query.push([ 'whereHas', 'bam_role.schedules', [
+				[ 'where', 'status', '=', form.schedule_status ]
+			]
+		]);
+	}
+
 	self.core.resource.campaign.get(data)
 		.then(function(res) {
-			console.log(res);
-			var campaign = _.first(res.data);
-			if (campaign && campaign.bam_role) {
-				// assign bam_role and campaign objects so we don't have to query again
-				_.each(campaign.bam_role.schedules, function(n) {
-					n.bam_role = campaign.bam_role;
-					n.campaign = campaign;
-				});
-				// remove schedule with rating = 0
-				_.remove(campaign.bam_role.schedules, function(n) {
-					return n.rating == 0;
-				});
-			}
-			else {
-				// create empty object so we wont have problems in databind
-				campaign = {
-					bam_role : {
+			_.each(res.data, function(campaign) {
+				if (campaign.bam_role) {
+					// assign bam_role and campaign objects so we don't have to query again
+					_.each(campaign.bam_role.schedules, function(n) {
+						n.bam_role = campaign.bam_role;
+						n.campaign = campaign;
+					});
+					// remove schedule with rating = 0
+					_.remove(campaign.bam_role.schedules, function(n) {
+						return n.rating == 0;
+					});
+				}
+				else {
+					// create empty object so we wont have problems in databind
+					campaign.bam_role = {
 						schedules : []
-					}
-				};
-			}
-			self.core.service.databind('#schedules', campaign);
-			self.campaign = campaign;
+					};
+				}
+			});
+			console.log(res);
+			self.core.service.databind('#campaigns', res);
+			// self.campaign = campaign;
 		});
 }
 
@@ -213,6 +237,8 @@ handler.prototype.refreshMessages = function(scheduleId) {
 		]
 	};
 
+	var conversation;
+
 	self.core.resource.conversation.get(data)
 		.then(function(res) {
 			if (res.total) {
@@ -236,8 +262,16 @@ handler.prototype.refreshMessages = function(scheduleId) {
 			}
 		})
 		.then(function(res) {
-			var conversation = _.first(res.data);
-			conversation.campaign = self.campaign;
+			conversation = _.first(res.data);
+			var data = {
+				query : [
+					[ 'where', 'bam_role_id', '=', conversation.schedule.bam_role_id ]
+				]
+			};
+			return self.core.resource.campaign.get(data);
+		})
+		.then(function(res) {
+			conversation.campaign = _.first(res.data);
 			self.core.service.databind('#message-modal', conversation);
 			self.conversation = conversation;
 		});
