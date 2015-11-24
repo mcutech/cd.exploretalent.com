@@ -10,8 +10,7 @@
 					<div class="col-md-12">
 						<div class="form-group">
 							<label>Note:</label>
-							<textarea id="note-text" class="form-control" rows="5">
-							</textarea>
+							<textarea id="note-text" class="form-control" rows="5"></textarea>
 						</div>
 					</div>
 				</div>

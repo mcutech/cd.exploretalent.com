@@ -1,4 +1,3 @@
-
 'use strict';
 
 module.exports = function(core, user) {
@@ -33,30 +32,30 @@ module.exports = function(core, user) {
 					if(res.music_type2 == '2'){
 						talent.bam_talent_music[ind].music_role = "Singer";
 					}
-					if(res.music_type2 == '3'){ 
+					if(res.music_type2 == '3'){
 						talent.bam_talent_music[ind].music_role = "Song Writer";3.
-						talent.bam_talent_music[ind].music_role = "Player";	
+						talent.bam_talent_music[ind].music_role = "Player";
 					}
 					if(res.music_type2 == '6'){
-						talent.bam_talent_music[ind].music_role = "Lyricist";	
+						talent.bam_talent_music[ind].music_role = "Lyricist";
 					}
 					if(res.music_type2 == '7'){
-						talent.bam_talent_music[ind].music_role = "Sound Man";	
+						talent.bam_talent_music[ind].music_role = "Sound Man";
 					}
 					if(res.music_type2 == '8'){
-						talent.bam_talent_music[ind].music_role = "Composer";	
+						talent.bam_talent_music[ind].music_role = "Composer";
 					}
 					if(res.music_type2 == '9'){
-						talent.bam_talent_music[ind].music_role = "Conductor";	
+						talent.bam_talent_music[ind].music_role = "Conductor";
 					}
 				});
-				
+
 				self.core.service.databind('#talent-resume-modal', talent);
-				
+
 			});
 	});
-	
-	
+
+
 	$('#uidemo-tabs-default-demo-musician').find('a').on("click", function(e){
 		e.preventDefault();
 		if($(this).hasClass('show-more-btn')){
