@@ -6,6 +6,7 @@ function handler(core, user){
 	self.core = core;
 	self.user = user;
 
+	// assign query string variable to filter form
 	var qs = self.core.service.query_string();
 	var form = {
 		zip 		: '',
@@ -18,7 +19,6 @@ function handler(core, user){
 		build 		: '',
 		ethnicity 	: '',
 		join_status : '',
-
 	}
 	_.assign(form, qs);
 	self.core.service.databind('#talent-filter-form', form);
@@ -37,26 +37,33 @@ handler.prototype.refresh = function() {
 		.then(function(res) {
 			talents = res;
 
-			talentnums = _.map(talents.data, function(talent) {
-				return talent.talentnum;
-			});
+			if (talents.total) {
+				talentnums = _.map(talents.data, function(talent) {
+					return talent.talentnum;
+				});
 
-			// get favorite talents
-			var data2 = {
-				query : [
-					[ 'whereIn', 'bam_talentnum', talentnums ]
-				]
-			};
+				// get favorite talents
+				var data2 = {
+					query : [
+						[ 'whereIn', 'bam_talentnum', talentnums ]
+					]
+				};
 
-			return self.core.resource.favorite_talent.get(data2);
+				return self.core.resource.favorite_talent.get(data2);
+			}
+			else {
+				return $.when();
+			}
 		})
 		.then(function(res) {
-			//assign favorite talents to talent
-			_.each(talents.data, function(talent) {
-				talent.favorite = _.find(res.data, function(favorite) {
-					return talent.talentnum == favorite.bam_talentnum;
+			if (talents.total) {
+				//assign favorite talents to talent
+				_.each(talents.data, function(talent) {
+					talent.favorite = _.find(res.data, function(favorite) {
+						return talent.talentnum == favorite.bam_talentnum;
+					});
 				});
-			});
+			}
 
 			var qs = self.core.service.query_string();
 			var form = self.core.service.form.serializeObject('#talent-filter-form');
@@ -65,6 +72,7 @@ handler.prototype.refresh = function() {
 				return n == '';
 			});
 
+			// add filters to query string
 			var url = window.location.href.replace(window.location.search, '');
 			url = url + '?' + $.param(qs);
 			window.history.pushState(null, null, url);

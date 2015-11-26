@@ -76,7 +76,7 @@
 						<div class="text-left">
 						<div>
 							<div class="display-block title"> Add to like list </div>
-								<div class="btn-group btn-group-xs" data-bind="<%= schedule && schedule.id ? 'schedule-' + schedule.id : 'user-' + user.id %>" data-bind-target="data-id">
+								<div class="btn-group btn-group-xs" data-bind="<%= (schedule && schedule.id) ? 'schedule-' + schedule.id : 'user-' + user.id %>" data-bind-target="data-id">
 									<button class="btn btn-xs btn-danger rating-button"  data-bind="<%= schedule && schedule.id && parseInt(schedule.rating) == 1 ? 'active' : '' %>" data-bind-target="class">1</button>
 									<button class="btn btn-xs btn-warning rating-button" data-bind="<%= schedule && schedule.id && parseInt(schedule.rating) == 2 ? 'active' : '' %>" data-bind-target="class">2</button>
 									<button class="btn btn-xs btn-info rating-button" 	 data-bind="<%= schedule && schedule.id && parseInt(schedule.rating) == 3 ? 'active' : '' %>" data-bind-target="class">3</button>
