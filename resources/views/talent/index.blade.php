@@ -1,4 +1,4 @@
-@extends('layouts.sidebar', [ 'pages' => [ [ 'name' => 'Browse Talents', 'url' => '/talents', 'active' => true] ] ])
+@extends('layouts.sidebar', [ 'pages' => [ [ 'name' => 'Browse Talents', 'url' => '/talents', 'active' => true ] ] ])
 
 @section('sidebar.page-header')
 <i class="fa fa-search"></i> Browse Talents
@@ -11,9 +11,14 @@
 
 		<div class="talents-search-filter-content">
 			<div class="row-fluid">
-				@include('components.talent-filter')
+				@include('components.talent-filter2')
 
-				<div class="col-md-9 talents-search-result">
+				<div id="talent-search-loader" class="text-center padding-top-large">
+					<h3>Loading Talents</h3>
+					<h1><i class="fa fa-spinner fa-spin"></i></h1>
+				</div>
+
+				<div class="col-md-9 talents-search-result" id="talent-search-result">
 					<div class="row-fluid clearfix top-results-heading margin-bottom-normal">
 						<div class="col-md-12">
 							<div class="float-right">

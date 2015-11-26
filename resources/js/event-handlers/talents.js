@@ -1,10 +1,27 @@
 'use strict';
+var _ = require('lodash');
 
 function handler(core, user){
 	self = this;
 	self.core = core;
 	self.user = user;
 
+	var qs = self.core.service.query_string();
+	var form = {
+		zip 		: '',
+		age_min 	: '',
+		age_max 	: '',
+		sex 		: '',
+		has_photo 	: '',
+		height_min 	: '',
+		height_max 	: '',
+		build 		: '',
+		ethnicity 	: '',
+		join_status : '',
+
+	}
+	_.assign(form, qs);
+	self.core.service.databind('#talent-filter-form', form);
 	self.refresh();
 }
 
@@ -13,6 +30,8 @@ handler.prototype.refresh = function() {
 	var talentnums;
 
 	var data = self.getFilters();
+	$('#talent-search-loader').show();
+	$('#talent-search-result').hide();
 
 	self.core.resource.search_talent.get(data)
 		.then(function(res) {
@@ -39,9 +58,22 @@ handler.prototype.refresh = function() {
 				});
 			});
 
-			console.log(talents);
-			self.core.service.databind('#talent-result', talents);
+			var qs = self.core.service.query_string();
+			var form = self.core.service.form.serializeObject('#talent-filter-form');
+			_.merge(qs, form);
+			qs = _.omit(qs, function(n) {
+				return n == '';
+			});
+
+			var url = window.location.href.replace(window.location.search, '');
+			url = url + '?' + $.param(qs);
+			window.history.pushState(null, null, url);
+
+			self.core.service.databind('#talent-search-result', talents);
 			self.core.service.paginate('#talents-pagination', { class : 'pagination', total : talents.total, name : 'page' });
+
+			$('#talent-search-loader').hide();
+			$('#talent-search-result').show();
 		});
             //
 			// var data2 = {
