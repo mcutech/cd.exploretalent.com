@@ -5,235 +5,180 @@ function handler(core, user){
 	self.core = core;
 	self.user = user;
 
-	//self.refreshAdvancedSearchValues().then(self.refreshList);
-	self.refreshList();
+	self.refresh();
 }
 
-handler.prototype.refreshAdvancedSearchValues = function() {
-	var data = {
-		talentId : self.user.bam_talentnum,
-		withs : [
-			'bam_talentinfo1',
-			'bam_talent_media2'
-		]
-	};
-	return self.core.resource.talent.get(data)
+handler.prototype.refresh = function() {
+	var talents;
+	var talentnums;
 
-		.then(function(talent) {
-			console.log(talent);
-			//layoutInit(self.core, self.user, talent);
-			//$('.search-talents-div').databind(talent);
-			return $.when();
+	var data = self.getFilters();
 
-		});
-}
+	self.core.resource.search_talent.get(data)
+		.then(function(res) {
+			talents = res;
 
-handler.prototype.refreshList = function(group){
-	var qs = self.core.service.query_string();
-	var data = {
-		withs	: [
-			'user',
-			'bam_talentinfo1',
-			'bam_talentinfo2',
-			'bam_talent_media2'
-		],
-		wheres : [
-			[ 'leftJoin', 'laret_users', 'laret_users.bam_talentnum', '=', 'talentci.talentnum' ],
-			[ 'select', '*', 'laret_favorite_talents.id AS favorite', 's1.id AS schedule_id1', 's2.id AS schedule_id2', 's1.rating AS rating1', 's2.rating AS rating2' ],
-			[ 'leftJoin', 'laret_favorite_talents', 'laret_favorite_talents.bam_talentnum', '=', 'talentci.talentnum' ],
-			[ 'leftJoin', 'laret_schedules AS s1', 's1.invitee_id', '=', 'laret_users.id' ],
-			[ 'leftJoin', 'laret_schedules AS s2', 's2.inviter_id', '=', 'laret_users.id' ],
-			[ 'where', [
-					[ 'where', 'laret_favorite_talents.bam_cd_user_id', '=', self.user.bam_cd_user_id ],
-					[ 'orWhere', [
-							[ 'whereNull', 'laret_favorite_talents.bam_cd_user_id']
-						]
-					]
-				]
-			],
-			[ 'where', [
-					[ 'where', 's1.bam_role_id', '=', self.roleId ],
-					[ 'orWhere', [
-							[ 'whereNull', 's1.bam_role_id' ]
-						]
-					]
-				]
-			],
-			[ 'where', [
-					[ 'where', 's2.bam_role_id', '=', self.roleId ],
-					[ 'orWhere', [
-							[ 'whereNull', 's2.bam_role_id' ]
-						]
-					]
-				]
-			]
-		],
-		page : qs.page || 0
-	}
-
-	if (self.filter) {
-		data.wheres = data.wheres.concat(self.filter);
-	}
-		return self.core.resource.talent.get(data)
-			.then(function(list){
-				/*$('#talent-list').databind(list);
-				$('#talent-pagination').paginate({
-					class 	 : 'pagination float-right margin-top-medium',
-					count	 : list.total,
-					name 	 : 'talent_page',
-					per_page : 24
-				});*/
-				_.each(list.data, function(val, ind){
-					list.data[ind].schedule = null;
-				});
-				self.core.service.databind('#talent-result', list);
-				$('#loading-div').hide();
-				return $.when();
+			talentnums = _.map(talents.data, function(talent) {
+				return talent.talentnum;
 			});
-};
 
-handler.prototype.ApplyData = function(e) {
+			// get favorite talents
+			var data2 = {
+				query : [
+					[ 'whereIn', 'bam_talentnum', talentnums ]
+				]
+			};
 
-	e.preventDefault();
-	var dates = new Date().getFullYear();
-	var agesmin = dates - parseInt($('#text-age-min').html());
-	var agesmax = dates - parseInt($('#text-age-max').html());
-	var group = [];
-	var group1 = [];
-	var group2 = [];
-	//age range, gender, has picture, height range, body type, ethnicity, membership
-	//group.age_min.push([ $('#text-age-min').html() ]);
-	group.push(['whereBetween', 'talentinfo1.dobyyyy', [parseInt($('#text-age-min').html()), parseInt($('#text-age-max').html())]]);
-	group.push(['whereBetween', 'talentinfo1.heightinches', [parseInt($('#val-height-min').html()), parseInt($('#val-height-max').html())]]);
+			return self.core.resource.favorite_talent.get(data2);
+		})
+		.then(function(res) {
+			//assign favorite talents to talent
+			_.each(talents.data, function(talent) {
+				talent.favorite = _.find(res.data, function(favorite) {
+					return talent.talentnum == favorite.bam_talentnum;
+				});
+			});
 
-	//gender checkbox
-	var checkedgender = $('#checkbox-gender:checked').map(function(){
-		return this.value;
-	}).get();
-	if(checkedgender.length > 0 && checkedgender.length < 2 ){
-		group.push(['where', 'talentinfo1.sex', '=', checkedgender[0]]);
-	}
-
-
-	//has picture checkbox
-	if($('#has-pic').is(':checked')){
-		group.push([ 'whereHas', 'bam_talent_media2', [ 'where', 'talent_media2.media_path', '<>', 'null' ] ]);
-	}
-
-	//Body type
-	var checkedbody = $('#checkbox-body:checked').map(function(){
-		return this.value;
-	}).get();
-
-	if(checkedbody.length > 0 && checkedbody.length < 9 ){
-		_.each(checkedbody, function(val, index){
-			group1.push(['orWhere', 'talentinfo1.build', '=', val]);
+			console.log(talents);
+			self.core.service.databind('#talent-result', talents);
+			self.core.service.paginate('#talents-pagination', { class : 'pagination', total : talents.total, name : 'page' });
 		});
-		group.push(['where', group1]);
+            //
+			// var data2 = {
+			// 	query : [
+			// 		[ 'whereIn', 'talentnum', talentnums ],
+			// 		[ 'where', 'type', '=', 2 ]
+			// 	]
+			// };
+			// return self.core.resource.talent_media2.get(data2);
+		// });
+		// .then(function(res) {
+		// 	_.each(talents.data, function(talent) {
+		// 		talent.primary_photo = _.find(res.data, function(tm) {
+		// 			return tm.talentnum == talent.talentnum;
+		// 		});
+		// 	});
+        //
+		// 	console.log(talents);
+		// });
+}
+
+handler.prototype.getFilters = function() {
+	var qs = self.core.service.query_string();
+	var form = self.core.service.form.serializeObject('#talent-filter-form');
+	var data = {
+		query 	: [
+		],
+		page	: qs.page || 1
+	};
+
+	if (form.zip) {
+		data.query.push([ 'where', 'zip', '=', form.zip ]);
 	}
 
-	//ethnicity type
-	var checkedethnicity = $('#checkbox-ethnicity:checked').map(function(){
-		return this.value;
-	}).get();
-
-	if(checkedethnicity.length > 0 && checkedethnicity.length < 8 ){
-		_.each(checkedethnicity, function(val, index){
-			group2.push(['orWhere', 'talentinfo2.ethnicity', '=', val]);
-		});
-		group.push(['where', group2]);
+	if (parseInt(form.age_min)) {
+		data.query.push([ 'where', 'dobyyyy', '<=', new Date().getFullYear() - parseInt(form.age_min) ]);
 	}
 
-	//member
-	var checkedmember = $('#checkbox-member:checked').map(function(){
-		return this.value;
-	}).get();
-	if(checkedmember.length > 0 && checkedmember.length < 2 ){
-		if(checkedmember[0] == 'pro'){
-			group.push(['where', 'join_status', '>', 4]);
-		} else {
-			group.push(['where', 'join_status', '<', 5]);
+	if (parseInt(form.age_max)) {
+		data.query.push([ 'where', 'dobyyyy', '>=', new Date().getFullYear() - parseInt(form.age_max) ]);
+	}
+
+	if (form.sex) {
+		if (!(form.sex instanceof Array)) {
+			data.query.push([ 'where', 'sex', '=', form.sex ]);
 		}
 	}
 
-	//retrieve data
-	var qs = self.core.service.query_string();
-	var data = {
-		withs	: [
-			'user',
-			'bam_talentinfo1',
-			'bam_talentinfo2',
-			'bam_talent_media2'
-		],
-		wheres : [
-			[ 'leftJoin', 'laret_users', 'laret_users.bam_talentnum', '=', 'talentci.talentnum' ],
-			[ 'select', '*', 'laret_favorite_talents.id AS favorite', 's1.id AS schedule_id1', 's2.id AS schedule_id2', 's1.rating AS rating1', 's2.rating AS rating2' ],
-			[ 'leftJoin', 'laret_favorite_talents', 'laret_favorite_talents.bam_talentnum', '=', 'talentci.talentnum' ],
-			[ 'leftJoin', 'laret_schedules AS s1', 's1.invitee_id', '=', 'laret_users.id' ],
-			[ 'leftJoin', 'laret_schedules AS s2', 's2.inviter_id', '=', 'laret_users.id' ],
-			[ 'where', [
-					[ 'where', 'laret_favorite_talents.bam_cd_user_id', '=', self.user.bam_cd_user_id ],
-					[ 'orWhere', [
-							[ 'whereNull', 'laret_favorite_talents.bam_cd_user_id']
-						]
-					]
-				]
-			],
-			[ 'where', [
-					[ 'where', 's1.bam_role_id', '=', self.roleId ],
-					[ 'orWhere', [
-							[ 'whereNull', 's1.bam_role_id' ]
-						]
-					]
-				]
-			],
-			[ 'where', [
-					[ 'where', 's2.bam_role_id', '=', self.roleId ],
-					[ 'orWhere', [
-							[ 'whereNull', 's2.bam_role_id' ]
-						]
-					]
-				]
-			]
-		],
-		page : qs.page || 0
+	if (form.has_photo) {
+		if (!(form.has_photo instanceof Array)) {
+			data.query.push([ 'where', 'has_photos', '=', form.has_photo ]);
+		}
 	}
 
-	if (self.filter) {
-		data.wheres = data.wheres.concat(self.filter);
+	if (parseInt(form.height_min)) {
+		data.query.push([ 'where', 'heightinches', '>=', form.height_min ]);
 	}
 
-	return self.core.resource.talent.get(data)
-	.then(function(list){
-		/*$('#talent-list').databind(list);
-		$('#talent-pagination').paginate({
-			class 	 : 'pagination float-right margin-top-medium',
-			count	 : list.total,
-			name 	 : 'talent_page',
-			per_page : 24
-		});*/
-		self.core.service.databind('#talent-result', list);
-		return $.when();
+	if (parseInt(form.height_max)) {
+		data.query.push([ 'where', 'heightinches', '<=', form.height_max ]);
+	}
 
-		group = [];
-		group1 = [];
-		group2 = [];
-	});
+	if (form.build) {
+		if (form.build instanceof Array) {
+			var subfilter = [];
+			_.each(form.build, function(build, index) {
+				if (index > 0) {
+					subfilter.push([ 'orWhere', 'build', '=', build ]);
+				}
+				else {
+					subfilter.push([ 'where', 'build', '=', build ]);
+				}
+			});
+
+			data.query.push([ 'where', subfilter ]);
+		}
+		else {
+			data.query.push([ 'where', 'build', '=', form.build ]);
+		}
+	}
+
+	if (form.ethnicity) {
+		if (form.ethnicity instanceof Array) {
+			var subfilter = [];
+			_.each(form.ethnicity, function(ethnicity, index) {
+				if (index > 0) {
+					subfilter.push([ 'orWhere', 'ethnicity', '=', ethnicity ]);
+				}
+				else {
+					subfilter.push([ 'where', 'ethnicity', '=', ethnicity ]);
+				}
+			});
+
+			data.query.push([ 'where', subfilter ]);
+		}
+		else {
+			data.query.push([ 'where', 'ethnicity', '=', form.ethnicity ]);
+		}
+	}
+
+	if (form.join_status) {
+		if (!(form.join_status instanceof Array)) {
+			if (form.join_status == 5) {
+				data.query.push([ 'where', 'is_pro', '=', 1 ]);
+			}
+			else {
+				data.query.push([ 'where', 'is_pro', '=', 0 ]);
+			}
+		}
+	}
+
+	return data;
 }
 
-handler.prototype.addToFav = function(){
-	var favId = $(this).attr('data-id');
-	var b = $(this).closest('.talent-tab').attr('id');
-	var talentnum = (b.split('-')[2]);
-	if(favId){
-		self.core.resource.favorite_talent.delete({ favoriteId : talentnum})
-			.then(function(res){
-				self.refreshList();
+handler.prototype.addToFavorites = function(e) {
+	var $element = $(e.target);
+
+	if (!$element.is('button')) {
+		$element = $element.parents('button');
+	}
+
+	var id = $element.attr('data-id').split('-');
+
+	if (id[0] == 'favorite') {
+		self.core.resource.favorite_talent.delete({ favoriteId : id })
+			.then(function() {
+				var $i = $element.find('i');
+				$i.removeClass('text-warning');
+				$i.addClass('text-light-gray');
 			});
-	} else {
-		self.core.resource.favorite_talent.post({ bam_cd_user_id : self.user.bam_cd_user_id, bam_talentnum : talentnum})
-			.then(function(res){
-				self.refreshList();
+	}
+	else {
+		self.core.resource.favorite_talent.post({ bam_talentnum : id[1] })
+			.then(function() {
+				var $i = $element.find('i');
+				$i.addClass('text-warning');
+				$i.removeClass('text-light-gray');
 			});
 	}
 }
