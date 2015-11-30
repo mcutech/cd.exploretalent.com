@@ -12,7 +12,12 @@
 
 				@include('components.talent-filter')
 
-				<div id="role-match" class="col-md-9 talents-search-result">
+				<div id="role-match-loader" class="text-center padding-top-large">
+					<h3>Loading Matches</h3>
+					<h1><i class="fa fa-spinner fa-spin"></i></h1>
+				</div>
+
+				<div id="role-match" class="col-md-9 talents-search-result" style="display:none;">
 					<div class="row-fluid clearfix top-results-heading margin-bottom-normal">
 						<div class="col-md-6">
 							<div class="panel margin-bottom-small">
@@ -35,16 +40,6 @@
 								</div>
 							</div>
 						</div>
-					</div>
-					<div id="loading-div">
-						<div class="f_circleG" id="frotateG_01"></div>
-						<div class="f_circleG" id="frotateG_02"></div>
-						<div class="f_circleG" id="frotateG_03"></div>
-						<div class="f_circleG" id="frotateG_04"></div>
-						<div class="f_circleG" id="frotateG_05"></div>
-						<div class="f_circleG" id="frotateG_06"></div>
-						<div class="f_circleG" id="frotateG_07"></div>
-						<div class="f_circleG" id="frotateG_08"></div>
 					</div>
 					<div class="row-fluid clearfix" id="role-match-result">
 						@include('components.talent', [ 'databind' => [ 'template' => '#role-match-result', 'value' => 'role.matches.data' ], 'class' => 'col-lg-4 col-md-6 col-sm-6 col-xs-12' ])
