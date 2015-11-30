@@ -42,6 +42,32 @@ handler.prototype.refresh = function() {
 					return talent.talentnum;
 				});
 
+				var data2 = {
+					query : [
+						[ 'whereIn', 'talentci.talentnum', talentnums ],
+						[ 'with', 'bam_talent_media2' ]
+					]
+				};
+
+				return self.core.resource.talent.get(data2);
+			}
+			else {
+				return $.when({ data : [] });
+			}
+		})
+		.then(function (res) {
+			_.each(talents.data, function(talent) {
+				talent.bam_talent_media2 = _.find(res.data, function(tm) {
+					return talent.talentnum == tm.talentnum;
+				});
+
+				if (talent.bam_talent_media2) {
+					talent.bam_talent_media2 = talent.bam_talent_media2.bam_talent_media2;
+				}
+			});
+
+			// if (talents.total) {
+			if (false) {		// TODO: uncomment line above when API is working
 				// get favorite talents
 				var data2 = {
 					query : [
@@ -52,7 +78,7 @@ handler.prototype.refresh = function() {
 				return self.core.resource.favorite_talent.get(data2);
 			}
 			else {
-				return $.when();
+				return $.when({ data : [] });
 			}
 		})
 		.then(function(res) {
@@ -83,24 +109,6 @@ handler.prototype.refresh = function() {
 			$('#talent-search-loader').hide();
 			$('#talent-search-result').show();
 		});
-            //
-			// var data2 = {
-			// 	query : [
-			// 		[ 'whereIn', 'talentnum', talentnums ],
-			// 		[ 'where', 'type', '=', 2 ]
-			// 	]
-			// };
-			// return self.core.resource.talent_media2.get(data2);
-		// });
-		// .then(function(res) {
-		// 	_.each(talents.data, function(talent) {
-		// 		talent.primary_photo = _.find(res.data, function(tm) {
-		// 			return tm.talentnum == talent.talentnum;
-		// 		});
-		// 	});
-        //
-		// 	console.log(talents);
-		// });
 }
 
 handler.prototype.getFilters = function() {

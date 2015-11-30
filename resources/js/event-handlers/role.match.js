@@ -46,6 +46,9 @@ handler.prototype.refreshLikeItList = function() {
 handler.prototype.refreshMatches = function() {
 	var data = self.getFilters();
 
+	$('#role-match-loader').show();
+	$('#role-match').hide();
+
 	self.core.resource.search_talent.get(data)
 		.then(function(res) {
 			var talentnums = _.map(res.data, function(talent) {
@@ -132,7 +135,8 @@ handler.prototype.refreshMatches = function() {
 
 					self.core.service.databind('#role-match', self.project);
 					self.core.service.paginate('#matches-pagination', { total : self.project.role.matches.total, class : 'pagination', name : 'page' });
-					$('#loading-div').hide();
+					$('#role-match-loader').hide();
+					$('#role-match').show();
 				});
 		});
 }

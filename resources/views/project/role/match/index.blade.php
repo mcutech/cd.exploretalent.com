@@ -12,7 +12,12 @@
 
 				@include('components.talent-filter')
 
-				<div id="role-match" class="col-md-9 talents-search-result">
+				<div id="role-match-loader" class="text-center padding-top-large">
+					<h3>Loading Matches</h3>
+					<h1><i class="fa fa-spinner fa-spin"></i></h1>
+				</div>
+
+				<div id="role-match" class="col-md-9 talents-search-result" style="display:none;">
 					<div class="row-fluid clearfix top-results-heading margin-bottom-normal">
 						<div class="col-md-6">
 							<div class="panel margin-bottom-small">
