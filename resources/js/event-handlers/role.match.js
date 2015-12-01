@@ -45,13 +45,15 @@ handler.prototype.refreshLikeItList = function() {
 
 handler.prototype.refreshMatches = function() {
 	var data = self.getFilters();
+	var talents;
 
 	$('#role-match-loader').show();
 	$('#role-match').hide();
 
 	self.core.resource.search_talent.get(data)
 		.then(function(res) {
-			var talentnums = _.map(res.data, function(talent) {
+			talents = res;
+			var talentnums = _.map(talents.data, function(talent) {
 				return talent.talentnum;
 			});
 
@@ -65,79 +67,81 @@ handler.prototype.refreshMatches = function() {
 				]
 			};
 
-			self.core.resource.talent.get(data2)
-				.then(function(result) {
-					self.project.role.matches = result;
+			return self.core.resource.talent.get(data2)
+		})
+		.then(function(result) {
+			result.total = talents.total;
+			result.page = talents.page;
+			self.project.role.matches = result;
 
-					// get talent user ids to get schedule
-					var talents = _.map(self.project.role.matches.data, function(n) {
-						if (n.user) {
-							return n.user.id;
-						}
-					});
+			// get talent user ids to get schedule
+			var talentIds = _.map(self.project.role.matches.data, function(n) {
+				if (n.user) {
+					return n.user.id;
+				}
+			});
 
-					if (talents.length > 0) {
-						var data = {
-							withs : [
-								'schedule_notes.user.bam_cd_user'
-							],
-							query : [
-								[ 'whereIn', 'invitee_id', talents ],
-							]
-						};
+			if (talentIds.length > 0) {
+				var data = {
+					withs : [
+						'schedule_notes.user.bam_cd_user'
+					],
+					query : [
+						[ 'whereIn', 'invitee_id', talentIds ],
+					]
+				};
 
-						return self.core.resource.schedule.get(data);
+				return self.core.resource.schedule.get(data);
+			}
+			else {
+				return $.when();
+			}
+		})
+		.then(function(result) {
+			// assign each schedule to respective talent
+			_.each(self.project.role.matches.data, function(talent, index) {
+				self.project.role.matches.data[index].schedule = {};
+				_.each(result.data, function(s) {
+					if (talent.user && talent.user.id == s.invitee_id) {
+						self.project.role.matches.data[index].schedule = s;
 					}
-					else {
-						return $.when();
-					}
-				})
-				.then(function(result) {
-					// assign each schedule to respective talent
-					_.each(self.project.role.matches.data, function(talent, index) {
-						self.project.role.matches.data[index].schedule = {};
-						_.each(result.data, function(s) {
-							if (talent.user && talent.user.id == s.invitee_id) {
-								self.project.role.matches.data[index].schedule = s;
-							}
-						});
-					});
-
-					// get talentnum to get favorite_talent
-					var talents = _.map(self.project.role.matches.data, function(n) {
-						return n.talentnum;
-					});
-
-					if (talents.length > 0) {
-						var data = {
-							query : [
-								[ 'with', 'bam_talentci.user' ],
-								[ 'whereIn', 'bam_talentnum', talents ]
-							]
-						}
-
-						return self.core.resource.favorite_talent.get(data);
-					}
-					else {
-						return $.when();
-					}
-				})
-				.then(function(result) {
-					// asssign each favorite object to respective talent
-					_.each(self.project.role.matches.data, function(talent, index) {
-						self.project.role.matches.data[index].favorite = null;
-						_.each(result.data, function(n) {
-							if (talent.talentnum == n.bam_talentnum) {
-								self.project.role.matches.data[index].favorite = n;
-							}
-						});
-					});
-
-					self.core.service.databind('#role-match', self.project);
-					self.core.service.paginate('#matches-pagination', { total : self.project.role.matches.total, class : 'pagination', name : 'page' });
-					$('#role-match-loader').hide();
-					$('#role-match').show();
 				});
+			});
+
+			// get talentnum to get favorite_talent
+			var talentnums = _.map(self.project.role.matches.data, function(n) {
+				return n.talentnum;
+			});
+
+			if (talentnums.length > 0) {
+				var data = {
+					query : [
+						[ 'with', 'bam_talentci.user' ],
+						[ 'whereIn', 'bam_talentnum', talentnums ]
+					]
+				}
+
+				return self.core.resource.favorite_talent.get(data);
+			}
+			else {
+				return $.when();
+			}
+		})
+		.then(function(result) {
+			// asssign each favorite object to respective talent
+			_.each(self.project.role.matches.data, function(talent, index) {
+				self.project.role.matches.data[index].favorite = null;
+				_.each(result.data, function(n) {
+					if (talent.talentnum == n.bam_talentnum) {
+						self.project.role.matches.data[index].favorite = n;
+					}
+				});
+			});
+
+			self.core.service.databind('#role-match', self.project);
+			self.core.service.paginate('#matches-pagination', { total : self.project.role.matches.total, class : 'pagination', name : 'page' });
+			$('#role-match-loader').hide();
+			$('#role-match').show();
 		});
 }
 
