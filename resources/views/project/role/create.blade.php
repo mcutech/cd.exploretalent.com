@@ -107,8 +107,8 @@
 
 			<div class="col-md-4">
 				<label for="">Height Range: </label>
-				<span id="height-span">2 ft 0 in to 9 ft 0 in</span>
-				<input name="height" id="heightinches" class="display-none" value="24,108">
+				<span id="height-span">0 ft 0 in to 8 ft 0 in</span>
+				<input name="height" id="heightinches" class="display-none" value="0,96">
                 <div class="ui-slider-height-range"></div>
 			</div>		
 
