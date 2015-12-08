@@ -1,4 +1,7 @@
 module.exports = function(core) {
+
+	$('#phone').mask('999-999-9999');
+
 	$("#sign-up").click(function(e){
 		e.preventDefault();
 
@@ -6,6 +9,7 @@ module.exports = function(core) {
 		var fname = $('#first-name').val();
 		var username = $('#login').val();
 		var email = $('#email').val();
+		var phone = $('#phone').val();
 		var pass = $('#password').val();
 		var confirmpass = $('#confirm-password').val();
 
@@ -72,6 +76,16 @@ module.exports = function(core) {
 			$('#email').css("border-color","#d6d6d6");
 		}
 
+		if(!phone){
+			$('#phone').focus().css("border-color","#b94a48");
+			$('#req-phone').show().delay(5000).fadeOut();
+			$('#req-phonetxt').text('This field is required.').show().delay(5000).fadeOut();
+			return;
+		}else{
+			// remove all hyphens from phone (mask)
+			phone = phone.replace(/-/g, '');
+		}
+
 		if(!pass){
 			$('#password').focus().css("border-color","#b94a48");
 			$('#req-pass').show().delay(5000).fadeOut();
@@ -113,6 +127,7 @@ module.exports = function(core) {
 			email: email,
 			password: pass
 		}
+
 		core.resource.user.post(user)
 			.then(function(result) {
 				setTimeout(function(){
@@ -123,6 +138,7 @@ module.exports = function(core) {
 								fname	: fname ,
 								login	: username,
 								email1	: email,
+								phone1  : phone,
 								pass	: pass,
 								status	: 1
 							};
