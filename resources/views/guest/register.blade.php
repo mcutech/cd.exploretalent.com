@@ -15,7 +15,7 @@
 	<!-- / Page background -->
 
 	<!-- Container -->
-	<div class="signup-container">
+	<div class="signup-container" style="margin: 20px auto;">
 		<!-- Header -->
 		<div class="signup-header">
 			<a href="index.html" class="logo">
@@ -36,7 +36,7 @@
 				</div>
 
                 <div class="alert alert-success" style="display:none;">
-                    <p>Account createad! Please login  using your email and password</p>
+                    <p>Account created! Please login  using your email and password</p>
                 </div>
 
 				<div class="form-group w-icon">
@@ -81,6 +81,16 @@
 				</div>
 
 				<div class="form-group w-icon">
+					<input type="text" name="phone" id="phone" class="form-control input-lg" placeholder="Phone" data-required>
+					<span class="fa fa-phone signup-form-icon"></span>
+				</div>
+				<div id="req-phone" style="display:none;" class="alert alert-danger form-group" role="alert">
+					<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+					<span class="sr-only">Error:</span>
+					<span id="req-phonetxt" style="display:none;"></span>
+				</div>
+
+				<div class="form-group w-icon">
 					<input type="password" name="password" id="password" class="form-control input-lg" placeholder="Password" data-required data-match="confirmPassword" data-minlength="8">
 					<span class="fa fa-lock signup-form-icon"></span>
 				</div>
@@ -121,7 +131,7 @@
 		<!-- Right side -->
 	</div>
 
-	<div class="have-account">
+	<div class="have-account margin-top-normal-zz-lg">
 		Already have an account? <a href="/login">Login</a>
 	</div>
 

@@ -297,6 +297,7 @@ handler.prototype.sendInvites = function() {
 		})
 		.then(function(res) {
 			alert('Invitations sent!');
+			$('#invite-to-audition-modal').modal('toggle'); //auto-close modal
 		});
 }
 
