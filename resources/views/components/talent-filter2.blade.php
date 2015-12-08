@@ -93,12 +93,12 @@
 						<div class="tab-content no-padding-hr padding-top-zero-zz-lg no-padding-b">
 							<div class="tab-pane fade active in">
 								<label class="text-bold margin-bottom-zero">Height Range
-									<span id="height-min-text" class="text-normal" data-bind="<%= height_min ||'0\'0&quot;' %>">0'0"</span> -
+									<span id="height-min-text" class="text-normal" data-bind="<%= height_min ||'2\'0&quot;' %>">2'0"</span> -
 									<span id="height-max-text" class="text-normal" data-bind="<%= height_max || '8\'0&quot;' %>">8'0"</span>
 								</label>
 								<div class="row">
 									<div class="col-md-12">
-										<div class="ui-slider-range-height" data-slider data-range="true" data-min="0" data-max="96" data-values="[0,96]" data-type="height" data-bind="[<%= height_min ? height_min : 0 %>, <%= height_max ? height_max : 96 %>]"></div>
+										<div class="ui-slider-range-height" data-slider data-range="true" data-min="24" data-max="96" data-values="[24,96]" data-type="height" data-bind="[<%= height_min ? height_min : 24 %>, <%= height_max ? height_max : 96 %>]"></div>
 										<input type="hidden" name="height_min" data-bind="<%= height_min %>" />
 										<input type="hidden" name="height_max" data-bind="<%= height_max %>" />
 									</div>

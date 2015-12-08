@@ -22,9 +22,9 @@ module.exports = function(core, user, projectId, roleId) {
 
 	var height_range_sliders_options = {
 		'range': true,
-		'min': 0,
+		'min': 24,
 		'max': 96,
-		'values': [ 0, 96 ]
+		'values': [ 24, 96 ]
 	};
 
 	$('.ui-slider-height-range').slider(height_range_sliders_options);

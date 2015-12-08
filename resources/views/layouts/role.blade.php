@@ -3,8 +3,22 @@
 @section('sidebar.page-header')
 	<div class="text-semibold">@yield('header.title')</div>
 	<div class="display-block-inline">
-		<h5 class="text-normal margin-top-zero-small margin-bottom-small">Casting: <span data-bind="<%= name %>"></span></h5>
-		<h5 class="text-normal margin-zero">Role: <span data-bind="<%= role.name %>"></span></h5>
+		<div class="row">
+			<div class="col-md-6">
+				<h5 class="text-normal margin-top-zero-small margin-bottom-small">Project ID: <span data-bind="<%= casting_id %>"></span></h5>
+			</div>
+			<div class="col-md-6">
+				<h5 class="text-normal margin-top-zero-small margin-bottom-small">Casting: <span data-bind="<%= name %>"></span></h5>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-6">
+				<h5 class="text-normal margin-zero">Role ID: <span data-bind="<%= role.role_id %>"></span></h5>
+			</div>
+			<div class="col-md-6">
+				<h5 class="text-normal margin-zero">Role: <span data-bind="<%= role.name %>"></span></h5>
+			</div>
+		</div>
 	</div>
 	<div class="display-block project-roles-info">
 		<div class="row-fluid clearfix">
