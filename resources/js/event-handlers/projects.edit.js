@@ -30,7 +30,12 @@ handler.prototype.getProjectInfo = function(e) {
 			if (res.total > 0) {
 				var casting = res.data[0];
 
-				casting.market = casting.market.split(">");
+				if(casting.market == 'N/A') {
+					$('input[type="checkbox"][name="manual-market-checkbox"]').prop('checked', 'checked');
+				}
+				else {
+					casting.market = casting.market.split(">");
+				}
 
 				// convert each market in object to lowercase and strip space and comma, then check checkbox of markets
 				_.each(casting.market, function(data){
@@ -107,17 +112,23 @@ handler.prototype.updateProject = function(e){
 
 			});
 
-			// for manually selected markets
-			$('input[type="checkbox"][name="manual-market-checkbox"]:checked').next('span').each(function() {
+			// if all checkboxes checked, set markets as N/A
+			if($('input[type="checkbox"][name="manual-market-checkbox"]:checked').length == $('input[type="checkbox"][name="manual-market-checkbox"]').length) {
+				markets = 'N/A';
+			}
+			else {
+				// for manually selected markets
+				$('input[type="checkbox"][name="manual-market-checkbox"]:checked').next('span').each(function() {
 
-				var text = $(this).text();
-				if(markets.indexOf(text) == -1) {
-					markets.push($(this).text());
-				}
+					var text = $(this).text();
+					if(markets.indexOf(text) == -1) {
+						markets.push($(this).text());
+					}
 
-			});
+				});
 
-			markets = markets.join('>');
+				markets = markets.join('>');
+			}
 
 			return $.when();
 		});
@@ -130,20 +141,26 @@ handler.prototype.updateProject = function(e){
 			markets.push($(this).text());
 		});
 
-		// for manually selected markets
-		$('input[type="checkbox"][name="manual-market-checkbox"]:checked').next('span').each(function() {
+		// if all checkboxes checked, set markets as N/A
+		if($('input[type="checkbox"][name="manual-market-checkbox"]:checked').length == $('input[type="checkbox"][name="manual-market-checkbox"]').length) {
+			markets = 'N/A';
+		}
+		else {
+			// for manually selected markets
+			$('input[type="checkbox"][name="manual-market-checkbox"]:checked').next('span').each(function() {
 
-			var text = $(this).text();
-			if(markets.indexOf(text) == -1) {
-				markets.push($(this).text());
-			}
+				var text = $(this).text();
+				if(markets.indexOf(text) == -1) {
+					markets.push($(this).text());
+				}
 
-		});
+			});
 
-		markets = markets.join('>');
-		// because checkboxes are checked by default, the first hidden div in loop is included.. this will remove it from the value of market sent to data
-		while(markets.charAt(0) === '>')
-	    markets = markets.substr(1);
+			markets = markets.join('>');
+			// because checkboxes are checked by default, the first hidden div in loop is included.. this will remove it from the value of market sent to data
+			while(markets.charAt(0) === '>')
+		    markets = markets.substr(1);
+		}
 
 	}
 
@@ -189,6 +206,18 @@ handler.prototype.updateProject = function(e){
 			$('.submission-deadline-error-required').fadeIn().delay(3000).fadeOut();
 			$('#bs-datepicker-submissiondeadline').focus();
 			$('.ui-datepicker').hide().delay(3000).fadeIn();;
+		}
+
+		else if(auditiontimestamp < asaptimestamp) {
+			$('.audition-date-error-invalid').fadeIn().delay(3000).fadeOut();
+			$('#bs-datepicker-audition').focus();
+			$('.ui-datepicker').hide().delay(3000).fadeIn();
+		}
+
+		else if(shoottimestamp <= auditiontimestamp) {
+			$('.shoot-date-error-invalid').fadeIn().delay(3000).fadeOut();
+			$('#bs-datepicker-shootdate').focus();
+			$('.ui-datepicker').hide().delay(3000).fadeIn();
 		}
 
 		else if(rate.length < 1) {
@@ -320,13 +349,30 @@ handler.prototype.toggleManualMarketsDiv = function(e) {
 
 	if($('.manual-markets-div').hasClass('display-none')) {
 		$(this).text("Manually select markets");
+		$('#toggle-all-markets-checked').hide();
 	}
 	else {
 		$(this).text("Hide markets");
+		$('#toggle-all-markets-checked').show();
 	}
 
 }
 
+handler.prototype.toggleAllMarketsChecked = function(e) {
+
+	e.preventDefault();
+	$(this).toggleClass('checked');
+
+	if($(this).hasClass('checked')) {
+		$(this).text("Unselect All Markets");
+		$('input[type="checkbox"][name="manual-market-checkbox"]').prop('checked', 'checked');
+	}
+	else {
+		$(this).text("Select All Markets");
+		$('input[type="checkbox"][name="manual-market-checkbox"]').removeAttr('checked');
+	}
+
+}
 module.exports = function(core, user, projectId) {
 	return new handler(core, user, projectId);
 };
