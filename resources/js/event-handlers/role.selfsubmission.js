@@ -305,10 +305,6 @@ handler.prototype.rateAll = function() {
 				[ 'whereIn', 'talentci.talentnum', talents ]
 			]
 		}
-		self.core.resource.talent.get(data)
-		.then(function(result) {
-			console.log(result);
-		});
 
 		self.core.service.rest.post(self.core.config.api.base + '/cd/talentci/import/' + self.roleId, data)
 			.then(function(result) {
