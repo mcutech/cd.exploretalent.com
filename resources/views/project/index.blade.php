@@ -65,7 +65,7 @@
 			  							<li><div class="title">Project Type:</div><span data-bind="<%= (cat) ? getCategory().split(' ',1) : 'N/A' %>"></span></li>
 			  							<li><div class="title">Location:</div><span data-bind="<%= location %>"></span></li>
 			  							<li><div class="title">Rate/Pay:</div>$<span data-bind="<%= rate %>"></span> <span data-bind="<%= (rate_des) ? 'per ' + getRate() : '' %>"></span></li>
-			  							<li><div class="title">Audition Date:</div><span data-bind="<%= (!aud_timestamp1) ? 'N/A' : aud_timestamp1 %>"></span></li>
+			  							<li><div class="title">Audition Date:</div><span data-bind="<%= (!aud_timestamp1) ? 'N/A' : date.formatYMD(parseInt(aud_timestamp)) %>"></span></li>
 			  							<li><div class="title">Casting Category:</div><span data-bind="<%= (cat) ? getCategory() : 'N/A' %>"></span></li>
 			  						</ul>
 			  					</div>
@@ -75,7 +75,7 @@
 			  							<li><div class="title">Submission Type:</div><span data-bind="<%= (project_type == 8) ? 'Open Call' : 'Self Response' %>"></span></li>
 			  							<li><div class="title">Union:</div><span data-bind="<%= (union2 == 0) ? 'Non-union' : 'Union' %>"></span></li>
 			  							<li><div class="title">Release Date:</div><span data-bind="<%= date.formatYMD(parseInt(sub_timestamp)) %>"></span></li>
-			  							<li><div class="title">Deadline:</div><span id="text-date-type"><span data-bind="<%= asap1 %>"></span></span></li>
+			  							<li><div class="title">Deadline:</div><span id="text-date-type"><span data-bind="<%= (!asap) ? 'N/A' : date.formatYMD(parseInt(asap)) %>"></span></span></li>
 			  						</ul>
 			  					</div>
 
@@ -121,13 +121,13 @@
 				  						<div class="panel roles-item">
 				  							<div class="padding-normal">
 				  								<div class="row-fluid clearfix roles-header">
-				  									<div class="col-md-8 text-bold">
+				  									<div class="col-md-7 text-bold">
 				  										<span>Role ID#<span data-bind="<%= role_id %>"></span></span> - <span><span data-bind="<%= (name) ? name : 'N/A' %>"></span></span>
 				  										<ul class="list-unstyled description">
 				  											<li><div class="title">Description:</div> <span data-bind="<%= (des) ? des : 'N/A' %>"></span>.</li>
 				  										</ul>
 				  									</div>
-				  									<div class="col-md-4">
+				  									<div class="col-md-5">
 				  										<div class="float-right" data-bind="<%= casting_id %>" data-bind-target="id">
 				  											<a class="btn btn-lg btn-outline font-size-normal" data-bind="/projects/<%= casting_id %>/roles/<%= role_id %>/edit">
 				  												<i class="fa fa-pencil"></i> Edit
@@ -137,7 +137,7 @@
 				  												<i class="fa fa-trash-o"></i> Delete
 				  											</a>
 
-															<a class="btn btn-success padding-small-normal view-role-matches" data-bind="/projects/<%= casting_id %>/roles/<%= role_id %>/matches">View matches</a>
+															<a class="btn btn-success padding-small-normal view-role-matches" data-bind="/projects/<%= casting_id %>/roles/<%= role_id %>/matches">Find talents for this role</a>
 				  										</div>
 				  									</div>
 				  								</div> {{-- roles header --}}
