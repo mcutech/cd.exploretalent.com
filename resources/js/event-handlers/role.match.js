@@ -38,7 +38,7 @@ handler.prototype.refreshLikeItList = function() {
 			self.project.role.likeitlist = result;
 			self.core.service.databind('.page-header', self.project);
 			self.core.service.databind('#submissions-sub-menu', self.project);
-			self.updateFilter();
+			self.refreshMatches();
 		});
 }
 
@@ -145,109 +145,6 @@ handler.prototype.refreshMatches = function() {
 		});
 }
 
-handler.prototype.updateFilter = function() {
-	var form = self.core.service.form.serializeObject('#talent-filter-form');
-	var filter = [];
-
-	if (form.zip) {
-		filter.push([ 'where', 'talentci.zip', '=', form.zip ]);
-	}
-
-	if (parseInt(form.age_min)) {
-		filter.push([ 'where', 'talentinfo1.dobyyyy', '<=', new Date().getFullYear() - parseInt(form.age_min) ]);
-	}
-
-	if (parseInt(form.age_max)) {
-		filter.push([ 'where', 'talentinfo1.dobyyyy', '>=', new Date().getFullYear() - parseInt(form.age_max) ]);
-	}
-
-
-	if (form.sex) {
-		if (form.sex instanceof Array) {
-			// do nothing, if its an array then items is => 2, only 2 items so select all
-		}
-		else {
-			filter.push([ 'where', 'talentinfo1.sex', '=', form.sex ]);
-		}
-	}
-
-	if (form.has_photo) {
-		if (form.has_photo instanceof Array) {
-			// do nothing, if its an array then items is => 2, only 2 items so select all
-		}
-		else {
-			if (parseInt(form.has_photo)) {
-				filter.push([ 'where', 'talent_media2.media_path', '<>', null ]);
-			}
-			else {
-				filter.push([ 'where', 'talent_media2.media_path', '=', null ]);
-			}
-		}
-	}
-
-	if (parseInt(form.height_min)) {
-		filter.push([ 'where', 'talentinfo1.heightinches', '>=', form.height_min ]);
-	}
-
-	if (parseInt(form.height_max)) {
-		filter.push([ 'where', 'talentinfo1.heightinches', '<=', form.height_max ]);
-	}
-
-	if (form.build) {
-		if (form.build instanceof Array) {
-			var subfilter = [];
-			_.each(form.build, function(build, index) {
-				if (index > 0) {
-					subfilter.push([ 'orWhere', 'talentinfo1.build', '=', build ]);
-				}
-				else {
-					subfilter.push([ 'where', 'talentinfo1.build', '=', build ]);
-				}
-			});
-
-			filter.push([ 'where', subfilter ]);
-		}
-		else {
-			filter.push([ 'where', 'talentinfo1.build', '=', form.build ]);
-		}
-	}
-
-	if (form.ethnicity) {
-		if (form.ethnicity instanceof Array) {
-			var subfilter = [];
-			_.each(form.ethnicity, function(ethnicity, index) {
-				if (index > 0) {
-					subfilter.push([ 'orWhere', 'talentinfo2.ethnicity', '=', ethnicity ]);
-				}
-				else {
-					subfilter.push([ 'where', 'talentinfo2.ethnicity', '=', ethnicity ]);
-				}
-			});
-
-			filter.push([ 'where', subfilter ]);
-		}
-		else {
-			filter.push([ 'where', 'talentinfo2.ethnicity', '=', form.ethnicity ]);
-		}
-	}
-
-	if (form.join_status) {
-		if (form.join_status instanceof Array) {
-			// do nothing, if its an array then items is => 2, only 2 items so select all
-		}
-		else {
-			if (form.join_status == 5) {
-				filter.push([ 'where', 'talentci.join_status', '=', 5 ]);
-			}
-			else {
-				filter.push([ 'where', 'talentci.join_status', '<>', 5 ]);
-			}
-		}
-	}
-
-	self.filter = filter;
-	self.refreshMatches();
-}
 
 handler.prototype.rateSchedule = function(e) {
 	var $btn = $(e.target);
@@ -297,7 +194,7 @@ handler.prototype.rateAll = function() {
 			'bam_talentinfo2',
 			'bam_talent_media2'
 		],
-		wheres : self.filter
+		wheres : self.getFilters()
 	}
 
 	self.core.service.rest.post(self.core.config.api.base + '/cd/talentci/import/' + self.roleId, data)
