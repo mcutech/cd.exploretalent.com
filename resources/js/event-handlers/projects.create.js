@@ -6,6 +6,9 @@ function handler(core, user, talentlogin) {
 	self.core = core;
 	self.user = user;
 
+	// email autofill with CD email
+	self.core.service.databind('#self-sub-email', self.user);
+
 }
 
 handler.prototype.createNewProject = function(e){
@@ -55,17 +58,23 @@ handler.prototype.createNewProject = function(e){
 
 			});
 
-			// for manually selected markets
-			$('input[type="checkbox"][name="manual-market-checkbox"]:checked').next('span').each(function() {
+			// if all checkboxes checked, set markets as N/A
+			if($('input[type="checkbox"][name="manual-market-checkbox"]:checked').length == $('input[type="checkbox"][name="manual-market-checkbox"]').length) {
+				markets = 'N/A';
+			}
+			else {
+				// for manually selected markets
+				$('input[type="checkbox"][name="manual-market-checkbox"]:checked').next('span').each(function() {
 
-				var text = $(this).text();
-				if(markets.indexOf(text) == -1) {
-					markets.push($(this).text());
-				}
+					var text = $(this).text();
+					if(markets.indexOf(text) == -1) {
+						markets.push($(this).text());
+					}
 
-			});
+				});
 
-			markets = markets.join('>');
+				markets = markets.join('>');
+			}
 
 			return $.when();
 		});
@@ -78,20 +87,26 @@ handler.prototype.createNewProject = function(e){
 			markets.push($(this).text());
 		});
 
-		// for manually selected markets
-		$('input[type="checkbox"][name="manual-market-checkbox"]:checked').next('span').each(function() {
+		// if all checkboxes checked, set markets as N/A
+		if($('input[type="checkbox"][name="manual-market-checkbox"]:checked').length == $('input[type="checkbox"][name="manual-market-checkbox"]').length) {
+			markets = 'N/A';
+		}
+		else {
+			// for manually selected markets
+			$('input[type="checkbox"][name="manual-market-checkbox"]:checked').next('span').each(function() {
 
-			var text = $(this).text();
-			if(markets.indexOf(text) == -1) {
-				markets.push($(this).text());
-			}
+				var text = $(this).text();
+				if(markets.indexOf(text) == -1) {
+					markets.push($(this).text());
+				}
 
-		});
+			});
 
-		markets = markets.join('>');
-		// because checkboxes are checked by default, the first hidden div in loop is included.. this will remove it from the value of market sent to data
-		while(markets.charAt(0) === '>')
-	    markets = markets.substr(1);
+			markets = markets.join('>');
+			// because checkboxes are checked by default, the first hidden div in loop is included.. this will remove it from the value of market sent to data
+			while(markets.charAt(0) === '>')
+		    markets = markets.substr(1);
+		}
 
 	}
 
@@ -119,8 +134,6 @@ handler.prototype.createNewProject = function(e){
 			des: auditiondesc,
 		};
 
-		console.log(data);
-
 		if(projectname.length < 1) {
 			$('.project-name-error-required').fadeIn().delay(3000).fadeOut();
 			$('#project-name').focus();
@@ -139,7 +152,19 @@ handler.prototype.createNewProject = function(e){
 		else if(submissiondeadline.length < 1) {
 			$('.submission-deadline-error-required').fadeIn().delay(3000).fadeOut();
 			$('#bs-datepicker-submissiondeadline').focus();
-			$('.ui-datepicker').hide().delay(3000).fadeIn();;
+			$('.ui-datepicker').hide().delay(3000).fadeIn();
+		}
+
+		else if(auditiontimestamp < asaptimestamp) {
+			$('.audition-date-error-invalid').fadeIn().delay(3000).fadeOut();
+			$('#bs-datepicker-audition').focus();
+			$('.ui-datepicker').hide().delay(3000).fadeIn();
+		}
+
+		else if(shoottimestamp <= auditiontimestamp) {
+			$('.shoot-date-error-invalid').fadeIn().delay(3000).fadeOut();
+			$('#bs-datepicker-shootdate').focus();
+			$('.ui-datepicker').hide().delay(3000).fadeIn();
 		}
 
 		else if(rate.length < 1) {
@@ -181,7 +206,8 @@ handler.prototype.createNewProject = function(e){
 
 					return self.core.resource.project.post(data)
 					.then(function(res) {
-						window.location = "/projects";
+						console.log(res);
+						window.location = "/projects/"+res.casting_id;
 					});
 				}
 
@@ -209,7 +235,8 @@ handler.prototype.createNewProject = function(e){
 
 					return self.core.resource.project.post(data)
 					.then(function(res) {
-						window.location = "/projects";
+						console.log(res);
+						window.location = "/projects/"+res.casting_id;
 					});
 				}
 
@@ -267,9 +294,27 @@ handler.prototype.toggleManualMarketsDiv = function(e) {
 
 	if($('.manual-markets-div').hasClass('display-none')) {
 		$(this).text("Manually select markets");
+		$('#toggle-all-markets-checked').hide();
 	}
 	else {
 		$(this).text("Hide markets");
+		$('#toggle-all-markets-checked').show();
+	}
+
+}
+
+handler.prototype.toggleAllMarketsChecked = function(e) {
+
+	e.preventDefault();
+	$(this).toggleClass('checked');
+
+	if($(this).hasClass('checked')) {
+		$(this).text("Unselect All Markets");
+		$('input[type="checkbox"][name="manual-market-checkbox"]').prop('checked', 'checked');
+	}
+	else {
+		$(this).text("Select All Markets");
+		$('input[type="checkbox"][name="manual-market-checkbox"]').removeAttr('checked');
 	}
 
 }
