@@ -24,12 +24,12 @@
 			  	<div class="panel hide" data-bind-template="#accordion-castings" data-bind-value="data" data-bind="project-<%= casting_id %>" data-bind-target="id">
 			  		<div class="panel-heading panel-active" data-bind="<%= (status == '1') ? '1' : '0' %>" data-bind-target="visibility">
 			  			<a class="accordion-toggle collapsed" data-toggle="collapse" data-bind="#jobs-collapse-<%= casting_id %>">
-			  			<span data-bind="<%= name %>"></span>
+			  			<span data-bind="<%= name %>"></span><span class="label label-info margin-left-small">Active</span>
 			  			</a>
 			  		</div>
 			  		<div class="panel-heading panel-inactive" data-bind="<%= (status == '0') ? '1' : '0' %>" data-bind-target="visibility">
 				  		<a class="accordion-toggle collapsed" data-toggle="collapse" data-bind="#jobs-collapse-<%= casting_id %>">
-			  			<span data-bind="<%= name %>"></span>
+			  			<span data-bind="<%= name %>"></span><span class="label label-warning margin-left-small">Pending Review</span>
 			  			</a>
 			  		</div>
 
@@ -65,7 +65,7 @@
 			  							<li><div class="title">Project Type:</div><span data-bind="<%= (cat) ? getCategory().split(' ',1) : 'N/A' %>"></span></li>
 			  							<li><div class="title">Location:</div><span data-bind="<%= location %>"></span></li>
 			  							<li><div class="title">Rate/Pay:</div>$<span data-bind="<%= rate %>"></span> <span data-bind="<%= (rate_des) ? 'per ' + getRate() : '' %>"></span></li>
-			  							<li><div class="title">Audition Date:</div><span data-bind="<%= (!aud_timestamp1) ? 'N/A' : date.formatYMD(parseInt(aud_timestamp)) %>"></span></li>
+			  							<li><div class="title">Audition Date:</div><span data-bind="<%= (!aud_timestamp1) ? 'N/A' : date.formatMDY(parseInt(aud_timestamp)) %>"></span></li>
 			  							<li><div class="title">Casting Category:</div><span data-bind="<%= (cat) ? getCategory() : 'N/A' %>"></span></li>
 			  						</ul>
 			  					</div>
@@ -74,8 +74,8 @@
 			  						<ul class="list-unstyled additional-details margin-zero">
 			  							<li><div class="title">Submission Type:</div><span data-bind="<%= (project_type == 8) ? 'Open Call' : 'Self Response' %>"></span></li>
 			  							<li><div class="title">Union:</div><span data-bind="<%= (union2 == 0) ? 'Non-union' : 'Union' %>"></span></li>
-			  							<li><div class="title">Release Date:</div><span data-bind="<%= date.formatYMD(parseInt(sub_timestamp)) %>"></span></li>
-			  							<li><div class="title">Deadline:</div><span id="text-date-type"><span data-bind="<%= (!asap) ? 'N/A' : date.formatYMD(parseInt(asap)) %>"></span></span></li>
+			  							<li><div class="title">Release Date:</div><span data-bind="<%= date.formatMDY(parseInt(sub_timestamp)) %>"></span></li>
+			  							<li><div class="title">Deadline:</div><span id="text-date-type"><span data-bind="<%= (!asap) ? 'N/A' : date.formatMDY(parseInt(asap)) %>"></span></span></li>
 			  						</ul>
 			  					</div>
 
