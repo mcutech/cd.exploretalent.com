@@ -93,12 +93,12 @@
 						<div class="tab-content no-padding-hr padding-top-zero-zz-lg no-padding-b">
 							<div class="tab-pane fade active in">
 								<label class="text-bold margin-bottom-zero">Height Range
-									<span id="height-min-text" class="text-normal" data-bind="<%= parseInt(role.height_min) ? role.getHeightMinText() : '2\'0&quot;' %>">2'0"</span> -
+									<span id="height-min-text" class="text-normal" data-bind="<%= parseInt(role.height_min) ? role.getHeightMinText() : '< 2\'0&quot;' %>">< 2'0"</span> -
 									<span id="height-max-text" class="text-normal" data-bind="<%= parseInt(role.height_max) ? role.getHeightMaxText() : '8\'0&quot;' %>">8'0"</span>
 								</label>
 								<div class="row">
 									<div class="col-md-12">
-										<div class="ui-slider-range-height" data-slider data-range="true" data-min="24" data-max="96" data-values="[24,96]" data-type="height" data-bind="[<%= parseInt(role.height_min) ? role.height_min : 24 %>, <%= parseInt(role.height_max) ? role.height_max : 96 %>]"></div>
+										<div class="ui-slider-range-height" data-slider data-range="true" data-min="22" data-max="96" data-values="[22,96]" data-type="height" data-bind="[<%= parseInt(role.height_min) ? role.height_min : 22 %>, <%= parseInt(role.height_max) ? role.height_max : 96 %>]"></div>
 										<input type="hidden" name="height_min" data-bind="<%= role.height_min %>" />
 										<input type="hidden" name="height_max" data-bind="<%= role.height_max %>" />
 									</div>
