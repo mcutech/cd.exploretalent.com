@@ -17,7 +17,7 @@
 				<div class="tab-content padding-top-zero padding-bottom-small">
 					<div class="talent-tab tab-pane fade active in" data-bind="talent-body-<%= invitee.bam_talentnum %>" data-bind-target="id">
 						<div class="head-area padding-zero padding-bottom-zero display-inline-block col-md-12">
-							<div class="talent-name font-size-normal text-semibold float-left"><span data-bind="<%= invitee.bam_talentci.getFullName() %>"></span>, <span data-bind="<%= invitee.bam_talentci.getAge() %>" class="age-area"></span></div>
+							<div class="talent-name font-size-normal text-semibold float-left"><span data-bind="<%= invitee.bam_talentci.getFullName() %>"></span>, <span data-bind="<%= invitee.bam_talentci.getAge() %>" class="age-area"></span><br><span data-bind="ID: <%= invitee.bam_talentnum %>"></span></div>
 							<div class="favorite-indicator float-right">
 								<button class="btn-link fav-btn">
 									<i class="fa fa-star-o font-size-medium-large text-light-gray" data-bind="favorite-<%= invitee.id %>" data-bind-target="id"></i>
