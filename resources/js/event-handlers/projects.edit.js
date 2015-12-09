@@ -66,18 +66,26 @@ handler.prototype.updateProject = function(e){
 
 	var projectname = $('#project-name').val();
 	var category = $('#project-category').val();
+
 	var submissiondeadline = $('#bs-datepicker-submissiondeadline').val();
 		submissiondeadline = submissiondeadline.split("-");
-	var asaptimestamp = new Date(submissiondeadline[0],submissiondeadline[1]-1,submissiondeadline[2]) / 1000;
+	var asaptimestamp = Date.UTC(submissiondeadline[0],submissiondeadline[1]-1,submissiondeadline[2]) / 1000;
+		asaptimestamp = asaptimestamp + 28800;
+
 	var submissiontimestamp = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate()) / 1000;
 	var rate = $('#project-rate').val();
 	var ratedes = $('#project-rate-desc').val();
+
 	var auditiondate = $('#bs-datepicker-audition').val();
 		auditiondate = auditiondate.split("-");
-	var auditiontimestamp = new Date(auditiondate[0],auditiondate[1]-1,auditiondate[2]) / 1000;
+	var auditiontimestamp = Date.UTC(auditiondate[0],auditiondate[1]-1,auditiondate[2]) / 1000;
+		auditiontimestamp = auditiontimestamp + 28800;
+
 	var shootdate = $('#bs-datepicker-shootdate').val();
 		shootdate = shootdate.split("-");
-	var shoottimestamp = new Date(shootdate[0],shootdate[1]-1,shootdate[2]) / 1000;
+	var shoottimestamp = Date.UTC(shootdate[0],shootdate[1]-1,shootdate[2]) / 1000;
+		shoottimestamp = shoottimestamp + 28800;
+
 	var union = $('input[type="radio"][name="radioUnion"]:checked').val();
 	// var projecttype = $('input[type="radio"][name="radioSubmissionType"]:checked').val();
 	var zipcode = $('#zip-code').val();
