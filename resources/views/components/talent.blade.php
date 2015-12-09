@@ -44,10 +44,10 @@
 						</div>
 					</div>
 					<div class="tab-pane fade" data-bind="like-it-note-<%= talentnum %>" data-bind-target="id">
-						<div class="tab-pane" id="tab-content-2">
+						<div class="tab-pane" id="note-container" data-bind="<%= schedule.id ? 'schedule-' + schedule.id : 'user-' + user.id %>" data-bind-target="data-id">
 							<div class="item-container-holder">
 								<div id="schedule-notes" class="talent-item note-item-container padding-small">
-									<div class="note-item" data-bind-template="#schedule-notes" data-bind-value="schedule_notes">
+									<div class="note-item" data-bind-template="#schedule-notes" data-bind-value="schedule.schedule_notes" style="border-bottom: 1px solid #ccc;">
 										<div class="note-header">
 											<div class="photo"></div>
 											<div class="name-date">
@@ -56,11 +56,12 @@
 											</div>
 											<div class="note-body" data-bind="<%= body %>">
 											</div>
+											<a data-toggle="modal" data-target="#talent-edit-note-modal" class="btn-link edit-note-link" data-bind="edit-note_<%= schedule_id + '_' + id %>" data-bind-target="id"><i class="fa fa-pencil"></i> Edit this note</a>
 										</div>
 									</div>
 								</div>
 							</div>
-							<a href="#"><div class="add-casting-note padding-top-small padding-bottom-small bordered text-align-center"><i class="fa fa-plus"></i> Add Casting Note</div></a>
+							<a data-toggle="modal" data-target="#talent-add-note-modal" class="add-casting-note btn btn-outline btn-default btn-block" data-bind="add-casting-note_<%= schedule.id ? 'schedule-' + schedule.id : 'user-' + user.id %>" data-bind-target="id"><i class="fa fa-plus"></i> Add Casting Note</a>
 						</div>
 					</div>
 				</div>
