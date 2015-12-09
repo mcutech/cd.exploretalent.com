@@ -174,6 +174,7 @@ handler.prototype.createNewProject = function(e){
 				}
 
 				else {
+					data["snr"] = '1';
 					data["snr_email"] = selfSubEmail;
 					data["address2"] = selfSubAddress;
 					data["srn_address"] = selfSubAddress;
@@ -202,6 +203,7 @@ handler.prototype.createNewProject = function(e){
 				}
 
 				else {
+					data["snr"] = '2';
 					data["app_date_time"] = '<p>' + $('#bs-datepicker-open-call').val() + " from " + $('#bs-timepicker-open-call-from').val() + " to " + $('#bs-timepicker-open-call-to').val() + '</p>';
 					data["app_loc"] = $('#open-call-location').val();
 
