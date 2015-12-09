@@ -279,8 +279,6 @@ handler.prototype.rateSchedule = function(e) {
 				$btn.addClass('active');
 			});
 	}
-
-	self.refreshLikeItList();
 }
 
 handler.prototype.removeAllLikeItList = function() {
