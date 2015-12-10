@@ -23,6 +23,7 @@ handler.prototype.refreshList = function(){
 
 	return self.core.resource.project.get(data)
 		.then(function(res){
+			console.log(res);
 			_.each(res.data, function(value, index){
 				res.data[index].date = self.core.service.date;
 			})
