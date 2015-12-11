@@ -61,7 +61,7 @@
 	<div class="col-md-7">
 		<ul id="submissions-sub-menu" class="nav nav-tabs negate-padding border-zero">
 			<li role="presentation" class="font-size-small-normal-zz font-size-small-normal-xs matches-link">
-				<a data-bind="/projects/<%= casting_id %>/roles/<%= role.role_id %>/matches">Pre-Submissions</a>
+				<a data-bind="/projects/<%= casting_id %>/roles/<%= role.role_id %>/matches">Matches</a>
 			</li>
 			<li role="presentation" class="font-size-small-normal-zz font-size-small-normal-xs self-submissions-link">
 				<a data-bind="/projects/<%= casting_id %>/roles/<%= role.role_id %>/self-submissions">Self Submissions</a>
