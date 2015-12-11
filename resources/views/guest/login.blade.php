@@ -36,7 +36,7 @@
 				</div>
 
 				<div class="form-group ">
-					<input type="text" name="email" id="email" class="form-control input-lg" placeholder="Email" autofocus data-required>
+					<input type="text" name="email" id="email" class="form-control input-lg" placeholder="Email / Username" autofocus data-required>
 				</div>
 
 				<div class="form-group ">
