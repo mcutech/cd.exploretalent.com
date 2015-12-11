@@ -32,6 +32,7 @@
 								<div class="input-group date">
 									<input type="text" id="bs-datepicker-audition" class="form-control" style="cursor: pointer; background-color: #fff"><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
 								</div>
+								<div class="alert alert-page alert-danger audition-date-error-invalid" style="display:none;">Audition date should be after or on the same day as submission deadline.</div>
 							</div>
 
 							<div class="form-group col-md-6 padding-right-zero-md-lg">
@@ -39,6 +40,7 @@
 								<div class="input-group date">
 									<input type="text" id="bs-datepicker-shootdate" class="form-control" style="cursor: pointer; background-color: #fff"><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
 								</div>
+								<div class="alert alert-page alert-danger shoot-date-error-invalid" style="display:none;">Shoot date should be after audition date.</div>
 							</div>
 
 						</div> {{-- col-md-6 --}}
@@ -167,7 +169,7 @@
 									<div class="panel-body">
 										<div class="form-group">
 											<label class="control-label">Email Address</label>
-											<input type="text" id="self-sub-email" class="form-control" placeholder="Enter Email Address">
+											<input type="text" id="self-sub-email" class="form-control" placeholder="Enter Email Address" data-bind="<%= email %>">
 										</div>
 										<div class="form-group">
 											<label class="control-label">and / or postal address</label>
@@ -249,6 +251,7 @@
 						<div class="col-md-12 input-group margin-top-normal">
 							<label for="manual-markets-div">
 								or <a href="" id="toggle-manual-markets-div" style="text-decoration: underline;">Manually select markets</a>
+								<a class="btn btn-default btn-sm" href="" id="toggle-all-markets-checked" style="display: none;">Select All Markets</a>
 							</label>
 							<div class="manual-markets-div display-none">
 								<div class="col-md-2">

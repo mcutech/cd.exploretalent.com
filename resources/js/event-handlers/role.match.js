@@ -188,14 +188,7 @@ handler.prototype.removeAllLikeItList = function() {
 }
 
 handler.prototype.rateAll = function() {
-	var data = {
-		withs	: [
-			'bam_talentinfo1',
-			'bam_talentinfo2',
-			'bam_talent_media2'
-		],
-		wheres : self.getFilters()
-	}
+	var data = self.getFilters();
 
 	self.core.service.rest.post(self.core.config.api.base + '/cd/talentci/import/' + self.roleId, data)
 		.then(function(result) {

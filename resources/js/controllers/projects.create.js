@@ -60,5 +60,7 @@ module.exports = function(core, user) {
 	$('#find-markets-btn').on('click', handler.autoSelectMarkets);
 
 	$('#toggle-manual-markets-div').on('click', handler.toggleManualMarketsDiv);
+
+	$('#toggle-all-markets-checked').on('click', handler.toggleAllMarketsChecked);
 			
 };
