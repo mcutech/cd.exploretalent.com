@@ -1,7 +1,23 @@
 @extends('layouts.sidebar')
 
 @section('sidebar.page-header')
-	<div class="text-semibold">@yield('header.title')</div>
+	<div class="row">
+		<div class="col-md-6">
+			<div class="text-semibold">@yield('header.title')</div>
+		</div>
+		<div class="col-md-6">
+			<div class="margin-bottom-zero">
+				<label for="select-role" class="col-md-3 margin-top-small control-label text-sm padding-left-zero">
+					Select Role
+				</label>
+				<div class="col-md-8 padding-left-zero">
+					<select id="roles-list" class="form-control">
+						<option data-bind-template="#roles-list" data-bind-value="bam_roles" data-bind="<%= JSON.stringify({ key : role_id, value : name }) %>"></option>
+					</select>
+				</div>
+			</div>
+		</div>
+	</div>
 	<div class="display-block-inline">
 		<div class="row">
 			<div class="col-md-6">
@@ -45,7 +61,7 @@
 @stop
 
 @section('sidebar.page-extra')
-<div class="row-fluid clearfix">
+<div class="row-fluid clearfix hide">
 	<div class="panel margin-bottom-zero display-block-inline">
 		<div class="padding-medium">
 			<h5 class="text-primary"><i class="fa fa-thumbs-o-up"></i> Like It List for this Role: <b><span data-bind="<%= role.likeitlist.total %>"></span></b></h5>
@@ -58,7 +74,7 @@
 
 @section('sidebar.body')
 <div class="row-fluid clearfix">
-	<div class="col-md-7">
+	<div class="col-md-12">
 		<ul id="submissions-sub-menu" class="nav nav-tabs negate-padding border-zero">
 			<li role="presentation" class="font-size-small-normal-zz font-size-small-normal-xs matches-link">
 				<a data-bind="/projects/<%= casting_id %>/roles/<%= role.role_id %>/matches">Matches</a>
@@ -66,15 +82,16 @@
 			<li role="presentation" class="font-size-small-normal-zz font-size-small-normal-xs self-submissions-link">
 				<a data-bind="/projects/<%= casting_id %>/roles/<%= role.role_id %>/self-submissions">Self Submissions</a>
 			</li>
-			<li role="presentation" class="font-size-small-normal-zz font-size-small-normal-xs like-it-list-link">
+			<li role="presentation" class="font-size-small-normal-zz font-size-small-normal-xs like-it-list-link hide">
 				<a data-bind="/projects/<%= casting_id %>/roles/<%= role.role_id %>/like-it-list" href="">Like It List</a>
 			</li>
 			<li role="presentation" class="font-size-small-normal-zz font-size-small-normal-xs auditions-worksheet-link hide">
 				<a data-bind="/audition-worksheet" href="">Audition Worksheet</a>
 			</li>
+			<a data-bind="/projects/<%= casting_id %>/roles/<%= role.role_id %>/like-it-list" class="btn btn-success pull-right">View Like it List & Contact Talent (<span data-bind="<%= role.likeitlist.total %>"></span>)</a>
 		</ul>
 	</div>
-	<div class="col-md-5">
+	{{-- <div class="col-md-5">
 		<div class="form-group margin-bottom-zero row-fluid">
 			<label for="select-role" class="col-md-3 margin-top-small control-label text-align-right">
 				Select Role
@@ -85,7 +102,7 @@
 				</select>
 			</div>
 		</div>
-	</div>
+	</div> --}}
 	<div class="col-md-12">
 		<div class="margin-bottom-normal padding-bottom-normal bordered no-border-hr no-border-t"></div>
 	</div>

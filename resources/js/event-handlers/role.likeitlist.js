@@ -25,7 +25,7 @@ handler.prototype.refreshProjectDetails = function() {
 			self.project.role = _.find(self.project.bam_roles, function (role) {
 				return role.role_id == self.roleId;
 			});
-			$('#roles-list').val(self.project.role.role_id);
+			// $('#roles-list').val(self.project.role.role_id);
 			self.project.date = self.core.service.date;
 
 			return self.refreshLikeItList();
@@ -52,6 +52,7 @@ handler.prototype.refreshLikeItList = function() {
 			self.getFavoriteTalents();
 
 			$('#loading-div').hide();
+			$('#roles-list').val(self.project.role.role_id);
 		});
 }
 

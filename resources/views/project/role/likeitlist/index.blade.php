@@ -19,6 +19,7 @@
 						<div class="col-md-6 text-align-right">
 							<a data-toggle="modal" data-target="#share-like-it-list" class="btn btn-primary">Share Like It List</a>
 							<a data-toggle="modal" data-target="#invite-to-audition-modal" class="btn btn-primary"><i class="fa fa-envelope-o"></i> Invite to Audition</a>
+							<button id="remove-all-likeitlist" class="btn btn-danger"><i class="fa fa-times"></i> Remove All</button>
 						</div>
 					</div>
 					<div id="loading-div">
