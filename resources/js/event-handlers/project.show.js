@@ -78,7 +78,6 @@ handler.prototype.refresh = function(){
 				});
 			}
 		});
-
 		self.core.service.databind('.project-overview-wrapper', result);
 		self.refreshStats();
 	})
