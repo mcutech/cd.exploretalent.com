@@ -48,11 +48,12 @@
 							<div class="form-group">
 								<label class="control-label">Category <span class="text-success">*</span></label>
 								<select class="form-control" id="project-category" name="cat">
+									<option value=""></option>
 									<option value="43">Acting - Acrobatics/Stunts</option>
 									<option value="41">Acting - Comedy/Clown</option>
 									<option value="61">Acting - Other</option>
 									<option value="42">Acting - Variety Acts</option>
-									<option value="1" selected="">Commercials</option>
+									<option value="1">Commercials</option>
 									<option value="16">Crew - Assistant &amp; Entry Level</option>
 									<option value="49">Crew - Acounting/Payroll/HR</option>
 									<option value="35">Crew - Camera/Editor</option>
