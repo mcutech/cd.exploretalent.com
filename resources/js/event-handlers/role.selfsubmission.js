@@ -57,17 +57,6 @@ handler.prototype.refreshSelfSubmissions = function() {
 			self.project.role.selfsubmissions = result;
 			self.core.service.databind('#self-submissions', self.project);
 
-			var qs = self.core.service.query_string();
-			_.merge(qs, data);
-			qs = _.omit(qs, function(n) {
-				return n == '';
-			});
-
-			// add filters to query string
-			var url = window.location.href.replace(window.location.search, '');
-			url = url + '?' + $.param(qs);
-			window.history.pushState(null, null, url);
-
 			self.core.service.paginate('#self-submissions-pagination', { class : 'pagination', total : result.total, name : 'page' });
 
 			self.getFavoriteTalents();

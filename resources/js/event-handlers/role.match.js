@@ -148,17 +148,6 @@ handler.prototype.refreshMatches = function() {
 
 			self.core.service.databind('#role-match', self.project);
 
-			var qs = self.core.service.query_string();
-			_.merge(qs, data);
-			qs = _.omit(qs, function(n) {
-				return n == '';
-			});
-
-			// add filters to query string
-			var url = window.location.href.replace(window.location.search, '');
-			url = url + '?' + $.param(qs);
-			window.history.pushState(null, null, url);
-
 			self.core.service.paginate('#matches-pagination', { total : self.project.role.matches.total, class : 'pagination', name : 'page' });
 			$('#role-match-loader').hide();
 			$('#role-match').show();
