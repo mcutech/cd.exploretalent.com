@@ -69,7 +69,7 @@
 			<li role="presentation" class="font-size-small-normal-zz font-size-small-normal-xs like-it-list-link">
 				<a data-bind="/projects/<%= casting_id %>/roles/<%= role.role_id %>/like-it-list" href="">Like It List</a>
 			</li>
-			<li role="presentation" class="font-size-small-normal-zz font-size-small-normal-xs auditions-worksheet-link ">
+			<li role="presentation" class="font-size-small-normal-zz font-size-small-normal-xs auditions-worksheet-link hide">
 				<a data-bind="/audition-worksheet" href="">Audition Worksheet</a>
 			</li>
 		</ul>
