@@ -1,4 +1,5 @@
 'use strict';
+var _ = require('lodash');
 
 function handler(core, user, projectId, roleId) {
 	self = this;
@@ -55,6 +56,16 @@ handler.prototype.refreshSelfSubmissions = function() {
 		.then(function(result) {
 			self.project.role.selfsubmissions = result;
 			self.core.service.databind('#self-submissions', self.project);
+
+			_.merge(qs, data);
+			qs = _.omit(qs, function(n) {
+				return n == '';
+			});
+
+			// add filters to query string
+			var url = window.location.href.replace(window.location.search, '');
+			url = url + '?' + $.param(qs);
+			window.history.pushState(null, null, url);
 
 			self.core.service.paginate('#self-submissions-pagination', { class : 'pagination', total : result.total, name : 'page' });
 
