@@ -16,8 +16,7 @@ handler.prototype.refresh = function() {
 		query : [
 			[ 'with', 'bam_role.schedules.invitee.bam_talentci.bam_talent_media2' ],
 			[ 'with', 'bam_role.schedules.conversation.messages' ],
-			[ 'with', 'bam_role.schedules.schedule_notes' ],
-			[ 'where', 'status', '=', 1 ]
+			[ 'with', 'bam_role.schedules.schedule_notes' ]
 		]
 	};
 
