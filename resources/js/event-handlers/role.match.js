@@ -148,6 +148,7 @@ handler.prototype.refreshMatches = function() {
 
 			self.core.service.databind('#role-match', self.project);
 
+			var qs = self.core.service.query_string();
 			_.merge(qs, data);
 			qs = _.omit(qs, function(n) {
 				return n == '';

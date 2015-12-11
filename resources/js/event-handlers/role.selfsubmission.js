@@ -57,6 +57,7 @@ handler.prototype.refreshSelfSubmissions = function() {
 			self.project.role.selfsubmissions = result;
 			self.core.service.databind('#self-submissions', self.project);
 
+			var qs = self.core.service.query_string();
 			_.merge(qs, data);
 			qs = _.omit(qs, function(n) {
 				return n == '';
