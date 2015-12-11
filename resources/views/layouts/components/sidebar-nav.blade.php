@@ -30,7 +30,7 @@
 	<li>
 		<a href="/audition-worksheet">
 			<i class="menu-icon fa fa-tasks"></i>
-			<span class="mm-text">Audition Worksheet</span>
+			<span class="mm-text">Manage Auditions</span>
 		</a>
 	</li>
 </ul>
