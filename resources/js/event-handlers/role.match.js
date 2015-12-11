@@ -55,6 +55,12 @@ handler.prototype.refreshMatches = function() {
 	self.core.resource.search_talent.get(data)
 		.then(function(res) {
 			talents = res;
+			if (talents.data.length < 1) {
+				$('#role-match-loader').hide();
+				alert('No results for search');
+				return $.when();
+			}
+
 			var talentnums = _.map(talents.data, function(talent) {
 				return talent.talentnum;
 			});

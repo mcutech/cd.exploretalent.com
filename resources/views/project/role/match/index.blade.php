@@ -26,8 +26,8 @@
 									<span class="text-primary"><a data-bind="/projects/<%= casting_id %>/roles/<%= role.role_id %>/like-it-list" href="">You have <span data-bind="<%= role.likeitlist.total %>"></span> in your like it list.</a></span>
 								</div>
 							</div>
-
 						</div>
+
 						<div class="col-md-6">
 							<div class="float-right">
 								<div class="display-block margin-bottom-small">
