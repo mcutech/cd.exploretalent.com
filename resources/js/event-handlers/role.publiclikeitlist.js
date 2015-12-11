@@ -79,6 +79,13 @@ handler.prototype.viewAllModal = function() {
 }
 handler.prototype.refreshTalentPhotos = function(e){
 	var id;
+
+	// Bind null data first
+	self.core.service.databind('#talent-photos-modal', {
+		getFullName: function() { return "Loading" },
+		bam_talent_media2: []
+	});
+
 	if ($(e.target).is('a'))
 		id = $(e.target).attr('data-id');
 	else {
@@ -101,7 +108,7 @@ handler.prototype.refreshTalentPhotos = function(e){
 handler.prototype.addToFav = function(){
 	var b = $(this).closest('.talent-tab').attr('id');
 	var talentnum = (b.split('-')[2]);
-	
+
 	var talents = _.find(self.favTalent.data, function(n){
 		return n.bam_talentnum == talentnum;
 	});
@@ -127,7 +134,7 @@ handler.prototype.getDetailsForAddNoteModal = function() {
 		scheduleId = scheduleId.split("_");
 		scheduleId = scheduleId[1];
 
-	var data = { 
+	var data = {
 		scheduleId : scheduleId
 	};
 
@@ -186,7 +193,7 @@ handler.prototype.addNoteForTalent = function(e) {
 	}
 
 	else {
-		var data = { 
+		var data = {
 			scheduleId: scheduleId,
 			body: noteBody,
 		};
@@ -200,7 +207,7 @@ handler.prototype.addNoteForTalent = function(e) {
 			}, 3000);
 		});
 	}
-	
+
 }
 
 handler.prototype.editNoteForTalent = function(e) {
@@ -221,7 +228,7 @@ handler.prototype.editNoteForTalent = function(e) {
 	}
 
 	else {
-		var data = { 
+		var data = {
 			scheduleId: scheduleId,
 			noteId: noteId,
 			body: noteBody,
@@ -235,7 +242,7 @@ handler.prototype.editNoteForTalent = function(e) {
 				location.reload();
 			}, 3000);
 		});
-	}	
+	}
 
 }
 

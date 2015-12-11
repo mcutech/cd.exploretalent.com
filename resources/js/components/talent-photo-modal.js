@@ -4,6 +4,12 @@ module.exports = function(core, user) {
 	$(document).on('click', '#talent-photo', function(e) {
 		var id;
 
+		// Bind null data first
+		self.core.service.databind('#talent-photos-modal', {
+			getFullName: function() { return "Loading" },
+			bam_talent_media2: []
+		});
+
 		if ($(e.target).is('a')) {
 			id = $(e.target).attr('data-id');
 		}
