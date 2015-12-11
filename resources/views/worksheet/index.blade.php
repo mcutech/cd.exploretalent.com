@@ -1,7 +1,7 @@
-@extends('layouts.sidebar', [ 'pages' => [ [ 'name' => 'Worksheet', 'url' => '/worksheet', 'active' => true] ] ])
+@extends('layouts.sidebar', [ 'pages' => [ [ 'name' => 'Audition Worksheet', 'url' => '/audition-worksheet', 'active' => true] ] ])
 
 @section('sidebar.page-header')
-<i class="fa fa-tasks page-header-icon"></i> Audition Worksheet
+<i class="fa fa-tasks page-header-icon"></i> Manage Auditions
 @stop
 
 @section('sidebar.body')
