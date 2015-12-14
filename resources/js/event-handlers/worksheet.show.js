@@ -6,98 +6,63 @@ function handler(core, user, campaignId) {
 	self.core = core;
 	self.user = user;
 	self.campaignId = campaignId;
-	self.refreshFilters();
-}
-
-handler.prototype.refresh = function() {
-	var form = self.core.service.form.serializeObject('#filter-form');
-	var data = {
-		query : [
-			[ 'with', 'bam_role.schedules.invitee.bam_talentci.bam_talent_media2' ],
-			[ 'with', 'bam_role.schedules.conversation.messages' ],
-			[ 'with', 'bam_role.schedules.schedule_notes' ]
-		]
-	};
-
-	if (parseInt(form.project)) {
-		data.query.push([ 'whereHas', 'bam_role', [
-				[ 'where', 'casting_id', '=', form.project ]
-			]
-		]);
-	}
-
-	if (parseInt(form.role)) {
-		data.query.push([ 'where', 'bam_role_id', '=', form.role ]);
-	}
-
-	if (form.talentname) {
-		data.query.push([ 'whereHas', 'bam_role.schedules.invitee.bam_talentci', [
-				[ 'where', [
-						[ 'where', 'fname', 'LIKE', '%' + form.talentname + '%' ],
-						[ 'orWhere', 'lname', 'LIKE', '%' + form.talentname + '%' ],
-					]
-				]
-			]
-		]);
-	}
-
-	if (parseInt(form.schedule_status)) {
-		data.query.push([ 'whereHas', 'bam_role.schedules', [
-				[ 'where', 'status', '=', form.schedule_status ]
-			]
-		]);
-	}
-
-	self.core.resource.campaign.get(data)
-		.then(function(res) {
-			_.each(res.data, function(campaign) {
-				if (campaign.bam_role) {
-					// assign bam_role and campaign objects so we don't have to query again
-					_.each(campaign.bam_role.schedules, function(n) {
-						n.bam_role = campaign.bam_role;
-						n.campaign = campaign;
-					});
-					// remove schedule with rating = 0
-					_.remove(campaign.bam_role.schedules, function(n) {
-						return n.rating == 0;
-					});
-				}
-				else {
-					// create empty object so we wont have problems in databind
-					campaign.bam_role = {
-						schedules : []
-					};
-				}
-			});
-			console.log(res);
-			self.core.service.databind('#campaigns', res);
-			// self.campaign = campaign;
-		});
-}
-
-handler.prototype.refreshFilters = function() {
-	self.core.resource.project.get()
-		.then(function(res) {
-			res.data = [ { casting_id : 0, name : 'All Projects' } ].concat(res.data);
-			self.core.service.databind('#projects-list', res);
-			$('#projects-list').val(0);
-		});
-
 	self.refresh();
 }
 
+handler.prototype.refresh = function() {
+	var promise = $.when();
+	if (!self.campaign) {
+		// get campaign object first
+		var data = {
+			campaignId : self.campaignId,
+			query : [
+				[ 'with', 'bam_role' ]
+			]
+		};
+		promise = self.core.resource.campaign.get(data)
+			.then(function(res){
+				self.campaign = res;
+				return $.when();
+			});
+	}
 
-handler.prototype.refreshFilterRoles = function() {
+	promise.then(function() {
+			var data = self.getFilters();
+			return self.campaign.bam_role.getLikeItList(data);
+		})
+		.then(function(res) {
+			console.log(res);
+			_.each(res.data, function(s) {
+				s.campaign = self.campaign;
+			});
+
+			self.core.service.databind('#schedules', res);
+		});
+}
+
+handler.prototype.getFilters = function() {
+	var qs = self.core.service.form.serializeObject('#filter-form');
 	var data = {
-		projectId 	: $('#projects-list').val()
+		query : [
+		]
 	};
 
-	self.core.resource.job.get(data)
-		.then(function(res) {
-			res.data = [ { role_id : 0, name : 'All Roles' } ].concat(res.data);
-			self.core.service.databind('#roles-list', res);
-			$('#roles-list').val(0);
-		});
+	if (qs.callback_status) {
+		data.query.push([ 'where', 'status', '=', qs.callback_status ]);
+	}
+
+	if (qs.talentname) {
+		data.query.push([ 'whereHas', 'invitee.bam_talentci',
+			[
+				[ 'where', 'fname', 'LIKE', '%' + qs.talentname + '%' ],
+				// [ 'orWhere', 'lname', 'LIKE', '%' + qs.talentname + '%' ],
+				// [ 'orWhere', 'talentlogin', 'LIKE', '%' + qs.talentname + '%' ],
+				// [ 'orWhere', 'talentnum', 'LIKE', '%' + qs.talentname + '%' ]
+			]
+		]);
+	}
+
+	return data;
 }
 
 handler.prototype.updateScheduleStatus = function(e) {

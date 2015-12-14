@@ -46,7 +46,7 @@
 							<div data-bind-template="#messages" data-bind-value="messages" class="col-md-12 padding-normal per-message padding-left-zero">
 								<div class="margin-left-small">
 									<span class="name" data-bind="<%= user.bam_talentci ? user.bam_talentci.getFullName() : user.bam_cd_user.getFullName() %>"></span>
-									<span class="time" data-bind="<%= created_at %>"></span>
+									<span class="time" data-bind="<%= moment(created_at).fromNow() %>"></span>
 								</div>
 								<div class="margin-top-small-normal margin-left-small" data-bind="<%= body %>" data-bind-target="html">
 								</div>
@@ -71,19 +71,6 @@
 						<button type="button" class="btn btn-success" id="reply-button">Reply</button>
 					</div>
 				</div>
-				<!-- <div class="col&#45;md&#45;12 padding&#45;zero margin&#45;top&#45;small&#45;normal"> -->
-				<!-- 	<div class="btn&#45;group"> -->
-				<!-- 		<button class="btn btn&#45;success btn&#45;xs" rel="tooltip" title="confirmed"> -->
-				<!-- 			<i class="fa fa&#45;check"></i> Confirmed -->
-				<!-- 		</button> -->
-				<!-- 		<button class="btn btn&#45;default  btn&#45;xs" rel="tooltip" title="cancelled"> -->
-				<!-- 			<i class="fa fa&#45;times"></i> Cancelled -->
-				<!-- 		</button> -->
-				<!-- 		<button class="btn btn&#45;default  btn&#45;xs" rel="tooltip" title="reschedule"> -->
-				<!-- 			<i class="fa fa&#45;clock&#45;o"></i> Rescheduled -->
-				<!-- 		</button> -->
-				<!-- 	</div> -->
-				<!-- </div> -->
 			</div>
 		</div> <!-- / .modal -->
 	</div>
