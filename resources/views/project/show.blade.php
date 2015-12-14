@@ -207,13 +207,13 @@
 
 			<div class="panel-group panel-group-primary project-item" id="accordion-castings">
 			  
-			  		<div class="panel-heading panel-active" data-bind="<%= (status == '1') ? '1' : '0' %>" data-bind-target="visibility">
-			  			<a class="accordion-toggle collapsed" data-toggle="collapse" data-bind="#jobs-collapse-<%= casting_id %>">
+			  		<div class="panel-heading panel-active hide">
+			  			<a class="accordion-toggle" data-toggle="collapse" data-bind="#jobs-collapse-<%= casting_id %>">
 			  			<span data-bind="<%= name %>"></span><span class="label label-info margin-left-small">Active</span>
 			  			</a>
 			  		</div>
-			  		<div class="panel-heading panel-inactive" data-bind="<%= (status == '0') ? '1' : '0' %>" data-bind-target="visibility">
-				  		<a class="accordion-toggle collapsed" data-toggle="collapse" data-bind="#jobs-collapse-<%= casting_id %>">
+			  		<div class="panel-heading panel-inactive hide">
+				  		<a class="accordion-toggle" data-toggle="collapse" data-bind="#jobs-collapse-<%= casting_id %>">
 			  			<span data-bind="<%= name %>"></span><span class="label label-warning margin-left-small">Pending Review</span>
 			  			</a>
 			  		</div>
