@@ -5,4 +5,9 @@ class WorksheetController extends Controller {
 	{
 		return view('worksheet.index');
 	}
+
+	public function show()
+	{
+		return view('worksheet.show');
+	}
 }

@@ -59,6 +59,7 @@ jscore.run(function(core) {
 		.add('/projects/{projectId}/roles/{roleId}/like-it-list', 'role.likeitlist')
 		.add('/projects/{projectId}/roles/{roleId}/public-like-it-list', 'role.publiclikeitlist')
 		.add('/projects/{projectId}/roles/{roleId}/self-submissions', 'role.selfsubmission')
+		.add('/audition-worksheet/{campaignId}', 'worksheet.show')
 		.add('/audition-worksheet', 'worksheet')
 
 		// roles pages

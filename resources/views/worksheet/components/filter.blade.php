@@ -16,47 +16,6 @@
 
 				<div class="panel panel-transparent">
 					<div class="panel-heading no-padding-hr padding-bottom-zero-small padding-top-zero">
-						<div class="panel-title text-uppercase"><strong>Projects</strong></div>
-					</div>
-					<div class="panel-body padding-small no-border-hr no-padding-hr">
-						<div class="tab-content no-padding-hr padding-top-zero-zz-lg no-padding-b">
-							<div class="tab-pane fade active in">
-								<div class="display-block margin-bottom-small talent-role">
-									<select name="project" id="projects-list" class="form-control">
-										<option data-bind-template="#projects-list" data-bind-value="data" data-bind="<%= JSON.stringify({ key : casting_id, value : name }) %>"></option>
-									</select>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="panel panel-transparent">
-					<div class="panel-heading no-padding-hr padding-bottom-zero-small padding-top-zero">
-						<div class="panel-title text-uppercase"><strong>Roles</strong></div>
-					</div>
-					<div class="panel-body padding-small no-border-hr no-padding-hr">
-						<div class="tab-content no-padding-hr padding-top-zero-zz-lg no-padding-b">
-							<div class="tab-pane fade active in">
-								<div class="display-block margin-bottom-small talent-role">
-									<select name="role" id="roles-list" class="form-control">
-										<option data-bind-template="#roles-list" data-bind-value="data" data-bind="<%= JSON.stringify({ key : role_id, value : name }) %>"></option>
-									</select>
-								</div>
-								<div class="display-block role-status">
-									<select name="" id="" class="form-control">
-										<option value="1">All Role Statuses</option>
-										<option value="2">Call Back Selected</option>
-										<option value="3">Booked</option>
-									</select>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div> <!--Roles-->
-
-				<div class="panel panel-transparent">
-					<div class="panel-heading no-padding-hr padding-bottom-zero-small padding-top-zero">
 						<div class="panel-title text-uppercase"><strong>Schedules</strong></div>
 					</div>
 					<div class="panel-body padding-small no-border-hr no-padding-hr">
