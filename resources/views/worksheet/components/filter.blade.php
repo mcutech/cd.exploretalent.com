@@ -8,57 +8,61 @@
 		</div>
 		<div class="panel-body">
 			<div class="location">
-				<div class="panel panel-transparent margin-bottom-normal">
+				<div class="panel panel-transparent margin-zero">
 					<div class="panel-body padding-small no-border-hr no-padding-hr">
-						<input type="text" class="form-control" name="talentname" placeholder="Enter Talent Name" />
+						<input type="text" class="form-control" name="talentname" placeholder="Enter Talent Name / ID" />
 					</div>
-				</div> <!--talent name input-->
+				</div>
 
-				<div class="panel panel-transparent">
+				<div class="panel panel-transparent margin-zero">
 					<div class="panel-heading no-padding-hr padding-bottom-zero-small padding-top-zero">
-						<div class="panel-title text-uppercase"><strong>Schedules</strong></div>
+						<div class="panel-title"><strong>Callback Status</strong></div>
 					</div>
 					<div class="panel-body padding-small no-border-hr no-padding-hr">
 						<div class="tab-content no-padding-hr padding-top-zero-zz-lg no-padding-b">
 							<div class="tab-pane fade active in">
 								<div class="display-block margin-bottom-small scheduled-talent">
-									<select name="" id="" class="form-control">
-										<option value="1">All Scheduled Talent</option>
-										<option value="2">No Schedule Filter</option>
-										<option value="3">May 31 - Room 1</option>
-									</select>
-								</div>
-								<div class="display-block margin-bottom-small talent-status">
-									<select name="schedule_status" id="" class="form-control">
-										<option value="0">All Statuses</option>
+									<select name="callback_status" id="" class="form-control">
+										<option value="">Any</option>
 										<option value="1">Pending</option>
-										<option value="2">Confirmed</option>
-										<option value="3">Declined</option>
-										<option value="4">Rescheduled</option>
-									</select>
-								</div>
-								<div class="display-block margin-bottom-small talent-status">
-									<select name="" id="" class="form-control">
-										<option value="1">No Message Filter</option>
-										<option value="2">Pending</option>
-										<option value="3">Any with all messages</option>
-										<option value="4">Any with new messages</option>
+										<option value="2">Callback</option>
+										<option value="3">Hired</option>
 									</select>
 								</div>
 							</div>
 						</div>
 					</div>
-				</div> <!--Schedules-->
+				</div>
 
 				<div class="panel panel-transparent margin-zero">
 					<div class="panel-heading no-padding-hr padding-bottom-zero-small padding-top-zero">
-						<div class="panel-title text-uppercase"><strong>Notes</strong></div>
+						<div class="panel-title"><strong>Message Status</strong></div>
 					</div>
 					<div class="panel-body padding-small no-border-hr no-padding-hr">
 						<div class="tab-content no-padding-hr padding-top-zero-zz-lg no-padding-b">
 							<div class="tab-pane fade active in">
 								<div class="display-block margin-bottom-small scheduled-talent">
-									<input type="text" class="form-control" name="zip" placeholder="Enter Notes" id="talent-notes-input" max="5" maxlength="5">
+									<select name="message_status" id="" class="form-control">
+										<option value="1">Any</option>
+										<option value="2">No Message</option>
+										<option value="3">Any with Message</option>
+										<option value="3">Any with New Message</option>
+									</select>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="panel panel-transparent margin-zero">
+					<div class="panel-heading no-padding-hr padding-bottom-zero-small padding-top-zero">
+						<div class="panel-title"><strong>Notes</strong></div>
+					</div>
+					<div class="panel-body padding-small no-border-hr no-padding-hr">
+						<div class="tab-content no-padding-hr padding-top-zero-zz-lg no-padding-b">
+							<div class="tab-pane fade active in">
+								<div class="display-block margin-bottom-small scheduled-talent">
+									<input type="text" class="form-control" name="notes" placeholder="Enter Notes" id="talent-notes-input" max="5" maxlength="5">
 								</div>
 							</div>
 						</div>
