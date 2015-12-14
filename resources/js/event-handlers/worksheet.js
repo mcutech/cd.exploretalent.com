@@ -20,26 +20,16 @@ function handler(core, user) {
 }
 
 handler.prototype.refresh = function() {
-	var projectId = $('#projects-list').val();
+	var status = $('#status-list').val();
+
 	var data = {
 		query : [
 			[ 'with', 'bam_role.bam_casting' ]
 		]
 	};
 
-	var project = _.find(self.projects.data, function(p) {
-		return p.casting_id == projectId;
-	});
-
-	if (project) {
-		var roleIds = _.map(project.bam_roles, function(r) {
-			return r.role_id;
-		});
-
-		if (!roleIds.length)
-			roleIds = [ 0 ];
-
-		data.query.push([ 'whereIn', 'bam_role_id', roleIds ]);
+	if (status) {
+		data.query.push([ 'where', 'status', '=', status ]);
 	}
 
 	self.core.resource.campaign.get(data)
