@@ -16,12 +16,13 @@ handler.prototype.refresh = function() {
 		var data = {
 			campaignId : self.campaignId,
 			query : [
-				[ 'with', 'bam_role' ]
+				[ 'with', 'bam_role.bam_casting' ]
 			]
 		};
 		promise = self.core.resource.campaign.get(data)
 			.then(function(res){
 				self.campaign = res;
+				self.core.service.databind('#campaign-details', self.campaign);
 				return $.when();
 			});
 	}
