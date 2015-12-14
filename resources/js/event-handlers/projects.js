@@ -17,9 +17,43 @@ handler.prototype.refreshList = function(){
 		withs : [
 			'bam_roles'
 		],
+		query : [],
 		page : qs.page || 0,
-		per_page : 5
+		per_page : 20
 	};
+
+	var searchterm = $('#project-name[name="project"]').val();
+	if(searchterm) {
+		data.query.push([ 'where',
+			[
+				[ 'where', 'project', 'LIKE', '%' + searchterm + '%' ],
+				[ 'orWhere', 'name', 'LIKE', '%' + searchterm + '%' ],
+				[ 'orWhere', 'name_original', 'LIKE', '%' + searchterm + '%' ],
+				[ 'orWhere', 'casting_id', '=', searchterm ],
+			]
+		]);
+	}
+
+	var status = $('#project-status[name="status"]').val();
+	if(status) {
+		if(status == '1') { // ACTIVE
+			data.query.push([ 'where',
+				[
+					[ 'where', 'status', '=', 1 ],
+				]
+			]);
+		}
+		else if(status == '0') { // PENDING REVIEW
+			data.query.push([ 'where',
+				[
+					[ 'where', 'status', '=', 0 ],
+				]
+			]);
+		}
+		else { // ALL
+			// push nothing to query
+		}
+	}
 
 	return self.core.resource.project.get(data)
 		.then(function(res){
