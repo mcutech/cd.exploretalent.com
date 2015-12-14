@@ -77,6 +77,13 @@ handler.prototype.refresh = function(){
 					}
 				});
 			}
+
+			if(result.status == '1') {
+				$('.panel-active').removeClass('hide');
+			}
+			else {
+				$('.panel-inactive').removeClass('hide');
+			}
 		});
 		self.core.service.databind('.project-overview-wrapper', result);
 		self.refreshStats();

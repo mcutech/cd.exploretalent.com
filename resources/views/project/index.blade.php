@@ -2,6 +2,21 @@
 
 @section('sidebar.page-header')
 <i class="fa fa-th-list page-header-icon"></i> My Projects
+<div class="row margin-top-normal form-inline">
+	<div class="col-md-5 input-group">
+		<input type="text" class="form-control" id="project-name" name="project" placeholder="Search for Project">
+		<span id="project-search-btn" class="input-group-addon" style="cursor: pointer;" type="submit">
+            <span class="glyphicon glyphicon-search"></span>
+        </span>
+	</div>
+	<div class="col-md-3 input-group">
+		<select class="form-control" name="status" id="project-status">
+			<option value="">All</option>
+			<option value="0">Pending Review</option>
+			<option value="1">Active</option>
+		</select>
+	</div>
+</div>
 @stop
 
 @section('sidebar.page-extra')
@@ -25,19 +40,26 @@
 			  		<div class="panel-heading panel-active" data-bind="<%= (status == '1') ? '1' : '0' %>" data-bind-target="visibility">
 			  			<a class="accordion-toggle collapsed" data-toggle="collapse" data-bind="#jobs-collapse-<%= casting_id %>">
 			  			<span data-bind="<%= name %>"></span><span class="label label-info margin-left-small">Active</span>
+			  			<span data-bind="project_<%= casting_id %>" data-bind-target="id" class="project-overview-btn label label-success font-size-small-normal-zz padding-small-zz margin-top-small-zz-xs">
+							Project Overview
+						</span>
 			  			</a>
+			  			
 			  		</div>
 			  		<div class="panel-heading panel-inactive" data-bind="<%= (status == '0') ? '1' : '0' %>" data-bind-target="visibility">
 				  		<a class="accordion-toggle collapsed" data-toggle="collapse" data-bind="#jobs-collapse-<%= casting_id %>">
 			  			<span data-bind="<%= name %>"></span><span class="label label-warning margin-left-small">Pending Review</span>
+			  			<span data-bind="project_<%= casting_id %>" data-bind-target="id" class="project-overview-btn label label-success font-size-small-normal-zz padding-small-zz margin-top-small-zz-xs">
+							Project Overview
+						</span>
 			  			</a>
+			  			
 			  		</div>
-
-			  		<div class="panel-collapse collapse in" data-bind="jobs-collapse-<%= casting_id %>" data-bind-target="id" aria-expanded="true" style="">
+			  		<div class="panel-collapse collapse" data-bind="jobs-collapse-<%= casting_id %>" data-bind-target="id" aria-expanded="true" style="">
 			  			<div class="panel-body padding-left-zero-zz-xs padding-right-zero-zz-xs">
-			  				<div class="row-fluid clearfix margin-bottom-normal">
+                    {{-- 	<div class="row-fluid clearfix margin-bottom-normal">
 			  					<div class="col-md-6">
-			  						<strong>Project ID# <span data-bind="<%= casting_id %>"></span></strong>
+			  						
 			  					</div>
 			  					<div class="col-md-6">
 			  						<div class="float-right">
@@ -58,15 +80,15 @@
 			  							</span>
 			  						</div>
 			  					</div>
-			  				</div>
+			  				</div>  --}}
 			  				<div class="row-fluid col-no-padding clearfix project-details-container">
 			  					<div class="col-sm-12 col-md-6">
 			  						<ul class="list-unstyled additional-details margin-zero">
+			  							<li><div class="title">Project ID:</div><span data-bind="<%= casting_id %>"></span></li>
 			  							<li><div class="title">Project Type:</div><span data-bind="<%= (cat) ? getCategory().split(' ',1) : 'N/A' %>"></span></li>
 			  							<li><div class="title">Location:</div><span data-bind="<%= location %>"></span></li>
 			  							<li><div class="title">Rate/Pay:</div>$<span data-bind="<%= rate %>"></span> <span data-bind="<%= (rate_des) ? 'per ' + getRate() : '' %>"></span></li>
 			  							<li><div class="title">Audition Date:</div><span data-bind="<%= (!aud_timestamp1) ? 'N/A' : date.formatMDY(parseInt(aud_timestamp)) %>"></span></li>
-			  							<li><div class="title">Casting Category:</div><span data-bind="<%= (cat) ? getCategory() : 'N/A' %>"></span></li>
 			  						</ul>
 			  					</div>
 
@@ -76,6 +98,7 @@
 			  							<li><div class="title">Union:</div><span data-bind="<%= (union2 == 0) ? 'Non-union' : 'Union' %>"></span></li>
 			  							<li><div class="title">Release Date:</div><span data-bind="<%= date.formatMDY(parseInt(sub_timestamp)) %>"></span></li>
 			  							<li><div class="title">Deadline:</div><span id="text-date-type"><span data-bind="<%= (!asap) ? 'N/A' : date.formatMDY(parseInt(asap)) %>"></span></span></li>
+			  							<li><div class="title">Casting Category:</div><span data-bind="<%= (cat) ? getCategory() : 'N/A' %>"></span></li>
 			  						</ul>
 			  					</div>
 
