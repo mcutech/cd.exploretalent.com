@@ -7,6 +7,12 @@
 @section('sidebar.body')
 	<div class="audition-worksheet-wrapper audition-worksheet-talents-wrapper">
 		<div class="row-fluid clearfix">
+			<div id="campaign-details" class="col-md-12 panel-body">
+				<p data-bind="Project: <%= bam_role.bam_casting.name + ' (#' + bam_role.bam_casting.casting_id + ')' %>"></p>
+				<p data-bind="Role: <%= bam_role.name + ' (#' + bam_role.role_id + ')' %>"></p>
+				<p data-bind="Status: <%= status == 0 ? 'Pending' : (status == 1 ? 'Approved' : 'Rejected') %>"></p>
+				<p data-bind="Message: <%= description %>"></p>
+			</div>
 			<div class="col-md-3 talents-search-filter-content">
 				@include('worksheet.components.filter')
 			</div> {{-- filter-search-sidebar --}}
