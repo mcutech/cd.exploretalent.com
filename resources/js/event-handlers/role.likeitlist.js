@@ -9,6 +9,10 @@ function handler(core, user, projectId, roleId) {
 	self.project = null;
 	self.favTalent = null;
 	self.refreshProjectDetails();
+
+	// @if ENV='production'
+	$('#acc-toggle').hide();
+	// @endif
 }
 
 handler.prototype.refreshProjectDetails = function() {
