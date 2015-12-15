@@ -63,7 +63,7 @@
 											<div class="padding-small">
 												<div class="text-semibold">
 													<span data-bind="<%= submission ? 'Self Submitted on ' : 'Added to Like It List on ' %>"></span>
-													<span data-bind="<%= created_at %>"></span>
+													<span data-bind="<%= moment(created_at).format('MM-DD-YY hh:mm A') %>"></span>
 												</div>
 												<div>
 													<span data-bind="<%= campaign.description %>" data-bind-target="html"></span>
@@ -71,7 +71,7 @@
 												<div class="note-description" id="messages">
 													<div class="message row" data-bind-template="#messages" data-bind-value="conversation.messages">
 														<div class="col-md-12">
-															<span data-bind="<%= user.bam_talentci ? 'Talent' : 'You'  %>"></span>
+															<span data-bind="<%= user.bam_talentci ? user.bam_talentci.getFullName() : 'Me'  %>"></span>
 															<span class="pull-right" data-bind="<%= moment(created_at).fromNow() %>"></span>
 														</div>
 														<div class="col-md-12">
