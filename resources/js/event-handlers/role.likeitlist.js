@@ -120,6 +120,36 @@ handler.prototype.unrateSchedule = function(e) {
 			});
 }
 
+handler.prototype.unrateCheckedSchedules = function(e) {
+
+	var checkedDataIds = $('input[name="likeitlist-checkbox"]:checked');
+
+	var checkedIdsArray = [];
+	$.each(checkedDataIds, function(index, value) {
+		var dataId = $(this).attr('data-id');
+		checkedIdsArray.push(dataId);
+	});
+
+	// remove all undefined from array
+	checkedIdsArray = checkedIdsArray.filter(function(n){ return n != undefined }); 
+
+	var promises = [];
+
+	$.each(checkedIdsArray, function(index, value) {
+		var promise = self.core.resource.schedule.patch({ scheduleId : value, rating : 0 });
+		promises.push(promise);
+			
+	});
+
+	$.when.apply($, promises).then(function() {
+		alert('Entries removed.');
+		// $('#remove-all-checked-likeitlist').attr('disabled', 'disabled');
+		$('#check-all-likeitlist').removeAttr('disabled');
+		// $('input[name="likeitlist-checkbox"]').removeAttr('checked');
+		self.refreshLikeItList();
+	});
+}
+
 handler.prototype.changeRole = function() {
 	window.location = '/projects/' + self.projectId + '/roles/' + $('#roles-list').val() + '/like-it-list';
 }

@@ -9,8 +9,13 @@
 		@if (isset($unrate) && $unrate)
 		<a class="btn btn-outline btn-xs pull-right unrate-button" type="button" data-bind="<%= id %>" data-bind-target="data-id"><i class="fa fa-times"></i></a>
 		@endif
+		@if (isset($remove) && $remove)
+		<label class="checkbox-inline pull-right" style="margin-top: -10px;">
+			<input type="checkbox" name="likeitlist-checkbox" class="px" data-bind="<%= id %>" data-bind-target="data-id">
+			<span class="lbl"></span>
+		</label>
+		@endif
 	</ul>
-
 	<div class="panel margin-bottom-zero">
 		<div class="panel-body">
 			<div class="row-fluid clearfix">
