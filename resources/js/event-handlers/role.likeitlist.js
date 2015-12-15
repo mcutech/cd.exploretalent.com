@@ -11,7 +11,7 @@ function handler(core, user, projectId, roleId) {
 	self.refreshProjectDetails();
 
 	// @if ENV='production'
-	$('#acc-toggle').hide();
+	$('#when-where-container').hide();
 	// @endif
 }
 

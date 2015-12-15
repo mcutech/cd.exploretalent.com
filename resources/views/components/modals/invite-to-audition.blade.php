@@ -15,7 +15,7 @@
 							<span><strong>talents:</strong> <span data-bind="<%= role.likeitlist.total %>"></span></span>
 						</div>
 					</div>
-					<div class="row">
+					<div class="row" id="when-where-container">
 						<div class="col-md-6 margin-top-small">
 							<div class="checkbox">
 								<label for="acc-toggle">
