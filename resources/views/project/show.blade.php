@@ -25,7 +25,7 @@
  	  			<label for="">Details</label>
  	  		</div>
  		</div>
- 
+
  		<div id="role-list">
  			<div data-bind-template="#role-list" data-bind-value="bam_roles" class="row-fluid clearfix border-t padding-top-normal roles-item">
  				Rolename
@@ -38,7 +38,7 @@
  						</li>
  					</ul>
  				</div>
- 
+
  				Summary1
  				<div class="col-md-2 summary">
  					<ul class="list-unstyled" data-bind="role-<%= role_id %>" data-bind-target="id">
@@ -69,7 +69,7 @@
  						</li>
  					</ul>
  				</div>
- 
+
  				Summary2
  				<div class="col-md-2 summary">
  					<ul class="list-unstyled">
@@ -77,14 +77,14 @@
  						<li><a href="#" class="text-bold">1</a> Booked</li>
  					</ul>
  				</div>
- 
+
  				Details
  				<div class="col-md-6 details">
  					<dl class="">
  					  <dt>Preferences</dt>
  					  <dd><span data-bind="<%= gender %>"></span> / <span data-bind="<%= (ethnicity) ? ethnicity : 'Any' %>"></span> / <span data-bind="<%= age_min %> to <%= age_max %>"></span> / <span data-bind="<%= getHeightMinText() %> to <%= getHeightMaxText() %>"></span> / <span data-bind="<%= (build) ? build : 'Any' %>"></span></dd>
  					</dl>
- 
+
  					<dl class="">
  					  <dt>Description</dt>
  					  <dd ><span data-bind="<%= des %>"> </span></dd>
@@ -92,12 +92,12 @@
  				</div>
  			</div> roles item
  		</div>
- 
+
  	  </div>
- 
+
  	  <div class="panel-heading font-size-normal-medium margin-top-large"> Project Details </div>
  	  <div class="panel-body">
- 
+
  						<div class="row-fluid clearfix margin-bottom-normal">
  							<div class="col-md-6">
  								<strong>Project ID# <span data-bind="<%= casting_id %>"></span></strong>
@@ -111,32 +111,32 @@
  									<li><div class="title">Rate:</div><span data-bind="<%= rate %>"></span></li>
  								</ul>
  							</div>
- 
+
  							<div class="col-sm-12 col-md-4">
  								<ul class="list-unstyled additional-details margin-zero">
  									<li><div class="title">Sub Deadline:</div><span data-bind="<%= (asap == 0) ? 'N/A' : date.formatYMD(asap) %>"></span></li>
  									<li><div class="title">Audition Deadline:</div><span data-bind="<%= (aud_timestamp == 0) ? 'N/A' : date.formatYMD(aud_timestamp) %>"></span></li>
  								</ul>
  							</div>
- 
+
  							<div class="col-sm-12 col-md-4">
  								<a class="btn btn-default btn-block btn-outline edit-project" data-bind="/projects/<%= casting_id %>/edit">Edit Project</a>
  							</div>
- 
+
  							<div class="col-md-12 margin-top-large">
  								<dl>
  								  <dt>Description</dt>
  								  <dd><p  data-bind="<%= des %>"> </p></dd>
  								</dl>
  							</div>
- 
+
  							<div class="col-md-12 margin-top-large">
  								<dl class="margin-zero">
  								  <dt>Location</dt>
  								  <dd><p data-bind="<%= location %>"></p></dd>
  								</dl>
  							</div>
- 
+
  							for open call
  							<div data-bind="<%= (project_type == 8) ? 1 : 0 %>" data-bind-target="visibility">
  								<div class="col-md-12 margin-top-large">
@@ -150,7 +150,7 @@
  												Address
  											</div>
  										</div>
- 
+
  										<ul class="list-unstyled additional-details margin-zero">
  											<li>
  												<div class="row-fluid clearfix">
@@ -166,7 +166,7 @@
  									</div>
  								</div>
  							</div>
- 
+
  							for self submission
  							<div data-bind="<%= (project_type != 8) ? 1 : 0 %>" data-bind-target="visibility">
  								<div class="col-md-12 margin-top-large">
@@ -180,7 +180,7 @@
  												Postal Address
  											</div>
  										</div>
- 
+
  										<ul class="list-unstyled additional-details margin-zero">
  											<li>
  												<div class="row-fluid clearfix">
@@ -196,17 +196,17 @@
  									</div>
  								</div>
  							</div>
- 
+
  						</div>
- 
- 
+
+
  	  </div>
  </div> --> <!-- project-overview-wrapper -->
 <div class="projects-wrapper">
 		<div id="project-listing">
 
 			<div class="panel-group panel-group-primary project-item" id="accordion-castings">
-			  
+
 			  		<div class="panel-heading panel-active hide">
 			  			<a class="accordion-toggle" data-toggle="collapse" data-bind="#jobs-collapse-<%= casting_id %>">
 			  			<span data-bind="<%= name %>"></span><span class="label label-info margin-left-small">Active</span>
@@ -220,35 +220,16 @@
 
 			  		<div class="panel-collapse collapse in" data-bind="jobs-collapse-<%= casting_id %>" data-bind-target="id" aria-expanded="true" style="">
 			  			<div class="panel-body padding-left-zero-zz-xs padding-right-zero-zz-xs">
-			  				<div class="row-fluid clearfix margin-bottom-normal">
-			  					<div class="col-md-6">
-			  						<strong>Project ID# <span data-bind="<%= casting_id %>"></span></strong>
-			  					</div>
-			  					<div class="col-md-6">
-			  						<div class="float-right">
-			  							<span data-bind="<%= (bam_roles.length > 0) ? 1 : 0 %>" data-bind-target="visibility">
-										<a data-bind="/projects/<%= casting_id %>/roles/<%= _.first(bam_roles) ? _.first(bam_roles).role_id : '' %>/self-submissions" class="btn btn-outline btn-sm font-size-small-normal-zz padding-small-zz btn-submissions margin-top-small-zz-xs">
-			  								Submissions
-			  							</a>
-										<a data-bind="/projects/<%= casting_id %>/schedules/create" class="btn btn-outline btn-sm font-size-small-normal-zz padding-small-zz margin-top-small-zz-xs">
-			  								<i class="fa fa-plus"></i>
-			  								Create Schedule
-			  							</a>
-			  							<a data-bind="/projects/<%= casting_id %>/roles/<%= _.first(bam_roles) ? _.first(bam_roles).role_id : '' %>/like-it-list" class="btn btn-success btn-sm font-size-small-normal-zz padding-small-zz">
-			  								View Like it List
-			  							</a>
-			  							</span>
-			  						</div>
-			  					</div>
-			  				</div>
 			  				<div class="row-fluid col-no-padding clearfix project-details-container">
 			  					<div class="col-sm-12 col-md-6">
 			  						<ul class="list-unstyled additional-details margin-zero">
+			  							<li><div class="title">Project
+										ID:</div><span data-bind="<%=
+										casting_id %>"></span></li>
 			  							<li><div class="title">Project Type:</div><span data-bind="<%= (cat) ? getCategory().split(' ',1) : 'N/A' %>"></span></li>
 			  							<li><div class="title">Location:</div><span data-bind="<%= location %>"></span></li>
 			  							<li><div class="title">Rate/Pay:</div>$<span data-bind="<%= rate %>"></span> <span data-bind="<%= (rate_des) ? 'per ' + getRate() : '' %>"></span></li>
 			  							<li><div class="title">Audition Date:</div><span data-bind="<%= (!aud_timestamp) ? 'N/A' : convertToFullDate(aud_timestamp) %>"></span></li>
-			  							<li><div class="title">Casting Category:</div><span data-bind="<%= (cat) ? getCategory() : 'N/A' %>"></span></li>
 			  						</ul>
 			  					</div>
 
@@ -258,6 +239,7 @@
 			  							<li><div class="title">Union:</div><span data-bind="<%= (union2 == 0) ? 'Non-union' : 'Union' %>"></span></li>
 			  							<li><div class="title">Release Date:</div><span data-bind="<%= date.formatMDY(parseInt(sub_timestamp)) %>"></span></li>
 			  							<li><div class="title">Deadline:</div><span id="text-date-type"><span data-bind="<%= (!asap) ? 'N/A' : date.formatMDY(parseInt(asap)) %>"></span></span></li>
+			  							<li><div class="title">Casting Category:</div><span data-bind="<%= (cat) ? getCategory() : 'N/A' %>"></span></li>
 			  						</ul>
 			  					</div>
 
@@ -357,7 +339,7 @@
 			  				</div>
 			  			</div>
 			  		</div>
-			  
+
 			  </div> {{-- panel 1 --}}
 
 		{{-- project listing --}}
