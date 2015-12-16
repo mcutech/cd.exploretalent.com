@@ -37,7 +37,7 @@
 								<div class="col-md-2 talent-content margin-bottom">
 									<div class="talent-name" data-bind="<%= invitee.bam_talentci.getFullName() %>">
 									</div>
-									<div class="talent-photo">
+									<div class="talent-photo photo-user-container">
 										<img data-bind="<%= invitee.bam_talentci.getPrimaryPhoto() %>" alt="" class="img-responsive">
 									</div>
 									<div class="talent-button-functions margin-top-small">
@@ -72,7 +72,7 @@
 													<div class="message row" data-bind-template="#messages" data-bind-value="conversation.messages">
 														<div class="col-md-12">
 															<span data-bind="<%= user.bam_talentci ? user.bam_talentci.getFullName() : 'Me'  %>"></span>
-															<span class="pull-right" data-bind="<%= moment(created_at).fromNow() %>"></span>
+															<span class="pull-right" data-bind="<%= moment(created_at).utcOffset(0).fromNow() %>"></span>
 														</div>
 														<div class="col-md-12">
 															<span data-bind="<%= body %>"></span>
