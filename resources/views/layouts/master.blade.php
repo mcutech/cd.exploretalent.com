@@ -17,7 +17,7 @@
 <!-- endbuild -->
 
 </head>
-<body class="theme-default cd-custom-template main-menu-animated @yield('master.class')">
+<body class="theme-default cd-custom-template main-menu-animated @yield('master.class') gt-ie8 gt-ie9 not-ie pxajs">
 	@yield('master.body')
 
 <!-- build:js /assets/index.js -->

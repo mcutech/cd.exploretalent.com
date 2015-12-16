@@ -88,7 +88,11 @@
 			<li role="presentation" class="font-size-small-normal-zz font-size-small-normal-xs auditions-worksheet-link hide">
 				<a data-bind="/audition-worksheet" href="">Audition Worksheet</a>
 			</li>
-			<a data-bind="/projects/<%= casting_id %>/roles/<%= role.role_id %>/like-it-list" class="btn btn-success pull-right">View Like it List & Contact Talent (<span data-bind="<%= role.likeitlist.total %>"></span>)</a>
+			<a id="view-like-it-list-btn" data-bind="/projects/<%= casting_id %>/roles/<%= role.role_id %>/like-it-list" class="btn btn-success pull-right hide">View Like it List & Contact Talent (<span data-bind="<%= role.likeitlist.total %>"></span>)</a>
+			<div id="utility-buttons-div" class="text-align-right hide">
+				<a data-toggle="modal" data-target="#share-like-it-list" class="btn btn-primary">Share Like It List</a>
+				<a data-toggle="modal" data-target="#invite-to-audition-modal" class="btn btn-success"><i class="fa fa-envelope-o"></i> Invite to Audition</a>
+			</div>
 		</ul>
 	</div>
 	{{-- <div class="col-md-5">
@@ -105,6 +109,11 @@
 	</div> --}}
 	<div class="col-md-12">
 		<div class="margin-bottom-normal padding-bottom-normal bordered no-border-hr no-border-t"></div>
+	</div>
+	<div id="check-and-remove-all-div" class="col-md-12 hide">
+		<button id="check-all-likeitlist" class="btn btn-default">Check All</button>
+		<button id="remove-all-checked-likeitlist" class="btn btn-default">Remove all Checked</button>
+		<button id="remove-all-likeitlist" class="btn btn-danger pull-right"><i class="fa fa-times"></i> Remove All</button>
 	</div>
 </div>
 @stop
