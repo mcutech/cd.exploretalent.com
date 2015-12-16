@@ -20,12 +20,18 @@
 								<div class="row">
 									<div class="col-md-12">
 										<div class="input-group">
-											<input type="text" class="form-control" name="zip" placeholder="Enter Zip Code" id="zip-code" data-bind="<%= zip || '' %>" max="5" maxlength="5">
+											<!-- <input type="text" class="form-control" name="zip" placeholder="Enter Zip Code" id="zip-code" data-bind="<%= zip || '' %>" max="5" maxlength="5">
 											<span class="input-group-btn">
 												<button class="btn" type="button" id="auto-select-markets">
 													<i class="fa fa-caret-right"></i>
 												</button>
-											</span>
+											</span> -->
+											<select name="select-boxes" multiple="multiple">
+												<option value="1" selected="selected">Select2</option>
+												<option value="2" selected="selected">Chosen</option>
+												<option value="4" selected="selected">selectize.js</option>
+												<option value="6" selected="selected">typeahead.js</option>
+											</select>
 										</div>
 									</div>
 								</div>

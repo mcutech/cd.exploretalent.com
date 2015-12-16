@@ -14,4 +14,14 @@ module.exports = function(core, user, projectId, roleId) {
 	$(document).on('click', '.edit-note-link', handler.getDetailsForEditNoteModal);
 	$('.edit-note-for-talent').on('click', handler.editNoteForTalent);
 	$(document).on('click', '.fav-btn', handler.addToFav);
+
+
+	//
+	$("#jquery-select2-example").select2({
+		allowClear: true,
+		placeholder: "Select a market"
+	});
+
+	$("#jquery-select2-example").on('change', handler.addToMarket);
+	$(document).on('click', '.check-markets', handler.removeFromMarket);
 }

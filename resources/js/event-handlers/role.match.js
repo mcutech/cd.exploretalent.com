@@ -10,9 +10,12 @@ function handler(core, user, projectId, roleId) {
 	self.project = null;
 	self.favTalent = null;
 	self.refreshProjectDetails();
+	self.marketscheck = [];
 }
 
 handler.prototype.refreshProjectDetails = function() {
+	
+	//self.project.market_checks = [];
 	var data = {
 		projectId : self.projectId,
 		withs : [ 'bam_roles' ]
@@ -26,9 +29,15 @@ handler.prototype.refreshProjectDetails = function() {
 			self.project.role = _.find(self.project.bam_roles, function (role) {
 				return role.role_id == self.roleId;
 			});
-
+			_.each(result.market.split('>'), function(val, ind){
+				self.marketscheck.push({ name : val , check : 'check'});
+			});
+			self.project.market_checks = self.marketscheck;
+			
 			$('#roles-list').val(self.project.role.role_id);
 			self.core.service.databind('#talent-filter-form', self.project);
+			console.log(self.project);
+			
 			return self.refreshLikeItList();
 		});
 }
@@ -369,14 +378,35 @@ handler.prototype.editNoteForTalent = function(e) {
 handler.prototype.getFilters = function() {
 	var qs = self.core.service.query_string();
 	var form = self.core.service.form.serializeObject('#talent-filter-form');
+	var subquery = [];
+	var asdasd = [];
 	var data = {
 		query 	: [
 		],
 		page	: qs.page || 1
 	};
 
-	if (form.zip) {
+	/*if (form.zip) {
 		data.query.push([ 'where', 'zip', '=', form.zip ]);
+	}*/
+	_.each(self.marketscheck, function(val, ind){
+		if(val.check == 'check'){
+			asdasd.push(val.name);
+		}
+	});
+
+	if(self.marketscheck){
+		_.each(self.marketscheck, function(val, ind){
+			if(val.check == 'check'){
+				//var bb = val.name.substring(0, val.name.indexOf(','));
+				if(asdasd.length > 1){
+					subquery.push([ 'orWhere', 'city', 'like', '%'+val.name.substring(0, val.name.indexOf(','))+'%' ]);
+				} else if(asdasd.length == 1){
+					subquery.push([ 'where', 'city', 'like', '%'+val.name.substring(0, val.name.indexOf(','))+'%' ]);
+				}
+			}
+		});
+		data.query.push([ 'where', subquery ]);
 	}
 
 	if (parseInt(form.age_min)) {
@@ -457,6 +487,40 @@ handler.prototype.getFilters = function() {
 	}
 
 	return data;
+}
+
+handler.prototype.addToMarket = function() {
+	var txt = ($('#jquery-select2-example').select2('data').text);
+	
+	var txt1 = _.find(self.marketscheck, function(val){
+		return val.name == txt;
+	});
+	if(!txt1){
+		self.marketscheck.push({ name : txt , check : 'check'});
+	} 
+	//console.log(self.project.market_checks);
+	self.project.market_checks = self.marketscheck;
+	self.core.service.databind('#talent-filter-form', self.project);
+	$('#jquery-select2-example').select2('val', '');
+
+}
+
+handler.prototype.removeFromMarket = function() {
+	var id = $(this).parent().attr('id');
+	var rmv = _.find(self.marketscheck, function(n, ind){
+		if(n.name.replace(/\s/g, '').replace(/,/g, '') == id){
+			if(n.check == 'check'){
+				self.marketscheck[ind].check = 'uncheck';	
+			} else {
+				self.marketscheck[ind].check = 'check';
+			}
+			//self.marketscheck[ind].check = 'uncheck';
+		} 
+	});
+	console.log(self.project.market_checks);
+	self.project.market_checks = self.marketscheck;
+	self.core.service.databind('#talent-filter-form', self.project);
+
 }
 
 module.exports = function(core, user, projectId, roleId) {
