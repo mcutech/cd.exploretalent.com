@@ -32,9 +32,11 @@ handler.prototype.refresh = function() {
 			return self.campaign.bam_role.getLikeItList(data);
 		})
 		.then(function(res) {
-			console.log(res);
 			_.each(res.data, function(s) {
 				s.campaign = self.campaign;
+				if (!s.conversation) {
+					s.conversation = { messages : [] };
+				}
 			});
 
 			self.core.service.databind('#schedules', res);

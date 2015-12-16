@@ -22,4 +22,26 @@ module.exports = function(core, user, projectId, roleId) {
 	});
 
 	$('#send-invites-button').on('click', handler.sendInvites);
+
+	$('#utility-buttons-div').removeClass('hide');
+	$('#check-and-remove-all-div').removeClass('hide');
+
+	$('#remove-all-checked-likeitlist').attr('disabled', 'disabled');
+
+	$(document).on('click', '#check-all-likeitlist', function() {
+
+		var likeitlistcheckbox = $('input[name="likeitlist-checkbox"]');
+		likeitlistcheckbox.attr('checked', 'checked');
+
+		$(this).attr('disabled', 'disabled');
+		$('#remove-all-checked-likeitlist').removeAttr('disabled');
+	});
+
+	// if at least 1 checkbox is checked, remove disabled attribute from Remove all Checked btn
+	$(document).on('click', 'input[name="likeitlist-checkbox"]', function() {
+		$('#remove-all-checked-likeitlist').attr('disabled', !$('input[name="likeitlist-checkbox"]').is(':checked'));
+	});
+
+	$(document).on('click', '#remove-all-checked-likeitlist', handler.unrateCheckedSchedules);
+
 }
