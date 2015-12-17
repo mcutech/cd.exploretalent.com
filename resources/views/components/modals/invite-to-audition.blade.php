@@ -9,17 +9,17 @@
 				<form id="invite-to-audition-form">
 					<div class="row">
 						<div class="col-md-6">
-							<span><strong>casting name:</strong> <span data-bind="<%= role.name %>"></span></span>
+							<span><strong>Casting Name:</strong> <span data-bind="<%= role.name %>"></span></span>
 						</div>
 						<div class="col-md-6">
-							<span><strong>talents:</strong> <span data-bind="<%= role.likeitlist.total %>"></span></span>
+							<span><strong>Talents:</strong> <span data-bind="<%= role.likeitlist.total %>"></span></span>
 						</div>
 					</div>
 					<div class="row" id="when-where-container">
 						<div class="col-md-6 margin-top-small">
 							<div class="checkbox">
 								<label for="acc-toggle">
-									<input type="checkbox" id="acc-toggle"> enter date and location
+									<input type="checkbox" id="acc-toggle"> Enter Date and Location
 								</label>
 							</div>
 						</div>
@@ -48,7 +48,7 @@
 						<div class="col-md-12 margin-top-normal">
 							<div class="checkbox">
 								<label>
-									<input name="replies" value="1" type="checkbox"> allow replies
+									<input name="replies" value="1" type="checkbox"> Allow Replies
 								</label>
 							</div>
 						</div>

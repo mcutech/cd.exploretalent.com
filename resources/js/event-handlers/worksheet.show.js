@@ -39,6 +39,7 @@ handler.prototype.refresh = function() {
 				}
 			});
 
+			console.log(res);
 			self.core.service.databind('#schedules', res);
 		});
 }
@@ -49,6 +50,10 @@ handler.prototype.getFilters = function() {
 		query : [
 		]
 	};
+
+	if (qs.confirmation_status) {
+		data.query.push([ 'where', 'invitee_status', '=', qs.confirmation_status ]);
+	}
 
 	if (qs.callback_status) {
 		data.query.push([ 'where', 'status', '=', qs.callback_status ]);

@@ -16,6 +16,26 @@
 
 				<div class="panel panel-transparent margin-zero">
 					<div class="panel-heading no-padding-hr padding-bottom-zero-small padding-top-zero">
+						<div class="panel-title"><strong>Confirmation Status</strong></div>
+					</div>
+					<div class="panel-body padding-small no-border-hr no-padding-hr">
+						<div class="tab-content no-padding-hr padding-top-zero-zz-lg no-padding-b">
+							<div class="tab-pane fade active in">
+								<div class="display-block margin-bottom-small scheduled-talent">
+									<select name="confirmation_status" id="" class="form-control">
+										<option value="">Any</option>
+										<option value="1">Pending</option>
+										<option value="2">Confirmed</option>
+										<option value="3">Declined</option>
+									</select>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="panel panel-transparent margin-zero">
+					<div class="panel-heading no-padding-hr padding-bottom-zero-small padding-top-zero">
 						<div class="panel-title"><strong>Callback Status</strong></div>
 					</div>
 					<div class="panel-body padding-small no-border-hr no-padding-hr">
