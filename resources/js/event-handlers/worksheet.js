@@ -1,4 +1,5 @@
 'use strict';
+var _ = require('lodash');
 
 function handler(core, user) {
 	self = this;
@@ -24,7 +25,8 @@ handler.prototype.refresh = function() {
 
 	var data = {
 		query : [
-			[ 'with', 'bam_role.bam_casting' ]
+			[ 'with', 'bam_role.bam_casting' ],
+			[ 'with', 'bam_role.schedules' ]
 		]
 	};
 
@@ -34,6 +36,12 @@ handler.prototype.refresh = function() {
 
 	self.core.resource.campaign.get(data)
 		.then(function(res) {
+			_.each(res.data, function(campaign) {
+				_.remove(campaign.bam_role.schedules, function(s) {
+					return s.rating == 0;
+				});
+			});
+
 			self.core.service.databind('#campaigns-list', res);
 		});
 }

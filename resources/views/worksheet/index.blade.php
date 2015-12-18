@@ -35,7 +35,7 @@
 					<td data-bind="<%= status == 0 ? 'text-warning' : (status == 1 ? 'text-success' : 'text-danger') %>" data-bind-target="class">
 						<b><span data-bind="<%= status == 0 ? 'Pending' : (status == 1 ? 'Approved' : 'Rejected') %>"></span></b>
 					</td>
-					<td>0</td>
+					<td><span data-bind="<%= bam_role.schedules.length %>"></span></td>
 					<td><span data-bind="<%= created_at %>"></span></td>
 					<td><a class="btn btn-primary btn-xs" data-bind="/audition-worksheet/<%= id %>"> manage</a>
 				</tr>
