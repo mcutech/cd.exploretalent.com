@@ -41,7 +41,7 @@
 
 					</div>
 
-					<div class="row message">
+					<div id="messages-container" class="row message">
 						<div class="col-md-12" id="messages">
 							<div data-bind-template="#messages" data-bind-value="messages" class="col-md-12 padding-normal per-message padding-left-zero">
 								<div class="margin-left-small">

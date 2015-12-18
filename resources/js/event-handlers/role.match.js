@@ -209,19 +209,33 @@ handler.prototype.changeRole = function() {
 	window.location = '/projects/' + self.projectId + '/roles/' + $('#roles-list').val() + '/matches';
 }
 
-handler.prototype.addToFav = function(){
+handler.prototype.addToFav = function(e){
+	var $element = $(e.target);
+	var $icon;
+	if (!$element.is('button')) {
+		$icon = $element;
+		$element = $element.parents('button');
+	}
+	else {
+		$icon = $element.find('i');
+	}
+
 	var favId = $(this).attr('data-id');
 	var b = $(this).closest('.talent-tab').attr('id');
 	var talentnum = (b.split('-')[2]);
 	if(favId){
 		self.core.resource.favorite_talent.delete({ favoriteId : talentnum})
 			.then(function(res){
-				self.refreshMatches();
+				$icon.addClass('text-light-gray');
+				$icon.removeClass('text-warning');
+				$element.attr('data-id', '');
 			});
 	} else {
 		self.core.resource.favorite_talent.post({ bam_cd_user_id : self.user.bam_cd_user_id, bam_talentnum : talentnum})
 			.then(function(res){
-				self.refreshMatches();
+				$icon.addClass('text-warning');
+				$icon.removeClass('text-light-gray');
+				$element.attr('data-id', res.id);
 			});
 	}
 }

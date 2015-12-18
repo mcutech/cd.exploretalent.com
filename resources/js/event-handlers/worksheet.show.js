@@ -193,6 +193,7 @@ handler.prototype.showMessageModal = function(e) {
 
 	var scheduleId = $element.parents('.schedule').attr('data-id');
 	self.refreshMessages(scheduleId);
+
 }
 
 handler.prototype.refreshMessages = function(scheduleId) {
@@ -244,6 +245,7 @@ handler.prototype.refreshMessages = function(scheduleId) {
 		.then(function(res) {
 			conversation.campaign = _.first(res.data);
 			self.core.service.databind('#message-modal', conversation);
+			$('#message-modal #messages-container').animate({ scrollTop: $('#message-modal #messages').height() }, 1000);
 			self.conversation = conversation;
 		});
 }

@@ -14,9 +14,15 @@
   ],
   "dependencies": {
     "pixel-admin-base-assets": "git@gitlab.com:utech/pixel-admin-base-assets.git#v0.0.5",
-    "bootstrap-tagsinput": "~0.5.0"
+    "bootstrap-tagsinput": "~0.5.0",
+    "moment": "~2.10.6"
   },
   "overrides": {
+    "slimScroll": {
+      "main": [
+        "jquery.slimscroll.min.js"
+      ]
+    },
     "bootstrap-sass-official": {
       "main": [
         "./assets/javascripts/bootstrap/transition.js",
@@ -122,7 +128,7 @@
   "resolutions": {
     "bootstrap": "~3",
     "jquery": "~1.10.2",
-    "moment": "~2.0.0",
+    "moment": "~2.10.6",
     "bootstrap-datepicker": "~1.2.0",
     "components-font-awesome": "~4.2.0"
   }
