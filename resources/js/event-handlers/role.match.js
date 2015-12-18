@@ -275,7 +275,6 @@ handler.prototype.getDetailsForAddNoteModal = function() {
 
 		self.core.resource.schedule.get({ scheduleId : scheduleId })
 			.then(function(res) {
-				console.log(res);
 				self.core.service.databind('#utility-buttons', res);
 			});
 	}
@@ -337,9 +336,6 @@ handler.prototype.addNoteForTalent = function(e) {
 		.then(function(res) {
 			$('.note-required').hide();
 			$('.note-saved-success').fadeIn();
-			setTimeout(function() {
-				location.reload();
-			}, 3000);
 		});
 	}
 
@@ -373,9 +369,6 @@ handler.prototype.editNoteForTalent = function(e) {
 		.then(function(res) {
 			$('.note-required').hide();
 			$('.note-saved-success').fadeIn();
-			setTimeout(function() {
-				location.reload();
-			}, 3000);
 		});
 	}
 }
