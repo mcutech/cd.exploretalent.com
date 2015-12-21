@@ -10,6 +10,7 @@ function handler(core, user, projectId, roleId) {
 	self.project = null;
 	self.favTalent = null;
 	self.refreshProjectDetails();
+	console.log('asjdfasf');
 }
 
 handler.prototype.refreshProjectDetails = function() {
