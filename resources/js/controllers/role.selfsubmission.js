@@ -15,5 +15,15 @@ module.exports = function(core, user, projectId, roleId) {
 	$('.edit-note-for-talent').on('click', handler.editNoteForTalent);
 	$(document).on('click', '.fav-btn', handler.addToFav);
 
+
 	$('#view-like-it-list-btn').removeClass('hide');
+
+	$("#jquery-select2-example").select2({
+		allowClear: true,
+		placeholder: "Select a market"
+	});
+
+	$("#jquery-select2-example").on('change', handler.addToMarket);
+	$(document).on('click', '.check-markets', handler.removeFromMarket);
+
 }

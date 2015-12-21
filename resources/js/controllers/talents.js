@@ -3,4 +3,12 @@ module.exports = function(core, user) {
 
 	$(document).on('click', '.fav-btn', handler.addToFavorites);
 	$('#talent-filter-button').on('click', handler.refresh);
+
+	$("#jquery-select2-example").select2({
+		allowClear: true,
+		placeholder: "Seach market"
+	});
+
+	$("#jquery-select2-example").on('change', handler.addToMarket);
+	$(document).on('click', '.check-markets', handler.removeFromMarket);
 }
