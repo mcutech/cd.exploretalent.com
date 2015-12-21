@@ -17,7 +17,7 @@
 				<div class="tab-content padding-top-zero padding-bottom-small">
 					<div class="talent-tab tab-pane fade active in" data-bind="talent-body-<%= invitee.bam_talentnum %>" data-bind-target="id">
 						<div class="head-area padding-zero padding-bottom-zero display-inline-block col-md-12">
-							<div class="talent-name font-size-normal text-semibold float-left"><span data-bind="<%= invitee.bam_talentci.getFullName() %>"></span>, <span data-bind="<%= invitee.bam_talentci.getAge() %>" class="age-area"></span><br><span data-bind="ID: <%= invitee.bam_talentnum %>"></span></div>
+							<div class="talent-name font-size-normal text-semibold float-left"><span data-bind="<%= (invitee.bam_talentci) ? invitee.bam_talentci.getFullName() : '' %>"></span>, <span data-bind="<%= (invitee.bam_talentci) ? invitee.bam_talentci.getAge() : '' %>" class="age-area"></span><br><span data-bind="ID: <%= invitee.bam_talentnum %>"></span></div>
 							<div class="favorite-indicator float-right">
 								<button class="btn-link fav-btn">
 									<i class="fa fa-star-o font-size-medium-large text-light-gray" data-bind="favorite-<%= invitee.id %>" data-bind-target="id"></i>
@@ -27,23 +27,23 @@
 						<div class="row-fluid clearfix">
 							<div class="talent-photo col-lg-6 col-md-12 col-sm-6 col-xs-12">
 								<div class="photo-user-container">
-									<a href="" data-toggle="modal" data-bind="<%= invitee.bam_talentnum %>" data-bind-target="data-id" id="talent-photo" data-target="#talent-photos-modal"><img data-bind="<%= invitee.bam_talentci.getPrimaryPhoto() %>" class="img-responsive" /></a>
+									<a href="" data-toggle="modal" data-bind="<%= invitee.bam_talentnum %>" data-bind-target="data-id" id="talent-photo" data-target="#talent-photos-modal"><img data-bind="<%= (invitee.bam_talentci) ? invitee.bam_talentci.getPrimaryPhoto() : '' %>" class="img-responsive" /></a>
 								</div>
 							</div>
 
 							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padding-right-zero talent-information padding-top-small">
 								<div class="talent-location">
 									<div class="photo-user-container">
-									<i class="fa fa-map-marker"></i> <span data-bind="<%= invitee.bam_talentci.stateText() %>"></span>
+									<i class="fa fa-map-marker"></i> <span data-bind="<%= (invitee.bam_talentci) ? invitee.bam_talentci.stateText() : '' %>"></span>
 									</div>
 								</div>
 
 								<ul class="list-unstyled talents-list-details">
-									<li><span data-bind="<%= invitee.bam_talentci.heightText() %>"></span></li>
-									<li><span data-bind="<%= invitee.bam_talentci.bam_talentinfo1.weightpounds %>"></span> lbs.</li>
-									<li><span data-bind="<%= invitee.bam_talentci.bam_talentinfo2.ethnicity %>"></span></li>
-									<li><span data-bind="<%= invitee.bam_talentci.bam_talentinfo1.build %>"></span></li>
-									<li><span data-bind="<%= invitee.bam_talentci.bam_talentinfo1.eyecolor %>"></span></li>
+									<li><span data-bind="<%= (invitee.bam_talentci) ? invitee.bam_talentci.heightText() : '' %>"></span></li>
+									<li><span data-bind="<%= (invitee.bam_talentci) ? invitee.bam_talentci.bam_talentinfo1.weightpounds : '' %>"></span> lbs.</li>
+									<li><span data-bind="<%= (invitee.bam_talentci) ? invitee.bam_talentci.bam_talentinfo2.ethnicity : '' %>"></span></li>
+									<li><span data-bind="<%= (invitee.bam_talentci) ? invitee.bam_talentci.bam_talentinfo1.build : '' %>"></span></li>
+									<li><span data-bind="<%= (invitee.bam_talentci) ? invitee.bam_talentci.bam_talentinfo1.eyecolor : '' %>"></span></li>
 								</ul>
 							</div>
 						</div>

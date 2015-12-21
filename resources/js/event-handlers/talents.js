@@ -5,6 +5,8 @@ function handler(core, user){
 	self = this;
 	self.core = core;
 	self.user = user;
+	self.marketscheck = [];
+	self.talent = [];
 
 	// assign query string variable to filter form
 	var qs = self.core.service.query_string();
@@ -36,7 +38,7 @@ handler.prototype.refresh = function() {
 	self.core.resource.search_talent.get(data)
 		.then(function(res) {
 			talents = res;
-
+			console.log(talents);
 			if (talents.total) {
 				talentnums = _.map(talents.data, function(talent) {
 					return talent.talentnum;
@@ -45,10 +47,9 @@ handler.prototype.refresh = function() {
 				var data2 = {
 					query : [
 						[ 'whereIn', 'talentci.talentnum', talentnums ],
-						[ 'with', 'bam_talent_media2' ]
+						[ 'with', 'bam_talent_media2' ],
 					]
 				};
-
 				return self.core.resource.talent.get(data2);
 			}
 			else {
@@ -105,7 +106,8 @@ handler.prototype.refresh = function() {
 
 			self.core.service.databind('#talent-search-result', talents);
 			self.core.service.paginate('#talents-pagination', { class : 'pagination', total : talents.total, name : 'page' });
-
+			console.log(talents)
+			self.talent = talents;
 			$('#talent-search-loader').hide();
 			$('#talent-search-result').show();
 		});
@@ -114,15 +116,41 @@ handler.prototype.refresh = function() {
 handler.prototype.getFilters = function() {
 	var qs = self.core.service.query_string();
 	var form = self.core.service.form.serializeObject('#talent-filter-form');
+	var subquery = [];
+	var asdasd = [];
 	var data = {
 		query 	: [
 		],
 		page	: qs.page || 1
 	};
 
-	if (form.zip) {
-		data.query.push([ 'where', 'zip', '=', form.zip ]);
+	_.each(self.marketscheck, function(val, ind){
+		if(val.check == 'check'){
+			asdasd.push(val.name);
+		}
+	});
+
+	if(self.marketscheck.length != 0){
+		console.log('test');
+		console.log(self.marketscheck);
+		_.each(self.marketscheck, function(val, ind){
+			if(val.check == 'check'){
+				if(asdasd.length > 1){
+					subquery.push([ 'orWhere', 'city', 'like', '%'+val.name.substring(0, val.name.indexOf(','))+'%' ]);
+					subquery.push([ 'orWhere', 'city1', 'like', '%'+val.name.substring(0, val.name.indexOf(','))+'%' ]);
+					subquery.push([ 'orWhere', 'city2', 'like', '%'+val.name.substring(0, val.name.indexOf(','))+'%' ]);
+					subquery.push([ 'orWhere', 'city3', 'like', '%'+val.name.substring(0, val.name.indexOf(','))+'%' ]);
+				} else if(asdasd.length == 1){
+					subquery.push([ 'orWhere', 'city', 'like', '%'+val.name.substring(0, val.name.indexOf(','))+'%' ]);
+					subquery.push([ 'orWhere', 'city1', 'like', '%'+val.name.substring(0, val.name.indexOf(','))+'%' ]);
+					subquery.push([ 'orWhere', 'city2', 'like', '%'+val.name.substring(0, val.name.indexOf(','))+'%' ]);
+					subquery.push([ 'orWhere', 'city3', 'like', '%'+val.name.substring(0, val.name.indexOf(','))+'%' ]);
+				}
+			}
+		});
+		data.query.push([ 'where', subquery ]);
 	}
+
 
 	if (parseInt(form.age_min)) {
 		data.query.push([ 'where', 'dobyyyy', '<=', new Date().getFullYear() - parseInt(form.age_min) ]);
@@ -231,6 +259,41 @@ handler.prototype.addToFavorites = function(e) {
 	}
 }
 
+handler.prototype.addToMarket = function() {
+	var txt = ($('#jquery-select2-example').select2('data').text);
+
+	var txt1 = _.find(self.marketscheck, function(val){
+		return val.name == txt;
+	});
+	if(!txt1){
+		self.marketscheck.push({ name : txt , check : 'check'});
+	}
+	//console.log(self.project.market_checks);
+	self.talent.market_checks = self.marketscheck;
+	self.core.service.databind('#market-lists', self.talent);
+	console.log(self.talent);
+	$('#jquery-select2-example').select2('val', '');
+
+}
+
+handler.prototype.removeFromMarket = function() {
+	var id = $(this).parent().attr('id');
+	var rmv = _.find(self.marketscheck, function(n, ind){
+		if(n.name.replace(/\s/g, '').replace(/,/g, '') == id){
+			if(n.check == 'check'){
+				self.marketscheck[ind].check = 'uncheck';
+			} else {
+				self.marketscheck[ind].check = 'check';
+			}
+			//self.marketscheck[ind].check = 'uncheck';
+		}
+	});
+	console.log(self.project.market_checks);
+	self.talent.market_checks = self.marketscheck;
+	console.log(self.talent);
+	self.core.service.databind('#market-lists', self.talent);
+
+}
 module.exports = function(core, user) {
 	return new handler(core, user);
 };

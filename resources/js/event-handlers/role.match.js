@@ -14,7 +14,7 @@ function handler(core, user, projectId, roleId) {
 }
 
 handler.prototype.refreshProjectDetails = function() {
-	
+
 	//self.project.market_checks = [];
 	var data = {
 		projectId : self.projectId,
@@ -33,11 +33,11 @@ handler.prototype.refreshProjectDetails = function() {
 				self.marketscheck.push({ name : val , check : 'check'});
 			});
 			self.project.market_checks = self.marketscheck;
-			
+
 			$('#roles-list').val(self.project.role.role_id);
 			self.core.service.databind('#talent-filter-form', self.project);
 			console.log(self.project);
-			
+
 			return self.refreshLikeItList();
 		});
 }
@@ -63,6 +63,7 @@ handler.prototype.refreshMatches = function() {
 
 	self.core.resource.search_talent.get(data)
 		.then(function(res) {
+			console.log(res)
 			talents = res;
 			if (talents.data.length < 1) {
 				$('#role-match-loader').hide();
@@ -75,7 +76,7 @@ handler.prototype.refreshMatches = function() {
 			});
 
 			var data2 = {
-				query : [
+				q : [
 					[ 'with', 'user' ],
 					[ 'with', 'bam_talentinfo1' ],
 					[ 'with', 'bam_talentinfo2' ],
@@ -103,7 +104,7 @@ handler.prototype.refreshMatches = function() {
 					withs : [
 						'schedule_notes.user.bam_cd_user'
 					],
-					query : [
+					q : [
 						[ 'whereIn', 'invitee_id', talentIds ],
 					]
 				};
@@ -132,7 +133,7 @@ handler.prototype.refreshMatches = function() {
 
 			if (talentnums.length > 0) {
 				var data = {
-					query : [
+					q : [
 						[ 'with', 'bam_talentci.user' ],
 						[ 'whereIn', 'bam_talentnum', talentnums ]
 					]
@@ -156,7 +157,7 @@ handler.prototype.refreshMatches = function() {
 			});
 
 			self.core.service.databind('#role-match', self.project);
-
+			//console.log(self.project)
 			self.core.service.paginate('#matches-pagination', { total : self.project.role.matches.total, class : 'pagination', name : 'page' });
 			$('#role-match-loader').hide();
 			$('#role-match').show();
@@ -381,13 +382,13 @@ handler.prototype.getFilters = function() {
 	var subquery = [];
 	var asdasd = [];
 	var data = {
-		query 	: [
+		q 	: [
 		],
 		page	: qs.page || 1
 	};
 
 	/*if (form.zip) {
-		data.query.push([ 'where', 'zip', '=', form.zip ]);
+		data.q.push([ 'where', 'zip', '=', form.zip ]);
 	}*/
 	_.each(self.marketscheck, function(val, ind){
 		if(val.check == 'check'){
@@ -401,40 +402,46 @@ handler.prototype.getFilters = function() {
 				//var bb = val.name.substring(0, val.name.indexOf(','));
 				if(asdasd.length > 1){
 					subquery.push([ 'orWhere', 'city', 'like', '%'+val.name.substring(0, val.name.indexOf(','))+'%' ]);
+					subquery.push([ 'orWhere', 'city1', 'like', '%'+val.name.substring(0, val.name.indexOf(','))+'%' ]);
+					subquery.push([ 'orWhere', 'city2', 'like', '%'+val.name.substring(0, val.name.indexOf(','))+'%' ]);
+					subquery.push([ 'orWhere', 'city3', 'like', '%'+val.name.substring(0, val.name.indexOf(','))+'%' ]);
 				} else if(asdasd.length == 1){
-					subquery.push([ 'where', 'city', 'like', '%'+val.name.substring(0, val.name.indexOf(','))+'%' ]);
+					subquery.push([ 'orWhere', 'city', 'like', '%'+val.name.substring(0, val.name.indexOf(','))+'%' ]);
+					subquery.push([ 'orWhere', 'city1', 'like', '%'+val.name.substring(0, val.name.indexOf(','))+'%' ]);
+					subquery.push([ 'orWhere', 'city2', 'like', '%'+val.name.substring(0, val.name.indexOf(','))+'%' ]);
+					subquery.push([ 'orWhere', 'city3', 'like', '%'+val.name.substring(0, val.name.indexOf(','))+'%' ]);
 				}
 			}
 		});
-		data.query.push([ 'where', subquery ]);
+		data.q.push([ 'where', subquery ]);
 	}
 
 	if (parseInt(form.age_min)) {
-		data.query.push([ 'where', 'dobyyyy', '<=', new Date().getFullYear() - parseInt(form.age_min) ]);
+		data.q.push([ 'where', 'dobyyyy', '<=', new Date().getFullYear() - parseInt(form.age_min) ]);
 	}
 
 	if (parseInt(form.age_max)) {
-		data.query.push([ 'where', 'dobyyyy', '>=', new Date().getFullYear() - parseInt(form.age_max) ]);
+		data.q.push([ 'where', 'dobyyyy', '>=', new Date().getFullYear() - parseInt(form.age_max) ]);
 	}
 
 	if (form.sex) {
 		if (!(form.sex instanceof Array)) {
-			data.query.push([ 'where', 'sex', '=', form.sex ]);
+			data.q.push([ 'where', 'sex', '=', form.sex ]);
 		}
 	}
 
 	if (form.has_photo) {
 		if (!(form.has_photo instanceof Array)) {
-			data.query.push([ 'where', 'has_photos', '=', form.has_photo ]);
+			data.q.push([ 'where', 'has_photos', '=', form.has_photo ]);
 		}
 	}
 
 	if (parseInt(form.height_min)) {
-		data.query.push([ 'where', 'heightinches', '>=', form.height_min ]);
+		data.q.push([ 'where', 'heightinches', '>=', form.height_min ]);
 	}
 
 	if (parseInt(form.height_max)) {
-		data.query.push([ 'where', 'heightinches', '<=', form.height_max ]);
+		data.q.push([ 'where', 'heightinches', '<=', form.height_max ]);
 	}
 
 	if (form.build) {
@@ -449,10 +456,10 @@ handler.prototype.getFilters = function() {
 				}
 			});
 
-			data.query.push([ 'where', subfilter ]);
+			data.q.push([ 'where', subfilter ]);
 		}
 		else {
-			data.query.push([ 'where', 'build', '=', form.build ]);
+			data.q.push([ 'where', 'build', '=', form.build ]);
 		}
 	}
 
@@ -468,20 +475,20 @@ handler.prototype.getFilters = function() {
 				}
 			});
 
-			data.query.push([ 'where', subfilter ]);
+			data.q.push([ 'where', subfilter ]);
 		}
 		else {
-			data.query.push([ 'where', 'ethnicity', '=', form.ethnicity ]);
+			data.q.push([ 'where', 'ethnicity', '=', form.ethnicity ]);
 		}
 	}
 
 	if (form.join_status) {
 		if (!(form.join_status instanceof Array)) {
 			if (form.join_status == 5) {
-				data.query.push([ 'where', 'is_pro', '=', 1 ]);
+				data.q.push([ 'where', 'is_pro', '=', 1 ]);
 			}
 			else {
-				data.query.push([ 'where', 'is_pro', '=', 0 ]);
+				data.q.push([ 'where', 'is_pro', '=', 0 ]);
 			}
 		}
 	}
@@ -491,13 +498,13 @@ handler.prototype.getFilters = function() {
 
 handler.prototype.addToMarket = function() {
 	var txt = ($('#jquery-select2-example').select2('data').text);
-	
+
 	var txt1 = _.find(self.marketscheck, function(val){
 		return val.name == txt;
 	});
 	if(!txt1){
 		self.marketscheck.push({ name : txt , check : 'check'});
-	} 
+	}
 	//console.log(self.project.market_checks);
 	self.project.market_checks = self.marketscheck;
 	self.core.service.databind('#talent-filter-form', self.project);
@@ -510,12 +517,12 @@ handler.prototype.removeFromMarket = function() {
 	var rmv = _.find(self.marketscheck, function(n, ind){
 		if(n.name.replace(/\s/g, '').replace(/,/g, '') == id){
 			if(n.check == 'check'){
-				self.marketscheck[ind].check = 'uncheck';	
+				self.marketscheck[ind].check = 'uncheck';
 			} else {
 				self.marketscheck[ind].check = 'check';
 			}
 			//self.marketscheck[ind].check = 'uncheck';
-		} 
+		}
 	});
 	console.log(self.project.market_checks);
 	self.project.market_checks = self.marketscheck;

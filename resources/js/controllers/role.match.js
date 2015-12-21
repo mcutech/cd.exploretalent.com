@@ -19,7 +19,7 @@ module.exports = function(core, user, projectId, roleId) {
 	//
 	$("#jquery-select2-example").select2({
 		allowClear: true,
-		placeholder: "Select a market"
+		placeholder: "Search market"
 	});
 
 	$("#jquery-select2-example").on('change', handler.addToMarket);
