@@ -12,7 +12,7 @@
 			<option value="">Any</option>
 			<option value="0">Pending</option>
 			<option value="1">Approved</option>
-			<option value="2">Rejected</option>
+			<option value="-1">Rejected</option>
 		</select>
 	</div>
 	<div class="col-md-12 panel-body">
@@ -32,8 +32,8 @@
 						<p data-bind="<%= bam_role.bam_casting.name + ' (#' + bam_role.bam_casting.casting_id + ')' %>"></p>
 						<p class="margin-left-large" data-bind="- <%= bam_role.name + ' (#' + bam_role.role_id + ')' %>"></p>
 					</td>
-					<td data-bind="<%= status == 0 ? 'text-warning' : (status == 1 ? 'text-success' : 'text-danger') %>" data-bind-target="class">
-						<b><span data-bind="<%= status == 0 ? 'Pending' : (status == 1 ? 'Approved' : 'Rejected') %>"></span></b>
+					<td data-bind="<%= status <= 0 ? 'text-warning' : (status = 1 ? 'text-success' : 'text-danger') %>" data-bind-target="class">
+						<b><span data-bind="<%= status == 0 ? 'Pending' : (status >= 1 ? 'Approved' : 'Rejected') %>"></span></b>
 					</td>
 					<td><span data-bind="<%= bam_role.schedules.length %>"></span></td>
 					<td><span data-bind="<%= created_at %>"></span></td>
