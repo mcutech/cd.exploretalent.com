@@ -30,8 +30,12 @@ handler.prototype.refresh = function() {
 		]
 	};
 
-	if (status) {
-		data.query.push([ 'where', 'status', '=', status ]);
+	if (status == 0) {
+		data.query.push([ 'where', 'status', 0 ]);
+	} else if (status == 1) {
+		data.query.push([ 'where', 'status', '>=', 1 ]);
+	} else if (status == -1) {
+		data.query.push([ 'where', 'status', '<=', -1 ]);
 	}
 
 	self.core.resource.campaign.get(data)
