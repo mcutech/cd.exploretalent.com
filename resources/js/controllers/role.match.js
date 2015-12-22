@@ -16,4 +16,13 @@ module.exports = function(core, user, projectId, roleId) {
 	$(document).on('click', '.fav-btn', handler.addToFav);
 
 	$('#view-like-it-list-btn').removeClass('hide');
+
+	//
+	$("#jquery-select2-example").select2({
+		allowClear: true,
+		placeholder: "Search market"
+	});
+
+	$("#jquery-select2-example").on('change', handler.addToMarket);
+	$(document).on('click', '.check-markets', handler.removeFromMarket);
 }

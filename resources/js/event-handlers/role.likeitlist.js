@@ -301,14 +301,12 @@ handler.prototype.sendInvites = function() {
 		.then(function(res) {
 			var form = self.core.service.form.serializeObject('#invite-to-audition-form');
 
-			var data = {
-				query	: [
-					[ 'where', 'rating', '<>', 0 ],
-					[ 'where', 'bam_role_id', '=', self.project.role.role_id ],
-					[ 'join', 'users', 'users.id', '=', 'invitee_id' ],
-					[ 'select', 'bam_talentnum AS talentnum' ]
-				]
-			}
+			var data = [
+				[ 'where', 'rating', '<>', 0 ],
+				[ 'where', 'bam_role_id', '=', self.project.role.role_id ],
+				[ 'join', 'users', 'users.id', '=', 'invitee_id' ],
+				[ 'select', 'bam_talentnum AS talentnum' ]
+			];
 
 			var campaignData = {
 				campaign_type_id 	: self.core.resource.campaign_type.CD_INVITE,
