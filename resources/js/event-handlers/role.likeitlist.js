@@ -131,14 +131,14 @@ handler.prototype.unrateCheckedSchedules = function(e) {
 	});
 
 	// remove all undefined from array
-	checkedIdsArray = checkedIdsArray.filter(function(n){ return n != undefined }); 
+	checkedIdsArray = checkedIdsArray.filter(function(n){ return n != undefined });
 
 	var promises = [];
 
 	$.each(checkedIdsArray, function(index, value) {
 		var promise = self.core.resource.schedule.patch({ scheduleId : value, rating : 0 });
 		promises.push(promise);
-			
+
 	});
 
 	$.when.apply($, promises).then(function() {
@@ -303,7 +303,10 @@ handler.prototype.sendInvites = function() {
 
 			var data = {
 				query	: [
-					[ 'where', 'rating', '<>', 0 ]
+					[ 'where', 'rating', '<>', 0 ],
+					[ 'where', 'bam_role_id', '=', self.project.role.role_id ],
+					[ 'join', 'users', 'users.id', '=', 'invitee_id' ],
+					[ 'select', 'bam_talentnum AS talentnum' ]
 				]
 			}
 
