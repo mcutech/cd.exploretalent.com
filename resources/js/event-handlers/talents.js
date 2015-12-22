@@ -259,19 +259,14 @@ handler.prototype.addToFavorites = function(e) {
 
 handler.prototype.addToMarket = function() {
 	var txt = ($('#jquery-select2-example').select2('data').text);
-	console.log(txt);
 	var txt1 = _.find(self.marketscheck, function(val){
 		return val.name == txt;
 	});
-	console.log(txt1);
 	if(!txt1){
-		console.log('test');
 		self.marketscheck.push({ name : txt , check : 'check'});
 	}
-	console.log(self.marketscheck);
 	self.talent.market_checks = self.marketscheck;
 	self.core.service.databind('#markets_checks', self.talent);
-	console.log(self.talent);
 	$('#jquery-select2-example').select2('val', '');
 
 }
@@ -288,9 +283,7 @@ handler.prototype.removeFromMarket = function() {
 			//self.marketscheck[ind].check = 'uncheck';
 		}
 	});
-	console.log(self.market_checks);
 	self.talent.market_checks = self.marketscheck;
-	console.log(self.talent);
 	self.core.service.databind('#markets_checks', self.talent);
 
 }
