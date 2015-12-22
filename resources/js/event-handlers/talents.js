@@ -38,7 +38,6 @@ handler.prototype.refresh = function() {
 	self.core.resource.search_talent.get(data)
 		.then(function(res) {
 			talents = res;
-			console.log(talents);
 			if (talents.total) {
 				talentnums = _.map(talents.data, function(talent) {
 					return talent.talentnum;
@@ -106,7 +105,6 @@ handler.prototype.refresh = function() {
 
 			self.core.service.databind('#talent-search-result', talents);
 			self.core.service.paginate('#talents-pagination', { class : 'pagination', total : talents.total, name : 'page' });
-			console.log(talents)
 			self.talent = talents;
 			$('#talent-search-loader').hide();
 			$('#talent-search-result').show();
@@ -261,17 +259,14 @@ handler.prototype.addToFavorites = function(e) {
 
 handler.prototype.addToMarket = function() {
 	var txt = ($('#jquery-select2-example').select2('data').text);
-
 	var txt1 = _.find(self.marketscheck, function(val){
 		return val.name == txt;
 	});
 	if(!txt1){
 		self.marketscheck.push({ name : txt , check : 'check'});
 	}
-	//console.log(self.project.market_checks);
 	self.talent.market_checks = self.marketscheck;
-	self.core.service.databind('#market-lists', self.talent);
-	console.log(self.talent);
+	self.core.service.databind('#markets_checks', self.talent);
 	$('#jquery-select2-example').select2('val', '');
 
 }
@@ -288,10 +283,8 @@ handler.prototype.removeFromMarket = function() {
 			//self.marketscheck[ind].check = 'uncheck';
 		}
 	});
-	console.log(self.project.market_checks);
 	self.talent.market_checks = self.marketscheck;
-	console.log(self.talent);
-	self.core.service.databind('#market-lists', self.talent);
+	self.core.service.databind('#markets_checks', self.talent);
 
 }
 module.exports = function(core, user) {
