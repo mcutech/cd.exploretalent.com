@@ -10,6 +10,7 @@ function handler(core, user, projectId, roleId) {
 	self.project = null;
 	self.favTalent = null;
 	self.refreshProjectDetails();
+	self.marketscheck = [];
 }
 
 handler.prototype.refreshProjectDetails = function() {
@@ -91,13 +92,28 @@ handler.prototype.getFavoriteTalents = function() {
 handler.prototype.updateFilter = function() {
 	var form = self.core.service.form.serializeObject('#talent-filter-form');
 	var filter = [];
+	var subquery = [];
+	var asdasd = [];
 
-	if (form.zip) {
-		filter.push([ 'whereHas', 'invitee.bam_talentci', [
-				[ 'where', 'talentci.zip', '=', form.zip ]
-			]
-		]);
-	}
+	/*if(self.marketscheck){
+		_.each(self.marketscheck, function(val, ind){
+			if(val.check == 'check'){
+				//var bb = val.name.substring(0, val.name.indexOf(','));
+				if(asdasd.length > 1){
+					subquery.push([ 'orWhere', 'city', 'like', '%'+val.name.substring(0, val.name.indexOf(','))+'%' ]);
+					subquery.push([ 'orWhere', 'city1', 'like', '%'+val.name.substring(0, val.name.indexOf(','))+'%' ]);
+					subquery.push([ 'orWhere', 'city2', 'like', '%'+val.name.substring(0, val.name.indexOf(','))+'%' ]);
+					subquery.push([ 'orWhere', 'city3', 'like', '%'+val.name.substring(0, val.name.indexOf(','))+'%' ]);
+				} else if(asdasd.length == 1){
+					subquery.push([ 'orWhere', 'city', 'like', '%'+val.name.substring(0, val.name.indexOf(','))+'%' ]);
+					subquery.push([ 'orWhere', 'city1', 'like', '%'+val.name.substring(0, val.name.indexOf(','))+'%' ]);
+					subquery.push([ 'orWhere', 'city2', 'like', '%'+val.name.substring(0, val.name.indexOf(','))+'%' ]);
+					subquery.push([ 'orWhere', 'city3', 'like', '%'+val.name.substring(0, val.name.indexOf(','))+'%' ]);
+				}
+			}
+		});
+		filter.push([ 'where', subquery ]);
+	}*/
 
 	if (parseInt(form.age_min)) {
 		filter.push([ 'where', 'talentinfo1.dobyyyy', '<=', new Date().getFullYear() - parseInt(form.age_min) ]);
@@ -218,6 +234,7 @@ handler.prototype.updateFilter = function() {
 	}
 
 	self.filter = filter;
+	console.log(self.filter);
 	self.refreshSelfSubmissions();
 }
 
@@ -434,6 +451,39 @@ handler.prototype.editNoteForTalent = function(e) {
 	}
 }
 
+handler.prototype.addToMarket = function() {
+	var txt = ($('#jquery-select2-example').select2('data').text);
+	
+	var txt1 = _.find(self.marketscheck, function(val){
+		return val.name == txt;
+	});
+	if(!txt1){
+		self.marketscheck.push({ name : txt , check : 'check'});
+	} 
+	//console.log(self.project.market_checks);
+	self.project.market_checks = self.marketscheck;
+	self.core.service.databind('#talent-filter-form', self.project);
+	$('#jquery-select2-example').select2('val', '');
+
+}
+
+handler.prototype.removeFromMarket = function() {
+	var id = $(this).parent().attr('id');
+	var rmv = _.find(self.marketscheck, function(n, ind){
+		if(n.name.replace(/\s/g, '').replace(/,/g, '') == id){
+			if(n.check == 'check'){
+				self.marketscheck[ind].check = 'uncheck';	
+			} else {
+				self.marketscheck[ind].check = 'check';
+			}
+			//self.marketscheck[ind].check = 'uncheck';
+		} 
+	});
+	console.log(self.project.market_checks);
+	self.project.market_checks = self.marketscheck;
+	self.core.service.databind('#talent-filter-form', self.project);
+
+}
 module.exports = function(core, user, projectId, roleId) {
 	return new handler(core, user, projectId, roleId);
 }
