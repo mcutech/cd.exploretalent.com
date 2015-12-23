@@ -34,17 +34,6 @@
 				</div>
 
 				<div class="form-group w-icon">
-					<input type="text" name="lname" id="last-name" class="form-control input-lg" placeholder="Last Name" data-required autofocus>
-					<span class="fa fa-user signup-form-icon"></span>
-				</div>
-				<div id="req-lname" style="display:none;" class="alert alert-danger form-group" role="alert">
-					<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-					<span class="sr-only">Error:</span>
-					<span id="req-lnametxt" style="display:none;"></span>
-				</div>
-
-
-				<div class="form-group w-icon">
 					<input type="text" name="fname" id="first-name" class="form-control input-lg" placeholder="First Name" data-required>
 					<span class="fa fa-user signup-form-icon"></span>
 				</div>
@@ -52,6 +41,16 @@
 					<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
 					<span class="sr-only">Error:</span>
 					<span id="req-fnametxt" style="display:none;"></span>
+				</div>
+
+				<div class="form-group w-icon">
+					<input type="text" name="lname" id="last-name" class="form-control input-lg" placeholder="Last Name" data-required autofocus>
+					<span class="fa fa-user signup-form-icon"></span>
+				</div>
+				<div id="req-lname" style="display:none;" class="alert alert-danger form-group" role="alert">
+					<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+					<span class="sr-only">Error:</span>
+					<span id="req-lnametxt" style="display:none;"></span>
 				</div>
 
 				<div class="form-group w-icon">
