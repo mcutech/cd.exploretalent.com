@@ -16,23 +16,17 @@
 
 	<!-- Container -->
 	<div class="signup-container" style="margin: 20px auto;">
-		<!-- Header -->
-		<div class="signup-header">
-			<a href="index.html" class="logo">
-				Explore Talent
-			</a> <!-- / .logo -->
-			<div class="slogan">
-				<small>World&#39;s Largest Talent Resource</small>
-			</div> <!-- / .slogan -->
-		</div>
-		<!-- / Header -->
 
 		<!-- Form -->
 		<div class="signup-form">
 			<form action="index.html" id="signup-form">
-
+				<div class="row-fluid clearfix text-center">
+					<div class="col-md-12">
+						<img src="/images/logo-home-et.png" alt="">
+					</div>
+				</div>
 				<div class="signup-text">
-					<span>Create an account</span>
+					<span class="text-primary">Create a Casting Director Account</span>
 				</div>
 
                 <div class="alert alert-success" style="display:none;">
