@@ -13,11 +13,10 @@
 				<div class="row-fluid clearfix text-center">
 					<div class="col-md-12">
 						<img src="/images/logo-home-et.png" alt="">
-						<h4 class="text-primary">Casting Director Module</h4>
 					</div>
 				</div>
 				<div class="signin-text">
-					<span>Sign In to your account</span>
+					<span class="text-primary">Casting Director Module</span>
 				</div>
 
 				<div class="form-group ">
