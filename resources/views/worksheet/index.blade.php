@@ -9,7 +9,7 @@
 	<div class="col-md-12 panel-body">
 		<label>Filter Invites</label>
 		<select id="status-list" class="form-control">
-			<option value="">Any</option>
+			<option value="any">Any</option>
 			<option value="0">Pending</option>
 			<option value="1">Approved</option>
 			<option value="-1">Rejected</option>

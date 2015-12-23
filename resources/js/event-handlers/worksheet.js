@@ -17,7 +17,6 @@ function handler(core, user) {
 			self.projects = res;
 			self.refresh();
 		});
-
 }
 
 handler.prototype.refresh = function() {
