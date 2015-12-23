@@ -55,16 +55,6 @@
 				</div>
 
 				<div class="form-group w-icon">
-					<input type="text" name="login" id="login" class="form-control input-lg" placeholder="Login username" data-required>
-					<span class="fa fa-user signup-form-icon"></span>
-				</div>
-				<div id="req-username" style="display:none;" class="alert alert-danger form-group" role="alert">
-					<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-					<span class="sr-only">Error:</span>
-					<span id="req-usernametxt" style="display:none;"></span>
-				</div>
-
-				<div class="form-group w-icon">
 					<input type="text" name="email" id="email" class="form-control input-lg" placeholder="Email Address" data-required>
 					<span class="fa fa-envelope signup-form-icon"></span>
 				</div>
