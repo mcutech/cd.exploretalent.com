@@ -1,4 +1,24 @@
 .joincd-wrapper{
+
+	.panel-design{
+		border: 5px solid #4495CA;
+		.panel-body-in-title-container{
+			background-color: #F1F1F1;
+			margin-bottom: 8px;
+			border-bottom: 2px solid #ddd;
+			text-align: center;
+		}
+		.panel-body-in-title{
+			display: inline-block;
+			font-weight: bold;
+			color: #4A9BCA;
+			font-size: 20px;
+			margin: 10px 0px;
+			i{
+				color: #4A9BCA;
+			}
+		}
+	}
 	hr{
 		border-color: #0969A7;
 	}
@@ -6,7 +26,7 @@
 		line-height: 20px;
 		.success-benefits-item{
 			min-height: 355px;
-			max-height: 355px;
+			max-height: 445px;
 		}
 	}
 
@@ -22,7 +42,6 @@
 	.talent-search-container{
 		display: flex;
 		flex-wrap: wrap;
-		justify-content: space-between;
 
 		.talent-search-item-container{
 			padding: 2px;
