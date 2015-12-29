@@ -33,7 +33,7 @@
 						<p class="margin-left-large" data-bind="- <%= bam_role.name + ' (#' + bam_role.role_id + ')' %>"></p>
 					</td>
 					<td data-bind="<%= status == 0 ? 'text-warning' : (status == 1 ? 'text-success' : 'text-danger') %>" data-bind-target="class">
-						<b><span data-bind="<%= status == 0 ? 'Pending' : (status == 1 ? 'Approved' : 'Rejected') %>"></span></b>
+						<b><span data-bind="<%= status == 0 ? 'Pending' : (status >= 1 ? 'Approved' : 'Rejected') %>"></span></b>
 					</td>
 					<td><span data-bind="<%= bam_role.schedules.length %>"></span></td>
 					<td><span data-bind="<%= created_at %>"></span></td>
