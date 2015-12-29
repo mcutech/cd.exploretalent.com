@@ -7,13 +7,13 @@ module.exports = function(core) {
 
 		var lname = $('#last-name').val();
 		var fname = $('#first-name').val();
-		var username = $('#login').val();
 		var email = $('#email').val();
 		var phone = $('#phone').val();
 		var pass = $('#password').val();
 		var confirmpass = $('#confirm-password').val();
 
-		var regexName = new RegExp("[a-zA-Z]$"); var regexUsername = new RegExp("^[a-zA-Z0-9]*$");
+		var regexName = new RegExp("[a-zA-Z]$");
+		var regexPass = new RegExp("^[a-zA-Z0-9]*$");
 		var regexEmail = new RegExp("^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$");
 
 		if(!lname){
@@ -44,21 +44,6 @@ module.exports = function(core) {
 				return;
 			}
 			$('#first-name').css("border-color","#d6d6d6");
-		}
-
-		if(!username){
-			$('#login').focus().css("border-color","#b94a48");
-			$('#req-username').show().delay(5000).fadeOut();
-			$('#req-usernametxt').text('This field is required.').show().delay(5000).fadeOut();
-			return;
-		}else{
-			if ( !regexUsername.test(username) ) {
-				$('#login').focus().css("border-color","#b94a48");
-				$('#req-username').show().delay(5000).fadeOut();
-				$('#req-usernametxt').text('Invalid Username.').show().delay(5000).fadeOut();
-				return;
-			}
-			$('#login').css("border-color","#d6d6d6");
 		}
 
 		if(!email){
@@ -92,7 +77,7 @@ module.exports = function(core) {
 			$('#req-passtxt').text('This field is required.').show().delay(5000).fadeOut();
 			return;
 		}else{
-			if ( !regexUsername.test(pass) ){
+			if ( !regexPass.test(pass) ){
 				$('#password').focus().css("border-color","#b94a48");
 				$('#req-pass').show().delay(5000).fadeOut();
 				$('#req-passtxt').text('Invalid Password.').show().delay(5000).fadeOut();
@@ -107,7 +92,7 @@ module.exports = function(core) {
 			$('#req-confirmpasstxt').text('This field is required.').show().delay(5000).fadeOut();
 			return;
 		}else{
-			if ( !regexUsername.test(confirmpass) ) {
+			if ( !regexPass.test(confirmpass) ) {
 				$('#confirm-password').focus().css("border-color","#b94a48");
 				$('#req-confirmpass').show().delay(5000).fadeOut();
 				$('#req-confirmpasstxt').text('Invalid Password.').show().delay(5000).fadeOut();
@@ -136,7 +121,6 @@ module.exports = function(core) {
 							var data = {
 								lname	: lname ,
 								fname	: fname ,
-								login	: username,
 								email1	: email,
 								phone1  : phone,
 								pass	: pass,

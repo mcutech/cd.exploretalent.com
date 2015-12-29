@@ -512,7 +512,7 @@ handler.prototype.addToMarket = function() {
 	if(!txt1){
 		self.marketscheck.push({ name : txt , check : 'check'});
 	}
-	//console.log(self.project.market_checks);
+	console.log(self.project.market_checks);
 	self.project.market_checks = self.marketscheck;
 	self.core.service.databind('#talent-filter-form', self.project);
 	$('#jquery-select2-example').select2('val', '');

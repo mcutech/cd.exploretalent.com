@@ -106,10 +106,10 @@
 
 								</div>
 								<div class="row">
-									<div class="col-md-12 margin-top-medium" id="markets-check">
-										<div class="hide" data-bind-template="#markets-check" data-bind-value="market_checks" data-bind="<%= name.replace(/\s/g, '').replace(/,/g, '') %>" data-bind-target="id">
+									<div class="col-md-12 margin-top-medium" id="markets_checks">
+										<label class="checkbox" data-bind-template="#markets_checks" data-bind-value="market_checks" data-bind="<%= name.replace(/\s/g, '').replace(/,/g, '') %>" data-bind-target="id">
 											<input type="checkbox" name="market-checks" class="px check-markets" data-bind="<%= (check == 'check') ? 1 : 0  %>"> <span class="lbl" data-bind="<%= name %>"></span>
-										</div>
+										</label>
 									</div>
 								</div>
 							</div>

@@ -6,33 +6,17 @@
 
 @section('guest.body')
 
-	<div id="page-signin-bg">
-		<div class="overlay"></div>
-		<img src="images/signin-bg-1.jpg" alt="">
-	</div>
-
 	<div class="signin-container">
 
-		<div class="signin-info">
-			<a href="index.html" class="logo">
-				CD Exploretalent
-			</a>
-			<div class="slogan" style="font-size: 1em;">
-				World&#39;s Largest Talent Resource
-			</div>
-			<ul>
-				<li><i class="fa fa-sitemap signin-icon"></i> Flexible modular structure</li>
-				<li><i class="fa fa-file-text-o signin-icon"></i> LESS &amp; SCSS source files</li>
-				<li><i class="fa fa-outdent signin-icon"></i> RTL direction support</li>
-				<li><i class="fa fa-heart signin-icon"></i> Crafted with love</li>
-			</ul>
-		</div>
-
 		<div class="signin-form">
-
 			<form action="index.html" id="login-form">
+				<div class="row-fluid clearfix text-center">
+					<div class="col-md-12">
+						<img src="/images/logo-home-et.png" alt="">
+					</div>
+				</div>
 				<div class="signin-text">
-					<span>Sign In to your account</span>
+					<span class="text-primary">Casting Director Module</span>
 				</div>
 
 				<div class="form-group ">

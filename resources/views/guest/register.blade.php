@@ -16,39 +16,22 @@
 
 	<!-- Container -->
 	<div class="signup-container" style="margin: 20px auto;">
-		<!-- Header -->
-		<div class="signup-header">
-			<a href="index.html" class="logo">
-				Explore Talent
-			</a> <!-- / .logo -->
-			<div class="slogan">
-				<small>World&#39;s Largest Talent Resource</small>
-			</div> <!-- / .slogan -->
-		</div>
-		<!-- / Header -->
 
 		<!-- Form -->
 		<div class="signup-form">
 			<form action="index.html" id="signup-form">
-
+				<div class="row-fluid clearfix text-center">
+					<div class="col-md-12">
+						<img src="/images/logo-home-et.png" alt="">
+					</div>
+				</div>
 				<div class="signup-text">
-					<span>Create an account</span>
+					<span class="text-primary">Create a Casting Director Account</span>
 				</div>
 
-                <div class="alert alert-success" style="display:none;">
-                    <p>Account created! Please login  using your email and password</p>
-                </div>
-
-				<div class="form-group w-icon">
-					<input type="text" name="lname" id="last-name" class="form-control input-lg" placeholder="Last Name" data-required autofocus>
-					<span class="fa fa-user signup-form-icon"></span>
+				<div class="alert alert-success" style="display:none;">
+					<p>Account created! Please login  using your email and password</p>
 				</div>
-				<div id="req-lname" style="display:none;" class="alert alert-danger form-group" role="alert">
-					<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-					<span class="sr-only">Error:</span>
-					<span id="req-lnametxt" style="display:none;"></span>
-				</div>
-
 
 				<div class="form-group w-icon">
 					<input type="text" name="fname" id="first-name" class="form-control input-lg" placeholder="First Name" data-required>
@@ -61,13 +44,13 @@
 				</div>
 
 				<div class="form-group w-icon">
-					<input type="text" name="login" id="login" class="form-control input-lg" placeholder="Login username" data-required>
+					<input type="text" name="lname" id="last-name" class="form-control input-lg" placeholder="Last Name" data-required autofocus>
 					<span class="fa fa-user signup-form-icon"></span>
 				</div>
-				<div id="req-username" style="display:none;" class="alert alert-danger form-group" role="alert">
+				<div id="req-lname" style="display:none;" class="alert alert-danger form-group" role="alert">
 					<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
 					<span class="sr-only">Error:</span>
-					<span id="req-usernametxt" style="display:none;"></span>
+					<span id="req-lnametxt" style="display:none;"></span>
 				</div>
 
 				<div class="form-group w-icon">
@@ -78,16 +61,6 @@
 					<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
 					<span class="sr-only">Error:</span>
 					<span id="req-emailtxt" style="display:none;"></span>
-				</div>
-
-				<div class="form-group w-icon">
-					<input type="text" name="phone" id="phone" class="form-control input-lg" placeholder="Phone" data-required>
-					<span class="fa fa-phone signup-form-icon"></span>
-				</div>
-				<div id="req-phone" style="display:none;" class="alert alert-danger form-group" role="alert">
-					<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-					<span class="sr-only">Error:</span>
-					<span id="req-phonetxt" style="display:none;"></span>
 				</div>
 
 				<div class="form-group w-icon">
@@ -111,7 +84,17 @@
 					<span id="req-unmatchtxt" style="display:none;"></span>
 				</div>
 
-                <div class="form-actions" id="form-action-signup-btn">
+				<div class="form-group w-icon">
+					<input type="text" name="phone" id="phone" class="form-control input-lg" placeholder="Phone" data-required>
+					<span class="fa fa-phone signup-form-icon"></span>
+				</div>
+				<div id="req-phone" style="display:none;" class="alert alert-danger form-group" role="alert">
+					<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+					<span class="sr-only">Error:</span>
+					<span id="req-phonetxt" style="display:none;"></span>
+				</div>
+
+				<div class="form-actions" id="form-action-signup-btn">
 					<input type="submit" id="sign-up" value="SIGN UP" class="signup-btn bg-primary">
 				</div>
 
@@ -121,9 +104,9 @@
 					<span id="error-signup" style="display:none;">An unknown error has occured.</span>
 				</div>
 
-                <div class="form-group text-center loader" style="display:none">
-                    <p><small>Preparing your account, please wait ...</small> <i class="fa fa-spin fa-refresh"></i></p>
-                </div>
+				<div class="form-group text-center loader" style="display:none">
+					<p><small>Preparing your account, please wait ...</small> <i class="fa fa-spin fa-refresh"></i></p>
+				</div>
 			</form>
 			<!-- / Form -->
 
