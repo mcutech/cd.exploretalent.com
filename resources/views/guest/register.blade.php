@@ -8,12 +8,14 @@
 
 <div class="joincd-wrapper">
 	<!-- Container -->
-	<div class="row-fluid clearfix padding-large margin-bottom-normal">
+	<div class="row-fluid clearfix padding-large">
 	<div class="col-md-12 white-text text-center">
-		<h3>Post your Casting, Project or Job for Free</h3>
+		<h2 class="text-bold">Post your Casting, Project or Job for Free</h2>
+		<small>Too busy to set up your account? Need help? Post casting calls only? <u>Email your project to us</u> or <u>Call us at (702) 446-0888.</u></small>
+		
 	</div>
 	<div class="col-md-2"></div>
-	<div class="col-md-8" style="margin: 20px auto;">
+	<div class="col-md-8 margin-medium">
 		<!-- Form -->
 		<div class="signup-form">
 			<form action="index.html" id="signup-form">
@@ -23,7 +25,7 @@
 					</div>
 				</div>
 				<div class="signup-text">
-					<span class="text-primary">Create a Casting Director Account (Post your Casting, Project or Job for Free)</span>
+					<span>Create a Casting Director Account (Post your Casting, Project or Job for Free)</span>
 				</div>
 
 				<div class="alert alert-success" style="display:none;">
@@ -134,20 +136,19 @@
 	<div class="col-md-12 text-center white-text">
 		Already have an account? <a href="/login">Login</a>
 	</div>
-	<div class="col-md-12 text-center white-text">
-	Too busy to set up your account? Need help? Post casting calls only? Email your project to us or call us at (702) 446-0888.
-	</div>
 	<div class="col-md-12">
-		<hr>
+		<hr class="margin-bottom-zero">
 	</div>
 	</div> {{-- row-fluid --}}
 
 	<div class="row-fluid clearfix success-benefits-container">
 		<div class="col-md-1"></div>
 		<div class="col-md-5">
-			<div class="panel success-benefits-item">
+			<div class="panel success-benefits-item panel-design">
 				<div class="panel-body">
-					<h4 class="text-center text-bold">Casting Directors Success Stories</h4>
+					<div class="panel-body-in-title-container">
+					<span class="panel-body-in-title"><i class="fa fa-trophy"></i> Casting Directors Success Stories</span>
+					</div>
 					<ul class="list-unstyled">
 						<li>
 						<p>"I just want to say thanks again to Explore Talent and Sara for your courtesy and for assisting me with casting my spot. The actors were truly professional and everyone was really happy to be a part of the project!" <span class="text-right"> - Lawrence Dotson</span></p>
@@ -162,9 +163,11 @@
 		</div>
 	
 		<div class="col-md-5">
-			<div class="panel success-benefits-item">
+			<div class="panel success-benefits-item panel-design">
 				<div class="panel-body">
-					<h4 class="text-center text-bold">List of Benefits</h4>
+					<div class="panel-body-in-title-container">
+					<span class="panel-body-in-title"><i class="fa fa-thumbs-o-up"></i> List of Benefits</span>
+					</div>
 					<ul class="list-unstyled">
 						<li><p><i class="fa fa-check text-success"></i>
 						Our Booking Assistants can help you every step of the way - we will post for you and contact talents as requested
@@ -188,9 +191,9 @@
 	<div class="row-fluid clearfix">
 		<div class="col-md-1"></div>
 		<div class="col-md-10">
-			<div class="panel">
+			<div class="panel panel-design">
 				<div class="panel-body text-center">
-					<h4 class="text-center text-bold">Samples of Past Projects</h4>
+					<span class="panel-body-in-title">Samples of Past Projects</span>
 					<div class="sample-projects-container text-center">
 						<div class="sample-projects-item">
 							<img src="/images/sample1.jpg" alt="">
@@ -214,10 +217,10 @@
 	<div class="row-fluid clearfix">
 		<div class="col-md-1"></div>
 		<div class="col-md-10">
-			<div class="panel text-center">
+			<div class="panel text-center panel-design">
 				<div class="panel-body">
 				<ul class="list-inline margin-zero">
-					<li><h4 class="text-bold margin-zero">Talent Agents</h4></li>
+					<li><span class="panel-body-in-title">Talent Agents</span></li>
 					<li><button class="btn btn-primary" type="button">Interested in representing our talent?</button></li>
 				</ul>
 				</div>
@@ -229,11 +232,11 @@
 	<div class="row-fluid clearfix">
 		<div class="col-md-1"></div>
 		<div class="col-md-10">
-			<div class="panel">
+			<div class="panel panel-design">
 				<div class="panel-body">
 					<div class="control-group">
 						<div class="display-inline-block text-left">
-							<h4 class="text-bold">Featured Talent Search</h4>
+							<span class="panel-body-in-title">Featured Talent Search</span>
 						</div>
 						<div class="display-inline-block pull-right">
 							<button class="btn btn-primary">Become a Featured Talent</button>
