@@ -1,0 +1,56 @@
+.joincd-wrapper{
+	hr{
+		border-color: #0969A7;
+	}
+	.success-benefits-container{
+		line-height: 20px;
+		.success-benefits-item{
+			min-height: 355px;
+			max-height: 355px;
+		}
+	}
+
+	.sample-projects-container{
+		.sample-projects-item{
+			display: inline-block;
+			width: 465px;
+			padding: 5px;
+			text-align: center;
+			margin-bottom: 5px;
+		}
+	}
+	.talent-search-container{
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+
+		.talent-search-item-container{
+			padding: 2px;
+			margin-bottom: 20px;
+			border: 1px solid #ddd;
+			.text-container{
+				line-height: 15px;
+				padding: 2px 5px;
+				font-size: 11px;
+				text-align: center;
+			}
+
+			&:nth-of-type(5n+1){
+				display: block;
+			}
+			.image-container{
+				min-height: 200px;
+				max-height: 200px;
+				overflow: hidden;
+				background-color: #eee;
+			  	display: flex;
+				justify-content: center;
+				img{
+					width: 100%;
+					flex: 0 1 auto;
+					align-self: center;
+				}					
+			}
+		}	
+	}
+}
