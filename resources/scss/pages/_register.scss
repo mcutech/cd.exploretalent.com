@@ -1,0 +1,75 @@
+.joincd-wrapper{
+
+	.panel-design{
+		border: 5px solid #4495CA;
+		.panel-body-in-title-container{
+			background-color: #F1F1F1;
+			margin-bottom: 8px;
+			border-bottom: 2px solid #ddd;
+			text-align: center;
+		}
+		.panel-body-in-title{
+			display: inline-block;
+			font-weight: bold;
+			color: #4A9BCA;
+			font-size: 20px;
+			margin: 10px 0px;
+			i{
+				color: #4A9BCA;
+			}
+		}
+	}
+	hr{
+		border-color: #0969A7;
+	}
+	.success-benefits-container{
+		line-height: 20px;
+		.success-benefits-item{
+			min-height: 355px;
+			max-height: 445px;
+		}
+	}
+
+	.sample-projects-container{
+		.sample-projects-item{
+			display: inline-block;
+			width: 465px;
+			padding: 5px;
+			text-align: center;
+			margin-bottom: 5px;
+		}
+	}
+	.talent-search-container{
+		display: flex;
+		flex-wrap: wrap;
+
+		.talent-search-item-container{
+			padding: 2px;
+			margin-bottom: 20px;
+			border: 1px solid #ddd;
+			.text-container{
+				line-height: 15px;
+				padding: 2px 5px;
+				font-size: 11px;
+				text-align: center;
+			}
+
+			&:nth-of-type(5n+1){
+				display: block;
+			}
+			.image-container{
+				min-height: 200px;
+				max-height: 200px;
+				overflow: hidden;
+				background-color: #eee;
+			  	display: flex;
+				justify-content: center;
+				img{
+					width: 100%;
+					flex: 0 1 auto;
+					align-self: center;
+				}					
+			}
+		}	
+	}
+}
