@@ -93,7 +93,7 @@
 			pull-right hide ">View Like it List & Contact Talent (<span data-bind="<%= role.likeitlist.total %>"></span>)</a>
 			<div id="utility-buttons-div" class="text-align-right hide">
 				<a data-toggle="modal" data-target="#share-like-it-list" class="btn btn-primary">Share Like It List</a>
-				<a data-toggle="modal" data-target="#invite-to-audition-modal" class="btn btn-success"><i class="fa fa-envelope-o"></i> Invite to Audition</a>
+				<a id="invitetoauditionbutton" data-toggle="modal" data-target="#invite-to-audition-modal" class="btn btn-success"><i class="fa fa-envelope-o"></i><span id="invitetoaudition"> Invite to Audition</span></a>
 			</div>
 		</ul>
 	</div>

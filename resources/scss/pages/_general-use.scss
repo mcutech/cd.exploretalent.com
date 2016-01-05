@@ -579,3 +579,8 @@
 
 
 } // cd-custom-template{
+
+//for radio button background
+.gt-ie8 input[type="radio"].px + .lbl:after{
+	background-color: #1d89cf !important;
+}
