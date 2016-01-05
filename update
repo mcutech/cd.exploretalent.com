@@ -1,1 +1,1 @@
-./composer install && rm node_modules/jscore -rf && npm install && bower install
+bower update moment && ./composer install && rm node_modules/jscore -rf && npm install && bower install
