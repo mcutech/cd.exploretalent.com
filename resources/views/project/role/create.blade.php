@@ -93,7 +93,7 @@
 			</div>	    
 			<div class="col-md-3">
 				<label class="checkbox-inline margin-bottom-normal">
-				  <input class="px" type="checkbox" name="gender" id="gender-male-checkbox" value="0"> Male
+				  <input type="checkbox" name="gender" id="gender-male-checkbox" value="0"> Male
 				</label>
 				<label class="checkbox-inline margin-bottom-normal">
 				  <input type="checkbox" name="gender" id="gender-female-checkbox" value="0"> Female
