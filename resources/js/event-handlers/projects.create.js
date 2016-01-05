@@ -201,7 +201,7 @@ handler.prototype.createNewProject = function(e){
 				else {
 					data["snr"] = '1';
 					data["snr_email"] = selfSubEmail;
-					data["address2"] = selfSubAddress;
+					// data["address2"] = selfSubAddress;
 					data["srn_address"] = selfSubAddress;
 
 					return self.core.resource.project.post(data)
