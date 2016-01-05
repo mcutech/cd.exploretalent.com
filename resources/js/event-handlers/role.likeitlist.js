@@ -9,7 +9,7 @@ function handler(core, user, projectId, roleId) {
 	self.project = null;
 	self.favTalent = null;
 	self.refreshProjectDetails();
-
+	self.refreshInvitation();
 	// @if ENV='production'
 	$('#when-where-container').hide();
 	// @endif
@@ -288,6 +288,23 @@ handler.prototype.editNoteForTalent = function(e) {
 			}, 3000);
 		});
 	}
+}
+
+handler.prototype.refreshInvitation = function() {
+	var data = {
+		query : [
+			['where', 'bam_role_id', self.roleId]
+		]
+	}
+
+	self.core.resource.campaign.get(data)
+	.then(function(res){
+		console.log(res);
+		if(res.total > 0){
+			$("#invitetoaudition").html(' You have already sent an invitation <br>on '+ res.data[0].updated_at);
+			$('#invitetoauditionbutton').attr("disabled", true);
+		}
+	});
 }
 
 handler.prototype.sendInvites = function() {

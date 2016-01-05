@@ -101,11 +101,10 @@ handler.prototype.refreshMatches = function() {
 
 			if (talentIds.length > 0) {
 				var data = {
-					withs : [
-						'schedule_notes.user.bam_cd_user'
-					],
-					q : [
+					query : [
+						[ 'with', 'schedule_notes.user.bam_cd_user' ],
 						[ 'whereIn', 'invitee_id', talentIds ],
+						[ 'where', 'bam_role_id', '=', self.project.role.role_id ]
 					]
 				};
 
