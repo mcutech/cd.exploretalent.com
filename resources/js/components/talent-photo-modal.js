@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = function(core, user) {
-	$(document).on('click', '#talent-photo', function(e) {
+	$(document).on('click', '#talent-photo, #view-resume-photos', function(e) {
 		var id;
 
 		// Bind null data first
