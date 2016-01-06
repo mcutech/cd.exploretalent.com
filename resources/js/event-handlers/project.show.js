@@ -119,6 +119,19 @@ handler.prototype.refreshStats = function() {
 		});
 }
 
+handler.prototype.deleteRole = function(e) {
+	e.preventDefault();
+	var ids = $(this).attr('id');
+	console.log(ids);
+	console.log(self.projectId);
+	if(confirm("Are you sure you want to delete this role?")){
+		self.core.resource.job.delete({ projectId : self.projectId, jobId : ids})
+			.then(function(res){
+				self.refresh();
+			});
+	}	
+}
+
 module.exports = function(core, user, projectId){
 	return new handler(core, user, projectId);
 }
