@@ -112,7 +112,7 @@
 								<input type="submit" id="sign-up" value="Create an Account" class="signup-btn bg-primary">
 							</div>
 							<div class="form-group">
-								<div>By creating this account you agree to our <a href="" original-title="">Terms of Use</a></div>
+								<div>By creating this account you agree to our <a href="" type="button" data-toggle="modal" data-target="#terms-conditions" original-title="">Terms of Use</a></div>
 								<div>(Forget your login name or password? Call 800-742-1200 or email <a href="" original-title="">cd@exploretalent.com</a></div>
 							</div>
 						</div>
@@ -389,4 +389,5 @@
 	</div>
 
 </div>
+@include('guest.modals.terms-conditions')
 @stop
