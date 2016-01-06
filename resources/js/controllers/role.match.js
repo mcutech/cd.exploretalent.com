@@ -29,4 +29,12 @@ module.exports = function(core, user, projectId, roleId) {
 	$(document).on('click', '#view-resume-photos', function(){
 		$('#talent-resume-modal').modal('toggle');
 	});
+
+	$(document).on('click', '#search-talent-btn', handler.refreshMatches);
+
+	$(document).on('keydown', '#search-talent-input', function(e) {
+		if(e.which == 13) { // enter key
+			$('#search-talent-btn').click();
+		}
+	});
 }

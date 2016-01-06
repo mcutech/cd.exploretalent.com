@@ -158,6 +158,13 @@ handler.prototype.refreshMatches = function() {
 			self.core.service.databind('#role-match', self.project);
 			//console.log(self.project)
 			self.core.service.paginate('#matches-pagination', { total : self.project.role.matches.total, class : 'pagination', name : 'page' });
+			if(talents.total < 25) {
+				$('#matches-pagination').hide();
+			}
+			else {
+				$('#matches-pagination').show();
+			}
+			
 			$('#role-match-loader').hide();
 			$('#role-match').show();
 		});
@@ -497,6 +504,29 @@ handler.prototype.getFilters = function() {
 				data.q.push([ 'where', 'is_pro', '=', 0 ]);
 			}
 		}
+	}
+
+	var searchterm = $('#search-talent-input').val();
+
+	if(searchterm.length > 1) {
+
+		data = {
+			query 	: [],
+			page	: qs.page || 1
+		};
+
+		form = [];
+		subquery = [];
+		subfilter = [];
+
+		data.query.push([ 'where',
+			[
+				[ 'where', 'talentnum', '=', searchterm ],
+				[ 'orWhere', 'fname', 'LIKE', '%' + searchterm + '%' ],
+				[ 'orWhere', 'lname', 'LIKE', '%' + searchterm + '%' ],
+			]
+		]);
+
 	}
 
 	return data;

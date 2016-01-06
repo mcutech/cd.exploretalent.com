@@ -11,4 +11,12 @@ module.exports = function(core, user) {
 
 	$("#jquery-select2-example").on('change', handler.addToMarket);
 	$(document).on('click', '.check-markets', handler.removeFromMarket);
+
+	$(document).on('click', '#search-talent-btn', handler.refresh);
+
+	$(document).on('keydown', '#search-talent-input', function(e) {
+		if(e.which == 13) { // enter key
+			$('#search-talent-btn').click();
+		}
+	});
 }

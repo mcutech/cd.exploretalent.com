@@ -28,6 +28,7 @@ function handler(core, user){
 }
 
 handler.prototype.refresh = function() {
+
 	var talents;
 	var talentnums;
 
@@ -104,7 +105,15 @@ handler.prototype.refresh = function() {
 			window.history.pushState(null, null, url);
 
 			self.core.service.databind('#talent-search-result', talents);
+
 			self.core.service.paginate('#talents-pagination', { class : 'pagination', total : talents.total, name : 'page' });
+			if(talents.total < 25) {
+				$('#talents-pagination').hide();
+			}
+			else {
+				$('#talents-pagination').show();
+			}
+			
 			self.talent = talents;
 			$('#talent-search-loader').hide();
 			$('#talent-search-result').show();
@@ -227,6 +236,29 @@ handler.prototype.getFilters = function() {
 		}
 	}
 
+	var searchterm = $('#search-talent-input').val();
+
+	if(searchterm.length > 1) {
+
+		data = {
+			query 	: [],
+			page	: qs.page || 1
+		};
+
+		form = [];
+		subquery = [];
+		subfilter = [];
+
+		data.query.push([ 'where',
+			[
+				[ 'where', 'talentnum', '=', searchterm ],
+				[ 'orWhere', 'fname', 'LIKE', '%' + searchterm + '%' ],
+				[ 'orWhere', 'lname', 'LIKE', '%' + searchterm + '%' ],
+			]
+		]);
+
+	}
+
 	return data;
 }
 
@@ -287,6 +319,7 @@ handler.prototype.removeFromMarket = function() {
 	self.core.service.databind('#markets_checks', self.talent);
 
 }
+
 module.exports = function(core, user) {
 	return new handler(core, user);
 };
