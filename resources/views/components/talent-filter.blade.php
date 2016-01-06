@@ -9,6 +9,12 @@
 		</div>
 		<div class="panel-body">
 			<div class="location">
+				<div class="panel panel-transparent margin-bottom-normal input-group">
+					<input type="text" class="form-control" id="search-talent-input" placeholder="Search Talent Manually">
+					<span id="search-talent-btn" class="input-group-addon" style="cursor: pointer;">
+			            <span class="glyphicon glyphicon-search"></span>
+			        </span>
+				</div>
 				<div class="panel panel-transparent margin-bottom-normal">
 					<div class="panel-heading no-padding-hr padding-bottom-zero-small padding-top-zero">
 						<div class="panel-title text-uppercase"><strong>Location</strong></div>
@@ -16,7 +22,7 @@
 					<div class="panel-body padding-small no-border-hr no-padding-hr">
 						<div class="tab-content no-padding-hr padding-top-zero-zz-lg no-padding-b">
 							<div class="tab-pane fade active in">
-								<label class="text-semibold margin-bottom-zero">Select a Markets</label>
+								<label class="text-semibold margin-bottom-zero">Select a Market</label>
 								<div class="row">
 									<div class="col-md-12">
 										<div class="input-group col-md-12">
