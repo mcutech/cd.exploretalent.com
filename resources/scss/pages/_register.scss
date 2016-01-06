@@ -11,15 +11,17 @@
 		.panel-body-in-title{
 			display: inline-block;
 			font-weight: bold;
-			color: #4A9BCA;
 			font-size: 20px;
 			margin: 10px 0px;
 			i{
-				color: #4A9BCA;
+				color: #1d89cf;
 			}
+			&.title{
+				color: #1d89cf;
+			}	
 		}
 	}
-	hr{
+	hr.blue{
 		border-color: #0969A7;
 	}
 	.success-benefits-container{
@@ -39,29 +41,67 @@
 			margin-bottom: 5px;
 		}
 	}
-	.talent-search-container{
-		display: flex;
-		flex-wrap: wrap;
+	// .talent-search-container{
+	// 	display: flex;
+	// 	flex-wrap: wrap;
 
-		.talent-search-item-container{
-			padding: 2px;
-			margin-bottom: 20px;
-			border: 1px solid #ddd;
-			.text-container{
-				line-height: 15px;
-				padding: 2px 5px;
+	// 	.talent-search-item-container{
+	// 		padding: 2px;
+	// 		margin-bottom: 20px;
+	// 		border: 1px solid #ddd;
+	// 		.text-container{
+	// 			line-height: 15px;
+	// 			padding: 2px 5px;
+	// 			font-size: 11px;
+	// 			text-align: center;
+	// 		}
+
+	// 		&:nth-of-type(5n+1){
+	// 			display: block;
+	// 		}
+	// 		.image-container{
+	// 			min-height: 200px;
+	// 			max-height: 200px;
+	// 			overflow: hidden;
+	// 			background-color: #eee;
+	// 		  	display: flex;
+	// 			justify-content: center;
+	// 			img{
+	// 				width: 100%;
+	// 				flex: 0 1 auto;
+	// 				align-self: center;
+	// 			}					
+	// 		}
+	// 	}	
+	// }
+	.footer-area{
+		color: #222;
+		.et-links{
+			a{
+				color: #222;
+			}
+			ul{
 				font-size: 11px;
-				text-align: center;
 			}
+		}
 
-			&:nth-of-type(5n+1){
-				display: block;
+		.et-description{
+			font-size: 11px;
+			.rating-45{
+				background-position: 0px -16px;
 			}
+			.rating-static {
+				width: 60px;
+				height: 16px;
+				padding-right: 130px;
+				background: url('/images/star-rating.png') 0 0 no-repeat;
+			}			
+		}
+
+		.celebrity-advice-container{
+			display: flex;
+			flex-wrap: wrap;
 			.image-container{
-				min-height: 200px;
-				max-height: 200px;
-				overflow: hidden;
-				background-color: #eee;
 			  	display: flex;
 				justify-content: center;
 				img{
@@ -70,6 +110,6 @@
 					align-self: center;
 				}					
 			}
-		}	
+		}		
 	}
 }
