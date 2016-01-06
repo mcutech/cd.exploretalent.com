@@ -40,9 +40,11 @@ handler.prototype.refresh = function() {
 	self.core.resource.campaign.get(data)
 		.then(function(res) {
 			_.each(res.data, function(campaign) {
-				_.remove(campaign.bam_role.schedules, function(s) {
-					return s.rating == 0;
-				});
+				if (campaign.bam_role) {
+					_.remove(campaign.bam_role.schedules, function(s) {
+						return s.rating == 0;
+					});
+				}
 			});
 
 			self.core.service.databind('#campaigns-list', res);
