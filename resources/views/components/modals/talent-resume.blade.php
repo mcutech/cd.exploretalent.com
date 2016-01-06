@@ -7,6 +7,15 @@
 			</div>
 			<div class="modal-body">
 				<div class="row">
+					<div class="col-md-12">
+						<label>Talent Name:</label>
+						<span data-bind="<%= fname %>"></span>
+						<span data-bind="<%= lname %>"></span>
+					</div>
+					<div class="col-md-12">
+						<label>Talent ID:</label>
+						<span data-bind="<%= talentnum %>"></span>
+					</div>
 				<div class="col-md-3">
 					<div class="">
 						<img data-bind="<%= getPrimaryPhoto() %>" class="margin-top-large" width="100%">
