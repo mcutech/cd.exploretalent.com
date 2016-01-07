@@ -7,11 +7,21 @@
 			</div>
 			<div class="modal-body">
 				<div class="row">
+					<div class="col-md-12">
+						<label>Talent Name:</label>
+						<span data-bind="<%= fname %>"></span>
+						<span data-bind="<%= lname %>"></span>
+					</div>
+					<div class="col-md-12">
+						<label>Talent ID:</label>
+						<span data-bind="<%= talentnum %>"></span>
+					</div>
 				<div class="col-md-3">
 					<div class="">
 						<img data-bind="<%= getPrimaryPhoto() %>" class="margin-top-large" width="100%">
 						<button class="btn btn-primary btn-xs btn-block mt-5 margin-top-small">View Full Profile</button>
-						<button class="btn btn-default btn-xs btn-block mt-5 view-photos">View Photos</button>
+						<a data-toggle="modal" data-bind="<%= talentnum %>" data-bind-target="data-id" id="view-resume-photos" data-target="#talent-photos-modal" class="btn btn-default btn-xs btn-block mt-5"><span>View Photos</span></a>
+						{{-- <button class="btn btn-default btn-xs btn-block mt-5 view-photos">View Photos</button> --}}
 					</div>
 				</div>
 				<div class="col-md-9">
