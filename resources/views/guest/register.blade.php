@@ -220,8 +220,8 @@
 			<div class="panel text-center panel-design">
 				<div class="panel-body">
 				<ul class="list-inline margin-zero">
-					<li><span class="panel-body-in-title title">Talent Agents</span></li>
-					<li><span class="panel-body-in-title text-default text-underline">Email us: <a href=""><u>CD@exploretalent.com</u></a></span></li>
+					<li><span class="panel-body-in-title title hide">Talent Agents</span></li>
+					<li><span class="panel-body-in-title text-default text-underline">Email us: <a href=""><u>cd@exploretalent.com</u></a></span></li>
 				</ul>
 				</div>
 			</div>
