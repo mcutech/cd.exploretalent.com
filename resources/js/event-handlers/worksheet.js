@@ -39,12 +39,14 @@ handler.prototype.refresh = function() {
 
 	self.core.resource.campaign.get(data)
 		.then(function(res) {
+			_.remove(res.data, function(campaign) {
+				return campaign.bam_role == null;
+			});
+
 			_.each(res.data, function(campaign) {
-				if (campaign.bam_role) {
-					_.remove(campaign.bam_role.schedules, function(s) {
-						return s.rating == 0;
-					});
-				}
+				_.remove(campaign.bam_role.schedules, function(s) {
+					return s.rating == 0;
+				});
 			});
 
 			self.core.service.databind('#campaigns-list', res);
