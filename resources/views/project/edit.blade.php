@@ -459,7 +459,7 @@
 										<input type="checkbox" name="manual-market-checkbox" id="market_vancouver_bc"> <span class="lbl">Vancouver, BC</span>
 									</label>
 								</div>
-							</div>	
+							</div>
 						</div>
 					</div>
 

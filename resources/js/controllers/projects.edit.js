@@ -8,7 +8,7 @@ module.exports = function(core, user, projectId) {
 		dateFormat: 'yy-mm-dd'
 	});
 	$('#bs-datepicker-submissiondeadline').mask('9999-99-99');
-	
+
 	$('#bs-datepicker-audition').datepicker({
 		dateFormat: 'yy-mm-dd'
 	});
@@ -18,7 +18,7 @@ module.exports = function(core, user, projectId) {
 		dateFormat: 'yy-mm-dd'
 	});
 	$('#bs-datepicker-shootdate').mask('9999-99-99');
-	
+
 	$('#bs-datepicker-open-call').datepicker({
 		dateFormat: 'DD, MM dth'
 	});
@@ -30,7 +30,7 @@ module.exports = function(core, user, projectId) {
 		    // Allow: backspace, delete, tab, escape, and enter
 		    if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110]) !== -1 ||
 		         // Allow: Ctrl+A, Command+A
-		        (e.keyCode == 65 && ( e.ctrlKey === true || e.metaKey === true ) ) || 
+		        (e.keyCode == 65 && ( e.ctrlKey === true || e.metaKey === true ) ) ||
 		         // Allow: home, end, left, right, down, up
 		        (e.keyCode >= 35 && e.keyCode <= 40)) {
 		             // let it happen, don't do anything
@@ -51,5 +51,5 @@ module.exports = function(core, user, projectId) {
 	$('#toggle-manual-markets-div').on('click', handler.toggleManualMarketsDiv);
 
 	$('#toggle-all-markets-checked').on('click', handler.toggleAllMarketsChecked);
-			
+
 };
