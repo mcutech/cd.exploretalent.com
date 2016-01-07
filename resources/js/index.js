@@ -53,6 +53,8 @@ jscore.run(function(core) {
 		.add('/projects/create', 'projects.create')
 		.add('/projects/{projectId}', 'project.show')
 		.add('/projects/{projectId}/edit', 'projects.edit')
+	    .add('/messages/{projectId}/{roleId}', 'message')
+	    .add('/messages/{projectId}', 'message')
 	    .add('/messages', 'message')
 
 		.add('/projects/{projectId}/roles/{roleId}/matches', 'role.match')
