@@ -109,10 +109,19 @@ handler.prototype.updateScheduleCDStatus = function(e) {
 	var status = 0;
 
 	if ($element.hasClass('callback-button')) {
-		status = 2;
+
+		if($element.hasClass('btn-success')){
+			status = 1;
+		}else
+			status = 2;
 	}
+
 	else if ($element.hasClass('hired-button')) {
-		status = 3;
+
+		if($element.hasClass('btn-success')){
+			status = 1;
+		}else
+			status = 3;
 	}
 
 	var data = {
