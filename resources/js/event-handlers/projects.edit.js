@@ -26,7 +26,6 @@ handler.prototype.getProjectInfo = function(e) {
 
 	return self.core.resource.project.get(data)
 		.then(function(res) {
-			console.log(res);
 			if (res.total > 0) {
 				var casting = res.data[0];
 
@@ -68,7 +67,6 @@ handler.prototype.getProjectInfo = function(e) {
 handler.prototype.updateProject = function(e){
 
 	e.preventDefault();
-
 	var projectname = $('#project-name').val();
 	var category = $('#project-category').val();
 
@@ -177,6 +175,7 @@ handler.prototype.updateProject = function(e){
 			asap : asaptimestamp,
 			rate : rate,
 			rate_des: ratedes,
+			status : 0,
 			aud_timestamp: auditiontimestamp,
 			shoot_timestamp: shoottimestamp,
 			union2: union,
