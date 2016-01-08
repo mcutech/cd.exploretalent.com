@@ -108,34 +108,49 @@ module.exports = function(core) {
 			return;
 		}
 
-		var user = {
-			email: email,
-			password: pass
+		var data = {
+			query : [
+				[ 'where', 'email', '=', email ]
+			]
 		}
 
-		core.resource.user.post(user)
-			.then(function(result) {
-				setTimeout(function(){
-					core.service.rest.post(core.config.api.base + '/sessions', { email : email, password : pass })
-						.then(function(result){
-							var data = {
-								lname	: lname ,
-								fname	: fname ,
-								email1	: email,
-								phone1  : phone,
-								pass	: pass,
-								status	: 1
-							};
-							return core.resource.cd_user.post(data);
-						})
+		core.resource.user.get(data)
+			.then(function(res) {
+				if (res.total > 0) {
+					$('#email').focus().css("border-color","#b94a48");
+					$('#req-email').show().delay(5000).fadeOut();
+					$('#req-emailtxt').text('Email already in use.').show().delay(5000).fadeOut();
+				}
+				else {
+					var user = {
+						email: email,
+						password: pass
+					}
+
+					core.resource.user.post(user)
 						.then(function(result) {
-							window.location = '/projects';
-						}, function(){
-							$('#error-signup').show().delay(5000).fadeOut();
+							setTimeout(function(){
+								core.service.rest.post(core.config.api.base + '/sessions', { email : email, password : pass })
+									.then(function(result){
+										var data = {
+											lname	: lname ,
+											fname	: fname ,
+											email1	: email,
+											phone1  : phone,
+											pass	: pass,
+											status	: 1
+										};
+										return core.resource.cd_user.post(data);
+									})
+									.then(function(result) {
+										window.location = '/projects';
+									}, function(){
+										$('#error-signup').show().delay(5000).fadeOut();
+									});
+							}, 1000);
+
 						});
-				}, 1000);
-
-			});
-
+				}
+			})
 	});
 };
