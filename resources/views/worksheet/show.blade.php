@@ -63,7 +63,7 @@
 											<div class="padding-small">
 												<div class="text-semibold">
 													<span data-bind="<%= submission ? 'Self Submitted on ' : 'Added to Like It List on ' %>"></span>
-													<span data-bind="<%= moment(created_at).format('MM-DD-YY hh:mm A') %>"></span>
+													<span data-bind="<%= moment(created_at).utcOffset(-480).format('MM-DD-YY hh:mm A') %>"></span>
 												</div>
 												<div>
 													<span data-bind="<%= campaign.description %>" data-bind-target="html"></span>
@@ -72,7 +72,7 @@
 													<div class="message row" data-bind-template="#messages" data-bind-value="conversation.messages">
 														<div class="col-md-12">
 															<span data-bind="<%= user.bam_talentci ? user.bam_talentci.getFullName() : 'Me'  %>"></span>
-															<span class="pull-right" data-bind="<%= moment(created_at).utcOffset(0).fromNow() %>"></span>
+															<span class="pull-right" data-bind="<%= moment(created_at).utcOffset(-480).fromNow() %>"></span>
 														</div>
 														<div class="col-md-12">
 															<span data-bind="<%= body %>"></span>
