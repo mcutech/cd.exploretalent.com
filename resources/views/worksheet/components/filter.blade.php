@@ -82,7 +82,7 @@
 						<div class="tab-content no-padding-hr padding-top-zero-zz-lg no-padding-b">
 							<div class="tab-pane fade active in">
 								<div class="display-block margin-bottom-small scheduled-talent">
-									<input type="text" class="form-control" name="notes" placeholder="Enter Notes" id="talent-notes-input" max="5" maxlength="5">
+									<input type="text" class="form-control" name="notes" placeholder="Enter Notes" id="talent-notes-input" >
 								</div>
 							</div>
 						</div>
