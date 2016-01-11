@@ -28,8 +28,7 @@ handler.prototype.refresh = function() {
 	}
 
 	promise.then(function() {
-			var data = self.getFilters();
-			return self.campaign.bam_role.getLikeItList(data);
+			return self.getSchedules();
 		})
 		.then(function(res) {
 			_.each(res.data, function(s) {
@@ -39,38 +38,69 @@ handler.prototype.refresh = function() {
 				}
 			});
 
-			console.log(res);
 			self.core.service.databind('#schedules', res);
 		});
 }
 
-handler.prototype.getFilters = function() {
-	var qs = self.core.service.form.serializeObject('#filter-form');
+handler.prototype.getSchedules = function() {
 	var data = {
 		query : [
+			[ 'join', 'bam.laret_users', 'bam.laret_users.bam_talentnum', '=', 'search.talents.talentnum' ],
+			[ 'join', 'bam.laret_schedules', 'bam.laret_schedules.invitee_id', '=', 'bam.laret_users.id' ],
+			[ 'where', 'bam.laret_schedules.bam_role_id', '=', self.campaign.bam_role_id ],
+			[ 'where', 'bam.laret_schedules.rating', '<>', 0 ],
+			[ 'select', 'bam.laret_schedules.id AS schedule_id' ]
 		]
 	};
 
+	var qs = self.core.service.form.serializeObject('#filter-form');
+
 	if (qs.confirmation_status) {
-		data.query.push([ 'where', 'invitee_status', '=', qs.confirmation_status ]);
+		data.query.push([ 'where', 'bam.laret_schedules.invitee_status', '=', qs.confirmation_status ]);
 	}
 
 	if (qs.callback_status) {
-		data.query.push([ 'where', 'status', '=', qs.callback_status ]);
+		data.query.push([ 'where', 'bam.laret_schedules.status', '=', qs.callback_status ]);
 	}
 
 	if (qs.talentname) {
-		data.query.push([ 'whereHas', 'invitee.bam_talentci',
+		data.query.push([ 'where',
 			[
 				[ 'where', 'fname', 'LIKE', '%' + qs.talentname + '%' ],
-				// [ 'orWhere', 'lname', 'LIKE', '%' + qs.talentname + '%' ],
-				// [ 'orWhere', 'talentlogin', 'LIKE', '%' + qs.talentname + '%' ],
-				// [ 'orWhere', 'talentnum', 'LIKE', '%' + qs.talentname + '%' ]
+				[ 'orWhere', 'lname', 'LIKE', '%' + qs.talentname + '%' ],
+				[ 'orWhere', 'talentlogin', 'LIKE', '%' + qs.talentname + '%' ],
+				[ 'orWhere', 'talentnum', 'LIKE', '%' + qs.talentname + '%' ]
 			]
 		]);
 	}
 
-	return data;
+	if (qs.notes) {
+		data.query.push([ 'join', 'bam.laret_schedule_notes', 'bam.laret_schedule_notes.schedule_id', '=', 'bam.laret_schedules.id' ])
+		data.query.push([ 'where', 'bam.laret_schedule_notes.body', 'LIKE', '%' + qs.notes + '%' ]);
+	}
+
+	return self.core.resource.search_talent.get(data)
+		.then(function(res) {
+			var schedule_ids = _.map(res.data, function(talent) {
+				return talent.schedule_id;
+			});
+
+			schedule_ids.push(0);
+
+			var data2 = {
+				query : [
+					[ 'whereIn', 'schedules.id', schedule_ids ],
+					[ 'with', 'invitee.bam_talentci.bam_talentinfo1' ],
+					[ 'with', 'invitee.bam_talentci.bam_talentinfo2' ],
+					[ 'with', 'invitee.bam_talentci.bam_talent_media2' ],
+					[ 'with', 'schedule_notes.user.bam_cd_user' ],
+					[ 'with', 'conversation.messages.user.bam_talentci' ],
+					[ 'with', 'bam_role' ],
+				]
+			}
+
+			return self.core.resource.schedule.get(data2);
+		});
 }
 
 handler.prototype.updateScheduleStatus = function(e) {
