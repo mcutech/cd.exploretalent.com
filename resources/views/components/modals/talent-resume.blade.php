@@ -19,7 +19,7 @@
 				<div class="col-md-3">
 					<div class="">
 						<img data-bind="<%= getPrimaryPhoto() %>" class="margin-top-large" width="100%">
-						<button class="btn btn-primary btn-xs btn-block mt-5 margin-top-small">View Full Profile</button>
+						<a class="btn btn-primary btn-xs btn-block mt-5 margin-top-small" data-bind="http://www.exploretalent.com/<%= talentlogin %>" target="_blank">View Full Profile</a>
 						<a data-toggle="modal" data-bind="<%= talentnum %>" data-bind-target="data-id" id="view-resume-photos" data-target="#talent-photos-modal" class="btn btn-default btn-xs btn-block mt-5"><span>View Photos</span></a>
 						{{-- <button class="btn btn-default btn-xs btn-block mt-5 view-photos">View Photos</button> --}}
 					</div>
