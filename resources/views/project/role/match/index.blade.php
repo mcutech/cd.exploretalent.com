@@ -20,10 +20,13 @@
 				<div id="role-match" class="col-md-9 talents-search-result" style="display:none;">
 					<div class="row-fluid clearfix top-results-heading margin-bottom-normal">
 						<div class="col-md-6">
-							<div class="panel margin-bottom-small">
-								<div class="padding-normal">
+							<div id="like-it-list-div" class="panel margin-bottom-small">
+								<div class="padding-normal" data-bind="<%= role.schedule_import ? 0 : 1 %>" data-bind-target="visibility">
 									<button id="rate-all-button" class="btn btn-defaut">Add all to Like It List</button>
 									<span class="text-primary"><a data-bind="/projects/<%= casting_id %>/roles/<%= role.role_id %>/like-it-list" href="">You have <span data-bind="<%= role.likeitlist.total %>"></span> in your like it list.</a></span>
+								</div>
+								<div class="padding-normal" data-bind="<%= role.schedule_import ? 1 : 0 %>" data-bind-target="visibility">
+									<span class="text-primary" data-bind="Adding <%= role.schedule_import ? role.schedule_import.count_done : 0 %> of <%= role.schedule_import ? role.schedule_import.count_total : 0 %> talents to Like It List. <%= role.schedule_import ? role.schedule_import.estimated_time : '' %>"></span>
 								</div>
 							</div>
 						</div>

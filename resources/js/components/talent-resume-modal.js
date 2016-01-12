@@ -102,4 +102,9 @@ module.exports = function(core, user) {
 		}
 	});
 
+	// close resume modal before opening photo modal
+	$(document).on('click', '#view-resume-photos', function(){
+		$('#talent-resume-modal').modal('toggle');
+	});
+
 }
