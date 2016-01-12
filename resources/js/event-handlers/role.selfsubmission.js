@@ -33,15 +33,49 @@ handler.prototype.refreshProjectDetails = function() {
 		})
 }
 
-handler.prototype.refreshLikeItList = function() {
-	return self.project.role.getLikeItList()
-		.then(function(result) {
+handler.prototype.refreshLikeItList = function(soft) {
+	var data = {
+		query : [
+			[ 'where', 'bam_role_id', '=', self.roleId ],
+			[ 'where', 'bam_user_id', '=', 0 ],
+			[ 'where', 'status', '<', 2 ]
+		]
+	};
 
+	return self.core.resource.schedule_import.get(data)
+		.then(function(res) {
+			self.project.role.schedule_import = _.first(res.data);
+
+			if (self.project.role.schedule_import) {
+				var elapsed = new Date() - new Date(self.project.role.schedule_import.created_at + ' GMT');
+				var rate = self.project.role.schedule_import.count_done / (elapsed / 1000);
+				var remaining = (self.project.role.schedule_import.count_total - self.project.role.schedule_import.count_done) / rate;
+
+				if (rate) {
+					self.project.role.schedule_import.estimated_time = 'Estimated ' + Math.floor(remaining / 60) + ' minutes ' + Math.floor(remaining % 60) + ' second/s remaining.';
+				}
+				else {
+					self.project.role.schedule_import.estimated_time = 'Calculating remaining time...';
+				}
+			}
+
+			return self.project.role.getLikeItList();
+		})
+		.then(function(result) {
 			self.project.role.likeitlist = result;
 			self.core.service.databind('.page-header', self.project);
 			self.core.service.databind('#submissions-sub-menu', self.project);
+			self.core.service.databind('#like-it-list-div', self.project);
 
-			return self.refreshSelfSubmissions();
+			if (!soft) {
+				self.refreshSelfSubmissions();
+			}
+
+			if (self.project.role.schedule_import) {
+				setTimeout(function() {
+					self.refreshLikeItList(true);
+				}, 5000);
+			}
 		});
 }
 
@@ -453,13 +487,13 @@ handler.prototype.editNoteForTalent = function(e) {
 
 handler.prototype.addToMarket = function() {
 	var txt = ($('#jquery-select2-example').select2('data').text);
-	
+
 	var txt1 = _.find(self.marketscheck, function(val){
 		return val.name == txt;
 	});
 	if(!txt1){
 		self.marketscheck.push({ name : txt , check : 'check'});
-	} 
+	}
 	//console.log(self.project.market_checks);
 	self.project.market_checks = self.marketscheck;
 	self.core.service.databind('#talent-filter-form', self.project);
@@ -472,12 +506,12 @@ handler.prototype.removeFromMarket = function() {
 	var rmv = _.find(self.marketscheck, function(n, ind){
 		if(n.name.replace(/\s/g, '').replace(/,/g, '') == id){
 			if(n.check == 'check'){
-				self.marketscheck[ind].check = 'uncheck';	
+				self.marketscheck[ind].check = 'uncheck';
 			} else {
 				self.marketscheck[ind].check = 'check';
 			}
 			//self.marketscheck[ind].check = 'uncheck';
-		} 
+		}
 	});
 	console.log(self.project.market_checks);
 	self.project.market_checks = self.marketscheck;
