@@ -25,11 +25,7 @@ module.exports = function(core, user, projectId, roleId) {
 
 	$("#jquery-select2-example").on('change', handler.addToMarket);
 	$(document).on('click', '.check-markets', handler.removeFromMarket);
-
-	$(document).on('click', '#view-resume-photos', function(){
-		$('#talent-resume-modal').modal('toggle');
-	});
-
+	
 	$(document).on('click', '#search-talent-btn', handler.refreshMatches);
 
 	$(document).on('keydown', '#search-talent-input', function(e) {
