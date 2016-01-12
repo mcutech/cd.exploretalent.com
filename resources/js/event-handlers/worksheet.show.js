@@ -19,6 +19,7 @@ handler.prototype.refresh = function() {
 				[ 'with', 'bam_role.bam_casting' ]
 			]
 		};
+
 		promise = self.core.resource.campaign.get(data)
 			.then(function(res){
 				self.campaign = res;
@@ -140,18 +141,22 @@ handler.prototype.updateScheduleCDStatus = function(e) {
 
 	if ($element.hasClass('callback-button')) {
 
-		if($element.hasClass('btn-success')){
+		if($element.hasClass('btn-success')) {
 			status = 1;
-		}else
+		}
+		else {
 			status = 2;
+		}
 	}
 
 	else if ($element.hasClass('hired-button')) {
 
-		if($element.hasClass('btn-success')){
+		if($element.hasClass('btn-success')) {
 			status = 1;
-		}else
+		}
+		else {
 			status = 3;
+		}
 	}
 
 	var data = {

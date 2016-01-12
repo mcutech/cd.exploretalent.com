@@ -36,22 +36,56 @@ handler.prototype.refreshProjectDetails = function() {
 
 			$('#roles-list').val(self.project.role.role_id);
 			self.core.service.databind('#talent-filter-form', self.project);
-			console.log(self.project);
 
 			return self.refreshLikeItList();
 		});
 }
 
-handler.prototype.refreshLikeItList = function() {
-	return self.project.role.getLikeItList()
+handler.prototype.refreshLikeItList = function(soft) {
+	var data = {
+		query : [
+			[ 'where', 'bam_role_id', '=', self.roleId ],
+			[ 'where', 'bam_user_id', '=', 0 ],
+			[ 'where', 'status', '<', 2 ]
+		]
+	};
+
+	return self.core.resource.schedule_import.get(data)
+		.then(function(res) {
+			self.project.role.schedule_import = _.first(res.data);
+
+			if (self.project.role.schedule_import) {
+				var elapsed = new Date() - new Date(self.project.role.schedule_import.created_at + ' GMT');
+				var rate = self.project.role.schedule_import.count_done / (elapsed / 1000);
+				var remaining = (self.project.role.schedule_import.count_total - self.project.role.schedule_import.count_done) / rate;
+
+				if (rate) {
+					self.project.role.schedule_import.estimated_time = 'Estimated ' + Math.floor(remaining / 60) + ' minutes ' + Math.floor(remaining % 60) + ' second/s remaining.';
+				}
+				else {
+					self.project.role.schedule_import.estimated_time = 'Calculating remaining time...';
+				}
+			}
+
+			return self.project.role.getLikeItList();
+		})
 		.then(function(result) {
 			self.project.role.likeitlist = result;
 			self.core.service.databind('.page-header', self.project);
 			self.core.service.databind('#submissions-sub-menu', self.project);
-			self.refreshMatches();
+			self.core.service.databind('#like-it-list-div', self.project);
+
+			if (!soft) {
+				self.refreshMatches();
+			}
+
+			if (self.project.role.schedule_import) {
+				setTimeout(function() {
+					self.refreshLikeItList(true);
+				}, 5000);
+			}
 		});
 }
-
 
 handler.prototype.refreshMatches = function() {
 	var qs = self.core.service.query_string();
@@ -63,7 +97,6 @@ handler.prototype.refreshMatches = function() {
 
 	self.core.resource.search_talent.get(data)
 		.then(function(res) {
-			console.log(res)
 			talents = res;
 			if (talents.data.length < 1) {
 				$('#role-match-loader').hide();
@@ -156,7 +189,6 @@ handler.prototype.refreshMatches = function() {
 			});
 
 			self.core.service.databind('#role-match', self.project);
-			//console.log(self.project)
 			self.core.service.paginate('#matches-pagination', { total : self.project.role.matches.total, class : 'pagination', name : 'page' });
 			if(talents.total < 25) {
 				$('#matches-pagination').hide();
@@ -164,7 +196,7 @@ handler.prototype.refreshMatches = function() {
 			else {
 				$('#matches-pagination').show();
 			}
-			
+
 			$('#role-match-loader').hide();
 			$('#role-match').show();
 		});
@@ -541,7 +573,6 @@ handler.prototype.addToMarket = function() {
 	if(!txt1){
 		self.marketscheck.push({ name : txt , check : 'check'});
 	}
-	console.log(self.project.market_checks);
 	self.project.market_checks = self.marketscheck;
 	self.core.service.databind('#talent-filter-form', self.project);
 	$('#jquery-select2-example').select2('val', '');
@@ -560,7 +591,6 @@ handler.prototype.removeFromMarket = function() {
 			//self.marketscheck[ind].check = 'uncheck';
 		}
 	});
-	console.log(self.project.market_checks);
 	self.project.market_checks = self.marketscheck;
 	self.core.service.databind('#talent-filter-form', self.project);
 
