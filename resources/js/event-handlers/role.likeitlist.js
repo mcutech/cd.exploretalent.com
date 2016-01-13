@@ -301,7 +301,8 @@ handler.prototype.refreshInvitation = function() {
 	.then(function(res){
 		console.log(res);
 		if(res.total > 0){
-			$("#invitetoaudition").html(' You have already sent an invitation <br>on '+ res.data[0].updated_at);
+			$("#invitetoaudition-text").html('<span class="text-muted">You have already sent an invitation on</span> '+ res.data[0].updated_at + 
+				'<a href="" class="btn-link margin-left-small"><i class="fa fa-pencil"></i> Manage Here</a>');
 			$('#invitetoauditionbutton').attr("disabled", true);
 		}
 	});
