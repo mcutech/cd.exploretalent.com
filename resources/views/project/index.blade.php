@@ -40,7 +40,7 @@
 			  		<div class="panel-heading panel-active" data-bind="<%= (status == '1') ? '1' : '0' %>" data-bind-target="visibility">
 			  			<a class="accordion-toggle collapsed" data-toggle="collapse" data-bind="#jobs-collapse-<%= casting_id %>">
 			  			<span data-bind="<%= name %>"></span><span class="label label-info margin-left-small">Active</span>
-			  			<span data-bind="project_<%= casting_id %>" data-bind-target="id" class="project-overview-btn label label-success font-size-small-normal-zz padding-small-zz margin-top-small-zz-xs">
+			  			<span data-bind="project_<%= casting_id %>" data-bind-target="id" class="project-overview-btn label label-success font-size-small-normal-zz padding-small-zz margin-top-small-zz-xs pull-right">
 							Project Overview
 						</span>
 			  			</a>
@@ -49,7 +49,7 @@
 			  		<div class="panel-heading panel-inactive" data-bind="<%= (status == '0') ? '1' : '0' %>" data-bind-target="visibility">
 				  		<a class="accordion-toggle collapsed" data-toggle="collapse" data-bind="#jobs-collapse-<%= casting_id %>">
 			  			<span data-bind="<%= name %>"></span><span class="label label-warning margin-left-small">Pending Review</span>
-			  			<span data-bind="project_<%= casting_id %>" data-bind-target="id" class="project-overview-btn label label-success font-size-small-normal-zz padding-small-zz margin-top-small-zz-xs">
+			  			<span data-bind="project_<%= casting_id %>" data-bind-target="id" class="project-overview-btn label label-success font-size-small-normal-zz padding-small-zz margin-top-small-zz-xs pull-right">
 							Project Overview
 						</span>
 			  			</a>
