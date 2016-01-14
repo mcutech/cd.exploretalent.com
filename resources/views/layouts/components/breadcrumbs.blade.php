@@ -1,6 +1,6 @@
 <ul class="breadcrumb breadcrumb-page">
 	<li>
-		<a href="/">Home</a>
+		<a href="/projects">Home</a>
 	</li>
 	@if (isset($pages))
 		@foreach ($pages as $page)
