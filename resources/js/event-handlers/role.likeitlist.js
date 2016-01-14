@@ -22,18 +22,18 @@ handler.prototype.refreshProjectDetails = function() {
 	};
 
 	self.core.resource.project.get(data)
-		.then(function(result) {
-			self.project = result;
-			self.core.service.databind('#roles-list', self.project);
-			// get current role object
-			self.project.role = _.find(self.project.bam_roles, function (role) {
-				return role.role_id == self.roleId;
-			});
-			// $('#roles-list').val(self.project.role.role_id);
-			self.project.date = self.core.service.date;
+	.then(function(result) {
+		self.project = result;
+		self.core.service.databind('#roles-list', self.project);
+		// get current role object
+		self.project.role = _.find(self.project.bam_roles, function (role) {
+			return role.role_id == self.roleId;
+		});
+		// $('#roles-list').val(self.project.role.role_id);
+		self.project.date = self.core.service.date;
 
-			return self.refreshLikeItList();
-		})
+		return self.refreshLikeItList();
+	})
 
 }
 
@@ -44,20 +44,20 @@ handler.prototype.refreshLikeItList = function() {
 	};
 
 	return self.project.role.getLikeItList(data)
-		.then(function(result) {
-			self.project.role.likeitlist = result;
-			self.core.service.databind('.page-header', self.project);
-			self.core.service.databind('#submissions-sub-menu', self.project);
-			self.core.service.databind('#like-it-list', self.project);
-			self.core.service.databind('#invite-to-audition-modal', self.project);
+	.then(function(result) {
+		self.project.role.likeitlist = result;
+		self.core.service.databind('.page-header', self.project);
+		self.core.service.databind('#submissions-sub-menu', self.project);
+		self.core.service.databind('#like-it-list', self.project);
+		self.core.service.databind('#invite-to-audition-modal', self.project);
 
-			self.core.service.paginate('#like-it-list-pagination', { class : 'pagination', total : result.total, name : 'page' });
+		self.core.service.paginate('#like-it-list-pagination', { class : 'pagination', total : result.total, name : 'page' });
 
-			self.getFavoriteTalents();
+		self.getFavoriteTalents();
 
-			$('#loading-div').hide();
-			$('#roles-list').val(self.project.role.role_id);
-		});
+		$('#loading-div').hide();
+		$('#roles-list').val(self.project.role.role_id);
+	});
 }
 
 handler.prototype.getFavoriteTalents = function() {
@@ -74,12 +74,12 @@ handler.prototype.getFavoriteTalents = function() {
 		};
 
 		self.core.resource.favorite_talent.get(data)
-			.then(function(result) {
-				self.favTalent = result;
-				_.each(result.data, function(talent) {
-					$('#favorite-' + talent.bam_talentci.user.id).removeClass('text-light-gray').addClass('text-warning');
-				});
+		.then(function(result) {
+			self.favTalent = result;
+			_.each(result.data, function(talent) {
+				$('#favorite-' + talent.bam_talentci.user.id).removeClass('text-light-gray').addClass('text-warning');
 			});
+		});
 	}
 }
 
@@ -90,34 +90,34 @@ handler.prototype.rateSchedule = function(e) {
 	var id = $parent.data('id').replace('schedule-', '');
 
 	self.core.resource.schedule.patch({ scheduleId : id, rating : rating })
-		.then(function() {
-			$parent.find('.rating-button').removeClass('active');
-			$btn.addClass('active');
-		});
+	.then(function() {
+		$parent.find('.rating-button').removeClass('active');
+		$btn.addClass('active');
+	});
 }
 
 handler.prototype.removeAllLikeItList = function() {
 	if (confirm('Are you sure you want to remove all Like It List entries?')) {
 		self.project.role.deleteLikeItList()
-			.then(function() {
-				alert('Like It List entries removed.');
-			});
+		.then(function() {
+			alert('Like It List entries removed.');
+		});
 	}
 }
 
 handler.prototype.unrateSchedule = function(e) {
-		var id;
-		if ($(e.target).is('a'))
-			id = $(e.target).attr('data-id');
-		else {
-			id = $(e.target).parents('a').attr('data-id');
-		}
+	var id;
+	if ($(e.target).is('a'))
+		id = $(e.target).attr('data-id');
+	else {
+		id = $(e.target).parents('a').attr('data-id');
+	}
 
-		self.core.resource.schedule.patch({ scheduleId : id, rating : 0 })
-			.then(function() {
-				alert('Entry removed.');
-				self.refreshLikeItList();
-			});
+	self.core.resource.schedule.patch({ scheduleId : id, rating : 0 })
+	.then(function() {
+		alert('Entry removed.');
+		self.refreshLikeItList();
+	});
 }
 
 handler.prototype.unrateCheckedSchedules = function(e) {
@@ -164,14 +164,14 @@ handler.prototype.addToFav = function(){
 
 	if(talents){
 		self.core.resource.favorite_talent.delete({ favoriteId : talentnum})
-			.then(function(res){
-				self.refreshProjectDetails();
-			});
+		.then(function(res){
+			self.refreshProjectDetails();
+		});
 	} else {
 		self.core.resource.favorite_talent.post({ bam_cd_user_id : self.user.bam_cd_user_id, bam_talentnum : talentnum})
-			.then(function(res){
-				self.refreshProjectDetails();
-			});
+		.then(function(res){
+			self.refreshProjectDetails();
+		});
 	}
 }
 
@@ -180,8 +180,8 @@ handler.prototype.getDetailsForAddNoteModal = function() {
 	self.core.service.databind('#cd-full-name-span', self.user);
 
 	var scheduleId = $(this).attr('id');
-		scheduleId = scheduleId.split("_");
-		scheduleId = scheduleId[1];
+	scheduleId = scheduleId.split("_");
+	scheduleId = scheduleId[1];
 
 	var data = {
 		scheduleId : scheduleId
@@ -189,16 +189,16 @@ handler.prototype.getDetailsForAddNoteModal = function() {
 
 
 	_.find(self.project.role.likeitlist.data, function(obj) {
-	  if(obj.id == scheduleId) {
-	  	self.core.service.databind('#utility-buttons', obj);
-	  }
+		if(obj.id == scheduleId) {
+			self.core.service.databind('#utility-buttons', obj);
+		}
 	});
 
 }
 
 handler.prototype.getDetailsForEditNoteModal = function() {
 	var ids = $(this).attr('id');
-		ids = ids.split("_");
+	ids = ids.split("_");
 
 	var scheduleId = ids[1];
 	var noteId = ids[2];
@@ -230,8 +230,8 @@ handler.prototype.addNoteForTalent = function(e) {
 	e.preventDefault();
 
 	var scheduleId = $(this).attr('id');
-		scheduleId = scheduleId.split("_");
-		scheduleId = scheduleId[1];
+	scheduleId = scheduleId.split("_");
+	scheduleId = scheduleId[1];
 
 	var noteBody = $('.talent-note-body').val();
 
@@ -261,7 +261,7 @@ handler.prototype.editNoteForTalent = function(e) {
 	e.preventDefault();
 
 	var ids = $(this).attr('id');
-		ids = ids.split("_");
+	ids = ids.split("_");
 
 	var	scheduleId = ids[1];
 	var noteId = ids[2];
@@ -301,9 +301,9 @@ handler.prototype.refreshInvitation = function() {
 	.then(function(res){
 		console.log(res);
 		if(res.total > 0){
-			$("#invitetoaudition-text").html('<span class="text-muted">You have already sent an invitation on</span> '+ res.data[0].updated_at + 
-				'<a href="" class="btn-link margin-left-small"><i class="fa fa-pencil"></i> Manage Here</a>');
-			$('#invitetoauditionbutton').attr("disabled", true);
+			$("#invitetoaudition-text").html('<span class="text-muted">You have already sent an invitation on</span> '+ res.data[0].updated_at +
+											 '<a href="" class="btn-link margin-left-small"><i class="fa fa-pencil"></i> Manage Here</a>');
+											 $('#invitetoauditionbutton').attr("disabled", true);
 		}
 	});
 }
@@ -316,43 +316,45 @@ handler.prototype.sendInvites = function() {
 	};
 
 	self.core.resource.campaign.get(data)
-		.then(function(res) {
-			var form = self.core.service.form.serializeObject('#invite-to-audition-form');
+	.then(function(res) {
+		var form = self.core.service.form.serializeObject('#invite-to-audition-form');
 
-			var data = [
-				[ 'where', 'rating', '<>', 0 ],
-				[ 'where', 'bam_role_id', '=', self.project.role.role_id ],
-				[ 'join', 'users', 'users.id', '=', 'invitee_id' ],
-				[ 'select', 'bam_talentnum AS talentnum' ]
-			];
+		var data = [
+			[ 'where', 'rating', '<>', 0 ],
+			[ 'where', 'bam_role_id', '=', self.project.role.role_id ],
+			[ 'join', 'users', 'users.id', '=', 'invitee_id' ],
+			[ 'select', 'bam_talentnum AS talentnum' ]
+		];
 
-			var campaignData = {
-				campaign_type_id 	: self.core.resource.campaign_type.CD_INVITE,
-				bam_cd_user_id		: self.user.bam_cd_user_id,
-				bam_role_id			: self.project.role.role_id,
-				when				: form.when,
-				where				: form.where,
-				name				: 'CD Invite Role #' + self.project.role.role_id,
-				description			: form.message,
-				model				: 'Schedule',
-				query				: JSON.stringify(data),
-				replies				: form.replies
-			}
+		var campaignData = {
+			campaign_type_id 	: self.core.resource.campaign_type.CD_INVITE,
+			bam_cd_user_id		: self.user.bam_cd_user_id,
+			bam_role_id			: self.project.role.role_id,
+			when				: form.when,
+			where				: form.where,
+			name				: 'CD Invite Role #' + self.project.role.role_id,
+			description			: form.message,
+			model				: 'Schedule',
+			query				: JSON.stringify(data),
+			replies				: form.replies
+		}
 
-			// update campaign
-			if (res.total) {
-				campaignData.campaignId = _.first(res.data).id;
-				return self.core.resource.campaign.patch(campaignData);
-			}
-			// create campaign
-			else {
-				return self.core.resource.campaign.post(campaignData);
-			}
-		})
-		.then(function(res) {
-			alert('Invitations sent!');
-			$('#invite-to-audition-modal').modal('toggle'); //auto-close modal
-		});
+		// update campaign
+		if (res.total) {
+			campaignData.campaignId = _.first(res.data).id;
+			return self.core.resource.campaign.patch(campaignData);
+		}
+		// create campaign
+		else {
+			return self.core.resource.campaign.post(campaignData);
+		}
+	})
+	.then(function(res) {
+		alert('Invitations sent!');
+		$('#invite-to-audition-modal').modal('toggle'); //auto-close modal
+		self.refreshInvitation();
+		self.refreshProjectDetails();
+	});
 }
 
 module.exports = function(core, user, projectId, roleId) {
