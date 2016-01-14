@@ -88,24 +88,27 @@
 				    <textarea id="role-description-text" class="form-control" rows="3" style="resize: none;" data-validate="required" data-validate-error="This field is required."></textarea>
 			  	</div>
 		    </div>
-			<div class="col-md-12 margin-top-normal">
+			<div class="col-md-3 margin-top-normal">
 				<label>Gender:</label>
+				<div>
+					<label class="checkbox-inline margin-bottom-normal">
+					  <input class="px" type="checkbox" name="gender" id="gender-male-checkbox" value="0">
+					  <span class="lbl">Male</span>
+					</label>
+					<label class="checkbox-inline margin-bottom-normal">
+					  <input class="px" type="checkbox" name="gender" id="gender-female-checkbox" value="0">
+					   <span class="lbl">Female</span>
+					</label>
+					<div class="alert alert-page alert-danger gender-error-required" style="display: none;">This field is required.</div>	  		
+				</div>
 			</div>	    
-			<div class="col-md-3">
-				<label class="checkbox-inline margin-bottom-normal">
-				  <input type="checkbox" name="gender" id="gender-male-checkbox" value="0"> Male
-				</label>
-				<label class="checkbox-inline margin-bottom-normal">
-				  <input type="checkbox" name="gender" id="gender-female-checkbox" value="0"> Female
-				</label>
-				<div class="alert alert-page alert-danger gender-error-required" style="display: none;">This field is required.</div>	  		
-			</div>
-			<div class="col-md-4">
+			
+			<div class="col-md-4 margin-top-normal">
 				<label for="">Age Range: </label><span id="age-range-min"> 0</span> to <span id="age-range-max">100</span> y.o.
 				<div class="ui-slider-age-range"></div>
 			</div>
 
-			<div class="col-md-4">
+			<div class="col-md-4 margin-top-normal">
 				<label for="">Height Range: </label>
 				<span id="height-span">< 2 ft 0 in to 8 ft 0 in</span>
 				<input name="height" id="heightinches" class="display-none" value="22,96">
@@ -116,35 +119,47 @@
 				<label>Ethnicity:</label>
 			</div>
 		    <div class="col-md-12">	    
-				<label class="checkbox-inline-no-margin">
-				  <input type="checkbox" name="ethnicity" id="ethnicity-any" value="0"> Any
+				<label class="checkbox-inline margin-bottom-normal">
+				  <input class="px" type="checkbox" name="ethnicity" id="ethnicity-any" value="0">
+				  <span class="lbl">Any</span>
 				</label>
-				<label class="checkbox-inline-no-margin">
-				  <input type="checkbox" name="ethnicity" id="ethnicity-african" value="0"> African
+				<label class="checkbox-inline margin-bottom-normal">
+				  <input class="px" type="checkbox" name="ethnicity" id="ethnicity-african" value="0">
+				  <span class="lbl">African</span>
 				</label>
-				<label class="checkbox-inline-no-margin">
-				  <input type="checkbox" name="ethnicity" id="ethnicity-african-am" value="0"> African American
+				<label class="checkbox-inline margin-bottom-normal">
+				  <input class="px" type="checkbox" name="ethnicity" id="ethnicity-african-am" value="0">
+				  <span class="lbl">African American</span>
 				</label>	  
-				<label class="checkbox-inline-no-margin">
-				  <input type="checkbox" name="ethnicity" id="ethnicity-asian" value="0"> Asian
+				<label class="checkbox-inline margin-bottom-normal">
+				  <input class="px" type="checkbox" name="ethnicity" id="ethnicity-asian" value="0">
+				  <span class="lbl">Asian</span>
 				</label>
-				<label class="checkbox-inline-no-margin">
-				  <input type="checkbox" name="ethnicity" id="ethnicity-caribbian" value="0"> Caribbean
+				<label class="checkbox-inline margin-bottom-normal">
+				  <input class="px" type="checkbox" name="ethnicity" id="ethnicity-caribbian" value="0">
+				  <span class="lbl">Caribbean</span>
 				</label>
-				<label class="checkbox-inline-no-margin">
-				  <input type="checkbox" name="ethnicity" id="ethnicity-caucasian" value="0"> Caucasian
+				<label class="checkbox-inline margin-bottom-normal">
+				  <input class="px" type="checkbox" name="ethnicity" id="ethnicity-caucasian" value="0">
+				  <span class="lbl">Caucasian</span>
 				</label>						
-				<label class="checkbox-inline-no-margin">
-				  <input type="checkbox" name="ethnicity" id="ethnicity-hispanic" value="0"> Hispanic
+				<label class="checkbox-inline margin-bottom-normal">
+				  <input class="px" type="checkbox" name="ethnicity" id="ethnicity-hispanic" value="0">
+				  <span class="lbl">Hispanic</span>
 				</label>
-				<label class="checkbox-inline-no-margin">
-				  <input type="checkbox" name="ethnicity" id="ethnicity-mediterranean" value="0"> Mediterranean
+				<label class="checkbox-inline margin-bottom-normal">
+				  <input class="px" type="checkbox" name="ethnicity" id="ethnicity-mediterranean" value="0">
+				  <span class="lbl">Mediterranean</span>
+				</label>	
+		    </div>
+		    <div class="col-md-12">
+		    	<label class="checkbox-inline margin-bottom-normal">
+				  <input class="px" type="checkbox" name="ethnicity" id="ethnicity-middle-est" value="0">
+				  <span class="lbl">Middle Eastern</span>
 				</label>	
 				<label class="checkbox-inline margin-bottom-normal">
-				  <input type="checkbox" name="ethnicity" id="ethnicity-middle-est" value="0"> Middle Eastern
-				</label>	
-				<label class="checkbox-inline margin-bottom-normal">
-				  <input type="checkbox" name="ethnicity" id="ethnicity-american-in" value="0"> American Indian
+				  <input class="px" type="checkbox" name="ethnicity" id="ethnicity-american-in" value="0">
+				  <span class="lbl">American Indian</span>
 				</label>
 				<div class="alert alert-page alert-danger ethnicity-error-required" style="display: none;">This field is required.</div>	  	
 		    </div>
@@ -154,31 +169,40 @@
 			</div>
 		    <div class="col-md-12">	    
 				<label class="checkbox-inline margin-bottom-normal">
-				  <input type="checkbox" name="built" id="built-any" value="0"> Any
+				  <input class="px" type="checkbox" name="built" id="built-any" value="0">
+				  <span class="lbl">Any</span>
 				</label>
 				<label class="checkbox-inline margin-bottom-normal">
-				  <input type="checkbox" name="built" id="built-medium" value="0"> Medium
+				  <input class="px" type="checkbox" name="built" id="built-medium" value="0">
+				  <span class="lbl">Medium</span>
 				</label>
 				<label class="checkbox-inline margin-bottom-normal">
-				  <input type="checkbox" name="built" id="built-athletic" value="0"> Athletic
+				  <input class="px" type="checkbox" name="built" id="built-athletic" value="0">
+				  <span class="lbl">Athletic</span>
 				</label>	  
 				<label class="checkbox-inline margin-bottom-normal">
-				  <input type="checkbox" name="built" id="built-bb" value="0"> Body Builder
+				  <input class="px" type="checkbox" name="built" id="built-bb" value="0">
+				  <span class="lbl">Body Builder</span>
 				</label>
 				<label class="checkbox-inline margin-bottom-normal">
-				  <input type="checkbox" name="built" id="built-xlarge" value="0"> Full Figured
+				  <input class="px" type="checkbox" name="built" id="built-xlarge" value="0">
+				  <span class="lbl">Full Figured</span>
 				</label>
 				<label class="checkbox-inline margin-bottom-normal">
-				  <input type="checkbox" name="built" id="built-large" value="0"> Large
+				  <input class="px" type="checkbox" name="built" id="built-large" value="0">
+				  <span class="lbl">Large</span>
 				</label>	
 				<label class="checkbox-inline margin-bottom-normal">
-				  <input type="checkbox" name="built" id="built-petite" value="0"> Petite
+				  <input class="px" type="checkbox" name="built" id="built-petite" value="0">
+				  <span class="lbl">Petite</span>
 				</label>	
 				<label class="checkbox-inline margin-bottom-normal">
-				  <input type="checkbox" name="built" id="built-thin" value="0"> Thin
+				  <input class="px" type="checkbox" name="built" id="built-thin" value="0">
+				  <span class="lbl">Thin</span>
 				</label>
 				<label class="checkbox-inline margin-bottom-normal">
-				  <input type="checkbox" name="built" id="built-lm" value="0"> Lean Muscle
+				  <input class="px" type="checkbox" name="built" id="built-lm" value="0">
+				  <span class="lbl">Lean Muscle</span>
 				</label>
 				<div class="alert alert-page alert-danger built-error-required" style="display: none;">This field is required.</div>					  	
 		    </div>	
@@ -186,41 +210,54 @@
 				<label>Hair Color:</label>
 			</div>
 		    <div class="col-md-10">	    
-				<label class="checkbox-inline-no-margin">
-				  <input type="checkbox" name="hair-color" id="hair-any" value="0"> Any
+				<label class="checkbox-inline margin-bottom-normal">
+				  <input class="px" type="checkbox" name="hair-color" id="hair-any" value="0">
+				  <span class="lbl">Any</span>
 				</label>
-				<label class="checkbox-inline-no-margin">
-				  <input type="checkbox" name="hair-color " id="hair-auburn" value="0"> Auburn
+				<label class="checkbox-inline margin-bottom-normal">
+				  <input class="px" type="checkbox" name="hair-color " id="hair-auburn" value="0">
+				  <span class="lbl">Auburn</span>
 				</label>
-				<label class="checkbox-inline-no-margin">
-				  <input type="checkbox" name="hair-color" id="hair-black" value="0"> Black
+				<label class="checkbox-inline margin-bottom-normal">
+				  <input class="px" type="checkbox" name="hair-color" id="hair-black" value="0">
+				  <span class="lbl">Black</span>
 				</label>	  
-				<label class="checkbox-inline-no-margin">
-				  <input type="checkbox" name="hair-color" id="hair-blonde" value="0"> Blonde
-				</label>
-				<label class="checkbox-inline-no-margin">
-				  <input type="checkbox" name="hair-color" id="hair-brown" value="0"> Brown
-				</label>
-				<label class="checkbox-inline-no-margin">
-				  <input type="checkbox" name="hair-color" id="hair-chestnut" value="0"> Chestnut
-				</label>	
-				<label class="checkbox-inline-no-margin">
-				  <input type="checkbox" name="hair-color" id="hair-dark-brown" value="0"> Dark Brown
-				</label>	
-				<label class="checkbox-inline-no-margin">
-				  <input type="checkbox" name="hair-color" id="hair-grey" value="0"> Gray
+				<label class="checkbox-inline margin-bottom-normal">
+				  <input class="px" type="checkbox" name="hair-color" id="hair-blonde" value="0">
+				  <span class="lbl">Blonde</span>
 				</label>
 				<label class="checkbox-inline margin-bottom-normal">
-				  <input type="checkbox" name="hair-color" id="hair-red" value="0"> Red
+				  <input class="px" type="checkbox" name="hair-color" id="hair-brown" value="0">
+				  <span class="lbl">Brown</span>
+				</label>
+				<label class="checkbox-inline margin-bottom-normal">
+				  <input class="px" type="checkbox" name="hair-color" id="hair-chestnut" value="0">
+				  <span class="lbl">Chestnut</span>
+				</label>	
+				<label class="checkbox-inline margin-bottom-normal">
+				  <input class="px" type="checkbox" name="hair-color" id="hair-dark-brown" value="0">
+				  <span class="lbl">Dark Brown</span>
+				</label>	
+				<label class="checkbox-inline margin-bottom-normal">
+				  <input class="px" type="checkbox" name="hair-color" id="hair-grey" value="0">
+				  <span class="lbl">Gray</span>
+				</label>
+				<label class="checkbox-inline margin-bottom-normal">
+				  <input class="px" type="checkbox" name="hair-color" id="hair-red" value="0">
+				  <span class="lbl">Red</span>
 				</label>		
-				<label class="checkbox-inline margin-bottom-normal">
-				  <input type="checkbox" name="hair-color" id="hair-salt-paper" value="0"> Salt & Pepper
+		    </div>
+		    <div class="col-md-12">
+		    	<label class="checkbox-inline margin-bottom-normal">
+				  <input class="px" type="checkbox" name="hair-color" id="hair-salt-paper" value="0">
+				  <span class="lbl">Salt & Pepper</span>
 				</label>
 				<label class="checkbox-inline margin-bottom-normal">
-				  <input type="checkbox" name="hair-color" id="hair-white" value="0"> White
+				  <input class="px" type="checkbox" name="hair-color" id="hair-white" value="0">
+				  <span class="lbl">White</span>
 				</label>
 				<div class="alert alert-page alert-danger hair-color-error-required" style="display: none;">This field is required.</div>
-		    </div>		        
+		    </div>        
 		  </div>	  
 		</div>
 	</div>
