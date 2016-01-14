@@ -31,7 +31,7 @@ handler.prototype.refreshProjectDetails = function() {
 		});
 		// $('#roles-list').val(self.project.role.role_id);
 		self.project.date = self.core.service.date;
-
+		console.log(self.project);
 		return self.refreshLikeItList();
 	})
 
