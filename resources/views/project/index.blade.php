@@ -44,7 +44,7 @@
 							Project Overview
 						</span>
 			  			</a>
-			  			
+
 			  		</div>
 			  		<div class="panel-heading panel-inactive" data-bind="<%= (status == '0') ? '1' : '0' %>" data-bind-target="visibility">
 				  		<a class="accordion-toggle collapsed" data-toggle="collapse" data-bind="#jobs-collapse-<%= casting_id %>">
@@ -53,13 +53,13 @@
 							Project Overview
 						</span>
 			  			</a>
-			  			
+
 			  		</div>
 			  		<div class="panel-collapse collapse" data-bind="jobs-collapse-<%= casting_id %>" data-bind-target="id" aria-expanded="true" style="">
 			  			<div class="panel-body padding-left-zero-zz-xs padding-right-zero-zz-xs">
                     {{-- 	<div class="row-fluid clearfix margin-bottom-normal">
 			  					<div class="col-md-6">
-			  						
+
 			  					</div>
 			  					<div class="col-md-6">
 			  						<div class="float-right">
