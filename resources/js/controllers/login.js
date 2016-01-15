@@ -18,12 +18,18 @@ module.exports = function(core, user) {
 			return;
 		}
 
-		core.service.rest.post(core.config.api.base + '/sessions', { email : email, password : pass })
+		core.service.rest.post(core.config.api.base.replace('/v1', '') + '/oauth/access_token', {
+				username       : email,
+				password       : pass,
+				client_id      : '74d89ce4c4838cf495ddf6710796ae4d5420dc91',
+				client_secret  : '61c9b2b17db77a27841bbeeabff923448b0f6388',
+				grant_type     : 'password'
+			})
 			.then(function(result) {
 				var qs = core.service.query_string();
 
+				localStorage.setItem('access_token', result.access_token);
 				window.location = qs.redirect ? decodeURIComponent(qs.redirect) : '/projects';
-
 			},
 			function(error){
 				if (error.responseText) {
