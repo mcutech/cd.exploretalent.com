@@ -1,6 +1,10 @@
+@include('layouts.components.stationary-alert')
+
 @extends('layouts.master')
 
 @section('master.body')
+
+
 <div id="main-wrapper">
 	<div id="main-navbar"
 		class="navbar navbar-inverse"
