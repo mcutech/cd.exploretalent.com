@@ -10,6 +10,7 @@ function handler(core, user, projectId, roleId) {
 	self.favTalent = null;
 	self.refreshProjectDetails();
 	self.refreshInvitation();
+	self.inviteStatus = '';
 	// @if ENV='production'
 	$('#when-where-container').hide();
 	// @endif
@@ -293,12 +294,14 @@ handler.prototype.editNoteForTalent = function(e) {
 handler.prototype.refreshInvitation = function() {
 	var data = {
 		query : [
-			['where', 'bam_role_id', self.roleId]
+			['where', 'bam_role_id', self.roleId],
+			['where', 'status', '>', '0']
 		]
 	}
 
 	self.core.resource.campaign.get(data)
 	.then(function(res){
+		console.log(res);
 		console.log(res.data[0].id);
 		// var linktoworksheet = '/audition-worksheet/'+res.data[0].id;
 		if(res.total > 0){
