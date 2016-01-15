@@ -18,14 +18,14 @@ module.exports = function(core, user, projectId, roleId) {
 	$('#view-like-it-list-btn').removeClass('hide');
 
 	//
-	$("#jquery-select2-example").select2({
+	$("#markets-list").select2({
 		allowClear: true,
 		placeholder: "Search market"
 	});
 
-	$("#jquery-select2-example").on('change', handler.addToMarket);
-	$(document).on('click', '.check-markets', handler.removeFromMarket);
-	
+	$("#markets-list").on('change', handler.addToMarket);
+	$(document).on('click', '.market-item', handler.removeFromMarket);
+
 	$(document).on('click', '#search-talent-btn', handler.refreshMatches);
 
 	$(document).on('keydown', '#search-talent-input', function(e) {
