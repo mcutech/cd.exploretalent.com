@@ -9,6 +9,8 @@ function handler(core, user, projectId, roleId) {
 	self.roleId = roleId;
 	self.project = null;
 	self.favTalent = null;
+	self.refreshing = false;
+	self.page = 1;
 	self.refreshProjectDetails();
 }
 
@@ -86,13 +88,16 @@ handler.prototype.refreshLikeItList = function(soft) {
 		});
 }
 
-handler.prototype.refreshMatches = function() {
+handler.prototype.refreshMatches = function(append) {
 	var qs = self.core.service.query_string();
 	var data = self.getFilters();
 	var talents;
+	self.refreshing = true;
 
-	$('#role-match-loader').show();
-	$('#role-match').hide();
+	if (!append) {
+		$('#role-match-loader').show();
+		$('#role-match').hide();
+	}
 
 	self.core.resource.search_talent.get(data)
 		.then(function(res) {
@@ -187,18 +192,13 @@ handler.prototype.refreshMatches = function() {
 				});
 			});
 
-			self.core.service.databind('#role-match', self.project);
-			self.core.service.paginate('#matches-pagination', { total : self.project.role.matches.total, class : 'pagination', name : 'page' });
-			if(talents.total < 25) {
-				$('#matches-pagination').hide();
-			}
-			else {
-				$('#matches-pagination').show();
-			}
+			self.refreshing = false;
+			self.core.service.databind('#role-match', self.project, append);
 
-			$('#role-match-loader').hide();
-			$('#role-match').show();
-			self.project.role.getMatches(0);
+			if (!append) {
+				$('#role-match-loader').hide();
+				$('#role-match').show();
+			}
 		});
 }
 
@@ -428,7 +428,8 @@ handler.prototype.getFilters = function() {
 	var data = {
 		q 	: [
 		],
-		page	: qs.page || 1
+		page	: self.page,
+		per_page: 24
 	};
 
 	if (form.markets.length > 0) {
@@ -578,6 +579,14 @@ handler.prototype.removeFromMarket = function() {
 	});
 
 	self.core.service.databind('#talent-filter-form', self.project);
+}
+
+handler.prototype.loadNextMatches = function() {
+	self.page++;
+
+	if (!self.refreshing) {
+		self.refreshMatches(true);
+	}
 }
 
 module.exports = function(core, user, projectId, roleId) {

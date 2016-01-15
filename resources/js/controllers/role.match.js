@@ -33,4 +33,10 @@ module.exports = function(core, user, projectId, roleId) {
 			$('#search-talent-btn').click();
 		}
 	});
+
+	$(window).on('scroll', function() {
+		if ($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
+			handler.loadNextMatches();
+		}
+	});
 }

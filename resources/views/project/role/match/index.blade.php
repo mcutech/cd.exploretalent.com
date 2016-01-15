@@ -39,8 +39,6 @@
 									<span class="text-normal"> matches for role </span>
 									<span data-bind="<%= role.name %>"></span>.
 								</div>
-								<div id="matches-pagination">
-								</div>
 							</div>
 						</div>
 					</div>
