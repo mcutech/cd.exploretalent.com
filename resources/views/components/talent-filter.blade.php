@@ -26,95 +26,86 @@
 								<div class="row">
 									<div class="col-md-12">
 										<div class="input-group col-md-12">
-											<!-- <input type="text" class="form-control" name="zip" placeholder="Enter Zip Code" id="zip-code" data-bind="<%= zip || '' %>" max="5" maxlength="5">
-											<span class="input-group-btn">
-												<button class="btn" type="button" id="auto-select-markets">
-													<i class="fa fa-caret-right"></i>
-												</button>
-											</span> -->
-											<!-- <select name="select-boxes" class="col-md-12 select2-container">
-																					</select> -->										
-											<select id="jquery-select2-example" class="form-control">
+											<select id="markets-list" class="form-control">
 												<option></option>
-													<option value="Albany, NY">Albany, NY</option>
-													<option value="Albuquerque, NM">Albuquerque, NM</option>
-													<option value="Atlanta, GA">Atlanta, GA</option>
-													<option value="Augusta, ME">Augusta, ME</option>
-													<option value="Baltimore, MD">Baltimore, MD</option>
-													<option value="Billings, MT">Billings, MT</option>
-													<option value="Birmingham, AL">Birmingham, AL</option>
-													<option value="Boise, ID">Boise, ID</option>
-													<option value="Boston, MA">Boston, MA</option>
-													<option value="Buffalo, NY">Buffalo, NY</option>
-													<option value="Charleston, SC">Charleston, SC</option>
-													<option value="Charleston, WV">Charleston, WV</option>
-													<option value="Charlotte, NC">Charlotte, NC</option>
-													<option value="Chicago, IL">Chicago, IL</option>
-													<option value="Cleveland, OH">Cleveland, OH</option>
-													<option value="Columbia, SC">Columbia, SC</option>
-													<option value="Columbus, OH">Columbus, OH</option>
-													<option value="Dallas, TX">Dallas, TX</option>
-													<option value="Denver, CO">Denver, CO</option>
-													<option value="Des Moines, IA">Des Moines, IA</option>
-													<option value="Detroit, MI">Detroit, MI</option>
-													<option value="El Paso, TX">El Paso, TX</option>
-													<option value="Fargo, ND">Fargo, ND</option>
-													<option value="Grand Junct, CO">Grand Junct, CO</option>
-													<option value="Harford, CT">Harford, CT</option>
-													<option value="Honolulu, HI">Honolulu, HI</option>
-													<option value="Houston, TX">Houston, TX</option>
-													<option value="Indianapolis, IN">Indianapolis, IN</option>
-													<option value="Jackson, MS">Jackson, MS</option>
-													<option value="Jacksonville, FL">Jacksonville, FL</option>
-													<option value="Kansas City, KS">Kansas City, KS</option>
-													<option value="Kansas City, MO">Kansas City, MO</option>
-													<option value="Las Vegas, NV">Las Vegas, NV</option>
-													<option value="Little Rock, AR">Little Rock, AR</option>
-													<option value="Los Angeles, CA">Los Angeles, CA</option>
-													<option value="Louisville, KY">Louisville, KY</option>
-													<option value="Memphis, TN">Memphis, TN</option>
-													<option value="Miami, FL">Miami, FL</option>
-													<option value="Milwaukee, WI">Milwaukee, WI</option>
-													<option value="Minneapolis, MN">Minneapolis, MN</option>
-													<option value="Nashville, TN">Nashville, TN</option>
-													<option value="New Orleans, LA">New Orleans, LA</option>
-													<option value="New York City, NY">New York City, NY</option>
-													<option value="Norfolk, VA">Norfolk, VA</option>
-													<option value="Oklahoma City, OK">Oklahoma City, OK</option>
-													<option value="Omaha, NE">Omaha, NE</option>
-													<option value="Orlando, FL">Orlando, FL</option>
-													<option value="Philadelphia, PA">Philadelphia, PA</option>
-													<option value="Phoenix, AZ">Phoenix, AZ</option>
-													<option value="Pittsburgh, PA">Pittsburgh, PA</option>
-													<option value="Portland, ME">Portland, ME</option>
-													<option value="Portland, OR">Portland, OR</option>
-													<option value="Raleigh, NC">Raleigh, NC</option>
-													<option value="Rapid City, SD">Rapid City, SD</option>
-													<option value="Reno, NV">Reno, NV</option>
-													<option value="St Louis, MO">St Louis, MO</option>
-													<option value="Salt Lake City, UT">Salt Lake City, UT</option>
-													<option value="San Antonio, TX">San Antonio, TX</option>
-													<option value="San Diego, CA">San Diego, CA</option>
-													<option value="San Francisco, CA">San Francisco, CA</option>
-													<option value="Seattle, WA">Seattle, WA</option>
-													<option value="Tampa, FL">Tampa, FL</option>
-													<option value="Washington, DC">Washington, DC</option>
-													<option value="Wichita, KS">Wichita, KS</option>
-													<option value="All Markets">All Markets</option>
-													<option value="Calgary-Edm, AB">Calgary-Edm, AB</option>
-													<option value="Ottawa, ON">Ottawa, ON</option>
-													<option value="Montreal, QC">Montreal, QC</option>
-													<option value="Toronto, ON">Toronto, ON</option>
-													<option value="Vancouver, BC">Vancouver, BC</option>
+												<option value="Albany, NY">Albany, NY</option>
+												<option value="Albuquerque, NM">Albuquerque, NM</option>
+												<option value="Atlanta, GA">Atlanta, GA</option>
+												<option value="Augusta, ME">Augusta, ME</option>
+												<option value="Baltimore, MD">Baltimore, MD</option>
+												<option value="Billings, MT">Billings, MT</option>
+												<option value="Birmingham, AL">Birmingham, AL</option>
+												<option value="Boise, ID">Boise, ID</option>
+												<option value="Boston, MA">Boston, MA</option>
+												<option value="Buffalo, NY">Buffalo, NY</option>
+												<option value="Charleston, SC">Charleston, SC</option>
+												<option value="Charleston, WV">Charleston, WV</option>
+												<option value="Charlotte, NC">Charlotte, NC</option>
+												<option value="Chicago, IL">Chicago, IL</option>
+												<option value="Cleveland, OH">Cleveland, OH</option>
+												<option value="Columbia, SC">Columbia, SC</option>
+												<option value="Columbus, OH">Columbus, OH</option>
+												<option value="Dallas, TX">Dallas, TX</option>
+												<option value="Denver, CO">Denver, CO</option>
+												<option value="Des Moines, IA">Des Moines, IA</option>
+												<option value="Detroit, MI">Detroit, MI</option>
+												<option value="El Paso, TX">El Paso, TX</option>
+												<option value="Fargo, ND">Fargo, ND</option>
+												<option value="Grand Junct, CO">Grand Junct, CO</option>
+												<option value="Harford, CT">Harford, CT</option>
+												<option value="Honolulu, HI">Honolulu, HI</option>
+												<option value="Houston, TX">Houston, TX</option>
+												<option value="Indianapolis, IN">Indianapolis, IN</option>
+												<option value="Jackson, MS">Jackson, MS</option>
+												<option value="Jacksonville, FL">Jacksonville, FL</option>
+												<option value="Kansas City, KS">Kansas City, KS</option>
+												<option value="Kansas City, MO">Kansas City, MO</option>
+												<option value="Las Vegas, NV">Las Vegas, NV</option>
+												<option value="Little Rock, AR">Little Rock, AR</option>
+												<option value="Los Angeles, CA">Los Angeles, CA</option>
+												<option value="Louisville, KY">Louisville, KY</option>
+												<option value="Memphis, TN">Memphis, TN</option>
+												<option value="Miami, FL">Miami, FL</option>
+												<option value="Milwaukee, WI">Milwaukee, WI</option>
+												<option value="Minneapolis, MN">Minneapolis, MN</option>
+												<option value="Nashville, TN">Nashville, TN</option>
+												<option value="New Orleans, LA">New Orleans, LA</option>
+												<option value="New York City, NY">New York City, NY</option>
+												<option value="Norfolk, VA">Norfolk, VA</option>
+												<option value="Oklahoma City, OK">Oklahoma City, OK</option>
+												<option value="Omaha, NE">Omaha, NE</option>
+												<option value="Orlando, FL">Orlando, FL</option>
+												<option value="Philadelphia, PA">Philadelphia, PA</option>
+												<option value="Phoenix, AZ">Phoenix, AZ</option>
+												<option value="Pittsburgh, PA">Pittsburgh, PA</option>
+												<option value="Portland, ME">Portland, ME</option>
+												<option value="Portland, OR">Portland, OR</option>
+												<option value="Raleigh, NC">Raleigh, NC</option>
+												<option value="Rapid City, SD">Rapid City, SD</option>
+												<option value="Reno, NV">Reno, NV</option>
+												<option value="St Louis, MO">St Louis, MO</option>
+												<option value="Salt Lake City, UT">Salt Lake City, UT</option>
+												<option value="San Antonio, TX">San Antonio, TX</option>
+												<option value="San Diego, CA">San Diego, CA</option>
+												<option value="San Francisco, CA">San Francisco, CA</option>
+												<option value="Seattle, WA">Seattle, WA</option>
+												<option value="Tampa, FL">Tampa, FL</option>
+												<option value="Washington, DC">Washington, DC</option>
+												<option value="Wichita, KS">Wichita, KS</option>
+												<option value="All Markets">All Markets</option>
+												<option value="Calgary-Edm, AB">Calgary-Edm, AB</option>
+												<option value="Ottawa, ON">Ottawa, ON</option>
+												<option value="Montreal, QC">Montreal, QC</option>
+												<option value="Toronto, ON">Toronto, ON</option>
+												<option value="Vancouver, BC">Vancouver, BC</option>
 											</select>
 										</div>
 									</div>
-
 								</div>
 								<div class="row">
-									<div class="col-md-12 margin-top-medium" id="markets_checks">
-										<label class="checkbox" data-bind-template="#markets_checks" data-bind-value="market_checks" data-bind="<%= name.replace(/\s/g, '').replace(/,/g, '') %>" data-bind-target="id">
-											<input type="checkbox" name="market-checks" class="px check-markets" data-bind="<%= (check == 'check') ? 1 : 0  %>"> <span class="lbl" data-bind="<%= name %>"></span>
+									<div class="col-md-12 margin-top-medium" id="markets">
+										<label class="checkbox" data-bind-template="#markets" data-bind-value="markets">
+											<input type="checkbox" name="markets" class="market-item" data-bind="<%= name %>" data-bind-target="value" value="" checked> <span class="lbl" data-bind="<%= name %>"></span>
 										</label>
 									</div>
 								</div>
@@ -271,6 +262,11 @@
 										</div>
 										<div class="checkbox">
 											<label>
+												<input type="checkbox" name="ethnicity" value="American" class="px" data-bind="<%= role.getEthnicities().indexOf('American') != -1 ? 1 : 0 %>"> <span class="lbl">American</span>
+											</label>
+										</div>
+										<div class="checkbox">
+											<label>
 												<input type="checkbox" name="ethnicity" value="American Indian" class="px" data-bind="<%= role.getEthnicities().indexOf('American Indian') != -1 ? 1 : 0 %>"> <span class="lbl">American Indian</span>
 											</label>
 										</div>
@@ -281,12 +277,17 @@
 										</div>
 										<div class="checkbox">
 											<label>
+												<input type="checkbox" name="ethnicity" value="Caribbean" class="px" data-bind="<%= role.getEthnicities().indexOf('Caribbean') != -1 ? 1 : 0 %>"> <span class="lbl">Caribbean</span>
+											</label>
+										</div>
+										<div class="checkbox">
+											<label>
 												<input type="checkbox" name="ethnicity" value="Caucasian" class="px" data-bind="<%= role.getEthnicities().indexOf('Caucasian') != -1 ? 1 : 0 %>"> <span class="lbl">Caucasian</span>
 											</label>
 										</div>
 										<div class="checkbox">
 											<label>
-												<input type="checkbox" name="ethnicity" value="Eastern Indian" class="px" data-bind="<%= role.getEthnicities().indexOf('Eastern Indian') != -1 ? 1 : 0 %>"> <span class="lbl">East Indian</span>
+												<input type="checkbox" name="ethnicity" value="East Indian" class="px" data-bind="<%= role.getEthnicities().indexOf('East Indian') != -1 ? 1 : 0 %>"> <span class="lbl">East Indian</span>
 											</label>
 										</div>
 										<div class="checkbox">
@@ -296,7 +297,17 @@
 										</div>
 										<div class="checkbox">
 											<label>
+												<input type="checkbox" name="ethnicity" value="Mediterranean" class="px" data-bind="<%= role.getEthnicities().indexOf('Mediterranean') != -1 ? 1 : 0 %>"> <span class="lbl">Mediterranean</span>
+											</label>
+										</div>
+										<div class="checkbox">
+											<label>
 												<input type="checkbox" name="ethnicity" value="Middle Eastern" class="px" data-bind="<%= role.getEthnicities().indexOf('Middle Eastern') != -1 ? 1 : 0 %>"> <span class="lbl">Middle Eastern</span>
+											</label>
+										</div>
+										<div class="checkbox">
+											<label>
+												<input type="checkbox" name="ethnicity" value="Mixed" class="px" data-bind="<%= role.getEthnicities().indexOf('Mixed') != -1 ? 1 : 0 %>"> <span class="lbl">Mixed</span>
 											</label>
 										</div>
 									</div>
