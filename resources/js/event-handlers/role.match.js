@@ -527,27 +527,14 @@ handler.prototype.getFilters = function() {
 		}
 	}
 
-	var searchterm = $('#search-talent-input').val();
-
-	if(searchterm.length > 1) {
-
-		data = {
-			query 	: [],
-			page	: qs.page || 1
-		};
-
-		form = [];
-		subquery = [];
-		subfilter = [];
-
-		data.query.push([ 'where',
+	if (form.name) {
+		data.q.push([ 'where',
 			[
-				[ 'where', 'talentnum', '=', searchterm ],
-				[ 'orWhere', 'fname', 'LIKE', '%' + searchterm + '%' ],
-				[ 'orWhere', 'lname', 'LIKE', '%' + searchterm + '%' ],
+				[ 'where', 'talentlogin', '=', '%' + form.name + '%' ],
+				[ 'orWhere', 'fname', 'LIKE', '%' + form.name + '%' ],
+				[ 'orWhere', 'lname', 'LIKE', '%' + form.name + '%' ]
 			]
-		]);
-
+		])
 	}
 
 	return data;

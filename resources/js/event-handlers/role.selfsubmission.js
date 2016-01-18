@@ -10,7 +10,6 @@ function handler(core, user, projectId, roleId) {
 	self.project = null;
 	self.favTalent = null;
 	self.refreshProjectDetails();
-	self.marketscheck = [];
 }
 
 handler.prototype.refreshProjectDetails = function() {
@@ -27,6 +26,11 @@ handler.prototype.refreshProjectDetails = function() {
 			self.project.role = _.find(self.project.bam_roles, function (role) {
 				return role.role_id == self.roleId;
 			});
+
+			self.project.markets = _.map(self.project.market.split('>'), function(market) {
+				return { name : market };
+			});
+
 			$('#roles-list').val(self.project.role.role_id);
 
 			return self.refreshLikeItList();
@@ -80,19 +84,36 @@ handler.prototype.refreshLikeItList = function(soft) {
 }
 
 handler.prototype.refreshSelfSubmissions = function() {
-	var qs = self.core.service.query_string();
+	var data = self.getFilters();
+	var total;
 
-	var data = {
-		query	: self.filter,
-		page	: qs.page || 1
-	}
+	return self.core.resource.search_talent.get(data)
+		.then(function(res) {
+			total = res.total;
+			var ids = _.map(res.data, function(talent) {
+				return talent.id;
+			});
 
-	return self.project.role.getSelfSubmissions(data)
-		.then(function(result) {
-			self.project.role.selfsubmissions = result;
+			ids.push(0);
+
+			var data2 = {
+				query : [
+					[ 'with', 'invitee.bam_talentci.bam_talentinfo1' ],
+					[ 'with', 'invitee.bam_talentci.bam_talentinfo2' ],
+					[ 'with', 'invitee.bam_talentci.bam_talent_media2' ],
+					[ 'with', 'schedule_notes.user.bam_cd_user' ],
+					[ 'whereIn', 'id', ids ]
+				]
+			};
+
+			return self.core.resource.schedule.get(data2);
+		})
+		.then(function(res) {
+			res.total = total;
+			self.project.role.selfsubmissions = res;
 			self.core.service.databind('#self-submissions', self.project);
 
-			self.core.service.paginate('#self-submissions-pagination', { class : 'pagination', total : result.total, name : 'page' });
+			self.core.service.paginate('#self-submissions-pagination', { class : 'pagination', total : res.total, name : 'page' });
 
 			self.getFavoriteTalents();
 
@@ -123,78 +144,69 @@ handler.prototype.getFavoriteTalents = function() {
 	}
 }
 
-handler.prototype.updateFilter = function() {
-	var form = self.core.service.form.serializeObject('#talent-filter-form');
-	var filter = [];
-	var subquery = [];
-	var asdasd = [];
+handler.prototype.getFilters = function() {
+	var qs = self.core.service.query_string();
+	var data = {
+		q : [
+			[ 'select', 'bam.laret_schedules.id' ],
+			[ 'join', 'bam.laret_users', 'bam.laret_users.bam_talentnum', '=', 'search.talents.talentnum' ],
+			[ 'join', 'bam.laret_schedules', 'bam.laret_schedules.invitee_id', '=', 'bam.laret_users.id' ],
+			[ 'where', 'bam.laret_schedules.submission', '=', 1 ],
+			[ 'where', 'bam.laret_schedules.bam_role_id', '=', self.project.role.role_id ]
+		],
+		page	: qs.page || 1
+	};
 
-	/*if(self.marketscheck){
-		_.each(self.marketscheck, function(val, ind){
-			if(val.check == 'check'){
-				//var bb = val.name.substring(0, val.name.indexOf(','));
-				if(asdasd.length > 1){
-					subquery.push([ 'orWhere', 'city', 'like', '%'+val.name.substring(0, val.name.indexOf(','))+'%' ]);
-					subquery.push([ 'orWhere', 'city1', 'like', '%'+val.name.substring(0, val.name.indexOf(','))+'%' ]);
-					subquery.push([ 'orWhere', 'city2', 'like', '%'+val.name.substring(0, val.name.indexOf(','))+'%' ]);
-					subquery.push([ 'orWhere', 'city3', 'like', '%'+val.name.substring(0, val.name.indexOf(','))+'%' ]);
-				} else if(asdasd.length == 1){
-					subquery.push([ 'orWhere', 'city', 'like', '%'+val.name.substring(0, val.name.indexOf(','))+'%' ]);
-					subquery.push([ 'orWhere', 'city1', 'like', '%'+val.name.substring(0, val.name.indexOf(','))+'%' ]);
-					subquery.push([ 'orWhere', 'city2', 'like', '%'+val.name.substring(0, val.name.indexOf(','))+'%' ]);
-					subquery.push([ 'orWhere', 'city3', 'like', '%'+val.name.substring(0, val.name.indexOf(','))+'%' ]);
+	var form = self.core.service.form.serializeObject('#talent-filter-form');
+	var subquery = [];
+
+	if (form.markets.length > 0) {
+		subquery = [];
+
+		_.each(form.markets, function(market) {
+			if (market) {
+				if (subquery.length == 0) {
+					subquery.push([ 'where', 'city', 'like', '%' + market + '%' ]);
 				}
+				else {
+					subquery.push([ 'orWhere', 'city', 'like', '%' + market + '%' ]);
+				}
+
+				subquery.push([ 'orWhere', 'city1', 'like', '%' + market + '%' ]);
+				subquery.push([ 'orWhere', 'city2', 'like', '%' + market +'%' ]);
+				subquery.push([ 'orWhere', 'city3', 'like', '%' + market +'%' ]);
 			}
 		});
-		filter.push([ 'where', subquery ]);
-	}*/
+
+		data.q.push([ 'where', subquery ]);
+	}
 
 	if (parseInt(form.age_min)) {
-		filter.push([ 'where', 'talentinfo1.dobyyyy', '<=', new Date().getFullYear() - parseInt(form.age_min) ]);
+		data.q.push([ 'where', 'dobyyyy', '<=', new Date().getFullYear() - parseInt(form.age_min) ]);
 	}
 
 	if (parseInt(form.age_max)) {
-		filter.push([ 'where', 'talentinfo1.dobyyyy', '>=', new Date().getFullYear() - parseInt(form.age_max) ]);
+		data.q.push([ 'where', 'dobyyyy', '>=', new Date().getFullYear() - parseInt(form.age_max) ]);
 	}
 
 	if (form.sex) {
-		if (form.sex instanceof Array) {
-			// do nothing, if its an array then items is => 2, only 2 items so select all
-		}
-		else {
-			filter.push([ 'whereHas', 'invitee.bam_talentci.bam_talentinfo1', [
-					[ 'where', 'talentinfo1.sex', '=', form.sex ]
-				]
-			]);
+		if (!(form.sex instanceof Array)) {
+			data.q.push([ 'where', 'sex', '=', form.sex ]);
 		}
 	}
 
 	if (form.has_photo) {
-		if (form.has_photo instanceof Array) {
-			// do nothing, if its an array then items is => 2, only 2 items so select all
-		}
-		else {
-			if (parseInt(form.has_photo)) {
-				filter.push([ 'whereHas', 'invitee.bam_talentci.bam_talent_media2', [
-						[ 'where', 'talent_media2.media_path', '<>', null ]
-					]
-				]);
-			}
-			else {
-				filter.push([ 'whereHas', 'invitee.bam_talentci.bam_talent_media2', [
-						[ 'where', 'talent_media2.media_path', '=', null ]
-					]
-				]);
-			}
+		if (!(form.has_photo instanceof Array)) {
+			data.q.push([ 'where', 'has_photos', '=', form.has_photo ]);
 		}
 	}
 
 	if (parseInt(form.height_min)) {
-		filter.push([ 'where', 'talentinfo1.heightinches', '>=', form.height_min ]);
+		data.q.push([ 'where', 'heightinches', '>=', form.height_min ]);
 	}
 
 	if (parseInt(form.height_max)) {
-		filter.push([ 'where', 'talentinfo1.heightinches', '<=', form.height_max ]);
+		data.q.push([ 'where', 'heightinches', '<=', form.height_max ]);
 	}
 
 	if (form.build) {
@@ -202,23 +214,17 @@ handler.prototype.updateFilter = function() {
 			var subfilter = [];
 			_.each(form.build, function(build, index) {
 				if (index > 0) {
-					subfilter.push([ 'orWhere', 'talentinfo1.build', '=', build ]);
+					subfilter.push([ 'orWhere', 'build', '=', build ]);
 				}
 				else {
-					subfilter.push([ 'where', 'talentinfo1.build', '=', build ]);
+					subfilter.push([ 'where', 'build', '=', build ]);
 				}
 			});
 
-			filter.push([ 'whereHas', 'invitee.bam_talentci.bam_talentinfo1', [
-					[ 'where', subfilter ]
-				]
-			]);
+			data.q.push([ 'where', subfilter ]);
 		}
 		else {
-			filter.push([ 'whereHas', 'invitee.bam_talentci.bam_talentinfo1', [
-					[ 'where', 'talentinfo1.build', '=', form.build ]
-				]
-			]);
+			data.q.push([ 'where', 'build', '=', form.build ]);
 		}
 	}
 
@@ -227,49 +233,42 @@ handler.prototype.updateFilter = function() {
 			var subfilter = [];
 			_.each(form.ethnicity, function(ethnicity, index) {
 				if (index > 0) {
-					subfilter.push([ 'orWhere', 'talentinfo2.ethnicity', '=', ethnicity ]);
+					subfilter.push([ 'orWhere', 'ethnicity', '=', ethnicity ]);
 				}
 				else {
-					subfilter.push([ 'where', 'talentinfo2.ethnicity', '=', ethnicity ]);
+					subfilter.push([ 'where', 'ethnicity', '=', ethnicity ]);
 				}
 			});
 
-			filter.push([ 'whereHas', 'invitee.bam_talentci.bam_talentinfo2', [
-					[ 'where', subfilter ]
-				]
-			]);
+			data.q.push([ 'where', subfilter ]);
 		}
 		else {
-			filter.push([ 'whereHas', 'invitee.bam_talentci.bam_talentinfo2', [
-					[ 'where', 'talentinfo2.ethnicity', '=', form.ethnicity ]
-				]
-			]);
+			data.q.push([ 'where', 'ethnicity', '=', form.ethnicity ]);
 		}
 	}
 
 	if (form.join_status) {
-		if (form.join_status instanceof Array) {
-			// do nothing, if its an array then items is => 2, only 2 items so select all
-		}
-		else {
+		if (!(form.join_status instanceof Array)) {
 			if (form.join_status == 5) {
-				filter.push([ 'whereHas', 'invitee.bam_talentci', [
-						[ 'where', 'talentci.join_status', '=', 5 ]
-					]
-				]);
+				data.q.push([ 'where', 'is_pro', '=', 1 ]);
 			}
 			else {
-				filter.push([ 'whereHas', 'invitee.bam_talentci', [
-						[ 'where', 'talentci.join_status', '<>', 5 ]
-					]
-				]);
+				data.q.push([ 'where', 'is_pro', '=', 0 ]);
 			}
 		}
 	}
 
-	self.filter = filter;
-	console.log(self.filter);
-	self.refreshSelfSubmissions();
+	if (form.name) {
+		data.q.push([ 'where',
+			[
+				[ 'where', 'talentlogin', '=', '%' + form.name + '%' ],
+				[ 'orWhere', 'fname', 'LIKE', '%' + form.name + '%' ],
+				[ 'orWhere', 'lname', 'LIKE', '%' + form.name + '%' ]
+			]
+		])
+	}
+
+	return data;
 }
 
 
@@ -345,25 +344,12 @@ handler.prototype.addToFav = function(){
 
 
 handler.prototype.rateAll = function() {
-	var talents = [];
+	var data = self.getFilters();
 
-	talents = _.map(self.project.role.selfsubmissions.data, function(n) {
-		return n.getTalent().bam_talentnum;
-	});
-
-	if (talents.length) {
-		var data = {
-			query : [
-				[ 'whereIn', 'talentci.talentnum', talents ]
-			]
-		}
-
-		self.core.service.rest.post(self.core.config.api.base + '/cd/talentci/import/' + self.roleId, data)
-			.then(function(result) {
-				self.refreshLikeItList();
-
-			});
-	}
+	self.core.service.rest.post(self.core.config.api.base + '/cd/talentci/import/' + self.roleId, data)
+		.then(function(result) {
+			self.refreshLikeItList();
+		});
 }
 
 handler.prototype.getDetailsForAddNoteModal = function() {
@@ -486,38 +472,30 @@ handler.prototype.editNoteForTalent = function(e) {
 }
 
 handler.prototype.addToMarket = function() {
-	var txt = ($('#jquery-select2-example').select2('data').text);
+	var selected = ($('#markets-list').select2('data').text);
 
-	var txt1 = _.find(self.marketscheck, function(val){
-		return val.name == txt;
+	var market = _.find(self.project.markets, function(m) {
+		return m.name == selected;
 	});
-	if(!txt1){
-		self.marketscheck.push({ name : txt , check : 'check'});
-	}
-	//console.log(self.project.market_checks);
-	self.project.market_checks = self.marketscheck;
-	self.core.service.databind('#talent-filter-form', self.project);
-	$('#jquery-select2-example').select2('val', '');
 
+	if (!market) {
+		self.project.markets.push({ name : selected });
+	}
+
+	self.core.service.databind('#talent-filter-form', self.project);
+	$('#markets-list').select2('val', '');
 }
 
 handler.prototype.removeFromMarket = function() {
-	var id = $(this).parent().attr('id');
-	var rmv = _.find(self.marketscheck, function(n, ind){
-		if(n.name.replace(/\s/g, '').replace(/,/g, '') == id){
-			if(n.check == 'check'){
-				self.marketscheck[ind].check = 'uncheck';
-			} else {
-				self.marketscheck[ind].check = 'check';
-			}
-			//self.marketscheck[ind].check = 'uncheck';
-		}
-	});
-	console.log(self.project.market_checks);
-	self.project.market_checks = self.marketscheck;
-	self.core.service.databind('#talent-filter-form', self.project);
+	var selected = $(this).val();
 
+	_.remove(self.project.markets, function(market) {
+		return market.name == selected;
+	});
+
+	self.core.service.databind('#talent-filter-form', self.project);
 }
+
 module.exports = function(core, user, projectId, roleId) {
 	return new handler(core, user, projectId, roleId);
 }
