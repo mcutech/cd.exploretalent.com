@@ -135,7 +135,6 @@ handler.prototype.updateRole = function() {
 	};
 
 	if (self.core.service.form.validate('#edit-role-div')) { // for required text fields
-
 		if($('input[type="checkbox"][name="gender"]:checked').length < 1) {
 	        $('.gender-error-required').fadeIn().delay(3000).fadeOut();
 	        $('.gender-error-required').focus();
