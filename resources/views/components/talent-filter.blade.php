@@ -9,11 +9,8 @@
 		</div>
 		<div class="panel-body">
 			<div class="location">
-				<div class="panel panel-transparent margin-bottom-normal input-group">
-					<input type="text" class="form-control" id="search-talent-input" placeholder="Search Talent Manually">
-					<span id="search-talent-btn" class="input-group-addon" style="cursor: pointer;">
-			            <span class="glyphicon glyphicon-search"></span>
-			        </span>
+				<div class="panel panel-transparent margin-bottom-normal">
+					<input type="text" class="form-control" name="name" placeholder="Search Talent Manually">
 				</div>
 				<div class="panel panel-transparent margin-bottom-normal">
 					<div class="panel-heading no-padding-hr padding-bottom-zero-small padding-top-zero">

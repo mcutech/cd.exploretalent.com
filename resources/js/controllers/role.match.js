@@ -17,7 +17,6 @@ module.exports = function(core, user, projectId, roleId) {
 
 	$('#view-like-it-list-btn').removeClass('hide');
 
-	//
 	$("#markets-list").select2({
 		allowClear: true,
 		placeholder: "Search market"
@@ -25,14 +24,6 @@ module.exports = function(core, user, projectId, roleId) {
 
 	$("#markets-list").on('change', handler.addToMarket);
 	$(document).on('click', '.market-item', handler.removeFromMarket);
-
-	$(document).on('click', '#search-talent-btn', handler.refreshMatches);
-
-	$(document).on('keydown', '#search-talent-input', function(e) {
-		if(e.which == 13) { // enter key
-			$('#search-talent-btn').click();
-		}
-	});
 
 	$(window).on('scroll', function() {
 		if ($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
