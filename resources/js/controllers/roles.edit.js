@@ -5,7 +5,7 @@ module.exports = function(core, user, projectId, roleId) {
 	$('#update-role-btn').on('click', handler.updateRole);
 
 	$('#cancel-role-btn').on('click', handler.cancelRole);
-	
+
 	var age_range_sliders_options = {
 		'range': true,
 		'min': 0,
@@ -86,7 +86,7 @@ module.exports = function(core, user, projectId, roleId) {
 		    // Allow: backspace, delete, tab, escape, and enter
 		    if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110]) !== -1 ||
 		         // Allow: Ctrl+A, Command+A
-		        (e.keyCode == 65 && ( e.ctrlKey === true || e.metaKey === true ) ) || 
+		        (e.keyCode == 65 && ( e.ctrlKey === true || e.metaKey === true ) ) ||
 		         // Allow: home, end, left, right, down, up
 		        (e.keyCode >= 35 && e.keyCode <= 40)) {
 		             // let it happen, don't do anything
@@ -100,5 +100,5 @@ module.exports = function(core, user, projectId, roleId) {
 	}
 
 	dontAllowLetters($("#role-number-text"));
-			
+
 };
