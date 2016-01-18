@@ -150,7 +150,7 @@ handler.prototype.updateRole = function() {
 		        data["built_any"] = 1;
 			}
 
-			if($('input[type="checkbox"][name="hair-color"]:checked').length < 0) {
+			if($('input[type="checkbox"][name="hair-color"]:checked').length < 1) {
 		        data["hair_any"] = 1;
 			}
 
