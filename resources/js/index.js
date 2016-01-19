@@ -13,6 +13,13 @@ jscore.config(function(core) {
 });
 
 jscore.run(function(core) {
+	var qs = core.service.query_string();
+	if (qs.access_token) {
+		localStorage.setItem('access_token', qs.access_token);
+		localStorage.setItem('refresh_token', qs.refresh_token);
+		core.service.rest.settings.headers = { Authorization : qs.access_token };
+	}
+
 	core.resource.user.get({ userId : 'me', withs : [ 'bam_cd_user' ] })
 		.then(init, init);
 

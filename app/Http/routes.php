@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function() {
-	return redirect('login');
+	return redirect('login' . (isset($_SERVER['QUERY_STRING']) ? '?' . $_SERVER['QUERY_STRING'] : ''));
 });
 
 Route::get('login', 'LoginController@index');
