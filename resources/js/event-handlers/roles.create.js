@@ -143,16 +143,22 @@ handler.prototype.saveNewRole = function(e) {
 				$('.role-saved-success').fadeIn();
 
 				if(buttonId == 'save-role-btn') { // link to project overview page
-					setTimeout(function(){
-						window.location = whereToLink;
-					}, 3000);
+					self.core.resource.project.patch({projectId : self.projectId, status : 0})
+						.then(function(res) {
+							setTimeout(function(){
+								window.location = whereToLink;
+							}, 3000);
+						});
 
 				}
 
 				else { // 'save-and-add-role-btn' just reloads page
-					setTimeout(function(){
-						location.reload();
-					}, 3000);
+					self.core.resource.project.patch({projectId : self.projectId, status : 0})
+						.then(function(res) {
+							setTimeout(function(){
+								location.reload();
+							}, 3000);
+						});
 				}
 
 			});

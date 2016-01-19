@@ -158,6 +158,11 @@ handler.prototype.updateRole = function() {
 			.then(function(res) {
 				$('.role-updated-success').fadeIn();
 
+				self.core.resource.project.patch({projectId : self.projectId, status : 0})
+				.then(function(res) {
+					console.log(res);
+				});
+
 				setTimeout(function(){
 					location.reload();
 				}, 3000);
