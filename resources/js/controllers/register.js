@@ -1,5 +1,4 @@
 module.exports = function(core) {
-
 	$('#phone').mask('999-999-9999');
 
 	$("#sign-up").click(function(e){
@@ -57,10 +56,7 @@ module.exports = function(core) {
 				$('#req-email').show().delay(5000).fadeOut();
 				$('#req-emailtxt').text('Invalid Email Address.').show().delay(5000).fadeOut();
 				return;
-			}
-			$('#email').css("border-color","#d6d6d6");
-		}
-
+			} $('#email').css("border-color","#d6d6d6"); }
 		if(!phone){
 			$('#phone').focus().css("border-color","#b94a48");
 			$('#req-phone').show().delay(5000).fadeOut();
@@ -122,8 +118,17 @@ module.exports = function(core) {
 		core.resource.user.post(user)
 			.then(function(result) {
 				setTimeout(function(){
-					core.service.rest.post(core.config.api.base + '/sessions', { email : email, password : pass })
+					core.service.rest.post(core.config.api.base.replace('/v1', '') + '/oauth/access_token', {
+							username       : email,
+							password       : pass,
+							client_id      : '74d89ce4c4838cf495ddf6710796ae4d5420dc91',
+							client_secret  : '61c9b2b17db77a27841bbeeabff923448b0f6388',
+							grant_type     : 'password'
+						})
 						.then(function(result){
+							localStorage.setItem('access_token', result.access_token);
+							core.service.rest.settings.header = { Authorization : result.access_token };
+
 							var data = {
 								lname	: lname ,
 								fname	: fname ,
