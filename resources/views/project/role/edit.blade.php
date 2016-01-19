@@ -1,4 +1,4 @@
-@extends('layouts.sidebar', [ 'pages' => [ [ 'name' => 'Roles', 'url' => '/settings' ], [ 'name' => 'Edit Role', 'url' => '/projects/'.$projectId.'/roles/'.$roleId.'/edit', 'active' => true] ] ])
+@extends('layouts.sidebar', [ 'pages' => [ [ 'name' => 'Roles', 'url' => '/projects/'.$projectId ], [ 'name' => 'Edit Role', 'url' => '/projects/'.$projectId.'/roles/'.$roleId.'/edit', 'active' => true] ] ])
 
 @section('sidebar.page-header')
 <i class="fa fa-th-list page-header-icon"></i> Edit Roles
