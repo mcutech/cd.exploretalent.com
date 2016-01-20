@@ -21,12 +21,12 @@ module.exports = function(core, user){
 		// to determine margin-top of body.. move down if top-alert-div is visible
 		var topAlertDiv = $('#top-alert-div');
 		if(topAlertDiv.is(':visible')) {
-			$('#main-navbar').css('margin-top', '40px');
+			$('#menu-content-demo').css('padding-top', '100px');
 			$('#main-wrapper').css('margin-top', '40px');
 		}
 		else {
-			$('#main-navbar').css('margin-top', '0px');
-			$('#main-wrapper').css('margin-top', '40px');
+			$('#menu-content-demo').css('padding-top', '66px');
+			$('#main-wrapper').css('margin-top', '0px');
 		}
 	});
 
