@@ -57,95 +57,85 @@ module.exports = function(core) {
 				$('#req-emailtxt').text('Invalid Email Address.').show().delay(5000).fadeOut();
 				return;
 			} $('#email').css("border-color","#d6d6d6"); }
-		if(!phone){
-			$('#phone').focus().css("border-color","#b94a48");
-			$('#req-phone').show().delay(5000).fadeOut();
-			$('#req-phonetxt').text('This field is required.').show().delay(5000).fadeOut();
-			return;
-		}else{
-			// remove all hyphens from phone (mask)
-			phone = phone.replace(/-/g, '');
-		}
+			if(!phone){
+				$('#phone').focus().css("border-color","#b94a48");
+				$('#req-phone').show().delay(5000).fadeOut();
+				$('#req-phonetxt').text('This field is required.').show().delay(5000).fadeOut();
+				return;
+			}else{
+				// remove all hyphens from phone (mask)
+				phone = phone.replace(/-/g, '');
+			}
 
-		if(!pass){
-			$('#password').focus().css("border-color","#b94a48");
-			$('#req-pass').show().delay(5000).fadeOut();
-			$('#req-passtxt').text('This field is required.').show().delay(5000).fadeOut();
-			return;
-		}else{
-			if ( !regexPass.test(pass) ){
+			if(!pass){
 				$('#password').focus().css("border-color","#b94a48");
 				$('#req-pass').show().delay(5000).fadeOut();
-				$('#req-passtxt').text('Invalid Password.').show().delay(5000).fadeOut();
+				$('#req-passtxt').text('This field is required.').show().delay(5000).fadeOut();
 				return;
+			}else{
+				if ( !regexPass.test(pass) ){
+					$('#password').focus().css("border-color","#b94a48");
+					$('#req-pass').show().delay(5000).fadeOut();
+					$('#req-passtxt').text('Invalid Password.').show().delay(5000).fadeOut();
+					return;
+				}
+				$('#password').css("border-color","#d6d6d6");
 			}
-			$('#password').css("border-color","#d6d6d6");
-		}
 
-		if(!confirmpass){
-			$('#confirm-password').focus().css("border-color","#b94a48");
-			$('#req-confirmpass').show().delay(5000).fadeOut();
-			$('#req-confirmpasstxt').text('This field is required.').show().delay(5000).fadeOut();
-			return;
-		}else{
-			if ( !regexPass.test(confirmpass) ) {
+			if(!confirmpass){
 				$('#confirm-password').focus().css("border-color","#b94a48");
 				$('#req-confirmpass').show().delay(5000).fadeOut();
-				$('#req-confirmpasstxt').text('Invalid Password.').show().delay(5000).fadeOut();
+				$('#req-confirmpasstxt').text('This field is required.').show().delay(5000).fadeOut();
+				return;
+			}else{
+				if ( !regexPass.test(confirmpass) ) {
+					$('#confirm-password').focus().css("border-color","#b94a48");
+					$('#req-confirmpass').show().delay(5000).fadeOut();
+					$('#req-confirmpasstxt').text('Invalid Password.').show().delay(5000).fadeOut();
+					return;
+				}
+				$('#confirm-password').css("border-color","#d6d6d6");
+			}
+
+			if(pass != confirmpass){
+				$('#password, #confirm-password').focus().css("border-color","#b94a48");
+				$('#req-confirmpass').show().delay(5000).fadeOut();
+				$('#req-unmatchtxt').text('Password doesn\'t match.').show().delay(5000).fadeOut();
 				return;
 			}
-			$('#confirm-password').css("border-color","#d6d6d6");
-		}
 
-		if(pass != confirmpass){
-			$('#password, #confirm-password').focus().css("border-color","#b94a48");
-			$('#req-confirmpass').show().delay(5000).fadeOut();
-			$('#req-unmatchtxt').text('Password doesn\'t match.').show().delay(5000).fadeOut();
-			return;
-		}
+			var data = {
+				query : [
+					[ 'where', 'email', '=', email ]
+				]
+			}
 
-		var data = {
-			query : [
-				[ 'where', 'email', '=', email ]
-			]
-		}
+			var data = {
+				lname	: lname ,
+				fname	: fname ,
+				email1	: email,
+				phone1  : phone,
+				pass	: pass,
+				status	: 1
+			};
 
-		var user = {
-			email: email,
-			password: pass
-		}
-
-		core.resource.user.post(user)
+			core.resource.cd_user.post(data)
 			.then(function(result) {
-				setTimeout(function(){
-					core.service.rest.post(core.config.api.base.replace('/v1', '') + '/oauth/access_token', {
-							username       : email,
-							password       : pass,
-							client_id      : '74d89ce4c4838cf495ddf6710796ae4d5420dc91',
-							client_secret  : '61c9b2b17db77a27841bbeeabff923448b0f6388',
-							grant_type     : 'password'
-						})
-						.then(function(result){
-							localStorage.setItem('access_token', result.access_token);
-							core.service.rest.settings.header = { Authorization : result.access_token };
+				return core.service.rest.post(core.config.api.base.replace('/v1', '') + '/oauth/access_token', {
+					username       : email,
+					password       : pass,
+					client_id      : '74d89ce4c4838cf495ddf6710796ae4d5420dc91',
+					client_secret  : '61c9b2b17db77a27841bbeeabff923448b0f6388',
+					grant_type     : 'password'
+				});
+			})
+			.then(function(result){
+				localStorage.setItem('access_token', result.access_token);
+				core.service.rest.settings.header = { Authorization : result.access_token };
 
-							var data = {
-								lname	: lname ,
-								fname	: fname ,
-								email1	: email,
-								phone1  : phone,
-								pass	: pass,
-								status	: 1
-							};
-							return core.resource.cd_user.post(data);
-						})
-						.then(function(result) {
-							window.location = '/projects';
-						}, function(){
-							$('#error-signup').show().delay(5000).fadeOut();
-						});
-				}, 1000);
-
+				window.location = '/projects';
+			}, function(){
+				$('#error-signup').show().delay(5000).fadeOut();
 			});
 	});
 };

@@ -12,11 +12,6 @@
 
 				@include('components.talent-filter')
 
-				<div id="role-match-loader" class="text-center padding-top-large">
-					<h3>Loading Matches</h3>
-					<h1><i class="fa fa-spinner fa-spin"></i></h1>
-				</div>
-
 				<div id="role-match" class="col-md-9 talents-search-result" style="display:none;">
 					<div class="row-fluid clearfix top-results-heading margin-bottom-normal">
 						<div class="col-md-6">
@@ -46,6 +41,11 @@
 						@include('components.talent', [ 'databind' => [ 'template' => '#role-match-result', 'value' => 'role.matches.data' ], 'class' => 'col-lg-4 col-md-6 col-sm-6 col-xs-12' ])
 					</div>
 				</div> {{-- talents-search-results --}}
+				<div id="role-match-loader" class="text-center padding-top-large">
+					<h3>Loading Matches</h3>
+					<h1><i class="fa fa-spinner fa-spin"></i></h1>
+				</div>
+
 			</div>
 		</div>
 	</div>
