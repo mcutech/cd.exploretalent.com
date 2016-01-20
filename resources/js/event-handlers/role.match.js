@@ -89,18 +89,27 @@ handler.prototype.refreshLikeItList = function(soft) {
 }
 
 handler.prototype.refreshMatches = function(append) {
+	if (append) {
+		if (self.done) {
+			return;
+		}
+	}
+	else {
+		self.page = 1;
+	}
+
+	$('#role-match-loader').show();
+	$('#role-match').hide();
+
 	var qs = self.core.service.query_string();
 	var data = self.getFilters();
 	var talents;
 	self.refreshing = true;
 
-	if (!append) {
-		$('#role-match-loader').show();
-		$('#role-match').hide();
-	}
-
 	self.core.resource.search_talent.get(data)
 		.then(function(res) {
+			self.done = res.data.length < res.per_page;
+
 			talents = res;
 
 			var talentnums = _.map(talents.data, function(talent) {
@@ -192,10 +201,8 @@ handler.prototype.refreshMatches = function(append) {
 			self.refreshing = false;
 			self.core.service.databind('#role-match', self.project, append);
 
-			if (!append) {
-				$('#role-match-loader').hide();
-				$('#role-match').show();
-			}
+			$('#role-match-loader').hide();
+			$('#role-match').show();
 		});
 }
 
@@ -528,13 +535,12 @@ handler.prototype.getFilters = function() {
 	}
 
 	if (form.name) {
-		data.q.push([ 'where',
-			[
-				[ 'where', 'talentlogin', '=', '%' + form.name + '%' ],
-				[ 'orWhere', 'fname', 'LIKE', '%' + form.name + '%' ],
-				[ 'orWhere', 'lname', 'LIKE', '%' + form.name + '%' ]
-			]
-		])
+		data.q = [
+			[ 'where', 'talentlogin', '=', form.name ],
+			[ 'orWhere', 'talentnum', '=', form.name ],
+			[ 'orWhere', 'fname', 'LIKE', '%' + form.name + '%' ],
+			[ 'orWhere', 'lname', 'LIKE', '%' + form.name + '%' ]
+		];
 	}
 
 	return data;
