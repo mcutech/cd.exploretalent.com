@@ -18,6 +18,7 @@ handler.prototype.refresh = function(){
 	self.core.resource.project.get(data)
 	.then(function(result){
 		self.project = result;
+		self.projectStat = result.status;
 		result.date = self.core.service.date;
 		var eths = ['ethnicity_african', 'ethnicity_african_am', 'ethnicity_american_in', 'ethnicity_asian', 'ethnicity_caribbian', 'ethnicity_caucasian', 'ethnicity_east_indian', 'ethnicity_hispanic', 'ethnicity_mediterranean', 'ethnicity_middle_est', 'ethnicity_mixed', 'ethnicity_native_am'];
 		var builds = ['built_athletic', 'built_average', 'built_bb', 'built_large', 'built_lm', 'built_medium', 'built_petite', 'built_thin', 'built_xlarge'];
@@ -85,6 +86,7 @@ handler.prototype.refresh = function(){
 				$('.panel-inactive').removeClass('hide');
 			}
 		});
+		console.log(result);
 		self.core.service.databind('.project-overview-wrapper', result);
 		self.refreshStats();
 	})
@@ -123,13 +125,19 @@ handler.prototype.deleteRole = function(e) {
 	e.preventDefault();
 	var ids = $(this).attr('id');
 	console.log(ids);
-	console.log(self.projectId);
+	// console.log(self.projectStat);
 	if(confirm("Are you sure you want to delete this role?")){
 		self.core.resource.job.delete({ projectId : self.projectId, jobId : ids})
 			.then(function(res){
+
+				self.core.resource.project.patch({projectId : self.projectId, status : 0})
+				.then(function(res) {
+					console.log(res);
+				});
+
 				self.refresh();
 			});
-	}	
+	}
 }
 
 module.exports = function(core, user, projectId){
