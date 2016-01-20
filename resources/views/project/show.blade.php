@@ -261,10 +261,10 @@
 			  							Edit Project
 			  						</a>
 
-			  						<a class="btn btn-lg btn-outline font-size-normal padding-small-zz project-item-delete" data-bind="delete_<%= casting_id %>" data-bind-target="id">
-			  							<i class="fa fa-close"></i>
-			  							Delete Project
-			  						</a>
+			  						<!-- <a class="btn btn&#45;lg btn&#45;outline font&#45;size&#45;normal padding&#45;small&#45;zz project&#45;item&#45;delete" data&#45;bind="delete_<%= casting_id %>" data&#45;bind&#45;target="id"> -->
+			  						<!-- 	<i class="fa fa&#45;close"></i> -->
+			  						<!-- 	Delete Project -->
+			  						<!-- </a> -->
 			  					</div>
 			  				</div>
 
