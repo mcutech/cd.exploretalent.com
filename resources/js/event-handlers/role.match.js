@@ -99,7 +99,6 @@ handler.prototype.refreshMatches = function(append) {
 	}
 
 	$('#role-match-loader').show();
-	$('#role-match').hide();
 
 	var qs = self.core.service.query_string();
 	var data = self.getFilters();
@@ -198,11 +197,9 @@ handler.prototype.refreshMatches = function(append) {
 				});
 			});
 
+			$('#role-match-loader').hide();
 			self.refreshing = false;
 			self.core.service.databind('#role-match', self.project, append);
-
-			$('#role-match-loader').hide();
-			$('#role-match').show();
 		});
 }
 
