@@ -156,9 +156,9 @@
 				  												<i class="fa fa-pencil"></i> Edit
 				  											</a>
 
-				  											<a class="btn btn-lg btn-outline font-size-normal delete-role" href="#" data-bind="<%= role_id %>" data-bind-target="id">
-				  												<i class="fa fa-trash-o"></i> Delete
-				  											</a>
+				  											<!-- <a class="btn btn&#45;lg btn&#45;outline font&#45;size&#45;normal delete&#45;role" href="#" data&#45;bind="<%= role_id %>" data&#45;bind&#45;target="id"> -->
+				  											<!-- 	<i class="fa fa&#45;trash&#45;o"></i> Delete -->
+				  											<!-- </a> -->
 
 															<a class="btn btn-success padding-small-normal view-role-matches" data-bind="/projects/<%= casting_id %>/roles/<%= role_id %>/matches">Find talents for this role</a>
 				  										</div>
