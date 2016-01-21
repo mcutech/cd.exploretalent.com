@@ -12,7 +12,7 @@
 
 				@include('components.talent-filter')
 
-				<div id="role-match" class="col-md-9 talents-search-result" style="display:none;">
+				<div id="role-match" class="col-md-9 talents-search-result">
 					<div class="row-fluid clearfix top-results-heading margin-bottom-normal">
 						<div class="col-md-6">
 							<div id="like-it-list-div" class="panel margin-bottom-small">
