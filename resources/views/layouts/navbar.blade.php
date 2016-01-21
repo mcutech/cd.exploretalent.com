@@ -32,7 +32,7 @@
 
 			</div>
 
-			<div id="main-navbar main-navbar-collapse"
+			<div id="main-navbar-collapse"
 				class="collapse navbar-collapse main-navbar-collapse">
 				<ul class="nav navbar-nav pull-right right-navbar-nav">
 					<li class="dropdown">
