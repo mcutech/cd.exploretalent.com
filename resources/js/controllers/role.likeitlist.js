@@ -33,7 +33,7 @@ module.exports = function(core, user, projectId, roleId) {
 		var likeitlistcheckbox = $('input[name="likeitlist-checkbox"]');
 		likeitlistcheckbox.attr('checked', 'checked');
 
-		$(this).attr('disabled', 'disabled');
+		// $(this).attr('disabled', 'disabled');
 		$('#remove-all-checked-likeitlist').removeAttr('disabled');
 	});
 
