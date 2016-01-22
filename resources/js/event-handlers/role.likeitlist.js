@@ -102,6 +102,7 @@ handler.prototype.removeAllLikeItList = function() {
 		self.project.role.deleteLikeItList()
 		.then(function() {
 			alert('Like It List entries removed.');
+			self.refreshLikeItList();
 		});
 	}
 }
@@ -301,8 +302,6 @@ handler.prototype.refreshInvitation = function() {
 
 	self.core.resource.campaign.get(data)
 	.then(function(res){
-		console.log(res);
-		console.log(res.data[0].id);
 		// var linktoworksheet = '/audition-worksheet/'+res.data[0].id;
 		if(res.total > 0){
 			$("#invitetoaudition-text")
