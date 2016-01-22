@@ -10,25 +10,16 @@
 
 		<div class="signin-form">
 			<form action="index.html" id="login-form">
-				<div class="row-fluid clearfix text-center">
-					<div class="col-md-12">
-						<img src="/images/logo-home-et.png" alt="">
-					</div>
-				</div>
 				<div class="signin-text">
-					<span class="text-primary">Casting Director Module</span>
+					<h4><span class="text-primary">Forgot Password</span></h4>
 				</div>
 
 				<div class="form-group ">
 					<input type="text" name="email" id="email" class="form-control input-lg" placeholder="Email / Username" autofocus data-required>
 				</div>
 
-				<div class="form-group ">
-					<input type="password" name="password" id="password" class="form-control input-lg" placeholder="Password" data-required>
-				</div>
 				<div class="form-actions">
-					<input type="submit" value="SIGN IN" class="signin-btn bg-primary" id="sign-in">
-					<a href="/forgot-password" class="forgot-password" id="forgot-password-link">Forgot your password?</a>
+					<input type="submit" value="RESET PASSWORD" class="signin-btn bg-primary" id="sign-in">
 				</div>
 
 				<div class="row margin-top-small">
