@@ -1,4 +1,4 @@
-@extends('layouts.sidebar', [ 'pages' => [ [ 'name' => 'Browse Talents', 'url' => '/messages', 'active' => true] ] ])
+@extends('layouts.sidebar', [ 'pages' => [ [ 'name' => 'Messages', 'url' => '/messages', 'active' => true] ] ])
 
 @section('sidebar.page-header')
  Messaging Center
