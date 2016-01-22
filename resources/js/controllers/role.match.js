@@ -2,7 +2,7 @@ module.exports = function(core, user, projectId, roleId) {
 	$('.matches-link').addClass('active');
 
 	var handler = require('../event-handlers/role.match.js')(core, user, projectId, roleId);
-	$('#talent-filter-button').on('click', function() { handler.refreshMatches() });
+	$('#talent-filter-button, #search-talent-btn').on('click', function() { handler.refreshMatches() });
 	$('#rate-all-button').on('click', handler.rateAll);
 	$('#remove-all-likeitlist').on('click', handler.removeAllLikeItList);
 	$('#roles-list').on('change', handler.changeRole);

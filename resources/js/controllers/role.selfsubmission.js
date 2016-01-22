@@ -6,7 +6,7 @@ module.exports = function(core, user, projectId, roleId) {
 	$('#roles-list').on('change', handler.changeRole);
 	$('#rate-all-button').on('click', handler.rateAll);
 	$('#remove-all-likeitlist').on('click', handler.removeAllLikeItList);
-	$('#talent-filter-button').on('click', handler.refreshSelfSubmissions);
+	$('#talent-filter-button, #search-talent-btn').on('click', handler.refreshSelfSubmissions);
 
 	$(document).on('click', '.add-casting-note', handler.getDetailsForAddNoteModal);
 	$('.add-note-for-talent').on('click', handler.addNoteForTalent);
