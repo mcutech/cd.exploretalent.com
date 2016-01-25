@@ -303,7 +303,7 @@ handler.prototype.refreshInvitation = function() {
 	self.core.resource.campaign.get(data)
 	.then(function(res){
 		// var linktoworksheet = '/audition-worksheet/'+res.data[0].id;
-		console.log(res);
+		//console.log(res);
 		if(res.data[0].status > 0 || res.data[0].status == 0){
 			$("#invitetoaudition-text")
 			.html('<span class="text-muted">You have already sent an invitation on</span> '+ res.data[0].updated_at +
