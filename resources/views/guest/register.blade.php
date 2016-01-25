@@ -12,7 +12,7 @@
 	<div class="col-md-12 white-text text-center">
 		<h2 class="text-bold">Post your Casting, Project or Job for Free</h2>
 		<small>Too busy to set up your account? Need help? Post casting calls only? <u>Email your project to us</u> or <u>Call us at (702) 446-0888.</u></small>
-		
+
 	</div>
 	<div class="col-md-2"></div>
 	<div class="col-md-8 margin-medium">
@@ -56,7 +56,7 @@
 							<span id="req-lnametxt" style="display:none;"></span>
 						</div>
 					</div>
-					
+
 					<div class="col-md-6 form-group">
 						<div class="form-group w-icon">
 							<input type="text" name="email" id="email" class="form-control input-lg" placeholder="Email Address" data-required>
@@ -80,7 +80,7 @@
 							<span id="req-passtxt" style="display:none;"></span>
 						</div>
 					</div>
-					
+
 					<div class="col-md-6 form-group">
 						<div class="form-group w-icon">
 							<input type="password" name="confirmPassword" id="confirm-password" class="form-control input-lg" placeholder="Confirm Password" data-required data-match="password">
@@ -91,6 +91,8 @@
 							<span class="sr-only">Error:</span>
 							<span id="req-confirmpasstxt" style="display:none;"></span>
 							<span id="req-unmatchtxt" style="display:none;"></span>
+							<span id="req-uniqueemailtxt"
+							style="display:none;"></span>
 						</div>
 					</div>
 
@@ -105,7 +107,7 @@
 							<span id="req-phonetxt" style="display:none;"></span>
 						</div>
 					</div>
-					
+
 					<div class="col-md-12 form-group">
 						<div class="text-center">
 							<div class="form-actions" id="form-action-signup-btn">
@@ -161,7 +163,7 @@
 				</div>
 			</div>
 		</div>
-	
+
 		<div class="col-md-5">
 			<div class="panel success-benefits-item panel-design">
 				<div class="panel-body">
@@ -228,7 +230,7 @@
 		</div>
 		<div class="col-md-1"></div>
 	</div> {{-- row-fluid --}}
-	
+
 	<div class="row-fluid clearfix panel footer-area margin-zero">
 		<div class="col-md-1"></div>
 		<div class="col-md-10">
@@ -301,7 +303,7 @@
 							<li><a href="http://www.exploretalent.com/testimonials" original-title="">Testimonials</a></li>
 							<li><a href="http://www.exploretalent.com/tour" original-title="">Take a Member Tour</a></li>
 
-						</ul>					
+						</ul>
 					</div>
 					<div class="col-md-2">
 						<ul class="list-unstyled">
@@ -311,7 +313,7 @@
 							<li><a href="http://trends.exploretalent.com" original-title="">Trends</a></li>
 							<li><a href="http://www.exploretalent.com/mail" original-title="">Web Mail</a></li>
 							<li><a href="http://www.exploretalent.com/links/links.htm" original-title="">Links</a></li>
-						</ul>					
+						</ul>
 					</div>
 					<div class="col-md-2"></div>
 				</div>

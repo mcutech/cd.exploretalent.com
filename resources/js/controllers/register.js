@@ -135,6 +135,10 @@ module.exports = function(core) {
 
 				window.location = '/projects';
 			}, function(){
+				$('#email').focus().css("border-color","#b94a48");
+				$('#req-confirmpass').show().delay(5000).fadeOut();
+				$('#req-uniqueemailtxt').text('The email has already been taken.').show().delay(5000).fadeOut();
+
 				$('#error-signup').show().delay(5000).fadeOut();
 			});
 	});
