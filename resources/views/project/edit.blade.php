@@ -212,23 +212,23 @@
 							<div class="col-md-6 padding-top-normal">
 								<div class="form-group margin-bottom-small">
 									<label class="control-label">Audition Location <span class="text-success">*</span></label>
-									<div class="input-group">
-										<input type="text" id="zip-code" class="form-control" placeholder="Enter Zip Code">
-										<span class="input-group-btn">
-											<button id="find-markets-btn" class="btn" type="button">Auto Select Markets</button>
-										</span>
+								<div class="input-group">
+									<input type="text" id="zip-code" class="form-control" placeholder="Enter Zip Code" data-bind="<%= zip %>">
+									<span class="input-group-btn">
+										<button id="find-markets-btn" class="btn" type="button">Auto Select Markets</button>
+									</span>
+								</div>
+								<div class="input-group auto-markets-div margin-top-normal">
+									<div class="hide" data-bind-template=".auto-markets-div" data-bind-value="data">
+										<label>
+											<input type="checkbox" name="market-checkbox" checked="">
+											<span class="lbl" data-bind="<%= city + ', ' +  state %>"></span>
+										</label>
 									</div>
-									<div class="input-group auto-markets-div margin-top-normal">
-										<div class="hide" data-bind-template=".auto-markets-div" data-bind-value="data">
-											<label>
-												<input type="checkbox" name="market-checkbox" checked="">
-												<span class="lbl" data-bind="<%= city + ', ' +  state %>"></span>
-											</label>
-										</div>
-									</div>
-									<div class="alert alert-page alert-danger zipcode-error-required" style="display:none;">This field is required.</div>
-									<div class="alert alert-page alert-danger zipcode-error-invalid" style="display:none;">Please enter a valid zip code.</div>
-									<div class="alert alert-page alert-danger markets-error-required" style="display:none;">Please choose at least one market.</div>
+								</div>
+								<div class="alert alert-page alert-danger zipcode-error-required" style="display:none;">This field is required.</div>
+								<div class="alert alert-page alert-danger zipcode-error-invalid" style="display:none;">Please enter a valid zip code.</div>
+								<div class="alert alert-page alert-danger markets-error-required" style="display:none;">Please choose at least one market.</div>
 								</div>
 							</div>
 							<div class="col-md-12 input-group margin-top-small">
