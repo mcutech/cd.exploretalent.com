@@ -18,6 +18,7 @@ Route::get('/', function() {
 Route::get('login', 'LoginController@index');
 Route::get('register', 'RegisterController@index');
 Route::get('forgot-password', 'ForgetPasswordController@index');
+Route::get('reset-password', 'ResetPasswordController@index');
 
 Route::resource('/audition-worksheet'				, 'WorksheetController');
 Route::resource('projects'							, 'ProjectController');

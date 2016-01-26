@@ -26,7 +26,7 @@ jscore.run(function(core) {
 	function init(user) {
 		core.service.rest.settings.statusCode = {
 			401: function() {
-				if(window.location.pathname !== '/login' && window.location.pathname !== '/register' && window.location.pathname !== '/forgot-password') {
+				if(window.location.pathname !== '/login' && window.location.pathname !== '/register' && window.location.pathname !== '/forgot-password' && window.location.pathname !== '/reset-password') {
 					window.location.href = '/login?redirect=' + encodeURIComponent(window.location);
 				}
 			}
