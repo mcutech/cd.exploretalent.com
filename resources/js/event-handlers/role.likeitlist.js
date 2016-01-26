@@ -296,14 +296,15 @@ handler.prototype.refreshInvitation = function() {
 	var data = {
 		query : [
 			['where', 'bam_role_id', self.roleId],
-			['where', 'status', '>', '0']
+			//['where', 'status', '>', '0']
 		]
 	}
 
 	self.core.resource.campaign.get(data)
 	.then(function(res){
 		// var linktoworksheet = '/audition-worksheet/'+res.data[0].id;
-		if(res.total > 0){
+		//console.log(res);
+		if(res.data[0].status > 0 || res.data[0].status == 0){
 			$("#invitetoaudition-text")
 			.html('<span class="text-muted">You have already sent an invitation on</span> '+ res.data[0].updated_at +
 				'<a href="/audition-worksheet/'+res.data[0].id+'" class="btn-link margin-left-small"><i class="fa fa-pencil"></i> Manage Here</a>');
@@ -340,7 +341,8 @@ handler.prototype.sendInvites = function() {
 			description			: form.message,
 			model				: 'Schedule',
 			query				: JSON.stringify(data),
-			replies				: form.replies
+			replies				: form.replies,
+			status				: 0
 		}
 
 		// update campaign
@@ -356,8 +358,8 @@ handler.prototype.sendInvites = function() {
 	.then(function(res) {
 		alert('Invitations sent!');
 		$('#invite-to-audition-modal').modal('toggle'); //auto-close modal
-		self.refreshInvitation();
 		self.refreshProjectDetails();
+		self.refreshInvitation();
 	});
 }
 
