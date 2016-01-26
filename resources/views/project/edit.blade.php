@@ -199,19 +199,16 @@
 					</div> {{-- row-fluid --}}
 
 					<div class="row-fluid">
-						<div class="col-md-9">
+						<div class="col-md-12">
 							<div class="form-group">
 								<label class="control-label">General Audition Info / Storyline / Synopsis / Logline <span class="text-success">*</span></label>
-								<textarea id="audition-description" class="form-control" rows="5" cols="50" placeholder="Message" style="resize:vertical; box-sizzing: border-box; height: 99px;"></textarea>
+								<textarea id="audition-description" class="form-control" rows="4" cols="50" placeholder="Message" style="resize:vertical; box-sizzing: border-box;" data-bind="<%= des %>"></textarea>
 								<div class="alert alert-page alert-danger audition-description-error-required" style="display:none;">This field is required.</div>
 							</div>
 						</div>
 						
 					</div>
-
-					
 					<div class="row-fluid">
-						
 							<div class="col-md-6 padding-top-normal">
 								<div class="form-group margin-bottom-small">
 									<label class="control-label">Audition Location <span class="text-success">*</span></label>
