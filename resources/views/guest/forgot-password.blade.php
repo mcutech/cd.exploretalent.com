@@ -1,6 +1,6 @@
 @extends('layouts.guest')
 
-@section('title', 'Login')
+@section('title', 'Forgot Password')
 
 @section('master.class', 'page-signin')
 
@@ -19,7 +19,7 @@
 				</div>
 
 				<div class="form-actions">
-					<input type="submit" value="RESET PASSWORD" class="signin-btn bg-primary" id="sign-in">
+					<input type="submit" value="RESET PASSWORD" class="signin-btn bg-primary" id="forgot-password">
 				</div>
 
 				<div class="row margin-top-small">
