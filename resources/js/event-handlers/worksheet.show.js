@@ -288,6 +288,15 @@ handler.prototype.refreshMessages = function(scheduleId) {
 		})
 		.then(function(res) {
 			conversation.campaign = _.first(res.data);
+			console.log(conversation);
+			_.each(conversation.messages, function(val, ind){
+				var pstdate = new Date(val.created_at);
+				pstdate.setHours(pstdate.getHours() + 8);
+				console.log(ind);
+				conversation.messages[ind].created_at = pstdate;
+			});
+			/*var pstdate = moment(conversation.campaign.created_at);
+			console.log(pstdate);*/
 			self.core.service.databind('#message-modal', conversation);
 			$('#message-modal #messages-container').animate({ scrollTop: $('#message-modal #messages').height() }, 1000);
 			self.conversation = conversation;
