@@ -56,12 +56,10 @@ handler.prototype.refreshLikeItList = function() {
 		self.core.service.paginate('#like-it-list-pagination', { class : 'pagination', total : result.total, name : 'page' });
 
 		self.getFavoriteTalents();
-<<<<<<< HEAD
+
 		self.refreshSelfSubmissions();
 
-=======
 		$('input[name="likeitlist-checkbox"]').removeAttr('checked');
->>>>>>> issue-178-v1
 		$('#loading-div').hide();
 		$('#roles-list').val(self.project.role.role_id);
 	});
