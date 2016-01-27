@@ -1,4 +1,5 @@
 'use strict';
+var _ = require('lodash');
 
 function handler(core, user, projectId, roleId) {
 	self = this;
@@ -11,6 +12,7 @@ function handler(core, user, projectId, roleId) {
 	self.refreshProjectDetails();
 	self.refreshInvitation();
 	self.inviteStatus = '';
+	self.uncheckTalent = [];
 	// @if ENV='production'
 	$('#when-where-container').hide();
 	// @endif
@@ -54,8 +56,12 @@ handler.prototype.refreshLikeItList = function() {
 		self.core.service.paginate('#like-it-list-pagination', { class : 'pagination', total : result.total, name : 'page' });
 
 		self.getFavoriteTalents();
+<<<<<<< HEAD
 		self.refreshSelfSubmissions();
 
+=======
+		$('input[name="likeitlist-checkbox"]').removeAttr('checked');
+>>>>>>> issue-178-v1
 		$('#loading-div').hide();
 		$('#roles-list').val(self.project.role.role_id);
 	});
@@ -167,7 +173,8 @@ handler.prototype.unrateSchedule = function(e) {
 handler.prototype.unrateCheckedSchedules = function(e) {
 
 	var checkedDataIds = $('input[name="likeitlist-checkbox"]:checked');
-
+	console.log(checkedDataIds);
+	
 	var checkedIdsArray = [];
 	$.each(checkedDataIds, function(index, value) {
 		var dataId = $(this).attr('data-id');
@@ -187,11 +194,55 @@ handler.prototype.unrateCheckedSchedules = function(e) {
 
 	$.when.apply($, promises).then(function() {
 		alert('Entries removed.');
-		// $('#remove-all-checked-likeitlist').attr('disabled', 'disabled');
+		$('#remove-all-checked-likeitlist').attr('disabled', 'disabled');
+		//$('#remove-all-checked-likeitlist').attr('disabled', 'disabled');
 		$('#check-all-likeitlist').removeAttr('disabled');
 		// $('input[name="likeitlist-checkbox"]').removeAttr('checked');
 		self.refreshLikeItList();
+		self.refreshUncheck();
 	});
+}
+
+//adding to uncheck array
+handler.prototype.addToUncheck = function() {
+	//console.log($(this).attr('data-id'));
+	var dc = $(this).attr('data-id');
+	if($(this).is(':checked')){
+		var greenday = _.remove(self.uncheckTalent, function(val){
+			return val == dc;
+			//return _.contains([dc],self.uncheckTalent);
+		});
+	} else {
+		var blink = _.find(self.uncheckTalent, function(n){
+			return n == dc;
+		});
+		//check if the uncheck already exist
+		if(!blink)
+		self.uncheckTalent.push(dc);
+		$(this).removeAttr('checked');
+	}
+	console.log(self.uncheckTalent);
+}
+
+//to check if the talent is uncheck
+handler.prototype.refreshUncheck = function() {
+	_.each(self.uncheckTalent, function(val, ind){
+		$('input[data-id="'+val+'"]:checkbox').removeAttr('checked');
+		console.log($('input[data-id="'+val+'"]:checkbox').attr('class'));
+	});
+	/*console.log(self.project.role.likeitlist);
+	_.each(self.project.role.likeitlist.data, function(val){
+		_.each(self.uncheckTalent, function(val1){
+			if(val1 == val){
+				$('input[data-id="'+val+'"]:checkbox').prop('checked', true);
+			}
+		})
+	});*/
+}
+
+//remove all uncheck
+handler.prototype.removeAllUncheck = function() {
+	self.uncheckTalent = [];
 }
 
 handler.prototype.changeRole = function() {
