@@ -1,4 +1,5 @@
 'use strict';
+var _ = require('lodash');
 
 function handler(core, user, projectId, roleId) {
 	self = this;
@@ -11,6 +12,7 @@ function handler(core, user, projectId, roleId) {
 	self.refreshProjectDetails();
 	self.refreshInvitation();
 	self.inviteStatus = '';
+	self.uncheckTalent = [];
 	// @if ENV='production'
 	$('#when-where-container').hide();
 	// @endif
@@ -32,7 +34,6 @@ handler.prototype.refreshProjectDetails = function() {
 		});
 		// $('#roles-list').val(self.project.role.role_id);
 		self.project.date = self.core.service.date;
-		console.log(self.project);
 		return self.refreshLikeItList();
 	})
 
@@ -56,6 +57,9 @@ handler.prototype.refreshLikeItList = function() {
 
 		self.getFavoriteTalents();
 
+		self.refreshSelfSubmissions();
+
+		$('input[name="likeitlist-checkbox"]').removeAttr('checked');
 		$('#loading-div').hide();
 		$('#roles-list').val(self.project.role.role_id);
 	});
@@ -82,6 +86,48 @@ handler.prototype.getFavoriteTalents = function() {
 			});
 		});
 	}
+}
+
+handler.prototype.refreshSelfSubmissions = function() {
+	var qs = self.core.service.query_string();
+	var data = {
+		q : [
+			[ 'select', 'bam.laret_schedules.id' ],
+			[ 'join', 'bam.laret_users', 'bam.laret_users.bam_talentnum', '=', 'search.talents.talentnum' ],
+			[ 'join', 'bam.laret_schedules', 'bam.laret_schedules.invitee_id', '=', 'bam.laret_users.id' ],
+			[ 'where', 'bam.laret_schedules.submission', '=', 1 ],
+			[ 'where', 'bam.laret_schedules.bam_role_id', '=', self.project.role.role_id ]
+		],
+		page	: qs.page || 1
+	};
+
+	var total;
+
+	return self.core.resource.search_talent.get(data)
+		.then(function(res) {
+			total = res.total;
+			var ids = _.map(res.data, function(talent) {
+				return talent.id;
+			});
+
+			ids.push(0);
+
+			var data2 = {
+				query : [
+					[ 'with', 'invitee.bam_talentci.bam_talentinfo1' ],
+					[ 'with', 'invitee.bam_talentci.bam_talentinfo2' ],
+					[ 'with', 'invitee.bam_talentci.bam_talent_media2' ],
+					[ 'with', 'schedule_notes.user.bam_cd_user' ],
+					[ 'whereIn', 'id', ids ]
+				]
+			};
+
+			return self.core.resource.schedule.get(data2);
+		})
+		.then(function(res) {
+			res.total = total;
+			$('#self-submissions-counter').text(res.total); // counter
+		});
 }
 
 handler.prototype.rateSchedule = function(e) {
@@ -125,7 +171,8 @@ handler.prototype.unrateSchedule = function(e) {
 handler.prototype.unrateCheckedSchedules = function(e) {
 
 	var checkedDataIds = $('input[name="likeitlist-checkbox"]:checked');
-
+	console.log(checkedDataIds);
+	
 	var checkedIdsArray = [];
 	$.each(checkedDataIds, function(index, value) {
 		var dataId = $(this).attr('data-id');
@@ -145,11 +192,55 @@ handler.prototype.unrateCheckedSchedules = function(e) {
 
 	$.when.apply($, promises).then(function() {
 		alert('Entries removed.');
-		// $('#remove-all-checked-likeitlist').attr('disabled', 'disabled');
+		$('#remove-all-checked-likeitlist').attr('disabled', 'disabled');
+		//$('#remove-all-checked-likeitlist').attr('disabled', 'disabled');
 		$('#check-all-likeitlist').removeAttr('disabled');
 		// $('input[name="likeitlist-checkbox"]').removeAttr('checked');
 		self.refreshLikeItList();
+		self.refreshUncheck();
 	});
+}
+
+//adding to uncheck array
+handler.prototype.addToUncheck = function() {
+	//console.log($(this).attr('data-id'));
+	var dc = $(this).attr('data-id');
+	if($(this).is(':checked')){
+		var greenday = _.remove(self.uncheckTalent, function(val){
+			return val == dc;
+			//return _.contains([dc],self.uncheckTalent);
+		});
+	} else {
+		var blink = _.find(self.uncheckTalent, function(n){
+			return n == dc;
+		});
+		//check if the uncheck already exist
+		if(!blink)
+		self.uncheckTalent.push(dc);
+		$(this).removeAttr('checked');
+	}
+	console.log(self.uncheckTalent);
+}
+
+//to check if the talent is uncheck
+handler.prototype.refreshUncheck = function() {
+	_.each(self.uncheckTalent, function(val, ind){
+		$('input[data-id="'+val+'"]:checkbox').removeAttr('checked');
+		console.log($('input[data-id="'+val+'"]:checkbox').attr('class'));
+	});
+	/*console.log(self.project.role.likeitlist);
+	_.each(self.project.role.likeitlist.data, function(val){
+		_.each(self.uncheckTalent, function(val1){
+			if(val1 == val){
+				$('input[data-id="'+val+'"]:checkbox').prop('checked', true);
+			}
+		})
+	});*/
+}
+
+//remove all uncheck
+handler.prototype.removeAllUncheck = function() {
+	self.uncheckTalent = [];
 }
 
 handler.prototype.changeRole = function() {

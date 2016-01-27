@@ -112,12 +112,12 @@ handler.prototype.refreshSelfSubmissions = function() {
 			res.total = total;
 			self.project.role.selfsubmissions = res;
 			self.core.service.databind('#self-submissions', self.project);
-
 			self.core.service.paginate('#self-submissions-pagination', { class : 'pagination', total : res.total, name : 'page' });
 
 			self.getFavoriteTalents();
 
 			$('#loading-div').hide();
+			$('#self-submissions-counter').text(res.total); // counter
 		});
 }
 
