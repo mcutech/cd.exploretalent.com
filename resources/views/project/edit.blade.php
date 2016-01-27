@@ -199,9 +199,19 @@
 					</div> {{-- row-fluid --}}
 
 					<div class="row-fluid">
-						<div class="col-md-6">
+						<div class="col-md-12">
 							<div class="form-group">
-								<label class="control-label">Audition Location <span class="text-success">*</span></label>
+								<label class="control-label">General Audition Info / Storyline / Synopsis / Logline <span class="text-success">*</span></label>
+								<textarea id="audition-description" class="form-control" rows="4" cols="50" placeholder="Message" style="resize:vertical; box-sizzing: border-box;" data-bind="<%= des %>"></textarea>
+								<div class="alert alert-page alert-danger audition-description-error-required" style="display:none;">This field is required.</div>
+							</div>
+						</div>
+						
+					</div>
+					<div class="row-fluid">
+							<div class="col-md-6 padding-top-normal">
+								<div class="form-group margin-bottom-small">
+									<label class="control-label">Audition Location <span class="text-success">*</span></label>
 								<div class="input-group">
 									<input type="text" id="zip-code" class="form-control" placeholder="Enter Zip Code" data-bind="<%= zip %>">
 									<span class="input-group-btn">
@@ -219,24 +229,14 @@
 								<div class="alert alert-page alert-danger zipcode-error-required" style="display:none;">This field is required.</div>
 								<div class="alert alert-page alert-danger zipcode-error-invalid" style="display:none;">Please enter a valid zip code.</div>
 								<div class="alert alert-page alert-danger markets-error-required" style="display:none;">Please choose at least one market.</div>
+								</div>
 							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="form-group">
-								<label class="control-label">General Audition Info / Storyline / Synopsis / Logline <span class="text-success">*</span></label>
-								<textarea id="audition-description" class="form-control" rows="5" placeholder="Message" style="resize: none;" data-bind="<%= des %>"></textarea>
-								<div class="alert alert-page alert-danger audition-description-error-required" style="display:none;">This field is required.</div>
-							</div>
-						</div>
-					</div>
-
-					<div class="row-fluid">
-						<div class="col-md-12 input-group margin-top-normal">
+							<div class="col-md-12 input-group margin-top-small">
 							<label for="manual-markets-div">
-								or <a href="" id="toggle-manual-markets-div" style="text-decoration: underline;">Hide markets</a>
-								<a class="btn btn-default btn-sm" href="" id="toggle-all-markets-checked">Select All Markets</a>
+								or <a href="" id="toggle-manual-markets-div" style="text-decoration: underline;">Manually select markets</a>
+								<a class="btn btn-default btn-sm" href="" id="toggle-all-markets-checked" style="display: none;">Select All Markets</a>
 							</label>
-							<div class="manual-markets-div">
+							<div class="manual-markets-div display-none">
 								<div class="col-md-2">
 									<label>
 										<input type="checkbox" name="manual-market-checkbox" id="market_albany_ny"> <span class="lbl">Albany, NY</span>
