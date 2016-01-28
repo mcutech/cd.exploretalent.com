@@ -15,7 +15,7 @@
 					<div class="col-sm-12">
 						<div class="form-group no-margin-hr">
 							<label for="company" class="control-label">Company name *</label>
-							<input data-bind="<%= company %>" type="text" class="form-control" name="company" placeholder="Company name" data-validate="required" data-validate-error="This field is required." />
+							<input data-bind="<%= company %>" type="text" class="form-control" name="company" placeholder="Company name" />
 						</div>
 					</div>
 				</div>
@@ -169,8 +169,14 @@
 				<div class="row">
 					<div class="col-sm-6">
 						<div class="form-group no-margin-hr">
-							<label for="pass" class="control-label">Password</label>
-							<input data-bind="<%= pass %>" type="password" class="form-control" id="pass" placeholder="Password">
+							<label for="pass" class="control-label">Enter Password *</label>
+							<input type="password" class="form-control" id="pass" name="pass" placeholder="Password" data-validate="required" data-validate-error="This field is required." >
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="form-group no-margin-hr">
+							<label for="pass2" class="control-label">Confirm Password *</label>
+							<input type="password" class="form-control" id="pass2" placeholder="Password" data-validate="required" data-validate-error="This field is required." >
 						</div>
 					</div>
 				</div>
