@@ -47,4 +47,11 @@ module.exports = function(core, user, projectId, roleId) {
 	$(document).on('click', '#remove-all-checked-likeitlist', handler.unrateCheckedSchedules);
 
 	$(document).on('click', 'input[name="likeitlist-checkbox"]', handler.addToUncheck);
+
+	$(document).on('click', '#send-via-email', function() {
+
+		$(".send-v-email").addClass("hide");
+		$("#send-email-form").slideDown("slow");
+
+	});
 }
