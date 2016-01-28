@@ -18,7 +18,7 @@ module.exports = function(core, user, projectId, roleId) {
 	$(document).on('click', '.fav-btn', handler.addToFav);
 
 	$("#acc-toggle").click(function(){
-	   $("#date-location").toggleClass('hide');
+		$("#date-location").toggleClass('hide');
 	});
 
 	$('#send-invites-button').on('click', handler.sendInvites);
@@ -54,4 +54,5 @@ module.exports = function(core, user, projectId, roleId) {
 		$("#send-email-form").slideDown("slow");
 
 	});
+
 }

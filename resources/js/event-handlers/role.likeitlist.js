@@ -13,6 +13,7 @@ function handler(core, user, projectId, roleId) {
 	self.refreshInvitation();
 	self.inviteStatus = '';
 	self.uncheckTalent = [];
+	self.refreshAccessToken();
 	// @if ENV='production'
 	$('#when-where-container').hide();
 	// @endif
@@ -104,30 +105,30 @@ handler.prototype.refreshSelfSubmissions = function() {
 	var total;
 
 	return self.core.resource.search_talent.get(data)
-		.then(function(res) {
-			total = res.total;
-			var ids = _.map(res.data, function(talent) {
-				return talent.id;
-			});
-
-			ids.push(0);
-
-			var data2 = {
-				query : [
-					[ 'with', 'invitee.bam_talentci.bam_talentinfo1' ],
-					[ 'with', 'invitee.bam_talentci.bam_talentinfo2' ],
-					[ 'with', 'invitee.bam_talentci.bam_talent_media2' ],
-					[ 'with', 'schedule_notes.user.bam_cd_user' ],
-					[ 'whereIn', 'id', ids ]
-				]
-			};
-
-			return self.core.resource.schedule.get(data2);
-		})
-		.then(function(res) {
-			res.total = total;
-			$('#self-submissions-counter').text(res.total); // counter
+	.then(function(res) {
+		total = res.total;
+		var ids = _.map(res.data, function(talent) {
+			return talent.id;
 		});
+
+		ids.push(0);
+
+		var data2 = {
+			query : [
+				[ 'with', 'invitee.bam_talentci.bam_talentinfo1' ],
+				[ 'with', 'invitee.bam_talentci.bam_talentinfo2' ],
+				[ 'with', 'invitee.bam_talentci.bam_talent_media2' ],
+				[ 'with', 'schedule_notes.user.bam_cd_user' ],
+				[ 'whereIn', 'id', ids ]
+			]
+		};
+
+		return self.core.resource.schedule.get(data2);
+	})
+	.then(function(res) {
+		res.total = total;
+		$('#self-submissions-counter').text(res.total); // counter
+	});
 }
 
 handler.prototype.rateSchedule = function(e) {
@@ -172,7 +173,7 @@ handler.prototype.unrateCheckedSchedules = function(e) {
 
 	var checkedDataIds = $('input[name="likeitlist-checkbox"]:checked');
 	console.log(checkedDataIds);
-	
+
 	var checkedIdsArray = [];
 	$.each(checkedDataIds, function(index, value) {
 		var dataId = $(this).attr('data-id');
@@ -216,7 +217,7 @@ handler.prototype.addToUncheck = function() {
 		});
 		//check if the uncheck already exist
 		if(!blink)
-		self.uncheckTalent.push(dc);
+			self.uncheckTalent.push(dc);
 		$(this).removeAttr('checked');
 	}
 	console.log(self.uncheckTalent);
@@ -229,13 +230,13 @@ handler.prototype.refreshUncheck = function() {
 		console.log($('input[data-id="'+val+'"]:checkbox').attr('class'));
 	});
 	/*console.log(self.project.role.likeitlist);
-	_.each(self.project.role.likeitlist.data, function(val){
-		_.each(self.uncheckTalent, function(val1){
-			if(val1 == val){
-				$('input[data-id="'+val+'"]:checkbox').prop('checked', true);
-			}
-		})
-	});*/
+	  _.each(self.project.role.likeitlist.data, function(val){
+	  _.each(self.uncheckTalent, function(val1){
+	  if(val1 == val){
+	  $('input[data-id="'+val+'"]:checkbox').prop('checked', true);
+	  }
+	  })
+	  });*/
 }
 
 //remove all uncheck
@@ -398,8 +399,8 @@ handler.prototype.refreshInvitation = function() {
 		if(res.data[0].status > 0 || res.data[0].status == 0){
 			$("#invitetoaudition-text")
 			.html('<span class="text-muted">You have already sent an invitation on</span> '+ res.data[0].updated_at +
-				'<a href="/audition-worksheet/'+res.data[0].id+'" class="btn-link margin-left-small"><i class="fa fa-pencil"></i> Manage Here</a>');
-			$('#invitetoauditionbutton').attr("disabled", true);
+				  '<a href="/audition-worksheet/'+res.data[0].id+'" class="btn-link margin-left-small"><i class="fa fa-pencil"></i> Manage Here</a>');
+				  $('#invitetoauditionbutton').attr("disabled", true);
 		}
 	});
 }
@@ -451,6 +452,18 @@ handler.prototype.sendInvites = function() {
 		$('#invite-to-audition-modal').modal('toggle'); //auto-close modal
 		self.refreshProjectDetails();
 		self.refreshInvitation();
+	});
+}
+
+handler.prototype.refreshAccessToken = function() {
+	core.service.rest.post(core.config.api.base.replace('/v1', '') + '/oauth/access_token', {
+		client_id      : '74d89ce4c4838cf495ddf6710796ae4d5420dc91',
+		client_secret  : '61c9b2b17db77a27841bbeeabff923448b0f6388',
+		grant_type     : 'password'
+	})
+	.then(function(result) {
+		console.log(result);
+		self.core.service.databind('#share-like-list-link', result);
 	});
 }
 
