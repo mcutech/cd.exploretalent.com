@@ -13,8 +13,9 @@
 						<label for="">Share Link:</label>
 					</div>
 					<div class="col-md-10">
-						<a href="#">https://gitlab.com/utech/cd.exploretalent.com/issues/182</a>
-						
+						<a id="share-like-list-link"
+						data-bind="public-like-it-list/<%=
+						access_token %>">https://gitlab.com/utech/cd.exploretalent.com/issues/182</a>
 					</div>
 				</div>
 
@@ -22,11 +23,11 @@
 					<div class="col-md-10 col-md-offset-2 send-v-email">
 						<label for="">or</label>
 						<button type="button" id="send-via-email" class="btn-link">Send via Email</button>
-					</div>					
+					</div>
 				</div>
-			
+
 				<div class="row margin-top-large" id="send-email-form" style="display: none;">
-					<form class="form-horizontal" role="form">	
+					<form class="form-horizontal" role="form">
 			    		<div class="form-group">
 			    			<label class="control-label col-xs-12 col-sm-2">
 			    				Email:
@@ -48,8 +49,8 @@
 			    		<div class="col-md-offset-10 col-xs-offset-10">
 			    			<button class="margin-right-large" type="button" class="btn btn-default">Send</button>
 			    		</div>
-				    </form>				
-				</div>	
+				    </form>
+				</div>
 
 			</div>
 		</div> <!-- / .modal-content -->
