@@ -32,7 +32,6 @@ handler.prototype.refreshProjectDetails = function() {
 		});
 		// $('#roles-list').val(self.project.role.role_id);
 		self.project.date = self.core.service.date;
-		console.log(self.project);
 		return self.refreshLikeItList();
 	})
 
@@ -339,7 +338,11 @@ handler.prototype.sendInvites = function() {
 			where				: form.where,
 			name				: 'CD Invite Role #' + self.project.role.role_id,
 			description			: form.message,
-			model				: 'Schedule',
+			query_model			: 'Schedule',
+			query_model_raw     : 'BamTalentci',
+			query_key_id        : 'talentnum',
+			query_key_cell      : 'cell',
+			query_key_email     : 'email1',
 			query				: JSON.stringify(data),
 			replies				: form.replies,
 			status				: 0
