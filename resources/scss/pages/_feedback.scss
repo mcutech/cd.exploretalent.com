@@ -1,0 +1,21 @@
+.feedback-wrapper{
+	.panel{
+		&.panel-dark{
+			.panel-heading{
+				background-color: #3C3E42;
+				color: #ffffff;
+				a{
+					color: #ffffff;
+
+					&::after{
+						color: #ffffff;
+					}
+				}
+			}
+			.panel-body{
+				border: 1px solid #3C3E42;
+
+			}
+		}
+	}
+}
