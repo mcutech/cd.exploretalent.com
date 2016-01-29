@@ -462,8 +462,7 @@ handler.prototype.refreshAccessToken = function() {
 		grant_type     : 'password'
 	})
 	.then(function(result) {
-		console.log(result);
-		self.core.service.databind('#share-like-list-link', result);
+		self.core.service.databind('#share-like-list-link', { data: result } );
 	});
 }
 

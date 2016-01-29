@@ -13,9 +13,8 @@
 						<label for="">Share Link:</label>
 					</div>
 					<div class="col-md-10">
-						<a id="share-like-list-link"
-						data-bind="public-like-it-list/<%=
-						access_token %>">https://gitlab.com/utech/cd.exploretalent.com/issues/182</a>
+						<input id="share-like-list-link"
+						data-bind="<%=window.location.href.replace(window.location.pathname, '')%>/login?<%=$.param(data)%>&redirect=<%=encodeURIComponent(window.location.href.replace(/like-it-list/, ''))%>public-like-it-list"/>
 					</div>
 				</div>
 
