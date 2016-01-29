@@ -13,7 +13,7 @@
 						<label for="">Share Link:</label>
 					</div>
 					<div class="col-md-10">
-						<input id="share-like-list-link"
+						<input id="share-like-list-link" class="form-control"
 						data-bind="<%=window.location.href.replace(window.location.pathname, '')%>/login?<%=$.param(data)%>&redirect=<%=encodeURIComponent(window.location.href.replace(/like-it-list/, ''))%>public-like-it-list"/>
 					</div>
 				</div>
