@@ -52,6 +52,7 @@ jscore.run(function(core) {
 		.add('/login', 'login')
 		.add('/register', 'register')
 		.add('/settings', 'settings')
+		.add('/reset-password', 'password.reset')
 
 		.add('/talents', 'talents')
 		.add('/talents/favorite', 'talent.favorite')
@@ -67,6 +68,7 @@ jscore.run(function(core) {
 		.add('/projects/{projectId}/roles/{roleId}/matches', 'role.match')
 		.add('/projects/{projectId}/roles/{roleId}/like-it-list', 'role.likeitlist')
 		.add('/projects/{projectId}/roles/{roleId}/public-like-it-list', 'role.publiclikeitlist')
+		.add('/projects/{projectId}/roles/{roleId}/public-like-it-list/{accessToken}', 'role.publiclikeitlist')
 		.add('/projects/{projectId}/roles/{roleId}/self-submissions', 'role.selfsubmission')
 		.add('/audition-worksheet/{campaignId}', 'worksheet.show')
 		.add('/audition-worksheet', 'worksheet')

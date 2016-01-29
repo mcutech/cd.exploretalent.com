@@ -18,7 +18,7 @@ module.exports = function(core, user, projectId, roleId) {
 	$(document).on('click', '.fav-btn', handler.addToFav);
 
 	$("#acc-toggle").click(function(){
-	   $("#date-location").toggleClass('hide');
+		$("#date-location").toggleClass('hide');
 	});
 
 	$('#send-invites-button').on('click', handler.sendInvites);
@@ -31,10 +31,12 @@ module.exports = function(core, user, projectId, roleId) {
 	$(document).on('click', '#check-all-likeitlist', function() {
 
 		var likeitlistcheckbox = $('input[name="likeitlist-checkbox"]');
-		likeitlistcheckbox.attr('checked', 'checked');
+		likeitlistcheckbox.prop('checked', true);
 
 		// $(this).attr('disabled', 'disabled');
 		$('#remove-all-checked-likeitlist').removeAttr('disabled');
+
+		handler.removeAllUncheck();
 	});
 
 	// if at least 1 checkbox is checked, remove disabled attribute from Remove all Checked btn
@@ -43,5 +45,14 @@ module.exports = function(core, user, projectId, roleId) {
 	});
 
 	$(document).on('click', '#remove-all-checked-likeitlist', handler.unrateCheckedSchedules);
+
+	$(document).on('click', 'input[name="likeitlist-checkbox"]', handler.addToUncheck);
+
+	$(document).on('click', '#send-via-email', function() {
+
+		$(".send-v-email").addClass("hide");
+		$("#send-email-form").slideDown("slow");
+
+	});
 
 }

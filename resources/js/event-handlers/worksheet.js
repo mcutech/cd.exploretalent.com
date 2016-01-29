@@ -25,8 +25,10 @@ handler.prototype.refresh = function() {
 	var data = {
 		query : [
 			[ 'with', 'bam_role.bam_casting' ],
-			[ 'with', 'bam_role.schedules' ]
-		]
+			[ 'with', 'bam_role.schedules' ],
+			[ 'orderBy', 'created_at', 'DESC']
+		],
+
 	};
 
 	if (status == 0) {
@@ -39,6 +41,7 @@ handler.prototype.refresh = function() {
 
 	self.core.resource.campaign.get(data)
 		.then(function(res) {
+			console.log(res);
 			_.remove(res.data, function(campaign) {
 				return campaign.bam_role == null;
 			});

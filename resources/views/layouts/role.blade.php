@@ -80,7 +80,9 @@
 				<a data-bind="/projects/<%= casting_id %>/roles/<%= role.role_id %>/matches">Matches</a>
 			</li>
 			<li role="presentation" class="font-size-small-normal-zz font-size-small-normal-xs self-submissions-link">
-				<a data-bind="/projects/<%= casting_id %>/roles/<%= role.role_id %>/self-submissions">Self Submissions</a>
+				<a data-bind="/projects/<%= casting_id %>/roles/<%= role.role_id %>/self-submissions">Self Submissions 
+					<span id="self-submissions-counter" class="label label-danger"></span>
+				</a>
 			</li>
 			<li role="presentation" class="font-size-small-normal-zz font-size-small-normal-xs like-it-list-link hide">
 				<a data-bind="/projects/<%= casting_id %>/roles/<%= role.role_id %>/like-it-list" href="">Like It List</a>

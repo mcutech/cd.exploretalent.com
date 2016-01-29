@@ -17,7 +17,7 @@ Route::get('/', function() {
 
 Route::get('login', 'LoginController@index');
 Route::get('register', 'RegisterController@index');
-Route::get('forgot-password', 'ForgetPasswordController@index');
+Route::get('forgot-password', 'ForgotPasswordController@index');
 Route::get('reset-password', 'ResetPasswordController@index');
 
 Route::resource('/audition-worksheet'				, 'WorksheetController');
@@ -26,6 +26,7 @@ Route::resource('projects.roles'					, 'RoleController', [ 'only' => [ 'edit', '
 Route::get('projects/{projectId}/roles/{roleId}/self-submissions',	'RoleController@selfsubmissions');
 Route::get('projects/{projectId}/roles/{roleId}/like-it-list',		'RoleController@likeitlist');
 Route::get('projects/{projectId}/roles/{roleId}/public-like-it-list',		'RoleController@publiclikeitlist');
+Route::get('projects/{projectId}/roles/{roleId}/public-like-it-list/{accessToken}',		'RoleController@publiclikeitlist');
 Route::get('projects/{projectId}/roles/{roleId}/matches',			'RoleController@matches');
 Route::resource('projects.schedules' 				, 'ScheduleController');
 
@@ -36,3 +37,5 @@ Route::get('messages/{projectId}'					, 'MessageController@index');
 Route::get('messages'								, 'MessageController@index');
 
 Route::get('settings'								, 'ProfileController@settings');
+
+Route::resource('/feedback'								, 'FeedbackController');

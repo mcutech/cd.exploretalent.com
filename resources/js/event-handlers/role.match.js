@@ -78,6 +78,7 @@ handler.prototype.refreshLikeItList = function(soft) {
 
 			if (!soft) {
 				self.refreshMatches();
+				self.refreshSelfSubmissions();
 			}
 
 			if (self.project.role.schedule_import) {
@@ -200,6 +201,48 @@ handler.prototype.refreshMatches = function(append) {
 			$('#role-match-loader').hide();
 			self.refreshing = false;
 			self.core.service.databind('#role-match', self.project, append);
+		});
+}
+
+handler.prototype.refreshSelfSubmissions = function() {
+	var qs = self.core.service.query_string();
+	var data = {
+		q : [
+			[ 'select', 'bam.laret_schedules.id' ],
+			[ 'join', 'bam.laret_users', 'bam.laret_users.bam_talentnum', '=', 'search.talents.talentnum' ],
+			[ 'join', 'bam.laret_schedules', 'bam.laret_schedules.invitee_id', '=', 'bam.laret_users.id' ],
+			[ 'where', 'bam.laret_schedules.submission', '=', 1 ],
+			[ 'where', 'bam.laret_schedules.bam_role_id', '=', self.project.role.role_id ]
+		],
+		page	: qs.page || 1
+	};
+
+	var total;
+
+	return self.core.resource.search_talent.get(data)
+		.then(function(res) {
+			total = res.total;
+			var ids = _.map(res.data, function(talent) {
+				return talent.id;
+			});
+
+			ids.push(0);
+
+			var data2 = {
+				query : [
+					[ 'with', 'invitee.bam_talentci.bam_talentinfo1' ],
+					[ 'with', 'invitee.bam_talentci.bam_talentinfo2' ],
+					[ 'with', 'invitee.bam_talentci.bam_talent_media2' ],
+					[ 'with', 'schedule_notes.user.bam_cd_user' ],
+					[ 'whereIn', 'id', ids ]
+				]
+			};
+
+			return self.core.resource.schedule.get(data2);
+		})
+		.then(function(res) {
+			res.total = total;
+			$('#self-submissions-counter').text(res.total); // counter
 		});
 }
 
