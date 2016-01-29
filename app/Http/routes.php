@@ -37,3 +37,5 @@ Route::get('messages/{projectId}'					, 'MessageController@index');
 Route::get('messages'								, 'MessageController@index');
 
 Route::get('settings'								, 'ProfileController@settings');
+
+Route::resource('/feedback'								, 'FeedbackController');

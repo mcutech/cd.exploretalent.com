@@ -33,4 +33,11 @@
 			<span class="mm-text">Manage Auditions</span>
 		</a>
 	</li>
+
+	<li>
+		<a href="/feedback">
+			<i class="menu-icon fa fa-comment"></i>
+			<span class="mm-text">Feedback</span>
+		</a>
+	</li>
 </ul>
