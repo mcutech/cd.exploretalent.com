@@ -77,6 +77,8 @@ jscore.run(function(core) {
 		.add('/projects/{projectId}/roles/create', 'roles.create')
 		.add('/projects/{projectId}/roles/{roleId}/edit', 'roles.edit')
 
+		.add('/feedback', 'feedback')
+
 		// end routes
 
 		.finalize();

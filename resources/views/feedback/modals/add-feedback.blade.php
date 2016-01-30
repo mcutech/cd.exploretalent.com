@@ -19,7 +19,7 @@
 			<div class="panel-footer">
 				<div class="row">
 					<div class="col-md-12 text-align-right">
-						<button class="btn btn-primary" type="submit" id="add-feedback-button" data-dismiss="modal"><i class="fa fa-plus"></i> Add Feedback</button>
+						<button class="btn btn-primary" type="submit" id="add-feedback-btn" data-dismiss="modal"><i class="fa fa-plus"></i> Add Feedback</button>
 					</div>
 				</div>
 			</div>
