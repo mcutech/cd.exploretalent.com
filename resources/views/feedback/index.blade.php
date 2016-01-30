@@ -16,31 +16,19 @@
 @stop
 
 @section('sidebar.body')
-	<div class="feedback-wrapper">
-		<div class="panel-group panel-group-primary project-item" id="accordion-feedback">
-			<div class="panel panel-dark">
+	<div id="all-feedbacks-div" class="feedback-wrapper">
+		<div class="panel-group panel-group-primary project-item" data-bind="accordion-feedback-<%= id %>" data-bind-target="id" data-bind-template="#all-feedbacks-div" data-bind-value="data">
+			<div class="panel">
 				<div class="panel-heading panel-active">
-					<a class="accordion-toggle collapsed" data-toggle="collapse" href="#feedback-1">
-					<b>ID# 1456198</b>
-					<span class="label label-success font-size-small-normal-zz padding-small-zz margin-top-small-zz-xs pull-right">7:23AM 01-29-16</span></a>
+					<a class="accordion-toggle collapsed" data-toggle="collapse" data-bind="#feedback_<%= id %>">
+						<b><span data-bind="ID# <%= id %>"></span></b>
+						{{-- <span class="label label-success font-size-small-normal-zz padding-small-zz margin-top-small-zz-xs pull-right">7:23AM 01-29-16</span></a> --}}
+						<span class="label label-success font-size-small-normal-zz padding-small-zz margin-top-small-zz-xs pull-right" data-bind="<%= date.formatDateTime(created_at) %>"></span>
+					</a>
 				</div>
-				<div id="feedback-1" class="panel-collapse collapse" aria-expanded="true">
+				<div data-bind="feedback_<%= id %>" data-bind-target="id" class="panel-collapse collapse" aria-expanded="true">
 					<div class="panel-body">
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sit amet ornare lorem. Donec vehicula tempor justo a venenatis. Suspendisse vehicula porta rhoncus. Ut accumsan massa in dui placerat pretium. Vivamus diam tellus, dapibus ut consequat eget, maximus vitae tortor. Ut maximus pellentesque molestie. In a risus elit. Proin eget sollicitudin libero, sed posuere eros. Ut vulputate, eros ut consequat porttitor, dui turpis cursus erat, quis gravida sem dui vel lectus. Sed augue sem, sagittis et condimentum vitae, ultricies in dui. Nullam ornare aliquam metus, in iaculis augue auctor nec. Vestibulum facilisis lacinia facilisis. In hac habitasse platea dictumst.</p>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="panel-group panel-group-primary project-item" id="accordion-feedback">
-			<div class="panel panel-dark">
-				<div class="panel-heading panel-active">
-					<a class="accordion-toggle collapsed" data-toggle="collapse" href="#feedback-2">
-					<b>ID# 12345678</b>
-					<span class="label label-success font-size-small-normal-zz padding-small-zz margin-top-small-zz-xs pull-right">9:18AM 02-01-16</span></a>
-				</div>
-				<div id="feedback-2" class="panel-collapse collapse" aria-expanded="true">
-					<div class="panel-body">
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sit amet ornare lorem. Donec vehicula tempor justo a venenatis. Suspendisse vehicula porta rhoncus. Ut accumsan massa in dui placerat pretium. Vivamus diam tellus, dapibus ut consequat eget, maximus vitae tortor. Ut maximus pellentesque molestie. In a risus elit. Proin eget sollicitudin libero, sed posuere eros. Ut vulputate, eros ut consequat porttitor, dui turpis cursus erat, quis gravida sem dui vel lectus. Sed augue sem, sagittis et condimentum vitae, ultricies in dui. Nullam ornare aliquam metus, in iaculis augue auctor nec. Vestibulum facilisis lacinia facilisis. In hac habitasse platea dictumst.</p>
+						<p data-bind="<%= body %>"></p>
 					</div>
 				</div>
 			</div>

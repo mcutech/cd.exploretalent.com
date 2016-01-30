@@ -12,14 +12,14 @@
 							<label>Message:</label>
 							<textarea id="feedback-message" class="form-control" rows="5"></textarea>
 						</div>
-						<a href="#" class="btn btn-outline"><i class="fa fa-paperclip"></i> Attach file</a>
+						<a href="#" class="btn btn-outline"  disabled><i class="fa fa-paperclip"></i> Attach file</a>
 					</div>
 				</div>
 			</div>
 			<div class="panel-footer">
 				<div class="row">
 					<div class="col-md-12 text-align-right">
-						<button class="btn btn-primary" type="submit" id="add-feedback-button" data-dismiss="modal"><i class="fa fa-plus"></i> Add Feedback</button>
+						<button class="btn btn-primary" type="submit" id="add-feedback-btn" data-dismiss="modal"><i class="fa fa-plus"></i> Add Feedback</button>
 					</div>
 				</div>
 			</div>
