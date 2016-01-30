@@ -12,7 +12,7 @@
 							<label>Message:</label>
 							<textarea id="feedback-message" class="form-control" rows="5"></textarea>
 						</div>
-						<a href="#" class="btn btn-outline"><i class="fa fa-paperclip"></i> Attach file</a>
+						<a href="#" class="btn btn-outline"  disabled><i class="fa fa-paperclip"></i> Attach file</a>
 					</div>
 				</div>
 			</div>
