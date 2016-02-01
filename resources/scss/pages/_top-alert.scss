@@ -1,0 +1,25 @@
+#top-alert-div{
+	z-index: 1;
+	// // max-height: 45px;
+	// // min-height: 45px;
+	// overflow: hidden;
+	background-color: #1D87CB;
+	border-color: #1D87CB;
+	color: #ffffff;
+	a{
+		text-decoration: underline;
+		font-weight: 600;
+		color: #ffffff;
+	}
+	p{
+		margin: 0px;
+		span{
+			vertical-align: sub;
+		}
+		& + p{
+			span{
+				vertical-align: top;
+			}
+		}		
+	}
+}
