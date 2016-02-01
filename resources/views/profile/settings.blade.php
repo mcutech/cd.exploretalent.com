@@ -156,7 +156,7 @@
 					<div class="col-sm-6">
 						<div class="form-group no-margin-hr">
 							<label for="email1" class="control-label">Email 1 *</label>
-							<input data-bind="<%= email1 %>" type="email" class="form-control" name="email1" placeholder="Email 1" data-validate="email" data-validate-error="This is not a valid e-mail address." />
+							<input data-bind="<%= email1 %>" type="email" class="form-control" id="emailid" name="email1" placeholder="Email 1" data-validate="email" data-validate-error="This is not a valid e-mail address." />
 						</div>
 					</div>
 					<div class="col-sm-6">
@@ -169,14 +169,14 @@
 				<div class="row">
 					<div class="col-sm-6">
 						<div class="form-group no-margin-hr">
-							<label for="pass" class="control-label">Enter Password *</label>
-							<input type="password" class="form-control" id="pass" name="pass" placeholder="Password" data-validate="required" data-validate-error="This field is required." >
+							<label for="pass" class="control-label">Enter Password </label>
+							<input type="password" class="form-control" id="pass" name="pass" placeholder="Password" data-validate="" data-validate-error="This field is required." >
 						</div>
 					</div>
 					<div class="col-sm-6">
 						<div class="form-group no-margin-hr">
-							<label for="pass2" class="control-label">Confirm Password *</label>
-							<input type="password" class="form-control" id="pass2" placeholder="Password" data-validate="required" data-validate-error="This field is required." >
+							<label for="pass2" class="control-label">Confirm Password </label>
+							<input type="password" class="form-control" id="pass2" placeholder="Password" data-validate="" data-validate-error="This field is required." >
 						</div>
 					</div>
 				</div>
