@@ -41,7 +41,7 @@
 						<div class="f_circleG" id="frotateG_08"></div>
 					</div>
 					<div class="row-fluid clearfix" id="self-submissions-results">
-						@include('components.talent2', [ 'databind' => [ 'template' => '#self-submissions-results', 'value' => 'role.selfsubmissions.data' ], 'class' => 'col-lg-4 col-md-6 col-sm-6 col-xs-12' ])
+						@include('components.talent2', [ 'databind' => [ 'template' => '#self-submissions-results', 'value' => 'role.selfsubmissions.data' ], 'class' => 'col-lg-4 col-md-6 col-sm-6 col-xs-12', 'selfsubmission_message' => true ])
 					</div>
 				</div> {{-- talents-search-results --}}
 			</div>
