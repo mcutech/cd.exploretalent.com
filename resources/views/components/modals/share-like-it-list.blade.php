@@ -9,13 +9,25 @@
 			<div class="modal-body">
 
 				<div class="row">
-					<div class="col-md-2">
+					<form class="form-horizontal" role="form">
+						<div class="form-group">
+			    			<label class="control-label col-xs-12 col-sm-2">
+			    				Share Link:
+			    			</label>
+			    			<div class="col-md-9">
+								<input id="share-like-list-link" class="form-control"
+						data-bind="<%=window.location.href.replace(window.location.pathname, '')%>/login?<%=$.param(data)%>&redirect=<%=encodeURIComponent(window.location.href.replace(/like-it-list/, ''))%>public-like-it-list"/>
+			    			</div>
+			    			<div class="clearfix"></div>
+			    		</div>
+		    		</form>
+					<!-- <div class="col-md-2">
 						<label for="">Share Link:</label>
 					</div>
 					<div class="col-md-10">
 						<input id="share-like-list-link" class="form-control"
 						data-bind="<%=window.location.href.replace(window.location.pathname, '')%>/login?<%=$.param(data)%>&redirect=<%=encodeURIComponent(window.location.href.replace(/like-it-list/, ''))%>public-like-it-list"/>
-					</div>
+					</div> -->
 				</div>
 
 				<div class="row">
@@ -46,7 +58,7 @@
 			    			<div class="clearfix"></div>
 			    		</div>
 			    		<div class="col-md-offset-10 col-xs-offset-10">
-			    			<button class="margin-right-large" type="button" class="btn btn-default">Send</button>
+			    			<button class="btn btn-success margin-right-large" type="button" class="btn btn-default">Send</button>
 			    		</div>
 				    </form>
 				</div>
