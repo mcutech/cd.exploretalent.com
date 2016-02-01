@@ -13,8 +13,7 @@
 		<label class="checkbox-inline pull-right" style="margin-top: -10px;">
 			<input type="checkbox" name="likeitlist-checkbox" class="px" data-bind="<%= id %>" data-bind-target="data-id">
 			<span class="lbl"></span>
-		</label>
-		@endif
+		</label> @endif
 </ul>
 <div class="panel margin-bottom-zero">
 	<div class="panel-body">
@@ -76,6 +75,11 @@
 			</div>
 		</div>
 		<div class="row-fluid clearfix">
+			@if (isset($selfsubmission_message) && $selfsubmission_message)
+			<div class="col-md-12 padding-zero">
+				<span class="lbl">Message:</span> <span data-bind="<%= _.first(conversation.messages).body %>"></span>
+			</div>
+			@endif
 			<div class="col-md-12 col-sm-12 padding-zero">
 				<div class="like-it-list-container">
 					<div class="display-block title"> Add to like list </div>

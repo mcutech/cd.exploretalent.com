@@ -102,6 +102,7 @@ handler.prototype.refreshSelfSubmissions = function() {
 					[ 'with', 'invitee.bam_talentci.bam_talentinfo2' ],
 					[ 'with', 'invitee.bam_talentci.bam_talent_media2' ],
 					[ 'with', 'schedule_notes.user.bam_cd_user' ],
+					[ 'with', 'conversation.messages' ],
 					[ 'whereIn', 'id', ids ]
 				]
 			};
