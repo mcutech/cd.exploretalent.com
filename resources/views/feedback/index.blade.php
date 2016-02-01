@@ -22,13 +22,14 @@
 				<div class="panel-heading panel-active">
 					<a class="accordion-toggle collapsed" data-toggle="collapse" data-bind="#feedback_<%= id %>">
 						<b><span data-bind="ID# <%= id %>"></span></b>
-						{{-- <span class="label label-success font-size-small-normal-zz padding-small-zz margin-top-small-zz-xs pull-right">7:23AM 01-29-16</span></a> --}}
 						<span class="label label-success font-size-small-normal-zz padding-small-zz margin-top-small-zz-xs pull-right" data-bind="<%= date.formatDateTime(created_at) %>"></span>
 					</a>
 				</div>
 				<div data-bind="feedback_<%= id %>" data-bind-target="id" class="panel-collapse collapse" aria-expanded="true">
 					<div class="panel-body">
 						<p data-bind="<%= body %>"></p>
+						<label class="text-success" data-bind="<%= (attachment) ? 1 : 0 %>" data-bind-target="visibility">Attached (1) file</label>
+						{{-- <p data-bind="https://etdownload.s3.amazonaws.com/<%= attachment_path_full %>"></p> --}}
 					</div>
 				</div>
 			</div>
