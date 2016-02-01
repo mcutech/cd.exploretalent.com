@@ -432,7 +432,7 @@ handler.prototype.sendInvites = function() {
 			name				: 'CD Invite Role #' + self.project.role.role_id,
 			description			: form.message,
 			query_model			: 'Schedule',
-			query_model_raw     : 'Bam\Talentci',
+			query_model_raw     : 'Bam\\Talentci',
 			query_key_id        : 'talentnum',
 			query_key_cell      : 'cell',
 			query_key_email     : 'email1',
