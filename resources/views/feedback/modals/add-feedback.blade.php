@@ -10,16 +10,18 @@
 					<div class="col-md-12">
 						<div class="form-group">
 							<label>Message:</label>
-							<textarea id="feedback-message" class="form-control" rows="5"></textarea>
+							<textarea id="feedback-message" class="form-control" rows="5" data-validate="required" data-validate-error="This is a required field."></textarea>
+							{{-- <input name="confirm_pass" placeholder="password" type="password"  > --}}
 						</div>
-						<a href="#" class="btn btn-outline"  disabled><i class="fa fa-paperclip"></i> Attach file</a>
+						{{-- <a href="#" id="attach-file-btn" class="btn btn-outline"><i class="fa fa-paperclip"></i> Attach file</a> --}}
+						<input type="file" id="upload-file-name" name="upload-file-name" class="btn btn-outline">
 					</div>
 				</div>
 			</div>
 			<div class="panel-footer">
 				<div class="row">
 					<div class="col-md-12 text-align-right">
-						<button class="btn btn-primary" type="submit" id="add-feedback-btn" data-dismiss="modal"><i class="fa fa-plus"></i> Add Feedback</button>
+						<button class="btn btn-primary" type="submit" id="add-feedback-btn"><i class="fa fa-plus"></i> Add Feedback</button>
 					</div>
 				</div>
 			</div>
