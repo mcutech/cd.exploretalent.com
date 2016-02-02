@@ -44,6 +44,15 @@ handler.prototype.updateUser = function(e) {
 				$('#pass').focus();
 				alert('Both passwords must be at least 5 characters long.');
 			}
+			else {
+				//success
+				self.core.resource.cd_user.patch(form)
+				.then(function(res) {
+					$('#update-settings-success').fadeIn().delay(5000).fadeOut();
+				}, function(res1) {
+					alert("The email has already been taken.")
+				});
+			}
 		} 
 		else {
 			console.log(form.pass);
