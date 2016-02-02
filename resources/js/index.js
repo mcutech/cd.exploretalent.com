@@ -53,9 +53,11 @@ jscore.run(function(core) {
 		.add('/register', 'register')
 		.add('/settings', 'settings')
 		.add('/reset-password', 'password.reset')
+		.add('/forgot-password', 'password.forgot')
 
 		.add('/talents', 'talents')
 		.add('/talents/favorite', 'talent.favorite')
+		
 		// project pages
 		.add('/projects', 'projects')
 		.add('/projects/create', 'projects.create')
