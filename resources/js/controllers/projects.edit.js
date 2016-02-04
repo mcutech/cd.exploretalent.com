@@ -5,8 +5,16 @@ module.exports = function(core, user, projectId) {
 	$('#update-project-btn').on('click', handler.updateProject);
 
 	$('#bs-datepicker-submissiondeadline').datepicker({
-		dateFormat: 'yy-mm-dd'
+		dateFormat: 'yy-mm-dd',
+		changeMonth: true,
+		changeYear: true,
+		numberOfMonths: 1,
+		yearRange: ':2016',
+		minDate: +1,
 	});
+
+	$('#bs-datepicker-submissiondeadline').datepicker('option', 'defaultDate', +1);
+
 	$('#bs-datepicker-submissiondeadline').mask('9999-99-99');
 
 	$('#bs-datepicker-audition').datepicker({
