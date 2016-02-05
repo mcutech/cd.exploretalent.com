@@ -22,7 +22,12 @@
 							<div class="form-group">
 								<label class="control-label">Submission Deadline <span class="text-success">*</span></label>
 								<div class="input-group date">
-									<input type="text" id="bs-datepicker-submissiondeadline" class="form-control" style="cursor: pointer; background-color: #fff" data-bind="<%= date.formatYMD(asap) %>"><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+									<input type="text"
+									id="bs-datepicker-submissiondeadline"
+									class="form-control" style="cursor:
+									pointer; background-color: #fff"
+									data-bind="<%= (asap <= Date.now()) ?
+									date.formatYMD(Math.floor(new Date((new Date()).valueOf() + 1000*3600*24)/1000)) : 'greater'  %>"><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
 								</div>
 								<div class="alert alert-page alert-danger submission-deadline-error-required" style="display:none;">This field is required.</div>
 							</div>
@@ -206,7 +211,7 @@
 								<div class="alert alert-page alert-danger audition-description-error-required" style="display:none;">This field is required.</div>
 							</div>
 						</div>
-						
+
 					</div>
 					<div class="row-fluid">
 							<div class="col-md-6 padding-top-normal">
