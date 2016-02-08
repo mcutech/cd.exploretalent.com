@@ -29,6 +29,8 @@ handler.prototype.refresh = function(){
 		});
 		console.log(talent);
 		self.core.service.databind('#favorite-result', talent);
+		self.core.service.paginate('#favorite-pagination', { class : 'pagination', total : result.total, name : 'page' });
+
 		self.talent = talent;
 		$('#loading-div').hide();
 	})
