@@ -67,4 +67,8 @@ module.exports = function(core, user) {
 
 	$('#toggle-all-markets-checked').on('click', handler.toggleAllMarketsChecked);
 
+	$(document).on('click', '.calendar-btn', function() {
+		$(this).siblings('input.calendar-input').datepicker().focus();
+	});
+
 };
