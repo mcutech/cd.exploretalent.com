@@ -22,7 +22,8 @@
 							<div class="form-group">
 								<label class="control-label">Submission Deadline <span class="text-success">*</span></label>
 								<div class="input-group date">
-									<input type="text" id="bs-datepicker-submissiondeadline" class="form-control" style="cursor: pointer; background-color: #fff"><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+									<input type="text" id="bs-datepicker-submissiondeadline" class="form-control calendar-input" style="cursor: pointer; background-color: #fff">
+									<span class="input-group-addon calendar-btn"><i class="fa fa-calendar"></i></span>
 								</div>
 								<div class="alert alert-page alert-danger submission-deadline-error-required" style="display:none;">This field is required.</div>
 							</div>
@@ -30,7 +31,8 @@
 							<div class="form-group col-md-6 padding-left-zero-md-lg">
 								<label class="control-label">Audition Date</label>
 								<div class="input-group date">
-									<input type="text" id="bs-datepicker-audition" class="form-control" style="cursor: pointer; background-color: #fff"><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+									<input type="text" id="bs-datepicker-audition" class="form-control calendar-input" style="cursor: pointer; background-color: #fff">
+									<span class="input-group-addon calendar-btn"><i class="fa fa-calendar"></i></span>
 								</div>
 								<div class="alert alert-page alert-danger audition-date-error-invalid" style="display:none;">Audition date should be after or on the same day as submission deadline.</div>
 							</div>
@@ -38,7 +40,8 @@
 							<div class="form-group col-md-6 padding-right-zero-md-lg">
 								<label class="control-label">Shoot Date</label>
 								<div class="input-group date">
-									<input type="text" id="bs-datepicker-shootdate" class="form-control" style="cursor: pointer; background-color: #fff"><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+									<input type="text" id="bs-datepicker-shootdate" class="form-control calendar-input" style="cursor: pointer; background-color: #fff">
+									<span class="input-group-addon calendar-btn"><i class="fa fa-calendar"></i></span>
 								</div>
 								<div class="alert alert-page alert-danger shoot-date-error-invalid" style="display:none;">Shoot date should be after audition date.</div>
 							</div>
