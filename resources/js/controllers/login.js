@@ -27,6 +27,7 @@ module.exports = function(core, user) {
 			core.service.rest.post(core.config.api.base.replace('/v1', '') + '/oauth/access_token', {
 					username       : email,
 					password       : pass,
+					user_type      : 'bam_cd_user',
 					client_id      : '74d89ce4c4838cf495ddf6710796ae4d5420dc91',
 					client_secret  : '61c9b2b17db77a27841bbeeabff923448b0f6388',
 					grant_type     : 'password'
