@@ -1,0 +1,58 @@
+.find-talents-wrapper{
+	.header-functions-container{
+
+	}
+	.project-details-container, .role-item-option-1{
+		ul{
+			li{
+				.title{
+					display: inline-block;
+					font-weight: bold;
+					line-height: 19px;
+				}
+			}
+		}
+
+		.button-function{
+			transition: 0.5s;
+
+			a{
+				color: #666666;
+				text-decoration: none;
+				
+			}
+
+			&:hover{
+				a{
+					color: #1D89CF;
+				}
+				.bordered{
+					border-color: #1D89CF;
+				}
+			}
+
+			&:after{
+				font-family: FontAwesome;
+				content: "\f0da";
+				right: -4px;
+				top: 42px;
+				font-size: 20px;
+				position: absolute;
+				color: #999999;
+			}
+
+			&:last-child:after{
+				content: "";
+			}
+		}
+
+		.long-description{
+			span{
+				background-color: #dddddd;
+				padding: 1px 5px;
+				border-radius: 3px;
+				font-size: 11px;
+			}
+		}
+	}
+}
