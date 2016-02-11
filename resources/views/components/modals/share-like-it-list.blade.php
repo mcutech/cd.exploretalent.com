@@ -30,7 +30,7 @@
 					</div> -->
 				</div>
 
-				<div class="row">
+				<div class="row hide">
 					<div class="col-md-10 col-md-offset-2 send-v-email">
 						<label for="">or</label>
 						<button type="button" id="send-via-email" class="btn-link">Send via Email</button>
