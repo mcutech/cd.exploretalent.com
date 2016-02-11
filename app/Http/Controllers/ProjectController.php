@@ -20,4 +20,10 @@ class ProjectController extends Controller {
 	{
 		return view('project.edit', ['projectId' => $projectId]);
 	}
+
+	public function findtalents($projectId)
+	{
+		return view('project.find-talents', ['projectId' => $projectId]);
+	}
+
 }
