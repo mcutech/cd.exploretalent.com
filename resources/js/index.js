@@ -10,6 +10,8 @@ jscore.config(function(core) {
 	// @endif
 
 	core.config.api.type = '/cd';
+	core.config.api.client_id      = '74d89ce4c4838cf495ddf6710796ae4d5420dc91';
+	core.config.api.client_secret  = '61c9b2b17db77a27841bbeeabff923448b0f6388';
 });
 
 jscore.run(function(core) {
@@ -57,7 +59,7 @@ jscore.run(function(core) {
 
 		.add('/talents', 'talents')
 		.add('/talents/favorite', 'talent.favorite')
-		
+
 		// project pages
 		.add('/projects', 'projects')
 		.add('/projects/create', 'projects.create')
