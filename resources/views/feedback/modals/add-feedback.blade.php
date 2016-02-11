@@ -11,10 +11,8 @@
 						<div class="form-group">
 							<label>Message:</label>
 							<textarea id="feedback-message" class="form-control" rows="5" data-validate="required" data-validate-error="This is a required field."></textarea>
-							{{-- <input name="confirm_pass" placeholder="password" type="password"  > --}}
 						</div>
-						{{-- <a href="#" id="attach-file-btn" class="btn btn-outline"><i class="fa fa-paperclip"></i> Attach file</a> --}}
-						<input type="file" id="upload-file-name" name="upload-file-name" class="btn btn-outline">
+						<input type="file" id="upload-file-name" name="upload-file-name" />
 					</div>
 				</div>
 			</div>
