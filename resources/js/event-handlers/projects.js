@@ -113,7 +113,7 @@ handler.prototype.deleteProject = function() {
 		return false;
 	}
 
-
+//`
 }
 
 handler.prototype.roleMatches = function() {

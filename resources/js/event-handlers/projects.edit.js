@@ -57,7 +57,6 @@ handler.prototype.getProjectInfo = function(e) {
 					$("#self-submissions-option-content").show();
         			$("#open-call-option-content").hide();
 				}
-
 				self.core.service.databind('.edit-project-wrapper', casting)
 				return $.when();
 			}
