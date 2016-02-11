@@ -34,9 +34,9 @@
 
 	<div class="panel project-details-container">
 		<div class="panel-body">
-			<div class="row-fluid clearfix margin-bottom-normal">
+			<div class="row-fluid clearfix">
 				<div class="col-md-12">
-					<h3 class="margin-top-zero"><i class="fa fa-suitcase"></i> Lupin III and the Bomb Squad</h3>
+					<h4 class="margin-top-zero" id="project-title-heading"><i class="fa fa-suitcase"></i> Lupin III and the Bomb Squad</h4>
 				</div>
 				<div class="col-sm-12 col-md-6">
 					<ul class="list-unstyled margin-zero">
@@ -69,9 +69,9 @@
 		</div>
 	</div>
 
-	<div class="panel role-item-option-1">
+	<div class="panel role-item">
 		<div class="panel-body">
-			<div class="row-fluid clearfix margin-bottom-normal">
+			<div class="row-fluid clearfix">
 				<div class="col-md-2">
 					<ul class="list-unstyled margin-zero">
 						<li><div class="title">Role ID:</div> <span>5062110</span></li>
@@ -83,35 +83,35 @@
 				</div>
 				<div class="col-md-2 text-center button-function">
 					<div class="bordered padding-small">
-						<a href=""><div><i class="fa fa-user fa-4x"></i></div>
+						<a href="#role-find-talents-match" data-toggle="modal"><div><i class="fa fa-user fa-2x"></i></div>
 						<div>Find Talent</div>
 						<b><div class="text-bg">1457</div></b></a>
 					</div>
 				</div>
 				<div class="col-md-2 text-center button-function">
 					<div class="bordered padding-small">
-						<a href=""><div><i class="fa fa-thumbs-up fa-4x"></i></div>
+						<a href="#role-find-talents-likeitlist" data-toggle="modal"><div><i class="fa fa-thumbs-up fa-2x"></i></div>
 						<div>Like it List</div>
 						<b><div class="text-bg">125</div></b></a>
 					</div>
 				</div>
 				<div class="col-md-2 text-center button-function">
 					<div class="bordered padding-small">
-						<a href=""><div><i class="fa fa-calendar fa-4x"></i></div>
+						<a href=""><div><i class="fa fa-calendar fa-2x"></i></div>
 						<div>Scheduled</div>
 						<b><div class="text-bg">69</div></b></a>
 					</div>
 				</div>
 				<div class="col-md-2 text-center button-function">
 					<div class="bordered padding-small">
-						<a href=""><div><i class="fa fa-check-square fa-4x"></i></div>
+						<a href=""><div><i class="fa fa-check-square fa-2x"></i></div>
 						<div>Call Backs</div>
 						<b><div class="text-bg">18</div></b></a>
 					</div>
 				</div>
 				<div class="col-md-2 text-center button-function">
 					<div class="bordered padding-small">
-						<a href=""><div><i class="fa fa-star-o fa-4x"></i></div>
+						<a href=""><div><i class="fa fa-star-o fa-2x"></i></div>
 						<div>Hired</div>
 						<b><div class="text-bg">1</div></b></a>
 					</div>
@@ -140,24 +140,27 @@
 							<span class="">Mediterranean</span> 
 							<span class="">Middle Eastern</span> 
 						</li>
-						<li><div class="title">Hair Color:</div>
-							<span class="">Auburn</span> 
-							<span class="">Black</span> 
-							<span class="">Blonde</span> 
-							<span class="">Brown</span> 
-							<span class="">Chestnut</span> 
-							<span class="">Dark Brown</span> 
-							<span class="">Grey</span> 
-							<span class="">Red</span> 
-							<span class="">White</span> 
-							<span class="">Salt & Pepper</span> 
+						<li class=""><div class="title">Hair Color:</div>
+							<span class="">Auburn</span>
+							<span class="">Black</span>
+							<span class="">Blonde</span>
+							<span class="">Brown</span>
+							<span class="">Chestnut</span>
+							<span class="">Dark Brown</span>
+							<span class="">Grey</span>
+							<span class="">Red</span>
+							<span class="">White</span>
+							<span class="">Salt & Pepper</span>
 						</li>
 					</ul>
 				</div>
 			</div>
 		</div>
 	</div>
-
-
 </div>
+
+@include('components.modals.role-find-talents-match')
+@include('components.modals.role-find-talents-likeitlist')
+
 @stop
+

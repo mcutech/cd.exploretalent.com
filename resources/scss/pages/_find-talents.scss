@@ -2,7 +2,7 @@
 	.header-functions-container{
 
 	}
-	.project-details-container, .role-item-option-1{
+	.project-details-container, .role-item{
 		ul{
 			li{
 				.title{
@@ -13,13 +13,17 @@
 			}
 		}
 
+		h4#project-title-heading{
+			color: #1A7AB9;
+			font-weight: 600;
+		}
+
 		.button-function{
 			transition: 0.5s;
 
 			a{
 				color: #666666;
 				text-decoration: none;
-				
 			}
 
 			&:hover{
@@ -35,10 +39,25 @@
 				font-family: FontAwesome;
 				content: "\f0da";
 				right: -4px;
-				top: 42px;
+				top: 30px;
 				font-size: 20px;
 				position: absolute;
-				color: #999999;
+			}
+
+			&:nth-child(2):after{
+				color:#c0392b;	
+			}
+
+			&:nth-child(3):after{
+				color:#f1c40f;	
+			}
+
+			&:nth-child(4):after{
+				color:#2ecc71;	
+			}
+
+			&:nth-child(5):after{
+				color:#27ae60;	
 			}
 
 			&:last-child:after{
