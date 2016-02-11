@@ -36,6 +36,8 @@ module.exports = function(core, user) {
 					var qs = core.service.query_string();
 
 					localStorage.setItem('access_token', result.access_token);
+					localStorage.setItem('refresh_token', result.refresh_token);
+					localStorage.setItem('access_date', new Date());
 					window.location = qs.redirect ? decodeURIComponent(qs.redirect) : '/projects';
 				},
 				function(error){
