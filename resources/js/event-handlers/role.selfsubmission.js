@@ -149,7 +149,7 @@ handler.prototype.getFilters = function() {
 	var qs = self.core.service.query_string();
 	var data = {
 		q : [
-			[ 'select', 'bam.laret_schedules.id' ],
+			[ 'select', 'bam.laret_schedules.*' ],
 			[ 'join', 'bam.laret_users', 'bam.laret_users.bam_talentnum', '=', 'search.talents.talentnum' ],
 			[ 'join', 'bam.laret_schedules', 'bam.laret_schedules.invitee_id', '=', 'bam.laret_users.id' ],
 			[ 'where', 'bam.laret_schedules.submission', '=', 1 ],
