@@ -22,6 +22,8 @@ Route::get('reset-password', 'ResetPasswordController@index');
 
 Route::resource('/audition-worksheet'				, 'WorksheetController');
 Route::resource('projects'							, 'ProjectController');
+Route::get('projects/{projectId}/find-talents'		, 'ProjectController@findtalents');
+
 Route::resource('projects.roles'					, 'RoleController', [ 'only' => [ 'edit', 'create' ] ]);
 Route::get('projects/{projectId}/roles/{roleId}/self-submissions',	'RoleController@selfsubmissions');
 Route::get('projects/{projectId}/roles/{roleId}/like-it-list',		'RoleController@likeitlist');
@@ -38,4 +40,4 @@ Route::get('messages'								, 'MessageController@index');
 
 Route::get('settings'								, 'ProfileController@settings');
 
-Route::resource('/feedback'								, 'FeedbackController');
+Route::resource('/feedback'							, 'FeedbackController');
