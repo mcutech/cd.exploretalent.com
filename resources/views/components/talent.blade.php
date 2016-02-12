@@ -4,7 +4,9 @@
 		<a data-bind="#talent-body-<%= talentnum %>" href="#talent-body" data-toggle="tab">Photo</a>
 	</li>
 	<li>
-		<a data-bind="#like-it-note-<%= talentnum %>" data-toggle="tab">My Notes</a>
+		@if (isset($favorites) && $favorites)
+			<a data-bind="#like-it-note-<%= talentnum %>" data-toggle="tab">My Notes</a>
+		@endif
 	</li>
 </ul>
 
@@ -68,26 +70,28 @@
 		</div>
 		<div class="row-fluid clearfix">
 			<div class="col-md-6 padding-zero">
-				<div class="like-it-list-container">
-					<div class="text-left">
-						<div>
-							<div class="display-block title"> Add to like list </div>
-							<div class="btn-group btn-group-xs" data-bind="<%= schedule && schedule.id ? 'schedule-' + schedule.id : 'user-' + user.id %>" data-bind-target="data-id">
-								<button class="btn btn-xs btn-danger rating-button"  data-bind="<%= schedule && schedule.id && parseInt(schedule.rating) == 1 ? 'active' : '' %>" data-bind-target="class">1</button>
-								<button class="btn btn-xs btn-warning rating-button" data-bind="<%= schedule && schedule.id && parseInt(schedule.rating) == 2 ? 'active' : '' %>" data-bind-target="class">2</button>
-								<button class="btn btn-xs btn-info rating-button" 	 data-bind="<%= schedule && schedule.id && parseInt(schedule.rating) == 3 ? 'active' : '' %>" data-bind-target="class">3</button>
-								<button class="btn btn-xs btn-primary rating-button" data-bind="<%= schedule && schedule.id && parseInt(schedule.rating) == 4 ? 'active' : '' %>" data-bind-target="class">4</button>
-								<button class="btn btn-xs btn-success rating-button" data-bind="<%= schedule && schedule.id && parseInt(schedule.rating) == 5 ? 'active' : '' %>" data-bind-target="class">5</button>
-								<button class="btn btn-xs rating-button
-								disabled"
-								data-bind="<%= schedule && schedule.id &&
-								parseInt(schedule.rating) < 0 ? 'background:#423434; border-color:#423434; color:white' :
-								'' %>"
-								data-bind-target="style"><strong>B</strong></button>
+				@if (isset($favorites) && $favorites)
+					<div class="like-it-list-container">
+						<div class="text-left">
+							<div>
+								<div class="display-block title"> Add to like list </div>
+								<div class="btn-group btn-group-xs" data-bind="<%= schedule && schedule.id ? 'schedule-' + schedule.id : 'user-' + user.id %>" data-bind-target="data-id">
+									<button class="btn btn-xs btn-danger rating-button"  data-bind="<%= schedule && schedule.id && parseInt(schedule.rating) == 1 ? 'active' : '' %>" data-bind-target="class">1</button>
+									<button class="btn btn-xs btn-warning rating-button" data-bind="<%= schedule && schedule.id && parseInt(schedule.rating) == 2 ? 'active' : '' %>" data-bind-target="class">2</button>
+									<button class="btn btn-xs btn-info rating-button" 	 data-bind="<%= schedule && schedule.id && parseInt(schedule.rating) == 3 ? 'active' : '' %>" data-bind-target="class">3</button>
+									<button class="btn btn-xs btn-primary rating-button" data-bind="<%= schedule && schedule.id && parseInt(schedule.rating) == 4 ? 'active' : '' %>" data-bind-target="class">4</button>
+									<button class="btn btn-xs btn-success rating-button" data-bind="<%= schedule && schedule.id && parseInt(schedule.rating) == 5 ? 'active' : '' %>" data-bind-target="class">5</button>
+									<button class="btn btn-xs rating-button
+									disabled"
+									data-bind="<%= schedule && schedule.id &&
+									parseInt(schedule.rating) < 0 ? 'background:#423434; border-color:#423434; color:white' :
+									'' %>"
+									data-bind-target="style"><strong>B</strong></button>
+								</div>
 							</div>
 						</div>
 					</div>
-				</div>
+				@endif
 			</div>
 			<div class="col-md-6 padding-zero">
 				<div class="like-it-list-container">
