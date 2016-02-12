@@ -3,7 +3,7 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-				<h4 class="modal-title">Find Talents</h4>
+				<h4 class="modal-title"><i class="fa fa-thumbs-up"></i> Like it List</h4>
 			</div>
 			<div class="modal-body">
 				@include('components.role-tab-options')
