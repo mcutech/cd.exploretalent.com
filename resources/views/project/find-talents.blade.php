@@ -83,7 +83,7 @@
 				</div>
 				<div class="col-md-2 text-center button-function">
 					<div class="bordered padding-small">
-						<a href="#role-find-talents-match" data-toggle="modal"><div><i class="fa fa-user fa-2x"></i></div>
+						<a href="#role-find-talents" data-toggle="modal"><div><i class="fa fa-user fa-2x"></i></div>
 						<div>Find Talent</div>
 						<b><div class="text-bg">1457</div></b></a>
 					</div>
@@ -97,21 +97,21 @@
 				</div>
 				<div class="col-md-2 text-center button-function">
 					<div class="bordered padding-small">
-						<a href=""><div><i class="fa fa-calendar fa-2x"></i></div>
+						<a><div><i class="fa fa-calendar fa-2x"></i></div>
 						<div>Scheduled</div>
 						<b><div class="text-bg">69</div></b></a>
 					</div>
 				</div>
 				<div class="col-md-2 text-center button-function">
 					<div class="bordered padding-small">
-						<a href=""><div><i class="fa fa-check-square fa-2x"></i></div>
+						<a href="#role-find-talents-callbacks" data-toggle="modal"><div><i class="fa fa-check-square fa-2x"></i></div>
 						<div>Call Backs</div>
 						<b><div class="text-bg">18</div></b></a>
 					</div>
 				</div>
 				<div class="col-md-2 text-center button-function">
 					<div class="bordered padding-small">
-						<a href=""><div><i class="fa fa-star-o fa-2x"></i></div>
+						<a href="#role-find-talents-hired" data-toggle="modal"><div><i class="fa fa-star-o fa-2x"></i></div>
 						<div>Hired</div>
 						<b><div class="text-bg">1</div></b></a>
 					</div>
@@ -159,8 +159,10 @@
 	</div>
 </div>
 
-@include('components.modals.role-find-talents-match')
+@include('components.modals.role-find-talents')
 @include('components.modals.role-find-talents-likeitlist')
+@include('components.modals.role-find-talents-callbacks')
+@include('components.modals.role-find-talents-hired')
 
 @stop
 
