@@ -54,7 +54,7 @@
 					</div>
 				</div>
 
-				<div class="panel panel-transparent margin-zero">
+				<div class="hide panel panel-transparent margin-zero">
 					<div class="panel-heading no-padding-hr padding-bottom-zero-small padding-top-zero">
 						<div class="panel-title"><strong>Message Status</strong></div>
 					</div>
