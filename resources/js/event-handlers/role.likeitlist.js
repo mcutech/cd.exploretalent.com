@@ -149,7 +149,7 @@ handler.prototype.removeAllLikeItList = function() {
 		self.project.role.deleteLikeItList()
 		.then(function() {
 			alert('Like It List entries removed.');
-			self.refreshLikeItList();
+			self.refreshProjectDetails();
 		});
 	}
 }
