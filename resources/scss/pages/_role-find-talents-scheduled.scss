@@ -1,8 +1,102 @@
 .role-find-talents-scheduled-wrapper{
 	.panel{
 		&.panel-dark{
-			.panel-heading{
-				background-color: #23272d;
+			border-radius: 0px;
+			border-color: #3B3E42;
+			$border-dark: 1px solid #4F5256 !important;
+			$font-weight-700: 700;
+			$font-size-11: 11px;
+			$background-image-none: none !important;
+			$color-dark: #6D6D6D !important;
+			$color-white: #ffffff !important;
+			
+			.btn-dark-outline{
+				color: $color-white;
+				border: $border-dark;
+				font-weight: $font-weight-700;
+				font-size: $font-size-11;
+				background-image: $background-image-none;
+				background: transparent !important;
+				&:hover, &:focus, &:visited, &:active{
+					background-image: $background-image-none;
+					background-color: $color-dark;
+					border-color: $color-dark;
+				}
+			}
+
+			.btn-dark{
+				color: $color-white;
+				border: $border-dark;
+				font-weight: $font-weight-700;
+				font-size: $font-size-11;
+				background-color: $color-dark;
+				background-image: $background-image-none;
+				&:hover, &:focus, &:visited, &:active{
+					background-image: $background-image-none;
+					background-color: $color-dark;
+					border-color: $color-dark;
+				}
+			}
+
+			.text-muted{
+				color: #9C9C9C;
+			}
+			.panel-heading-dark{
+				color: $color-white;
+				background-color: #3B3E42;
+				border-radius: 0px;
+				border-color: #3B3E42;
+			}
+		} //panel-dark
+
+		#schedule-time-container{
+			margin: 0px;
+
+			.schedule-time-item{
+				.schedule-time-header{
+				    border-bottom: 1px solid #cccccc;
+
+					a.accordion-toggle{
+						padding: 9px 20px 9px 35px;
+						color: #4083a9;
+						text-decoration: none;
+						&::after{
+							right: 0px;
+							left: 15px;
+							content: "\f0d8";
+							font-size: 15px;
+							color: #4083a9;
+						}
+						&.collapsed::after{
+							content: "\f0d7";
+							color: #4083a9;
+						}
+					}
+					.btn-xxs{
+						padding: 2px 5px;
+						font-size: 9px;
+						line-height: 12px;
+					}
+					.role-name{
+						line-height: 10px;
+					}
+				}
+				.schedule-time-body{
+					.time-item{
+						.time{
+							font-weight: 600;
+							padding: 10px;
+						}
+						.talent{
+							border-left: 1px solid #cccccc;
+							min-height: 130px;
+							padding: 10px;
+						}
+						&:nth-child(even){
+							background-color:#eeeeee;
+						}
+					}
+				}
 			}
 		}
 	}	
