@@ -24,6 +24,7 @@ handler.prototype.refreshProjectDetails = function() {
 
 	self.core.resource.project.get(data)
 		.then(function(result) {
+			console.log(result);
 			self.project = result;
 			self.core.service.databind('#roles-list', self.project);
 			// get current role object
