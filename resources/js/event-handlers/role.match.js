@@ -480,22 +480,29 @@ handler.prototype.getFilters = function() {
 	if (form.markets.length > 0) {
 		subquery = [];
 
-		_.each(form.markets, function(market) {
-			if (market) {
-				if (subquery.length == 0) {
-					subquery.push([ 'where', 'city', 'like', '%' + market + '%' ]);
-				}
-				else {
-					subquery.push([ 'orWhere', 'city', 'like', '%' + market + '%' ]);
-				}
+		// include market filter if not N/A (Nationwide)
+		if($.inArray('N/A', form.markets) == -1) {
+			_.each(form.markets, function(market) {
+				if (market) {
 
-				subquery.push([ 'orWhere', 'city1', 'like', '%' + market + '%' ]);
-				subquery.push([ 'orWhere', 'city2', 'like', '%' + market +'%' ]);
-				subquery.push([ 'orWhere', 'city3', 'like', '%' + market +'%' ]);
-			}
-		});
+					if (subquery.length == 0) {
+						subquery.push([ 'where', 'city', 'like', '%' + market + '%' ]);
+					}
+					else {
+						subquery.push([ 'orWhere', 'city', 'like', '%' + market + '%' ]);
+					}
 
-		data.q.push([ 'where', subquery ]);
+					subquery.push([ 'orWhere', 'city1', 'like', '%' + market + '%' ]);
+					subquery.push([ 'orWhere', 'city2', 'like', '%' + market +'%' ]);
+					subquery.push([ 'orWhere', 'city3', 'like', '%' + market +'%' ]);
+
+				}
+			});
+
+			data.q.push([ 'where', subquery ]);
+
+			console.log(data);
+		}		
 	}
 
 	if (parseInt(form.age_min)) {
