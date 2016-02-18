@@ -55,6 +55,7 @@
 		} //panel-dark
 
 		#schedule-time-container, #role-list-container{
+			overflow-y: scroll;
 			margin: 0px;
 
 			.schedule-time-item{
@@ -142,11 +143,13 @@
 					padding: 5px;
 					border: 1px solid #dddddd;
 					max-width: 110px;
-					margin-right: 5px;
+					margin-right: 4px;
+					margin-bottom: 10px;
+					vertical-align: top;
 					&:last-child{
 						margin-right: 0px;
 					}
-					.image-container{
+					.image-like-list-container{
 						display: inline-block;
 						.image-holder{
 							max-width: 98px;
@@ -156,6 +159,7 @@
 							align-items: center;
 							justify-content: center;
 						}
+						.talent-like-it-list-number{display:none;}
 					}
 					
 					.talent-stats{
@@ -164,11 +168,12 @@
 							text-align: center;
 							color: #4583A9;
 							font-weight: 600;
+						    line-height: 14px;
 						}
 						.talent-info{display:none;}
 						.talent-agency{display:none;}
-						.talent-like-it-list-number{display:none;}
-						.talent-talent-note{display:none;}
+						.submission-note{display:none;}
+						.casting-note{display: none;}
 						.role-and-confirmation{
 							display:none;
 							.talent-role{}
@@ -185,7 +190,7 @@
 					&:nth-child(even){
 						background-color: #F3EECF;
 					}
-					.image-container{
+					.image-like-list-container{
 						display: inline-block;
 						margin-right: 5px;
 						.image-holder{
@@ -196,6 +201,7 @@
 							align-items: center;
 							justify-content: center;
 						}
+						.talent-like-it-list-number{ display: inline-block;}
 					}
 					.talent-stats{
 						display: inline-block;
@@ -206,27 +212,33 @@
 							color: #4583A9;
 							font-weight: 600;
 							margin-right: 15px;
+						    line-height: 14px;
 						}
 						.talent-info{
 							display: inline-block;
 							vertical-align: top;
 							margin-right: 15px;
+							line-height: 14px;
 						}
 						.talent-agency{
 							display: inline-block;
 							vertical-align: top;
+							line-height: 14px;
 						}
-						.talent-like-it-list-number{ display: none;}
-						.talent-talent-note{ display:none;}
+						
+						.submission-note{display:none;}
+						.casting-note{display:none;}
 						.role-and-confirmation{
 							display: block;
 							margin-top: 5px;
 
 							.talent-role{
 								display: inline-block;
+								margin-right: 10px;
 							}
 							.talent-confirmation-status{
-								display: inline-block;
+								display: block;
+								margin-top: 5px;
 							}
 						}
 						
@@ -234,15 +246,57 @@
 				}
 
 				&.submission-note-view{
-
+					@extend &.talent-confirmation-view;
+					.role-and-confirmation{
+						.talent-confirmation-status{
+							margin: 0px !important;
+							display: inline !important;
+						}
+					}
+					.submission-note, .casting-note{
+						display: block !important;
+						label{
+							margin: 5px 0 0 0;
+						}
+						textarea{
+							resize: none;
+							height: 75px;
+							border-radius: 0px;
+							font-size: 12px;
+							line-height: 16px;
+							cursor: default;
+						}
+					}
+					.casting-note{display: none !important;}
 				}
 
 				&.casting-note-view{
+					@extend &.submission-note-view;
+					.submission-note{display: none !important;}
+					.casting-note{display: block !important;}
 
 				}
 
 				&.list-view{
-
+					@extend &.talent-confirmation-view;
+					.role-and-confirmation{
+						margin-top: 0px !important;
+						.talent-confirmation-status{
+							margin: 0px !important;
+							display: inline !important;
+						}
+					}
+					.image-like-list-container{
+						.image-holder{display: none;}
+						.talent-like-it-list-number{
+							margin: 0px;
+							.like-it-list-container{
+								.function-item{
+									height: 35px;
+								}
+							}
+						}
+					}
 				}
 			}
 		}

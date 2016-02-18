@@ -1,16 +1,19 @@
 <div class="role-find-talents-scheduled-wrapper">
 	<div class="row">
 		<div class="col-md-5 call-back-audition-container">
-			<div class="panel panel-dark">
+			<div class="panel panel-dark margin-zero">
 				<div class="panel-heading panel-heading-dark">
 					<div class="display-block margin-bottom-normal">
 						<div class="display-inline-block valign-middle"><h5 class="margin-zero"><b>Audition</b> <span class="text-muted">02/20/2016</span> <span class="text-muted">, Room One</span></h5></div>
 						<div class="display-inline-block float-right">
 							<div class="btn-group btn-group-sm">
-								<button type="button" class="btn btn-dark dropdown-toggle" data-toggle="dropdown">Change View <i class="fa fa-caret-down"></i></button>
-								<ul class="dropdown-menu">
-									<li><a href="#">Action</a></li>
-									<li><a href="#">Another action</a></li>
+								<button type="button" class="btn btn-dark dropdown-toggle" data-toggle="dropdown"><i class="fa fa-outdent"></i> Change View <i class="fa fa-caret-down"></i></button>
+								<ul class="dropdown-menu" id="scheduled-change-view-option-1">
+									<li><a href="#" id="scheduled-photo-view">Photo View</a></li>
+									<li><a href="#" id="scheduled-confirmation-view">Confirmation View</a></li>
+									<li><a href="#" id="scheduled-submission-note-view">Submission Note View</a></li>
+									<li><a href="#" id="scheduled-casting-note-view">Casting Note View</a></li>
+									<li><a href="#" id="scheduled-list-view">List View</a></li>
 								</ul>
 							</div>
 						</div>
@@ -68,6 +71,18 @@
 									<div class="col-md-2 time">9:30am</div>
 									<div class="col-md-10 talent">test</div>
 								</div>
+								<div class="row-fluid clearfix time-item">
+									<div class="col-md-2 time">9:40am</div>
+									<div class="col-md-10 talent">test</div>
+								</div>
+								<div class="row-fluid clearfix time-item">
+									<div class="col-md-2 time">9:50am</div>
+									<div class="col-md-10 talent">test</div>
+								</div>
+								<div class="row-fluid clearfix time-item">
+									<div class="col-md-2 time">9:60am</div>
+									<div class="col-md-10 talent">test</div>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -76,7 +91,7 @@
 		</div> {{-- call-back-audition-container --}}
 
 		<div class="col-md-7 available-talent-container padding-left-zero">
-			<div class="panel panel-dark">
+			<div class="panel panel-dark margin-zero">
 				<div class="panel-heading panel-heading-dark">
 					<div class="display-block margin-bottom-normal">
 						<div class="display-inline-block valign-middle"><h5 class="margin-zero"><b>Available Talent</b></h5></div>
@@ -89,10 +104,13 @@
 								</ul>
 							</div>
 							<div class="btn-group btn-group-sm">
-								<button type="button" class="btn btn-dark dropdown-toggle" data-toggle="dropdown">Change View <i class="fa fa-caret-down"></i></button>
-								<ul class="dropdown-menu">
-									<li><a href="#">Action</a></li>
-									<li><a href="#">Another action</a></li>
+								<button type="button" class="btn btn-dark dropdown-toggle" data-toggle="dropdown"><i class="fa fa-outdent"></i> Change View <i class="fa fa-caret-down"></i></button>
+								<ul class="dropdown-menu" id="scheduled-change-view-option-2">
+									<li><a href="#" id="scheduled-photo-view-2">Photo View</a></li>
+									<li><a href="#" id="scheduled-confirmation-view-2">Confirmation View</a></li>
+									<li><a href="#" id="scheduled-submission-note-view-2">Submission Note View</a></li>
+									<li><a href="#" id="scheduled-casting-note-view-2">Casting Note View</a></li>
+									<li><a href="#" id="scheduled-list-view-2">List View</a></li>
 								</ul>
 							</div>
 						</div>
@@ -132,9 +150,6 @@
 								</div>
 							</div>
 						</div>
-						<div class="display-inline-block float-right">
-							<button type="button" class="btn btn-primary btn-sm text-xs">Build Timeframe</button>
-						</div>
 					</div>
 				</div>
 				<div class="panel-body padding-zero">
@@ -149,12 +164,23 @@
 								</a>
 							</div>
 							<div id="role-list-1" class="role-list-body panel-collapse in">
-							@for ($i=0; $i < 6; $i++) 
-								<div class="view-container talent-photo-view">
-
-									<div class="image-container">
+							@for ($i=0; $i < 8; $i++)
+								{{-- README: Different classes for change view of talents (.talent-photo-view, .talent-confirmation-view, .submission-note-view, .casting-note-view, .list-view)  --}}
+								<div class="view-container talent-confirmation-view">
+									<div class="image-like-list-container">
 										<div class="image-holder">
 											<img src="/../images/talents-sample-image.jpg" class="img-responsive">
+										</div>
+										<div class="talent-like-it-list-number margin-top-small">
+											<div class="like-it-list-container">
+												<div class="btn-group talent-function" data-bind-target="data-id" data-id="schedule-615535">
+													<button class="btn btn-xs btn-danger rating-button function-item" data-bind-target="class">1</button>
+													<button class="btn btn-xs btn-warning rating-button function-item" data-bind-target="class">2</button>
+													<button class="btn btn-xs btn-info rating-button function-item" data-bind-target="class">3</button>
+													<button class="btn btn-xs btn-primary rating-button function-item" data-bind-target="class">4</button>
+													<button class="btn btn-xs btn-success rating-button function-item active" data-bind-target="class">5</button>
+												</div>
+											</div>
 										</div>
 									</div>
 									<div class="talent-stats">
@@ -183,26 +209,24 @@
 											</div>
 											<div class="talent-confirmation-status">
 												<div class="confirmation btn-group">
-													<button class="btn btn-default btn-success btn-xs tip" data-original-title="Confirmed" data-confirm="confirmed"><i class="fa fa-check"></i></button>
+													<button class="btn btn-default btn-success btn-xs tip" data-original-title="Confirmed" data-confirm="confirmed"><i class="fa fa-check"></i> <span class="confirm-label">Confirmed</span></button>
 													<button class="btn btn-default btn-xs tip" data-original-title="Declined" data-confirm="declined"><i class="fa fa-times"></i></button>
 													<button class="btn btn-default btn-xs tip" data-original-title="Rescheduled" data-confirm="reschedule"><i class="fa fa-clock-o"></i></button>
 												</div>
 											</div>
-										</div>
-									</div>
-									<div class="talent-like-it-list-number">
-										<div class="like-it-list-container">
-											<div class="btn-group talent-function" data-bind-target="data-id" data-id="schedule-615535">
-												<button class="btn btn-xs btn-danger rating-button function-item" data-bind-target="class">1</button>
-												<button class="btn btn-xs btn-warning rating-button function-item" data-bind-target="class">2</button>
-												<button class="btn btn-xs btn-info rating-button function-item" data-bind-target="class">3</button>
-												<button class="btn btn-xs btn-primary rating-button function-item" data-bind-target="class">4</button>
-												<button class="btn btn-xs btn-success rating-button function-item active" data-bind-target="class">5</button>
+											<div class="submission-note">
+												<div class="form-group">
+													<label class="form-label">Submission Note</label>
+													<textarea class="form-control" disabled>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor.</textarea>
+												</div>
+											</div>
+											<div class="casting-note">
+												<div class="form-group">
+													<label class="form-label">Casting Note</label>
+													<textarea class="form-control" disabled>Ut enim ad minim veniam,quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</textarea>
+												</div>
 											</div>
 										</div>
-									</div>
-									<div class="talent-note">
-										
 									</div>
 								</div>
 							@endfor
