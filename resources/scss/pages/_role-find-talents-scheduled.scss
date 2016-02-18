@@ -1,0 +1,303 @@
+.role-find-talents-scheduled-wrapper{
+	.panel{
+		&.panel-dark{
+			border-radius: 0px;
+			border-color: #3B3E42;
+			$border-dark: 1px solid #6D6D6D !important;
+			$font-weight-700: 700;
+			$font-size-11: 11px;
+			$background-image-none: none !important;
+			$color-dark: #6D6D6D !important;
+			$color-white: #ffffff !important;
+			
+			.btn-dark-outline{
+				color: $color-white;
+				border: $border-dark;
+				font-weight: $font-weight-700;
+				font-size: $font-size-11;
+				background-image: $background-image-none;
+				background: transparent !important;
+				&:hover, &:focus, &:visited, &:active{
+					background-image: $background-image-none;
+					background-color: $color-dark;
+					border-color: $color-dark;
+				}
+			}
+
+			.btn-dark{
+				color: $color-white;
+				border: $border-dark;
+				font-weight: $font-weight-700;
+				font-size: $font-size-11;
+				background-color: $color-dark;
+				background-image: $background-image-none;
+				&:hover, &:focus, &:visited, &:active{
+					background-image: $background-image-none;
+					background-color: #7D7D7D !important;
+					border-color: $color-dark;
+				}
+			}
+
+			.text-muted{
+				color: #9C9C9C;
+			}
+			.panel-heading-dark{
+				background-color: #3B3E42;
+				border-radius: 0px;
+				border-color: #3B3E42;
+				h5{
+					color: $color-white;
+				}
+				.text-white{
+					color: $color-white;
+				}
+			}
+		} //panel-dark
+
+		#schedule-time-container, #role-list-container{
+			overflow-y: scroll;
+			margin: 0px;
+
+			.schedule-time-item{
+				.schedule-time-header, .role-list-header{
+				    border-bottom: 1px solid #cccccc;
+
+					a.accordion-toggle{
+						padding: 9px 20px 9px 35px;
+						color: #4083a9;
+						text-decoration: none;
+						&::after{
+							right: 0px;
+							left: 15px;
+							content: "\f0d8";
+							font-size: 15px;
+							color: #4083a9;
+						}
+						&.collapsed::after{
+							content: "\f0d7";
+							color: #4083a9;
+						}
+					}
+					.btn-xxs{
+						padding: 2px 5px;
+						font-size: 9px;
+						line-height: 12px;
+					}
+					.role-name{
+						line-height: 10px;
+					}
+					.role-reference, .role-details{
+						line-height: 14px;
+						color: #444444;
+						font-size: 11px;
+					}
+				}
+				.schedule-time-body, .role-list-body{
+					.time-item{
+						border-bottom: 1px solid #cccccc;
+						.time{
+							font-weight: 600;
+							padding: 10px;
+						}
+						.talent{
+							border-left: 1px solid #cccccc;
+							min-height: 130px;
+							padding: 10px;
+						}
+						&:nth-child(even){
+							background-color:#eeeeee;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	.call-back-audition-container{
+	}
+
+	.available-talent-container{
+		.input-xs{
+			height: 21px;
+			line-height: 15px;
+			padding: 4px 6px;
+			font-size: 10px;
+		}
+		.role-list-body{
+			padding: 10px;
+
+			.view-container{
+				padding: 10px;
+				.list-inline{
+					margin: 0px;
+					li{
+						&:nth-child(odd){
+							padding: 0px;
+						}
+					}
+				}
+
+				&.talent-photo-view{
+					display: inline-block;
+					padding: 5px;
+					border: 1px solid #dddddd;
+					max-width: 110px;
+					margin-right: 4px;
+					margin-bottom: 10px;
+					vertical-align: top;
+					&:last-child{
+						margin-right: 0px;
+					}
+					.image-like-list-container{
+						display: inline-block;
+						.image-holder{
+							max-width: 98px;
+							border: 1px solid #dddddd;
+							overflow: hidden;
+							display: flex;
+							align-items: center;
+							justify-content: center;
+						}
+						.talent-like-it-list-number{display:none;}
+					}
+					
+					.talent-stats{
+						.talent-name{
+							display: block;
+							text-align: center;
+							color: #4583A9;
+							font-weight: 600;
+						    line-height: 14px;
+						}
+						.talent-info{display:none;}
+						.talent-agency{display:none;}
+						.submission-note{display:none;}
+						.casting-note{display: none;}
+						.role-and-confirmation{
+							display:none;
+							.talent-role{}
+							.talent-confirmation-status{}
+						}
+					}
+					.talent-like-it-list-number{ display: none;}
+				}
+
+				&.talent-confirmation-view{
+					display: block;
+					border-bottom: 1px solid #dddddd;
+					background-color: #FFFBE0;
+					&:nth-child(even){
+						background-color: #F3EECF;
+					}
+					.image-like-list-container{
+						display: inline-block;
+						margin-right: 5px;
+						.image-holder{
+							max-width: 106px;
+							border: 1px solid #dddddd;
+							overflow: hidden;
+							display: flex;
+							align-items: center;
+							justify-content: center;
+						}
+						.talent-like-it-list-number{ display: inline-block;}
+					}
+					.talent-stats{
+						display: inline-block;
+						vertical-align: top;
+						.talent-name{
+							display: inline-block;
+							vertical-align: top;
+							color: #4583A9;
+							font-weight: 600;
+							margin-right: 15px;
+						    line-height: 14px;
+						}
+						.talent-info{
+							display: inline-block;
+							vertical-align: top;
+							margin-right: 15px;
+							line-height: 14px;
+						}
+						.talent-agency{
+							display: inline-block;
+							vertical-align: top;
+							line-height: 14px;
+						}
+						
+						.submission-note{display:none;}
+						.casting-note{display:none;}
+						.role-and-confirmation{
+							display: block;
+							margin-top: 5px;
+
+							.talent-role{
+								display: inline-block;
+								margin-right: 10px;
+							}
+							.talent-confirmation-status{
+								display: block;
+								margin-top: 5px;
+							}
+						}
+						
+					}
+				}
+
+				&.submission-note-view{
+					@extend &.talent-confirmation-view;
+					.role-and-confirmation{
+						.talent-confirmation-status{
+							margin: 0px !important;
+							display: inline !important;
+						}
+					}
+					.submission-note, .casting-note{
+						display: block !important;
+						label{
+							margin: 5px 0 0 0;
+						}
+						textarea{
+							resize: none;
+							height: 75px;
+							border-radius: 0px;
+							font-size: 12px;
+							line-height: 16px;
+							cursor: default;
+						}
+					}
+					.casting-note{display: none !important;}
+				}
+
+				&.casting-note-view{
+					@extend &.submission-note-view;
+					.submission-note{display: none !important;}
+					.casting-note{display: block !important;}
+
+				}
+
+				&.list-view{
+					@extend &.talent-confirmation-view;
+					.role-and-confirmation{
+						margin-top: 0px !important;
+						.talent-confirmation-status{
+							margin: 0px !important;
+							display: inline !important;
+						}
+					}
+					.image-like-list-container{
+						.image-holder{display: none;}
+						.talent-like-it-list-number{
+							margin: 0px;
+							.like-it-list-container{
+								.function-item{
+									height: 35px;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
