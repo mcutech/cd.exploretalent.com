@@ -165,7 +165,7 @@
 							</div>
 							<div id="role-list-1" class="role-list-body panel-collapse in">
 							@for ($i=0; $i < 8; $i++)
-								{{-- README: Different classes for change view of talents (.talent-photo-view, .talent-confirmation-view, .submission-note-view, .casting-note-view, .list-view)  --}}
+								{{-- README: Different classes for change view of talents (.talent-photo-view, .talent-confirmation-view, .submission-note-view, .casting-note-view, .list-view)--}}
 								<div class="view-container talent-confirmation-view">
 									<div class="image-like-list-container">
 										<div class="image-holder">
