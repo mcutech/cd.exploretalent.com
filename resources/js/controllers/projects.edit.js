@@ -60,4 +60,18 @@ module.exports = function(core, user, projectId) {
 		$(this).siblings('input.calendar-input').datepicker().focus();
 	});
 
+	$(document).on('click', '#nationwide-market-checkbox', function() {
+
+		$(this).toggleClass('checked');
+
+		if($(this).hasClass('checked')) {
+			$('.hide-if-nationwide').addClass('hide');
+		}
+		else {
+			$('.hide-if-nationwide').removeClass('hide');
+			$('#zip-code').val('');
+		}
+		
+	});
+
 };

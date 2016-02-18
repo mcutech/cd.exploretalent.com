@@ -19,7 +19,13 @@
 					<div class="panel-heading no-padding-hr padding-bottom-zero-small padding-top-zero">
 						<div class="panel-title text-uppercase"><strong>Location</strong></div>
 					</div>
-					<div class="panel-body padding-small no-border-hr no-padding-hr">
+					<div class="padding-small no-border-hr no-padding-hr">
+						<label class="checkbox-inline margin-left-normal" title="Mark as nationwide casting">
+							<input class="px" type="checkbox" name="nationwide-market-checkbox" id="nationwide-market-checkbox" value="0">
+							<span class="lbl">Any Market / Nationwide</span>
+						</label>
+					</div>
+					<div class="panel-body padding-small no-border-hr no-padding-hr hide-if-nationwide">
 						<div class="tab-content no-padding-hr padding-top-zero-zz-lg no-padding-b">
 							<div class="tab-pane fade active in">
 								<label class="text-semibold margin-bottom-zero">Select a Market</label>
@@ -105,7 +111,8 @@
 								<div class="row">
 									<div class="col-md-12 margin-top-medium" id="markets">
 										<label class="checkbox" data-bind-template="#markets" data-bind-value="markets">
-											<input type="checkbox" name="markets" class="market-item" data-bind="<%= name %>" data-bind-target="value" value="" checked> <span class="lbl" data-bind="<%= name %>"></span>
+											<input type="checkbox" name="markets" class="market-item" data-bind="<%= name %>" data-bind-target="value" value="" checked> 
+											<span class="lbl" data-bind="<%= (name == 'N/A') ? 'Nationwide' : name %>"></span>
 										</label>
 									</div>
 								</div>

@@ -24,12 +24,19 @@ handler.prototype.refreshProjectDetails = function() {
 
 	self.core.resource.project.get(data)
 		.then(function(result) {
+			console.log(result);
 			self.project = result;
 			self.core.service.databind('#roles-list', self.project);
+
 			// get current role object
 			self.project.role = _.find(self.project.bam_roles, function (role) {
 				return role.role_id == self.roleId;
 			});
+
+			if(self.project.market == 'N/A') {
+				// $('input[type="checkbox"][name="manual-market-checkbox"]').prop('checked', 'checked');
+				$('#nationwide-market-checkbox').click();
+			}
 
 			self.project.markets = _.map(self.project.market.split('>'), function(market) {
 				return { name : market };
@@ -479,22 +486,29 @@ handler.prototype.getFilters = function() {
 	if (form.markets.length > 0) {
 		subquery = [];
 
-		_.each(form.markets, function(market) {
-			if (market) {
-				if (subquery.length == 0) {
-					subquery.push([ 'where', 'city', 'like', '%' + market + '%' ]);
-				}
-				else {
-					subquery.push([ 'orWhere', 'city', 'like', '%' + market + '%' ]);
-				}
+		// include market filter if not N/A (Nationwide)
+		if($.inArray('N/A', form.markets) == -1 && !$('#nationwide-market-checkbox').hasClass('checked')) {
+			_.each(form.markets, function(market) {
+				if (market) {
 
-				subquery.push([ 'orWhere', 'city1', 'like', '%' + market + '%' ]);
-				subquery.push([ 'orWhere', 'city2', 'like', '%' + market +'%' ]);
-				subquery.push([ 'orWhere', 'city3', 'like', '%' + market +'%' ]);
-			}
-		});
+					if (subquery.length == 0) {
+						subquery.push([ 'where', 'city', 'like', '%' + market + '%' ]);
+					}
+					else {
+						subquery.push([ 'orWhere', 'city', 'like', '%' + market + '%' ]);
+					}
 
-		data.q.push([ 'where', subquery ]);
+					subquery.push([ 'orWhere', 'city1', 'like', '%' + market + '%' ]);
+					subquery.push([ 'orWhere', 'city2', 'like', '%' + market +'%' ]);
+					subquery.push([ 'orWhere', 'city3', 'like', '%' + market +'%' ]);
+
+				}
+			});
+
+			data.q.push([ 'where', subquery ]);
+
+			console.log(data);
+		}		
 	}
 
 	if (parseInt(form.age_min)) {
@@ -582,7 +596,7 @@ handler.prototype.getFilters = function() {
 			[ 'orWhere', 'lname', 'LIKE', '%' + form.name + '%' ]
 		];
 	}
-
+	console.log(data);
 	return data;
 }
 

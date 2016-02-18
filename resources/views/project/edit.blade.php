@@ -220,13 +220,17 @@
 							<div class="col-md-6 padding-top-normal">
 								<div class="form-group margin-bottom-small">
 									<label class="control-label">Audition Location <span class="text-success">*</span></label>
-								<div class="input-group">
+								<label class="checkbox-inline margin-left-normal" title="Mark as nationwide casting">
+									<input class="px" type="checkbox" name="nationwide-market-checkbox" id="nationwide-market-checkbox" value="0">
+									<span class="lbl">Any Market / Nationwide</span>
+								</label>	
+								<div class="input-group hide-if-nationwide">
 									<input type="text" id="zip-code" class="form-control" placeholder="Enter Zip Code" data-bind="<%= zip %>">
 									<span class="input-group-btn">
 										<button id="find-markets-btn" class="btn" type="button">Auto Select Markets</button>
 									</span>
 								</div>
-								<div class="input-group auto-markets-div margin-top-normal">
+								<div class="input-group auto-markets-div margin-top-normal hide-if-nationwide">
 									<div class="hide" data-bind-template=".auto-markets-div" data-bind-value="data">
 										<label>
 											<input type="checkbox" name="market-checkbox" checked="">
@@ -239,12 +243,13 @@
 								<div class="alert alert-page alert-danger markets-error-required" style="display:none;">Please choose at least one market.</div>
 								</div>
 							</div>
-							<div class="col-md-12 input-group margin-top-small">
-							<label for="manual-markets-div">
-								or <a href="" id="toggle-manual-markets-div" style="text-decoration: underline;">Manually select markets</a>
-								<a class="btn btn-default btn-sm" href="" id="toggle-all-markets-checked" style="display: none;">Select All Markets</a>
-							</label>
-							<div class="manual-markets-div display-none">
+							<div class="col-md-12 input-group margin-top-small hide-if-nationwide">
+								<label for="manual-markets-div">
+									or <a href="" id="toggle-manual-markets-div" style="text-decoration: underline;">Manually select markets</a>
+									<a class="btn btn-default btn-sm hide" href="" id="toggle-all-markets-checked" style="display: none;">Select All Markets</a>
+								</label>
+							</div>	
+							<div class="manual-markets-div display-none hide-if-nationwide">
 								<div class="col-md-2">
 									<label>
 										<input type="checkbox" name="manual-market-checkbox" id="market_albany_ny"> <span class="lbl">Albany, NY</span>
@@ -323,7 +328,7 @@
 								</div>
 								<div class="col-md-2">
 									<label>
-										<input type="checkbox" name="manual-market-checkbox" id="market_harford_ct"> <span class="lbl">Harford, CT</span>
+										<input type="checkbox" name="manual-market-checkbox" id="market_hartford_ct"> <span class="lbl">Hartford, CT</span>
 									</label>
 									<label>
 										<input type="checkbox" name="manual-market-checkbox" id="market_honolulu_hi"> <span class="lbl">Honolulu, HI</span>

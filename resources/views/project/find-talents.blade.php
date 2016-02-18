@@ -97,7 +97,7 @@
 				</div>
 				<div class="col-md-2 text-center button-function">
 					<div class="bordered padding-small">
-						<a><div><i class="fa fa-calendar fa-2x"></i></div>
+						<a href="#role-find-talents-scheduled" data-toggle="modal"><div><i class="fa fa-calendar fa-2x"></i></div>
 						<div>Scheduled</div>
 						<b><div class="text-bg">69</div></b></a>
 					</div>
@@ -163,6 +163,7 @@
 @include('components.modals.role-find-talents-likeitlist')
 @include('components.modals.role-find-talents-callbacks')
 @include('components.modals.role-find-talents-hired')
+@include('components.modals.role-find-talents-scheduled')
 
 @stop
 
