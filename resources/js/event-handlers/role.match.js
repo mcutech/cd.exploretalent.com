@@ -27,10 +27,16 @@ handler.prototype.refreshProjectDetails = function() {
 			console.log(result);
 			self.project = result;
 			self.core.service.databind('#roles-list', self.project);
+
 			// get current role object
 			self.project.role = _.find(self.project.bam_roles, function (role) {
 				return role.role_id == self.roleId;
 			});
+
+			if(self.project.market == 'N/A') {
+				// $('input[type="checkbox"][name="manual-market-checkbox"]').prop('checked', 'checked');
+				$('#nationwide-market-checkbox').click();
+			}
 
 			self.project.markets = _.map(self.project.market.split('>'), function(market) {
 				return { name : market };
@@ -481,7 +487,7 @@ handler.prototype.getFilters = function() {
 		subquery = [];
 
 		// include market filter if not N/A (Nationwide)
-		if($.inArray('N/A', form.markets) == -1) {
+		if($.inArray('N/A', form.markets) == -1 && !$('#nationwide-market-checkbox').hasClass('checked')) {
 			_.each(form.markets, function(market) {
 				if (market) {
 
@@ -590,7 +596,7 @@ handler.prototype.getFilters = function() {
 			[ 'orWhere', 'lname', 'LIKE', '%' + form.name + '%' ]
 		];
 	}
-
+	console.log(data);
 	return data;
 }
 
