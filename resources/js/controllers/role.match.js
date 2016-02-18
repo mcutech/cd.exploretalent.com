@@ -30,4 +30,17 @@ module.exports = function(core, user, projectId, roleId) {
 			handler.loadNextMatches();
 		}
 	});
+
+	$(document).on('click', '#nationwide-market-checkbox', function() {
+
+		$(this).toggleClass('checked');
+
+		if($(this).hasClass('checked')) {
+			$('.hide-if-nationwide').addClass('hide');
+		}
+		else {
+			$('.hide-if-nationwide').removeClass('hide');
+		}
+		
+	});
 }
