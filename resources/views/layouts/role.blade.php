@@ -39,7 +39,7 @@
 	<div class="display-block project-roles-info">
 		<div class="row-fluid clearfix">
 			<div class="col-md-4 padding-zero">
-				<span class="text-slim">Gender: <span data-bind="<%= (role.gender_female === 1) ? 'Female' : 'Male' %>" class="text-normal"></span></span>
+				<span class="text-slim">Gender: <span data-bind="<%= ((role.gender_female === 1) && (role.gender_male === 1)) ? 'Male and Female' : (role.gender_female === 1) ? 'Female' : 'Male' %>" class="text-normal"></span></span>
 			</div>
 			<div class="col-md-4 padding-zero">
 				<span class="text-slim">Age Range: <span class="text-normal"><span data-bind="<%= role.age_min %>"></span> to <span data-bind="<%= role.age_max %>"></span></span></span>
