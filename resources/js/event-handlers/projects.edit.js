@@ -27,10 +27,12 @@ handler.prototype.getProjectInfo = function(e) {
 	return self.core.resource.project.get(data)
 		.then(function(res) {
 			if (res.total > 0) {
+				console.log(res);
 				var casting = res.data[0];
 
 				if(casting.market == 'N/A') {
-					$('input[type="checkbox"][name="manual-market-checkbox"]').prop('checked', 'checked');
+					// $('input[type="checkbox"][name="manual-market-checkbox"]').prop('checked', 'checked');
+					$('#nationwide-market-checkbox').click();
 				}
 				else {
 					casting.market = casting.market.split(">");
@@ -98,7 +100,13 @@ handler.prototype.updateProject = function(e){
 	// sets checked boxes as market (after Auto Select Markets button is clicked (will check zipcode))
 	var markets = [];
 
-	if(!$('.auto-markets-div').is(':visible')) { // if auto select markets btn was not clicked (save btn is clicked)
+	// Nationwide Casting
+	if($('#nationwide-market-checkbox').hasClass('checked')) {
+		markets = 'N/A';
+		zipcode = 'N/A';
+	}
+
+	else if(!$('.auto-markets-div').is(':visible')) { // if auto select markets btn was not clicked (save btn is clicked)
 
 		promise = self.autoSelectMarkets()
 		.then(function(res) {

@@ -47,7 +47,13 @@ handler.prototype.createNewProject = function(e){
 	// sets checked boxes as market (after Auto Select Markets button is clicked (will check zipcode))
 	var markets = [];
 
-	if(!$('.auto-markets-div').is(':visible')) { // if auto select markets btn was not clicked (save btn is clicked)
+	// Nationwide Casting
+	if($('#nationwide-market-checkbox').hasClass('checked')) {
+		markets = 'N/A';
+		zipcode = 'N/A';
+	}
+
+	else if(!$('.auto-markets-div').is(':visible')) { // if auto select markets btn was not clicked (save btn is clicked)
 
 		promise = self.autoSelectMarkets()
 		.then(function(res) {
@@ -133,7 +139,7 @@ handler.prototype.createNewProject = function(e){
 			location : zipcode,
 			des: auditiondesc,
 		};
-
+		
 		if(projectname.length < 1) {
 			$('.project-name-error-required').fadeIn().delay(3000).fadeOut();
 			$('#project-name').focus();
