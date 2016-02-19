@@ -102,7 +102,7 @@
 						.talent{
 							border-left: 1px solid #cccccc;
 							min-height: 130px;
-							padding: 10px;
+							padding: 0px;
 						}
 						&:nth-child(even){
 							background-color:#eeeeee;
@@ -114,9 +114,34 @@
 	}
 
 	.call-back-audition-container{
+		.view-container{
+			&.talent-confirmation-view{
+				.talent-stats{
+					display: inline-block;
+					.talent-name{
+						display: inline-block;
+					}
+					.talent-info{
+						display: inline !important;
+						margin-right: 0px !important;
+					}
+				}
+			}
+			&.list-view{
+				.image-like-list-container{
+					.talent-like-it-list-number{
+						.like-it-list-container{
+							.function-item{
+								height: auto !important;
+							}
+						}
+					}
+				}
+			}
+		}		
 	}
 
-	.available-talent-container{
+	.available-talent-container, .call-back-audition-container{
 		.input-xs{
 			height: 21px;
 			line-height: 15px;
@@ -128,6 +153,8 @@
 
 			.view-container{
 				padding: 10px;
+				margin-bottom: 3px;
+
 				.list-inline{
 					margin: 0px;
 					li{
@@ -206,7 +233,7 @@
 						display: inline-block;
 						vertical-align: top;
 						.talent-name{
-							display: inline-block;
+							display: block;
 							vertical-align: top;
 							color: #4583A9;
 							font-weight: 600;
@@ -214,7 +241,7 @@
 						    line-height: 14px;
 						}
 						.talent-info{
-							display: inline-block;
+							display: block;
 							vertical-align: top;
 							margin-right: 15px;
 							line-height: 14px;
@@ -246,6 +273,15 @@
 
 				&.submission-note-view{
 					@extend &.talent-confirmation-view;
+					.talent-stats{
+						display: inline-block;
+						.talent-name{
+							display: inline-block;
+						}
+						.talent-info{
+							display: inline-block;
+						}
+					}					
 					.role-and-confirmation{
 						.talent-confirmation-status{
 							margin: 0px !important;
@@ -256,6 +292,7 @@
 						display: block !important;
 						label{
 							margin: 5px 0 0 0;
+							font-size: 11px;
 						}
 						textarea{
 							resize: none;
@@ -278,6 +315,15 @@
 
 				&.list-view{
 					@extend &.talent-confirmation-view;
+					.talent-stats{
+						display: inline-block;
+						.talent-name{
+							display: inline-block;
+						}
+						.talent-info{
+							display: inline-block;
+						}
+					}					
 					.role-and-confirmation{
 						margin-top: 0px !important;
 						.talent-confirmation-status{
@@ -286,15 +332,7 @@
 						}
 					}
 					.image-like-list-container{
-						.image-holder{display: none;}
-						.talent-like-it-list-number{
-							margin: 0px;
-							.like-it-list-container{
-								.function-item{
-									height: 35px;
-								}
-							}
-						}
+						display: none;
 					}
 				}
 			}
