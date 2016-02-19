@@ -159,7 +159,6 @@
 				</div>
 			</div>
 		</div> {{-- call-back-audition-container --}}
-
 		<div class="col-md-7 available-talent-container padding-left-zero">
 			<div class="panel panel-dark margin-zero">
 				<div class="panel-heading panel-heading-dark">
