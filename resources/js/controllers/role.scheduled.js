@@ -19,6 +19,28 @@ $(document).on('click', '#scheduled-list-view-2', function(){
 	$('#role-list-container .view-container').removeClass('talent-photo-view submission-note-view talent-confirmation-view casting-note-view');
 });	
 
+$(document).on('click', '#scheduled-photo-view-1', function(){
+	$('#schedule-time-container .view-container').addClass('talent-photo-view')
+	$('#schedule-time-container .view-container').removeClass('talent-confirmation-view submission-note-view casting-note-view list-view');
+});
+$(document).on('click', '#scheduled-confirmation-view-1', function(){
+	$('#schedule-time-container .view-container').addClass('talent-confirmation-view')
+	$('#schedule-time-container .view-container').removeClass('talent-photo-view submission-note-view casting-note-view list-view');
+});
+$(document).on('click', '#scheduled-submission-note-view-1', function(){
+	$('#schedule-time-container .view-container').addClass('submission-note-view')
+	$('#schedule-time-container .view-container').removeClass('talent-photo-view talent-confirmation-view casting-note-view list-view');
+});	
+$(document).on('click', '#scheduled-casting-note-view-1', function(){
+	$('#schedule-time-container .view-container').addClass('casting-note-view')
+	$('#schedule-time-container .view-container').removeClass('talent-photo-view submission-note-view talent-confirmation-view list-view');
+});
+$(document).on('click', '#scheduled-list-view-1', function(){
+	$('#schedule-time-container .view-container').addClass('list-view')
+	$('#schedule-time-container .view-container').removeClass('talent-photo-view submission-note-view talent-confirmation-view casting-note-view');
+});	
+
+
 $(function () {
 	var $height = $(window).height();
 	var $adheight = $height - 200;
