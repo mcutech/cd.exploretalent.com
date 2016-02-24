@@ -126,7 +126,7 @@
 				<div class="row-fluid clearfix">
 					<div class="col-md-12">
 						<ul class="list-unstyled margin-zero long-description">
-							<li class=""><div class="title">Body Type In:</div>
+							<li class=""><div class="title">Body Type:</div>
 								<span class="body-type-label" data-bind="<%= (built_athletic == 1) ? '1' : '' %>" data-bind-target="visibility">Athletic</span> 
 								<span class="body-type-label" data-bind="<%= (built_bb == 1) ? '1' : '' %>" data-bind-target="visibility">Body Builder</span> 
 								<span class="body-type-label" data-bind="<%= (built_xlarge == 1) ? '1' : '' %>" data-bind-target="visibility">Full Figured</span> 
@@ -136,6 +136,7 @@
 								<span class="body-type-label" data-bind="<%= (built_petite == 1) ? '1' : '' %>" data-bind-target="visibility">Petite</span> 
 								<span class="body-type-label" data-bind="<%= (built_average == 1) ? '1' : '' %>" data-bind-target="visibility">Average</span> 
 								<span class="body-type-label" data-bind="<%= (built_medium == 1) ? '1' : '' %>" data-bind-target="visibility">Medium</span> 
+								<span class="body-type-label" data-bind="<%= (built_athletic == 0 && built_bb == 0 && built_xlarge == 0 && built_large == 0 && built_lm == 0 && built_thin == 0 && built_petite == 0 && built_average == 0 && built_medium == 0) ? '1' : '' %>" data-bind-target="visibility">Any</span> 
 							</li>
 							<li class=""><div class="title">Ethnicity:</div>
 								<span class="ethnicity-label" data-bind="<%= (ethnicity_african == 1) ? '1' : '' %>" data-bind-target="visibility">African</span> 
@@ -147,6 +148,7 @@
 								<span class="ethnicity-label" data-bind="<%= (ethnicity_mediterranean == 1) ? '1' : '' %>" data-bind-target="visibility">Mediterranean</span> 
 								<span class="ethnicity-label" data-bind="<%= (ethnicity_middle_est == 1) ? '1' : '' %>" data-bind-target="visibility">Middle Eastern</span> 
 								<span class="ethnicity-label" data-bind="<%= (ethnicity_american_in == 1) ? '1' : '' %>" data-bind-target="visibility">American Indian</span> 
+								<span class="ethnicity-label" data-bind="<%= (ethnicity_african == 0 && ethnicity_african_am == 0 && ethnicity_asian == 0 && ethnicity_caribbian == 0 && ethnicity_caucasian == 0 && ethnicity_hispanic == 0 && ethnicity_mediterranean == 0 && ethnicity_middle_est == 0 && ethnicity_american_in == 0) ? '1' : '' %>" data-bind-target="visibility">Any</span> 
 							</li>
 							<li class=""><div class="title">Hair Color:</div>
 								<span class="hair-color-label" data-bind="<%= (hair_auburn == 1) ? '1' : '' %>" data-bind-target="visibility">Auburn</span>
@@ -159,6 +161,7 @@
 								<span class="hair-color-label" data-bind="<%= (hair_red == 1) ? '1' : '' %>" data-bind-target="visibility">Red</span>
 								<span class="hair-color-label" data-bind="<%= (hair_white == 1) ? '1' : '' %>" data-bind-target="visibility">White</span>
 								<span class="hair-color-label" data-bind="<%= (hair_salt_paper == 1) ? '1' : '' %>" data-bind-target="visibility">Salt & Pepper</span>
+								<span class="hair-color-label" data-bind="<%= (hair_auburn == 0 && hair_black == 0 && hair_blonde == 0 && hair_brown == 0 && hair_chestnut == 0 && hair_dark_brown == 0 && hair_grey == 0 && hair_red == 0 && hair_white == 0 && hair_salt_paper == 0) ? '1' : '' %>" data-bind-target="visibility">Any</span>
 							</li>
 						</ul>
 					</div>
