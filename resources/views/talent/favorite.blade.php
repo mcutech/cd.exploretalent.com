@@ -31,13 +31,14 @@
 						<div class="f_circleG" id="frotateG_08"></div>
 					</div>
 					<div class="row-fluid clearfix" id="favorite-result">
-						@include('components.talent', [ 'databind' => [ 'template' => '#favorite-result', 'value' => 'data' ], 'favorites' => false ])
+						@include('components.talent', [ 'databind' => [ 'template' => '#favorite-result', 'value' => 'data' ], 'favorites' => true ])
 					</div>
 				</div> {{-- talents-search-results --}}
 			</div>
 		</div>
 
 		<div class="talents-content">
+		 	@include('components.modals.talent-add-to-like-it-list')
 			@include('components.modals.share-like-it-list')
 			@include('components.modals.talent-photos')
 			@include('components.modals.talent-resume')

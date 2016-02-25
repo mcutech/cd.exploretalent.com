@@ -28,13 +28,14 @@
 						</div>
 					</div>
 					<div class="row-fluid clearfix" id="talent-result">
-						@include('components.talent3', [ 'databind' => [ 'template' => '#talent-result', 'value' => 'data' ], 'ratings' => false, 'notes' => false, 'class' => 'col-md-4'  ])
+						@include('components.talent4', [ 'databind' => [ 'template' => '#talent-result', 'value' => 'data' ], 'ratings' => true, 'notes' => false, 'class' => 'col-md-4'  ])
 					</div>
 				</div> {{-- talents-search-results --}}
 			</div>
 		</div>
 
 		<div class="talents-content">
+			@include('components.modals.talent-add-to-like-it-list')
 			@include('components.modals.share-like-it-list')
 			@include('components.modals.talent-photos')
 			@include('components.modals.talent-resume')
