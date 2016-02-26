@@ -388,15 +388,14 @@ handler.prototype.refreshInvitation = function() {
 	var data = {
 		query : [
 			['where', 'bam_role_id', self.roleId],
-			//['where', 'status', '>', '0']
+			['where', 'status', '>=', '0']
 		]
 	}
 
 	self.core.resource.campaign.get(data)
 	.then(function(res){
-		// var linktoworksheet = '/audition-worksheet/'+res.data[0].id;
-		//console.log(res);
-		if(res.data[0].status > 0 || res.data[0].status == 0){
+		console.log(res);
+		if(res.total){
 			$("#invitetoaudition-text")
 			.html('<span class="text-muted">You have already sent an invitation on</span> '+ res.data[0].updated_at +
 				  '<a href="/audition-worksheet/'+res.data[0].id+'" class="btn-link margin-left-small"><i class="fa fa-pencil"></i> Manage Here</a>');
