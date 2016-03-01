@@ -9,28 +9,30 @@
 
       <div class="modal-body">
         <div class="row">
-          <div class="col-md-6">
+
+          <div id="casting-div" class="col-md-6">
             <div class="form-group">
               <label for="">Casting Name</label>
-              <select class="form-control">
-                <option>Casting_1(12567)</option>
-              </select>                      
+				<select  id="casting-list" name="" data-select data-placeholder="Select Casting" class="form-control">
+					<option data-bind-template="#casting-list" data-bind-value="data" data-bind="<%= JSON.stringify({ key : casting_id, value : name }) %>"></option>
+				</select>
             </div>
           </div>
-          <div class="col-md-6">
+
+          <div id="role-div" class="col-md-6">
             <div class="form-group">
               <label for="">Role Name</label>
-              <select class="form-control">
-                <option>Role(12567)</option>
-              </select>                      
-            </div>           
+				<select  id="role-list" name="" data-select data-placeholder="Select Role" class="form-control">
+					<option data-bind-template="#role-list" data-bind-value="bam_roles" data-bind="<%= JSON.stringify({ key : role_id, value : name }) %>"></option>
+				</select>
+            </div>
           </div>
-          
+
         </div>
       </div>
 
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary">Add to like it list</button>
+        <button id="btn-add-to-likeitlist" type="button" class="btn btn-primary">Add to like it list</button>
       </div>
     </div>
   </div>
