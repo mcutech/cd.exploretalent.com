@@ -7,7 +7,6 @@ function handler(core, user){
 	self.user = user;
 	self.marketscheck = [];
 	self.talent = [];
-
 	// assign query string variable to filter form
 	var qs = self.core.service.query_string();
 	var form = {
@@ -48,6 +47,7 @@ handler.prototype.refresh = function() {
 					query : [
 						[ 'whereIn', 'talentci.talentnum', talentnums ],
 						[ 'with', 'bam_talent_media2' ],
+						[ 'with', 'user' ]
 					]
 				};
 				return self.core.resource.talent.get(data2);
@@ -58,12 +58,13 @@ handler.prototype.refresh = function() {
 		})
 		.then(function (res) {
 			_.each(talents.data, function(talent) {
-				talent.bam_talent_media2 = _.find(res.data, function(tm) {
+				var talentci = _.find(res.data, function(tm) {
 					return talent.talentnum == tm.talentnum;
 				});
 
-				if (talent.bam_talent_media2) {
-					talent.bam_talent_media2 = talent.bam_talent_media2.bam_talent_media2;
+				if (talentci) {
+					talent.bam_talent_media2 = talentci.bam_talent_media2;
+					talent.user = talentci.user;
 				}
 			});
 
@@ -103,7 +104,6 @@ handler.prototype.refresh = function() {
 			var url = window.location.href.replace(window.location.search, '');
 			url = url + '?' + $.param(qs);
 			window.history.pushState(null, null, url);
-
 			self.core.service.databind('#talent-search-result', talents);
 
 			self.core.service.paginate('#talents-pagination', { class : 'pagination', total : talents.total, name : 'page' });
@@ -113,7 +113,7 @@ handler.prototype.refresh = function() {
 			else {
 				$('#talents-pagination').show();
 			}
-			
+
 			self.talent = talents;
 			$('#talent-search-loader').hide();
 			$('#talent-search-result').show();
@@ -138,7 +138,6 @@ handler.prototype.getFilters = function() {
 	});
 
 	if(self.marketscheck.length != 0){
-		console.log('test');
 		console.log(self.marketscheck);
 		_.each(self.marketscheck, function(val, ind){
 			if(val.check == 'check'){
@@ -318,6 +317,79 @@ handler.prototype.removeFromMarket = function() {
 	self.talent.market_checks = self.marketscheck;
 	self.core.service.databind('#markets_checks', self.talent);
 
+}
+
+handler.prototype.refreshCastingRole = function() {
+	self.ratingValue = $(this).attr("data-value");
+	self.inviteeId = $(this).attr("data-id");
+
+	self.core.resource.project.get()
+		.then(function(res) {
+			self.core.service.databind('#casting-div', res);
+
+		});
+
+}
+
+handler.prototype.selectCastingRole = function() {
+	var castingId = $('#casting-list').val();
+	self.castingId = castingId;
+	console.log(castingId);
+
+	var data = {
+		projectId	: castingId,
+		withs		: [ 'bam_roles' ]
+	}
+
+	self.core.resource.project.get(data)
+		.then(function(res) {
+			self.core.service.databind('#role-div', res);
+			self.inviterId = res.user_id;
+
+			$('#role-list').change(function() {
+				var roleId = null;
+				roleId = $('#role-list').val();
+				self.roleId = roleId;
+				console.log(roleId)
+			});
+		});
+}
+
+handler.prototype.addToLikeitlist = function() {
+	var scheduleData = {
+		query : [
+			[ 'where', 'bam_role_id', '=', self.roleId ],
+			[ 'where', 'invitee_id', '=', self.inviteeId ],
+			[ 'where', 'inviter_id', '=', self.inviterId ]
+		]
+	};
+
+	self.core.resource.schedule.get(scheduleData)
+		.then(function(result){
+			var data = {
+					bam_role_id		: self.roleId,
+					invitee_id		: self.inviteeId,
+					inviter_id		: self.inviterId,
+					rating			: self.ratingValue,
+					invitee_status	: self.core.resource.schedule_cd_status.PENDING,
+					inviter_status	: self.core.resource.schedule_cd_status.PENDING,
+					status			: self.core.resource.schedule_status.PENDING
+			}
+
+			if(result.total != 0){
+				self.core.resource.schedule.patch({scheduleId : result.data[0].id, rating : self.ratingValue})
+					.then(function(){
+						alert('Added to like it list.');
+					});
+			}else {
+				self.core.resource.schedule.post(data)
+					.then(function(){
+						alert('Added to like it list.');
+					});
+			}
+			$('#addtolist').modal('hide');
+			$('#role-list').val([]);
+		});
 }
 
 module.exports = function(core, user) {

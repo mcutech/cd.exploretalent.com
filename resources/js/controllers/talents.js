@@ -19,4 +19,7 @@ module.exports = function(core, user) {
 			$('#search-talent-btn').click();
 		}
 	});
+	$(document).on('click', '.rating-button', handler.refreshCastingRole);
+	$(document).on('change', '#casting-list', handler.selectCastingRole);
+	$(document).on('click', '#btn-add-to-likeitlist', handler.addToLikeitlist);
 }
