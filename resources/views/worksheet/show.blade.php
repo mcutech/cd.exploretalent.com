@@ -7,12 +7,19 @@
 @section('sidebar.body')
 	<div class="audition-worksheet-wrapper audition-worksheet-talents-wrapper">
 		<div class="row-fluid clearfix">
-			<div id="campaign-details" class="col-md-12 panel-body">
-				<p data-bind="Project: <%= bam_role.bam_casting.name + ' (#' + bam_role.bam_casting.casting_id + ')' %>"></p>
-				<p data-bind="Role: <%= bam_role.name + ' (#' + bam_role.role_id + ')' %>"></p>
-				<p data-bind="Status: <%= status == 0 ? 'Pending' : (status >= 1 ? 'Approved' : 'Rejected') %>"></p>
-				<p data-bind="Message: <%= description %>"></p>
+			<div id="campaign-details" class="col-md-12">
+				<div class="panel">
+					<div class="panel-body">
+						<h4 class="margin-bottom-zero-small" data-bind="Project: <%= bam_role.bam_casting.name + ' (#' + bam_role.bam_casting.casting_id + ')' %>"></h4>
+						<div data-bind="Role: <%= bam_role.name + ' (#' + bam_role.role_id + ')' %>"></div>
+						<div data-bind="Status: <%= status == 0 ? 'Pending' : (status >= 1 ? 'Approved' : 'Rejected') %>"></div>
+						<div data-bind="Message: <%= description %>"></div>
+					</div>
+				</div>
 			</div>
+		</div>
+
+		<div class="row-fluid clearfix">
 			<div class="col-md-3 talents-search-filter-content">
 				@include('worksheet.components.filter')
 			</div> {{-- filter-search-sidebar --}}
@@ -61,7 +68,7 @@
 									<div class="submission-note-container margin-bottom-small" >
 										<div class="panel margin-zero">
 											<div class="padding-small">
-												<div class="text-semibold">
+												<div class="text-xs">
 													<span data-bind="<%= submission ? 'Self Submitted on ' : 'Added to Like It List on ' %>"></span>
 													<span data-bind="<%= moment(created_at).utcOffset(-480).format('MM-DD-YY hh:mm A') %>"></span>
 												</div>

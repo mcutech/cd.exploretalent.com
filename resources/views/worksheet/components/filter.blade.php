@@ -3,7 +3,7 @@
 		<div class="panel-heading">
 			<span class="panel-title talents-refine-title">Filter Search</span>
 			<div class="panel-heading-controls">
-				<div class="panel-heading-icon"><i class="fa fa-chevron-left"></i></div>
+				<div class="panel-heading-icon"><i class="fa fa-search"></i></div>
 			</div>
 		</div>
 		<div class="panel-body">
