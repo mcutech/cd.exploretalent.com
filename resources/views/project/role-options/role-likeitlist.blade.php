@@ -13,7 +13,7 @@
 					</div>
 					{{-- <div class="col-md-6 text-align-right">
 						<a data-toggle="modal" data-target="#share-like-it-list" class="btn btn-primary">Share Like It List</a>
-						<a data-toggle="modal" data-target="#invite-to-audition-modal" class="btn btn-primary"><i class="fa fa-envelope-o"></i> Invite to Audition</a>
+						<a data-toggle="modal" dtaa-target="#invite-to-audition-modal" class="btn btn-primary"><i class="fa fa-envelope-o"></i> Invite to Audition</a>
 						<button id="remove-all-likeitlist" class="btn btn-danger"><i class="fa fa-times"></i> Remove All</button>
 					</div> --}}
 				</div>
@@ -27,7 +27,7 @@
 					<div class="f_circleG" id="frotateG_07"></div>
 					<div class="f_circleG" id="frotateG_08"></div>
 				</div>
-				<div class="row-fluid clearfix" id="like-it-list-results">
+				<div class="row clearfix" id="like-it-list-results">
 					@include('components.talent2', [ 'databind' => [ 'template' => '#like-it-list-results', 'value' => 'role.likeitlist.data' ], 'unrate' => true, 'remove' => true, 'class' => 'col-lg-3 col-md-4 col-sm-6 col-xs-12 talent-item-container' ])
 				</div>
 

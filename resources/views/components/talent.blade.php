@@ -4,7 +4,7 @@
 		<a data-bind="#talent-body-<%= talentnum %>" href="#talent-body" data-toggle="tab">Photo</a>
 	</li>
 	<li>
-		@if (isset($favorites) && $favorites)
+		@if ($favorites_notes)
 			<a data-bind="#like-it-note-<%= talentnum %>" data-toggle="tab">My Notes</a>
 		@endif
 	</li>
