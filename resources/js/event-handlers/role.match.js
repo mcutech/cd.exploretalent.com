@@ -505,10 +505,10 @@ handler.prototype.getFilters = function() {
 				}
 			});
 
-			data.q.push([ 'where', subquery ]);
-
-			console.log(data);
-		}		
+			if (subquery.length) {
+				data.q.push([ 'where', subquery ]);
+			}
+		}
 	}
 
 	if (parseInt(form.age_min)) {
@@ -596,7 +596,7 @@ handler.prototype.getFilters = function() {
 			[ 'orWhere', 'lname', 'LIKE', '%' + form.name + '%' ]
 		];
 	}
-	console.log(data);
+
 	return data;
 }
 
