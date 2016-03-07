@@ -112,6 +112,11 @@ handler.prototype.refreshSelfSubmissions = function() {
 		.then(function(res) {
 			res.total = total;
 			self.project.role.selfsubmissions = res;
+
+			_.each(self.project.role.selfsubmissions.data, function(result){
+				$('#submission-date').html(moment(result.created_at).format('ll'));
+			});
+
 			self.core.service.databind('#self-submissions', self.project);
 			self.core.service.paginate('#self-submissions-pagination', { class : 'pagination', total : res.total, name : 'page' });
 

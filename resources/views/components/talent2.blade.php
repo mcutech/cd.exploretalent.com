@@ -104,6 +104,11 @@
 					</div>
 				</div>
 			</div>
+			@if (isset($selfsubmission_message) && $selfsubmission_message)
+			<div class="col-md-12 margin-top-small padding-zero">
+				<span class="lbl">Submitted on: </span><span id="submission-date"></span>
+			</div>
+			@endif
 		</div>
 	</div>
 </div>
