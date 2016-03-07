@@ -77,11 +77,11 @@
 							<div>
 								<div class="display-block title"> Add to like list </div>
 								<div class="btn-group btn-group-xs">
-									<button class="btn btn-xs btn-danger rating-button" data-toggle="modal" data-target="#addtolist">1</button>
-									<button class="btn btn-xs btn-warning rating-button" data-toggle="modal" data-target="#addtolist">2</button>
-									<button class="btn btn-xs btn-info rating-button" data-toggle="modal" data-target="#addtolist"	>3</button>
-									<button class="btn btn-xs btn-primary rating-button" data-toggle="modal" data-target="#addtolist">4</button>
-									<button class="btn btn-xs btn-success rating-button" data-toggle="modal" data-target="#addtolist">5</button>
+									<button data-value="1" class="btn btn-xs btn-danger rating-button" data-toggle="modal" data-bind="<%= user.id %>" data-bind-target="data-id" data-target="#addtolist">1</button>
+									<button data-value="2" class="btn btn-xs btn-warning rating-button" data-toggle="modal" data-bind="<%= user.id %>" data-bind-target="data-id" data-target="#addtolist">2</button>
+									<button data-value="3" class="btn btn-xs btn-info rating-button" data-toggle="modal" data-bind="<%= user.id %>" data-bind-target="data-id" data-target="#addtolist"	>3</button>
+									<button data-value="4" class="btn btn-xs btn-primary rating-button" data-toggle="modal" data-bind="<%= user.id %>" data-bind-target="data-id" data-target="#addtolist">4</button>
+									<button data-value="5" class="btn btn-xs btn-success rating-button" data-toggle="modal" data-bind="<%= user.id %>" data-bind-target="data-id" data-target="#addtolist">5</button>
 								</div>
 							</div>
 						</div>
