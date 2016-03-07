@@ -21,6 +21,7 @@ Route::get('forgot-password', 'ForgotPasswordController@index');
 Route::get('reset-password', 'ResetPasswordController@index');
 
 Route::resource('/audition-worksheet'				, 'WorksheetController');
+Route::get('projects/quickpost'		                , 'ProjectController@quickpost');
 Route::resource('projects'							, 'ProjectController');
 Route::get('projects/{projectId}/find-talents'		, 'ProjectController@findtalents');
 
