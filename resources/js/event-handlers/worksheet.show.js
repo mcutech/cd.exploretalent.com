@@ -10,6 +10,8 @@ function handler(core, user, campaignId) {
 }
 
 handler.prototype.refresh = function() {
+	self.core.service.databind('#schedules', { data : [] });
+	$('#schedules').append('<div class="text-center"> <h1><i class="fa fa-spinner fa-spin"></i></h1> </div>');
 	var promise = $.when();
 	if (!self.campaign) {
 		// get campaign object first

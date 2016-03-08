@@ -25,5 +25,8 @@ class ProjectController extends Controller {
 	{
 		return view('project.find-talents', ['projectId' => $projectId]);
 	}
-
+	public function quickpost()
+	{
+		return view('project.quick-post');
+	}
 }
