@@ -76,7 +76,7 @@
 						-->
 						<td>
 							<a class="btn btn-default btn-xs" data-bind="/audition-worksheet/<%= id %>"> Manage Worksheet</a>
-							<a class="btn btn-success btn-xs" href="#">Send Times</a>
+							<a class="hide btn btn-success btn-xs" href="#">Send Times</a>
 						</td>
 					</tr>
 				</tbody>
