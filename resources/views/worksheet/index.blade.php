@@ -46,10 +46,12 @@
 						<th>Status </th>
 						<th>Num Talents </th>
 						<th>Date Submitted </th>
-						<th><span data-toggle="tooltip" data-placement="top" data-original-title="Confirms" class="tooltips-button"><i class="fa fa-check"></i></span></th>
-						<th><span data-toggle="tooltip" data-placement="top" data-original-title="Declines" class="tooltips-button"><i class="fa fa-times"></i></span></th>
-						<th><span data-toggle="tooltip" data-placement="top" data-original-title="Reschedules" class="tooltips-button"><i class="fa fa-clock-o"></i></th>
-						<th><span data-toggle="tooltip" data-placement="top" data-original-title="Pending" class="tooltips-button"><i class="fa fa-question"></i></span></th>
+						<!--
+						<th><span hidden data-toggle="tooltip" data-placement="top" data-original-title="Confirms" class="tooltips-button"><i class="fa fa-check"></i></span></th>
+						<th><span hidden data-toggle="tooltip" data-placement="top" data-original-title="Declines" class="tooltips-button"><i class="fa fa-times"></i></span></th>
+						<th><span hidden data-toggle="tooltip" data-placement="top" data-original-title="Reschedules" class="tooltips-button"><i class="fa fa-clock-o"></i></th>
+						<th><span hidden data-toggle="tooltip" data-placement="top" data-original-title="Pending" class="tooltips-button"><i class="fa fa-question"></i></span></th>
+						-->
 						<th></th>
 					</tr>
 				</thead>
@@ -66,10 +68,12 @@
 						</td>
 						<td><span data-bind="<%= bam_role.likeitlist.total %>"></span></td>
 						<td><span data-bind="<%= created_at %>"></span></td>
-						<td><a href="#">0</a></td>
-						<td><a href="#">1</a></td>
-						<td><a href="#">0</a></td>
-						<td><a href="#">2</a></td>
+						<!--
+						<td><a hidden href="#">0</a></td>
+						<td><a hidden href="#">1</a></td>
+						<td><a hidden href="#">0</a></td>
+						<td><a hidden href="#">2</a></td>
+						-->
 						<td>
 							<a class="btn btn-default btn-xs" data-bind="/audition-worksheet/<%= id %>"> Manage Worksheet</a>
 							<a class="btn btn-success btn-xs" href="#">Send Times</a>
@@ -81,11 +85,14 @@
 						<td></td>
 						<td></td>
 						<td></td>
+						<!--
 						<td class="text-align-right text-bold">Totals:</td>
 						<td>0</td>
 						<td>5</td>
 						<td>0</td>
 						<td>14</td>
+						-->
+						<td></td>
 						<td></td>
 					</tr>
 				</tfoot>
