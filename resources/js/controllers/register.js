@@ -131,7 +131,7 @@ module.exports = function(core) {
 			})
 			.then(function(result){
 				localStorage.setItem('access_token', result.access_token);
-				core.service.rest.settings.headers = { Authorization : result.access_token };
+				core.service.rest.settings.headers = { Authorization : 'Bearer ' + result.access_token };
 
 				window.location = '/projects';
 			}, function(){
