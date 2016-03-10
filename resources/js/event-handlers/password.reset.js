@@ -35,7 +35,7 @@ handler.prototype.resetPassword = function() {
 		})
 		.then(function(result){
 			localStorage.setItem('access_token', result.access_token);
-			core.service.rest.settings.header = { Authorization : result.access_token };
+			core.service.rest.settings.header = { Authorization : 'Bearer ' + result.access_token };
 
 			$('#success-pass').fadeIn().delay(5000).fadeOut();
 

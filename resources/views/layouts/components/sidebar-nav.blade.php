@@ -6,18 +6,18 @@
 		</a>
 	</li>
 
-	<li class="mm-dropdown">
-		<a href="#">
+	<li class="">
+		<a href="/projects/create">
 			<i class="menu-icon fa fa-file-text"></i>
 			<span class="mm-text">Create New Project</span>
 		</a>
+	</li>
 		<ul>
 			<li>
 				<a href="/projects/quickpost"><i class="menu-icon fa fa-bolt"></i>
 				<span class="mm-text">Quick Post</span></a>
 			</li>
 		</ul>		
-	</li>
 
 	<li>
 		<a href="/talents">

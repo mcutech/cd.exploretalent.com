@@ -48,7 +48,7 @@ handler.prototype.addNewFeedback = function() {
 			type: 'POST',
 			data: data,
 			headers : {
-			  Authorization : localStorage.getItem('access_token')
+			  Authorization : 'Bearer ' + localStorage.getItem('access_token')
 			},
 			cache: false,
 			dataType: 'json',
