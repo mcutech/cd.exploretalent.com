@@ -30,7 +30,8 @@ handler.prototype.resetPassword = function() {
 				password       : pass1,
 				client_id      : '74d89ce4c4838cf495ddf6710796ae4d5420dc91',
 				client_secret  : '61c9b2b17db77a27841bbeeabff923448b0f6388',
-				grant_type     : 'password'
+				grant_type     : 'password',
+				user_type      : 'bam_cd_user'
 			});
 		})
 		.then(function(result){
