@@ -82,6 +82,18 @@
 					</div>
 
 					<div class="col-md-6 form-group">
+						<div class="form-group w-icon margin-zero">
+							<input type="text" name="phone" id="phone" class="form-control input-lg" placeholder="Phone" data-required>
+							<span class="fa fa-phone signup-form-icon"></span>
+						</div>
+						<div id="req-phone" style="display:none;" class="alert alert-danger form-group" role="alert">
+							<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+							<span class="sr-only">Error:</span>
+							<span id="req-phonetxt" style="display:none;"></span>
+						</div>
+					</div>
+
+					<div class="col-md-6 form-group">
 						<div class="form-group w-icon">
 							<input type="password" name="confirmPassword" id="confirm-password" class="form-control input-lg" placeholder="Confirm Password" data-required data-match="password">
 							<span class="fa fa-lock signup-form-icon"></span>
@@ -93,18 +105,6 @@
 							<span id="req-unmatchtxt" style="display:none;"></span>
 							<span id="req-uniqueemailtxt"
 							style="display:none;"></span>
-						</div>
-					</div>
-
-					<div class="col-md-6 form-group">
-						<div class="form-group w-icon margin-zero">
-							<input type="text" name="phone" id="phone" class="form-control input-lg" placeholder="Phone" data-required>
-							<span class="fa fa-phone signup-form-icon"></span>
-						</div>
-						<div id="req-phone" style="display:none;" class="alert alert-danger form-group" role="alert">
-							<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-							<span class="sr-only">Error:</span>
-							<span id="req-phonetxt" style="display:none;"></span>
 						</div>
 					</div>
 
