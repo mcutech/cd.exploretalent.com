@@ -13,7 +13,7 @@ function handler(core, user, projectId, roleId) {
 	self.refreshInvitation();
 	self.inviteStatus = '';
 	self.uncheckTalent = [];
-	self.refreshAccessToken();
+	self.refreshLikeItListLink();
 	// @if ENV='production'
 	$('#when-where-container').hide();
 	// @endif
@@ -459,15 +459,9 @@ handler.prototype.sendInvites = function() {
 	});
 }
 
-handler.prototype.refreshAccessToken = function() {
-	core.service.rest.post(core.config.api.base.replace('/v1', '') + '/oauth/access_token', {
-		client_id      : '74d89ce4c4838cf495ddf6710796ae4d5420dc91',
-		client_secret  : '61c9b2b17db77a27841bbeeabff923448b0f6388',
-		grant_type     : 'password'
-	})
-	.then(function(result) {
-		self.core.service.databind('#share-like-list-link', { data: result } );
-	});
+handler.prototype.refreshLikeItListLink = function() {
+	var link = window.location.origin + '/login?' + $.param({access_token:localStorage.getItem('access_token')}) + '&redirect=' + encodeURIComponent(window.location.href.replace(/like-it-list/, '')) + 'public-like-it-list';
+	$('#share-like-list-link').val(link);
 }
 
 module.exports = function(core, user, projectId, roleId) {
