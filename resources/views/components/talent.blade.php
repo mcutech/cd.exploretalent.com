@@ -69,38 +69,31 @@
 			</div>
 		</div>
 		<div class="row-fluid clearfix">
-			<div class="col-md-6 padding-zero">
+			<div class="col-md-12 col-sm-12 padding-zero">
 				@if (isset($favorites) && $favorites)
 					<div class="like-it-list-container">
-						<div class="text-left">
-							<div>
-								<div class="display-block title"> Add to like list </div>
-								<div class="btn-group btn-group-xs" data-bind="<%= schedule && schedule.id ? 'schedule-' + schedule.id : 'user-' + user.id %>" data-bind-target="data-id">
-									<button class="btn btn-xs btn-danger rating-button" data-toggle="modal" data-target="#addtolist"  data-bind="<%= schedule && schedule.id && parseInt(schedule.rating) == 1 ? 'active' : '' %>" data-bind-target="class">1</button>
-									<button class="btn btn-xs btn-warning rating-button" data-toggle="modal" data-target="#addtolist" data-bind="<%= schedule && schedule.id && parseInt(schedule.rating) == 2 ? 'active' : '' %>" data-bind-target="class">2</button>
-									<button class="btn btn-xs btn-info rating-button" data-toggle="modal" data-target="#addtolist" 	 data-bind="<%= schedule && schedule.id && parseInt(schedule.rating) == 3 ? 'active' : '' %>" data-bind-target="class">3</button>
-									<button class="btn btn-xs btn-primary rating-button" data-toggle="modal" data-target="#addtolist" data-bind="<%= schedule && schedule.id && parseInt(schedule.rating) == 4 ? 'active' : '' %>" data-bind-target="class">4</button>
-									<button class="btn btn-xs btn-success rating-button" data-toggle="modal" data-target="#addtolist" data-bind="<%= schedule && schedule.id && parseInt(schedule.rating) == 5 ? 'active' : '' %>" data-bind-target="class">5</button>
-									<button class="btn btn-xs rating-button
-									disabled"
-									data-bind="<%= schedule && schedule.id &&
-									parseInt(schedule.rating) < 0 ? 'background:#423434; border-color:#423434; color:white' :
-									'' %>"
-									data-bind-target="style"><strong>B</strong></button>
-								</div>
-							</div>
+						<div class="display-block title"> Add to like list </div>
+						<div class="btn-group talent-function" data-bind="<%= schedule && schedule.id ? 'schedule-' + schedule.id : 'user-' + user.id %>" data-bind-target="data-id">
+							<button class="btn btn-xs btn-danger rating-button function-item" data-toggle="modal" data-target="#addtolist"  data-bind="<%= schedule && schedule.id && parseInt(schedule.rating) == 1 ? 'active' : '' %>" data-bind-target="class">1</button>
+							<button class="btn btn-xs btn-warning rating-button function-item" data-toggle="modal" data-target="#addtolist" data-bind="<%= schedule && schedule.id && parseInt(schedule.rating) == 2 ? 'active' : '' %>" data-bind-target="class">2</button>
+							<button class="btn btn-xs btn-info rating-button function-item" data-toggle="modal" data-target="#addtolist" 	 data-bind="<%= schedule && schedule.id && parseInt(schedule.rating) == 3 ? 'active' : '' %>" data-bind-target="class">3</button>
+							<button class="btn btn-xs btn-primary rating-button function-item" data-toggle="modal" data-target="#addtolist" data-bind="<%= schedule && schedule.id && parseInt(schedule.rating) == 4 ? 'active' : '' %>" data-bind-target="class">4</button>
+							<button class="btn btn-xs btn-success rating-button function-item" data-toggle="modal" data-target="#addtolist" data-bind="<%= schedule && schedule.id && parseInt(schedule.rating) == 5 ? 'active' : '' %>" data-bind-target="class">5</button>
+							<button class="btn btn-xs rating-button function-item
+							disabled"
+							data-bind="<%= schedule && schedule.id &&
+							parseInt(schedule.rating) < 0 ? 'background:#423434; border-color:#423434; color:white' :
+							'' %>"
+							data-bind-target="style"><strong>B</strong></button>
 						</div>
 					</div>
 				@endif
 			</div>
-			<div class="col-md-6 padding-zero">
+			<div class="col-md-12 col-sm-12 padding-zero margin-top-small">
 				<div class="like-it-list-container">
-					<div class="float-right-md-lg">
-						<div class="display-block title">&nbsp;</div>
-						<div class="btn-group btn-group-xs">
-							<a data-toggle="modal" data-bind="<%= talentnum %>" data-bind-target="data-id" id="talent-resume" data-target="#talent-resume-modal" class="btn btn-xs btn-default"><span class="fa fa-file-text-o"></span></a>
-							<a data-toggle="modal" data-bind="<%= talentnum %>" data-bind-target="data-id" id="talent-photo" data-target="#talent-photos-modal" class="btn btn-xs btn-default"><span class="fa fa-picture-o"></span></a>
-						</div>
+					<div class="btn-group talent-function">
+						<a data-toggle="modal" data-bind="<%= talentnum %>" data-bind-target="data-id" id="talent-resume" data-target="#talent-resume-modal" class="btn btn-xs btn-default function-item"><span class="fa fa-file-text-o"></span></a>
+						<a data-toggle="modal" data-bind="<%= talentnum %>" data-bind-target="data-id" id="talent-photo" data-target="#talent-photos-modal" class="btn btn-xs btn-default function-item"><span class="fa fa-picture-o"></span></a>
 					</div>
 				</div>
 			</div>
