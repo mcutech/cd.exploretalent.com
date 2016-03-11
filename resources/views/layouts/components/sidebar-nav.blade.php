@@ -12,12 +12,12 @@
 			<span class="mm-text">Create New Project</span>
 		</a>
 	</li>
-		<ul>
+		<ul class="hide">
 			<li>
 				<a href="/projects/quickpost"><i class="menu-icon fa fa-bolt"></i>
 				<span class="mm-text">Quick Post</span></a>
 			</li>
-		</ul>		
+		</ul>
 
 	<li>
 		<a href="/talents">
