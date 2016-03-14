@@ -1,4 +1,4 @@
-<div class="col-md-3 refine-search-sidebar">
+<div class="col-md-12 refine-search-sidebar">
 	<form id="talent-filter-form">
 	<div class="panel panel-talents-search">
 		<div class="panel-heading">
@@ -7,7 +7,7 @@
 				<div class="panel-heading-icon"><i class="fa fa-search"></i></div>
 			</div>
 		</div>
-		
+
 		<div class="panel-body">
 			<div class="location">
 				<div class="panel panel-transparent margin-bottom-normal input-group">
