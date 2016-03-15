@@ -79,12 +79,14 @@
 							<button class="btn btn-xs btn-info rating-button function-item" data-toggle="modal" data-target="#addtolist" 	 data-bind="<%= schedule && schedule.id && parseInt(schedule.rating) == 3 ? 'active' : '' %>" data-bind-target="class">3</button>
 							<button class="btn btn-xs btn-primary rating-button function-item" data-toggle="modal" data-target="#addtolist" data-bind="<%= schedule && schedule.id && parseInt(schedule.rating) == 4 ? 'active' : '' %>" data-bind-target="class">4</button>
 							<button class="btn btn-xs btn-success rating-button function-item" data-toggle="modal" data-target="#addtolist" data-bind="<%= schedule && schedule.id && parseInt(schedule.rating) == 5 ? 'active' : '' %>" data-bind-target="class">5</button>
-							<button class="btn btn-xs rating-button function-item
-							disabled"
-							data-bind="<%= schedule && schedule.id &&
-							parseInt(schedule.rating) < 0 ? 'background:#423434; border-color:#423434; color:white' :
-							'' %>"
-							data-bind-target="style"><strong>B</strong></button>
+							@if (isset($favorites_notes) && $favorites_notes)
+								<button class="btn btn-xs rating-button function-item
+								disabled"
+								data-bind="<%= schedule && schedule.id &&
+								parseInt(schedule.rating) < 0 ? 'background:#423434; border-color:#423434; color:white' :
+								'' %>"
+								data-bind-target="style"><strong>B</strong></button>
+							@endif
 						</div>
 					</div>
 				@endif
