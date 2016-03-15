@@ -10,8 +10,12 @@
 	<!-- Container -->
 	<div class="row-fluid clearfix padding-large">
 	<div class="col-md-12 white-text text-center">
-		<h2 class="text-bold">Post your Casting, Project or Job for Free</h2>
-		<small>Too busy to set up your account? Need help? Post casting calls only? <u>Email your project to us</u> or <u>Call us at (702) 446-0888.</u></small>
+	<h3 class="text-bold">Access the Largest Pool of Talents, 9 million and counting!</h3>
+	<h4 class="text-bold">Post your Casting, Project or Job for Free</h4>
+		<!-- <h4 class="text-bold">Post your Casting, Project or Job for Free</h4>
+		<small>Too busy to set up your account? Need help? Post casting calls only? <u>Email your project to us</u> or <u>Call us at (702) 446-0888.</u></small> -->
+
+		<a href="/projects/quick-post">Click Here</a> to Quickly Post Your Job or call us at (702) 446-0888
 
 	</div>
 	<div class="col-md-2"></div>
