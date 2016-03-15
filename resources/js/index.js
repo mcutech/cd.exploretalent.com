@@ -63,6 +63,7 @@ jscore.run(function(core) {
 		// project pages
 		.add('/projects', 'projects')
 		.add('/projects/create', 'projects.create')
+		.add('/projects/quickpost', 'project.quickpost')
 		.add('/projects/{projectId}', 'project.show')
 		.add('/projects/{projectId}/edit', 'projects.edit')
 		.add('/projects/{projectId}/find-talents', 'projects.findtalents')
