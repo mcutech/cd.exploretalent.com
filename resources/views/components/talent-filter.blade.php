@@ -1,4 +1,4 @@
-<div class="col-md-3 refine-search-sidebar">
+<div class="col-md-12 refine-search-sidebar">
 	<form id="talent-filter-form">
 	<div class="panel panel-talents-search">
 		<div class="panel-heading">
@@ -111,7 +111,7 @@
 								<div class="row">
 									<div class="col-md-12 margin-top-medium" id="markets">
 										<label class="checkbox" data-bind-template="#markets" data-bind-value="markets">
-											<input type="checkbox" name="markets" class="market-item" data-bind="<%= name %>" data-bind-target="value" value="" checked> 
+											<input type="checkbox" name="markets" class="market-item" data-bind="<%= name %>" data-bind-target="value" value="" checked>
 											<span class="lbl" data-bind="<%= (name == 'N/A') ? 'Nationwide' : name %>"></span>
 										</label>
 									</div>
