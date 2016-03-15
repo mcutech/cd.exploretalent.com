@@ -9,17 +9,9 @@
 		</div>
 
 		<div class="panel-body">
-			<div class="location">
-					<div class="col-md-6 pull-right">
-						<div class="panel panel-transparent margin-bottom-normal input-group">
-							<input type="text" class="form-control" id="search-talent-input" placeholder="Search Talent Manually">
-							<span id="search-talent-btn" class="input-group-addon" style="cursor: pointer;">
-					            <span class="glyphicon glyphicon-search"></span>
-					        </span>
-						</div>					
-					</div>
-
-					<div class="col-md-6">
+			<div class="">
+				<div class="row">
+					<div class="col-md-3">
 						<div class="tab-pane fade active in">
 							<select id="jquery-select2-example" class="form-control">
 									<option></option>
@@ -95,218 +87,239 @@
 									<option value="Vancouver, BC">Vancouver, BC</option>
 							</select>
 						</div>				
-					</div>
-					<div class="row">
-						<div class="col-md-12 margin-bottom-small-normal" id="markets_checks">
-							<label class="checkbox-inline" data-bind-template="#markets_checks" data-bind-value="market_checks" data-bind="<%= name.replace(/\s/g, '').replace(/,/g, '') %>" data-bind-target="id">
-								<input type="checkbox" name="market-checks" class="px check-markets" data-bind="<%= (check == 'check') ? 1 : 0  %>"> <span class="lbl" data-bind="<%= name %>"></span>
-							</label>
+					</div> <!-- search market -->
+					
+					<div class="col-md-3">
+						<div class="padding-small">
+						<label class="checkbox-inline" title="Mark as nationwide casting">
+							<input class="px" type="checkbox" name="nationwide-market-checkbox" id="nationwide-market-checkbox" value="0">
+							<span class="lbl">Any Market / Nationwide</span>
+						</label>
 						</div>
-					</div>				
+					</div>
+
+					<div class="col-md-6">
+						<div class="panel panel-transparent margin-bottom-zero input-group">
+							<input type="text" class="form-control" id="search-talent-input" placeholder="Search Talent Manually">
+							<span id="search-talent-btn" class="input-group-addon" style="cursor: pointer;">
+					            <span class="glyphicon glyphicon-search"></span>
+					        </span>
+						</div>					
+					</div> <!-- search talent manually -->
+				</div>
+
+				<div class="row">
+					<div class="margin-top-small margin-bottom-small" id="markets_checks">
+						<label class="checkbox-inline margin-right-small" data-bind-template="#markets_checks" data-bind-value="market_checks" data-bind="<%= name.replace(/\s/g, '').replace(/,/g, '') %>" data-bind-target="id">
+							<input type="checkbox" name="market-checks" class="px check-markets" data-bind="<%= (check == 'check') ? 1 : 0  %>"> <span class="lbl" data-bind="<%= name %>"></span>
+						</label>
+					</div>
+				</div> <!-- markets list -->				
 				
+				<div class="row">
 					<div class="col-md-12">
-						<div class="panel panel-transparent margin-bottom-normal">
-							<div class="panel panel-transparent no-margin-b">
-								<div class="no-padding-hr padding-bottom-zero-small padding-top-zero">
-									<div class="panel-title text-uppercase"><strong>Appearance</strong></div>
-								</div>
-								
-								<div class="panel-body padding-small no-border-hr col-md-3">
-									<div class="tab-content no-padding-hr padding-top-zero-zz-lg no-padding-b">
-										<div class="tab-pane fade active in">
-											<label class="text-bold margin-bottom-zero">Age Range <span id="age-min-text" data-bind="<%= age_min || 0 %>" class="text-normal">0</span> - <span id="age-max-text" data-bind="<%= age_max || 100 %>" class="text-normal">100</span></label>
-											<div class="">
-												<div class="col-md-12">
-													<div data-range="true" data-values="[0, 100]" data-min="0" data-max="100" data-bind="[<%= age_min || 0 %>, <%= age_max || 100 %>]" data-type="age" data-slider></div>
-													<input type="hidden" name="age_min" data-bind="<%= age_min %>" />
-													<input type="hidden" name="age_max" data-bind="<%= age_max %>" />
-												</div>
-											</div>
-										</div>
-									</div>
-								</div> <!-- ./panel-body age range-->
-
-								<div class="panel-body padding-small no-border-hr col-md-3">
-									<div class="tab-content no-padding-hr padding-top-zero-zz-lg no-padding-b">
-										<div class="tab-pane fade active in">
-											<label class="text-bold margin-bottom-zero">Height Range
-												<span id="height-min-text" class="text-normal" data-bind="<%= height_min ||'< 2\'0&quot;' %>">< 2'0"</span> -
-												<span id="height-max-text" class="text-normal" data-bind="<%= height_max || '8\'0&quot;' %>">8'0"</span>
-											</label>
-											<div class="">
-												<div class="col-md-12">
-													<div class="ui-slider-range-height" data-slider data-range="true" data-min="22" data-max="96" data-values="[22,96]" data-type="height" data-bind="[<%= height_min ? height_min : 22 %>, <%= height_max ? height_max : 96 %>]"></div>
-													<input type="hidden" name="height_min" data-bind="<%= height_min %>" />
-													<input type="hidden" name="height_max" data-bind="<%= height_max %>" />
-												</div>
-											</div>
-										</div>
-									</div>
-								</div> <!-- ./panel-body height-->
-
-								<div class="panel-body padding-small no-border-hr no-padding-hr col-md-3">
-									<div class="tab-content no-padding-hr padding-top-zero-zz-lg no-padding-b">
-										<div class="tab-pane fade active in">
-											<div class="col-md-12">
-												<label class="text-bold margin-bottom-zero">Gender</label>
-												<label class="checkbox-inline">
-													<input type="checkbox" name="sex" value="Male" class="px" data-bind="<%= sex == 'Male' %>"> <span class="lbl">Male</span>
-												</label>
-												<label class="checkbox-inline">
-													<input type="checkbox" name="sex" value="Female" class="px" data-bind="<%= sex == 'Female' %>"> <span class="lbl">Female</span>
-												</label>
-											</div>
-										</div>
-									</div>
-								</div> <!-- ./panel-body gender-->
-
-								<div class="panel-body padding-small no-border-hr no-padding-hr col-md-3">
-									<div class="tab-content no-padding-hr padding-top-zero-zz-lg no-padding-b">
-										<div class="tab-pane fade active in">
-											<div class="col-md-12">
-												<label class="text-bold margin-bottom-zero">Picture</label>
-												<label class="checkbox-inline">
-													<input type="checkbox" name="has_photo" value="1" class="px" data-bind="<%= has_photo === 1 %>" data-class="switcher-success" /> <span class="lbl">Has Photo</span>
-												</label>
-												<label class="checkbox-inline">
-													<input type="checkbox" name="has_photo" value="0" class="px" data-bind="<%= has_photo === 0 %>" data-class="switcher-success" /> <span class="lbl">No Photo</span>
-												</label>
-											</div>
-										</div>
-									</div>
-								</div> <!-- ./panel-body gender-->
-
-								<div class="panel-body padding-small no-border-hr no-padding-hr col-md-12">
-									<div class="tab-content no-padding-hr padding-top-zero-zz-lg no-padding-b">
-										<div class="tab-pane fade active in">
-											<label class="text-bold margin-bottom-zero">Body Type</label>
-											<div class="row">
-												<div class="col-md-12 body-type-checkbox">
-													<div class="checkbox-inline">
-														<label class="checkbox-inline">
-															<input type="checkbox" name="build" value="Average" class="px" data-bind="<%= build == 'Average' || build.indexOf('Average') > -1 %>"> <span class="lbl">Average</span>
-														</label>
-
-														<label class="checkbox-inline">
-															<input type="checkbox" name="build" value="Athletic" class="px" data-bind="<%= build == 'Athletic' || build.indexOf('Athletic') > -1 %>"> <span class="lbl">Athletic</span>
-														</label>
-
-														<label class="checkbox-inline">
-															<input type="checkbox" name="build" value="Muscular" class="px" data-bind="<%= build == 'Muscular' || build.indexOf('Muscular') > -1 %>"> <span class="lbl">Muscular</span>
-														</label>
-
-														<label class="checkbox-inline">
-															<input type="checkbox" name="build" value="Extra Large" class="px" data-bind="<%= build == 'Extra Large' || build.indexOf('Extra Large') > -1 %>"> <span class="lbl">Extra-Large</span>
-														</label>
-
-														<label class="checkbox-inline">
-															<input type="checkbox" name="build" value="Large" class="px" data-bind="<%= build == 'Large' || build.indexOf('Large') > -1 %>"> <span class="lbl">Large</span>
-														</label>
-
-														<label class="checkbox-inline">
-															<input type="checkbox" name="build" value="Lean Muscle" class="px" data-bind="<%= build == 'Lean Muscle' || build.indexOf('Lean Muscle') > -1 %>"> <span class="lbl">Lean-Muscle</span>
-														</label>
-
-														<label class="checkbox-inline">
-															<input type="checkbox" name="build" value="Medium" class="px" data-bind="<%= build == 'Medium' || build.indexOf('Medium') > -1 %>"> <span class="lbl">Medium</span>
-														</label>
-
-														<label class="checkbox-inline">
-															<input type="checkbox" name="build" value="Petite" class="px" data-bind="<%= build == 'Petite' || build.indexOf('Petite') > -1 %>"> <span class="lbl">Petite</span>
-														</label>
-
-														<label class="checkbox-inline">
-															<input type="checkbox" name="build" value="Slim" class="px" data-bind="<%= build == 'Slim' || build.indexOf('Slim') > -1 %>"> <span class="lbl">Slim</span>
-														</label>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div> <!-- ./panel-body body type-->
-
-								<div class="panel-body padding-small no-border-hr no-padding-hr col-md-12">
-									<div class="tab-content no-padding-hr padding-top-zero-zz-lg no-padding-b">
-										<div class="tab-pane fade active in">
-											<label class="text-bold margin-bottom-zero">Ethnic Appearance</label>
-											<div class="row">
-												<div class="col-md-12 ethnnicity-checkbox">
-													<div class="checkbox-inline">
-														<label class="checkbox-inline">
-															<input type="checkbox" name="ethnicity" value="African" class="px" data-bind="<%= ethnicity == 'African' || ethnicity.indexOf('African') > -1 %>"> <span class="lbl">African</span>
-														</label>
-
-														<label class="checkbox-inline">
-															<input type="checkbox" name="ethnicity" value="African American" class="px" data-bind="<%= ethnicity == 'African American' || ethnicity.indexOf('African American') > -1 %>"> <span class="lbl">African American</span>
-														</label>
-
-														<label class="checkbox-inline">
-															<input type="checkbox" name="ethnicity" value="American Indian" class="px" data-bind="<%= ethnicity == 'American Indian' || ethnicity.indexOf('American Indian') > -1 %>"> <span class="lbl">American Indian</span>
-														</label>
-
-														<label class="checkbox-inline">
-															<input type="checkbox" name="ethnicity" value="Asian" class="px" data-bind="<%= ethnicity == 'Asian' || ethnicity.indexOf('Asian') > -1 %>"> <span class="lbl">Asian</span>
-														</label>
-
-														<label class="checkbox-inline">
-															<input type="checkbox" name="ethnicity" value="Caucasian" class="px" data-bind="<%= ethnicity == 'Caucasian' || ethnicity.indexOf('Caucasian') > -1 %>"> <span class="lbl">Caucasian</span>
-														</label>
-
-														<label class="checkbox-inline">
-															<input type="checkbox" name="ethnicity" value="Eastern Indian" class="px" data-bind="<%= ethnicity == 'Eastern Indian' || ethnicity.indexOf('Eastern Indian') > -1 %>"> <span class="lbl">East Indian</span>
-														</label>
-
-														<label class="checkbox-inline">
-															<input type="checkbox" name="ethnicity" value="Hispanic" class="px" data-bind="<%= ethnicity == 'Hispanic' || ethnicity.indexOf('Hispanic') > -1 %>"> <span class="lbl">Hispanic</span>
-														</label>
-
-														<label class="checkbox-inline">
-															<input type="checkbox" name="ethnicity" value="Middle Eastern" class="px" data-bind="<%= ethnicity == 'Middle Eastern' || ethnicity.indexOf('Middle Eastern') > -1 %>"> <span class="lbl">Middle Eastern</span>
-														</label>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div> <!-- ./panel-body ethnic appearance-->
-
-							</div> {{-- panel appearance --}}
+						<div class="panel panel-transparent margin-bottom-zero margin-top-small">
 
 							<div class="row">
-								<div class="panel panel-transparent no-margin-b col-md-12">
+								<div class="panel panel-transparent margin-bottom-small col-md-12">
 									<div class="no-padding-hr padding-bottom-zero-small padding-top-zero">
-										<div class="panel-title text-uppercase"><strong>Membership</strong></div>
+										<div class="panel-title text-uppercase"><strong class="text-muted"><i class="fa fa-user"></i> Appearance</strong></div>
 									</div>
 
-									<div class="panel-body padding-small no-border-hr no-padding-hr">
-										<div class="tab-content no-padding-hr padding-top-zero-zz-lg no-padding-b">
-											<div class="tab-pane fade active in">
-												<div class="row">
-													<div class="col-md-12 member-checkbox">
-														<div class="checkbox-inline">
+									<div class="padding-small padding-top-zero">
+									
+										<div class="padding-zero padding-vr-sm no-border-hr col-md-3">
+											<div class="tab-content no-padding-hr padding-top-zero-zz-lg no-padding-b">
+												<div class="tab-pane fade active in">
+													<label class="text-bold margin-bottom-zero">Age Range: <span id="age-min-text" data-bind="<%= age_min || 0 %>" class="text-normal">0</span> - <span id="age-max-text" data-bind="<%= age_max || 100 %>" class="text-normal">100</span></label>
+													<div class="padding-right-small">
+													<div class="padding-small">
+														<div data-range="true" data-values="[0, 100]" data-min="0" data-max="100" data-bind="[<%= age_min || 0 %>, <%= age_max || 100 %>]" data-type="age" data-slider></div>
+														<input type="hidden" name="age_min" data-bind="<%= age_min %>" />
+														<input type="hidden" name="age_max" data-bind="<%= age_max %>" />
+													</div>
+													</div>
+												</div>
+											</div>
+										</div> <!-- ./panel-body age range-->
+
+										<div class="padding-zero padding-vr-sm no-border-hr col-md-3">
+											<div class="tab-content no-padding-hr padding-top-zero-zz-lg no-padding-b">
+												<div class="tab-pane fade active in">
+													<label class="text-bold margin-bottom-zero">Height Range: <span id="height-min-text" class="text-normal" data-bind="<%= height_min ||'< 2\'0&quot;' %>">< 2'0"</span> -
+														<span id="height-max-text" class="text-normal" data-bind="<%= height_max || '8\'0&quot;' %>">8'0"</span>
+													</label>
+													<div class="padding-right-small">
+													<div class="padding-small">
+														<div class="ui-slider-range-height" data-slider data-range="true" data-min="22" data-max="96" data-values="[22,96]" data-type="height" data-bind="[<%= height_min ? height_min : 22 %>, <%= height_max ? height_max : 96 %>]"></div>
+														<input type="hidden" name="height_min" data-bind="<%= height_min %>" />
+														<input type="hidden" name="height_max" data-bind="<%= height_max %>" />
+													</div>
+													</div>
+												</div>
+											</div>
+										</div> <!-- ./panel-body height-->
+
+										<div class="panel-body padding-small no-border-hr no-padding-hr col-md-3">
+											<div class="tab-content no-padding-hr padding-top-zero-zz-lg no-padding-b">
+												<div class="tab-pane fade active in">
+													<div class="col-md-12">
+														<label class="text-bold margin-bottom-zero">Gender: </label>
+														<label class="checkbox-inline">
+															<input type="checkbox" name="sex" value="Male" class="px" data-bind="<%= sex == 'Male' %>"> <span class="lbl">Male</span>
+														</label>
+														<label class="checkbox-inline">
+															<input type="checkbox" name="sex" value="Female" class="px" data-bind="<%= sex == 'Female' %>"> <span class="lbl">Female</span>
+														</label>
+													</div>
+												</div>
+											</div>
+										</div> <!-- ./panel-body gender-->
+
+										<div class="panel-body padding-small no-border-hr no-padding-hr col-md-3">
+											<div class="tab-content no-padding-hr padding-top-zero-zz-lg no-padding-b">
+												<div class="tab-pane fade active in">
+													<label class="text-bold margin-bottom-zero">Picture: </label>
+													<label class="checkbox-inline">
+														<input type="checkbox" name="has_photo" value="1" class="px" data-bind="<%= has_photo === 1 %>" data-class="switcher-success" /> <span class="lbl">Has Photo</span>
+													</label>
+													<label class="checkbox-inline">
+														<input type="checkbox" name="has_photo" value="0" class="px" data-bind="<%= has_photo === 0 %>" data-class="switcher-success" /> <span class="lbl">No Photo</span>
+													</label>
+												</div>
+											</div>
+										</div> <!-- ./panel-body picture-->
+
+										<div class="panel-body padding-small no-border-hr no-padding-hr col-md-12">
+											<div class="tab-content no-padding-hr padding-top-zero-zz-lg no-padding-b">
+												<div class="tab-pane fade active in">
+													<label class="text-bold margin-bottom-zero">Body Type:</label>
+													<div class="row">
+														<div class="col-md-12 body-type-checkbox">
 															<label class="checkbox-inline">
-																<input type="checkbox" name="join_status" value="5" data-bind="<%= join_status === 5 %>" class="px"> <span class="lbl">Pro Member</span>
+																<input type="checkbox" name="build" value="Average" class="px" data-bind="<%= build == 'Average' || build.indexOf('Average') > -1 %>"> <span class="lbl">Average</span>
 															</label>
+
 															<label class="checkbox-inline">
-																<input type="checkbox" name="join_status" value="0" data-bind="<%= join_status === 0 %>" class="px"> <span class="lbl">Amateur Member</span>
+																<input type="checkbox" name="build" value="Athletic" class="px" data-bind="<%= build == 'Athletic' || build.indexOf('Athletic') > -1 %>"> <span class="lbl">Athletic</span>
+															</label>
+
+															<label class="checkbox-inline">
+																<input type="checkbox" name="build" value="Muscular" class="px" data-bind="<%= build == 'Muscular' || build.indexOf('Muscular') > -1 %>"> <span class="lbl">Muscular</span>
+															</label>
+
+															<label class="checkbox-inline">
+																<input type="checkbox" name="build" value="Extra Large" class="px" data-bind="<%= build == 'Extra Large' || build.indexOf('Extra Large') > -1 %>"> <span class="lbl">Extra-Large</span>
+															</label>
+
+															<label class="checkbox-inline">
+																<input type="checkbox" name="build" value="Large" class="px" data-bind="<%= build == 'Large' || build.indexOf('Large') > -1 %>"> <span class="lbl">Large</span>
+															</label>
+
+															<label class="checkbox-inline">
+																<input type="checkbox" name="build" value="Lean Muscle" class="px" data-bind="<%= build == 'Lean Muscle' || build.indexOf('Lean Muscle') > -1 %>"> <span class="lbl">Lean-Muscle</span>
+															</label>
+
+															<label class="checkbox-inline">
+																<input type="checkbox" name="build" value="Medium" class="px" data-bind="<%= build == 'Medium' || build.indexOf('Medium') > -1 %>"> <span class="lbl">Medium</span>
+															</label>
+
+															<label class="checkbox-inline">
+																<input type="checkbox" name="build" value="Petite" class="px" data-bind="<%= build == 'Petite' || build.indexOf('Petite') > -1 %>"> <span class="lbl">Petite</span>
+															</label>
+
+															<label class="checkbox-inline">
+																<input type="checkbox" name="build" value="Slim" class="px" data-bind="<%= build == 'Slim' || build.indexOf('Slim') > -1 %>"> <span class="lbl">Slim</span>
 															</label>
 														</div>
 													</div>
 												</div>
 											</div>
+										</div> <!-- ./panel-body body type-->
+
+										<div class="panel-body padding-small no-border-hr no-padding-hr col-md-12">
+											<div class="tab-content no-padding-hr padding-top-zero-zz-lg no-padding-b">
+												<div class="tab-pane fade active in">
+													<label class="text-bold margin-bottom-zero">Ethnic Appearance:</label>
+													<div class="row">
+														<div class="col-md-12 ethnnicity-checkbox">
+															<label class="checkbox-inline">
+																<input type="checkbox" name="ethnicity" value="African" class="px" data-bind="<%= ethnicity == 'African' || ethnicity.indexOf('African') > -1 %>"> <span class="lbl">African</span>
+															</label>
+
+															<label class="checkbox-inline">
+																<input type="checkbox" name="ethnicity" value="African American" class="px" data-bind="<%= ethnicity == 'African American' || ethnicity.indexOf('African American') > -1 %>"> <span class="lbl">African American</span>
+															</label>
+
+															<label class="checkbox-inline">
+																<input type="checkbox" name="ethnicity" value="American Indian" class="px" data-bind="<%= ethnicity == 'American Indian' || ethnicity.indexOf('American Indian') > -1 %>"> <span class="lbl">American Indian</span>
+															</label>
+
+															<label class="checkbox-inline">
+																<input type="checkbox" name="ethnicity" value="Asian" class="px" data-bind="<%= ethnicity == 'Asian' || ethnicity.indexOf('Asian') > -1 %>"> <span class="lbl">Asian</span>
+															</label>
+
+															<label class="checkbox-inline">
+																<input type="checkbox" name="ethnicity" value="Caucasian" class="px" data-bind="<%= ethnicity == 'Caucasian' || ethnicity.indexOf('Caucasian') > -1 %>"> <span class="lbl">Caucasian</span>
+															</label>
+
+															<label class="checkbox-inline">
+																<input type="checkbox" name="ethnicity" value="Eastern Indian" class="px" data-bind="<%= ethnicity == 'Eastern Indian' || ethnicity.indexOf('Eastern Indian') > -1 %>"> <span class="lbl">East Indian</span>
+															</label>
+
+															<label class="checkbox-inline">
+																<input type="checkbox" name="ethnicity" value="Hispanic" class="px" data-bind="<%= ethnicity == 'Hispanic' || ethnicity.indexOf('Hispanic') > -1 %>"> <span class="lbl">Hispanic</span>
+															</label>
+
+															<label class="checkbox-inline">
+																<input type="checkbox" name="ethnicity" value="Middle Eastern" class="px" data-bind="<%= ethnicity == 'Middle Eastern' || ethnicity.indexOf('Middle Eastern') > -1 %>"> <span class="lbl">Middle Eastern</span>
+															</label>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div> <!-- ./panel-body ethnic appearance-->
+
+									</div>
+
+								</div>
+							</div>{{-- panel appearance --}}
+
+							<div class="row">
+								<div class="panel margin-zero panel-transparent col-md-12">
+									<div class="no-padding-hr padding-bottom-zero-small padding-top-zero">
+										<div class="panel-title text-uppercase"><strong class="text-muted"><i class="fa fa-star"></i> Membership</strong></div>
+									</div>
+									<div class="padding-small padding-top-zero">
+										<div class="no-border-hr no-padding-hr">
+										<div class="tab-content no-padding-hr padding-top-zero-zz-lg no-padding-b">
+											<div class="tab-pane fade active in">
+												<div class="row">
+													<div class="col-md-12 member-checkbox">
+														<label class="checkbox-inline">
+															<input type="checkbox" name="join_status" value="5" data-bind="<%= join_status === 5 %>" class="px"> <span class="lbl">Pro Member</span>
+														</label>
+														<label class="checkbox-inline">
+															<input type="checkbox" name="join_status" value="0" data-bind="<%= join_status === 0 %>" class="px"> <span class="lbl">Amateur Member</span>
+														</label>
+													</div>
+												</div>
+											</div>
 										</div>
-									</div> <!-- ./panel-body gender-->
+										</div> <!-- ./panel-body gender-->
+									</div>
 								</div> {{-- panel appearance --}}					
-							</div>
+							</div> <!-- membership -->
 
 							<div class="row-fluid clearfix">
-								<div class="col-md-12 padding-zero margin-top-small-normal">
+								<div class="col-md-12 padding-zero">
 									<button id="talent-filter-button" type="button" class="btn btn-success btn-block">Search</button>
 								</div>
-							</div>
+							</div> <!-- search btn -->
 
-						</div> {{-- location --}}					
-					</div>
+						</div> 					
+					</div> <!-- appearance and membership -->
+				</div>	
 			</div>
 	</form>
 </div> {{-- refine-search-sidebar --}}
