@@ -12,6 +12,15 @@
 			<div class="">
 				<div class="row">
 					<div class="col-md-3">
+						<div class="padding-small">
+						<label class="checkbox-inline" title="Mark as nationwide casting">
+							<input class="px" type="checkbox" name="nationwide-market-checkbox" id="nationwide-market-checkbox" value="0">
+							<span class="lbl">Any Market / Nationwide</span>
+						</label>
+						</div>
+					</div>
+
+					<div class="col-md-5">
 						<div class="tab-pane fade active in">
 							<select id="jquery-select2-example" class="form-control">
 									<option></option>
@@ -88,17 +97,8 @@
 							</select>
 						</div>				
 					</div> <!-- search market -->
-					
-					<div class="col-md-3">
-						<div class="padding-small">
-						<label class="checkbox-inline" title="Mark as nationwide casting">
-							<input class="px" type="checkbox" name="nationwide-market-checkbox" id="nationwide-market-checkbox" value="0">
-							<span class="lbl">Any Market / Nationwide</span>
-						</label>
-						</div>
-					</div>
 
-					<div class="col-md-6">
+					<div class="col-md-4">
 						<div class="panel panel-transparent margin-bottom-zero input-group">
 							<input type="text" class="form-control" id="search-talent-input" placeholder="Search Talent Manually">
 							<span id="search-talent-btn" class="input-group-addon" style="cursor: pointer;">
@@ -190,7 +190,7 @@
 											</div>
 										</div> <!-- ./panel-body picture-->
 
-										<div class="panel-body padding-small no-border-hr no-padding-hr col-md-12">
+										<div class="panel-body padding-small no-border-hr no-padding-hr padding-bottom-zero col-md-12">
 											<div class="tab-content no-padding-hr padding-top-zero-zz-lg no-padding-b">
 												<div class="tab-pane fade active in">
 													<label class="text-bold margin-bottom-zero">Body Type:</label>
@@ -237,7 +237,7 @@
 											</div>
 										</div> <!-- ./panel-body body type-->
 
-										<div class="panel-body padding-small no-border-hr no-padding-hr col-md-12">
+										<div class="panel-body padding-small no-border-hr no-padding-hr padding-bottom-zero col-md-12">
 											<div class="tab-content no-padding-hr padding-top-zero-zz-lg no-padding-b">
 												<div class="tab-pane fade active in">
 													<label class="text-bold margin-bottom-zero">Ethnic Appearance:</label>
