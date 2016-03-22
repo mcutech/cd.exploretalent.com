@@ -85,10 +85,11 @@
 							<div class="col-sm-12 col-md-6">
 								<ul class="list-unstyled additional-details margin-zero">
 									<li><div class="title">Project ID:</div><span data-bind="<%= casting_id %>"></span></li>
-									<li><div class="title">Project Type:</div><span data-bind="<%= (project_type || project_type == 0) ? getProjectType() : 'N/A' %>"></span></li>
+									<!-- <li><div class="title">Project Type:</div><span data&#45;bind="<%= (project_type || project_type == 0) ? getProjectType() : 'N/A' %>"></span></li> -->
 									<li><div class="title">Location:</div><span data-bind="<%= location %>"></span></li>
 									<li><div class="title">Rate/Pay:</div>$<span data-bind="<%= rate %>"></span> <span data-bind="<%= (rate_des) ? 'per ' + getRate() : '' %>"></span></li>
 									<li><div class="title">Audition Date:</div><span data-bind="<%= (!aud_timestamp1) ? 'N/A' : date.formatMDY(parseInt(aud_timestamp)) %>"></span></li>
+									<li><div class="title">Casting Category:</div><span data-bind="<%= (cat) ? getCategory() : 'N/A' %>"></span></li>
 								</ul>
 							</div>
 
@@ -98,7 +99,6 @@
 									<li><div class="title">Union:</div><span data-bind="<%= (union2 == 0) ? 'Non-union' : 'Union' %>"></span></li>
 									<li><div class="title">Release Date:</div><span data-bind="<%= date.formatMDY(parseInt(sub_timestamp)) %>"></span></li>
 									<li><div class="title">Deadline:</div><span id="text-date-type"><span data-bind="<%= (!asap) ? 'N/A' : date.formatMDY(parseInt(asap)) %>"></span></span></li>
-									<li><div class="title">Casting Category:</div><span data-bind="<%= (cat) ? getCategory() : 'N/A' %>"></span></li>
 								</ul>
 							</div>
 
