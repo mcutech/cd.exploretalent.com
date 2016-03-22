@@ -5,7 +5,7 @@
 @stop
 
 @section('sidebar.page-extra')
-<div class="row">
+<div class="row hide">
 	<hr class="visible-xs no-grid-gutter-h">
 	<div class="pull-right col-xs-12 col-sm-auto">
 		<a href="#" class="btn btn-primary btn-labeled btn-block">
