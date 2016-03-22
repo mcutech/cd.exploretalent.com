@@ -3,65 +3,34 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">James Reid, 26</h4>
+        <h4 class="modal-title" id="myModalLabel"><span data-bind="<%= getFullName() %>, <%= getAge() %>"></span></h4>
       </div>
       <div class="modal-body">
-		<div id='carousel-custom' class='carousel slide' data-ride='carousel' data-interval="false">
-		    <div class='carousel-outer'>
+		<div id="carousel-custom" class="carousel slide" data-ride="carousel" data-interval="false">
+		    <div class="carousel-outer">
 		        <!-- Wrapper for slides -->
-		        <div class='carousel-inner'>
-		            <div class='item active'>
-		                <img src='http://placehold.it/400x200&text=slide1' alt='' />
-		            </div>
-		            <div class='item'>
-		                <img src='http://placehold.it/400x200&text=slide2' alt='' />
-		            </div>
-		            <div class='item'>
-		                <img src='http://placehold.it/400x200&text=slide3' alt='' />
-		            </div>
-		                
-		            <div class='item'>
-		                <img src='http://placehold.it/400x200&text=slide4' alt='' />
-		            </div>
-		            <div class='item'>
-		                <img src='http://placehold.it/400x200&text=slide5' alt='' />
-		            </div>
-		            <div class='item'>
-		                <img src='http://placehold.it/400x200&text=slide6' alt='' />
-		            </div>
-		            
-		            <div class='item'>
-		                <img src='http://placehold.it/400x200&text=slide7' alt='' />
-		            </div>
-		            <div class='item'>
-		                <img src='http://placehold.it/400x200&text=slide8' alt='' />
-		            </div>
-		            <div class='item'>
-		                <img src='http://placehold.it/400x200&text=slide9' alt='' />
+		        <div id="carousel-inner" class="carousel-inner">
+		            <div data-bind-template="#carousel-inner" data-bind-value="bam_talent_media2" class="item">
+		               <img data-bind="https://etdownload.s3.amazonaws.com/<%= bam_media_path_full %>">
 		            </div>
 		        </div>
 		            
 		        <!-- Controls -->
-		        <a class='left carousel-control' href='#carousel-custom' data-slide='prev'>
-		            <span class='glyphicon glyphicon-chevron-left'></span>
+		        <a class="left carousel-control" href="#carousel-inner" data-slide="prev">
+		            <span class="glyphicon glyphicon-chevron-left"></span>
 		        </a>
-		        <a class='right carousel-control' href='#carousel-custom' data-slide='next'>
-		            <span class='glyphicon glyphicon-chevron-right'></span>
+		        <a class="right carousel-control" href="#carousel-inner" data-slide="next">
+		            <span class="glyphicon glyphicon-chevron-right"></span>
 		        </a>
 		    </div>
 		    
 		    <!-- Indicators -->
-		    <ol class='carousel-indicators mCustomScrollbar'>
-		        <li data-target='#carousel-custom' data-slide-to='0' class='active'><img class="thumbnail-size" src='http://placehold.it/100x50&text=slide1' alt='' /></li>
-		        <li data-target='#carousel-custom' data-slide-to='1'><img class="thumbnail-size" src='http://placehold.it/100x50&text=slide2' alt='' /></li>
-		        <li data-target='#carousel-custom' data-slide-to='2'><img class="thumbnail-size" src='http://placehold.it/100x50&text=slide3' alt='' /></li>
-		        <li data-target='#carousel-custom' data-slide-to='3'><img class="thumbnail-size" src='http://placehold.it/100x50&text=slide4' alt='' /></li>
-		        <li data-target='#carousel-custom' data-slide-to='4'><img class="thumbnail-size" src='http://placehold.it/100x50&text=slide5' alt='' /></li>
-		        <li data-target='#carousel-custom' data-slide-to='5'><img class="thumbnail-size" src='http://placehold.it/100x50&text=slide6' alt='' /></li>
-		        <li data-target='#carousel-custom' data-slide-to='6'><img class="thumbnail-size" src='http://placehold.it/100x50&text=slide7' alt='' /></li>
-		        <li data-target='#carousel-custom' data-slide-to='7'><img class="thumbnail-size" src='http://placehold.it/100x50&text=slide8' alt='' /></li>
-		        <li data-target='#carousel-custom' data-slide-to='8'><img class="thumbnail-size" src='http://placehold.it/100x50&text=slide9' alt='' /></li>
-		    </ol>    	
+		    <ol id="carousel-indicators" class="carousel-indicators mCustomScrollbar">
+		    	<li data-bind-template="#carousel-indicators" data-bind-value="bam_talent_media2" data-target="#carousel-custom">
+		    		<img class="thumbnail-size" data-bind="https://etdownload.s3.amazonaws.com/<%= bam_media_path_full %>">
+		    	</li>
+		    </ol>
+		        {{-- <li data-target="#carousel-talent-photos" data-slide-to="0" class="active"><img class="thumbnail-size" src="http://placehold.it/100x50&text=slide1" alt=" /></li> --}} 	
         </div>
       </div>
     </div>
