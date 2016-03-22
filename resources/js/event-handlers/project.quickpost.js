@@ -19,6 +19,8 @@ handler.prototype.addToBooking = function(){
 	var form = self.core.service.form.serializeObject('#booking-form');
 
 	if(form.name && form.body){
+		form.user_id = self.user.id;
+		form.lazy_project_status_id = 1;
 		self.core.resource.quickpost.post(form)
 			.then(function(result){
 				$('#success-div').removeClass('hide');
