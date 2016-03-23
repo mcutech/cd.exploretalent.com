@@ -18,8 +18,6 @@ module.exports = function(core, user) {
 			id = $(e.target).parents('a').attr('data-id');
 		}
 
-		console.log(id);
-
 		var data = {
 			talentId :id,
 			withs : [
@@ -63,8 +61,14 @@ module.exports = function(core, user) {
 			});
 	});
 
-	$(document).on('click', 'a.left.carousel-control, a.right.carousel-control, .carousel-indicators>li', function() {
+	$(document).on('click', 'a.left.carousel-control, a.right.carousel-control', function() {
 		hidePrevOrNextBtn();
+	});
+
+	$(document).on('click', '.carousel-indicators>li', function() {
+		setTimeout(function() {
+			hidePrevOrNextBtn();
+		}, 800);
 	});
 
 	var hidePrevOrNextBtn = function() {
