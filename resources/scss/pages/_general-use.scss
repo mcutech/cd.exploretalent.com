@@ -1,14 +1,28 @@
 // no side-bar-design
 
 .no-sidebar-layout{
+
+	.panel{
+		.panel-heading{
+			border-radius: 0px;
+		}
+		.panel-body{
+			border-radius: 0px;
+		}
+	}
+
+	#content-wrapper{
+		padding: 70px 55px 18px 55px;
+	}
+
 	#main-navbar{
 		.navbar-header{
 			padding-left: 15px !important;
 			padding: 10px;
 		}
 
-		li:last-child{
-			border-right-width: 0px;
+		li{
+			border-right-width: 0px !important;
 		}
 
 		.primary-nav{
@@ -67,7 +81,7 @@
 	.page-header{
 		border: 0px;
 		margin: 0px;
-		padding: 15px 0px;
+		padding: 3px 0px 10px 0px;
 	}
 
 	.breadcrumb{
@@ -84,7 +98,7 @@
 
 	.navbar-inner{
 		.navigation-header-container{
-			// padding: 10px;
+			padding: 0 35px;
 			background-color: #ffffff;
 		}
 	}
