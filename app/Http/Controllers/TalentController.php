@@ -10,4 +10,9 @@ class TalentController extends Controller {
 	{
 		return view('talent.favorite');
 	}
+
+	public function talentresume()
+	{
+		return view('talent.resume');
+	}
 }
