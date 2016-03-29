@@ -160,7 +160,7 @@
 					<div class="row-fluid">
 						<div class="col-md-12">
 							<div class="form-group">
-								<strong><p class="control-label" data-bind="<%= (project_type == '8') ? 'Open Call Details' : 'Self Submission Details' %>"></p></strong>
+								<strong><p class="control-label" data-bind="<%= (snr == '2') ? 'Open Call Details' : 'Self Submission Details' %>"></p></strong>
 								<div class="panel display-none" id="self-submissions-option-content">
 									<div class="panel-body">
 										<div class="col-md-4">
@@ -189,7 +189,7 @@
 											</div>
 											<div class="form-group">
 												<label class="checkbox-inline">
-													<input type="checkbox" id="inlineCheckbox3" value="option3" class="px"> <span class="lbl">If Appointment only, check</span>
+													<input type="checkbox" id="appointment-only-checkbox" class="px" name="by_app_only" data-bind="<%= by_app_only %>"> <span class="lbl">If Appointment only, check</span>
 												</label>
 											</div>
 										</div>
