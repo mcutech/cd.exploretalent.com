@@ -3,13 +3,11 @@
 	<div class="panel panel-talents-search">
 		<div class="panel-heading">
 			<span class="panel-title talents-refine-title">Refine Search</span>
-			<div class="panel-heading-controls">
-				<div class="panel-heading-icon"><i class="fa fa-search"></i></div>
-			</div>
 		</div>
 
 		<div class="panel-body">
-			<div class="">
+			
+			<div class="display-none">
 				<div class="row">
 					<div class="col-md-3">
 						<div class="padding-small">
@@ -321,5 +319,6 @@
 					</div> <!-- appearance and membership -->
 				</div>	
 			</div>
+
 	</form>
 </div> {{-- refine-search-sidebar --}}
