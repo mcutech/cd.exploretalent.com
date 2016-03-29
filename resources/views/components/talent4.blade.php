@@ -10,6 +10,16 @@
 		@endif
 </ul>
 
+<!-- <div class="panel">
+	<div class="panel-body">
+		<div class="talent-photo">
+			<div class="photo-user-container">
+				<img data-bind="<%= getPrimaryPhoto() %>" class="img-responsive" />
+			</div>
+		</div>
+	</div>
+</div> -->
+
 <div class="panel">
 	<div class="panel-body">
 		<div class="row-fluid clearfix">
@@ -71,32 +81,25 @@
 		</div>
 		<div class="row-fluid clearfix">
 				@if (isset($ratings) && $ratings)
-				<div class="col-md-6 padding-zero">
+				<div class="col-md-12 col-sm-12 padding-zero">
 					<div class="like-it-list-container">
-						<div class="text-left">
-							<div>
-								<div class="display-block title"> Add to like list </div>
-								<div class="btn-group btn-group-xs">
-									<button data-value="1" class="btn btn-xs btn-danger rating-button" data-toggle="modal" data-bind="<%= user.id %>" data-bind-target="data-id" data-target="#addtolist">1</button>
-									<button data-value="2" class="btn btn-xs btn-warning rating-button" data-toggle="modal" data-bind="<%= user.id %>" data-bind-target="data-id" data-target="#addtolist">2</button>
-									<button data-value="3" class="btn btn-xs btn-info rating-button" data-toggle="modal" data-bind="<%= user.id %>" data-bind-target="data-id" data-target="#addtolist"	>3</button>
-									<button data-value="4" class="btn btn-xs btn-primary rating-button" data-toggle="modal" data-bind="<%= user.id %>" data-bind-target="data-id" data-target="#addtolist">4</button>
-									<button data-value="5" class="btn btn-xs btn-success rating-button" data-toggle="modal" data-bind="<%= user.id %>" data-bind-target="data-id" data-target="#addtolist">5</button>
-								</div>
-							</div>
+						<div class="display-block title"> Add to like list </div>
+						<div class="btn-group talent-function">
+							<button data-value="1" class="btn btn-xs btn-danger rating-button function-item" data-toggle="modal" data-bind="<%= user.id %>" data-bind-target="data-id" data-target="#addtolist">1</button>
+							<button data-value="2" class="btn btn-xs btn-warning rating-button function-item" data-toggle="modal" data-bind="<%= user.id %>" data-bind-target="data-id" data-target="#addtolist">2</button>
+							<button data-value="3" class="btn btn-xs btn-info rating-button function-item" data-toggle="modal" data-bind="<%= user.id %>" data-bind-target="data-id" data-target="#addtolist"	>3</button>
+							<button data-value="4" class="btn btn-xs btn-primary rating-button function-item" data-toggle="modal" data-bind="<%= user.id %>" data-bind-target="data-id" data-target="#addtolist">4</button>
+							<button data-value="5" class="btn btn-xs btn-success rating-button function-item" data-toggle="modal" data-bind="<%= user.id %>" data-bind-target="data-id" data-target="#addtolist">5</button>
 						</div>
 					</div>
 				</div>
 				@endif
-				<div class="col-md-6 padding-zero">
+				<div class="col-md-12 col-sm-12 padding-zero margin-top-small">
 					<div class="like-it-list-container">
-						<div class="float-right-md-lg">
-							<div class="display-block title">&nbsp;</div>
-							<div class="btn-group btn-group-xs">
-								<!-- <a data&#45;toggle="modal" data&#45;bind="<%= talentnum %>" data&#45;bind&#45;target="data&#45;id" id="talent&#45;resume1" data&#45;target="#talent&#45;resume&#45;modal" class="btn btn&#45;xs btn&#45;default"><span class="fa fa&#45;file&#45;text&#45;o"></span></a> -->
-								<a target="_blank" data-bind="/talents/<%= talentnum %>" class="btn btn-xs btn-default"> <span class="fa fa-file-text-o"></span></a>
-								<a data-toggle="modal" data-bind="<%= talentnum %>" data-bind-target="data-id" id="talent-photo" data-target="#talent-photos-modal" class="btn btn-xs btn-default"><span class="fa fa-picture-o"></span></a>
-							</div>
+						<div class="btn-group talent-function">
+							<!-- <a data&#45;toggle="modal" data&#45;bind="<%= talentnum %>" data&#45;bind&#45;target="data&#45;id" id="talent&#45;resume1" data&#45;target="#talent&#45;resume&#45;modal" class="btn btn&#45;xs btn&#45;default"><span class="fa fa&#45;file&#45;text&#45;o"></span></a> -->
+							<a target="_blank" data-bind="/talents/<%= talentnum %>" class="btn btn-xs btn-default function-item"> <span class="fa fa-file-text-o"></span></a>
+							<a data-toggle="modal" data-bind="<%= talentnum %>" data-bind-target="data-id" id="talent-photo" data-target="#talent-photos-modal" class="btn btn-xs btn-default function-item"><span class="fa fa-picture-o"></span></a>
 						</div>
 					</div>
 				</div>
