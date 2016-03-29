@@ -1,13 +1,122 @@
 <div class="col-md-12 refine-search-sidebar">
 	<form id="talent-filter-form">
 	<div class="panel panel-talents-search">
-		<div class="panel-heading">
+		<div class="panel-heading border-bottom-width-zero">
 			<span class="panel-title talents-refine-title">Refine Search</span>
 		</div>
 
-		<div class="panel-body">
+		<div class="panel-body form-horizontal">
+			<div class="row-fluid clearfix">
+				<label class="control-label pull-left"><a href="">United States</a> <span class="padding-left-small">or</span></label>
+				<div class="col-md-3">
+					<input class="form-control" placeholder="Select Market or Zip Code">
+				</div>
+				<div class="col-md-2">
+					<select class="form-control">
+						<option>25 miles</option>
+					</select>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="margin-top-small margin-bottom-small">
+					<label class="checkbox-inline display-none"></label>
+					<label class="checkbox-inline margin-right-small">
+						<input type="checkbox" name="market-checks" class="px check-markets"> <span class="lbl">Albany, NY</span>
+					</label>
+					<label class="checkbox-inline margin-right-small">
+						<input type="checkbox" name="market-checks" class="px check-markets"> <span class="lbl">Buffalo, NY</span>
+					</label>
+					<label class="checkbox-inline margin-right-small">
+						<input type="checkbox" name="market-checks" class="px check-markets"> <span class="lbl">New York City, NY</span>
+					</label>
+					<label class="checkbox-inline margin-right-small">
+						<input type="checkbox" name="market-checks" class="px check-markets"> <span class="lbl">Dallas, TX</span>
+					</label>
+					<label class="checkbox-inline margin-right-small">
+						<input type="checkbox" name="market-checks" class="px check-markets"> <span class="lbl">El Paso, TX</span>
+					</label>
+					<label class="checkbox-inline margin-right-small">
+						<input type="checkbox" name="market-checks" class="px check-markets"> <span class="lbl">Houston, TX</span>
+					</label>
+					<label class="checkbox-inline margin-right-small">
+						<input type="checkbox" name="market-checks" class="px check-markets"> <span class="lbl">San ANtonio, NY</span>
+					</label>
+					<label class="checkbox-inline margin-right-small">
+						<input type="checkbox" name="market-checks" class="px check-markets"> <span class="lbl">Albany, NY</span>
+					</label>
+					<label class="checkbox-inline margin-right-small">
+						<input type="checkbox" name="market-checks" class="px check-markets"> <span class="lbl">Buffalo, NY</span>
+					</label>
+					<label class="checkbox-inline margin-right-small">
+						<input type="checkbox" name="market-checks" class="px check-markets"> <span class="lbl">Los Angeles, CA</span>
+					</label>
+				</div>
+			</div>
 			
-			<div class="display-none">
+			<hr class="panel-wide margin-top-small-normal margin-bottom-small-normal">
+			
+			<div class="row margin-bottom-large">
+				<div class="col-md-3">
+					<label class="text-bold margin-bottom-zero">Age Range: <span id="age-min-text" data-bind="<%= age_min || 0 %>" class="text-normal">0</span> - <span id="age-max-text" data-bind="<%= age_max || 100 %>" class="text-normal">100</span></label>
+					<div class="padding-right-small">
+					<div class="padding-small">
+						<div data-range="true" data-values="[0, 100]" data-min="0" data-max="100" data-bind="[<%= age_min || 0 %>, <%= age_max || 100 %>]" data-type="age" data-slider></div>
+						<input type="hidden" name="age_min" data-bind="<%= age_min %>" />
+						<input type="hidden" name="age_max" data-bind="<%= age_max %>" />
+					</div>
+					</div>	
+				</div>
+				<div class="col-md-3">
+					<select class="form-control margin-top-normal">
+						<option>Gender - Both</option>
+					</select>
+				</div>
+				<div class="col-md-3">
+					<select class="form-control margin-top-normal">
+						<option>Picture - All</option>
+					</select>
+				</div>
+				<div class="col-md-3">
+					<select class="form-control margin-top-normal">
+						<option>Keyword - Search</option>
+					</select>
+				</div>
+			</div>
+
+			<div class="row margin-bottom-large">
+				<div class="col-md-3">
+					<label class="text-bold margin-bottom-zero">Height Range: <span id="height-min-text" class="text-normal" data-bind="<%= height_min ||'< 2\'0&quot;' %>">< 2'0"</span> -
+						<span id="height-max-text" class="text-normal" data-bind="<%= height_max || '8\'0&quot;' %>">8'0"</span>
+					</label>
+					<div class="padding-right-small">
+					<div class="padding-small">
+						<div class="ui-slider-range-height" data-slider data-range="true" data-min="22" data-max="96" data-values="[22,96]" data-type="height" data-bind="[<%= height_min ? height_min : 22 %>, <%= height_max ? height_max : 96 %>]"></div>
+						<input type="hidden" name="height_min" data-bind="<%= height_min %>" />
+						<input type="hidden" name="height_max" data-bind="<%= height_max %>" />
+					</div>
+					</div>
+				</div>
+				<div class="col-md-3">
+					<select class="form-control margin-top-normal">
+						<option>Body Type - All</option>
+					</select>
+				</div>
+				<div class="col-md-3">
+					<select class="form-control margin-top-normal">
+						<option>Ethnicty - All</option>
+					</select>
+				</div>
+				<div class="col-md-3">
+					<select class="form-control margin-top-normal">
+						<option>Last Active - 6 months</option>
+					</select>
+				</div>
+			</div>
+			
+
+			<!-- old refine search -->
+			<div hidden>
 				<div class="row">
 					<div class="col-md-3">
 						<div class="padding-small">
