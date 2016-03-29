@@ -194,7 +194,7 @@ handler.prototype.createNewProject = function(e){
 		}
 
 		else {
-			if(projecttype == "3") {
+			if(projecttype == "1") {
 
 				var selfSubEmail = $('#self-sub-email').val();
 				var selfSubAddress = $('#self-sub-address').val();
@@ -219,7 +219,7 @@ handler.prototype.createNewProject = function(e){
 
 			}
 
-			else if(projecttype == "8") {
+			else if(projecttype == "2") {
 
 				if($('#bs-datepicker-open-call').val().length < 1) {
 
@@ -236,8 +236,15 @@ handler.prototype.createNewProject = function(e){
 
 				else {
 					data["snr"] = '2';
-					data["app_date_time"] = '<p>' + $('#bs-datepicker-open-call').val() + " from " + $('#bs-timepicker-open-call-from').val() + " to " + $('#bs-timepicker-open-call-to').val() + '</p>';
+					data["app_date_time"] = $('#bs-datepicker-open-call').val() + " from " + $('#bs-timepicker-open-call-from').val() + " to " + $('#bs-timepicker-open-call-to').val();
 					data["app_loc"] = $('#open-call-location').val();
+
+					if($('#appointment-only-checkbox:checked').length > 0) {
+						data["by_app_only"] = '1';
+					}
+					else {
+						data["by_app_only"] = '0';
+					}
 
 					return self.core.resource.project.post(data)
 					.then(function(res) {
