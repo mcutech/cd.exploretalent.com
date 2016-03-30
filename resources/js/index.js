@@ -59,6 +59,7 @@ jscore.run(function(core) {
 
 		.add('/talents', 'talents')
 		.add('/talents/favorite', 'talent.favorite')
+		.add('/talents/{talentId}', 'talent.resume')
 
 		// project pages
 		.add('/projects', 'projects')

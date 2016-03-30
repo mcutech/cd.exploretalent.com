@@ -30,10 +30,10 @@
 							<li class="active">
 								<a href="#uidemo-tabs-default-demo-acting-modeling" data-toggle="tab">Acting/Modeling</a>
 							</li>
-							<li class="" data-bind="<%= (bam_talent_music[0].genre && bam_talent_music[0].des_1 && bam_talent_music[0].music_role && bam_talent_music[0].searching_gig_des && bam_talent_music[0].major_influence ) ? 1 : 0 %>" data-bind-target="visibility">
+							<li class="" data-bind="<%= (bam_talent_music[0].genre && bam_talent_music[0].des_1 && bam_talent_music[0].music_role && bam_talent_music[0].searching_gig_des && bam_talent_music[0].major_influence ) ? 1 : 0 %>" >
 									<a href="#uidemo-tabs-default-demo-musician" data-toggle="tab">Musician</a>
 							</li>
-							<li class="" data-bind="<%= (bam_talent_dance[0].dance_style_1 && bam_talent_dance[0].dancer_background && bam_talent_dance[0].influences && bam_talent_dance[0].searching_gig_des) ? 1 : 0 %>" data-bind-target="visibility">
+							<li class="" data-bind="<%= (bam_talent_dance[0].dance_style_1 && bam_talent_dance[0].dancer_background && bam_talent_dance[0].influences && bam_talent_dance[0].searching_gig_des) ? 1 : 0 %>" >
 								<a href="#uidemo-tabs-default-demo-dance" data-toggle="tab">Dance</a>
 							</li>
 						</ul>

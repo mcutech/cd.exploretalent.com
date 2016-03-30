@@ -47,11 +47,12 @@ handler.prototype.getProjectInfo = function(e) {
 				casting.date = self.core.service.date;
 
 				if(casting.app_date_time) {
-					casting.app_date_time = $(casting.app_date_time).text();
+					casting.app_date_time = '<p>' + casting.app_date_time + '</p>';
+					casting.app_date_time = $(casting.app_date_time).text(); //strip tags
 				}
 
 				// determines which div to show for Submission details (self-response or open call div)
-				if(casting.project_type == "8") {
+				if(casting.snr == "2") {
 					$("#open-call-option-content").show();
         			$("#self-submissions-option-content").hide();
 				}
@@ -291,8 +292,15 @@ handler.prototype.updateProject = function(e){
 
 				else {
 					data["snr"] = '2';
-					data["app_date_time"] = '<p>' + $('#open-call-details').val() + '</p>';
+					data["app_date_time"] = $('#open-call-details').val();
 					data["app_loc"] = $('#open-call-location').val();
+
+					if($('#appointment-only-checkbox:checked').length > 0) {
+						data["by_app_only"] = '1';
+					}
+					else {
+						data["by_app_only"] = '0';
+					}
 
 					return self.core.resource.project.patch(data)
 					.then(function(res) {

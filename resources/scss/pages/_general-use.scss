@@ -1,3 +1,117 @@
+// no side-bar-design
+
+.no-sidebar-layout{
+
+	.panel{
+		.panel-heading{
+			border-radius: 0px;
+		}
+		.panel-body{
+			border-radius: 0px;
+		}
+	}
+
+	#content-wrapper{
+		padding: 70px 55px 18px 55px;
+	}
+
+	#main-navbar{
+		.navbar-header{
+			padding-left: 15px !important;
+			padding: 10px;
+		}
+
+		li{
+			border-right-width: 0px !important;
+		}
+
+		.primary-nav{
+			li{
+				border-right-width: 0px;
+				
+				a{
+					line-height: normal;
+					text-align: center;
+					font-size: 11px;
+					padding: 12px 18px;
+					height: 64px;
+
+					.primary-nav-icon{
+						font-size: 25px;
+					}
+				}
+			}
+		}
+
+		@media all and (max-width: 767px){
+			.primary-nav-icon, .primary-nav-text{
+				display: inline;	
+				font-size: 12px !important;
+			}
+			.primary-nav{
+				a.nav-link{
+					height: inherit;	
+				}
+			}
+		}
+
+		.secondary-nav{
+			li{	
+				a{	
+					padding: 12px 20px;
+					height: 64px;
+					text-align: center;
+				}
+			}
+		}
+	}
+
+	#main-wrapper{
+		padding-left: 0px;
+	}
+
+	#main-menu{
+		display: none;
+	}
+
+	#main-menu-bg{
+		display: none;
+	}
+
+	.page-header{
+		border: 0px;
+		margin: 0px;
+		padding: 3px 0px 10px 0px;
+	}
+
+	.breadcrumb{
+		margin: 0px;
+		border: 0px;
+		padding: 0px;
+
+		li{
+			a{
+				font-size: 10px;
+			}
+		}
+	}
+
+	.navbar-inner{
+		.navigation-header-container{
+			padding: 0 35px;
+			background-color: #ffffff;
+		}
+	}
+
+	#content-wrapper{
+		padding-top: 70px;
+	}
+
+}
+
+// end no side-bar-design
+
+
 // input tagging on share like it list
 .bootstrap-tagsinput{
 	width: 100%;
