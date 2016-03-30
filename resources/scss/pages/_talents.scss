@@ -125,7 +125,7 @@
 					}
 
 				}
-
+				
 				.talent-photo{
 					background-color: #FFF;
 					border: 1px solid #DDD;
@@ -154,7 +154,6 @@
 							min-height: 320px;
 							max-height: 320px;
 						}
-
 						@media only screen and (max-width: 992px){
 							min-height: 140px;
 							max-height: 140px;
@@ -173,6 +172,92 @@
 						}
 					}
 				}
+				
+				// new layout for talents no sidebar
+				.talent-photo-and-note-container{
+					position: relative;
+					
+					&:hover{
+						.talent-functions-v2{
+							opacity: 1;				
+						}
+					}
+
+					.talent-functions-v2{
+						position: absolute;
+						text-align: right;
+						right: 1px;
+						top: 1px;
+						opacity: 0;
+						transition: 0.3s;
+
+						li{
+							.text-function-description{
+								margin-right: 6px;
+								opacity: 0;
+								transition: 0.3s;
+								color: #ffffff;
+								text-shadow: 1px 1px 1px #545454;
+
+								&:hover{
+									opacity: 1;
+								}
+							}
+							a{
+								padding: 8px;
+								background-color: white;
+								font-size: 15px;
+								color: #969696;
+								display: inline-block;
+								border-bottom: 1px solid #f3f3f3;
+								transition: 0.3s;
+								width: 40px;
+								text-align: center;
+								height: 37px;
+
+
+							}
+						}
+					}
+				}
+
+				.talent-photo-v2{
+					@extend .talent-photo;
+
+					.photo-user-container{
+						min-height: 230px;
+						max-height: 230px;
+					}
+				}
+
+				.talent-information-parent{
+					.name{
+						font-weight: bold;
+						color: #555555;
+						font-size: 15px;
+						padding: 0px;
+					}
+					.age{
+					}
+					.talent-additional-info{
+						color: #777777;
+						font-size: 12px;
+						padding: 0px;
+						display: flex;
+						.additional-info-item{
+							flex-grow: 1;
+						}
+					}
+				}
+
+				.like-it-list-parent{
+					.like-it-list-container{
+						.function-item{
+							border-radius: 0px;
+						}
+					}
+				}
+				// end new layout for talents no sidebar
 
 				.talent-name{
 				    padding-top: 3px;
