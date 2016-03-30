@@ -1,5 +1,5 @@
-<div class="{{ $class or 'col-md-3' }} talent-item-container" data-bind-template="{{ $databind['template'] or '' }}" data-bind-value="{{ $databind['value'] or '' }}">
-<ul class="nav nav-tabs">
+<div class="{{ $class or 'col-md-2' }} talent-item-container" data-bind-template="{{ $databind['template'] or '' }}" data-bind-value="{{ $databind['value'] or '' }}">
+<!-- <ul class="nav nav-tabs">
 	<li class="active">
 		<a data-bind="#talent-body-<%= talentnum %>" href="#talent-body" data-toggle="tab">Photo</a>
 	</li>
@@ -9,18 +9,58 @@
 		</li>
 		@endif
 </ul>
+ -->
 
-<!-- <div class="panel">
-	<div class="panel-body">
-		<div class="talent-photo">
+<div class="talent-item">
+	<div class="talent-photo-and-note-container">
+		<ul class="talent-functions-v2 list-unstyled">
+			<li><span class="text-function-description">View Profile</span><a href="#"><i class="fa fa-user"></i></a></li>
+			<li><span class="text-function-description">View Photos</span><a href="#"><i class="fa fa-picture-o"></i></a></li>
+			<li><span class="text-function-description">Add Notes</span><a href="#"><i class="fa fa-file-o"></i></a></li>
+			<li><span class="text-function-description">Add to Favorites</span><a href="#"><i class="fa fa-star-o"></i></a></li>
+			<li><span class="text-function-description">Add to Role</span><a href="#"><i class="fa fa-plus"></i></a></li>
+		</ul>
+		<div class="talent-photo-v2">
 			<div class="photo-user-container">
 				<img data-bind="<%= getPrimaryPhoto() %>" class="img-responsive" />
 			</div>
 		</div>
-	</div>
-</div> -->
 
-<div class="panel">
+		<div class="talent-note">
+			
+		</div>
+	</div>
+	<div class="talent-info-like-list-container margin-top-zero-small">
+		<div class="like-it-list-parent row-fluid clearfix">
+			@if (isset($ratings) && $ratings)
+			<div class="col-md-12 col-sm-12 padding-zero">
+				<div class="like-it-list-container">
+					<div class="btn-group talent-function">
+						<button data-value="1" class="btn btn-xs btn-danger rating-button function-item" data-toggle="modal" data-bind="<%= user.id %>" data-bind-target="data-id" data-target="#addtolist">1</button>
+						<button data-value="2" class="btn btn-xs btn-warning rating-button function-item" data-toggle="modal" data-bind="<%= user.id %>" data-bind-target="data-id" data-target="#addtolist">2</button>
+						<button data-value="3" class="btn btn-xs btn-info rating-button function-item" data-toggle="modal" data-bind="<%= user.id %>" data-bind-target="data-id" data-target="#addtolist"	>3</button>
+						<button data-value="4" class="btn btn-xs btn-primary rating-button function-item" data-toggle="modal" data-bind="<%= user.id %>" data-bind-target="data-id" data-target="#addtolist">4</button>
+						<button data-value="5" class="btn btn-xs btn-success rating-button function-item" data-toggle="modal" data-bind="<%= user.id %>" data-bind-target="data-id" data-target="#addtolist">5</button>
+						<button data-value="6" class="btn btn-xs btn-default rating-button function-item" data-toggle="modal" data-bind="<%= user.id %>" data-bind-target="data-id" data-target="#addtolist">CB</button>
+					</div>
+				</div>
+			</div>
+			@endif
+		</div>
+		<div class="talent-information-parent row-fluid clearfix" data-bind="talent-body-<%= talentnum %>" data-bind-target="id">
+			<div class="col-md-12 padding-zero">
+				<span class="name" data-bind="<%= getFullName() %>"></span>
+				<span class="age"><i>,</i><span data-bind="<%= getAge() %>" class="age-area"></span></span>
+				<div class="talent-additional-info">
+					<div class="additional-info-item height"><span>Height: </span><span data-bind="<%= getHeight() %>"></span></div>
+					<div class="additional-info-item body-type"><span>Body: Athletic</span></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="panel" hidden>
 	<div class="panel-body">
 		<div class="row-fluid clearfix">
 			<div class="tab-content padding-top-zero padding-bottom-small">
