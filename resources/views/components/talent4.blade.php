@@ -14,20 +14,36 @@
 <div class="talent-item">
 	<div class="talent-photo-and-note-container">
 		<ul class="talent-functions-v2 list-unstyled">
-			<li><span class="text-function-description">View Profile</span><a href="#"><i class="fa fa-user"></i></a></li>
-			<li><span class="text-function-description">View Photos</span><a href="#"><i class="fa fa-picture-o"></i></a></li>
-			<li><span class="text-function-description">Add Notes</span><a href="#"><i class="fa fa-file-o"></i></a></li>
-			<li><span class="text-function-description">Add to Favorites</span><a href="#"><i class="fa fa-star-o"></i></a></li>
-			<li><span class="text-function-description">Add to Role</span><a href="#"><i class="fa fa-plus"></i></a></li>
+			<li><span class="text-function-label profile">View Profile</span><a target="_blank" data-bind="/talents/<%= talentnum %>" class="talent-function-icon profile"><i class="fa fa-user"></i></a></li>
+			<li><span class="text-function-label photos">View Photos</span><a data-toggle="modal" data-bind="<%= talentnum %>" data-bind-target="data-id" id="talent-photo" data-target="#talent-photos-modal" class="talent-function-icon photos"><i class="fa fa-picture-o"></i></a></li>
+			<li><span class="text-function-label notes">Add Notes</span><a class="talent-function-icon notes"><i class="fa fa-file-o"></i></a></li>
+			<li><span class="text-function-label favorites">Add to Favorites</span><a class="talent-function-icon favorites" data-bind="<%= (favorite) ? 'favorite-' + favorite.id : 'talentnum-' + talentnum %>" data-bind-target="data-id"><i class="fa fa-star-o"></i></a></li>
+			<li><span class="text-function-label add-role">Add to Role</span><a class="talent-function-icon add-role" href="#"><i class="fa fa-plus"></i></a></li>
 		</ul>
 		<div class="talent-photo-v2">
 			<div class="photo-user-container">
 				<img data-bind="<%= getPrimaryPhoto() %>" class="img-responsive" />
 			</div>
 		</div>
-
-		<div class="talent-note">
-			
+		<div class="talent-note-v2">
+			<div class="back-add-note-container row-fluid clearfix">
+				<a class="back-btn btn btn-outline border-radius-zero col-md-2 padding-left-small padding-right-small border-width-zero"><span class="text-default"><i class="fa fa-chevron-left"></i></span></a>
+				<a href="#" class="add-note-btn btn btn-outline border-radius-zero col-md-10 padding-left-small padding-right-small border-width-zero"><span class="text-default"><i class="fa fa-plus"></i> Add Casting Note</span></a>
+			</div>
+			<div class="note-item-container-holder">
+				<div id="schedule-notes" class="talent-item note-item-container padding-small">
+					<?php for($x=0; $x<=10; $x++) { ?>
+					<div class="note-item">
+						<div class="name-date">
+							<div class="name">JohnTest CD</div>
+							<div class="date">03-31-16</div>
+						</div>
+						<div class="note-body">note testing</div>
+						<a data-toggle="modal" data-target="#talent-edit-note-modal" class="edit-note-link" data-bind-target="id" id="edit-note_722724_108"><i class="fa fa-pencil"></i> Edit this note</a>
+					</div>
+					<?php }?>
+				</div>
+			</div>
 		</div>
 	</div>
 	<div class="talent-info-like-list-container margin-top-zero-small">
