@@ -16,6 +16,9 @@
 						<option>25 miles</option>
 					</select>
 				</div>
+				<div class="col-md-2">
+					<a href="" class="btn btn-primary btn-block">Search</a>
+				</div>
 			</div>
 
 			<div class="row">
@@ -48,14 +51,10 @@
 					<label class="checkbox-inline margin-right-small">
 						<input type="checkbox" name="market-checks" class="px check-markets"> <span class="lbl">Buffalo, NY</span>
 					</label>
-					<label class="checkbox-inline margin-right-small">
-						<input type="checkbox" name="market-checks" class="px check-markets"> <span class="lbl">Los Angeles, CA</span>
-					</label>
 				</div>
 			</div>
 			
 			<hr class="panel-wide margin-top-small-normal margin-bottom-small-normal">
-			
 			<div class="row margin-bottom-large">
 				<div class="col-md-3">
 					<label class="text-bold margin-bottom-zero">Age Range: <span id="age-min-text" data-bind="<%= age_min || 0 %>" class="text-normal">0</span> - <span id="age-max-text" data-bind="<%= age_max || 100 %>" class="text-normal">100</span></label>
@@ -70,17 +69,19 @@
 				<div class="col-md-3">
 					<select class="form-control margin-top-normal">
 						<option>Gender - Both</option>
+						<option>Male</option>
+						<option>Female</option>
 					</select>
 				</div>
 				<div class="col-md-3">
 					<select class="form-control margin-top-normal">
 						<option>Picture - All</option>
+						<option>No Picture</option>
+						<option>With Picture</option>
 					</select>
 				</div>
 				<div class="col-md-3">
-					<select class="form-control margin-top-normal">
-						<option>Keyword - Search</option>
-					</select>
+					<input class="form-control margin-top-normal" placeholder="Keyword..."></input>
 				</div>
 			</div>
 
@@ -100,16 +101,28 @@
 				<div class="col-md-3">
 					<select class="form-control margin-top-normal">
 						<option>Body Type - All</option>
+						<option></option>
 					</select>
 				</div>
 				<div class="col-md-3">
 					<select class="form-control margin-top-normal">
 						<option>Ethnicty - All</option>
+						<option>Caucasian</option>
+						<option>Hispanic</option>
+						<option>African American</option>
+						<option>Asian</option>
+						<option>Middle Eastern</option>
+						<option>American Indian</option>
+						<option>African</option>
+						<option>East Indian</option>
 					</select>
 				</div>
 				<div class="col-md-3">
 					<select class="form-control margin-top-normal">
+						<option>Last Active - 1 month</option>
+						<option>Last Active - 3 months</option>
 						<option>Last Active - 6 months</option>
+						<option>Last Active - 1 year</option>
 					</select>
 				</div>
 			</div>

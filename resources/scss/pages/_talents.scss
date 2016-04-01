@@ -180,11 +180,11 @@
 					display: none;
 					background-color: #ffffff;
 					border: 1px solid #dddddd;
-					min-height: 238px;
+					min-height: 238px - 20px;
 
 					.note-item-container-holder{
-						min-height: 238px;
-						max-height: 238px;
+						min-height: 238px - 32px;
+						max-height: 238px - 32px;
 
 						.note-item{
 							.name-date{

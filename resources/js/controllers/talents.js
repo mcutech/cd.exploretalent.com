@@ -50,15 +50,15 @@ module.exports = function(core, user) {
 
 	//talents add notes function
 	$(document).on('click', '.talent-function-icon.notes', function() {
-		$('.talent-note-v2').show();
-		$('.talent-photo-v2').hide();
-		$('.talent-functions-v2 ').hide();
+		$(this).closest('.talent-item').find('.talent-note-v2').show();
+		$(this).closest('.talent-item').find('.talent-photo-v2').hide();
+		$(this).closest('.talent-item').find('.talent-functions-v2 ').hide();
 	});
 
 	//add notes function back
 	$(document).on('click', '.talent-note-v2 .back-btn', function(){
-		$('.talent-note-v2').hide();
-		$('.talent-photo-v2').show();
-		$('.talent-functions-v2 ').show();
+		$(this).closest('.talent-item').find('.talent-note-v2').hide();
+		$(this).closest('.talent-item').find('.talent-photo-v2').show();
+		$(this).closest('.talent-item').find('.talent-functions-v2 ').show();
 	});
 }
