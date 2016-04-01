@@ -9,6 +9,7 @@
 					<span id="self-submissions-counter" class="label label-danger"></span>
 				</a>
 			</li>
+			<li><div class="alert alert-success padding-small">Please rate the talents, from 1 to 5 , to add to the like it list</div> </li>
 			<li role="presentation" class="font-size-small-normal-zz font-size-small-normal-xs like-it-list-link hide">
 				<a data-bind="/projects/<%= casting_id %>/roles/<%= role.role_id %>/like-it-list" href="">Like It List</a>
 			</li>
