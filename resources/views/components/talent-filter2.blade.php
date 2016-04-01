@@ -20,7 +20,6 @@
 					<a href="" class="btn btn-primary btn-block">Search</a>
 				</div>
 			</div>
-
 			<div class="row">
 				<div class="margin-top-small margin-bottom-small">
 					<label class="checkbox-inline display-none"></label>
@@ -66,18 +65,18 @@
 					</div>
 					</div>	
 				</div>
-				<div class="col-md-3">
-					<select class="form-control margin-top-normal">
-						<option>Gender - Both</option>
-						<option>Male</option>
-						<option>Female</option>
+				<div class="col-md-3 margin-top-normal">
+					<select class="form-control multi-select-item" multiple="multiple">
+						<option value="both" selected="selected">Gender - Both</option>
+						<option value="male">Male</option>
+						<option value="female">Female</option>
 					</select>
 				</div>
-				<div class="col-md-3">
-					<select class="form-control margin-top-normal">
-						<option>Picture - All</option>
-						<option>No Picture</option>
-						<option>With Picture</option>
+				<div class="col-md-3 margin-top-normal">
+					<select class="form-control multi-select-item" multiple="multiple">
+						<option value="all" selected="selected">Picture - All</option>
+						<option value="no-photo">No Picture</option>
+						<option value="with-photo">With Picture</option>
 					</select>
 				</div>
 				<div class="col-md-3">
@@ -98,15 +97,16 @@
 					</div>
 					</div>
 				</div>
-				<div class="col-md-3">
-					<select class="form-control margin-top-normal">
-						<option>Body Type - All</option>
-						<option></option>
+				<div class="col-md-3 margin-top-normal">
+					<select class="form-control multi-select-item" multiple="multiple">
+						<option value="all">Body Type - All</option>
+						<option value="no-photo">Thin</option>
+						<option value="with-photo">Fat</option>
 					</select>
 				</div>
-				<div class="col-md-3">
-					<select class="form-control margin-top-normal">
-						<option>Ethnicty - All</option>
+				<div class="col-md-3 margin-top-normal">
+					<select class="form-control multi-select-item" multiple="multiple">
+						<option selected="selected">Ethnicty</option>
 						<option>Caucasian</option>
 						<option>Hispanic</option>
 						<option>African American</option>
@@ -117,9 +117,10 @@
 						<option>East Indian</option>
 					</select>
 				</div>
-				<div class="col-md-3">
-					<select class="form-control margin-top-normal">
-						<option>Last Active - 1 month</option>
+				<div class="col-md-3 margin-top-normal">
+					<select class="form-control multi-select-item" multiple="multiple">
+						<option selected="selected">Last Active - 1 week</option>
+						<option >Last Active - 1 month</option>
 						<option>Last Active - 3 months</option>
 						<option>Last Active - 6 months</option>
 						<option>Last Active - 1 year</option>
