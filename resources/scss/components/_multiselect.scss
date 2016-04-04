@@ -1,8 +1,21 @@
 .btn-group{
 	.multiselect{
+		text-align: left;
 		&.dropdown-toggle{
 			background: transparent !important;
 			border-radius: 0px !important;
 		}
 	}
+	.multiselect-container{
+		li{
+			a{
+				padding: 0px;
+			}
+		}
+	}
+	@media all and (max-width: 768px){
+		.multiselect-container{
+		    width: 100%;
+		}
+	}	
 }

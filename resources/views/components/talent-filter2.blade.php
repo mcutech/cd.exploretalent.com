@@ -6,17 +6,17 @@
 		</div>
 
 		<div class="panel-body form-horizontal">
-			<div class="row-fluid clearfix">
-				<label class="control-label pull-left"><a href="">United States</a> <span class="padding-left-small">or</span></label>
-				<div class="col-md-3">
-					<input class="form-control" placeholder="Select Market or Zip Code">
+			<div class="row">
+				<label class="control-label pull-left padding-left-small-normal"><a href="">United States</a> <span class="padding-left-small">or</span></label>
+				<div class="col-lg-3 col-md-3 col-sm-4">
+					<input class="form-control margin-bottom-small-zz-xs" placeholder="Select Market or Zip Code">
 				</div>
-				<div class="col-md-2">
-					<select class="form-control">
+				<div class="col-lg-3 col-md-2 col-sm-3">
+					<select class="form-control margin-bottom-small-zz-xs">
 						<option>25 miles</option>
 					</select>
 				</div>
-				<div class="col-md-2">
+				<div class="col-lg-2 col-md-2 col-sm-2">
 					<a href="" class="btn btn-primary btn-block">Search</a>
 				</div>
 			</div>
@@ -55,7 +55,7 @@
 			
 			<hr class="panel-wide margin-top-small-normal margin-bottom-small-normal">
 			<div class="row margin-bottom-large">
-				<div class="col-md-3">
+				<div class="col-lg-3 col-md-3 col-sm-3">
 					<label class="text-bold margin-bottom-zero">Age Range: <span id="age-min-text" data-bind="<%= age_min || 0 %>" class="text-normal">0</span> - <span id="age-max-text" data-bind="<%= age_max || 100 %>" class="text-normal">100</span></label>
 					<div class="padding-right-small">
 					<div class="padding-small">
@@ -65,27 +65,25 @@
 					</div>
 					</div>	
 				</div>
-				<div class="col-md-3 margin-top-normal">
-					<select class="form-control multi-select-item" multiple="multiple">
-						<option value="both" selected="selected">Gender - Both</option>
+				<div class="col-lg-3 col-md-3 col-sm-3 margin-top-normal">
+					<select class="form-control multi-select-item" multiple="multiple" data-selected-text="Select Gender">
 						<option value="male">Male</option>
 						<option value="female">Female</option>
 					</select>
 				</div>
-				<div class="col-md-3 margin-top-normal">
-					<select class="form-control multi-select-item" multiple="multiple">
-						<option value="all" selected="selected">Picture - All</option>
-						<option value="no-photo">No Picture</option>
-						<option value="with-photo">With Picture</option>
+				<div class="col-lg-3 col-md-3 col-sm-3 margin-top-normal">
+					<select class="form-control multi-select-item" multiple="multiple" data-selected-text="Select Photo">
+						<option value="no-photo">No Photo</option>
+						<option value="with-photo">With Photo</option>
 					</select>
 				</div>
-				<div class="col-md-3">
+				<div class="col-lg-3 col-md-3 col-sm-3">
 					<input class="form-control margin-top-normal" placeholder="Keyword..."></input>
 				</div>
 			</div>
 
 			<div class="row margin-bottom-large">
-				<div class="col-md-3">
+				<div class="col-lg-3 col-md-3 col-sm-3">
 					<label class="text-bold margin-bottom-zero">Height Range: <span id="height-min-text" class="text-normal" data-bind="<%= height_min ||'< 2\'0&quot;' %>">< 2'0"</span> -
 						<span id="height-max-text" class="text-normal" data-bind="<%= height_max || '8\'0&quot;' %>">8'0"</span>
 					</label>
@@ -97,16 +95,14 @@
 					</div>
 					</div>
 				</div>
-				<div class="col-md-3 margin-top-normal">
-					<select class="form-control multi-select-item" multiple="multiple">
-						<option value="all">Body Type - All</option>
+				<div class="col-lg-3 col-md-3 col-sm-3 margin-top-normal">
+					<select class="form-control multi-select-item" multiple="multiple" data-selected-text="Select Body Type">
 						<option value="no-photo">Thin</option>
 						<option value="with-photo">Fat</option>
 					</select>
 				</div>
-				<div class="col-md-3 margin-top-normal">
-					<select class="form-control multi-select-item" multiple="multiple">
-						<option selected="selected">Ethnicty</option>
+				<div class="col-lg-3 col-md-3 col-sm-3 margin-top-normal">
+					<select class="form-control multi-select-item" multiple="multiple" data-selected-text="Select Ethnicity">
 						<option>Caucasian</option>
 						<option>Hispanic</option>
 						<option>African American</option>
@@ -117,9 +113,8 @@
 						<option>East Indian</option>
 					</select>
 				</div>
-				<div class="col-md-3 margin-top-normal">
-					<select class="form-control multi-select-item" multiple="multiple">
-						<option selected="selected">Last Active - 1 week</option>
+				<div class="col-lg-3 col-md-3 col-sm-3 margin-top-normal">
+					<select class="form-control multi-select-item" multiple="multiple" data-selected-text="Last Active">
 						<option >Last Active - 1 month</option>
 						<option>Last Active - 3 months</option>
 						<option>Last Active - 6 months</option>
