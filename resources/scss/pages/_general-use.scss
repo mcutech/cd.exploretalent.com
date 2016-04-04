@@ -1,3 +1,224 @@
+// customize range slider design
+.ui-slider-horizontal{
+	.ui-slider-handle{
+		width: 18px;
+		height: 25px;
+		border-radius: 3px;
+		top: -8px;
+		cursor: pointer;
+		border: 1px solid rgba(0,0,0,0.25);
+
+		&::before{
+			width: 7px;
+			height: 12px;
+			border-radius: 2px;
+			top: 6px;
+			left: 5px;
+			background: #D0D0D0;
+		}
+	}
+}
+
+
+// no side-bar-design
+
+.no-sidebar-layout{
+
+	.panel{
+		.panel-heading{
+			border-radius: 0px;
+		}
+		.panel-body{
+			border-radius: 0px;
+		}
+	}
+
+	#content-wrapper{
+		padding: 80px 55px 18px 55px;
+	}
+
+
+	#main-navbar{
+		.navbar-header{
+			padding-left: 15px !important;
+			padding: 15px;
+		}
+
+		li{
+			border-right-width: 0px !important;
+		}
+
+		.primary-nav{
+			li{
+				border-right-width: 0px;
+				
+				a{
+					line-height: normal;
+					text-align: center;
+					font-size: 11px;
+					padding: 12px 18px;
+					height: 74px;
+
+					.primary-nav-icon{
+						font-size: 25px;
+					}
+				}
+			}
+		}
+
+		.secondary-nav{
+			li{	
+				a{	
+					padding: 12px 20px;
+					height: 74px;
+					text-align: center;
+				}
+			}
+		}
+	}
+
+	@media all and (max-width: 768px){
+		.navigation-header-container{
+			padding: 0px;
+		}
+		// .logo-for-desktop{
+		// 	display: none;
+		// }
+		// .logo-for-mobile{
+		// 	display: block;
+		// }
+
+		#main-navbar{
+			.navbar-navigations{
+				float: none !important;
+				width: 100%;
+				ul{
+					display: flex;
+					li{
+						flex-grow: 1;
+					}
+				}				
+			}
+		}
+		.secondary-nav{
+			.secondary-nav-text{
+				display: inline-block !important;
+			}
+		}		
+	}
+
+	// @media all and (min-width: 768px){
+	// 	.logo-for-mobile{
+	// 		display: none;
+	// 	}		
+	// }
+	@media all and (max-width: 1148px){
+		.primary-nav-text{
+			display: none;
+		}
+		#content-wrapper{
+			padding: 80px 5px !important;
+		}
+		.primary-nav{
+			li{
+				display: inline-block;
+				a{
+					padding: 10px 15px;
+					.primary-nav-icon{
+						i{
+							vertical-align: -webkit-baseline-middle;
+						}
+					}
+					.primary-nav-text{
+
+					}
+				}
+			}
+		}
+		.secondary-nav{
+			.nav-link{
+				i{
+					font-size: 16px;
+				}
+				.secondary-nav-text{
+					display: none;
+
+				}
+			}
+		}
+
+		.navbar-inner{
+			.navigation-header-container{
+				padding: 0px !important;
+			}
+		}
+
+		#main-navbar{
+			.navbar-header{
+				float: left;
+				width: inherit;
+				a{
+					padding: 0px;
+				}
+			}
+			.navbar-navigations{
+				display: inline-block;
+				float: left;
+			}
+			.navbar-toggle-buttons{
+				display: inline-block;
+			}
+		}
+
+
+
+	}
+
+	#main-wrapper{
+		padding-left: 0px;
+	}
+
+	#main-menu{
+		display: none;
+	}
+
+	#main-menu-bg{
+		display: none;
+	}
+
+	.page-header{
+		border: 0px;
+		margin: 0px;
+		padding: 3px 0px 10px 0px;
+	}
+
+	.breadcrumb{
+		margin: 0px;
+		border: 0px;
+		padding: 0px;
+
+		li{
+			a{
+				font-size: 10px;
+			}
+		}
+	}
+
+	.navbar-inner{
+		.navigation-header-container{
+			padding: 0 35px;
+			background-color: #ffffff;
+			position: relative;
+			.navbar-toggle{
+				padding-top: 14px !important;
+			}
+		}
+	}
+}
+
+// end no side-bar-design
+
+
 // input tagging on share like it list
 .bootstrap-tagsinput{
 	width: 100%;

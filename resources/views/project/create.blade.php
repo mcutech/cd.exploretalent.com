@@ -158,11 +158,11 @@
 							<div class="form-group">
 								<label class="control-label">Submission Type<span class="text-success">*</span></label>
 								<label class="radio checkbox-inline">
-									<input type="radio" name="radioSubmissionType" id="self-submission-option" value="3" class="px">
+									<input type="radio" name="radioSubmissionType" id="self-submission-option" value="1" class="px">
 									<span class="lbl">Self Submission</span>
 								</label>
 								<label class="radio checkbox-inline">
-									<input type="radio" name="radioSubmissionType" id="open-call-option" value="8" class="px">
+									<input type="radio" name="radioSubmissionType" id="open-call-option" value="2" class="px">
 									<span class="lbl">Open Call</span>
 								</label>
 							</div>
@@ -201,7 +201,7 @@
 											</div>
 											<div class="form-group">
 												<label class="checkbox-inline">
-													<input type="checkbox" id="inlineCheckbox3" value="option3" class="px"> <span class="lbl">If Appointment only, check</span>
+													<input type="checkbox" id="appointment-only-checkbox" class="px" name="by_app_only"> <span class="lbl">If Appointment only, check</span>
 												</label>
 											</div>
 										</div>
