@@ -6,7 +6,7 @@
         <h4 class="modal-title" id="myModalLabel"><span data-bind="<%= getFullName() %>, <%= getAge() %>"></span></h4>
       </div>
       <div class="modal-body">
-		<div id="carousel-custom" class="carousel slide" data-ride="carousel" data-interval="false">
+		<div id="carousel-custom" class="carousel slide" data-ride="carousel" data-interval="false" data-pause="true" keyboard="true">
 		    <div class="carousel-outer">
 		        <!-- Wrapper for slides -->
 		        <div id="carousel-inner" class="carousel-inner">

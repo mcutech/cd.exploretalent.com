@@ -29,7 +29,7 @@
 						</div>
 					</div>
 					<div class="row" id="talent-result">
-						@include('components.talent4', [ 'databind' => [ 'template' => '#talent-result', 'value' => 'data' ], 'ratings' => true, 'notes' => false, 'class' => 'col-md-2'  ])
+						@include('components.talent4', [ 'databind' => [ 'template' => '#talent-result', 'value' => 'data' ], 'ratings' => true, 'notes' => false, 'class' => 'col-lg-2 col-md-3 col-sm-3 col-xs-6'  ])
 					</div>
 				</div> {{-- talents-search-results --}}
 			</div>

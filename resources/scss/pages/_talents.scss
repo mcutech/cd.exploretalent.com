@@ -230,6 +230,27 @@
 						opacity: 0;
 						transition: 0.3s;
 
+						@media all and (max-width: 768px){
+							opacity: 1;
+							bottom: 0;
+							top: inherit;
+							right: inherit;
+							margin: 0;
+							display: flex;
+							width: 100%;
+							li{
+								flex-grow: 1;
+								padding: 0px;
+								.text-function-label{
+									display: none;
+								}
+								a{
+									padding: 8px 0 !important;
+									width: 100% !important;
+								}
+							}
+						}
+
 						li{
 							.text-function-label{
 								margin-right: 6px;
@@ -300,6 +321,9 @@
 						}
 					}
 				}
+
+
+
 				// end new layout for talents no sidebar
 
 				.talent-name{
