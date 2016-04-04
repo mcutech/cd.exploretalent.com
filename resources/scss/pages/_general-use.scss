@@ -37,7 +37,7 @@
 		padding: 80px 55px 18px 55px;
 		
 		@media all and (max-width: 768px){
-			padding-top: 135px !important;
+			padding-top: 125px !important;
 		}
 	}
 
@@ -46,6 +46,9 @@
 		.navbar-header{
 			padding-left: 15px !important;
 			padding: 15px;
+			@media all and (max-width: 768px){
+				padding: 5px 0px 0px 5px;
+			}			
 		}
 
 		li{
@@ -762,18 +765,14 @@
 			}
 		}
 
-		#main-navbar .navbar-header {
-		  background: #3787ea;
-		}
-
-		@media (min-width: 768px){
-			#main-navbar .navbar-header {
-			  background-color: #3787ea !important;
+		#main-navbar {
+			.navbar-header{
+			 	background: #3787ea;
 			}
+
 		}
 
 		@media (min-width: 768px){
-
 			#main-navbar #main-menu-toggle {
 				background: #2C77D4 ;
 				color: #fff;
