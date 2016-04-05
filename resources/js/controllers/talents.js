@@ -2,26 +2,9 @@ module.exports = function(core, user) {
 	var handler = require('../event-handlers/talents.js')(core, user);
 
 	$(document).on('click', '.fav-btn', handler.addToFavorites);
-	$('#talent-filter-button').on('click', handler.refresh);
-
-	$("#jquery-select2-example").select2({
-		allowClear: true,
-		placeholder: "Seach market"
-	});
-
-	$("#jquery-select2-example").on('change', handler.addToMarket);
-	$(document).on('click', '.check-markets', handler.removeFromMarket);
-
-	$(document).on('click', '#search-talent-btn', handler.refresh);
-
-	$(document).on('keydown', '#search-talent-input', function(e) {
-		if(e.which == 13) { // enter key
-			$('#search-talent-btn').click();
-		}
-	});
+	$('#search-button').on('click', handler.refresh);
 	$(document).on('click', '.rating-button', handler.refreshCastingRole);
 	$(document).on('change', '#casting-list', handler.selectCastingRole);
-	$(document).on('click', '#btn-add-to-likeitlist', handler.addToLikeitlist);
 
 	// talents functions menu
 	$(document).on('mouseover', '.talent-function-icon.profile', function() {
@@ -46,7 +29,7 @@ module.exports = function(core, user) {
 
 	$(document).on('mouseleave', '.talent-function-icon', function(){
 		$('.text-function-label').css("opacity", "0");
-	});	
+	});
 
 	//talents add notes function
 	$(document).on('click', '.talent-function-icon.notes', function() {
@@ -60,5 +43,11 @@ module.exports = function(core, user) {
 		$(this).closest('.talent-item').find('.talent-note-v2').hide();
 		$(this).closest('.talent-item').find('.talent-photo-v2').show();
 		$(this).closest('.talent-item').find('.talent-functions-v2 ').show();
+	});
+
+	$(window).on('scroll', function() {
+		if ($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
+			handler.refresh(true);
+		}
 	});
 }

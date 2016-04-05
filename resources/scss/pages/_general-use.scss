@@ -35,6 +35,10 @@
 
 	#content-wrapper{
 		padding: 80px 55px 18px 55px;
+		
+		@media all and (max-width: 768px){
+			padding-top: 125px !important;
+		}
 	}
 
 
@@ -42,6 +46,9 @@
 		.navbar-header{
 			padding-left: 15px !important;
 			padding: 15px;
+			@media all and (max-width: 768px){
+				padding: 5px 0px 0px 5px;
+			}			
 		}
 
 		li{
@@ -62,6 +69,14 @@
 					.primary-nav-icon{
 						font-size: 25px;
 					}
+
+					@media all and (max-width: 768px){
+						height: 40px;
+						padding: 0px 18px;
+						.primary-nav-icon{
+							font-size: 20px;
+						}
+					}
 				}
 			}
 		}
@@ -81,12 +96,6 @@
 		.navigation-header-container{
 			padding: 0px;
 		}
-		// .logo-for-desktop{
-		// 	display: none;
-		// }
-		// .logo-for-mobile{
-		// 	display: block;
-		// }
 
 		#main-navbar{
 			.navbar-navigations{
@@ -107,17 +116,13 @@
 		}		
 	}
 
-	// @media all and (min-width: 768px){
-	// 	.logo-for-mobile{
-	// 		display: none;
-	// 	}		
-	// }
+
 	@media all and (max-width: 1148px){
 		.primary-nav-text{
 			display: none;
 		}
 		#content-wrapper{
-			padding: 80px 5px !important;
+			padding: 80px 5px;
 		}
 		.primary-nav{
 			li{
@@ -760,18 +765,14 @@
 			}
 		}
 
-		#main-navbar .navbar-header {
-		  background: #3787ea;
-		}
-
-		@media (min-width: 768px){
-			#main-navbar .navbar-header {
-			  background-color: #3787ea !important;
+		#main-navbar {
+			.navbar-header{
+			 	background: #3787ea;
 			}
+
 		}
 
 		@media (min-width: 768px){
-
 			#main-navbar #main-menu-toggle {
 				background: #2C77D4 ;
 				color: #fff;

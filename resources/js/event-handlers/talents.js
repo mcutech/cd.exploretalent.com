@@ -6,34 +6,22 @@ function handler(core, user){
 	self.core = core;
 	self.user = user;
 	self.marketscheck = [];
-	self.talent = [];
-	// assign query string variable to filter form
-	var qs = self.core.service.query_string();
-	var form = {
-		zip 		: '',
-		age_min 	: '',
-		age_max 	: '',
-		sex 		: '',
-		has_photo 	: '',
-		height_min 	: '',
-		height_max 	: '',
-		build 		: '',
-		ethnicity 	: '',
-		join_status : '',
-	}
-	_.assign(form, qs);
-	self.core.service.databind('#talent-filter-form', form);
 	self.refresh();
 }
 
-handler.prototype.refresh = function() {
+handler.prototype.refresh = function(append) {
+	if (self.refreshing) {
+		return;
+	}
+
+	self.page = append ? self.page + 1 : 1;
+	self.refreshing = true;
 
 	var talents;
 	var talentnums;
 
 	var data = self.getFilters();
 	$('#talent-search-loader').show();
-	$('#talent-search-result').hide();
 
 	self.core.resource.search_talent.get(data)
 		.then(function(res) {
@@ -93,93 +81,53 @@ handler.prototype.refresh = function() {
 				});
 			}
 
-			var qs = self.core.service.query_string();
-			var form = self.core.service.form.serializeObject('#talent-filter-form');
-			_.merge(qs, form);
-			qs = _.omit(qs, function(n) {
-				return n == '';
-			});
+			self.core.service.databind('#talent-search-result', talents, append);
+			self.refreshing = false;
 
-			// add filters to query string
-			var url = window.location.href.replace(window.location.search, '');
-			url = url + '?' + $.param(qs);
-			window.history.pushState(null, null, url);
-			self.core.service.databind('#talent-search-result', talents);
-
-			self.core.service.paginate('#talents-pagination', { class : 'pagination', total : talents.total, name : 'page' });
-			if(talents.total < 25) {
-				$('#talents-pagination').hide();
-			}
-			else {
-				$('#talents-pagination').show();
-			}
-
-			self.talent = talents;
 			$('#talent-search-loader').hide();
-			$('#talent-search-result').show();
-
 		});
 }
 
+handler.prototype.loadNextMatches = function() {
+	console.log('loading matches.');
+}
+
 handler.prototype.getFilters = function() {
-	var qs = self.core.service.query_string();
 	var form = self.core.service.form.serializeObject('#talent-filter-form');
-	var subquery = [];
-	var asdasd = [];
 	var data = {
-		query 	: [
+		query : [
 		],
-		page	: qs.page || 1
-	};
-
-	_.each(self.marketscheck, function(val, ind){
-		if(val.check == 'check'){
-			asdasd.push(val.name);
-		}
-	});
-
-	if(self.marketscheck.length != 0){
-		console.log(self.marketscheck);
-		_.each(self.marketscheck, function(val, ind){
-			if(val.check == 'check'){
-				if(asdasd.length > 1){
-					subquery.push([ 'orWhere', 'city', 'like', '%'+val.name.substring(0, val.name.indexOf(','))+'%' ]);
-					subquery.push([ 'orWhere', 'city1', 'like', '%'+val.name.substring(0, val.name.indexOf(','))+'%' ]);
-					subquery.push([ 'orWhere', 'city2', 'like', '%'+val.name.substring(0, val.name.indexOf(','))+'%' ]);
-					subquery.push([ 'orWhere', 'city3', 'like', '%'+val.name.substring(0, val.name.indexOf(','))+'%' ]);
-				} else if(asdasd.length == 1){
-					subquery.push([ 'orWhere', 'city', 'like', '%'+val.name.substring(0, val.name.indexOf(','))+'%' ]);
-					subquery.push([ 'orWhere', 'city1', 'like', '%'+val.name.substring(0, val.name.indexOf(','))+'%' ]);
-					subquery.push([ 'orWhere', 'city2', 'like', '%'+val.name.substring(0, val.name.indexOf(','))+'%' ]);
-					subquery.push([ 'orWhere', 'city3', 'like', '%'+val.name.substring(0, val.name.indexOf(','))+'%' ]);
-				}
-			}
-		});
-		data.query.push([ 'where', subquery ]);
+		per_page : 24,
+		page : self.page
 	}
 
-
-	if (parseInt(form.age_min)) {
+	if (form.age_min) {
 		data.query.push([ 'where', 'dobyyyy', '<=', new Date().getFullYear() - parseInt(form.age_min) ]);
 	}
 
-	if (parseInt(form.age_max)) {
+	if (form.age_max) {
 		data.query.push([ 'where', 'dobyyyy', '>=', new Date().getFullYear() - parseInt(form.age_max) ]);
 	}
 
 	if (form.sex) {
-		if (!(form.sex instanceof Array)) {
-			data.query.push([ 'where', 'sex', '=', form.sex ]);
-		}
+		data.query.push([ 'where', 'sex', '=', form.sex ]);
 	}
 
 	if (form.has_photo) {
-		if (!(form.has_photo instanceof Array)) {
-			data.query.push([ 'where', 'has_photos', '=', form.has_photo ]);
-		}
+		data.query.push([ 'where', 'has_photos', '=', form.has_photo ]);
 	}
 
-	if (parseInt(form.height_min)) {
+	if(form.search_text) {
+		data.query.push([ 'where',
+			[
+				[ 'where', 'talentnum', '=', form.search_text ],
+				[ 'orWhere', 'fname', 'LIKE', '%' + form.search_text + '%' ],
+				[ 'orWhere', 'lname', 'LIKE', '%' + form.search_text + '%' ],
+			]
+		]);
+	}
+
+	if (form.height_min) {
 		data.query.push([ 'where', 'heightinches', '>=', form.height_min ]);
 	}
 
@@ -225,41 +173,28 @@ handler.prototype.getFilters = function() {
 		}
 	}
 
-	if (form.join_status) {
-		if (!(form.join_status instanceof Array)) {
-			if (form.join_status == 5) {
-				data.query.push([ 'where', 'is_pro', '=', 1 ]);
-			}
-			else {
-				data.query.push([ 'where', 'is_pro', '=', 0 ]);
-			}
-		}
-	}
-
-	var searchterm = $('#search-talent-input').val();
-
-	if(searchterm.length > 1) {
-
-		data = {
-			query 	: [],
-			page	: qs.page || 1
-		};
-
-		form = [];
-		subquery = [];
-		subfilter = [];
-
-		data.query.push([ 'where',
-			[
-				[ 'where', 'talentnum', '=', searchterm ],
-				[ 'orWhere', 'fname', 'LIKE', '%' + searchterm + '%' ],
-				[ 'orWhere', 'lname', 'LIKE', '%' + searchterm + '%' ],
-			]
-		]);
-
-	}
-
 	return data;
+
+	// TODO:
+	// if(self.marketscheck.length != 0){
+	// 	console.log(self.marketscheck);
+	// 	_.each(self.marketscheck, function(val, ind){
+	// 		if(val.check == 'check'){
+	// 			if(asdasd.length > 1){
+	// 				subquery.push([ 'orWhere', 'city', 'like', '%'+val.name.substring(0, val.name.indexOf(','))+'%' ]);
+	// 				subquery.push([ 'orWhere', 'city1', 'like', '%'+val.name.substring(0, val.name.indexOf(','))+'%' ]);
+	// 				subquery.push([ 'orWhere', 'city2', 'like', '%'+val.name.substring(0, val.name.indexOf(','))+'%' ]);
+	// 				subquery.push([ 'orWhere', 'city3', 'like', '%'+val.name.substring(0, val.name.indexOf(','))+'%' ]);
+	// 			} else if(asdasd.length == 1){
+	// 				subquery.push([ 'orWhere', 'city', 'like', '%'+val.name.substring(0, val.name.indexOf(','))+'%' ]);
+	// 				subquery.push([ 'orWhere', 'city1', 'like', '%'+val.name.substring(0, val.name.indexOf(','))+'%' ]);
+	// 				subquery.push([ 'orWhere', 'city2', 'like', '%'+val.name.substring(0, val.name.indexOf(','))+'%' ]);
+	// 				subquery.push([ 'orWhere', 'city3', 'like', '%'+val.name.substring(0, val.name.indexOf(','))+'%' ]);
+	// 			}
+	// 		}
+	// 	});
+	// 	data.query.push([ 'where', subquery ]);
+	// }
 }
 
 handler.prototype.addToFavorites = function(e) {
@@ -287,73 +222,6 @@ handler.prototype.addToFavorites = function(e) {
 				$i.removeClass('text-light-gray');
 			});
 	}
-}
-
-handler.prototype.addToMarket = function() {
-	var txt = ($('#jquery-select2-example').select2('data').text);
-	var txt1 = _.find(self.marketscheck, function(val){
-		return val.name == txt;
-	});
-	if(!txt1){
-		self.marketscheck.push({ name : txt , check : 'check'});
-	}
-	self.talent.market_checks = self.marketscheck;
-	self.core.service.databind('#markets_checks', self.talent);
-	$('#jquery-select2-example').select2('val', '');
-
-}
-
-handler.prototype.removeFromMarket = function() {
-	var id = $(this).parent().attr('id');
-	var rmv = _.find(self.marketscheck, function(n, ind){
-		if(n.name.replace(/\s/g, '').replace(/,/g, '') == id){
-			if(n.check == 'check'){
-				self.marketscheck[ind].check = 'uncheck';
-			} else {
-				self.marketscheck[ind].check = 'check';
-			}
-			//self.marketscheck[ind].check = 'uncheck';
-		}
-	});
-	self.talent.market_checks = self.marketscheck;
-	self.core.service.databind('#markets_checks', self.talent);
-
-}
-
-handler.prototype.refreshCastingRole = function() {
-	self.ratingValue = $(this).attr("data-value");
-	self.inviteeId = $(this).attr("data-id");
-
-	self.core.resource.project.get()
-		.then(function(res) {
-			self.core.service.databind('#casting-div', res);
-
-		});
-
-}
-
-handler.prototype.selectCastingRole = function() {
-	var castingId = $('#casting-list').val();
-	self.castingId = castingId;
-	console.log(castingId);
-
-	var data = {
-		projectId	: castingId,
-		withs		: [ 'bam_roles' ]
-	}
-
-	self.core.resource.project.get(data)
-		.then(function(res) {
-			self.core.service.databind('#role-div', res);
-			self.inviterId = res.user_id;
-
-			$('#role-list').change(function() {
-				var roleId = null;
-				roleId = $('#role-list').val();
-				self.roleId = roleId;
-				console.log(roleId)
-			});
-		});
 }
 
 handler.prototype.addToLikeitlist = function() {
@@ -390,6 +258,40 @@ handler.prototype.addToLikeitlist = function() {
 			}
 			$('#addtolist').modal('hide');
 			$('#role-list').val([]);
+		});
+}
+
+handler.prototype.refreshCastingRole = function() {
+	self.ratingValue = $(this).attr("data-value");
+	self.inviteeId = $(this).attr("data-id");
+
+	self.core.resource.project.get()
+		.then(function(res) {
+			self.core.service.databind('#casting-div', res);
+
+		});
+
+}
+
+handler.prototype.selectCastingRole = function() {
+	var castingId = $('#casting-list').val();
+	self.castingId = castingId;
+
+	var data = {
+		projectId	: castingId,
+		withs		: [ 'bam_roles' ]
+	}
+
+	self.core.resource.project.get(data)
+		.then(function(res) {
+			self.core.service.databind('#role-div', res);
+			self.inviterId = res.user_id;
+
+			$('#role-list').change(function() {
+				var roleId = null;
+				roleId = $('#role-list').val();
+				self.roleId = roleId;
+			});
 		});
 }
 

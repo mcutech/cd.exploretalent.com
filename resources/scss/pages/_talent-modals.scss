@@ -27,3 +27,19 @@
 
 }
 // end talent photo modal
+
+//talent-view-photos-modal
+#talent-view-photos-modal{
+	.carousel{
+		.item{
+			height: 340px;
+			img{
+				display: block;
+				max-width: 100%;
+				height: auto;
+				max-height: 100%;
+			}
+		}
+	}
+}
+//talent-view-photos-modal

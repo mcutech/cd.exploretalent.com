@@ -11,27 +11,19 @@
 
 		<div class="talents-search-filter-content">
 			<div class="row-fluid clearfix">
-				@include('components.talent-filter2')
+				@include('talent.components.talent-filter')
 
-				<div id="talent-search-loader" class="text-center padding-top-large">
-					<h3>Loading Talents</h3>
-					<h1><i class="fa fa-spinner fa-spin"></i></h1>
-				</div>
 			</div>
 			<div class="row">
 				<div class="col-md-12 talents-search-result" id="talent-search-result">
-					<div class="row-fluid clearfix top-results-heading margin-bottom-normal">
-						<div class="col-md-12">
-							<div class="float-right">
-								<div id="talents-pagination">
-								</div>
-							</div>
-						</div>
-					</div>
 					<div class="row" id="talent-result">
-						@include('components.talent4', [ 'databind' => [ 'template' => '#talent-result', 'value' => 'data' ], 'ratings' => true, 'notes' => false, 'class' => 'col-md-2'  ])
+						@include('components.talent4', [ 'databind' => [ 'template' => '#talent-result', 'value' => 'data' ], 'ratings' => true, 'notes' => false, 'class' => 'col-lg-2 col-md-3 col-sm-3 col-xs-6'  ])
 					</div>
 				</div> {{-- talents-search-results --}}
+			</div>
+			<div id="talent-search-loader" class="text-center padding-top-large">
+				<h3>Loading Talents</h3>
+				<h1><i class="fa fa-spinner fa-spin"></i></h1>
 			</div>
 		</div>
 
