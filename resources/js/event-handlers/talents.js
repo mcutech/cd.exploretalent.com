@@ -117,6 +117,7 @@ handler.prototype.refresh = function() {
 			self.talent = talents;
 			$('#talent-search-loader').hide();
 			$('#talent-search-result').show();
+
 		});
 }
 
