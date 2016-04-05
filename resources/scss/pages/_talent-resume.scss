@@ -1,0 +1,29 @@
+.talent-resume-wrapper{
+	background-color: #f6f6f6;
+
+	.project-role-actions{
+		padding: 5px;
+	}
+
+	#talent-resume-info{
+		background-color: #23272D;
+		color: #ffffff;
+
+		.skills-link{
+			a{
+				color: #BDBDBD;
+				text-decoration: underline;
+			}
+		}
+	}
+
+	#talent-resume-div{
+		.resume-info{
+			padding: 6px 0;
+			border: 1px solid #dddddd;
+			label{
+				margin: 0px;
+			}
+		}
+	}
+}
