@@ -94,7 +94,8 @@
 			<div class="col-md-12 col-sm-12 padding-zero margin-top-small">
 				<div class="like-it-list-container">
 					<div class="btn-group talent-function">
-						<a data-toggle="modal" data-bind="<%= talentnum %>" data-bind-target="data-id" id="talent-resume" data-target="#talent-resume-modal" class="btn btn-xs btn-default function-item"><span class="fa fa-file-text-o"></span></a>
+						<a target="_blank" data-bind="/talents/<%= talentnum %>" class="btn btn-xs btn-default function-item"><span class="fa fa-file-text-o"></span></a>
+						<!-- <a data&#45;toggle="modal" data&#45;bind="<%= talentnum %>" data&#45;bind&#45;target="data&#45;id" id="talent&#45;resume" data&#45;target="#talent&#45;resume&#45;modal" class="btn btn&#45;xs btn&#45;default function&#45;item"><span class="fa fa&#45;file&#45;text&#45;o"></span></a> -->
 						<a data-toggle="modal" data-bind="<%= talentnum %>" data-bind-target="data-id" id="talent-photo" data-target="#talent-photos-modal" class="btn btn-xs btn-default function-item"><span class="fa fa-picture-o"></span></a>
 					</div>
 				</div>
