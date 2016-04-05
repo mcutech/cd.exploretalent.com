@@ -5,7 +5,6 @@ function handler(core, user){
 	self = this;
 	self.core = core;
 	self.user = user;
-	self.marketscheck = [];
 	self.refresh();
 }
 
@@ -14,6 +13,7 @@ handler.prototype.refresh = function(append) {
 		return;
 	}
 
+	append = append === true;
 	self.page = append ? self.page + 1 : 1;
 	self.refreshing = true;
 
@@ -23,6 +23,10 @@ handler.prototype.refresh = function(append) {
 	var data = self.getFilters();
 	$('#talent-search-loader').show();
 
+	if (!append) {
+		$('#talent-search-result').hide();
+	}
+
 	self.core.resource.search_talent.get(data)
 		.then(function(res) {
 			talents = res;
@@ -30,6 +34,8 @@ handler.prototype.refresh = function(append) {
 				talentnums = _.map(talents.data, function(talent) {
 					return talent.talentnum;
 				});
+
+				talentnums.push(0);
 
 				var data2 = {
 					query : [
@@ -85,11 +91,10 @@ handler.prototype.refresh = function(append) {
 			self.refreshing = false;
 
 			$('#talent-search-loader').hide();
+			if (!append) {
+				$('#talent-search-result').show();
+			}
 		});
-}
-
-handler.prototype.loadNextMatches = function() {
-	console.log('loading matches.');
 }
 
 handler.prototype.getFilters = function() {
@@ -99,6 +104,15 @@ handler.prototype.getFilters = function() {
 		],
 		per_page : 24,
 		page : self.page
+	}
+
+	if (form.markets) {
+		if (form.markets instanceof Array) {
+			data.query.push([ 'whereIn', 'city', form.markets ]);
+		}
+		else {
+			data.query.push([ 'where', 'city', '=', form.markets ]);
+		}
 	}
 
 	if (form.age_min) {
@@ -114,7 +128,7 @@ handler.prototype.getFilters = function() {
 	}
 
 	if (form.has_photo) {
-		data.query.push([ 'where', 'has_photos', '=', form.has_photo ]);
+		data.query.push([ 'where', 'has_photos', '=', form.has_photo == 'true' ? 1 : 0 ]);
 	}
 
 	if(form.search_text) {
@@ -137,17 +151,7 @@ handler.prototype.getFilters = function() {
 
 	if (form.build) {
 		if (form.build instanceof Array) {
-			var subfilter = [];
-			_.each(form.build, function(build, index) {
-				if (index > 0) {
-					subfilter.push([ 'orWhere', 'build', '=', build ]);
-				}
-				else {
-					subfilter.push([ 'where', 'build', '=', build ]);
-				}
-			});
-
-			data.query.push([ 'where', subfilter ]);
+			data.query.push([ 'whereIn', 'build', form.build ]);
 		}
 		else {
 			data.query.push([ 'where', 'build', '=', form.build ]);
@@ -156,17 +160,7 @@ handler.prototype.getFilters = function() {
 
 	if (form.ethnicity) {
 		if (form.ethnicity instanceof Array) {
-			var subfilter = [];
-			_.each(form.ethnicity, function(ethnicity, index) {
-				if (index > 0) {
-					subfilter.push([ 'orWhere', 'ethnicity', '=', ethnicity ]);
-				}
-				else {
-					subfilter.push([ 'where', 'ethnicity', '=', ethnicity ]);
-				}
-			});
-
-			data.query.push([ 'where', subfilter ]);
+			data.query.push([ 'whereIn', 'ethnicity', form.ethnicity ]);
 		}
 		else {
 			data.query.push([ 'where', 'ethnicity', '=', form.ethnicity ]);
@@ -195,6 +189,7 @@ handler.prototype.getFilters = function() {
 	// 	});
 	// 	data.query.push([ 'where', subquery ]);
 	// }
+
 }
 
 handler.prototype.addToFavorites = function(e) {

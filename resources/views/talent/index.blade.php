@@ -10,8 +10,8 @@
 	<div class="talents-wrapper">
 
 		<div class="talents-search-filter-content">
-			<div class="row-fluid clearfix">
-				@include('talent.components.talent-filter')
+			<div class="row clearfix">
+				@include('talent.components.filter')
 
 			</div>
 			<div class="row">
