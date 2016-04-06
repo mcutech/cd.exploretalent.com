@@ -13,13 +13,15 @@
 			<div class="col-md-2 col-sm-2 col-xs-4">
 				<a href="" class="btn btn-outline btn-sm btn-block">CallBack</a>
 			</div>
-			<div class="col-md-3 col-sm-3 col-xs-8 padding-left-zero-md-lg">
-				<div class="btn-group btn-group-justified btn-group-sm">
-					<a href="" class="btn btn-outline">1</a>
-					<a href="" class="btn btn-outline">2</a>
-					<a href="" class="btn btn-outline">3</a>
-					<a href="" class="btn btn-outline">4</a>
-					<a href="" class="btn btn-outline">5</a>
+			<div class="col-md-3 col-sm-3 col-xs-8 padding-left-zero-sm-lg">
+				<div class="like-it-list-container">
+					<div class="btn-group btn-group-justified talent-function">
+						<a data-value="1" class="btn btn-sm btn-danger rating-button function-item" data-toggle="modal" data-bind="<%= user.id %>" data-bind-target="data-id" data-target="#addtolist">1</a>
+						<a data-value="2" class="btn btn-sm btn-warning rating-button function-item" data-toggle="modal" data-bind="<%= user.id %>" data-bind-target="data-id" data-target="#addtolist">2</a>
+						<a data-value="3" class="btn btn-sm btn-info rating-button function-item" data-toggle="modal" data-bind="<%= user.id %>" data-bind-target="data-id" data-target="#addtolist"	>3</a>
+						<a data-value="4" class="btn btn-sm btn-primary rating-button function-item" data-toggle="modal" data-bind="<%= user.id %>" data-bind-target="data-id" data-target="#addtolist">4</a>
+						<a data-value="5" class="btn btn-sm btn-success rating-button function-item" data-toggle="modal" data-bind="<%= user.id %>" data-bind-target="data-id" data-target="#addtolist">5</a>
+					</div>
 				</div>
 			</div>
 			<div class="col-sm-1 col-xs-2 padding-left-zero">
@@ -52,13 +54,13 @@
 
 	<!-- content info -->
 	<div class="panel margin-normal">
-		<div class="panel-body">
+		<div class="panel-body padding-small-zz-xs">
 			<div class="row-fluid clearfix">
-				<div class="col-sm-3 col-xs-4 padding-zero-zz-xs padding-right-normal-zz-xs"> <!-- photos -->
+				<div class="col-sm-3 col-xs-4 padding-zero-zz-xs padding-right-small-zz-xs"> <!-- photos -->
 					<div id="talent-primary-photo" class="col-sm-12 padding-zero">
 						<img data-bind="<%= getPrimaryPhoto() %>" class="" width="100%">
 					</div>
-					<div class="col-sm-12 padding-zero display-none-zz-xs">
+					<div class="col-sm-12 padding-zero">
 						<div id="first-photo" class="col-sm-6 col-xs-6 padding-right-zero padding-left-zero">
 							<img data-bind="https://etdownload.s3.amazonaws.com/<%= bam_media_path_full %>" class="margin-top-small" width="100%">
 						</div>
@@ -66,11 +68,11 @@
 							<img data-bind="https://etdownload.s3.amazonaws.com/<%= bam_media_path_full %>" class="margin-top-small" width="100%">
 						</div>
 					</div>
-					<div id="third-photo" class="col-sm-12 col-xs-6 padding-zero display-none-zz-xs">
+					<div id="third-photo" class="col-sm-12 col-xs-6 padding-zero">
 						<img data-bind="https://etdownload.s3.amazonaws.com/<%= bam_media_path_full %>" class="margin-top-small" width="100%">
 					</div>
 					<div class="col-sm-12 col-xs-12 padding-zero">
-						<a data-toggle="modal" data-bind="<%= talentnum %>" data-bind-target="data-id" id="view-resume-photos" data-target="#talent-view-photos-modal" class="btn btn-default btn-block margin-top-small"><span>View Photos</span></a>
+						<a data-toggle="modal" data-bind="<%= talentnum %>" data-bind-target="data-id" id="view-resume-photos" data-target="#talent-view-photos-modal" class="btn btn-default btn-block margin-top-small"><span><span class="display-none-zz-xs">View</span> Photos</span></a>
 					</div>
 				</div> <!-- photos -->
 
@@ -147,111 +149,112 @@
 									</div>
 								</div>
 							</div>
-
-							<div class="col-md-12 padding-zero talent-info-item">
-								<div data-bind="<%= (bam_talentinfo2.special_skills) ? '1' : '' %>" data-bind-target="visibility">
-									<div class="col-sm-12 margin-top-small">
-										<h4>About</h4>
-									</div>
-									<div class="col-sm-12">
-										<p data-bind="<%= bam_talentinfo2.special_skills%>" class="margin-top-zero"></p>
-									</div>
-								</div>
-								<div data-bind="<%= (bam_talentinfo2.special_skills) ? '1' : '' %>" data-bind-target="visibility">
-									<div class="col-sm-12 margin-top-small">
-										<h4>Short Resume</h4>
-									</div>
-									<div class="col-sm-12">
-										<p data-bind="<%= bam_talentinfo2.experience %>"class="margin-top-normal-zero"></p>
-									</div>
-								</div>
-							</div>
 						</div>
 					</div><!-- Acting/Modeling -->
+					
+					<!-- about and short resume -->
+					<div class="col-xs-12 padding-zero talent-info-item">
+						<div data-bind="<%= (bam_talentinfo2.special_skills) ? '1' : '' %>" data-bind-target="visibility">
+							<div class="col-sm-12 margin-top-small">
+								<h5 class="margin-zero text-bold text-primary">About</h5>
+							</div>
+							<div class="col-sm-12">
+								<p data-bind="<%= bam_talentinfo2.special_skills%>" class="margin-top-zero"></p>
+							</div>
+						</div>
+						<div data-bind="<%= (bam_talentinfo2.special_skills) ? '1' : '' %>" data-bind-target="visibility">
+							<div class="col-sm-12 margin-top-small">
+								<h5 class="margin-zero text-bold text-primary">Short Resume</h5>
+							</div>
+							<div class="col-sm-12">
+								<p data-bind="<%= bam_talentinfo2.experience %>"class="margin-top-normal-zero"></p>
+							</div>
+						</div>
+					</div>
 
-					<div id="musician" class="col-sm-12 form-group">
+					<div id="musician" class="col-xs-12 form-group">
 						<div class="row">
 							<h4 class="text-bold margin-bottom-zero-small">Musician</h4>
 							<div class="col-sm-12 border-t"></div>
 						</div>
 						<div class="row resume-info">
-							<div data-bind="<%= bam_talent_music[0].music_role ? '1' : '' %>" data-bind-target="visibility">
-								<div class="col-sm-3 col-xs-6">
+							<div class="col-sm-6 col-xs-12 padding-zero talent-info-item" data-bind="<%= bam_talent_music[0].music_role ? '1' : '' %>" data-bind-target="visibility">
+								<div class="col-sm-6 col-xs-6">
 									<label style="width=20px;">Primary Role</label>
 								</div>
-								<div class="col-sm-3 col-xs-6">
+								<div class="col-sm-6 col-xs-6">
 									<span data-bind="<%= bam_talent_music[0].music_role %>"></span>
 								</div>
 							</div>
 
-							<div data-bind="<%= bam_talent_music[0].number_of_gigs ? '1' : '' %>" data-bind-target="visibility">
-								<div class="col-sm-3 col-xs-6">
+							<div class="col-sm-6 col-xs-12 padding-zero talent-info-item" data-bind="<%= bam_talent_music[0].number_of_gigs ? '1' : '' %>" data-bind-target="visibility">
+								<div class="col-sm-6 col-xs-6">
 									<label>Performances</label>
 								</div>
-								<div class="col-sm-3 col-xs-6">
+								<div class="col-sm-6 col-xs-6">
 									<span data-bind="<%= bam_talent_music[0].number_of_gigs %>"></span>
 								</div>
 							</div>
 						
-							<div data-bind="<%= bam_talent_music[0].genre ? '1' : '' %>" data-bind-target="visibility">
-								<div class="col-sm-3 col-xs-6">
+							<div class="col-sm-6 col-xs-12 padding-zero talent-info-item" data-bind="<%= bam_talent_music[0].genre ? '1' : '' %>" data-bind-target="visibility">
+								<div class="col-sm-6 col-xs-6">
 									<label style="width=20px;">Genres</label>
 								</div>
-								<div class="col-sm-3 col-xs-6">
+								<div class="col-sm-6 col-xs-6">
 									<span data-bind="<%= bam_talent_music[0].genre %>"> </span>
 								</div>
 							</div>
 
-							<div data-bind="<%= bam_talent_music[0].music_instruments ? '1' : '' %>" data-bind-target="visibility">
-								<div class="col-sm-3 col-xs-6">
+							<div class="col-sm-6 col-xs-12 padding-zero talent-info-item" data-bind="<%= bam_talent_music[0].music_instruments ? '1' : '' %>" data-bind-target="visibility">
+								<div class="col-sm-6 col-xs-6">
 									<label> Intruments</label>
 								</div>
-								<div class="col-sm-3 col-xs-6">
+								<div class="col-sm-6 col-xs-6">
 									<span data-bind="<%= bam_talent_music[0].music_instruments %>"></span>
 								</div>
 							</div>
 
-							<div data-bind="<%= bam_talent_music[0].years_experience ? '1' : '' %>" data-bind-target="visibility">
-								<div class="col-sm-3 col-xs-6">
+							<div class="col-sm-6 col-xs-12 padding-zero talent-info-item" data-bind="<%= bam_talent_music[0].years_experience ? '1' : '' %>" data-bind-target="visibility">
+								<div class="col-sm-6 col-xs-6">
 									<label style="width=20px;">Experience</label>
 								</div>
-								<div class="col-sm-3 col-xs-6">
+								<div class="col-sm-6 col-xs-6">
 									<span data-bind="<%= bam_talent_music[0].years_experience %>"></span>
 								</div>
 							</div>
 
-							<div data-bind="<%= (bam_talent_music[0].des_1) ? 1 : 0 %>" data-bind-target="visibility">
+							<div class="col-xs-12 padding-zero talent-info-item" data-bind="<%= (bam_talent_music[0].des_1) ? 1 : 0 %>" data-bind-target="visibility">
 								<div class="col-sm-12 margin-top-normal-medium">
-									<h4>Musician Information</h4>
+									<h5 class="text-bold margin-zero text-primary">Musician Information</h5>
 								</div>
 								<div class="col-sm-12">
-									<p class="margin-top-large main" data-bind="<%= bam_talent_music[0].des_1 %>">
+									<p class="main" data-bind="<%= bam_talent_music[0].des_1 %>">
 									</p>
-									<p class="margin-top-large extended hide" data-bind="<%= bam_talent_music[0].des_1 %>">
+									<p class="extended hide" data-bind="<%= bam_talent_music[0].des_1 %>">
 									</p>
 								</div>
 							</div>
 
-							<div data-bind="<%= (bam_talent_music[0].searching_gig_des) ? 1 : 0 %>" data-bind-target="visibility">
+							<div class="col-xs-12 padding-zero talent-info-item" data-bind="<%= (bam_talent_music[0].searching_gig_des) ? 1 : 0 %>" data-bind-target="visibility">
 								<div class="col-sm-12 margin-top-large">
-									<h4>Looking for this kind of gig</h4>
+									<h5 class="text-bold margin-zero text-primary">Looking for this kind of gig</h5>
 								</div>
 								<div class="col-sm-12">
-									<p class="margin-top-normal-medium main" data-bind="<%= bam_talent_music[0].searching_gig_des %>">
+									<p class="main" data-bind="<%= bam_talent_music[0].searching_gig_des %>">
 									</p>
-									<p class="margin-top-normal-medium extended hide" data-bind="<%= bam_talent_music[0].searching_gig_des %>">
+									<p class="extended hide" data-bind="<%= bam_talent_music[0].searching_gig_des %>">
 									</p>
 								</div>
 							</div>
 
-							<div data-bind="<%= (bam_talent_music[0].major_influence) ? 1 : 0 %>" data-bind-target="visibility">
+							<div class="col-sm-6 col-xs-12 padding-zero talent-info-item" data-bind="<%= (bam_talent_music[0].major_influence) ? 1 : 0 %>" data-bind-target="visibility">
 								<div class="col-sm-12 margin-top-large">
-									<h4>Musical Influences</h4>
+									<h5 class="text-bold margin-zero text-primary">Musical Influences</h5>
 								</div>
 								<div class="col-sm-12">
-									<p class="margin-top-normal-medium main" data-bind="<%= bam_talent_music[0].major_influence %>">
+									<p class="main" data-bind="<%= bam_talent_music[0].major_influence %>">
 									</p>
-									<p class="margin-top-normal-medium extended hide" data-bind="<%= bam_talent_music[0].major_influence %>">
+									<p class="extended hide" data-bind="<%= bam_talent_music[0].major_influence %>">
 									</p>
 								</div>
 							</div>
@@ -265,10 +268,10 @@
 						</div>
 						<div class="row">
 							<div data-bind="<%= (bam_talent_dance[0].dance_style_1) ? '1' : '' %>" data-bind-target="visibility">
-								<div class="col-sm-3 col-xs-6">
+								<div class="col-sm-6 col-xs-6">
 									<label style="width=20px;">Primary Style</label>
 								</div>
-								<div class="col-sm-3 col-xs-6">
+								<div class="col-sm-6 col-xs-6">
 									<span data-bind="<%= bam_talent_dance[0].dance_style_1 %>"></span>
 								</div>
 							</div>
