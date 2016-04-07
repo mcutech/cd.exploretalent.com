@@ -21,7 +21,7 @@
 				<div class="navbar-navigations">
 					<ul class="nav navbar-nav primary-nav">
 						<li>
-							<a href="/projects" class="nav-link">
+							<a href="/projects" class="nav-link padding-left-normal-zz-xs">
 								<div class="primary-nav-icon"><i class="fa fa-film"></i></div>
 								<div class="primary-nav-text">My Projects</div>
 							</a>
@@ -51,7 +51,7 @@
 							</a>
 						</li>
 						<li>
-							<a href="/feedback" class="nav-link">
+							<a href="/feedback" class="nav-link padding-right-normal-zz-xs">
 								<div class="primary-nav-icon"><i class="fa fa-comment-o"></i></div>
 								<div class="primary-nav-text">Feedback</div>
 							</a>

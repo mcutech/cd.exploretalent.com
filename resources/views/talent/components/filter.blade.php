@@ -6,9 +6,9 @@
 		</div>
 
 		<div class="panel-body form-horizontal">
-			<div class="row-fluid clearfix">
-				<label class="control-label pull-left"><a href="">United States</a> <span class="padding-left-small">or</span></label>
-				<div class="col-md-3">
+			<div class="row">
+				<label class="control-label pull-left padding-left-normal"><a href="">United States</a> <span class="padding-left-small">or</span></label>
+				<div class="col-md-3 margin-top-normal-zz-xs">
 					<select id="markets-list" name="markets" class="form-control" tabindex="-1" data-select multiple>
 						<option></option>
 						<option value="Albany, NY">Albany, NY</option>
@@ -83,7 +83,7 @@
 						<option value="Vancouver, BC">Vancouver, BC</option>
 					</select>
 				</div>
-				<div class="col-md-2">
+				<div class="col-md-2 margin-top-normal-zz-xs">
 					<select name="distance" class="form-control">
 						<option value="5">5 miles</option>
 						<option value="10">10 miles</option>
@@ -92,7 +92,7 @@
 						<option value="25">25 miles</option>
 					</select>
 				</div>
-				<div class="col-md-2">
+				<div class="col-md-2 margin-top-normal-zz-xs">
 					<button id="search-button" type="submit" class="btn btn-primary btn-block">Search</button>
 				</div>
 			</div>
