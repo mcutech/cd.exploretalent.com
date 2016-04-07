@@ -1,6 +1,14 @@
 .projects-wrapper{
 
 	#project-listing{
+		
+		.div-table-stripe-item{
+			border: 1px solid #dddddd;;
+			border-top-width: 0px;
+			// &:nth-child(odd){
+			//     background-color: #f9f9f9;
+			// }
+		}
 
 		.panel-active {
 			background-color: #1976B3;
