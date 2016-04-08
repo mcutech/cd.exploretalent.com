@@ -22,7 +22,7 @@
   					}
 				}
 			}
-		}	
+		}
 	}
 
 }
@@ -44,7 +44,7 @@
 		#carousel-indicators{
 			display: flex;
 			justify-content: flex-start;
-			overflow: hidden;
+			// overflow: hidden;
 			min-height: 120px;
 			max-height: 120px;
 
@@ -55,8 +55,8 @@
 					display: flex;
 					justify-content: center;
 					overflow: hidden;
-					min-height: 80px;
-					max-height: 80px;
+					// min-height: 80px;
+					// max-height: 80px;
 					max-width: 100px;
 					background-color: #000000;
 
@@ -64,9 +64,9 @@
 						flex: 0 1 auto;
 						vertical-align: middle;
 						align-self: center;
-						width: 100%;
-						max-height: none;
-						max-width: 100%;
+						// width: 100%;
+						// max-height: none;
+						// max-width: 100%;
 						height: auto;
 						display: block;
 					}
