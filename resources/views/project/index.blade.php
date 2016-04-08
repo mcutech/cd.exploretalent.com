@@ -45,9 +45,9 @@
 <div class="projects-wrapper">
 	<div id="project-listing">
 
-		<div  class="panel-group panel-group-primary project-item" id="accordion-castings">	
+		<div  class="panel-group panel-group-primary project-item" id="accordion-castings">
 			<div class="hide div-table-stripe-item" data-bind-template="#accordion-castings" data-bind-value="data" data-bind="project-<%= casting_id %>" data-bind-target="id">
-			
+
 				<!-- <div class="panel-heading panel-active" data-bind="<%= (status == '1') ? '1' : '0' %>" data-bind-target="visibility">
 					<a class="accordion-toggle collapsed" data-toggle="collapse" data-bind="#jobs-collapse-<%= casting_id %>">
 						<span data-bind="<%= name %>"></span><span class="label label-info margin-left-small">Active</span>
@@ -58,25 +58,25 @@
 				</div> -->
 
 				<div  class="row-fluid clearfix panel-active" data-bind="<%= (status == '1') ? '1' : '0' %>" data-bind-target="visibility">
-					<a class="col-md-12 text-left padding-xs-vr" href="#" data-bind="projects/<%= casting_id %>/find-talents">
+					<a class="col-md-12 text-left padding-xs-vr" href="#" data-bind="projects/<%= casting_id %>">
 						<div class="col-md-2" data-bind="<%= name %>"></div>
 						<div class="col-md-3" data-bind="<%= (cat) ? getCategory() : 'N/A' %>"></div>
 						<div class="col-md-2" data-bind="<%= (snr == 2) ? 'Open Call' : 'Self Response' %>"></div>
 						<div class="col-md-2" data-bind="<%= date.formatMDY(last_modified)%>"></div>
 						<div class="col-md-1" data-bind="<%= (!asap) ? 'N/A' : date.formatMDY(parseInt(asap)) %>"></div>
-						<div class="col-md-2 project-overview-btn label label-success font-size-small-normal-zz padding-small-zz margin-top-small-zz-xs pull-right">Project Overview</div>						
-					</a>						
+						<div class="col-md-2 project-overview-btn label label-success font-size-small-normal-zz padding-small-zz margin-top-small-zz-xs pull-right">Project Overview</div>
+					</a>
 				</div>
 
 				<div  class="row-fluid clearfix panel-inactive" data-bind="<%= (status == '0') ? '1' : '0' %>" data-bind-target="visibility">
-					<a class="col-md-12 text-left padding-xs-vr" href="#" data-bind="projects/<%= casting_id %>/find-talents">
+					<a class="col-md-12 text-left padding-xs-vr" href="#" data-bind="projects/<%= casting_id %>">
 						<div class="col-md-2" data-bind="<%= name %>"></div>
 						<div class="col-md-3" data-bind="<%= (cat) ? getCategory() : 'N/A' %>"></div>
 						<div class="col-md-2" data-bind="<%= (snr == 2) ? 'Open Call' : 'Self Response' %>"></div>
 						<div class="col-md-2" data-bind="<%= last_modified>0 ? date.formatMDY(last_modified) : date.formatMDY(date_created) %>"></div>
 						<div class="col-md-1" data-bind="<%= (!asap) ? 'N/A' : date.formatMDY(parseInt(asap)) %>"></div>
-						<div class="label label-warning col-md-2">Pending Review</div>						
-					</a>						
+						<div class="label label-warning col-md-2">Pending Review</div>
+					</a>
 				</div>
 
 			</div>
