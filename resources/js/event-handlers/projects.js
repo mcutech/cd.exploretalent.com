@@ -85,6 +85,7 @@ handler.prototype.refreshList = function(){
 			});
 			self.core.service.databind('#project-listing', res);
 			self.core.service.paginate('#projects-pagination', { total : res.total, class : 'pagination', name : 'page', per_page: res.per_page });
+			self.core.service.paginate('#projects-pagination2', { total : res.total, class : 'pagination', name : 'page', per_page: res.per_page });
 		});
 }
 
