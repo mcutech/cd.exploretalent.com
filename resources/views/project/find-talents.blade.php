@@ -81,7 +81,7 @@
 		</select>
 	</div>
 </div>
-<div class="row-fluid margin-top-small margin-bottom-small clearfix">
+<div class="row margin-top-small margin-bottom-small clearfix">
 	<div class="col-md-12 margin-bottom-small">
 		<div class="col-md-5 alert alert-success margin-bottom-zero">
 			<button type="button" class="close" data-dismiss="alert">×</button>
@@ -93,11 +93,11 @@
 		</div>
 	</div>
 	<div class="col-md-12 margin-bottom-small">
-		<div class="col-md-10">
+		<div class="col-md-10 padding-left-zero margin-left-zero">
 			<button class="btn btn-success"> Role Matches </button>
 			<button class="btn btn-default"> Submissions </button>
 		</div>
-		<div class="col-md-2">
+		<div class="col-md-2 margin-right-zero padding-right-zero">
 			<button class="pull-right btn btn-default"> Like it List </button>
 		</div>
 	</div>
