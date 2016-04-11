@@ -35,9 +35,7 @@
 			<div class="row-fluid clearfix">
 				<div class="col-md-12">
 					<h4 class="margin-top-zero" id="project-title-heading">
-						<i class="fa fa-suitcase">
-							<strong data-bind=" <%= project %>"></strong>
-						</i>
+						<i class="fa fa-suitcase"></i><strong data-bind=" <%= project %>"></strong>
 					</h4>
 				</div>
 				<div class="col-sm-12 col-md-6">
@@ -76,6 +74,7 @@
 	</div>
 
 	<div class="margin-bottom-normal">
+		<!-- <a href="#" data-bind="<%=casting_id%>/roles/create" class="btn btn-success active" role="button"><i class="fa fa-plus"></i> Add Role</a> -->
 		<button type="button" class="btn btn-success"><i class="fa fa-plus"></i> Add Role</button>
 		<button type="button" class="btn btn-default"><i class="fa fa-pencil"></i> Edit Project</button>
 	</div>
