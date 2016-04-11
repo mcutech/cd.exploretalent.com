@@ -88,7 +88,7 @@
 		<div class="panel role-item hide" data-bind-template="#casting-roles-div" data-bind-value="bam_roles" data-bind="casting-role-<%= role_id %>" data-bind-target="id">
 			<div class="panel-body">
 				<div class="col-md-12 margin-bottom-normal">
-					<strong>Role : </strong><span data-bind="<%= name %>"></span><span data-bind=" (<%= role_id %>)"></span>
+					<strong>Role : </strong><strong><span data-bind="<%= name %>"></span><span data-bind=" (<%= role_id %>)"></span></strong>
 				</div>
 				<div class="row-fluid clearfix">
 					<div class="col-md-3 text-center button-function ">
@@ -129,13 +129,26 @@
 				
 				</div>
 
-				<div class="col-md-12">
-					<ul class="list-inline margin-zero">
-						<li><div class="title">Gender:</div> <span data-bind="<%= (gender_female == 0 && gender_male == 1) ? '1' : '' %>" data-bind-target="visibility">Male</span><span data-bind="<%= (gender_female == 1 && gender_male == 0) ? '1' : '' %>" data-bind-target="visibility">Female</span><span data-bind="<%= ((gender_female == 1 && gender_male == 1)||(gender_female == 0 && gender_male == 0)) ? '1' : '' %>" data-bind-target="visibility">Any</span></li>
-						<li><div class="title">Age:</div> <span data-bind="<%= (age_min) ? age_min : '0' %>"></span> to <span data-bind="<%= (age_max) ? age_max : '0' %>"></span></li>
-						<li><div class="title">Height:</div> <span data-bind="<%= getHeightMinText() %>"></span> to <span data-bind="<%= getHeightMaxText() %>"></span></li>
+				<div class="row-fluid clearfix">
+					<div class="col-md-3 details-label-container">
+						<div class="details-label">
+							<span>Gender : </span><span data-bind="<%= (gender_female == 0 && gender_male == 1) ? '1' : '' %>" data-bind-target="visibility">Male</span><span data-bind="<%= (gender_female == 1 && gender_male == 0) ? '1' : '' %>" data-bind-target="visibility">Female</span><span data-bind="<%= ((gender_female == 1 && gender_male == 1)||(gender_female == 0 && gender_male == 0)) ? '1' : '' %>" data-bind-target="visibility">Any</span>
 
-						<li class=""><div class="title">Hair Color:</div>
+						</div>
+					</div>
+					<div class="col-md-3 details-label-container">
+						<div class="details-label">
+							<span>Age : </span><span data-bind="<%= (age_min) ? age_min : '0' %>"></span> to <span data-bind="<%= (age_max) ? age_max : '0' %>"></span>
+						</div>
+					</div>
+					<div class="col-md-3 details-label-container">
+						<div class="details-label">
+							<span>Height : </span><span data-bind="<%= getHeightMinText() %>"></span> to <span data-bind="<%= getHeightMaxText() %>"></span>
+						</div>
+					</div>	
+					<div class="col-md-3 details-label-container">
+						<div class="details-label">
+							<span>Hair Color : </span>
 							<span class="hair-color-label" data-bind="<%= (hair_auburn == 1) ? '1' : '' %>" data-bind-target="visibility">Auburn</span>
 							<span class="hair-color-label" data-bind="<%= (hair_black == 1) ? '1' : '' %>" data-bind-target="visibility">Black</span>
 							<span class="hair-color-label" data-bind="<%= (hair_blonde == 1) ? '1' : '' %>" data-bind-target="visibility">Blonde</span>
@@ -146,12 +159,10 @@
 							<span class="hair-color-label" data-bind="<%= (hair_red == 1) ? '1' : '' %>" data-bind-target="visibility">Red</span>
 							<span class="hair-color-label" data-bind="<%= (hair_white == 1) ? '1' : '' %>" data-bind-target="visibility">White</span>
 							<span class="hair-color-label" data-bind="<%= (hair_salt_paper == 1) ? '1' : '' %>" data-bind-target="visibility">Salt & Pepper</span>
-							<span class="hair-color-label" data-bind="<%= (hair_auburn == 0 && hair_black == 0 && hair_blonde == 0 && hair_brown == 0 && hair_chestnut == 0 && hair_dark_brown == 0 && hair_grey == 0 && hair_red == 0 && hair_white == 0 && hair_salt_paper == 0) ? '1' : '' %>" data-bind-target="visibility">Any</span>
-						</li>							
-					</ul>
-				</div>	
-
-
+							<span class="hair-color-label" data-bind="<%= (hair_auburn == 0 && hair_black == 0 && hair_blonde == 0 && hair_brown == 0 && hair_chestnut == 0 && hair_dark_brown == 0 && hair_grey == 0 && hair_red == 0 && hair_white == 0 && hair_salt_paper == 0) ? '1' : '' %>" data-bind-target="visibility">Any</span>							
+						</div>
+					</div>																						
+				</div>
 
 				<div class="row-fluid clearfix">
 					<div class="col-md-12">
