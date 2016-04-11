@@ -1,7 +1,9 @@
 @extends('layouts.sidebar', [ 'pages' => [ [ 'name' => 'Roles', 'url' => '/settings' ], [ 'name' => 'Create Role', 'url' => '/settings', 'active' => true] ] ])
 
 @section('sidebar.page-header')
-<i class="fa fa-th-list page-header-icon"></i> Add Roles
+<div class="col-md-12">
+	<i class="fa fa-th-list page-header-icon"></i> Add Roles	
+</div>
 @stop
 
 @section('sidebar.page-extra')
@@ -19,7 +21,7 @@
 @section('sidebar.body')
 
 <div class="row-fluid clearfix project-details-div">
-	<div class="col-md-10">
+	<div class="col-md-12">
 		<div class="panel panel-default">
 		  <!-- Default panel contents -->
 		  <div class="panel-heading">Project Details</div>
@@ -67,7 +69,7 @@
 </div>
 
 <div id="create-role-div" class="row-fluid clearfix">
-	<div class="col-md-10">
+	<div class="col-md-12">
 		<div class="panel panel-default">
 		  <div class="panel-body">
 		    <div class="col-md-8">
@@ -150,9 +152,7 @@
 				<label class="checkbox-inline margin-bottom-normal">
 				  <input class="px" type="checkbox" name="ethnicity" id="ethnicity-mediterranean" value="0">
 				  <span class="lbl">Mediterranean</span>
-				</label>	
-		    </div>
-		    <div class="col-md-12">
+				</label>
 		    	<label class="checkbox-inline margin-bottom-normal">
 				  <input class="px" type="checkbox" name="ethnicity" id="ethnicity-middle-est" value="0">
 				  <span class="lbl">Middle Eastern</span>
@@ -161,8 +161,9 @@
 				  <input class="px" type="checkbox" name="ethnicity" id="ethnicity-american-in" value="0">
 				  <span class="lbl">American Indian</span>
 				</label>
-				<div class="alert alert-page alert-danger ethnicity-error-required" style="display: none;">This field is required.</div>	  	
+				<div class="alert alert-page alert-danger ethnicity-error-required" style="display: none;">This field is required.</div>	
 		    </div>
+
 
 			<div class="col-md-12 margin-top-large">
 				<label>Body Type:</label>
@@ -245,9 +246,7 @@
 				<label class="checkbox-inline margin-bottom-normal">
 				  <input class="px" type="checkbox" name="hair-color" id="hair-red" value="0">
 				  <span class="lbl">Red</span>
-				</label>		
-		    </div>
-		    <div class="col-md-12">
+				</label>
 		    	<label class="checkbox-inline margin-bottom-normal">
 				  <input class="px" type="checkbox" name="hair-color" id="hair-salt-paper" value="0">
 				  <span class="lbl">Salt & Pepper</span>
@@ -256,8 +255,8 @@
 				  <input class="px" type="checkbox" name="hair-color" id="hair-white" value="0">
 				  <span class="lbl">White</span>
 				</label>
-				<div class="alert alert-page alert-danger hair-color-error-required" style="display: none;">This field is required.</div>
-		    </div>        
+				<div class="alert alert-page alert-danger hair-color-error-required" style="display: none;">This field is required.</div>						
+		    </div>
 		  </div>	  
 		</div>
 	</div>
