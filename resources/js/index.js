@@ -52,7 +52,7 @@ jscore.run(function(core) {
 		// add routes here
 
 		.add('/login', 'login')
-		.add('/register', 'register')		
+		.add('/register', 'register')
 		.add('/settings', 'settings')
 		.add('/reset-password', 'password.reset')
 		.add('/forgot-password', 'password.forgot')
@@ -62,9 +62,9 @@ jscore.run(function(core) {
 		.add('/talents/{talentId}', 'talent.resume')
 
 		// project pages
-		.add('/projects', 'projects')
+		.add('/projects', 'project.index')
 		.add('/projects/create', 'projects.create')
-		.add('/projects/quickpost', 'project.quickpost')		
+		.add('/projects/quickpost', 'project.quickpost')
 		.add('/projects/{projectId}', 'project.show')
 		.add('/projects/{projectId}/edit', 'projects.edit')
 		.add('/projects/{projectId}/find-talents', 'projects.findtalents')
