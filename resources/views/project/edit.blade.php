@@ -1,10 +1,10 @@
-@extends('layouts.project', ['pages' => [ [ 'name' => 'My Projects', 'url' => '/projects' ], [ 'name' => 'Edit Project', 'url' => '/projects/'.$projectId.'/edit', 'active' => true ] ] ])
+@extends('layouts.sidebar', ['pages' => [ [ 'name' => 'My Projects', 'url' => '/projects' ], [ 'name' => 'Edit Project', 'url' => '/projects/'.$projectId.'/edit', 'active' => true ] ] ])
 
 @section('sidebar.page-header')
 <i class="fa fa-file-text"></i> Edit Project
 @stop
 
-@section('project.body')
+@section('sidebar.body')
 <div class="edit-project-wrapper">
 	<div class="projects-content">
 		<div class="panel">

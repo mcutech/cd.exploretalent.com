@@ -1,7 +1,7 @@
 .projects-wrapper{
 
-	#project-listing{
-		
+	#projects-list{
+
 		.div-table-stripe-item{
 			border: 1px solid #dddddd;;
 			border-top-width: 0px;
@@ -17,7 +17,7 @@
 				text-decoration: none !important;
 				&::after{
 					color: #fff;
-				}  
+				}
 			}
 		}
 
@@ -28,7 +28,7 @@
 				text-decoration: none !important;
 				&::after{
 					color: #fff;
-				} 
+				}
 			}
 		}
 
@@ -56,7 +56,7 @@
 					}
 
 					&:nth-child(odd){
-						background-color: #e8e8e8;	
+						background-color: #e8e8e8;
 					}
 				}
 
@@ -81,7 +81,7 @@
 			}
 
 		}
-	} //project listing
+	}
 
 	.roles-container{
 		.roles-item{

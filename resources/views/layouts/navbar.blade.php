@@ -14,7 +14,7 @@
 				<div class="navbar-header">
 					<a href="/"
 						class="navbar-brand">
-						<img src="../images/logo-home-et-cd.png" width="180px" class="logo-for-desktop">
+						<img src="/images/logo-home-et-cd.png" width="180px" class="logo-for-desktop">
 						<!-- <img src="../images/logo-home-et-cd-mobile2.png" class="logo-for-mobile"> -->
 					</a>
 				</div>

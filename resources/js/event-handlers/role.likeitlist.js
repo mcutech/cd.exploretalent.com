@@ -51,6 +51,11 @@ handler.prototype.refreshLikeItList = function() {
 		self.project.role.likeitlist = result;
 		self.core.service.databind('.page-header', self.project);
 		self.core.service.databind('#submissions-sub-menu', self.project);
+
+		if(self.project.role.likeitlist.total == 0 ){
+			  $('#invitetoauditionbutton').attr("disabled", true);
+		};
+
 		self.core.service.databind('#like-it-list', self.project);
 		self.core.service.databind('#invite-to-audition-modal', self.project);
 
