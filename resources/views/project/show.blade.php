@@ -8,7 +8,8 @@
 <div class="find-talents-wrapper">
 	<div class="margin-bottom-normal">
 		<a href="#" data-bind="<%=casting_id%>/roles/create" class="btn btn-success active" role="button"><i class="fa fa-plus"></i> Add Role</a>
-		<button type="button" class="btn btn-default"><i class="fa fa-pencil"></i> Edit Project</button>
+		<a href="#" data-bind="<%=casting_id%>/edit" class="btn btn-default active" role="button"><i class="fa fa-plus"></i> Edit Project</a>
+<!-- 		<button type="button" class="btn btn-default"><i class="fa fa-pencil"></i> Edit Project</button> -->
 	</div>
 
 	<div class="alert alert-success">

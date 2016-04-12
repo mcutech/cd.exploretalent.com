@@ -1,4 +1,4 @@
-@extends('layouts.project')
+@extends('layouts.sidebar')
 
 @section('sidebar.page-header')
 <i class="fa fa-th-list page-header-icon"></i> My Projects
@@ -32,7 +32,7 @@
 </div> -->
 @stop
 
-@section('project.body')
+@section('sidebar.body')
 <div id="projects-pagination" class="text-right"></div>
 <div class="panel padding-xs-vr col-md-12 margin-bottom-small text-left">
 	<div class="col-md-2"><strong>Title</strong></div>
