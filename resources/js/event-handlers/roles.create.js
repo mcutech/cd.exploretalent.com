@@ -7,59 +7,20 @@ function handler(core, user, projectId) {
 	self.projectId = projectId;
 
 	self.getProjectInfo();
-
 }
 
 handler.prototype.getProjectInfo = function(e) {
-
-	$('#role-name-text').focus();
-
 	var data = {
-		withs : [
-			'bam_roles'
-		],
-		wheres : [
-			[ 'where', 'casting_id', '=', self.projectId ]
+		projectId : self.projectId,
+		query : [
+			[ 'with', 'bam_roles' ]
 		]
-	};
+	}
 
-	return self.core.resource.project.get(data)
+	self.core.resource.project.get(data)
 		.then(function(res) {
-			if (res.total > 0) {
-				var casting = res.data[0];
-
-				casting.date = self.core.service.date;
-
-				if(casting.rate_des == '1') {
-					casting.rate_des = 'event';
-				}
-				else if(casting.rate_des == '2') {
-					casting.rate_des = 'hour';
-				}
-				else if(casting.rate_des == '3') {
-					casting.rate_des = 'day';
-				}
-				else if(casting.rate_des == '4') {
-					casting.rate_des = 'week';
-				}
-				else if(casting.rate_des == '5') {
-					casting.rate_des = 'month';
-				}
-				else {
-					casting.rate_des = 0;
-				}
-
-				var i = (new Date(casting.asap*1000));
-				var d = i.getDate();
-				var m = i.getMonth()+1;
-				var y = i.getFullYear();
-
-				casting.asap1 = y + "-" + m + "-" + d;
-
-				self.core.service.databind('.project-details-div', casting)
-				self.core.service.databind('.action-buttons-div', casting)
-				return $.when();
-			}
+			self.project = res;
+			self.core.service.databind('#project-details', self.project);
 		});
 }
 

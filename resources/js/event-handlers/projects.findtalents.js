@@ -6,54 +6,26 @@ function handler(core, user, projectId) {
 	self.user = user;
 	self.projectId = projectId;
 
-	console.log(self.user);
 	self.getProjectInfo();
 }
 
-handler.prototype.getProjectInfo = function(e) {
+handler.prototype.getProjectInfo = function() {
 	var data = {
 		projectId : self.projectId,
-		withs : [
-			'bam_roles'
-		],
-	};
+		query : [
+			[ 'with', 'bam_roles' ]
+		]
+	}
 
 	self.core.resource.project.get(data)
 		.then(function(res) {
-			res.market = res.market.split('>');
+			self.project = res;
 
-			res.markets = {
-				data : []
-			};
-
-			$.each(res.market, function(index, value) {
-
-				res.markets.data.push({name : value});
+			var markets = _.map(self.project.market.split('>'), function(m) {
+				return { name : m };
 			});
 
-			res.date = self.core.service.date;
-
-			var i = (new Date(res.asap*1000));
-			var d = i.getDate();
-			var m = i.getMonth()+1;
-			var y = i.getFullYear();
-
-			console.log(res);
-			if(res.aud_timestamp){
-				var i1 = (new Date(res.aud_timestamp*1000));
-				var d1 = i1.getDate();
-				var m1 = i1.getMonth()+1;
-				var y1 = i1.getFullYear();
-
-				res.aud_timestamp1 = y1 + "-" + m1 + "-" + d1;
-			}
-			else {
-				res.aud_timestamp1 = '';
-			}
-
-			// m = (m == '12') ? m : '0'+m;
-			res.asap1 = y + "-" + m + "-" + d;
-
+			self.project.markets = { data : markets };
 			self.core.service.databind('#project-details', res)
 			self.core.service.databind('#project-roles', { data : res.bam_roles })
 		});
@@ -61,8 +33,6 @@ handler.prototype.getProjectInfo = function(e) {
 
 handler.prototype.selectRole = function() {
 	var roleId = $('#select-role').val();
-	console.log(roleId);
-			[ 'where', 'sent', '>=', 1 ]
 
 	var data = {
 		projectId : self.projectId,

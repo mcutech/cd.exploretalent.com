@@ -19,7 +19,6 @@ handler.prototype.getProjectInfo = function(e) {
 
 	self.core.resource.project.get(data)
 		.then(function(res) {
-			console.log(res);
 			self.project = res;
 
 			var markets = _.map(self.project.market.split('>'), function(m) {
