@@ -9,15 +9,14 @@
 	<div class="margin-bottom-normal">
 		<a href="#" data-bind="<%=casting_id%>/roles/create" class="btn btn-success active" role="button"><i class="fa fa-plus"></i> Add Role</a>
 		<a href="#" data-bind="<%=casting_id%>/edit" class="btn btn-default active" role="button"><i class="fa fa-plus"></i> Edit Project</a>
-<!-- 		<button type="button" class="btn btn-default"><i class="fa fa-pencil"></i> Edit Project</button> -->
 	</div>
 
 	<div class="alert alert-success">
-		<strong>12 role(s) </strong> <span>found for this casting</span>
+		<strong><span data-bind="<%= bam_roles.length %>"></span> role(s) </strong> <span>found for this casting</span>
 	</div>
 
-	<div id="casting-roles-div">
-		<div class="panel role-item hide" data-bind-template="#casting-roles-div" data-bind-value="bam_roles" data-bind="casting-role-<%= role_id %>" data-bind-target="id">
+	<div id="roles-list">
+		<div class="panel role-item hide" data-bind-template="#roles-list" data-bind-value="bam_roles" data-bind="casting-role-<%= role_id %>" data-bind-target="id">
 			<div class="panel-body">
 				<div class="col-md-12 margin-bottom-normal">
 					<strong>Role : </strong><strong><span data-bind="<%= name %>"></span><span data-bind=" (<%= role_id %>)"></span></strong>
@@ -37,7 +36,7 @@
 							<b><div class="text-bg">125</div></b></a>
 						</div>
 					</div>
-					<div class="col-md-3 text-center button-function">
+					<div class="col-md-2 text-center button-function">
 						<div class="bordered padding-small fixedheight">
 							<a href="#role-find-talents-scheduled" data-toggle="modal"><div><i class="fa fa-calendar fa-2x"></i></div>
 							<div>Auditions Worksheet</div>
@@ -51,77 +50,50 @@
 							<b><div class="text-bg">18</div></b></a>
 						</div>
 					</div>
-					<div class="col-md-2 text-center button-function">
+					<div class="col-md-3 text-center button-function">
 						<div class="bordered padding-small fixedheight">
 							<a href="#role-find-talents-hired" data-toggle="modal"><div><i class="fa fa-star-o fa-2x"></i></div>
 							<div>Booked Talents</div>
 							<b><div class="text-bg">1</div></b></a>
 						</div>
 					</div>
-				
+
 				</div>
 
 				<div class="row-fluid clearfix">
 					<div class="col-md-3 details-label-container">
 						<div class="details-label">
-							<span>Gender : </span><span data-bind="<%= (gender_female == 0 && gender_male == 1) ? '1' : '' %>" data-bind-target="visibility">Male</span><span data-bind="<%= (gender_female == 1 && gender_male == 0) ? '1' : '' %>" data-bind-target="visibility">Female</span><span data-bind="<%= ((gender_female == 1 && gender_male == 1)||(gender_female == 0 && gender_male == 0)) ? '1' : '' %>" data-bind-target="visibility">Any</span>
-
+							<span>Gender : </span>
+							<span data-bind="<%= getGenders().lenght > 1 ? 'All' : getGenders() %>"></span>
 						</div>
 					</div>
 					<div class="col-md-3 details-label-container">
 						<div class="details-label">
-							<span>Age : </span><span data-bind="<%= (age_min) ? age_min : '0' %>"></span> to <span data-bind="<%= (age_max) ? age_max : '0' %>"></span>
+							<span>Age : </span><span data-bind="<%= age_min %>"></span> to <span data-bind="<%= age_max %>"></span>
 						</div>
 					</div>
 					<div class="col-md-3 details-label-container">
 						<div class="details-label">
 							<span>Height : </span><span data-bind="<%= getHeightMinText() %>"></span> to <span data-bind="<%= getHeightMaxText() %>"></span>
 						</div>
-					</div>	
+					</div>
 					<div class="col-md-3 details-label-container">
 						<div class="details-label">
 							<span>Hair Color : </span>
-							<span class="hair-color-label" data-bind="<%= (hair_auburn == 1) ? '1' : '' %>" data-bind-target="visibility">Auburn</span>
-							<span class="hair-color-label" data-bind="<%= (hair_black == 1) ? '1' : '' %>" data-bind-target="visibility">Black</span>
-							<span class="hair-color-label" data-bind="<%= (hair_blonde == 1) ? '1' : '' %>" data-bind-target="visibility">Blonde</span>
-							<span class="hair-color-label" data-bind="<%= (hair_brown == 1) ? '1' : '' %>" data-bind-target="visibility">Brown</span>
-							<span class="hair-color-label" data-bind="<%= (hair_chestnut == 1) ? '1' : '' %>" data-bind-target="visibility">Chestnut</span>
-							<span class="hair-color-label" data-bind="<%= (hair_dark_brown == 1) ? '1' : '' %>" data-bind-target="visibility">Dark Brown</span>
-							<span class="hair-color-label" data-bind="<%= (hair_grey == 1) ? '1' : '' %>" data-bind-target="visibility">Grey</span>
-							<span class="hair-color-label" data-bind="<%= (hair_red == 1) ? '1' : '' %>" data-bind-target="visibility">Red</span>
-							<span class="hair-color-label" data-bind="<%= (hair_white == 1) ? '1' : '' %>" data-bind-target="visibility">White</span>
-							<span class="hair-color-label" data-bind="<%= (hair_salt_paper == 1) ? '1' : '' %>" data-bind-target="visibility">Salt & Pepper</span>
-							<span class="hair-color-label" data-bind="<%= (hair_auburn == 0 && hair_black == 0 && hair_blonde == 0 && hair_brown == 0 && hair_chestnut == 0 && hair_dark_brown == 0 && hair_grey == 0 && hair_red == 0 && hair_white == 0 && hair_salt_paper == 0) ? '1' : '' %>" data-bind-target="visibility">Any</span>							
+							<span class="hair-color-label" data-bind="<%= getHairColors().length == 0 || getHairColors().length == 10 ? 'Any' : getHairColors().join(', ') %>">
+							</span>
 						</div>
-					</div>																						
+					</div>
 				</div>
 
 				<div class="row-fluid clearfix">
 					<div class="col-md-12">
-						<ul class="list-unstyled margin-zero long-description">					
+						<ul class="list-unstyled margin-zero long-description">
 							<li class=""><div class="title">Body Type:</div>
-								<span class="body-type-label" data-bind="<%= (built_athletic == 1) ? '1' : '' %>" data-bind-target="visibility">Athletic</span>
-								<span class="body-type-label" data-bind="<%= (built_bb == 1) ? '1' : '' %>" data-bind-target="visibility">Body Builder</span>
-								<span class="body-type-label" data-bind="<%= (built_xlarge == 1) ? '1' : '' %>" data-bind-target="visibility">Full Figured</span>
-								<span class="body-type-label" data-bind="<%= (built_large == 1) ? '1' : '' %>" data-bind-target="visibility">Large</span>
-								<span class="body-type-label" data-bind="<%= (built_lm == 1) ? '1' : '' %>" data-bind-target="visibility">Lean Muscle</span>
-								<span class="body-type-label" data-bind="<%= (built_thin == 1) ? '1' : '' %>" data-bind-target="visibility">Slim</span>
-								<span class="body-type-label" data-bind="<%= (built_petite == 1) ? '1' : '' %>" data-bind-target="visibility">Petite</span>
-								<span class="body-type-label" data-bind="<%= (built_average == 1) ? '1' : '' %>" data-bind-target="visibility">Average</span>
-								<span class="body-type-label" data-bind="<%= (built_medium == 1) ? '1' : '' %>" data-bind-target="visibility">Medium</span>
-								<span class="body-type-label" data-bind="<%= (built_athletic == 0 && built_bb == 0 && built_xlarge == 0 && built_large == 0 && built_lm == 0 && built_thin == 0 && built_petite == 0 && built_average == 0 && built_medium == 0) ? '1' : '' %>" data-bind-target="visibility">Any</span>
+								<span class="body-type-label" data-bind="<%= getBuilds().length == 0 || getBuilds().length == 9 ? 'Any' : getBuilds().join(', ') %>"></span>
 							</li>
 							<li class=""><div class="title">Ethnicity:</div>
-								<span class="ethnicity-label" data-bind="<%= (ethnicity_african == 1) ? '1' : '' %>" data-bind-target="visibility">African</span>
-								<span class="ethnicity-label" data-bind="<%= (ethnicity_african_am == 1) ? '1' : '' %>" data-bind-target="visibility">African American</span>
-								<span class="ethnicity-label" data-bind="<%= (ethnicity_asian == 1) ? '1' : '' %>" data-bind-target="visibility">Asian</span>
-								<span class="ethnicity-label" data-bind="<%= (ethnicity_caribbian == 1) ? '1' : '' %>" data-bind-target="visibility">Carribean</span>
-								<span class="ethnicity-label" data-bind="<%= (ethnicity_caucasian == 1) ? '1' : '' %>" data-bind-target="visibility">Caucasian</span>
-								<span class="ethnicity-label" data-bind="<%= (ethnicity_hispanic == 1) ? '1' : '' %>" data-bind-target="visibility">Hispanic</span>
-								<span class="ethnicity-label" data-bind="<%= (ethnicity_mediterranean == 1) ? '1' : '' %>" data-bind-target="visibility">Mediterranean</span>
-								<span class="ethnicity-label" data-bind="<%= (ethnicity_middle_est == 1) ? '1' : '' %>" data-bind-target="visibility">Middle Eastern</span>
-								<span class="ethnicity-label" data-bind="<%= (ethnicity_american_in == 1) ? '1' : '' %>" data-bind-target="visibility">American Indian</span>
-								<span class="ethnicity-label" data-bind="<%= (ethnicity_african == 0 && ethnicity_african_am == 0 && ethnicity_asian == 0 && ethnicity_caribbian == 0 && ethnicity_caucasian == 0 && ethnicity_hispanic == 0 && ethnicity_mediterranean == 0 && ethnicity_middle_est == 0 && ethnicity_american_in == 0) ? '1' : '' %>" data-bind-target="visibility">Any</span>
+								<span class="ethnicity-label" data-bind="<%= getEthnicities().length == 0 || getEthnicities().length == 12 ? 'Any' : getEthnicities().join(', ') %>"></span>
 							</li>
 						</ul>
 					</div>
@@ -129,14 +101,6 @@
 			</div>
 		</div>
 	</div>
-
 </div>
-
-@include('components.modals.role-find-talents')
-@include('components.modals.role-find-talents-likeitlist')
-@include('components.modals.role-find-talents-callbacks')
-@include('components.modals.role-find-talents-hired')
-@include('components.modals.role-find-talents-scheduled')
-
 @stop
 
