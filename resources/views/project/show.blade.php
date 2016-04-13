@@ -33,7 +33,7 @@
 						<div class="bordered padding-small fixedheight">
 							<a href="#role-find-talents-likeitlist" data-toggle="modal"><div><i class="fa fa-thumbs-up fa-2x"></i></div>
 							<div>View like it List</div>
-							<b><div class="text-bg">125</div></b></a>
+							<b><div class="text-bg" data-bind="<%= likeitlist.total %>">125</div></b></a>
 						</div>
 					</div>
 					<div class="col-md-2 text-center button-function">

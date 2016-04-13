@@ -34,7 +34,7 @@
 		<div class="panel-group panel-group-primary project-item" id="projects-list">
 			<div class="div-table-stripe-item" data-bind-template="#projects-list" data-bind-value="data">
 				<div class="row-fluid clearfix" data-bind="<%= parseInt(status) ? 'panel-active' : 'panel-inactive' %>" data-bind-target="class">
-					<a class="col-md-12 text-left padding-xs-vr" data-bind="projects/<%= casting_id %>/find-talents">
+					<a class="col-md-12 text-left padding-xs-vr" data-bind="projects/<%= casting_id %>">
 						<div class="col-md-2" data-bind="<%= name %>"></div>
 						<div class="col-md-3" data-bind="<%= (cat) ? getCategory() : 'N/A' %>"></div>
 						<div class="col-md-2" data-bind="<%= (snr == 2) ? 'Open Call' : 'Self Response' %>"></div>

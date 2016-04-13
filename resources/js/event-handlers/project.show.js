@@ -27,9 +27,29 @@ handler.prototype.getProjectInfo = function(e) {
 
 			self.project.markets = { data : markets };
 
+			var promises = [];
+
+			_.each(self.project.bam_roles, function(role) {
+				promises.push(self.getRoleStats(role));
+			});
+
+			return $.when.apply($, promises);
+		})
+		.then(function() {
 			self.core.service.databind('#project-details', self.project);
 			self.core.service.databind('.find-talents-wrapper', self.project)
 		});
+}
+
+handler.prototype.getRoleStats = function(role) {
+	var deferred = $.Deferred();
+
+	role.getLikeItList().then(function(res) {
+		role.likeitlist = res;
+		deferred.resolve();
+	});
+
+	return deferred.promise();
 }
 
 module.exports = function(core, user, projectId) {
