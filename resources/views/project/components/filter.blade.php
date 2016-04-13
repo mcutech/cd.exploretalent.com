@@ -1,16 +1,15 @@
 <div class="col-md-12 refine-search-sidebar">
-	<form id="talent-filter-form" onsubmit="return false">
+	<form id="role-filter-form" onsubmit="return false">
 	<div class="panel panel-talents-search">
 		<div class="panel-heading border-bottom-width-zero">
 			<span class="panel-title talents-refine-title">Refine Search</span>
 		</div>
 
-		<div data-bind-template="#talent-filter-info" data-bind-value="data" class="panel-body form-horizontal">
+		<div class="panel-body form-horizontal">
 			<div class="row">
-				<span data-bind="<%= role_id %>"> </span>
 				<label class="control-label pull-left padding-left-normal"><a href="">United States</a> <span class="padding-left-small">or</span></label>
 				<div class="col-md-3 margin-top-normal-zz-xs">
-					<select data-bind="<%= role_id %>" id="markets-list" name="markets" class="form-control" tabindex="-1" data-select multiple>
+					<select id="markets-list" name="markets" class="form-control" tabindex="-1" data-select multiple>
 						<option > </option>
 						<option value="Albany, NY">Albany, NY</option>
 						<option value="Albuquerque, NM">Albuquerque, NM</option>
@@ -113,8 +112,8 @@
 					<div class="padding-right-small">
 					<div class="padding-small">
 						<div data-range="true" data-values="[0, 100]" data-min="0" data-max="100" data-bind="[<%= age_min || 0 %>, <%= age_max || 100 %>]" data-type="age" data-slider></div>
-						<input type="hidden" name="age_min" />
-						<input type="hidden" name="age_max" />
+						<input type="hidden" name="age_min" data-bind="<%= age_min || 0 %>" />
+						<input type="hidden" name="age_max" data-bind="<%= age_max || 0 %>" />
 					</div>
 					</div>
 				</div>

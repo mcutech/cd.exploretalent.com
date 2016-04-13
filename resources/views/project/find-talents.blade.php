@@ -1,4 +1,4 @@
-@extends('layouts.project')
+@extends('layouts.project', [ 'active' => 'find-talents' ])
 
 @section('sidebar.page-header')
 <i class="fa fa-th-list page-header-icon"></i> Find Talents
@@ -8,8 +8,8 @@
 <div class="row-fluid clearfix">
 	<div id="project-roles" class="col-md-4 form-inline project-select-option">
 		<label >Role :</label>
-		<select id="select-role" class="select-roles form-control">
-			<option data-bind-template=".select-roles" data-bind-value="data" data-bind="<%= JSON.stringify({ key : role_id, value : name + ' (' + role_id + ')' }) %>"></option>
+		<select id="roles-list" class="select-roles form-control">
+			<option data-bind-template="#roles-list" data-bind-value="data" data-bind="<%= JSON.stringify({ key : role_id, value : name + ' (' + role_id + ')' }) %>"></option>
 		</select>
 	</div>
 </div>

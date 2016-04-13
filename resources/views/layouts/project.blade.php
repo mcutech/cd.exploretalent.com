@@ -1,15 +1,15 @@
 @extends('layouts.sidebar', isset($pages) ? ['pages' => $pages] : ['pages' => [ [ 'name' => 'My Projects', 'url' => '/projects', 'active' => true ] ] ])
 
 @section('sidebar.body')
-	<div>
+	<div id="project-details">
 		<div class="row header-functions-container margin-bottom-normal">
 			<div class="col-md-12 project-tab-options">
 				<ul class="nav nav-tabs nav-justified nav-tabs-sm">
-					<li class="active">
-						<a href="#" data-toggle="tab">Project Overview</a>
+					<li class="{{ isset($active) && $active == 'overview' ? 'active' : '' }}">
+						<a href="#" data-bind="/projects/<%= casting_id %>">Project Overview</a>
 					</li>
-					<li class="">
-						<a href="#" data-toggle="tab">Find Talents</a>
+					<li class="{{ isset($active) && $active == 'find-talents' ? 'active' : '' }}">
+						<a href="#" data-bind="/projects/<%= casting_id %>/find-talents">Find Talents</a>
 					</li>
 					<li class="">
 						<a href="#" data-toggle="tab">Like it List</a>
@@ -21,7 +21,7 @@
 			</div>
 		</div>
 
-		<div class="panel project-details-container" id="project-details">
+		<div class="panel project-details-container">
 			<div class="panel-body">
 				<div class="row-fluid clearfix">
 					<div class="col-md-12">

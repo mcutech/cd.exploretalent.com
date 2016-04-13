@@ -1,4 +1,4 @@
-@extends('layouts.project')
+@extends('layouts.project', [ 'active' => 'overview' ])
 
 @section('sidebar.page-header')
 <i class="fa fa-th-list page-header-icon"></i> Project Overview
@@ -19,7 +19,14 @@
 		<div class="panel role-item hide" data-bind-template="#roles-list" data-bind-value="bam_roles" data-bind="casting-role-<%= role_id %>" data-bind-target="id">
 			<div class="panel-body">
 				<div class="col-md-12 margin-bottom-normal">
-					<strong>Role : </strong><strong><span data-bind="<%= name %>"></span><span data-bind=" (<%= role_id %>)"></span></strong>
+					<div col-md-2>
+						<strong>Role : </strong><strong><span data-bind="<%= name %>"></span><span data-bind=" (<%= role_id %>)"></span></strong>
+						<a href="#"
+		 data-bind="<%=casting_id%>/roles/<%=role_id%>/edit"
+							class="btn btn-default btn-sm active margin-left-normal" role="button"><i
+								class="fa fa-plus"></i> Edit Role</a>
+
+					</div>
 				</div>
 				<div class="row-fluid clearfix">
 					<div class="col-md-3 text-center button-function ">
