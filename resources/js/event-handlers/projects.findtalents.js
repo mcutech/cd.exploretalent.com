@@ -26,32 +26,57 @@ handler.prototype.getProjectInfo = function() {
 			});
 
 			self.project.markets = { data : markets };
-			self.core.service.databind('#project-details', res)
-			self.core.service.databind('#project-roles', { data : res.bam_roles })
+			self.core.service.databind('#project-details', self.project)
+			self.core.service.databind('#roles-list', { data : self.project.bam_roles })
+			$('#roles-list').val(_.first(self.project.bam_roles).role_id);
+			self.refreshRole();
 		});
 }
 
-handler.prototype.selectRole = function() {
-	var roleId = $('#select-role').val();
+handler.prototype.refreshRole = function() {
+	var roleId = $('#roles-list').val();
+	var role = _.find(self.project.bam_roles, function(role) {
+		return role.role_id == roleId;
+	});
 
+	self.core.service.databind('#role-filter-form', role);
+	self.findMatches();
+}
+
+handler.prototype.findMatches = function() {
+	var form = self.core.service.form.serializeObject('#role-filter-form');
 	var data = {
-		projectId : self.projectId,
-		roleId : roleId,
 		query : [
-			[ 'with', 'bam_casting' ],
 		]
 	}
 
+	if (parseInt(form.age_min)) {
+		data.query.push([ 'where', 'dobyyyy', '<=', new Date().getFullYear() - parseInt(form.age_min) ]);
+	}
 
-	self.core.resource.job.get(data)
+	if (parseInt(form.age_max)) {
+		data.query.push([ 'where', 'dobyyyy', '>=', new Date().getFullYear() - parseInt(form.age_max) ]);
+	}
+
+	if (parseInt(form.height_min)) {
+		data.query.push([ 'where', 'heightinches', '>=', form.height_min ]);
+	}
+
+	if (parseInt(form.height_max)) {
+		data.query.push([ 'where', 'heightinches', '<=', form.height_max ]);
+	}
+
+	console.log(data);
+
+	self.core.resource.search_talent.get(data)
 		.then(function(res) {
 			console.log(res);
-			self.core.service.databind('#talent-filter-form', res)
 		});
-
 
 }
 
 module.exports = function(core, user, projectId) {
 	return new handler(core, user, projectId);
-};
+}
+
+
