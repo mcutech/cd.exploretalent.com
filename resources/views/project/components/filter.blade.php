@@ -9,8 +9,8 @@
 			<div class="row">
 				<label class="control-label pull-left padding-left-normal"><a href="">United States</a> <span class="padding-left-small">or</span></label>
 				<div class="col-md-3 margin-top-normal-zz-xs">
-					<select id="markets-list" name="markets" class="form-control" tabindex="-1" data-select multiple>
-						<option > </option>
+					<select id="markets-list" name="markets" class="form-control" tabindex="-1" data-select multiple data-bind="<%= bam_casting.market.split('>').join('|') %>">
+						<option> </option>
 						<option value="Albany, NY">Albany, NY</option>
 						<option value="Albuquerque, NM">Albuquerque, NM</option>
 						<option value="Atlanta, GA">Atlanta, GA</option>
@@ -118,7 +118,7 @@
 					</div>
 				</div>
 				<div class="col-md-3 margin-top-normal">
-					<select name="sex" class="form-control" data-select>
+					<select name="sex" class="form-control" data-select data-bind="<%= getGenders().length > 1 ? '' : getGenders()[0] %>">
 						<option value="">Gender - Both</option>
 						<option value="Male">Male</option>
 						<option value="Female">Female</option>
@@ -150,7 +150,7 @@
 					</div>
 				</div>
 				<div class="col-md-3 margin-top-normal">
-					<select name="build" class="form-control" multiple data-select placeholder="Body Type - All">
+					<select name="build" class="form-control" multiple data-select placeholder="Body Type - All" data-bind="<%= getBuilds().length == 9 ? '' : getBuilds().join('|') %>">
 						<option value="Athletic">Athletic</option>
 						<option value="Average">Average</option>
 						<option value="Extra Large">Extra-Large</option>
@@ -163,7 +163,7 @@
 					</select>
 				</div>
 				<div class="col-md-3 margin-top-normal">
-					<select name="ethnicity" class="form-control" multiple data-select placeholder="Ethnicity - All">
+					<select name="ethnicity" class="form-control" multiple data-select placeholder="Ethnicity - All" data-bind="<%= getEthnicities().length == 12 ? '' : getEthnicities().join('|') %>">
 						<option value="African">African</option>
 						<option value="African American">African American</option>
 						<option value="American Indian">American Indian</option>
