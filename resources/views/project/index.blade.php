@@ -21,6 +21,13 @@
 
 
 @section('sidebar.body')
+	<div class="row">
+		<div class="col-md-12">
+			<a href="projects/create"  class="btn
+				btn-default active" role="button"><i class="fa fa-plus"></i>
+				Create Project</a>
+		</div>
+	</div>
 	<div id="projects-pagination" class="text-right"></div>
 	<div class="panel padding-xs-vr col-md-12 margin-bottom-small text-left">
 		<div class="col-md-2"><strong>Title</strong></div>

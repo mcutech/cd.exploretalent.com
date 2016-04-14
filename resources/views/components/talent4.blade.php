@@ -1,15 +1,4 @@
 <div class="{{ $class or 'col-md-2' }} talent-item-container" data-bind-template="{{ $databind['template'] or '' }}" data-bind-value="{{ $databind['value'] or '' }}">
-<!-- <ul class="nav nav-tabs">
-	<li class="active">
-		<a data-bind="#talent-body-<%= talentnum %>" href="#talent-body" data-toggle="tab">Photo</a>
-	</li>
-		@if (isset($notes) && $notes)
-		<li>
-			<a data-bind="#like-it-note-<%= talentnum %>" data-toggle="tab">My Notes</a>
-		</li>
-		@endif
-</ul>
- -->
 
 	<div class="talent-item">
 		<div class="talent-photo-and-note-container">
