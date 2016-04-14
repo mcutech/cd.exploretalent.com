@@ -5,7 +5,6 @@ function handler(core, user, projectId) {
 	self.core = core;
 	self.user = user;
 	self.projectId = projectId;
-
 	self.getProjectInfo();
 }
 
@@ -20,6 +19,14 @@ handler.prototype.getProjectInfo = function(e) {
 	self.core.resource.project.get(data)
 		.then(function(res) {
 			self.project = res;
+
+			var markets = _.map(self.project.market.split('>'), function(m) {
+				return { name : m };
+			});
+
+			self.project.markets = { data : markets };
+			console.log(self.project);
+
 			self.core.service.databind('#project-details', self.project);
 		});
 }
@@ -30,8 +37,6 @@ handler.prototype.saveNewRole = function(e) {
 
 	//to be used later to determine where to link page
 	var buttonId = $(this).attr('id');
-	var whereToLink = $(this).attr('href');
-
 	var height = $('#heightinches').val(),
 		height = height.split(",");
 
@@ -107,7 +112,8 @@ handler.prototype.saveNewRole = function(e) {
 					self.core.resource.project.patch({projectId : self.projectId, status : 0})
 						.then(function(res) {
 							setTimeout(function(){
-								window.location = whereToLink;
+								console.log('save-role-btn');
+								window.location = '/projects/' + self.projectId;
 							}, 3000);
 						});
 
@@ -129,16 +135,12 @@ handler.prototype.saveNewRole = function(e) {
 }
 
 handler.prototype.cancelRole = function(e) {
-
-
 	if(window.confirm("Are you sure you want to cancel this role?")) {
 		return;
 	}
-
 	else {
 		e.preventDefault();
 	}
-
 }
 
 module.exports = function(core, user, projectId) {

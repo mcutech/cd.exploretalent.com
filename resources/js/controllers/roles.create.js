@@ -6,7 +6,7 @@ module.exports = function(core, user, projectId) {
 	$('#save-and-add-role-btn').on('click', handler.saveNewRole);
 
 	$('#cancel-role-btn').on('click', handler.cancelRole);
-	
+
 	var age_range_sliders_options = {
 		'range': true,
 		'min': 0,
@@ -63,7 +63,7 @@ module.exports = function(core, user, projectId) {
 		if(ui.values[1] == '22' || ui.values[1] == '23') {
 			feet2 = '< 2';
 		}
-		
+
 		$( '#height-span' ).html(feet1 + ' ft ' + inches1 + ' in' + ' to ' + feet2 + ' ft ' + inches2 + ' in');
 
 		if(ui.values[0] == '23') {
@@ -86,7 +86,7 @@ module.exports = function(core, user, projectId) {
 		    // Allow: backspace, delete, tab, escape, and enter
 		    if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110]) !== -1 ||
 		         // Allow: Ctrl+A, Command+A
-		        (e.keyCode == 65 && ( e.ctrlKey === true || e.metaKey === true ) ) || 
+		        (e.keyCode == 65 && ( e.ctrlKey === true || e.metaKey === true ) ) ||
 		         // Allow: home, end, left, right, down, up
 		        (e.keyCode >= 35 && e.keyCode <= 40)) {
 		             // let it happen, don't do anything
@@ -100,5 +100,5 @@ module.exports = function(core, user, projectId) {
 	}
 
 	dontAllowLetters($("#role-number-text"));
-			
+
 };
