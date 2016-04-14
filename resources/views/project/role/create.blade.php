@@ -2,7 +2,7 @@
 
 @section('sidebar.page-header')
 <div class="col-md-12">
-	<i class="fa fa-th-list page-header-icon"></i> Add Roles	
+	<i class="fa fa-th-list page-header-icon"></i> Add Roles
 </div>
 @stop
 
@@ -28,13 +28,13 @@
 				<div class="form-group">
 				    <label>Role Name</label>
 				    <input type="text" class="form-control" id="role-name-text" placeholder="" data-validate="required" data-validate-error="This field is required.">
-			  	</div>    	
+			  	</div>
 		    </div>
 		    <div class="col-md-4">
 				<div class="form-group">
 				    <label>Number of Talents</label>
 				    <input type="text" class="form-control" id="role-number-text" placeholder="" data-validate="required" data-validate-error="This field is required.">
-			  	</div>	    	
+			  	</div>
 		    </div>
 		    <div class="col-md-12">
 		    	<div class="form-group">
@@ -53,10 +53,10 @@
 					  <input class="px" type="checkbox" name="gender" id="gender-female-checkbox" value="0">
 					   <span class="lbl">Female</span>
 					</label>
-					<div class="alert alert-page alert-danger gender-error-required" style="display: none;">This field is required.</div>	  		
+					<div class="alert alert-page alert-danger gender-error-required" style="display: none;">This field is required.</div>
 				</div>
-			</div>	    
-			
+			</div>
+
 			<div class="col-md-4 margin-top-normal">
 				<label for="">Age Range: </label><span id="age-range-min"> 0</span> to <span id="age-range-max">100</span> y.o.
 				<div class="ui-slider-age-range"></div>
@@ -67,12 +67,12 @@
 				<span id="height-span">< 2 ft 0 in to 8 ft 0 in</span>
 				<input name="height" id="heightinches" class="display-none" value="22,96">
                 <div class="ui-slider-height-range"></div>
-			</div>		
+			</div>
 
 			<div class="col-md-12 margin-top-large">
 				<label>Ethnicity:</label>
 			</div>
-		    <div class="col-md-12">	    
+		    <div class="col-md-12">
 				<label class="checkbox-inline margin-bottom-normal">
 				  <input class="px" type="checkbox" name="ethnicity" id="ethnicity-any" value="0">
 				  <span class="lbl">Any</span>
@@ -84,7 +84,7 @@
 				<label class="checkbox-inline margin-bottom-normal">
 				  <input class="px" type="checkbox" name="ethnicity" id="ethnicity-african-am" value="0">
 				  <span class="lbl">African American</span>
-				</label>	  
+				</label>
 				<label class="checkbox-inline margin-bottom-normal">
 				  <input class="px" type="checkbox" name="ethnicity" id="ethnicity-asian" value="0">
 				  <span class="lbl">Asian</span>
@@ -96,7 +96,7 @@
 				<label class="checkbox-inline margin-bottom-normal">
 				  <input class="px" type="checkbox" name="ethnicity" id="ethnicity-caucasian" value="0">
 				  <span class="lbl">Caucasian</span>
-				</label>						
+				</label>
 				<label class="checkbox-inline margin-bottom-normal">
 				  <input class="px" type="checkbox" name="ethnicity" id="ethnicity-hispanic" value="0">
 				  <span class="lbl">Hispanic</span>
@@ -108,19 +108,19 @@
 		    	<label class="checkbox-inline margin-bottom-normal">
 				  <input class="px" type="checkbox" name="ethnicity" id="ethnicity-middle-est" value="0">
 				  <span class="lbl">Middle Eastern</span>
-				</label>	
+				</label>
 				<label class="checkbox-inline margin-bottom-normal">
 				  <input class="px" type="checkbox" name="ethnicity" id="ethnicity-american-in" value="0">
 				  <span class="lbl">American Indian</span>
 				</label>
-				<div class="alert alert-page alert-danger ethnicity-error-required" style="display: none;">This field is required.</div>	
+				<div class="alert alert-page alert-danger ethnicity-error-required" style="display: none;">This field is required.</div>
 		    </div>
 
 
 			<div class="col-md-12 margin-top-large">
 				<label>Body Type:</label>
 			</div>
-		    <div class="col-md-12">	    
+		    <div class="col-md-12">
 				<label class="checkbox-inline margin-bottom-normal">
 				  <input class="px" type="checkbox" name="built" id="built-any" value="0">
 				  <span class="lbl">Any</span>
@@ -132,7 +132,7 @@
 				<label class="checkbox-inline margin-bottom-normal">
 				  <input class="px" type="checkbox" name="built" id="built-athletic" value="0">
 				  <span class="lbl">Athletic</span>
-				</label>	  
+				</label>
 				<label class="checkbox-inline margin-bottom-normal">
 				  <input class="px" type="checkbox" name="built" id="built-bb" value="0">
 				  <span class="lbl">Body Builder</span>
@@ -144,11 +144,11 @@
 				<label class="checkbox-inline margin-bottom-normal">
 				  <input class="px" type="checkbox" name="built" id="built-large" value="0">
 				  <span class="lbl">Large</span>
-				</label>	
+				</label>
 				<label class="checkbox-inline margin-bottom-normal">
 				  <input class="px" type="checkbox" name="built" id="built-petite" value="0">
 				  <span class="lbl">Petite</span>
-				</label>	
+				</label>
 				<label class="checkbox-inline margin-bottom-normal">
 				  <input class="px" type="checkbox" name="built" id="built-thin" value="0">
 				  <span class="lbl">Thin</span>
@@ -157,12 +157,12 @@
 				  <input class="px" type="checkbox" name="built" id="built-lm" value="0">
 				  <span class="lbl">Lean Muscle</span>
 				</label>
-				<div class="alert alert-page alert-danger built-error-required" style="display: none;">This field is required.</div>					  	
-		    </div>	
+				<div class="alert alert-page alert-danger built-error-required" style="display: none;">This field is required.</div>
+		    </div>
 			<div class="col-md-12 margin-top-large">
 				<label>Hair Color:</label>
 			</div>
-		    <div class="col-md-10">	    
+		    <div class="col-md-10">
 				<label class="checkbox-inline margin-bottom-normal">
 				  <input class="px" type="checkbox" name="hair-color" id="hair-any" value="0">
 				  <span class="lbl">Any</span>
@@ -174,7 +174,7 @@
 				<label class="checkbox-inline margin-bottom-normal">
 				  <input class="px" type="checkbox" name="hair-color" id="hair-black" value="0">
 				  <span class="lbl">Black</span>
-				</label>	  
+				</label>
 				<label class="checkbox-inline margin-bottom-normal">
 				  <input class="px" type="checkbox" name="hair-color" id="hair-blonde" value="0">
 				  <span class="lbl">Blonde</span>
@@ -186,11 +186,11 @@
 				<label class="checkbox-inline margin-bottom-normal">
 				  <input class="px" type="checkbox" name="hair-color" id="hair-chestnut" value="0">
 				  <span class="lbl">Chestnut</span>
-				</label>	
+				</label>
 				<label class="checkbox-inline margin-bottom-normal">
 				  <input class="px" type="checkbox" name="hair-color" id="hair-dark-brown" value="0">
 				  <span class="lbl">Dark Brown</span>
-				</label>	
+				</label>
 				<label class="checkbox-inline margin-bottom-normal">
 				  <input class="px" type="checkbox" name="hair-color" id="hair-grey" value="0">
 				  <span class="lbl">Gray</span>
@@ -207,9 +207,9 @@
 				  <input class="px" type="checkbox" name="hair-color" id="hair-white" value="0">
 				  <span class="lbl">White</span>
 				</label>
-				<div class="alert alert-page alert-danger hair-color-error-required" style="display: none;">This field is required.</div>						
+				<div class="alert alert-page alert-danger hair-color-error-required" style="display: none;">This field is required.</div>
 		    </div>
-		  </div>	  
+		  </div>
 		</div>
 	</div>
 </div>
@@ -217,11 +217,11 @@
 <div class="row-fluid clearfix action-buttons-div">
 	<div class="col-md-12">
 		<div class="form-group margin-top-normal">
-			<a data-bind="/projects/<%= casting_id %>" id="save-role-btn" class="btn btn-primary">Save</a>
+			<a id="save-role-btn" class="btn btn-primary">Save</a>
 			<button id="save-and-add-role-btn" class="btn btn-success margin-left-small" type="submit">Save and Add a New Role</button>
 			<a href="/projects" id="cancel-role-btn" class="btn btn-default margin-left-small">Cancel</a>
 			<span class="text-success margin-left-normal role-saved-success" style="display: none;">New role has been saved.</span>
-		</div>			
+		</div>
 	</div>
 </div>
 
