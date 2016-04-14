@@ -59,7 +59,7 @@ handler.prototype.findMatches = function(append) {
 	$('#search-loader').show();
 
 	if (!append) {
-		$('#talent-search-result').hide();
+		$('#role-matches-result').hide();
 	}
 
 	self.core.resource.search_talent.get(data)
