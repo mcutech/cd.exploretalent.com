@@ -1,10 +1,11 @@
 'use strict';
 
-function handler(core, user, projectId) {
+function handler(core, user, projectId, roleId) {
 	self = this;
 	self.core = core;
 	self.user = user;
 	self.projectId = projectId;
+	self.roleId = roleId;
 
 	self.getProjectInfo();
 }
@@ -28,7 +29,12 @@ handler.prototype.getProjectInfo = function() {
 			self.project.markets = { data : markets };
 			self.core.service.databind('#project-details', self.project)
 			self.core.service.databind('#roles-list', { data : self.project.bam_roles })
-			$('#roles-list').val(_.first(self.project.bam_roles).role_id);
+			if (self.roleId) {
+				$('#roles-list').val(self.roleId);
+			}
+			else {
+				$('#roles-list').val(_.first(self.project.bam_roles).role_id);
+			}
 			self.refreshRole();
 		});
 }
@@ -201,8 +207,8 @@ handler.prototype.getFilters = function() {
 	return data;
 }
 
-module.exports = function(core, user, projectId) {
-	return new handler(core, user, projectId);
+module.exports = function(core, user, projectId, roleId) {
+	return new handler(core, user, projectId, roleId);
 }
 
 
