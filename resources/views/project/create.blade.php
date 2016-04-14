@@ -1,17 +1,17 @@
-@extends('layouts.project', ['pages' => [ [ 'name' => 'My Projects', 'url' => '/projects' ], [ 'name' => 'Create Project', 'url' => '/projects/create', 'active' => true ] ] ])
+@extends('layouts.sidebar', ['pages' => [ [ 'name' => 'My Projects', 'url' => '/projects' ], [ 'name' => 'Create Project', 'url' => '/projects/create', 'active' => true ] ] ])
 
 @section('sidebar.page-header')
 <i class="fa fa-file-text"></i> Create New Project
 @stop
 
-@section('project.body')
+@section('sidebar.body')
 <div class="create-wrapper">
 	<div class="projects-content">
 		<div class="panel">
 			<div class="panel-body">
-				<div class="container-fluid">
-					<div class="row-fluid">
-						<div class="col-md-6">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-5">
 							<div class="form-group">
 								<label class="control-label">Project Name <span class="text-success">*</span></label>
 								<input type="text" class="form-control" id="project-name" placeholder="Enter Project Name">
@@ -47,7 +47,7 @@
 							</div>
 
 						</div> {{-- col-md-6 --}}
-						<div class="col-md-6">
+						<div class="col-md-4">
 							<div class="form-group">
 								<label class="control-label">Category <span class="text-success">*</span></label>
 								<select class="form-control" id="project-category" name="cat">
@@ -154,7 +154,7 @@
 					</div> {{-- row-fluid --}}
 
 					<div class="row-fluid">
-						<div class="col-md-3">
+						<div class="col-md-5">
 							<div class="form-group">
 								<label class="control-label">Submission Type<span class="text-success">*</span></label>
 								<label class="radio checkbox-inline">
@@ -219,15 +219,15 @@
 
 					</div> {{-- row-fluid --}}
 					<div class="row-fluid">
-						<div class="col-md-12">
+						<div class="col-md-9">
 							<div class="form-group">
 								<label class="control-label">General Audition Info / Storyline / Synopsis / Logline <span class="text-success">*</span></label>
 								<textarea id="audition-description" class="form-control" rows="4" cols="50" placeholder="Message" style="resize:vertical; box-sizzing: border-box;"></textarea>
 								<div class="alert alert-page alert-danger audition-description-error-required" style="display:none;">This field is required.</div>
 							</div>
-						</div>						
+						</div>
 					</div>
-					<div class="row-fluid">						
+					<div class="row-fluid">
 							<div class="col-md-6 padding-top-normal">
 								<div class="form-group margin-bottom-small">
 									<label class="control-label">Audition Location <span class="text-success">*</span></label>
@@ -259,7 +259,7 @@
 									or <a href="" id="toggle-manual-markets-div" style="text-decoration: underline;">Manually select markets</a>
 									<a class="btn btn-default btn-sm hide" href="" id="toggle-all-markets-checked" style="display: none;">Select All Markets</a>
 								</label>
-							</div>	
+							</div>
 							<div class="manual-markets-div display-none hide-if-nationwide">
 								<div class="col-md-2">
 									<label>
@@ -483,12 +483,12 @@
 										<input type="checkbox" name="manual-market-checkbox"> <span class="lbl">Vancouver, BC</span>
 									</label>
 								</div>
-							</div>	
+							</div>
 						</div>
 					</div>
 
 					<div class="row-fluid">
-						<div class="col-md-12">
+						<div class="col-md-9">
 							<div class="pull-right">
 								<a href="#" id="create-project-btn" class="btn btn-success btn-lg">Save</a>
 							</div>
