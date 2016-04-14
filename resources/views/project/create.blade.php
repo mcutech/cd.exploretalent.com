@@ -9,9 +9,9 @@
 	<div class="projects-content">
 		<div class="panel">
 			<div class="panel-body">
-				<div class="container-fluid">
-					<div class="row-fluid">
-						<div class="col-md-6">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-5">
 							<div class="form-group">
 								<label class="control-label">Project Name <span class="text-success">*</span></label>
 								<input type="text" class="form-control" id="project-name" placeholder="Enter Project Name">
@@ -47,7 +47,7 @@
 							</div>
 
 						</div> {{-- col-md-6 --}}
-						<div class="col-md-6">
+						<div class="col-md-4">
 							<div class="form-group">
 								<label class="control-label">Category <span class="text-success">*</span></label>
 								<select class="form-control" id="project-category" name="cat">
@@ -219,7 +219,7 @@
 
 					</div> {{-- row-fluid --}}
 					<div class="row-fluid">
-						<div class="col-md-12">
+						<div class="col-md-9">
 							<div class="form-group">
 								<label class="control-label">General Audition Info / Storyline / Synopsis / Logline <span class="text-success">*</span></label>
 								<textarea id="audition-description" class="form-control" rows="4" cols="50" placeholder="Message" style="resize:vertical; box-sizzing: border-box;"></textarea>
@@ -488,7 +488,7 @@
 					</div>
 
 					<div class="row-fluid">
-						<div class="col-md-12">
+						<div class="col-md-9">
 							<div class="pull-right">
 								<a href="#" id="create-project-btn" class="btn btn-success btn-lg">Save</a>
 							</div>
