@@ -160,16 +160,16 @@
 						}
 
 						@media only screen and (max-width: 1200px){
-							min-height: 320px;
-							max-height: 320px;
+							min-height: 280px !important;
+							max-height: 280px !important;
 						}
 						@media only screen and (max-width: 992px){
-							min-height: 140px;
-							max-height: 140px;
+							min-height: 220px !important;
+							max-height: 220px !important;
 						}
 						@media only screen and (max-width: 768px){
-							min-height: 400px;
-							max-height: 400px;
+							min-height: 100% !important;
+							max-height: 100% !important;
 						}
 						@media only screen and (max-width: 480px){
 							min-height: 260px;
