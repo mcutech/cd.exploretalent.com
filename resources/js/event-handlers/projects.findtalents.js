@@ -6,6 +6,7 @@ function handler(core, user, projectId, roleId) {
 	self.user = user;
 	self.projectId = projectId;
 	self.roleId = roleId;
+	self.page = 1;
 
 	self.getProjectInfo();
 }
@@ -147,7 +148,7 @@ handler.prototype.getFilters = function() {
 		]
 	}
 
-	if (form.markets.length) {
+	if (form.markets && form.markets.length) {
 		var subquery = [];
 
 		_.each(form.markets, function(market) {
