@@ -50,4 +50,14 @@ module.exports = function(core, user) {
 			handler.refresh(true);
 		}
 	});
+
+	//refine search toggle location search
+	$(document).on('click', '#location-search-change-btn', function(){
+		$('#location-search-display').show();
+		$('#location-search-change').hide();
+	});
+	$(document).on('click', '#location-search-display-btn', function(){
+		$('#location-search-display').hide();
+		$('#location-search-change').show();
+	});	
 }
