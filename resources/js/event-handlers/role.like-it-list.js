@@ -61,7 +61,6 @@ handler.prototype.findMatches = function(append) {
 	self.page = append ? self.page + 1 : 1;
 	self.refreshing = true;
 	var data = self.getFilters();
-	var talents, talentnums;
 
 	$('#search-loader').show();
 
