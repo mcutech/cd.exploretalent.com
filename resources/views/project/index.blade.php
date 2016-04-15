@@ -21,8 +21,13 @@
 				<option value="0">Pending Review</option>
 				<option value="1">Active</option>
 			</select>
+		</div>
+		<div class="col-xs-6 col-sm-2">
+			<a href="projects/create"  class="btn btn-outline btn-block margin-top-normal-zz-xs" role="button"><i class="fa fa-plus"></i>
+				Create Project
+			</a>
 		</div>	
-		<div class="col-sm-offset-2 col-sm-4">
+		<div class="col-xs-6 col-sm-4">
 			<div id="projects-pagination" class="pull-right margin-top-normal-zz-xs"></div>		
 		</div>
 	</div>
@@ -35,6 +40,7 @@
 		<div class="col-xs-2 col-sm-2 col-md-1"><strong>Deadline</strong></div>
 		<div class="col-xs-3 col-sm-2 display-none-zz-xs"><strong>Status</strong></div>
 	</div>
+
 	<div class="projects-wrapper">
 		<div class="panel-group panel-group-primary project-item" id="projects-list">
 			<div class="div-table-stripe-item" data-bind-template="#projects-list" data-bind-value="data">

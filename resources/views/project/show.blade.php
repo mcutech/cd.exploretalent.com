@@ -21,17 +21,13 @@
 				<div class="col-md-12 margin-bottom-normal">
 					<div col-md-2>
 						<strong>Role : </strong><strong><span data-bind="<%= name %>"></span><span data-bind=" (<%= role_id %>)"></span></strong>
-						<a href="#"
-		 data-bind="<%=casting_id%>/roles/<%=role_id%>/edit"
-							class="btn btn-default btn-sm active margin-left-normal" role="button"><i
-								class="fa fa-plus"></i> Edit Role</a>
-
+						<a href="#" data-bind="/projects/<%=casting_id%>/roles/<%=role_id%>/edit" class="btn btn-default btn-sm active margin-left-normal" role="button"><i class="fa fa-plus"></i> Edit Role</a>
 					</div>
 				</div>
 				<div class="row-fluid clearfix">
 					<div class="col-md-3 text-center button-function ">
 						<div class="bordered padding-medium fixedheight alert alert-success">
-							<a href="#role-find-talents" data-toggle="modal"><div><i class="fa fa-user fa-2x"></i></div>
+							<a data-bind="/projects/<%= casting_id %>/find-talents/<%= role_id %>"><div><i class="fa fa-user fa-2x"></i></div>
 							<div>Find Talent for this role</div>
 							<b><div class="text-bg"></div></b></a>
 						</div>

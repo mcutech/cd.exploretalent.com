@@ -23,6 +23,7 @@ Route::get('reset-password', 'ResetPasswordController@index');
 Route::resource('/audition-worksheet'				, 'WorksheetController');
 Route::get('projects/quickpost'		                , 'ProjectController@quickpost');
 Route::resource('projects'							, 'ProjectController');
+Route::get('projects/{projectId}/find-talents/{roleId}'		, 'ProjectController@findtalents');
 Route::get('projects/{projectId}/find-talents'		, 'ProjectController@findtalents');
 
 Route::resource('projects.roles'					, 'RoleController', [ 'only' => [ 'edit', 'create' ] ]);

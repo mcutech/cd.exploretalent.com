@@ -67,7 +67,7 @@ jscore.run(function(core) {
 		.add('/projects/quickpost', 'project.quickpost')
 		.add('/projects/{projectId}', 'project.show')
 		.add('/projects/{projectId}/edit', 'projects.edit')
-		.add('/projects/{projectId}/find-talents', 'projects.findtalents')
+		.add('/projects/{projectId}/find-talents/{roleId}', 'projects.findtalents')
 	    .add('/messages/{projectId}/{roleId}', 'message')
 	    .add('/messages/{projectId}', 'message')
 	    .add('/messages', 'message')
