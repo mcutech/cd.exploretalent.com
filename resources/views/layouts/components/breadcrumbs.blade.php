@@ -1,5 +1,5 @@
 <div class="row-fluid clearfix">
-	<div class="col-md-12">
+	<div class="col-md-12 padding-zero">
 		<ul class="breadcrumb breadcrumb-page">
 			<li>
 				<a href="/projects">Home</a>
