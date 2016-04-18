@@ -48,7 +48,7 @@
 					</div>
 					<div class="col-md-2 text-center button-function">
 						<div class="bordered padding-small fixedheight">
-							<a href="#role-find-talents-callbacks" data-toggle="modal"><div><i class="fa fa-check-square fa-2x"></i></div>
+							<a href="#role-find-talents-callbacks" data-toggle="modal" data-bind="/projects/<%= casting_id %>/roles/<%= role_id %>/callbacks"><div><i class="fa fa-check-square fa-2x"></i></div>
 							<div>Select your callbacks</div>
 							<b><div class="text-bg">18</div></b></a>
 						</div>
