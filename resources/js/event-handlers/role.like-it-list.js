@@ -31,7 +31,7 @@ handler.prototype.getProjectInfo = function() {
 			self.project.markets = { data : markets };
 			self.core.service.databind('#project-details', self.project)
 			self.core.service.databind('#roles-list', { data : self.project.bam_roles })
-			if (self.roleId) {
+			if (parseInt(self.roleId)) {
 				$('#roles-list').val(self.roleId);
 			}
 			else {

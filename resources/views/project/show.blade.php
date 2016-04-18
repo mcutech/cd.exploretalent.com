@@ -27,7 +27,7 @@
 				<div class="row-fluid clearfix">
 					<div class="col-md-3 text-center button-function ">
 						<div class="bordered padding-medium fixedheight alert alert-success">
-							<a data-bind="/projects/<%= casting_id %>/find-talents/<%= role_id %>"><div><i class="fa fa-user fa-2x"></i></div>
+							<a data-bind="/projects/<%= casting_id %>/roles/<%= role_id %>/find-talents"><div><i class="fa fa-user fa-2x"></i></div>
 							<div>Find Talent for this role</div>
 							<b><div class="text-bg"></div></b></a>
 						</div>
