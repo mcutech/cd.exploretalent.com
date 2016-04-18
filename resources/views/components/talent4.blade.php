@@ -8,7 +8,7 @@
 				@if (isset($favorites_notes) && $favorites_notes)
 					<li><span class="text-function-label notes">Add Notes</span><a class="talent-function-icon notes"><i class="fa fa-file-o"></i></a></li>
 				@endif
-				<li><span class="text-function-label favorites">Add to Favorites</span><a class="talent-function-icon favorites" data-bind="<%= (favorite) ? 'favorite-' + favorite.id : 'talentnum-' + talentnum %>" data-bind-target="data-id"><i class="fa fa-star-o"></i></a></li>
+				<!-- <li><span class="text-function-label favorites">Add to Favorites</span><a class="talent-function-icon favorites" data-bind="<%= (favorite) ? 'favorite-' + favorite.id : 'talentnum-' + talentnum %>" data-bind-target="data-id"><i class="fa fa-star-o"></i></a></li> -->
 				<!-- <li><span class="text&#45;function&#45;label add&#45;role">Add to Role</span><a class="talent&#45;function&#45;icon add&#45;role" href="#"><i class="fa fa&#45;plus"></i></a></li> -->
 			</ul>
 			<div class="talent-photo-v2">
@@ -43,12 +43,22 @@
 				<div class="col-md-12 col-sm-12 padding-zero">
 					<div class="like-it-list-container">
 						<div class="btn-group talent-function">
-							<button data-value="1" class="btn btn-xs btn-danger rating-button function-item" data-toggle="modal" data-bind="<%= user.id %>" data-bind-target="data-id" data-target="#addtolist">1</button>
+							<!-- turns to green when added to like list and change text to added and change icon to check -->
+							
+							<!-- inactive -->
+							<button class="btn btn-default text-default function-item"><i class="fa fa-plus"></i> Add Like it List</button>
+							<button class="btn btn-outline function-item no-padding-vr" rel="tooltip" title="Add to Favorites"><i class="fa fa-star-o font-size-normal-medium text-default"></i></button>
+							
+							<!-- active -->
+							<!-- <button class="btn btn-success function-item"><i class="fa fa-check"></i> Added</button>
+							<button class="btn btn-outline function-item no-padding-vr" rel="tooltip" title="Added to Favorites"><i class="fa fa-star-o text-warning font-size-normal-medium"></i></button> -->
+
+							<!-- <button data-value="1" class="btn btn-xs btn-danger rating-button function-item" data-toggle="modal" data-bind="<%= user.id %>" data-bind-target="data-id" data-target="#addtolist">1</button>
 							<button data-value="2" class="btn btn-xs btn-warning rating-button function-item" data-toggle="modal" data-bind="<%= user.id %>" data-bind-target="data-id" data-target="#addtolist">2</button>
 							<button data-value="3" class="btn btn-xs btn-info rating-button function-item" data-toggle="modal" data-bind="<%= user.id %>" data-bind-target="data-id" data-target="#addtolist"	>3</button>
 							<button data-value="4" class="btn btn-xs btn-primary rating-button function-item" data-toggle="modal" data-bind="<%= user.id %>" data-bind-target="data-id" data-target="#addtolist">4</button>
 							<button data-value="5" class="btn btn-xs btn-success rating-button function-item" data-toggle="modal" data-bind="<%= user.id %>" data-bind-target="data-id" data-target="#addtolist">5</button>
-							<button data-value="6" class="btn btn-xs btn-default rating-button function-item" data-toggle="modal" data-bind="<%= user.id %>" data-bind-target="data-id" data-target="#addtolist">CB</button>
+							<button data-value="6" class="btn btn-xs btn-default rating-button function-item" data-toggle="modal" data-bind="<%= user.id %>" data-bind-target="data-id" data-target="#addtolist">CB</button> -->
 						</div>
 					</div>
 				</div>
