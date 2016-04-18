@@ -11,11 +11,11 @@
 					<li class="{{ isset($active) && $active == 'find-talents' ? 'active' : '' }}">
 						<a href="#" data-bind="/projects/<%= casting_id %>/find-talents">Find Talents</a>
 					</li>
-					<li class="">
-						<a href="#" data-toggle="tab">Like it List</a>
+					<li class="{{ isset($active) && $active == 'like-it-list' ? 'active' : '' }}">
+						<a href="#" data-bind="/projects/<%= casting_id %>/roles/<%= bam_roles.length ? _.first(bam_roles).role_id : 0 %>/like-it-list">Like it List</a>
 					</li>
 					<li class="">
-						<a href="#" data-toggle="tab">Worksheet</a>
+						<a href="#" data-bind="/audition-worksheet/<%= casting_id %>">Worksheet</a>
 					</li>
 				</ul>
 			</div>
