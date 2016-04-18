@@ -31,7 +31,8 @@
 						<div class="f_circleG" id="frotateG_08"></div>
 					</div>
 					<div class="row-fluid clearfix" id="favorite-result">
-						@include('components.talent', [ 'databind' => [ 'template' => '#favorite-result', 'value' => 'data' ], 'favorites' => true , 'favorites_notes' => false ])
+						{{-- @include('components.talent', [ 'databind' => [ 'template' => '#favorite-result', 'value' => 'data' ], 'favorites' => true , 'favorites_notes' => false ]) --}}
+						@include('components.talent4', [ 'databind' => [ 'template' => '#favorite-result', 'value' => 'data' ], 'ratings' => true, 'favorites_notes' => false ])
 					</div>
 				</div> {{-- talents-search-results --}}
 			</div>

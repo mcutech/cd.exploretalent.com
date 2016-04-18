@@ -5,37 +5,109 @@ function handler(core, user){
 	self.talent = null;
 	self.refresh();
 }
-handler.prototype.refresh = function(){
+handler.prototype.refresh = function(append){
 	// $('#div-for-favorite').removeClass('hide');
 	// $('#div-for-rolematch').addClass('hide');
-	var qs = self.core.service.query_string();
-	var data = {
-		withs	: [
-			'bam_talentci.bam_talentinfo1',
-			'bam_talentci.bam_talentinfo2',
-			'bam_talentci.bam_talent_media2',
-		],
-		page : qs.page || 0
+	if (self.refreshing) {
+		return;
 	}
 
-	self.core.resource.favorite_talent.get(data)
-	.then(function(result){
-		var talent = {
-			data : [],
-		}
-		_.each(result.data, function(res){
-			res.bam_talentci.favorite = res.id;
-			res.bam_talentci.schedule ={};
-			res.bam_talentci.rating = null;
-			talent.data.push(res.bam_talentci);
-		});
-		
-		self.core.service.databind('#favorite-result', talent);
-		self.core.service.paginate('#favorite-pagination', { class : 'pagination', total : result.total, name : 'page' });
+	append = append === true;
+	self.page = append ? self.page + 1 : 1;
+	self.refreshing = true;
 
-		self.talent = talent;
-		$('#loading-div').hide();
+	var talents;
+
+	$('#talent-search-loader').show();
+
+	if (!append) {
+		$('#talent-search-result').hide();
+	}
+
+	self.core.resource.favorite_talent.get()
+	.then(function(result){
+		var talentnums = _.map(result.data, function(talent) {
+			return talent.bam_talentnum;
+		});
+
+		talentnums.push(0);
+
+		var data = {
+			query : [
+				[ 'whereIn', 'talentnum', talentnums ],
+			]
+		};
+
+		return self.core.resource.search_talent.get(data)
+
 	})
+	.then(function(res) {
+		talents = res;
+		if (talents.total) {
+			talentnums = _.map(talents.data, function(talent) {
+				return talent.talentnum;
+			});
+
+			talentnums.push(0);
+
+			var data2 = {
+				query : [
+					[ 'whereIn', 'talentci.talentnum', talentnums ],
+					[ 'with', 'bam_talent_media2' ],
+					[ 'with', 'user' ]
+				]
+			};
+			return self.core.resource.talent.get(data2);
+		}
+		else {
+			return $.when({ data : [] });
+		}
+	})
+	.then(function (res) {
+		_.each(talents.data, function(talent) {
+			var talentci = _.find(res.data, function(tm) {
+				return talent.talentnum == tm.talentnum;
+			});
+
+			if (talentci) {
+				talent.bam_talent_media2 = talentci.bam_talent_media2;
+				talent.user = talentci.user;
+			}
+		});
+
+		// if (talents.total) {
+		if (false) {		// TODO: uncomment line above when API is working
+			// get favorite talents
+			var data2 = {
+				query : [
+					[ 'whereIn', 'bam_talentnum', talentnums ]
+				]
+			};
+
+			return self.core.resource.favorite_talent.get(data2);
+		}
+		else {
+			return $.when({ data : [] });
+		}
+	})
+	.then(function(res) {
+		if (talents.total) {
+			//assign favorite talents to talent
+			_.each(talents.data, function(talent) {
+				talent.favorite = _.find(res.data, function(favorite) {
+					return talent.talentnum == favorite.bam_talentnum;
+				});
+			});
+		}
+		console.log(talents);
+		self.core.service.databind('#favorite-result', talents, append);
+		self.refreshing = false;
+
+		// $('#talent-search-loader').hide();
+		if (!append) {
+			$('#talent-search-result').show();
+		}
+	});
 
 };
 
@@ -61,7 +133,7 @@ handler.prototype.addToFav = function(){
 }
 
 handler.prototype.refreshCastingRole = function() {
-	self.inviteeId = $(this).parent().attr("data-id").replace('user-', '');
+	self.inviteeId = $(this).parent().attr("data-id");
 	self.ratingValue = $(this).text();
 
 	self.core.resource.project.get()

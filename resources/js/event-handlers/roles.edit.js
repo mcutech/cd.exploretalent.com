@@ -13,53 +13,27 @@ function handler(core, user, projectId, roleId) {
 }
 
 handler.prototype.getProjectInfo = function(e) {
-
 	var data = {
-		withs : [
-			'bam_roles'
-		],
-		wheres : [
-			[ 'where', 'casting_id', '=', self.projectId ]
+		projectId : self.projectId,
+		query : [
+			[ 'with', 'bam_roles' ]
 		]
-	};
+	}
 
-	return self.core.resource.project.get(data)
+	self.core.resource.project.get(data)
 		.then(function(res) {
-			if (res.total > 0) {
-				var casting = res.data[0];
+			self.project = res;
 
-				casting.date = self.core.service.date;
+			var markets = _.map(self.project.market.split('>'), function(m) {
+				return { name : m };
+			});
 
-				if(casting.rate_des == '1') {
-					casting.rate_des = 'event';
-				}
-				else if(casting.rate_des == '2') {
-					casting.rate_des = 'hour';
-				}
-				else if(casting.rate_des == '3') {
-					casting.rate_des = 'day';
-				}
-				else if(casting.rate_des == '4') {
-					casting.rate_des = 'week';
-				}
-				else if(casting.rate_des == '5') {
-					casting.rate_des = 'month';
-				}
-				else {
-					casting.rate_des = 0;
-				}
+			self.project.markets = { data : markets };
+			console.log(self.project);
 
-				var i = (new Date(casting.asap*1000));
-				var d = i.getDate();
-				var m = i.getMonth()+1;
-				var y = i.getFullYear();
-
-				casting.asap1 = y + "-" + m + "-" + d;
-
-				self.core.service.databind('.project-details-div', casting)
-				return $.when();
-			}
+			self.core.service.databind('#project-details', self.project);
 		});
+
 }
 
 handler.prototype.getRoleInfo = function(e) {
@@ -71,24 +45,19 @@ handler.prototype.getRoleInfo = function(e) {
 
 	return self.core.resource.job.get(data)
 		.then(function(res) {
+			console.log(res);
 			self.core.service.databind('#edit-role-div', res)
 			return $.when();
-
 		});
 }
 
 handler.prototype.updateRole = function() {
-
-
 	// to make sure all previous checked checkboxes are still saved
 	var checkedCheckboxes = $('input[type="checkbox"]:checked');
 
 	checkedCheckboxes.each(function(){
 		$(this).val(1);
 	});
-
-	var height = $('#heightinches').val(),
-		height = height.split(",");
 
 	var data = {
 		projectId : self.projectId,
@@ -98,10 +67,10 @@ handler.prototype.updateRole = function() {
 		des : $('#role-description-text').val(),
 		gender_male : $('#gender-male-checkbox').val(),
 		gender_female : $('#gender-female-checkbox').val(),
-		age_min : $('#age-range-min').text(),
-		age_max : $('#age-range-max').text(),
-		height_min : height[0],
-		height_max : height[1],
+		age_min : $('#age-min-text').text(),
+		age_max : $('#age-max-text').text(),
+		height_min : $('input[name="height_min"]').val(),
+		height_max : $('input[name="height_max"]').val(),
 		ethnicity_any : $('#ethnicity-any').val(),
 		ethnicity_african : $('#ethnicity-african').val(),
 		ethnicity_african_am : $('#ethnicity-african-am').val(),
@@ -164,7 +133,7 @@ handler.prototype.updateRole = function() {
 				});
 
 				setTimeout(function(){
-					location.reload();
+					self.getRoleInfo();
 				}, 3000);
 
 			});
@@ -174,8 +143,6 @@ handler.prototype.updateRole = function() {
 }
 
 handler.prototype.cancelRole = function(e) {
-
-
 	if(window.confirm("Are you sure you want to cancel this role?")) {
 		return;
 	}
