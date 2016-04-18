@@ -5,6 +5,11 @@
 .audition-worksheet-talents-wrapper,
 .audition-worksheet-wrapper
 {
+	.button-float-bottom{
+		position: fixed;
+		z-index: 999;
+		bottom: 20px;
+	}
 	.talents-search-filter-content{
 		.panel-talents-search{
 			.panel-heading{
@@ -134,54 +139,50 @@
 					}
 
 				}
-				
+
 				.talent-photo{
-					background-color: #FFF;
-					border: 1px solid #DDD;
+					border: 1px solid #dddddd;
+					background-color: #ffffff;
 					padding: 3px;
 					overflow: hidden;
 
 					.photo-user-container{
-						display: flex;
-						justify-content: center;
+						display: block;
+						width: 100%;
+						position: relative;
+						height: 0;
+						padding: 149.25% 0 0 0;
 					    overflow: hidden;
-					    min-height: 150px;
-						max-height: 150px;
+					    background-color: #ffffff;
 
 						img, a{
-							flex: 0 1 auto;
-							vertical-align: middle;
-							align-self: center;
-							width: 100%;
-							max-height: none;
+							position: absolute;
+							max-height: 100%;
 							max-width: 100%;
 							height: auto;
 							display: block;
+							left: 0;
+							right: 0;
+							top: 0;
+							bottom: 0;
+							margin: auto;
+							
+						}
+						@media only screen and (max-width: 1200px){
+							padding: 150.25% 0 0 0;
 						}
 
-						@media only screen and (max-width: 1200px){
-							min-height: 280px !important;
-							max-height: 280px !important;
-						}
-						@media only screen and (max-width: 992px){
-							min-height: 220px !important;
-							max-height: 220px !important;
-						}
 						@media only screen and (max-width: 768px){
-							min-height: 100% !important;
-							max-height: 100% !important;
+							padding: 98.25% 0 0 0;
 						}
+
 						@media only screen and (max-width: 480px){
-							min-height: 260px;
-							max-height: 260px;
-						}
-						@media only screen and (max-width: 320px){
-							min-height: 260px;
-							max-height: 260px;
+							padding: 150.25% 0 0 0;
 						}
 					}
 				}
 				
+			
 				// new layout for talents no sidebar
 				.talent-note-v2{
 					@extend .panel-body;
@@ -219,7 +220,6 @@
 				}
 
 				.talent-photo-v2{
-
 				}
 
 				.talent-photo-and-note-container{
@@ -238,6 +238,7 @@
 						top: 1px;
 						opacity: 0;
 						transition: 0.3s;
+						z-index: 100;
 
 						@media all and (max-width: 768px){
 							opacity: 1;
@@ -247,6 +248,8 @@
 							margin: 0;
 							display: flex;
 							width: 100%;
+							border: 1px solid #dddddd;
+							border-bottom-width: 0px;
 							li{
 								flex-grow: 1;
 								padding: 0px;
@@ -297,10 +300,10 @@
 				.talent-photo-v2{
 					@extend .talent-photo;
 
-					.photo-user-container{
-						min-height: 230px;
-						max-height: 230px;
-					}
+					// .photo-user-container{
+					// 	min-height: 230px;
+					// 	max-height: 230px;
+					// }
 				}
 
 				.talent-information-parent{
@@ -327,6 +330,7 @@
 					.like-it-list-container{
 						.function-item{
 							border-radius: 0px;
+							background-color: #ffffff;
 						}
 					}
 				}
@@ -361,6 +365,7 @@
 
 						.function-item{
 							flex-grow: 1;
+							margin: 0px;
 						}
 					}
 				}

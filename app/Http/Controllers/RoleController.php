@@ -32,4 +32,12 @@ class RoleController extends Controller {
 	{
 		return view('project.role.auditionworksheet.index');
 	}
+	public function callbacks()
+	{
+		return view('project.role.callbacks');
+	}
+	public function booked()
+	{
+		return view('project.role.booked');
+	}
 }
