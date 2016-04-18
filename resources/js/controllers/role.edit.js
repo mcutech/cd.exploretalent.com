@@ -1,6 +1,6 @@
 module.exports = function(core, user, projectId, roleId) {
 
-	var handler = require('../event-handlers/roles.edit.js')(core, user, projectId, roleId);
+	var handler = require('../event-handlers/role.edit.js')(core, user, projectId, roleId);
 
 	$('#update-role-btn').on('click', handler.updateRole);
 
