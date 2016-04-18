@@ -16,7 +16,7 @@
 						@include('talent.components.filter')
 					</div>
 				</div>
-				<div class="display-none-sm-lg col-md-12 margin-vr-sm"><button id="filter-button-modal" data-toggle="modal" data-target="#filter-content-modal" class="btn btn-block btn-flat btn-primary border-radius-zero btn-lg button-float-bottom">Filter</button></div>
+				<div class="display-none-sm-lg col-md-12"><button id="filter-button-modal" data-toggle="modal" data-target="#filter-content-modal" class="btn btn-block btn-flat btn-primary border-radius-zero btn-lg button-float-bottom">Filter</button></div>
 			</div>
 			<div class="row">
 				<div class="col-md-12 talents-search-result" id="talent-search-result">
