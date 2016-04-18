@@ -37,17 +37,17 @@
 				</div>
 			</div>
 		</div>
-		<div class="talent-info-like-list-container margin-top-zero-small">
+		<div class="talent-info-like-list-container border-bottom-width-zero">
 			<div class="like-it-list-parent row-fluid clearfix">
 				@if (isset($ratings) && $ratings)
 				<div class="col-md-12 col-sm-12 padding-zero">
 					<div class="like-it-list-container">
-						<div class="btn-group talent-function">
+						<div class="btn-group talent-function display-block-zz-xs display-flex-sm display-block-md">
 							<!-- turns to green when added to like list and change text to added and change icon to check -->
 							
 							<!-- inactive -->
-							<button class="btn btn-default text-default function-item"><i class="fa fa-plus"></i> Add Like it List</button>
-							<button class="btn btn-outline function-item no-padding-vr" rel="tooltip" title="Add to Favorites"><i class="fa fa-star-o font-size-normal-medium text-default"></i></button>
+							<button class="btn btn-outline function-item btn-block border-top-width-zero-sm-lg"><i class="fa fa-plus text-success"></i> <span class="text-success">Add Like it List</span></button>
+							<button class="btn btn-outline function-item btn-block border-top-width-zero-sm border-left-width-zero-sm border-left-width-zero-lg border-top-width-zero-sm-lg" rel="tooltip" title="Add to Favorites"><i class="fa fa-star-o font-size-normal-medium text-default"></i></button>
 							
 							<!-- active -->
 							<!-- <button class="btn btn-success function-item"><i class="fa fa-check"></i> Added</button>
@@ -66,11 +66,11 @@
 			</div>
 			<div class="talent-information-parent row-fluid clearfix" data-bind="talent-body-<%= talentnum %>" data-bind-target="id">
 				<div class="col-md-12 padding-zero">
-					<span class="name font-size-normal-zz-xs" data-bind="<%= getFullName() %>"></span>
-					<span class="age"><i>,</i><span data-bind="<%= getAge() %>" class="age-area"></span></span>
+					<span class="name font-size-normal-zz-lg" data-bind="<%= getFullName() %>"></span>
+					<span class="age font-size-normal-zz-lg"><i>,</i><span data-bind="<%= getAge() %>" class="age-area"></span></span>
 					<div class="talent-additional-info">
-						<div class="additional-info-item height"><span>Height: </span><span data-bind="<%= getHeight() %>"></span></div>
-						<div class="additional-info-item body-type"><span>Body: Athletic</span></div>
+						<div class="additional-info-item height">Height: <span data-bind="<%= getHeight() %>"></span></div>
+						<div class="additional-info-item body-type">Body: <span>Athletic</span></div>
 					</div>
 				</div>
 			</div>

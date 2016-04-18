@@ -3,13 +3,14 @@
 	<div class="panel panel-talents-search">
 		<div class="panel-heading border-bottom-width-zero">
 			<span class="panel-title talents-refine-title">Refine Search</span>
+			<button type="button" class="close display-none-sm-lg" data-dismiss="modal" aria-hidden="true">×</button>
 		</div>
 
 		<div class="panel-body form-horizontal">
 			<div class="text-center-zz-sm">
 				<div id="location-search-display" class="row">
 					<label class="control-label pull-left padding-left-normal"><a id="location-search-display-btn" href="#">United States</a> <span class="padding-left-small">or</span></label>
-					<div class="col-md-3 margin-top-normal-zz-sm">
+					<div class="col-xs-12 col-sm-4 col-md-3 margin-top-normal-zz">
 						<select id="markets-list" name="markets" class="form-control" tabindex="-1" data-select multiple>
 							<option></option>
 							<option value="Albany, NY">Albany, NY</option>
@@ -84,7 +85,7 @@
 							<option value="Vancouver, BC">Vancouver, BC</option>
 						</select>
 					</div>
-					<div class="col-md-2 margin-top-normal-zz-sm">
+					<div class="col-xs-12 col-sm-3 col-md-2 margin-top-normal-zz">
 						<select name="distance" class="form-control">
 							<option value="5">5 miles</option>
 							<option value="10">10 miles</option>
@@ -93,14 +94,14 @@
 							<option value="25">25 miles</option>
 						</select>
 					</div>
-					<div class="col-md-2 margin-top-normal-zz-xs">
+					<div class="col-xs-12 col-sm-2 col-md-2 margin-top-normal-zz">
 						<button id="search-button" type="submit" class="btn btn-primary btn-block">Search</button>
 					</div>
 				</div>
 
 				<div id="location-search-change" class="row" hidden>
 					<div class="col-md-12 search-result-counter">
-						<div class="bordered no-border-vr border-left-width-zero display-inline-block padding-right-normal margin-right-normal border-zero-zz-sm">
+						<div class="bordered no-border-vr border-left-width-zero display-inline-block padding-right-normal margin-right-normal-sm-lg border-zero-zz-sm">
 							<h2 class="margin-zero text-bold">5,000</h2>
 						</div>
 						<div class="location-name display-inline-block">
@@ -112,6 +113,7 @@
 					</div>
 				</div>
 			</div>
+
 			<div class="row">
 				<div class="margin-top-small margin-bottom-small" id="selected-markets">
 					<label data-bind-template="#selected-markets" class="checkbox-inline margin-right-small">
@@ -122,7 +124,7 @@
 
 			<hr class="panel-wide margin-top-small-normal margin-bottom-small-normal">
 			<div class="row margin-bottom-large">
-				<div class="col-md-3">
+				<div class="col-xs-12 col-sm-6 col-md-3">
 					<label class="text-bold margin-bottom-zero">Age Range: <span id="age-min-text" data-bind="<%= age_min || 0 %>" class="text-normal">0</span> - <span id="age-max-text" class="text-normal">100</span></label>
 					<div class="padding-right-small">
 					<div class="padding-small">
@@ -132,27 +134,29 @@
 					</div>
 					</div>
 				</div>
-				<div class="col-md-3 margin-top-normal">
+				<div class="col-xs-12 col-sm-3 col-md-3 margin-top-normal">
 					<select name="sex" class="form-control" data-select>
 						<option value="">Gender - Both</option>
 						<option value="Male">Male</option>
 						<option value="Female">Female</option>
 					</select>
 				</div>
-				<div class="col-md-3 margin-top-normal">
+				<div class="col-xs-12 col-sm-3 col-md-3 margin-top-normal">
 					<select name="has_photo" class="form-control" data-select>
 						<option value="">Picture - All</option>
 						<option value="false">No Picture</option>
 						<option value="true">With Picture</option>
 					</select>
 				</div>
-				<div class="col-md-3">
-					<input id="search-text" name="search_text" class="form-control margin-top-normal" placeholder="Keyword..."></input>
+				<div class="col-xs-12 col-md-3">
+					<div>
+						<input id="search-text" name="search_text" class="form-control margin-top-normal" placeholder="Keyword..."></input>
+					</div>
 				</div>
 			</div>
 
 			<div class="row margin-bottom-large">
-				<div class="col-md-3">
+				<div class="col-xs-12 col-sm-6 col-md-3">
 					<label class="text-bold margin-bottom-zero">Height Range: <span id="height-min-text" class="text-normal" data-bind="<%= height_min ||'< 2\'0&quot;' %>">&lt; 2'0"</span> -
 						<span id="height-max-text" class="text-normal" data-bind="<%= height_max || '8\'0&quot;' %>">8'0"</span>
 					</label>
@@ -164,7 +168,7 @@
 					</div>
 					</div>
 				</div>
-				<div class="col-md-3 margin-top-normal">
+				<div class="col-xs-12 col-sm-6 col-md-3 margin-top-normal">
 					<select name="build" class="form-control" multiple data-select placeholder="Body Type - All">
 						<option value="Athletic">Athletic</option>
 						<option value="Average">Average</option>
@@ -177,7 +181,7 @@
 						<option value="Slim">Slim</option>
 					</select>
 				</div>
-				<div class="col-md-3 margin-top-normal">
+				<div class="col-xs-12 col-sm-6 col-md-3 margin-top-normal">
 					<select name="ethnicity" class="form-control" multiple data-select placeholder="Ethnicity - All">
 						<option value="African">African</option>
 						<option value="African American">African American</option>
@@ -189,7 +193,7 @@
 						<option value="Middle Eastern">Middle Eastern</option>
 					</select>
 				</div>
-				<div class="col-md-3 margin-top-normal">
+				<div class="col-xs-12 col-sm-6 col-md-3 margin-top-normal">
 					<select name="last_online" class="form-control" data-select>
 						<option>Last Active - 1 month</option>
 						<option>Last Active - 3 months</option>
