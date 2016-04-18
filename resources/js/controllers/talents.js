@@ -60,4 +60,26 @@ module.exports = function(core, user) {
 		$('#location-search-display').hide();
 		$('#location-search-change').show();
 	});	
+
+	//responsive filter turns to modal when mobile
+	$(document).ready(function(){
+		if($(this).width() <= 752){
+			$('#filter-content-modal').css('display', 'none');
+			$('#filter-content-modal').addClass('modal fade');
+		}
+		else{
+			$('#filter-content-modal').css('display', 'block');
+			$('#filter-content-modal').removeClass('modal fade');
+		}
+	});
+	$(window).resize(function(){
+		if($(this).width() <= 752){
+			$('#filter-content-modal').css('display', 'none');
+			$('#filter-content-modal').addClass('modal fade');
+		}
+		else{
+			$('#filter-content-modal').css('display', 'block');
+			$('#filter-content-modal').removeClass('modal fade');
+		}
+	});
 }
