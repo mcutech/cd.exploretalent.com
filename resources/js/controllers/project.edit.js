@@ -1,6 +1,6 @@
 module.exports = function(core, user, projectId) {
 
-	var handler = require('../event-handlers/projects.edit.js')(core, user, projectId);
+	var handler = require('../event-handlers/project.edit.js')(core, user, projectId);
 
 	$('#update-project-btn').on('click', handler.updateProject);
 
@@ -71,7 +71,7 @@ module.exports = function(core, user, projectId) {
 			$('.hide-if-nationwide').removeClass('hide');
 			$('#zip-code').val('');
 		}
-		
+
 	});
 
 };

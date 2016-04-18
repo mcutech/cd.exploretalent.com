@@ -25,7 +25,7 @@ Route::get('projects/quickpost'                         , 'ProjectController@qui
 Route::resource('projects'                              , 'ProjectController');
 
 Route::resource('projects.roles'                                                   , 'RoleController'                    , [ 'only' => [ 'edit' , 'create' ] ]);
-Route::get('projects/{projectId}/roles/{roleId}/self-submissions'                  , 'RoleController@selfsubmissions');
+Route::get('projects/{projectId}/roles/{roleId}/submissions'                       , 'RoleController@submissions');
 Route::get('projects/{projectId}/roles/{roleId}/like-it-list'                      , 'RoleController@likeitlist');
 Route::get('projects/{projectId}/roles/{roleId}/find-talents'                      , 'RoleController@findtalents');
 Route::get('projects/{projectId}/roles/{roleId}/public-like-it-list'               , 'RoleController@publiclikeitlist');

@@ -11,9 +11,9 @@ class RoleController extends Controller {
 		return view('project.role.edit', ['projectId' => $projectId, 'roleId' => $roleId]);
 	}
 
-	public function selfsubmissions($projectId, $roleId)
+	public function submissions($projectId, $roleId)
 	{
-		return view('project.role.selfsubmission.index', ['projectId' => $projectId, 'roleId' => $roleId]);
+		return view('project.role.submissions', ['projectId' => $projectId, 'roleId' => $roleId]);
 	}
 
 	public function findtalents($projectId, $roleId)
