@@ -12,7 +12,7 @@
 
 			<div class="navigation-header-container">
 				<div class="navbar-header">
-					<a href="/"
+					<a href="/projects"
 						class="navbar-brand">
 						<img src="/images/logo-home-et-cd.png" width="180px" class="logo-for-desktop">
 						<!-- <img src="../images/logo-home-et-cd-mobile2.png" class="logo-for-mobile"> -->
@@ -58,7 +58,7 @@
 						</li>
 					</ul>
 				</div>
-				
+
 				<button type="button"
 					class="navbar-toggle collapsed"
 					data-toggle="collapse"

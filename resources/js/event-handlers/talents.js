@@ -50,10 +50,31 @@ handler.prototype.getFilters = function() {
 
 	if (form.markets) {
 		if (form.markets instanceof Array) {
-			data.query.push([ 'whereIn', 'city', form.markets ]);
+			var subquery = [];
+
+			_.each(form.markets, function(market) {
+				if (subquery.length == 0) {
+					subquery.push([ 'where', 'city', 'like', '%' + market + '%' ]);
+				}
+				else {
+					subquery.push([ 'orWhere', 'city', 'like', '%' + market + '%' ]);
+				}
+
+				subquery.push([ 'orWhere', 'city1', 'like', '%' + market + '%' ]);
+				subquery.push([ 'orWhere', 'city2', 'like', '%' + market + '%' ]);
+				subquery.push([ 'orWhere', 'city3', 'like', '%' + market + '%' ]);
+			});
+
+			data.query.push([ 'where', subquery ]);
 		}
 		else {
-			data.query.push([ 'where', 'city', '=', form.markets ]);
+			data.query.push([ 'where', [
+					[ 'where', 'city', '=', form.markets ],
+					[ 'orWhere', 'city1', '=', form.markets ],
+					[ 'orWhere', 'city2', '=', form.markets ],
+					[ 'orWhere', 'city3', '=', form.markets ]
+				]
+			]);
 		}
 	}
 
@@ -87,7 +108,7 @@ handler.prototype.getFilters = function() {
 		data.query.push([ 'where', 'heightinches', '>=', form.height_min ]);
 	}
 
-	if (parseInt(form.height_max)) {
+	if (form.height_max) {
 		data.query.push([ 'where', 'heightinches', '<=', form.height_max ]);
 	}
 
@@ -110,28 +131,6 @@ handler.prototype.getFilters = function() {
 	}
 
 	return data;
-
-	// TODO:
-	// if(self.marketscheck.length != 0){
-	// 	console.log(self.marketscheck);
-	// 	_.each(self.marketscheck, function(val, ind){
-	// 		if(val.check == 'check'){
-	// 			if(asdasd.length > 1){
-	// 				subquery.push([ 'orWhere', 'city', 'like', '%'+val.name.substring(0, val.name.indexOf(','))+'%' ]);
-	// 				subquery.push([ 'orWhere', 'city1', 'like', '%'+val.name.substring(0, val.name.indexOf(','))+'%' ]);
-	// 				subquery.push([ 'orWhere', 'city2', 'like', '%'+val.name.substring(0, val.name.indexOf(','))+'%' ]);
-	// 				subquery.push([ 'orWhere', 'city3', 'like', '%'+val.name.substring(0, val.name.indexOf(','))+'%' ]);
-	// 			} else if(asdasd.length == 1){
-	// 				subquery.push([ 'orWhere', 'city', 'like', '%'+val.name.substring(0, val.name.indexOf(','))+'%' ]);
-	// 				subquery.push([ 'orWhere', 'city1', 'like', '%'+val.name.substring(0, val.name.indexOf(','))+'%' ]);
-	// 				subquery.push([ 'orWhere', 'city2', 'like', '%'+val.name.substring(0, val.name.indexOf(','))+'%' ]);
-	// 				subquery.push([ 'orWhere', 'city3', 'like', '%'+val.name.substring(0, val.name.indexOf(','))+'%' ]);
-	// 			}
-	// 		}
-	// 	});
-	// 	data.query.push([ 'where', subquery ]);
-	// }
-
 }
 
 handler.prototype.addToFavorites = function(e) {

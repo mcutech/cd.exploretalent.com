@@ -7,6 +7,7 @@ function handler(core, user, projectId, roleId) {
 	self.projectId = projectId;
 	self.roleId = roleId;
 	self.page = 1;
+	self.first_load = true;
 
 	self.getProjectInfo();
 }
@@ -36,6 +37,8 @@ handler.prototype.getProjectInfo = function() {
 			else {
 				$('#roles-list').val(_.first(self.project.bam_roles).role_id);
 			}
+			self.project.role_id = self.roleId || _.first(self.project.bam_roles).role_id;
+			self.core.service.databind('#project-links', self.project )
 			self.refreshRole();
 		});
 }
@@ -62,6 +65,13 @@ handler.prototype.findMatches = function(append) {
 	self.refreshing = true;
 	var data = self.getFilters();
 
+	if (append) {
+		self.first_load = self.first_load ? self.first_load : false;
+	}
+	else {
+		self.first_load = false;
+	}
+
 	$('#search-loader').show();
 
 	if (!append) {
@@ -86,64 +96,95 @@ handler.prototype.getFilters = function() {
 		per_page : 24,
 		page : self.page,
 		query : [
+			[ 'join', 'bam.laret_users', 'bam.laret_users.bam_talentnum', '=', 'search.talents.talentnum' ],
+			[ 'leftJoin', 'bam.laret_schedules', 'bam.laret_schedules.invitee_id', '=', 'bam.laret_users.id' ],
+			[ 'where', 'bam.laret_schedules.rating', '<>', 0 ],
+			[ 'where', 'bam.laret_schedules.bam_role_id', '=', $('#roles-list').val() ]
 		]
 	}
 
-	if (form.markets && form.markets.length) {
-		var subquery = [];
+	if (!self.first_load) {
+		if (form.markets) {
+			if (form.markets instanceof Array) {
+				var subquery = [];
 
-		_.each(form.markets, function(market) {
-			if (subquery.length == 0) {
-				subquery.push([ 'where', 'city', 'like', '%' + market + '%' ]);
+				_.each(form.markets, function(market) {
+					if (subquery.length == 0) {
+						subquery.push([ 'where', 'city', 'like', '%' + market + '%' ]);
+					}
+					else {
+						subquery.push([ 'orWhere', 'city', 'like', '%' + market + '%' ]);
+					}
+
+					subquery.push([ 'orWhere', 'city1', 'like', '%' + market + '%' ]);
+					subquery.push([ 'orWhere', 'city2', 'like', '%' + market + '%' ]);
+					subquery.push([ 'orWhere', 'city3', 'like', '%' + market + '%' ]);
+				});
+
+				data.query.push([ 'where', subquery ]);
 			}
 			else {
-				subquery.push([ 'orWhere', 'city', 'like', '%' + market + '%' ]);
+				data.query.push([ 'where', [
+						[ 'where', 'city', '=', form.markets ],
+						[ 'orWhere', 'city1', '=', form.markets ],
+						[ 'orWhere', 'city2', '=', form.markets ],
+						[ 'orWhere', 'city3', '=', form.markets ]
+					]
+				]);
 			}
-
-			subquery.push([ 'orWhere', 'city1', 'like', '%' + market + '%' ]);
-			subquery.push([ 'orWhere', 'city2', 'like', '%' + market + '%' ]);
-			subquery.push([ 'orWhere', 'city3', 'like', '%' + market + '%' ]);
-		});
-
-		data.query.push([ 'where', subquery ]);
-	}
-
-	if (form.build) {
-		if (form.build instanceof Array) {
-			data.query.push([ 'whereIn', 'build', form.build ]);
 		}
-		else {
-			data.query.push([ 'where', 'build', '=', form.build ]);
+
+		if (form.age_min) {
+			data.query.push([ 'where', 'dobyyyy', '<=', new Date().getFullYear() - parseInt(form.age_min) ]);
 		}
-	}
 
-	if (form.ethnicity) {
-		if (form.ethnicity instanceof Array) {
-			data.query.push([ 'whereIn', 'ethnicity', form.ethnicity ]);
+		if (form.age_max) {
+			data.query.push([ 'where', 'dobyyyy', '>=', new Date().getFullYear() - parseInt(form.age_max) ]);
 		}
-		else {
-			data.query.push([ 'where', 'ethnicity', '=', form.ethnicity ]);
+
+		if (form.sex) {
+			data.query.push([ 'where', 'sex', '=', form.sex ]);
 		}
-	}
 
-	if (form.has_photo) {
-		data.query.push([ 'where', 'has_photos', '=', form.has_photo == 'true' ? 1 : 0 ]);
-	}
+		if (form.has_photo) {
+			data.query.push([ 'where', 'has_photos', '=', form.has_photo == 'true' ? 1 : 0 ]);
+		}
 
-	if (parseInt(form.age_min)) {
-		data.query.push([ 'where', 'dobyyyy', '<=', new Date().getFullYear() - parseInt(form.age_min) ]);
-	}
+		if(form.search_text) {
+			data.query.push([ 'where',
+				[
+					[ 'where', 'talentnum', '=', form.search_text ],
+					[ 'orWhere', 'fname', 'LIKE', '%' + form.search_text + '%' ],
+					[ 'orWhere', 'lname', 'LIKE', '%' + form.search_text + '%' ],
+				]
+			]);
+		}
 
-	if (parseInt(form.age_max)) {
-		data.query.push([ 'where', 'dobyyyy', '>=', new Date().getFullYear() - parseInt(form.age_max) ]);
-	}
+		if (form.height_min) {
+			data.query.push([ 'where', 'heightinches', '>=', form.height_min ]);
+		}
 
-	if (parseInt(form.height_min)) {
-		data.query.push([ 'where', 'heightinches', '>=', form.height_min ]);
-	}
+		if (form.height_max) {
+			data.query.push([ 'where', 'heightinches', '<=', form.height_max ]);
+		}
 
-	if (parseInt(form.height_max)) {
-		data.query.push([ 'where', 'heightinches', '<=', form.height_max ]);
+		if (form.build) {
+			if (form.build instanceof Array) {
+				data.query.push([ 'whereIn', 'build', form.build ]);
+			}
+			else {
+				data.query.push([ 'where', 'build', '=', form.build ]);
+			}
+		}
+
+		if (form.ethnicity) {
+			if (form.ethnicity instanceof Array) {
+				data.query.push([ 'whereIn', 'ethnicity', form.ethnicity ]);
+			}
+			else {
+				data.query.push([ 'where', 'ethnicity', '=', form.ethnicity ]);
+			}
+		}
 	}
 
 	return data;
@@ -152,5 +193,3 @@ handler.prototype.getFilters = function() {
 module.exports = function(core, user, projectId, roleId) {
 	return new handler(core, user, projectId, roleId);
 }
-
-
