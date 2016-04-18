@@ -1,10 +1,10 @@
-@extends('layouts.project', ['pages' => [ [ 'name' => 'My Projects', 'url' => '/projects' ], [ 'name' => 'Quick Post', 'url' => '/projects/create', 'active' => true ] ] ])
+@extends('layouts.sidebar', [ 'pages' => [ [ 'name' => 'Quick Post', 'url' => '/project/quickpost', 'active' => true] ] ])
 
 @section('sidebar.page-header')
 <i class="fa fa-bolt "></i> Quick Post
 @stop
 
-@section('project.body')
+@section('sidebar.body')
 	<div class="col-md-12">
 		<div class="row">
 			<div class="col-md-12 alert alert-success">
