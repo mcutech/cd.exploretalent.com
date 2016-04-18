@@ -13,6 +13,42 @@ handler.prototype.refresh = function() {
 	return self.core.service.databind('#settings', self.user.bam_cd_user);
 }
 
+
+handler.prototype.updatePassword = function(e) {
+	
+	e.preventDefault();
+
+	var form = self.core.service.form.serializeObject('#password-form');
+
+	form.cdUserId = self.user.bam_cd_user_id;
+	form.pass = form.new_password;
+
+	if(form.new_password == form.conf_new_password){
+
+		delete form.new_password;
+		delete form.conf_new_password;
+
+		self.core.resource.cd_user.patch(form)
+				.then(function(res) {
+					//saved successfully
+					$('#update-password-success').removeClass('hide');
+					
+					$("input[name='new_password']").val('');
+					$("input[name='conf_new_password']").val('');
+			 					
+					setTimeout(function() { 
+						$('#settings-modal').modal('hide');
+						$('#update-password-success').addClass('hide');
+				 	}, 1000);								
+				},function(err){
+				//there's an error when trying to update password	
+				});
+	}else{
+		$('#update-password-fail').removeClass('hide');
+	}	
+
+}
+
 handler.prototype.updateUser = function(e) {
 	e.preventDefault();
 	if (self.core.service.form.validate('#settings-form')) {
@@ -20,53 +56,13 @@ handler.prototype.updateUser = function(e) {
 		console.log(form);
 		form.cdUserId = self.user.bam_cd_user_id;
 
-		var pass1 = $('#pass').val(),
-			pass2 = $('#pass2').val();
-
-		/*if(pass1 != pass2) {
-			$('#pass2').focus();
-			alert('Both passwords must have the same value.');
-		}
-		else if (pass1.length < 5 || pass2.length < 5) {
-			$('#pass').focus();
-			alert('Both passwords must be at least 5 characters long.');
-		}
-		else if (pass1.length < 1){
-			console.log('test');
-		}*/
-		console.log(pass1.length);
-		if(pass1.length > 0){
-			if(pass1 != pass2) {
-				$('#pass2').focus();
-				alert('Both passwords must have the same value.');
-			}
-			else if (pass1.length < 5 || pass2.length < 5) {
-				$('#pass').focus();
-				alert('Both passwords must be at least 5 characters long.');
-			}
-			else {
-				//success
-				self.core.resource.cd_user.patch(form)
-				.then(function(res) {
-					$('#update-settings-success').fadeIn().delay(5000).fadeOut();
-				}, function(res1) {
-					alert("The email has already been taken.")
-				});
-			}
-		} 
-		else {
-			console.log(form.pass);
-			if(!form.pass){
-				delete form.pass;
-			}
-			console.log(form);
-			self.core.resource.cd_user.patch(form)
-				.then(function(res) {
-					$('#update-settings-success').fadeIn().delay(5000).fadeOut();
-				}, function(res1) {
-					alert("The email has already been taken.")
-				});
-		}
+		self.core.resource.cd_user.patch(form)
+			.then(function(res) {
+				$('#update-settings-success').fadeIn().delay(5000).fadeOut();
+			}, function(err) {
+				$('#update-settings-fail').fadeIn().delay(5000).fadeOut();
+			});
+		
 
 	}
 }
