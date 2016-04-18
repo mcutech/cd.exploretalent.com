@@ -7,7 +7,7 @@
 
 @section('sidebar.body')
 	<div class="margin-top-small margin-bottom-small row">
-		<div class="col-xs-6 col-sm-3">
+		<div class="col-xs-6 col-sm-2">
 			<div class="input-group">
 				<input type="text" class="form-control" id="project-name" name="project" placeholder="Search for Project">
 				<span id="project-search-btn" class="input-group-addon" style="cursor: pointer;" type="submit">
@@ -15,7 +15,7 @@
 				</span>
 			</div>
 		</div>
-		<div class="col-xs-6 col-sm-3">
+		<div class="col-xs-6 col-sm-2">
 			<select class="form-control" name="status" id="project-status">
 				<option value="">All</option>
 				<option value="0">Pending Review</option>
@@ -26,8 +26,13 @@
 			<a href="projects/create"  class="btn btn-outline btn-block margin-top-normal-zz-xs" role="button"><i class="fa fa-plus"></i>
 				Create Project
 			</a>
+		</div>
+		<div class="col-xs-6 col-sm-2">
+		<a href="projects/quickpost"  class="btn btn-outline btn-block margin-top-normal-zz-xs" role="button"><i class="fa fa-plus"></i>
+				Quick Post
+			</a>
 		</div>	
-		<div class="col-xs-6 col-sm-4">
+		<div class="col-xs-12 col-sm-4">
 			<div id="projects-pagination" class="pull-right margin-top-normal-zz-xs"></div>		
 		</div>
 	</div>
