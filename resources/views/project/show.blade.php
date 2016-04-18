@@ -55,7 +55,7 @@
 					</div>
 					<div class="col-md-3 text-center button-function">
 						<div class="bordered padding-small fixedheight">
-							<a href="#role-find-talents-hired" data-toggle="modal"><div><i class="fa fa-star-o fa-2x"></i></div>
+							<a data-bind="/projects/<%= casting_id %>/roles/<%= role_id %>/booked"><div><i class="fa fa-star-o fa-2x"></i></div>
 							<div>Booked Talents</div>
 							<b><div class="text-bg">1</div></b></a>
 						</div>

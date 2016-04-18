@@ -33,6 +33,7 @@ Route::get('projects/{projectId}/roles/{roleId}/public-like-it-list',		'RoleCont
 Route::get('projects/{projectId}/roles/{roleId}/public-like-it-list/{accessToken}',		'RoleController@publiclikeitlist');
 Route::get('projects/{projectId}/roles/{roleId}/matches',			'RoleController@matches');
 Route::get('projects/{projectId}/roles/{roleId}/callbacks',			'RoleController@callbacks');
+Route::get('projects/{projectId}/roles/{roleId}/booked',			'RoleController@booked');
 Route::resource('projects.schedules' 				, 'ScheduleController');
 
 Route::get('talents'								, 'TalentController@index');
