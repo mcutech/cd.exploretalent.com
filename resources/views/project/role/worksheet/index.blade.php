@@ -4,36 +4,20 @@
 <i class="fa fa-tasks page-header-icon"></i> Manage Auditions
 @stop
 
-@section('sidebar.page-extra')
-<div class="row hide">
-	<hr class="visible-xs no-grid-gutter-h">
-	<div class="pull-right col-xs-12 col-sm-auto">
-		<a href="#" class="btn btn-primary btn-labeled btn-block">
-			<i class="fa fa-plus"></i> Create New Schedule
-		</a>
-	</div>
-</div>
-@stop
-
 @section('sidebar.body')
-
 <div class="audition-worksheet-list-wrapper">
 	<div class="row clearfix form-horizontal margin-bottom-normal">
 		<div class="col-md-8">
 			<div class="form-group margin-zero">
-				<label class="control-label col-md-2 col-xs-4 padding-right-zero">Filter Invites:</label>
+				<label class="control-label col-md-2 col-xs-4 padding-right-zero">Project:</label>
 				<div class="col-md-5">
-					<select id="status-list" class="form-control">
-						<option value="any">Any</option>
-						<option value="0">Pending</option>
-						<option value="1">Approved</option>
-						<option value="-1">Rejected</option>
+					<select id="projects-list" class="form-control">
+						<option data-bind-template="#projects-list" data-bind-value="data" data-bind="<%= JSON.stringify({ key : casting_id, value : name + ' (' + casting_id + ')' }) %>">Any</option>
 					</select>
 				</div>
 			</div>
 		</div>
 	</div>
-
 </div>
 
 <div class="audition-worksheet-list-wrapper row-fluid">

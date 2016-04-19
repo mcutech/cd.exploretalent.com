@@ -1,69 +1,64 @@
 'use strict';
 var _ = require('lodash');
 
-function handler(core, user) {
+function handler(core, user, projectId) {
 	self = this;
 	self.core = core;
 	self.user = user
+	self.projectId = projectId;
 
-	var data = {
-		query : [
-			[ 'with', 'bam_roles' ]
-		]
-	};
-	self.core.resource.project.get(data)
-		.then(function(res) {
-			self.core.service.databind('#projects-list', res);
-			self.projects = res;
-			self.refresh();
-		});
+	self.refreshProjects();
 }
 
-handler.prototype.refresh = function() {
-	var status = $('#status-list').val();
+handler.prototype.refreshProjects = function() {
+	self.core.resource.project.get()
+	.then(function(projects) {
+		self.core.service.databind('#projects-list', projects);
 
+		if (parseInt(self.projectId))
+			$('#projects-list').val(self.projectId);
+
+		self.refreshList();
+	});
+}
+
+handler.prototype.refreshList = function() {
 	var data = {
 		query : [
-			[ 'with', 'bam_role.bam_casting' ],
-			[ 'orderBy', 'created_at', 'DESC']
-		],
-
-	};
-
-	if (status == 0) {
-		data.query.push([ 'where', 'status', 0 ]);
-	} else if (status == 1) {
-		data.query.push([ 'where', 'status', '>=', 1 ]);
-	} else if (status == -1) {
-		data.query.push([ 'where', 'status', '<=', -1 ]);
+			[ 'select', 'roles.role_id' ],
+			[ 'join', 'roles', 'roles.casting_id', '=', 'castings.casting_id' ],
+			[ 'join', 'laret_campaigns', 'laret_campaigns.bam_role_id', '=', 'roles.role_id' ],
+			[ 'groupBy', 'roles.role_id' ]
+		]
 	}
 
-	self.core.service.databind('#campaigns-list',{ data : [] });
-	$('#campaigns-list').append('<tr> <td colspan="9" class="text-center"> <h1><i class="fa fa-spinner fa-spin"></i></h1> </td> </tr>');
+	self.core.resource.project.get(data)
+	.then(function(res) {
+		var roleIds = _.map(res.data, 'role_id');
 
-	self.core.resource.campaign.get(data)
-		.then(function(res) {
-			_.remove(res.data, function(campaign) {
-				return campaign.bam_role == null;
-			});
+		var data2 = {
+			query : [
+				[ 'whereIn', 'bam_role_id', roleIds ],
+				[ 'with', 'bam_role.bam_casting' ],
+				[ 'orderBy', 'created_at', 'DESC' ]
+			]
+		}
 
-			self.campaigns = res;
+		return self.core.resource.campaign.get(data2);
+	})
+	.then(function(res) {
+		self.campaigns = res;
+		var promises = [];
 
-			var promises = [];
-
-			_.each(self.campaigns.data, function(campaign) {
-				_.remove(campaign.bam_role.schedules, function(s) {
-					return s.rating == 0;
-				});
-
-				promises.push(self.getCampaignTalentCount(campaign));
-			});
-
-			return $.when.apply($, promises);
-		})
-		.then(function() {
-			self.core.service.databind('#campaigns-list', self.campaigns);
+		_.each(self.campaigns.data, function(campaign) {
+			promises.push(self.getCampaignTalentCount(campaign));
 		});
+
+		return $.when.apply($, promises);
+	})
+	.then(function() {
+		self.core.service.databind('#campaigns-list', self.campaigns);
+	});
 }
 
 handler.prototype.getCampaignTalentCount = function(campaign) {
@@ -77,6 +72,6 @@ handler.prototype.getCampaignTalentCount = function(campaign) {
 	return deferred.promise();
 }
 
-module.exports = function(core, user) {
-	return new handler(core, user);
+module.exports = function(core, user, projectId) {
+	return new handler(core, user, projectId);
 }
