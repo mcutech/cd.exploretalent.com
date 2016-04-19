@@ -15,7 +15,7 @@
 						<a href="#" data-bind="/projects/<%= casting_id %>/roles/<%= bam_roles.length ? _.first(bam_roles).role_id : 0 %>/like-it-list">Like it List</a>
 					</li>
 					<li class="">
-						<a href="#" data-bind="/audition-worksheet/<%= casting_id %>">Worksheet</a>
+						<a href="#" data-bind="/projects/<%= casting_id %>/worksheet">Worksheet</a>
 					</li>
 				</ul>
 			</div>

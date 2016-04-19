@@ -45,7 +45,7 @@
 							</a>
 						</li>
 						<li>
-							<a href="/audition-worksheet" class="nav-link">
+							<a href="/projects/0/worksheet" class="nav-link">
 								<div class="primary-nav-icon"><i class="fa fa-file-text-o"></i></div>
 								<div class="primary-nav-text">Manage Auditions</div>
 							</a>
