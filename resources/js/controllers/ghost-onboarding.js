@@ -1,3 +1,7 @@
+// Modal Ghost onboarding
+
+
+// uncomment this show modal
 $(document).ready(function(){
 	$('#ghost-onboarding-modal').modal('show');
 });
