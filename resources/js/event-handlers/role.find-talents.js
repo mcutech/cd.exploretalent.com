@@ -30,12 +30,14 @@ handler.prototype.getProjectInfo = function() {
 			self.project.markets = { data : markets };
 			self.core.service.databind('#project-details', self.project)
 			self.core.service.databind('#roles-list', { data : self.project.bam_roles })
-			if (self.roleId) {
+			if (parseInt(self.roleId)) {
 				$('#roles-list').val(self.roleId);
 			}
 			else {
 				$('#roles-list').val(_.first(self.project.bam_roles).role_id);
 			}
+			self.project.role_id = self.roleId || _.first(self.project.bam_roles).role_id;
+			self.core.service.databind('#project-links', self.project )
 			self.refreshRole();
 		});
 }
@@ -90,23 +92,68 @@ handler.prototype.getFilters = function() {
 		]
 	}
 
-	if (form.markets && form.markets.length) {
-		var subquery = [];
+	if (form.markets) {
+		if (form.markets instanceof Array) {
+			var subquery = [];
 
-		_.each(form.markets, function(market) {
-			if (subquery.length == 0) {
-				subquery.push([ 'where', 'city', 'like', '%' + market + '%' ]);
-			}
-			else {
-				subquery.push([ 'orWhere', 'city', 'like', '%' + market + '%' ]);
-			}
+			_.each(form.markets, function(market) {
+				if (subquery.length == 0) {
+					subquery.push([ 'where', 'city', 'like', '%' + market + '%' ]);
+				}
+				else {
+					subquery.push([ 'orWhere', 'city', 'like', '%' + market + '%' ]);
+				}
 
-			subquery.push([ 'orWhere', 'city1', 'like', '%' + market + '%' ]);
-			subquery.push([ 'orWhere', 'city2', 'like', '%' + market + '%' ]);
-			subquery.push([ 'orWhere', 'city3', 'like', '%' + market + '%' ]);
-		});
+				subquery.push([ 'orWhere', 'city1', 'like', '%' + market + '%' ]);
+				subquery.push([ 'orWhere', 'city2', 'like', '%' + market + '%' ]);
+				subquery.push([ 'orWhere', 'city3', 'like', '%' + market + '%' ]);
+			});
 
-		data.query.push([ 'where', subquery ]);
+			data.query.push([ 'where', subquery ]);
+		}
+		else {
+			data.query.push([ 'where', [
+					[ 'where', 'city', '=', form.markets ],
+					[ 'orWhere', 'city1', '=', form.markets ],
+					[ 'orWhere', 'city2', '=', form.markets ],
+					[ 'orWhere', 'city3', '=', form.markets ]
+				]
+			]);
+		}
+	}
+
+	if (form.age_min) {
+		data.query.push([ 'where', 'dobyyyy', '<=', new Date().getFullYear() - parseInt(form.age_min) ]);
+	}
+
+	if (form.age_max) {
+		data.query.push([ 'where', 'dobyyyy', '>=', new Date().getFullYear() - parseInt(form.age_max) ]);
+	}
+
+	if (form.sex) {
+		data.query.push([ 'where', 'sex', '=', form.sex ]);
+	}
+
+	if (form.has_photo) {
+		data.query.push([ 'where', 'has_photos', '=', form.has_photo == 'true' ? 1 : 0 ]);
+	}
+
+	if(form.search_text) {
+		data.query.push([ 'where',
+			[
+				[ 'where', 'talentnum', '=', form.search_text ],
+				[ 'orWhere', 'fname', 'LIKE', '%' + form.search_text + '%' ],
+				[ 'orWhere', 'lname', 'LIKE', '%' + form.search_text + '%' ],
+			]
+		]);
+	}
+
+	if (form.height_min) {
+		data.query.push([ 'where', 'heightinches', '>=', form.height_min ]);
+	}
+
+	if (form.height_max) {
+		data.query.push([ 'where', 'heightinches', '<=', form.height_max ]);
 	}
 
 	if (form.build) {
@@ -125,26 +172,6 @@ handler.prototype.getFilters = function() {
 		else {
 			data.query.push([ 'where', 'ethnicity', '=', form.ethnicity ]);
 		}
-	}
-
-	if (form.has_photo) {
-		data.query.push([ 'where', 'has_photos', '=', form.has_photo == 'true' ? 1 : 0 ]);
-	}
-
-	if (parseInt(form.age_min)) {
-		data.query.push([ 'where', 'dobyyyy', '<=', new Date().getFullYear() - parseInt(form.age_min) ]);
-	}
-
-	if (parseInt(form.age_max)) {
-		data.query.push([ 'where', 'dobyyyy', '>=', new Date().getFullYear() - parseInt(form.age_max) ]);
-	}
-
-	if (parseInt(form.height_min)) {
-		data.query.push([ 'where', 'heightinches', '>=', form.height_min ]);
-	}
-
-	if (parseInt(form.height_max)) {
-		data.query.push([ 'where', 'heightinches', '<=', form.height_max ]);
 	}
 
 	return data;

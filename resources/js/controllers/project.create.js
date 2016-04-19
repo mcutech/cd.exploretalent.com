@@ -1,6 +1,6 @@
 module.exports = function(core, user) {
 
-	var handler = require('../event-handlers/projects.create.js')(core, user);
+	var handler = require('../event-handlers/project.create.js')(core, user);
 
 	$('#create-project-btn').on('click', handler.createNewProject);
 
@@ -81,7 +81,7 @@ module.exports = function(core, user) {
 		else {
 			$('.hide-if-nationwide').removeClass('hide');
 		}
-		
+
 	});
 
 };

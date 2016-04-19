@@ -50,42 +50,39 @@ jscore.run(function(core) {
 		core.service.router
 
 		// add routes here
+		.add('/login'           , 'login')
+		.add('/register'        , 'register')
+		.add('/settings'        , 'settings')
+		.add('/reset-password'  , 'password.reset')
+		.add('/forgot-password' , 'password.forgot')
 
-		.add('/login', 'login')
-		.add('/register', 'register')
-		.add('/settings', 'settings')
-		.add('/reset-password', 'password.reset')
-		.add('/forgot-password', 'password.forgot')
-
-		.add('/talents', 'talents')
-		.add('/talents/favorite', 'talent.favorite')
-		.add('/talents/{talentId}', 'talent.resume')
+		// talents
+		.add('/talents'            , 'talent.index')
+		.add('/talents/favorite'   , 'talent.favorite')
+		.add('/talents/{talentId}' , 'talent.resume')
 
 		// project pages
-		.add('/projects', 'project.index')
-		.add('/projects/create', 'projects.create')
-		.add('/projects/quickpost', 'project.quickpost')
-		.add('/projects/{projectId}', 'project.show')
-		.add('/projects/{projectId}/edit', 'projects.edit')
-		.add('/projects/{projectId}/find-talents/{roleId}', 'projects.findtalents')
-		.add('/projects/{projectId}/find-talents', 'projects.findtalents')
-	    .add('/messages/{projectId}/{roleId}', 'message')
-	    .add('/messages/{projectId}', 'message')
-	    .add('/messages', 'message')
-
-		.add('/projects/{projectId}/roles/{roleId}/matches', 'role.match')
-		.add('/projects/{projectId}/roles/{roleId}/like-it-list', 'role.like-it-list')
-		.add('/projects/{projectId}/roles/{roleId}/public-like-it-list', 'role.publiclikeitlist')
-		.add('/projects/{projectId}/roles/{roleId}/public-like-it-list/{accessToken}', 'role.publiclikeitlist')
-		.add('/projects/{projectId}/roles/{roleId}/self-submissions', 'role.selfsubmission')
-		.add('/audition-worksheet/{campaignId}', 'worksheet.show')
-		.add('/audition-worksheet', 'worksheet')
+		.add('/projects'                  , 'project.index')
+		.add('/projects/create'           , 'project.create')
+		.add('/projects/quickpost'        , 'project.quickpost')
+		.add('/projects/{projectId}'      , 'project.show')
+		.add('/projects/{projectId}/edit' , 'project.edit')
 
 		// roles pages
-		.add('/projects/{projectId}/roles/create', 'roles.create')
-		.add('/projects/{projectId}/roles/{roleId}/edit', 'roles.edit')
+		.add('/projects/{projectId}/roles/create'                                     , 'roles.create')
+		.add('/projects/{projectId}/roles/{roleId}/like-it-list'                      , 'role.like-it-list')
+		.add('/projects/{projectId}/roles/{roleId}/find-talents'                      , 'role.find-talents')
+		.add('/projects/{projectId}/roles/{roleId}/submissions'                       , 'role.submissions')
+		.add('/projects/{projectId}/roles/{roleId}/public-like-it-list'               , 'role.publiclikeitlist')
+		.add('/projects/{projectId}/roles/{roleId}/public-like-it-list/{accessToken}' , 'role.publiclikeitlist')
+		.add('/projects/{projectId}/roles/{roleId}/edit'                              , 'roles.edit')
 
-		.add('/feedback', 'feedback')
+		.add('/audition-worksheet/{campaignId}' , 'worksheet.show')
+		.add('/audition-worksheet'              , 'worksheet')
+	    .add('/messages/{projectId}/{roleId}'   , 'message')
+	    .add('/messages/{projectId}'            , 'message')
+	    .add('/messages'                        , 'message')
+		.add('/feedback'                        , 'feedback')
 
 		// end routes
 

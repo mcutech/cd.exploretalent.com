@@ -1,10 +1,20 @@
-@extends('layouts.role', [ 'active' => 'like-it-list', 'pages' => [ [ 'name' => 'My Projects', 'url' => '/projects' ], [ 'name' => 'Like It List', 'url' => './like-it-list', 'active' => true ] ] ])
+
+@extends('layouts.project', [ 'active' => 'find-talents' ])
 
 @section('sidebar.page-header')
-	<i class="fa fa-th-list page-header-icon"></i> Like It List
+<i class="fa fa-th-list page-header-icon"></i> Callbacks
 @stop
 
-@section('role.body')
+@section('project.body')
+<div class="row-fluid clearfix">
+	<div id="project-roles" class="col-md-4 form-inline project-select-option">
+		<label >Role :</label>
+		<select id="roles-list" class="select-roles form-control">
+			<option data-bind-template="#roles-list" data-bind-value="data" data-bind="<%= JSON.stringify({ key : role_id, value : name + ' (' + role_id + ')' }) %>"></option>
+		</select>
+	</div>
+</div>
+
 <div class="panel role-item margin-top-medium">
 	<div class="row-fluid clearfix">
 		<div class="talents-wrapper">
@@ -32,7 +42,9 @@
 				@include('components.modals.talent-view-photos')
 				@include('components.modals.talent-resume')
 				@include('components.modals.invite-to-audition')
+
 			</div>
+
 		</div>
 	</div>
 </div>

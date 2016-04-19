@@ -1,5 +1,5 @@
 module.exports = function(core, user) {
-	var handler = require('../event-handlers/talents.js')(core, user);
+	var handler = require('../event-handlers/talent.index.js')(core, user);
 
 	$(document).on('click', '.fav-btn', handler.addToFavorites);
 	$('#search-button').on('click', handler.refresh);
@@ -59,5 +59,27 @@ module.exports = function(core, user) {
 	$(document).on('click', '#location-search-display-btn', function(){
 		$('#location-search-display').hide();
 		$('#location-search-change').show();
-	});	
+	});
+
+	//responsive filter turns to modal when mobile
+	$(document).ready(function(){
+		if($(this).width() <= 752){
+			$('#filter-content-modal').css('display', 'none');
+			$('#filter-content-modal').addClass('modal fade');
+		}
+		else{
+			$('#filter-content-modal').css('display', 'block');
+			$('#filter-content-modal').removeClass('modal fade');
+		}
+	});
+	$(window).resize(function(){
+		if($(this).width() <= 752){
+			$('#filter-content-modal').css('display', 'none');
+			$('#filter-content-modal').addClass('modal fade');
+		}
+		else{
+			$('#filter-content-modal').css('display', 'block');
+			$('#filter-content-modal').removeClass('modal fade');
+		}
+	});
 }

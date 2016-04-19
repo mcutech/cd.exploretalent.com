@@ -11,9 +11,14 @@ class RoleController extends Controller {
 		return view('project.role.edit', ['projectId' => $projectId, 'roleId' => $roleId]);
 	}
 
-	public function selfsubmissions($projectId, $roleId)
+	public function submissions($projectId, $roleId)
 	{
-		return view('project.role.selfsubmission.index', ['projectId' => $projectId, 'roleId' => $roleId]);
+		return view('project.role.submissions', ['projectId' => $projectId, 'roleId' => $roleId]);
+	}
+
+	public function findtalents($projectId, $roleId)
+	{
+		return view('project.role.find-talents', ['projectId' => $projectId, 'roleId' => $roleId ]);
 	}
 
 	public function likeitlist($projectId, $roleId)
@@ -31,5 +36,13 @@ class RoleController extends Controller {
 	public function auditionworksheet()
 	{
 		return view('project.role.auditionworksheet.index');
+	}
+	public function callbacks()
+	{
+		return view('project.role.callbacks');
+	}
+	public function booked()
+	{
+		return view('project.role.booked');
 	}
 }

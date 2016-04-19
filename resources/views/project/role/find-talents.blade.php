@@ -1,7 +1,7 @@
-@extends('layouts.role', [ 'active' => 'like-it-list', 'pages' => [ [ 'name' => 'My Projects', 'url' => '/projects' ], [ 'name' => 'Like It List', 'url' => './like-it-list', 'active' => true ] ] ])
+@extends('layouts.role', [ 'active' => 'find-talents', 'pages' => [ [ 'name' => 'My Projects', 'url' => '/projects' ], [ 'name' => 'Find Talents', 'url' => './find-talents', 'active' => true ] ] ])
 
 @section('sidebar.page-header')
-	<i class="fa fa-th-list page-header-icon"></i> Like It List
+<i class="fa fa-th-list page-header-icon"></i> Find Talents
 @stop
 
 @section('role.body')
@@ -24,7 +24,6 @@
 					<h1><i class="fa fa-spinner fa-spin"></i></h1>
 				</div>
 			</div>
-
 			<div class="talents-content">
 				@include('components.modals.talent-add-to-like-it-list')
 				@include('components.modals.share-like-it-list')
