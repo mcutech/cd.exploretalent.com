@@ -1,4 +1,4 @@
-@extends('layouts.project', [ 'pages' => [ [ 'name' => 'Roles', 'url' => '/settings' ], [ 'name' => 'Create Role', 'url' => '/settings', 'active' => true] ] ])
+@extends('layouts.project', ['project_details' => true, 'pages' => [ [ 'name' => 'Roles', 'url' => '/settings' ], [ 'name' => 'Create Role', 'url' => '/settings', 'active' => true] ] ])
 
 @section('sidebar.page-header')
 <div class="col-md-12">

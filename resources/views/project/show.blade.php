@@ -1,4 +1,4 @@
-@extends('layouts.project', [ 'active' => 'overview' ])
+@extends('layouts.project', ['project_details' => true, 'active' => 'overview' ])
 
 @section('sidebar.page-header')
 <i class="fa fa-th-list page-header-icon"></i> Project Overview
