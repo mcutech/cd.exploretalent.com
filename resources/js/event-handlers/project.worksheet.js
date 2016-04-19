@@ -13,6 +13,7 @@ function handler(core, user, projectId) {
 handler.prototype.refreshProjects = function() {
 	self.core.resource.project.get()
 	.then(function(projects) {
+		self.project = projects;
 		self.core.service.databind('#projects-list', projects);
 
 		if (parseInt(self.projectId))
@@ -70,6 +71,27 @@ handler.prototype.getCampaignTalentCount = function(campaign) {
 	});
 
 	return deferred.promise();
+}
+
+handler.prototype.getProject = function() {
+	var projectId = $('#projects-list').val();
+
+	var data = {
+		projectId : projectId,
+		query : [
+			[ 'with', 'bam_roles' ]
+		]
+	}
+	self.core.resource.project.get(data)
+		.then(function(res) {
+			console.log(res);
+			if(res.bam_roles.length > 0){
+				$('#role-div').removeClass('hide');
+				self.core.service.databind('#role-div', res);
+			}else{
+				$('#role-div').addClass('hide');
+			};
+		});
 }
 
 module.exports = function(core, user, projectId) {
