@@ -49,7 +49,7 @@
 	<div class="projects-wrapper">
 		<div class="panel-group panel-group-primary project-item" id="projects-list">
 			<div class="div-table-stripe-item" data-bind-template="#projects-list" data-bind-value="data">
-				<div class="row-fluid clearfix" data-bind="<%= parseInt(status) ? 'panel-active' : 'panel-inactive' %>" data-bind-target="class">
+				<div class="row-fluid clearfix">
 					<a class="col-md-12 text-left padding-xs-vr" data-bind="projects/<%= casting_id %>">
 						<div class="row-fluid clearfix">
 							<div class="col-xs-5 col-sm-2" data-bind="<%= name %>"></div>
@@ -58,12 +58,23 @@
 							<div class="col-xs-2 display-none-zz-sm" data-bind="<%= moment((last_modified || date_created)  * 1000).format('MM-DD-YYYY') %>"></div>
 							<div class="col-xs-2 col-sm-2 col-md-1" data-bind="<%= asap ? moment(asap * 1000).format('MM-DD-YYYY') : 'N/A' %>"></div>
 							<div class="col-xs-3 col-sm-2 display-none-zz-xs">
-								<div class="label btn-block" data-bind="<%= parseInt(status) ? 'label-success' : 'label-warning' %>" data-bind-target="class">
-									<span data-bind="<%= parseInt(status) ? 'Project Overview' : 'Pending Review' %>"></span>
+								<div class="label btn-block" data-bind="<%= parseInt(status) ? 'label-success' : 'label-danger' %>" data-bind-target="class">
+									<span data-bind="<%= parseInt(status) ? 'Active' : 'Pending' %>"></span>
 								</div>
 							</div>
 						</div>
 					</a>
+					<div>
+					<div class="row-fluid clearfix">
+						<a data-bind="projects/<%= casting_id %>" class="">
+							<div class="col-xs-5 col-sm-2">Project Overview</div>
+						</a>
+						<a class ="" data-bind="<%= bam_roles.length==0 ? 'projects/' + casting_id + '/roles/create' : 'projects/' + casting_id + '/roles/' + 'bam_role_first_id' + '/find-talents'%>">
+						<div class="col-xs-5 col-sm-5" data-bind="<%= bam_roles.length==0 ? 'You have 0 roles for this project. Click here to add Role':'Find Talents' %>">					
+						</div>
+						</a>	
+					</div>
+
 				</div>
 			</div>
 		</div>
