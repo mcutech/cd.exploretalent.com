@@ -87,11 +87,12 @@
 					</div>
 					<div class="col-xs-12 col-sm-3 col-md-2 margin-top-normal-zz">
 						<select name="distance" class="form-control">
-							<option value="5">5 miles</option>
-							<option value="10">10 miles</option>
-							<option value="15">15 miles</option>
-							<option value="20">20 miles</option>
-							<option value="25">25 miles</option>
+							<option value="150">150</option>
+							<option value="25">  25</option>
+							<option value="50">  50</option>
+							<option value="100">100</option>
+							<option value="150">150</option>
+							<option value="200">200</option>
 						</select>
 					</div>
 					<div class="col-xs-12 col-sm-2 col-md-2 margin-top-normal-zz">
@@ -101,11 +102,11 @@
 
 				<div id="location-search-change" class="row" hidden>
 					<div class="col-md-12 search-result-counter">
-						<div class="bordered no-border-vr border-left-width-zero display-inline-block padding-right-normal margin-right-normal-sm-lg border-zero-zz-sm">
+						<div class="hide bordered no-border-vr border-left-width-zero display-inline-block padding-right-normal margin-right-normal-sm-lg border-zero-zz-sm">
 							<h2 class="margin-zero text-bold">5,000</h2>
 						</div>
 						<div class="location-name display-inline-block">
-							<h3 class="margin-zero"><span class="text-default">Casting Calls in United States</span></h3>
+							<h3 class="margin-zero"><span class="text-default">All United States Markets</span></h3>
 						</div>
 						<div class="change-location-button display-inline-block margin-left-normal margin-zero-zz-sm">
 							<a href="#" id="location-search-change-btn" class="text-bold"><i class="fa fa-chevron-right"></i> Change Location</a>
@@ -143,9 +144,8 @@
 				</div>
 				<div class="col-xs-12 col-sm-3 col-md-3 margin-top-normal">
 					<select name="has_photo" class="form-control" data-select>
-						<option value="">Picture - All</option>
-						<option value="false">No Picture</option>
 						<option value="true">With Picture</option>
+						<option value="false">No Picture</option>
 					</select>
 				</div>
 				<div class="col-xs-12 col-md-3">
