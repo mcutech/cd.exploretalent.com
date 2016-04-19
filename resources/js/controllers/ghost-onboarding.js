@@ -2,9 +2,10 @@
 
 
 // uncomment this show modal
-$(document).ready(function(){
-	$('#ghost-onboarding-modal').modal('show');
-});
+// $(document).ready(function(){
+// 	$('#ghost-onboarding-modal').modal('show');
+// });
+// $('#ghost-onboarding-modal').modal({backdrop: 'static', keyboard: false})  
 
 $(document).on('click', '.proceed-btn.confirm-email', function(){
 	$('#onboarding-confirm-email').hide();
@@ -40,5 +41,3 @@ $(document).on('click', '.proceed-btn.company-name', function(){
 	$('#onboarding-company-name').hide();
 	$('#onboarding-congratulations').show();
 });
-
-$('#ghost-onboarding-modal').modal({backdrop: 'static', keyboard: false})  

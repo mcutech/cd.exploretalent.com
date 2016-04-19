@@ -1,4 +1,4 @@
-<div id="ghost-onboarding-modal" class="modal fade modal-blur" tabindex="-1" role="dialog" style="display: none;" data-backdrop="static" data-keyboard="false">
+<div id="ghost-onboarding-modal" class="modal fade" tabindex="-1" role="dialog" style="display: none;" data-backdrop="static" data-keyboard="false">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-body">
