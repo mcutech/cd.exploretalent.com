@@ -1,11 +1,13 @@
 'use strict';
 var _ = require('lodash');
 
-function handler(core, user, campaignId) {
+function handler(core, user, projectId, roleId) {
 	self = this;
 	self.core = core;
 	self.user = user;
-	self.campaignId = campaignId;
+	self.projectId = projectId;
+	self.roleId = roleId;
+
 	self.refresh();
 }
 
@@ -16,15 +18,16 @@ handler.prototype.refresh = function() {
 	if (!self.campaign) {
 		// get campaign object first
 		var data = {
-			campaignId : self.campaignId,
 			query : [
-				[ 'with', 'bam_role.bam_casting' ]
+				[ 'with', 'bam_role.bam_casting' ],
+				[ 'where', 'bam_role_id', '=', self.roleId ],
+				[ 'orderBy', 'created_at', 'DESC' ]
 			]
 		};
 
 		promise = self.core.resource.campaign.get(data)
 			.then(function(res){
-				self.campaign = res;
+				self.campaign = _.first(res.data);
 				self.core.service.databind('#campaign-details', self.campaign);
 				return $.when();
 			});

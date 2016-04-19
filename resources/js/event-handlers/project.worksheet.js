@@ -17,8 +17,9 @@ handler.prototype.refreshProjects = function() {
 		self.core.service.databind('#projects-list', projects);
 
 		if (parseInt(self.projectId))
-			$('#projects-list').val(self.projectId);
+			$('#projects-list').val(self.projectId).select2();
 
+		self.getRoles();
 		self.refreshList();
 	});
 }
@@ -33,9 +34,18 @@ handler.prototype.refreshList = function() {
 		]
 	}
 
+	if ($('#projects-list').val()) {
+		data.query.push([ 'where', 'castings.casting_id', '=', $('#projects-list').val() ]);
+	}
+
+	if ($('#roles-list').val()) {
+		data.query.push([ 'where', 'roles.role_id', '=', $('#roles-list').val() ]);
+	}
+
 	self.core.resource.project.get(data)
 	.then(function(res) {
 		var roleIds = _.map(res.data, 'role_id');
+		roleIds.push(0);
 
 		var data2 = {
 			query : [
@@ -73,7 +83,14 @@ handler.prototype.getCampaignTalentCount = function(campaign) {
 	return deferred.promise();
 }
 
-handler.prototype.getProject = function() {
+handler.prototype.projectChanged = function() {
+	self.getRoles();
+	self.refreshList();
+
+	window.history.pushState({}, '', '/projects/' + ($('#projects-list').val() || 0) + '/worksheet');
+}
+
+handler.prototype.getRoles = function() {
 	var projectId = $('#projects-list').val();
 
 	var data = {
@@ -82,13 +99,14 @@ handler.prototype.getProject = function() {
 			[ 'with', 'bam_roles' ]
 		]
 	}
+
 	self.core.resource.project.get(data)
 		.then(function(res) {
-			console.log(res);
-			if(res.bam_roles.length > 0){
+			if(res.bam_roles && res.bam_roles.length > 0) {
 				$('#role-div').removeClass('hide');
-				self.core.service.databind('#role-div', res);
-			}else{
+				self.core.service.databind('#roles-list', res);
+			}
+			else {
 				$('#role-div').addClass('hide');
 			};
 		});
