@@ -20,7 +20,7 @@
 				</ul>
 			</div>
 		</div>
-
+		@if (isset($project_details) && $project_details)
 		<div class="panel project-details-container">
 			<div class="panel-body">
 				<div class="row-fluid clearfix">
@@ -63,6 +63,7 @@
 				</div>
 			</div>
 		</div>
+		@endif
 	</div>
 	@yield('project.body')
 @stop
