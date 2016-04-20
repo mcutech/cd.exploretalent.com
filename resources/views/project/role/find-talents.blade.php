@@ -1,4 +1,5 @@
-@extends('layouts.role', [ 'active' => 'find-talents', 'pages' => [ [ 'name' => 'My Projects', 'url' => '/projects' ], [ 'name' => 'Find Talents', 'url' => './find-talents', 'active' => true ] ] ])
+@extends('layouts.role', [ 'active' => 'find-talents','project_details' =>
+false, 'pages' => [ [ 'name' => 'My Projects', 'url' => '/projects' ], [ 'name' => 'Find Talents', 'url' => './find-talents', 'active' => true ] ] ])
 
 @section('sidebar.page-header')
 <i class="fa fa-th-list page-header-icon"></i> Find Talents
