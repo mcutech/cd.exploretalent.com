@@ -46,13 +46,13 @@
 		<div class="col-xs-3 col-sm-2 display-none-zz-xs"><strong>Status</strong></div>
 	</div>
 
-	<div class="projects-wrapper">
+	<div class="projects-wrapper panel border-zero">
 		<div class="panel-group panel-group-primary project-item" id="projects-list">
 			<div class="div-table-stripe-item" data-bind-template="#projects-list" data-bind-value="data">
-				<div class="row-fluid clearfix">
-					<a class="col-md-12 text-left padding-xs-vr" data-bind="projects/<%= casting_id %>">
+				<div class="row-fluid clearfix padding-xs-vr">
+					<a class="col-md-12" data-bind="projects/<%= casting_id %>">
 						<div class="row-fluid clearfix">
-							<div class="col-xs-5 col-sm-2" data-bind="<%= name %>"></div>
+							<div class="col-xs-5 col-sm-2 text-bold" data-bind="<%= name %>"></div>
 							<div class="col-xs-4 col-sm-3" data-bind="<%= (cat) ? getCategory() : 'N/A' %>"></div>
 							<div class="col-xs-2 display-none-zz-xs" data-bind="<%= (snr == 2) ? 'Open Call' : 'Self Response' %>"></div>
 							<div class="col-xs-2 display-none-zz-sm" data-bind="<%= moment((last_modified || date_created)  * 1000).format('MM-DD-YYYY') %>"></div>
@@ -64,15 +64,13 @@
 							</div>
 						</div>
 					</a>
-					<div>
-					<div class="row-fluid clearfix">
-						<a data-bind="projects/<%= casting_id %>" class="">
-							<div class="col-xs-5 col-sm-2">Project Overview</div>
-						</a>
-						<a class ="" data-bind="<%= bam_roles.length==0 ? 'projects/' + casting_id + '/roles/create' : 'projects/' + casting_id + '/roles/' + 'bam_role_first_id' + '/find-talents'%>">
-						<div class="col-xs-5 col-sm-5" data-bind="<%= bam_roles.length==0 ? 'You have 0 roles for this project. Click here to add Role':'Find Talents' %>">					
-						</div>
-						</a>	
+					<div class="col-md-12 text-default padding-zero-zz-sm">
+					<a class="display-inline-block" data-bind="<%= bam_roles.length==0 ? 'projects/' + casting_id + '/roles/create' : 'projects/' + casting_id + '/roles/' + 'bam_role_first_id' + '/find-talents'%>">
+						<div class="row-fluid clearfix">
+							<div class="col-xs-12" data-bind="<%= bam_roles.length==0 ? 'You have 0 roles for this project. Click here to add Role':'Find Talents' %>">
+						</div>	
+					</div>
+					</a>
 					</div>
 
 				</div>
