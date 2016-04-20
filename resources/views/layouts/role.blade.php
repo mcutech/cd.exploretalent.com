@@ -23,10 +23,10 @@
 		<div id="project-links" class="col-md-12 margin-bottom-small">
 			<div class="col-md-10 padding-left-zero margin-left-zero">
 				<a data-bind="/projects/<%= casting_id %>/roles/<%= role_id %>/find-talents" class="btn btn-{{ isset($active) && $active == 'find-talents' ? 'success' : 'default' }}"> Role Matches </a>
-				<a data-bind="/projects/<%= casting_id %>/roles/<%= role_id %>/submissions" class="btn btn-{{ isset($active) && $active == 'submissions' ? 'success' : 'default' }}"> Submissions </a>
+				<a data-bind="/projects/<%= casting_id %>/roles/<%= role_id %>/submissions" class="btn btn-{{ isset($active) && $active == 'submissions' ? 'success' : 'default' }}"> Submissions (<span>0</span>) </a>
 			</div>
 			<div class="col-md-2 margin-right-zero padding-right-zero">
-				<a data-bind="/projects/<%= casting_id %>/roles/<%= role_id %>/like-it-list" class="pull-right btn btn-{{ isset($active) && $active == 'like-it-list' ? 'success' : 'default' }}"> Like it List </a>
+				<a data-bind="/projects/<%= casting_id %>/roles/<%= role_id %>/like-it-list" class="pull-right btn btn-{{ isset($active) && $active == 'like-it-list' ? 'success' : 'default' }}">View Like it List and Contact Talent (<span>0</span>) </a>
 			</div>
 		</div>
 	</div>
