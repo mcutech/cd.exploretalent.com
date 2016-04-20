@@ -28,23 +28,32 @@ handler.prototype.refresh = function() {
 		promise = self.core.resource.campaign.get(data)
 			.then(function(res){
 				self.campaign = _.first(res.data);
-				self.core.service.databind('#campaign-details', self.campaign);
 				return $.when();
 			});
 	}
 
 	promise.then(function() {
-			return self.getSchedules();
+			if (self.campaign)
+				return self.getSchedules();
+			else
+				return $.when();
 		})
 		.then(function(res) {
-			_.each(res.data, function(s) {
-				s.campaign = self.campaign;
-				if (!s.conversation) {
-					s.conversation = { messages : [] };
-				}
-			});
+			if (res) {
+				_.each(res.data, function(s) {
+					s.campaign = self.campaign;
+					if (!s.conversation) {
+						s.conversation = { messages : [] };
+					}
+				});
 
-			self.core.service.databind('#schedules', res);
+				self.core.service.databind('#campaign-details', self.campaign);
+				self.core.service.databind('#schedules', res);
+			}
+			else {
+				self.core.service.databind('#schedules', { data : [] });
+				alert('Worksheet not available. Create an invite first.');
+			}
 		});
 }
 

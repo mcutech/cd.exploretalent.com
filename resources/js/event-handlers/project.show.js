@@ -44,8 +44,8 @@ handler.prototype.getProjectInfo = function(e) {
 handler.prototype.getRoleStats = function(role) {
 	var deferred = $.Deferred();
 
-	role.getLikeItList().then(function(res) {
-		role.likeitlist = res;
+	role.getLikeItListCount().then(function(total) {
+		role.likeitlist = { total : total };
 		deferred.resolve();
 	});
 

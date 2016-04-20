@@ -51,18 +51,6 @@ handler.prototype.refreshList = function(){
 
 	self.core.resource.project.get(data)
 		.then(function(res){
-			_.each(res.data, function(n, i){
-				if(res.data[i].bam_roles.length==0){
-					res.data[i].bam_role_first_id = 0;
-				
-				}else{
-					res.data[i].bam_role_first_id = res.data[i].bam_roles[0].role_id;;	
-				}
-				
-			});
-
-			console.log(res);
-
 			self.core.service.databind('#projects-list', res);
 			self.core.service.paginate('#projects-pagination', { total : res.total, class : 'pagination', name : 'page', per_page: res.per_page });
 			self.core.service.paginate('#projects-pagination2', { total : res.total, class : 'pagination', name : 'page', per_page: res.per_page });
