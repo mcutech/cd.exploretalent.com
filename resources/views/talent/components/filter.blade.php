@@ -87,12 +87,11 @@
 					</div>
 					<div class="col-xs-12 col-sm-3 col-md-2 margin-top-normal-zz">
 						<select name="distance" class="form-control">
-							<option value="150">150</option>
-							<option value="25">  25</option>
-							<option value="50">  50</option>
-							<option value="100">100</option>
-							<option value="150">150</option>
-							<option value="200">200</option>
+							<option value="25">25 miles</option>
+							<option value="50">50 miles</option>
+							<option value="100">100 miles</option>
+							<option value="150">150 miles</option>
+							<option value="200">200 miles</option>
 						</select>
 					</div>
 					<div class="col-xs-12 col-sm-2 col-md-2 margin-top-normal-zz">
