@@ -34,17 +34,27 @@
 	}
 
 	#content-wrapper{
-		padding: 80px 70px 18px 70px;
+		padding: 80px 70px 35px 70px;
 		max-width: 1280px;
 		margin: 0 auto !important;
 		float: none !important;
 		@media all and (max-width: 768px){
 			padding-top: 125px !important;
 		}
+
+		&.full-page{
+			@media all and (max-width: 768px){
+				padding-top: 50px !important;
+			}
+		}
 	}
 
 
 	#main-navbar{
+		&.navbar-inverse{
+			background-color: #ffffff;
+		}
+
 		.navbar-header{
 			padding-left: 15px !important;
 			padding: 15px;
@@ -70,11 +80,15 @@
 
 					.primary-nav-icon{
 						font-size: 25px;
+					    display: list-item;
+					    @media screen and (max-width: 768px){
+					    	display: block;
+					    }
 					}
 
 					@media all and (max-width: 768px){
 						height: 40px;
-						padding: 0px 18px;
+						// padding: 0px 18px;
 						.primary-nav-icon{
 							font-size: 20px;
 						}
@@ -83,12 +97,25 @@
 			}
 		}
 
-		.secondary-nav{
+		.secondary-nav, .right-single-nav{
 			li{	
 				a{	
 					padding: 12px 20px;
 					height: 74px;
 					text-align: center;
+					display: list-item;
+				}
+			}
+		}
+		
+		@media all and (max-width: 768px){
+			.right-single-nav{
+				width: inherit;
+				li{
+					a{
+						padding: 0 10px;
+						height: inherit;
+					}
 				}
 			}
 		}
@@ -112,6 +139,7 @@
 			}
 		}
 		.secondary-nav{
+
 			.secondary-nav-text{
 				display: inline-block !important;
 			}
@@ -183,6 +211,18 @@
 
 	#main-wrapper{
 		padding-left: 0px;
+		
+		// &.fullpage{
+		// 	#main-navbar{
+		// 		.navigation-header-container{
+		// 			padding: 0 110px;
+		// 		}
+		// 	}
+
+		// 	#content-wrapper{
+		// 	    padding: 80px 115px 18px 115px;
+		// 	}
+		// }
 	}
 
 	#main-menu{
@@ -218,6 +258,9 @@
 			position: relative;
 			.navbar-toggle{
 				padding-top: 14px !important;
+				&.collapsed{
+				    padding: 0 20px !important;
+				}
 			}
 		}
 	}
