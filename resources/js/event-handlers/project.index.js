@@ -12,6 +12,7 @@ handler.prototype.refreshList = function(){
 	var data = {
 		query : [
 			[ 'with', 'bam_roles' ],
+			['orderBy', 'last_modified','DESC'],
 		],
 		page : qs.page || 1,
 		per_page : 20
@@ -51,6 +52,7 @@ handler.prototype.refreshList = function(){
 
 	self.core.resource.project.get(data)
 		.then(function(res){
+			console.log(res);
 			self.core.service.databind('#projects-list', res);
 			self.core.service.paginate('#projects-pagination', { total : res.total, class : 'pagination', name : 'page', per_page: res.per_page });
 			self.core.service.paginate('#projects-pagination2', { total : res.total, class : 'pagination', name : 'page', per_page: res.per_page });
