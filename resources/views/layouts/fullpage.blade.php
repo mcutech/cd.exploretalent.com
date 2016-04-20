@@ -4,7 +4,7 @@
 
 @section('navbar.body')
 
-	<div id="content-wrapper" class="">
+	<div id="content-wrapper" class="full-page">
 		@include('layouts.components.page-header')
 			@yield('sidebar.body')
 	</div>
