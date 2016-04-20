@@ -7,9 +7,9 @@
 		</div>
 
 		<div class="panel-body form-horizontal">
-			<div class="text-center-zz-sm">
-				<div id="location-search-display" class="row">
-					<label class="control-label pull-left padding-left-normal"><a id="location-search-display-btn" href="#">United States</a> <span class="padding-left-small">or</span></label>
+			<div class="row text-center-zz-sm">
+				<div id="location-search-display" class="col-md-9">
+					<label class="control-label pull-left padding-left-normal"><a id="location-search-display-btn" href="">United States</a> <span class="padding-left-small">or</span></label>
 					<div class="col-xs-12 col-sm-4 col-md-3 margin-top-normal-zz">
 						<select id="markets-list" name="markets" class="form-control" tabindex="-1" data-select multiple>
 							<option></option>
@@ -94,12 +94,9 @@
 							<option value="200">200 miles</option>
 						</select>
 					</div>
-					<div class="col-xs-12 col-sm-2 col-md-2 margin-top-normal-zz">
-						<button id="search-button" type="submit" class="btn btn-primary btn-block">Search</button>
-					</div>
 				</div>
 
-				<div id="location-search-change" class="row" hidden>
+				<div id="location-search-change" class="col-md-9" hidden>
 					<div class="col-md-12 search-result-counter">
 						<div class="hide bordered no-border-vr border-left-width-zero display-inline-block padding-right-normal margin-right-normal-sm-lg border-zero-zz-sm">
 							<h2 class="margin-zero text-bold">5,000</h2>
@@ -108,9 +105,13 @@
 							<h3 class="margin-zero"><span class="text-default">All United States Markets</span></h3>
 						</div>
 						<div class="change-location-button display-inline-block margin-left-normal margin-zero-zz-sm">
-							<a href="#" id="location-search-change-btn" class="text-bold"><i class="fa fa-chevron-right"></i> Change Location</a>
+							<a href="" id="location-search-change-btn" class="text-bold"><i class="fa fa-chevron-right"></i> Change Location</a>
 						</div>
 					</div>
+				</div>
+
+				<div class="col-md-2 pull-right">
+					<button id="search-button" type="submit" class="btn btn-primary btn-block">Search</button>
 				</div>
 			</div>
 

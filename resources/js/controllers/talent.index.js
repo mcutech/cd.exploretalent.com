@@ -52,11 +52,13 @@ module.exports = function(core, user) {
 	});
 
 	//refine search toggle location search
-	$(document).on('click', '#location-search-change-btn', function(){
+	$(document).on('click', '#location-search-change-btn', function(e){
+		e.preventDefault();
 		$('#location-search-display').show();
 		$('#location-search-change').hide();
 	});
-	$(document).on('click', '#location-search-display-btn', function(){
+	$(document).on('click', '#location-search-display-btn', function(e){
+		e.preventDefault();
 		$('#location-search-display').hide();
 		$('#location-search-change').show();
 	});
