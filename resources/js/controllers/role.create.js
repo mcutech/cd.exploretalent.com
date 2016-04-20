@@ -1,6 +1,6 @@
 module.exports = function(core, user, projectId) {
 
-	var handler = require('../event-handlers/roles.create.js')(core, user, projectId);
+	var handler = require('../event-handlers/role.create.js')(core, user, projectId);
 
 	$('#save-role-btn').on('click', handler.saveNewRole);
 	$('#save-and-add-role-btn').on('click', handler.saveNewRole);

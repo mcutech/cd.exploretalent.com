@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = function(core, user, projectId, roleId) {
-	var handler = require('../event-handlers/worksheet.show.js')(core, user, projectId, roleId);
+	var handler = require('../event-handlers/role.worksheet.js')(core, user, projectId, roleId);
 
 	$('#filter-button').on('click', handler.refresh);
 	$('#reschedule-button').on('click', handler.reschedule);

@@ -21,7 +21,7 @@
 
 		<div class="row-fluid clearfix">
 			<div class="col-md-3 talents-search-filter-content">
-				@include('worksheet.components.filter')
+				@include('project.role.worksheet.components.filter')
 			</div> {{-- filter-search-sidebar --}}
 
 
@@ -127,9 +127,9 @@
 		</div>
 
 	</div>
-@include('worksheet.modals.reschedule')
-@include('worksheet.modals.add-note')
-@include('worksheet.modals.message')
+@include('project.role.worksheet.modals.reschedule')
+@include('project.role.worksheet.modals.add-note')
+@include('project.role.worksheet.modals.message')
 @include('components.modals.talent-photos')
 @include('components.modals.talent-resume')
 @stop

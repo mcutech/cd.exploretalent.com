@@ -62,20 +62,22 @@ jscore.run(function(core) {
 		.add('/talents/{talentId}' , 'talent.resume')
 
 		// project pages
-		.add('/projects'                  , 'project.index')
-		.add('/projects/create'           , 'project.create')
-		.add('/projects/quickpost'        , 'project.quickpost')
-		.add('/projects/{projectId}'      , 'project.show')
-		.add('/projects/{projectId}/edit' , 'project.edit')
+		.add('/projects'                       , 'project.index')
+		.add('/projects/create'                , 'project.create')
+		.add('/projects/quickpost'             , 'project.quickpost')
+		.add('/projects/{projectId}/edit'      , 'project.edit')
+		.add('/projects/{projectId}/worksheet' , 'project.worksheet')
+		.add('/projects/{projectId}'           , 'project.show')
 
 		// roles pages
-		.add('/projects/{projectId}/roles/create'                                     , 'roles.create')
+		.add('/projects/{projectId}/roles/create'                                     , 'role.create')
+		.add('/projects/{projectId}/roles/{roleId}/worksheet'                         , 'role.worksheet')
 		.add('/projects/{projectId}/roles/{roleId}/like-it-list'                      , 'role.like-it-list')
 		.add('/projects/{projectId}/roles/{roleId}/find-talents'                      , 'role.find-talents')
 		.add('/projects/{projectId}/roles/{roleId}/submissions'                       , 'role.submissions')
 		.add('/projects/{projectId}/roles/{roleId}/public-like-it-list'               , 'role.publiclikeitlist')
 		.add('/projects/{projectId}/roles/{roleId}/public-like-it-list/{accessToken}' , 'role.publiclikeitlist')
-		.add('/projects/{projectId}/roles/{roleId}/edit'                              , 'roles.edit')
+		.add('/projects/{projectId}/roles/{roleId}/edit'                              , 'role.edit')
 
 		.add('/audition-worksheet/{campaignId}' , 'worksheet.show')
 		.add('/audition-worksheet'              , 'worksheet')
