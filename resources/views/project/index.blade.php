@@ -31,12 +31,12 @@
 		<a href="projects/quickpost"  class="btn btn-outline btn-block margin-top-normal-zz-xs" role="button"><i class="fa fa-plus"></i>
 				Quick Post
 			</a>
-		</div>	
+		</div>
 		<div class="col-xs-12 col-sm-4">
-			<div id="projects-pagination" class="pull-right margin-top-normal-zz-xs"></div>		
+			<div id="projects-pagination" class="pull-right margin-top-normal-zz-xs"></div>
 		</div>
 	</div>
-	
+
 	<div class="panel padding-xs-vr padding-xs-hr margin-bottom-zero text-left row-fluid clearfix">
 		<div class="col-xs-5 col-sm-2"><strong>Title</strong></div>
 		<div class="col-xs-4 col-sm-3"><strong>Type</strong></div>
@@ -65,12 +65,12 @@
 						</div>
 					</a>
 					<div class="col-md-12 text-default padding-zero-zz-sm">
-					<a class="display-inline-block" data-bind="<%= bam_roles.length==0 ? 'projects/' + casting_id + '/roles/create' : 'projects/' + casting_id + '/roles/' + 'bam_role_first_id' + '/find-talents'%>">
-						<div class="row-fluid clearfix">
-							<div class="col-xs-12" data-bind="<%= bam_roles.length==0 ? 'You have 0 roles for this project. Click here to add Role':'Find Talents' %>">
-						</div>	
-					</div>
-					</a>
+						<a class="display-inline-block" data-bind="<%= bam_roles.length==0 ? 'projects/' + casting_id + '/roles/create' : 'projects/' + casting_id + '/roles/' + (_.first(bam_roles).role_id)  + '/find-talents'%>">
+							<div class="row-fluid clearfix">
+								<div class="col-xs-12" data-bind="<%= bam_roles.length==0 ? 'You have 0 roles for this project. Click here to add Role':'Find Talents' %>">
+								</div>
+							</div>
+						</a>
 					</div>
 
 				</div>

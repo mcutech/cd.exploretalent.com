@@ -43,7 +43,7 @@
 						<div class="bordered padding-small fixedheight">
 							<a data-bind="/projects/<%= casting_id %>/roles/<%= role_id %>/worksheet"><div><i class="fa fa-calendar fa-2x"></i></div>
 							<div>Auditions Worksheet</div>
-							<b><div class="text-bg">69</div></b></a>
+							<b><div class="text-bg" data-bind="<%= likeitlist.total %>"></div></b></a>
 						</div>
 					</div>
 					<div class="col-md-2 text-center button-function">
