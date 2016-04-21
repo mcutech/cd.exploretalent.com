@@ -13,10 +13,9 @@
 			</ul>
 			<div class="talent-photo-v2">
 				<div class="photo-user-container">
-					<a onclick="window.open(this.href, 'mywin', 'left=0,top=0,width=769,height=650,toolbar=1,resizable=0'); return false;" data-bind="/talents/<%= talentnum %>?role_id=<%= talent_role_id %>" class="talent-function-icon profile"><i class="fa fa-user"></i>
-
-					<img data-bind="<%= getPrimaryPhoto() %>" class="img-responsive" />
-					</a></li>
+					<a onclick="window.open(this.href, 'mywin', 'left=0,top=0,width=769,height=650,toolbar=1,resizable=0'); return false;" data-bind="/talents/<%= talentnum %>?role_id=<%= talent_role_id %>" class="talent-function-icon profile">
+						<img data-bind="<%= getPrimaryPhoto() %>" class="img-responsive" />
+					</a>
 				</div>
 			</div>
 			<div class="talent-note-v2">
