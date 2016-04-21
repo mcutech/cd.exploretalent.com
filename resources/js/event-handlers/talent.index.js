@@ -190,16 +190,25 @@ handler.prototype.addToLikeitlist = function() {
 			if(result.total != 0){
 				self.core.resource.schedule.patch({scheduleId : result.data[0].id, rating : self.ratingValue})
 					.then(function(){
-						alert('Added to like it list.');
+							$('#success-alert').removeClass('hide');
+							setTimeout(function() { 
+							$('#addtolist').modal('hide');
+							$('#success-alert').addClass('hide');
+	 						}, 1000);
+							
 					});
 			}else {
 				self.core.resource.schedule.post(data)
 					.then(function(){
-						alert('Added to like it list.');
+							$('#success-alert').removeClass('hide');
+							setTimeout(function() { 
+							$('#addtolist').modal('hide');
+							$('#success-alert').addClass('hide');
+	 						}, 1000);						
 					});
-			}
-			$('#addtolist').modal('hide');
-			$('#role-list').val([]);
+			}			
+			
+			
 		});
 }
 
@@ -216,6 +225,7 @@ handler.prototype.refreshCastingRole = function() {
 }
 
 handler.prototype.selectCastingRole = function() {
+
 	var castingId = $('#casting-list').val();
 	self.castingId = castingId;
 

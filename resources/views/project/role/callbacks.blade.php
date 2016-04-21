@@ -1,5 +1,4 @@
-
-@extends('layouts.project', [ 'active' => 'find-talents' ])
+@extends('layouts.project', [ 'active' => '' ])
 
 @section('sidebar.page-header')
 <i class="fa fa-th-list page-header-icon"></i> Callbacks

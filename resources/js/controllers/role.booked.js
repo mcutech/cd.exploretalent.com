@@ -1,5 +1,5 @@
-module.exports = function(core, user, projectId, roleId) {
-	var handler = require('../event-handlers/role.like-it-list.js')(core, user, projectId, roleId);
+module.exports = function(core, user, roleId, projectId) {
+	var handler = require('../event-handlers/role.booked.js')(core, user, roleId, projectId);
 
 	$('#roles-list').on('change', handler.refreshRole);
 	$('#search-button').on('click', handler.findMatches);
@@ -21,6 +21,4 @@ module.exports = function(core, user, projectId, roleId) {
 			handler.findMatches(true);
 		}
 	});
-
-	$('#send-invites-button').on('click', handler.sendInvites);
 }

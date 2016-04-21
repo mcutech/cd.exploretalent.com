@@ -29,6 +29,16 @@ handler.prototype.getProjectInfo = function(e) {
 
 			self.core.service.databind('#project-details', self.project);
 
+			// create dummy for faster databind
+			_.each(self.project.bam_roles, function(role) {
+				role.likeitlist = { total : '' };
+				role.callbacks = { total : '' };
+				role.booked = { total : '' };
+				role.campaign = null;
+			});
+
+			self.core.service.databind('.find-talents-wrapper', self.project)
+
 			var promises = [];
 
 			_.each(self.project.bam_roles, function(role) {
@@ -47,6 +57,16 @@ handler.prototype.getRoleStats = function(role) {
 
 	role.getLikeItListCount().then(function(total) {
 		role.likeitlist = { total : total };
+
+		return role.getSchedulesCount(2);
+	})
+	.then(function(total) {
+		role.callbacks = { total : total };
+
+		return role.getSchedulesCount(3);
+	})
+	.then(function(total) {
+		role.booked = { total : total };
 
 		var data = {
 			query : [

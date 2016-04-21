@@ -8,6 +8,9 @@
       </div>
 
       <div class="modal-body">
+      <div class = "row alert alert-success">    
+      To add Talent to Like it List, Please choose which Project and Role you would want to Add the Talent      
+      </div>
         <div class="row">
 
           <div id="casting-div" class="col-md-6">
@@ -31,8 +34,9 @@
         </div>
       </div>
 
-      <div class="modal-footer">
-        <button id="btn-add-to-likeitlist" type="button" class="btn btn-primary">Add to like it list</button>
+      <div class="modal-footer">      
+        <span class="alert alert-success padding-small hide" id="success-alert">Talent Added!</span>
+        <button id="btn-add-to-likeitlist" type="button" class="btn btn-primary">Add to like it list</button>      
       </div>
     </div>
   </div>

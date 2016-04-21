@@ -13,7 +13,9 @@
 			</ul>
 			<div class="talent-photo-v2">
 				<div class="photo-user-container">
-					<img data-bind="<%= getPrimaryPhoto() %>" class="img-responsive" />
+					<a onclick="window.open(this.href, 'mywin', 'left=0,top=0,width=769,height=650,toolbar=1,resizable=0'); return false;" data-bind="/talents/<%= talentnum %>?role_id=<%= talent_role_id %>" class="talent-function-icon profile">
+						<img data-bind="<%= getPrimaryPhoto() %>" class="img-responsive" />
+					</a>
 				</div>
 			</div>
 			<div class="talent-note-v2">
@@ -46,7 +48,7 @@
 							<!-- turns to green when added to like list and change text to added and change icon to check -->
 
 							<!-- inactive -->
-							<button class="btn btn-outline function-item btn-block border-top-width-zero-sm-lg"><i class="fa fa-plus text-success"></i> <span class="text-success">Add Like it List</span></button>
+							<button id = "add-to-like-it-list" class="btn btn-outline function-item btn-block border-top-width-zero-sm-lg" data-value="5" data-bind-target="data-id" data-target="#addtolist" data-toggle="modal" data-bind="<%= user.id %>"><i class="fa fa-plus text-success"></i> <span class="text-success">Add Like it List</span></button>
 							<button class="btn btn-outline function-item btn-block border-top-width-zero-sm border-left-width-zero-sm border-left-width-zero-lg border-top-width-zero-sm-lg" rel="tooltip" title="Add to Favorites"><i class="fa fa-star-o font-size-normal-medium text-default"></i></button>
 
 							<!-- active -->
@@ -164,4 +166,5 @@
 		</div>
 	</div>
 </div> {{-- talent item container --}}
+
 

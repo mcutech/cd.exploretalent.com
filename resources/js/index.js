@@ -75,6 +75,8 @@ jscore.run(function(core) {
 		.add('/projects/{projectId}/roles/{roleId}/like-it-list'                      , 'role.like-it-list')
 		.add('/projects/{projectId}/roles/{roleId}/find-talents'                      , 'role.find-talents')
 		.add('/projects/{projectId}/roles/{roleId}/submissions'                       , 'role.submissions')
+		.add('/projects/{projectId}/roles/{roleId}/callbacks'                         , 'role.callbacks')
+		.add('/projects/{projectId}/roles/{roleId}/booked'                            , 'role.booked')
 		.add('/projects/{projectId}/roles/{roleId}/public-like-it-list'               , 'role.publiclikeitlist')
 		.add('/projects/{projectId}/roles/{roleId}/public-like-it-list/{accessToken}' , 'role.publiclikeitlist')
 		.add('/projects/{projectId}/roles/{roleId}/edit'                              , 'role.edit')
