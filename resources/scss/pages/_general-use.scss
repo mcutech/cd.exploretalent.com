@@ -58,7 +58,7 @@
 		.navbar-header{
 			padding-left: 15px !important;
 			padding: 15px;
-			@media all and (max-width: 768px){
+			@media all and (max-width: 767px){
 				padding: 5px 0px 0px 5px;
 			}			
 		}
@@ -69,6 +69,7 @@
 
 		.primary-nav{
 			li{
+			    border-top: 1px solid #f1f1f1;
 				border-right-width: 0px;
 				
 				a{
@@ -97,13 +98,26 @@
 			}
 		}
 
-		.secondary-nav, .right-single-nav{
+		.secondary-nav{
 			li{	
 				a{	
 					padding: 12px 20px;
 					height: 74px;
 					text-align: center;
 					display: list-item;
+				}
+			}
+		}
+		.right-single-nav{
+			@extend .secondary-nav;
+			li{
+				a{
+					h4{
+						display: block !important;
+					}
+				}
+				.popover{
+					left: -100.21875px !important;
 				}
 			}
 		}
@@ -121,15 +135,16 @@
 		}
 	}
 
-	@media all and (max-width: 768px){
+	@media all and (max-width: 767px){
 		.navigation-header-container{
 			padding: 0px;
 		}
 
 		#main-navbar{
 			.navbar-navigations{
-				float: none !important;
+				float: none;
 				width: 100%;
+				display: inline-block !important;
 				ul{
 					display: flex;
 					li{
@@ -138,12 +153,26 @@
 				}				
 			}
 		}
+
 		.secondary-nav{
 
 			.secondary-nav-text{
 				display: inline-block !important;
 			}
-		}		
+		}
+
+		.primary-nav{
+			li{
+				a{
+					.primary-nav-icon{
+						i{
+							vertical-align: top !important;
+						}
+					}
+				}
+			}
+		}
+
 	}
 
 
@@ -197,8 +226,8 @@
 				}
 			}
 			.navbar-navigations{
-				display: inline-block;
-				float: left;
+				display: inline;
+				// float: left;
 			}
 			.navbar-toggle-buttons{
 				display: inline-block;
@@ -257,9 +286,9 @@
 			background-color: #ffffff;
 			position: relative;
 			.navbar-toggle{
-				padding-top: 14px !important;
+				// padding: 0 25px !important;
+				// padding-top: 10px !important;
 				&.collapsed{
-				    padding: 0 20px !important;
 				}
 			}
 		}
