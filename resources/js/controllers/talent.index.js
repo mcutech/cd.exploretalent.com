@@ -2,9 +2,10 @@ module.exports = function(core, user) {
 	var handler = require('../event-handlers/talent.index.js')(core, user);
 
 	$(document).on('click', '.fav-btn', handler.addToFavorites);
-	$('#search-button').on('click', handler.refresh);
-	$(document).on('click', '.rating-button', handler.refreshCastingRole);
+	$('#search-button').on('click', handler.refresh);	
+	$(document).on('click', '#add-to-like-it-list', handler.refreshCastingRole);
 	$(document).on('change', '#casting-list', handler.selectCastingRole);
+	$(document).on('click', '#btn-add-to-likeitlist', handler.addToLikeitlist);
 
 	// talents functions menu
 	$(document).on('mouseover', '.talent-function-icon.profile', function() {
