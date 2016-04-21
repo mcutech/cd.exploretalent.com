@@ -21,4 +21,7 @@ module.exports = function(core, user, projectId, roleId) {
 			handler.findMatches(true);
 		}
 	});
+
+	$('#send-invites-button').on('click', handler.sendInvites);
+
 }

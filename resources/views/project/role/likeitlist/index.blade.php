@@ -1,4 +1,4 @@
-@extends('layouts.role', [ 'active' => 'like-it-list', 'pages' => [ [ 'name' => 'My Projects', 'url' => '/projects' ], [ 'name' => 'Like It List', 'url' => './like-it-list', 'active' => true ] ] ])
+@extends('layouts.role', [ 'active' => 'like-it-list', 'pages' => [ [ 'name' => 'My Projects', 'url' => '/projects' ], [ 'name' => 'Like It List', 'url' => './like-it-list', 'active' => true ] ] , 'likeitlist' => false , 'matches' => true])
 
 @section('sidebar.page-header')
 	<i class="fa fa-th-list page-header-icon"></i> Like It List

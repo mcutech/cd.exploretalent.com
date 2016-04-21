@@ -10,6 +10,7 @@ function handler(core, user, projectId, roleId) {
 	self.first_load = true;
 
 	self.getProjectInfo();
+	self.refreshInvitation();
 }
 
 handler.prototype.getProjectInfo = function() {
@@ -23,6 +24,10 @@ handler.prototype.getProjectInfo = function() {
 	self.core.resource.project.get(data)
 		.then(function(res) {
 			self.project = res;
+
+			self.project.role = _.find(self.project.bam_roles, function (role) {
+				return role.role_id == self.roleId;
+			});
 
 			var markets = _.map(self.project.market.split('>'), function(m) {
 				return { name : m };
@@ -188,6 +193,79 @@ handler.prototype.getFilters = function() {
 	}
 
 	return data;
+}
+
+handler.prototype.refreshInvitation = function() {
+	var data = {
+		query : [
+			['where', 'bam_role_id', self.roleId],
+		]
+	}
+
+	self.core.resource.campaign.get(data)
+	.then(function(res){
+		console.log(res);
+		if(res.data[0].status > 0 || res.data[0].status == 0){
+			$("#invitetoaudition-text")
+			.html('<span class="text-muted">You have already sent an invitation on</span> '+ res.data[0].updated_at +
+				  '<a href="/audition-worksheet/'+res.data[0].id+'" class="btn-link margin-left-small"><i class="fa fa-pencil"></i> Manage Here</a>');
+				  $('#invitetoauditionbutton').attr("disabled", true);
+		}
+	});
+}
+
+handler.prototype.sendInvites = function() {
+	var data = {
+		query 	: [
+			[ 'where', 'bam_role_id', self.project.role.role_id ]
+		]
+	};
+console.log(self.project.role.role_id);
+	// self.core.resource.campaign.get(data)
+	// .then(function(res) {
+	// 	var form = self.core.service.form.serializeObject('#invite-to-audition-form');
+    //
+	// 	var data = [
+	// 		[ 'where', 'rating', '<>', 0 ],
+	// 		[ 'where', 'bam_role_id', '=', self.project.role.role_id ],
+	// 		[ 'join', 'users', 'users.id', '=', 'invitee_id' ],
+	// 		[ 'select', 'bam_talentnum AS talentnum' ]
+	// 	];
+    //
+	// 	var campaignData = {
+	// 		campaign_type_id 	: self.core.resource.campaign_type.CD_INVITE,
+	// 		bam_cd_user_id		: self.user.bam_cd_user_id,
+	// 		bam_role_id			: self.project.role.role_id,
+	// 		when				: form.when,
+	// 		where				: form.where,
+	// 		name				: 'CD Invite Role #' + self.project.role.role_id,
+	// 		description			: form.message,
+	// 		query_model			: 'Schedule',
+	// 		query_model_raw     : 'Bam\\Talentci',
+	// 		query_key_id        : 'talentnum',
+	// 		query_key_cell      : 'cell',
+	// 		query_key_email     : 'email1',
+	// 		query				: JSON.stringify(data),
+	// 		replies				: form.replies,
+	// 		status				: 0
+	// 	}
+    //
+	// 	// update campaign
+	// 	if (res.total) {
+	// 		campaignData.campaignId = _.first(res.data).id;
+	// 		return self.core.resource.campaign.patch(campaignData);
+	// 	}
+	// 	// create campaign
+	// 	else {
+	// 		return self.core.resource.campaign.post(campaignData);
+	// 	}
+	// })
+	// .then(function(res) {
+	// 	alert('Invitations sent!');
+	// 	$('#invite-to-audition-modal').modal('toggle'); //auto-close modal
+	// 	self.refreshProjectDetails();
+	// 	self.refreshInvitation();
+	// });
 }
 
 module.exports = function(core, user, projectId, roleId) {
