@@ -1,11 +1,13 @@
 'use strict';
 var _ = require('lodash');
 
-function handler(core, user, campaignId) {
+function handler(core, user, projectId, roleId) {
 	self = this;
 	self.core = core;
 	self.user = user;
-	self.campaignId = campaignId;
+	self.projectId = projectId;
+	self.roleId = roleId;
+
 	self.refresh();
 }
 
@@ -16,32 +18,42 @@ handler.prototype.refresh = function() {
 	if (!self.campaign) {
 		// get campaign object first
 		var data = {
-			campaignId : self.campaignId,
 			query : [
-				[ 'with', 'bam_role.bam_casting' ]
+				[ 'with', 'bam_role.bam_casting' ],
+				[ 'where', 'bam_role_id', '=', self.roleId ],
+				[ 'orderBy', 'created_at', 'DESC' ]
 			]
 		};
 
 		promise = self.core.resource.campaign.get(data)
 			.then(function(res){
-				self.campaign = res;
-				self.core.service.databind('#campaign-details', self.campaign);
+				self.campaign = _.first(res.data);
 				return $.when();
 			});
 	}
 
 	promise.then(function() {
-			return self.getSchedules();
+			if (self.campaign)
+				return self.getSchedules();
+			else
+				return $.when();
 		})
 		.then(function(res) {
-			_.each(res.data, function(s) {
-				s.campaign = self.campaign;
-				if (!s.conversation) {
-					s.conversation = { messages : [] };
-				}
-			});
+			if (res) {
+				_.each(res.data, function(s) {
+					s.campaign = self.campaign;
+					if (!s.conversation) {
+						s.conversation = { messages : [] };
+					}
+				});
 
-			self.core.service.databind('#schedules', res);
+				self.core.service.databind('#campaign-details', self.campaign);
+				self.core.service.databind('#schedules', res);
+			}
+			else {
+				self.core.service.databind('#schedules', { data : [] });
+				alert('Worksheet not available. Create an invite first.');
+			}
 		});
 }
 

@@ -11,7 +11,7 @@
 
 		<div class="talents-search-filter-content">
 			<div class="row clearfix">
-				<div id="filter-content-modal" class="" tabindex="1" role="dialog" aria-hidden="false">
+				<div id="filter-content-modal" class="" tabindex="" role="dialog" aria-hidden="false">
 					<div class="display-block-sm-lg">
 						@include('talent.components.filter')
 					</div>

@@ -1,4 +1,4 @@
-@extends('layouts.role', [ 'active' => 'submissions', 'pages' => [ [ 'name' => 'My Projects', 'url' => '/projects' ], [ 'name' => 'Submissions', 'url' => './submissions', 'active' => true ] ] ])
+@extends('layouts.role', [ 'active' => 'submissions', 'pages' => [ [ 'name' => 'My Projects', 'url' => '/projects' ], [ 'name' => 'Submissions', 'url' => './submissions', 'active' => true ] ], 'likeitlist' => true , 'matches' => false])
 
 @section('sidebar.page-header')
 <i class="fa fa-th-list page-header-icon"></i> Submissions

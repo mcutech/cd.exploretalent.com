@@ -12,8 +12,8 @@
 			<div class="form-group margin-zero">
 				<label class="control-label col-md-4 padding-right-zero">Project Name:</label>
 				<div class="col-md-8">
-					<select id="projects-list" class="form-control">
-						<option data-bind-template="#projects-list" data-bind-value="data" data-bind="<%= JSON.stringify({ key : casting_id, value : name + ' (' + casting_id + ')' }) %>">Any</option>
+					<select id="projects-list" class="form-control" data-select="Select Project">
+						<option data-bind-template="#projects-list" data-bind-value="data" data-bind="<%= JSON.stringify({ key : casting_id, value : name + ' (' + casting_id + ')' }) %>" value="">Any</option>
 					</select>
 				</div>
 			</div>
@@ -23,8 +23,8 @@
 			<div class="form-group margin-zero">
 				<label class="control-label col-md-4 padding-right-zero">Role Name:</label>
 				<div class="col-md-8">
-					<select  id="roles-list" name="" data-select data-placeholder="Select Role" class="form-control">
-						<option data-bind-template="#roles-list" data-bind-value="bam_roles" data-bind="<%= JSON.stringify({ key : role_id, value : name }) %>"></option>
+					<select  id="roles-list" data-select data-placeholder="Select Role" class="form-control">
+						<option data-bind-template="#roles-list" data-bind-value="bam_roles" data-bind="<%= JSON.stringify({ key : role_id, value : name }) %>" value="">Any</option>
 					</select>
 				</div>
 			</div>
