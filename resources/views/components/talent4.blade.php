@@ -158,7 +158,7 @@
 							<div class="btn-group talent-function">
 								<!-- <a data&#45;toggle="modal" data&#45;bind="<%= talentnum %>" data&#45;bind&#45;target="data&#45;id" id="talent&#45;resume1" data&#45;target="#talent&#45;resume&#45;modal" class="btn btn&#45;xs btn&#45;default"><span class="fa fa&#45;file&#45;text&#45;o"></span></a> -->
 								<a target="_blank" data-bind="/talents/<%= talentnum %>" class="btn btn-xs btn-default function-item"> <span class="fa fa-file-text-o"></span></a>
-								<a data-toggle="modal" data-bind="<%= talentnum %>" data-bind-target="data-id" id="talent-photo" data-target="#talent-photos-modal" class="btn btn-xs btn-default function-item"><span class="fa fa-picture-o"></span></a>
+								<!-- <a data&#45;toggle="modal" data&#45;bind="<%= talentnum %>" data&#45;bind&#45;target="data&#45;id" id="talent&#45;photo" data&#45;target="#talent&#45;photos&#45;modal" class="btn btn&#45;xs btn&#45;default function&#45;item"><span class="fa fa&#45;picture&#45;o"></span></a> -->
 							</div>
 						</div>
 					</div>
