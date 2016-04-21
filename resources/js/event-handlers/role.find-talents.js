@@ -73,6 +73,10 @@ handler.prototype.findMatches = function(append) {
 
 	self.core.resource.talent.search(data)
 		.then(function(talents) {
+			_.each(talents.data, function(talent) {
+				talent.talent_role_id = self.roleId;
+			});
+			console.log(talents);
 			self.core.service.databind('#role-matches-result', talents, append);
 			self.refreshing = false;
 

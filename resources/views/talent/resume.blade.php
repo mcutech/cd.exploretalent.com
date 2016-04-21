@@ -5,7 +5,7 @@
 	<!-- project/role and actions -->
 	<div class="project-role-actions">
 		<div class="row-fluid clearfix">
-			<div class="col-md-5 col-sm-5 col-xs-8 margin-bottom-small-zz-xs">
+			<div class="col-md-4 col-sm-4 col-xs-8 margin-bottom-small-zz-xs">
 				<div class="padding-top-zero-small">
 					<label>Bad Chef Parody</label> <label class="text-muted">Male Chef Host</label>
 				</div>
@@ -13,16 +13,17 @@
 			<div class="col-md-2 col-sm-2 col-xs-4">
 				<a href="" class="btn btn-outline btn-sm btn-block">CallBack</a>
 			</div>
-			<div class="col-md-3 col-sm-3 col-xs-8 padding-left-zero-sm-lg">
-				<div class="like-it-list-container">
-					<div class="btn-group btn-group-justified talent-function">
-						<a data-value="1" class="btn btn-sm btn-danger rating-button function-item" data-toggle="modal" data-bind="<%= user.id %>" data-bind-target="data-id" data-target="#addtolist">1</a>
-						<a data-value="2" class="btn btn-sm btn-warning rating-button function-item" data-toggle="modal" data-bind="<%= user.id %>" data-bind-target="data-id" data-target="#addtolist">2</a>
-						<a data-value="3" class="btn btn-sm btn-info rating-button function-item" data-toggle="modal" data-bind="<%= user.id %>" data-bind-target="data-id" data-target="#addtolist"	>3</a>
-						<a data-value="4" class="btn btn-sm btn-primary rating-button function-item" data-toggle="modal" data-bind="<%= user.id %>" data-bind-target="data-id" data-target="#addtolist">4</a>
-						<a data-value="5" class="btn btn-sm btn-success rating-button function-item" data-toggle="modal" data-bind="<%= user.id %>" data-bind-target="data-id" data-target="#addtolist">5</a>
-					</div>
-				</div>
+			<div class="col-md-2 col-sm-2 col-xs-4">
+				<button id="btn-add-to-likeitlist" class="btn btn-outline btn-sm btn-block">
+					<i class="fa fa-plus text-success"></i>
+					<span class="text-success">Add Like it List</span>
+				</button>
+			</div>
+			<div class="col-md-2 col-sm-2 col-xs-4">
+					<button class="btn btn-outline btn-sm btn-block" rel="tooltip" title="Add to Favorites">
+					<i class="fa fa-star-o"></i>
+					<span class="">Add to Favorites</span>
+				</button>
 			</div>
 			<div class="col-sm-1 col-xs-2 padding-left-zero">
 				<a href="" class="btn btn-outline btn-sm btn-block"><i class="fa fa-chevron-left display-none-md-lg"></i><span class="display-none-zz-sm">Previous</span></a>
@@ -32,7 +33,7 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<!-- name and occupation -->
 	<div class="panel margin-zero">
 		<div class="panel-body padding-normal" id="talent-resume-info">
@@ -151,7 +152,7 @@
 							</div>
 						</div>
 					</div><!-- Acting/Modeling -->
-					
+
 					<!-- about and short resume -->
 					<div class="col-xs-12 padding-zero talent-info-item">
 						<div data-bind="<%= (bam_talentinfo2.special_skills) ? '1' : '' %>" data-bind-target="visibility">
@@ -195,7 +196,7 @@
 									<span data-bind="<%= bam_talent_music[0].number_of_gigs %>"></span>
 								</div>
 							</div>
-						
+
 							<div class="col-sm-6 col-xs-12 padding-zero talent-info-item" data-bind="<%= bam_talent_music[0].genre ? '1' : '' %>" data-bind-target="visibility">
 								<div class="col-sm-6 col-xs-6">
 									<label style="width=20px;">Genres</label>

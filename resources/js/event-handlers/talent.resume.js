@@ -10,7 +10,6 @@ function handler(core, user, talentnum){
 }
 
 handler.prototype.refresh = function() {
-
 	var data = {
 		talentId : self.talentnum,
 		query : [
@@ -44,7 +43,6 @@ handler.prototype.refresh = function() {
 			var photos = _.filter(res.bam_talent_media2, function(val){
 				return val.type == 1;
 			});
-			console.log(photos);
 			if(photos[0]){
 				var firstphoto = _.slice(photos, 0, 1);
 				self.core.service.databind('#first-photo', firstphoto[0]);
