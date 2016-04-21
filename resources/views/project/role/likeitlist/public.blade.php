@@ -27,7 +27,7 @@
 			</div>
 		</div>
 	</div>
-	<div id="loading-div">
+<!-- 	<div id="loading-div">
 		<div class="f_circleG" id="frotateG_01"></div>
 		<div class="f_circleG" id="frotateG_02"></div>
 		<div class="f_circleG" id="frotateG_03"></div>
@@ -36,15 +36,16 @@
 		<div class="f_circleG" id="frotateG_06"></div>
 		<div class="f_circleG" id="frotateG_07"></div>
 		<div class="f_circleG" id="frotateG_08"></div>
-	</div>
+	</div> -->
 	<div class="like-it-list-talents-wrapper like-it-list-page-wrapper">
 		<div class="talents-search-filter-content">
 			@parent
 			<div class="row-fluid clearfix">
 				<div id="like-it-list" class="col-md-12 talents-search-result">
 					<div class="row-fluid clearfix" id="like-it-list-results">
-						@include('components.talent2', [ 'databind' => [ 'template' => '#like-it-list-results', 'value' => 'role.likeitlist.data' ], 'unrate' => true, 'class' => 'col-md-3' ])
-
+						<?php for($x=0; $x<=11; $x++) { ?>
+						@include('components.talent2', [ 'databind' => [ 'template' => '#like-it-list-results', 'value' => 'role.likeitlist.data' ], 'unrate' => true, 'class' => 'col-lg-2 col-md-2 col-sm-3 col-xs-6' ])
+						<?php } ?>
 					</div>
 				</div> {{-- talents-search-results --}}
 				<div id="like-it-list-pagination" class="col-md-12 padding-left-large padding-right-large">
