@@ -10,7 +10,6 @@ function handler(core, user, projectId, roleId) {
 	self.first_load = true;
 
 	self.getProjectInfo();
-	self.refreshInvitation();
 }
 
 handler.prototype.getProjectInfo = function() {
@@ -25,39 +24,37 @@ handler.prototype.getProjectInfo = function() {
 		.then(function(res) {
 			self.project = res;
 
-			self.project.role = _.find(self.project.bam_roles, function (role) {
-				return role.role_id == self.roleId;
-			});
-
-			var markets = _.map(self.project.market.split('>'), function(m) {
-				return { name : m };
-			});
-
-			self.project.markets = { data : markets };
 			self.core.service.databind('#project-details', self.project)
 			self.core.service.databind('#roles-list', { data : self.project.bam_roles })
-			if (parseInt(self.roleId)) {
-				$('#roles-list').val(self.roleId);
-			}
-			else {
-				$('#roles-list').val(_.first(self.project.bam_roles).role_id);
-			}
-			self.project.role_id = self.roleId || _.first(self.project.bam_roles).role_id;
+			$('#roles-list').val(self.roleId);
+
+			self.project.role = { role_id : self.roleId, likeitlist : { total : '' }, submissions : { total : '' } };
 			self.core.service.databind('#project-links', self.project )
+
 			self.refreshRole();
 		});
 }
 
 handler.prototype.refreshRole = function() {
-	var roleId = $('#roles-list').val();
-	var role = _.find(self.project.bam_roles, function(role) {
-		return role.role_id == roleId;
+	var role = _.find(self.project.bam_roles, function(r) {
+		return r.role_id == $('#roles-list').val();
 	});
 
-	role.bam_casting = self.project;
+	self.project.role = role;
+	self.project.role.bam_casting = self.project;
 
-	self.core.service.databind('#role-filter-form', role);
+	window.history.pushState({}, '', '/projects/' + role.casting_id + '/roles/' + role.role_id + '/like-it-list');
+	self.core.service.databind('#role-filter-form', self.project.role);
+
+	self.project.role.getSubmissionsCount()
+		.then(function(count) {
+			self.project.role.submissions = { total : count };
+
+			self.core.service.databind('#project-links', self.project )
+		});
+
 	self.findMatches();
+	self.refreshInvitation();
 }
 
 handler.prototype.findMatches = function(append) {
@@ -198,74 +195,64 @@ handler.prototype.getFilters = function() {
 handler.prototype.refreshInvitation = function() {
 	var data = {
 		query : [
-			['where', 'bam_role_id', self.roleId],
-		]
+			[ 'where', 'bam_role_id', self.project.role.role_id ],
+			[ 'orderBy', 'created_at', 'DESC' ]
+		],
+		per_page : 1
 	}
 
 	self.core.resource.campaign.get(data)
 	.then(function(res){
-		console.log(res);
-		if(res.data[0].status > 0 || res.data[0].status == 0){
-			$("#invitetoaudition-text")
-			.html('<span class="text-muted">You have already sent an invitation on</span> '+ res.data[0].updated_at +
-				  '<a href="/audition-worksheet/'+res.data[0].id+'" class="btn-link margin-left-small"><i class="fa fa-pencil"></i> Manage Here</a>');
-				  $('#invitetoauditionbutton').attr("disabled", true);
+		var campaign = _.first(res.data);
+		if (campaign && (campaign.status > 0 || campaign.status == 0)) {
+				$("#invitetoaudition-text")
+				.html('<span class="text-muted">You have already sent an invitation on</span> ' + campaign.updated_at +
+					  '<a href="/projects/' + self.project.role.casting_id + '/roles/' + self.project.role.role_id + '/worksheet" class="btn-link margin-left-small"><i class="fa fa-pencil"></i> Manage Here</a>');
+
+				$('#invitetoauditionbutton').attr("disabled", true);
+		}
+		else {
+			$("#invitetoaudition-text").text('');
+			$('#invitetoauditionbutton').attr("disabled", false);
 		}
 	});
 }
 
 handler.prototype.sendInvites = function() {
-	var data = {
-		query 	: [
-			[ 'where', 'bam_role_id', self.project.role.role_id ]
-		]
-	};
-console.log(self.project.role.role_id);
-	// self.core.resource.campaign.get(data)
-	// .then(function(res) {
-	// 	var form = self.core.service.form.serializeObject('#invite-to-audition-form');
-    //
-	// 	var data = [
-	// 		[ 'where', 'rating', '<>', 0 ],
-	// 		[ 'where', 'bam_role_id', '=', self.project.role.role_id ],
-	// 		[ 'join', 'users', 'users.id', '=', 'invitee_id' ],
-	// 		[ 'select', 'bam_talentnum AS talentnum' ]
-	// 	];
-    //
-	// 	var campaignData = {
-	// 		campaign_type_id 	: self.core.resource.campaign_type.CD_INVITE,
-	// 		bam_cd_user_id		: self.user.bam_cd_user_id,
-	// 		bam_role_id			: self.project.role.role_id,
-	// 		when				: form.when,
-	// 		where				: form.where,
-	// 		name				: 'CD Invite Role #' + self.project.role.role_id,
-	// 		description			: form.message,
-	// 		query_model			: 'Schedule',
-	// 		query_model_raw     : 'Bam\\Talentci',
-	// 		query_key_id        : 'talentnum',
-	// 		query_key_cell      : 'cell',
-	// 		query_key_email     : 'email1',
-	// 		query				: JSON.stringify(data),
-	// 		replies				: form.replies,
-	// 		status				: 0
-	// 	}
-    //
-	// 	// update campaign
-	// 	if (res.total) {
-	// 		campaignData.campaignId = _.first(res.data).id;
-	// 		return self.core.resource.campaign.patch(campaignData);
-	// 	}
-	// 	// create campaign
-	// 	else {
-	// 		return self.core.resource.campaign.post(campaignData);
-	// 	}
-	// })
-	// .then(function(res) {
-	// 	alert('Invitations sent!');
-	// 	$('#invite-to-audition-modal').modal('toggle'); //auto-close modal
-	// 	self.refreshProjectDetails();
-	// 	self.refreshInvitation();
-	// });
+	var form = self.core.service.form.serializeObject('#invite-to-audition-form');
+
+	var data = [
+		[ 'where', 'rating', '<>', 0 ],
+		[ 'where', 'bam_role_id', '=', self.project.role.role_id ],
+		[ 'join', 'users', 'users.id', '=', 'invitee_id' ],
+		[ 'select', 'bam_talentnum AS talentnum' ]
+	];
+
+	var campaignData = {
+		campaign_type_id 	: self.core.resource.campaign_type.CD_INVITE,
+		bam_cd_user_id		: self.user.bam_cd_user_id,
+		bam_role_id			: self.project.role.role_id,
+		when				: form.when,
+		where				: form.where,
+		name				: 'CD Invite Role #' + self.project.role.role_id,
+		description			: form.message,
+		query_model			: 'Schedule',
+		query_model_raw     : 'Bam\\Talentci',
+		query_key_id        : 'talentnum',
+		query_key_cell      : 'cell',
+		query_key_email     : 'email1',
+		query				: JSON.stringify(data),
+		replies				: form.replies,
+		status				: 0
+	}
+
+	self.core.resource.campaign.post(campaignData)
+		.then(function(res) {
+			alert('Invitations sent!');
+			$('#invite-to-audition-modal').modal('toggle');
+
+			self.refreshInvitation();
+		});
 }
 
 module.exports = function(core, user, projectId, roleId) {
