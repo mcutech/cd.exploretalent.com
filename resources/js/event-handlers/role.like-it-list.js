@@ -43,15 +43,23 @@ handler.prototype.refreshRole = function() {
 	self.project.role = role;
 	self.project.role.bam_casting = self.project;
 
+	// change url
 	window.history.pushState({}, '', '/projects/' + role.casting_id + '/roles/' + role.role_id + '/like-it-list');
+
+	// update filter form
 	self.core.service.databind('#role-filter-form', self.project.role);
 
+	// submissions count
 	self.project.role.getSubmissionsCount()
 		.then(function(count) {
 			self.project.role.submissions = { total : count };
 
 			self.core.service.databind('#project-links', self.project )
 		});
+
+	// share like it list
+	var link = window.location.origin + '/login?' + $.param({access_token:localStorage.getItem('access_token')}) + '&redirect=' + encodeURIComponent(window.location.href.replace(/like-it-list/, '')) + 'public-like-it-list';
+	$('#share-like-list-link').val(link);
 
 	self.findMatches();
 	self.refreshInvitation();
