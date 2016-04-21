@@ -5,9 +5,9 @@
 	<!-- project/role and actions -->
 	<div class="project-role-actions">
 		<div class="row-fluid clearfix">
-			<div class="col-md-4 col-sm-4 col-xs-8 margin-bottom-small-zz-xs">
+			<div id="casting-info" class="col-md-4 col-sm-4 col-xs-8 margin-bottom-small-zz-xs">
 				<div class="padding-top-zero-small">
-					<label>Bad Chef Parody</label> <label class="text-muted">Male Chef Host</label>
+					<label> <span  data-bind="<%= bam_casting.name %>"></span></label> <label class="text-muted"> <span data-bind="<%= name %>"></span></label>
 				</div>
 			</div>
 			<div class="col-md-2 col-sm-2 col-xs-4">
@@ -20,7 +20,7 @@
 				</button>
 			</div>
 			<div class="col-md-2 col-sm-2 col-xs-4">
-					<button class="btn btn-outline btn-sm btn-block" rel="tooltip" title="Add to Favorites">
+				<button class="btn btn-outline btn-sm btn-block" rel="tooltip" title="Add to Favorites">
 					<i class="fa fa-star-o"></i>
 					<span class="">Add to Favorites</span>
 				</button>
@@ -73,7 +73,9 @@
 						<img data-bind="https://etdownload.s3.amazonaws.com/<%= bam_media_path_full %>" class="margin-top-small" width="100%">
 					</div>
 					<div class="col-sm-12 col-xs-12 padding-zero">
-						<a data-toggle="modal" data-bind="<%= talentnum %>" data-bind-target="data-id" id="view-resume-photos" data-target="#talent-view-photos-modal" class="btn btn-default btn-block margin-top-small"><span><span class="display-none-zz-xs">View</span> Photos</span></a>
+						<a data-toggle="modal" data-bind="<%= talentnum %>" data-bind-target="data-id" id="talent-photo" data-target="#talent-view-photos-modal" class="btn btn-default btn-block margin-top-small">
+							<span class="display-none-zz-xs">View Photos</span>
+						</a>
 					</div>
 				</div> <!-- photos -->
 

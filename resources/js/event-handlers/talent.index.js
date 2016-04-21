@@ -30,7 +30,8 @@ handler.prototype.refresh = function(append) {
 	self.core.resource.talent.search(data)
 		.then(function(talents) {
 			_.each(talents.data, function(talent) {
-				talent.talent_role_id = self.roleId;
+				talent.talent_role_id = 0;
+				talent.talent_project_id = 0;
 			});
 			console.log(talents);
 
