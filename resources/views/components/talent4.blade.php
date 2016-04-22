@@ -3,8 +3,9 @@
 	<div class="talent-item">
 		<div class="talent-photo-and-note-container">
 			<ul class="talent-functions-v2 list-unstyled">
+						<div >
 				<li id="view-profile"><span class="text-function-label profile">View Profile</span><a onclick="window.open(this.href, 'mywin', 'left=0,top=0,width=769,height=650,toolbar=1,resizable=0'); return false;" data-bind="/talents/<%= talentnum %>?casting_id=<%= talent_project_id %>&role_id=<%= talent_role_id %>" class="talent-function-icon profile"><i class="fa fa-user"></i></a></li>
-				<li><span class="text-function-label photos">View Photos</span><a data-toggle="modal" data-bind="<%= talentnum %>" data-bind-target="data-id" id="talent-photo" data-target="#talent-view-photos-modal" class="talent-function-icon photos"><i class="fa fa-picture-o"></i></a></li>
+				<li data-bind="<%= (bam_talent_media2.length) ? '1' : '' %>" data-bind-target="visibility"><span class="text-function-label photos">View Photos</span><a data-toggle="modal" data-bind="<%= talentnum %>" data-bind-target="data-id" id="talent-photo" data-target="#talent-view-photos-modal" class="talent-function-icon photos"><i class="fa fa-picture-o"></i></a></li>
 				@if (isset($favorites_notes) && $favorites_notes)
 					<li><span class="text-function-label notes">Add Notes</span><a class="talent-function-icon notes"><i class="fa fa-file-o"></i></a></li>
 				@endif
@@ -125,7 +126,7 @@
 						<div class="like-it-list-container">
 							<div class="btn-group talent-function">
 								<a target="_blank" data-bind="/talents/<%= talentnum %>" class="btn btn-xs btn-default function-item"> <span class="fa fa-file-text-o"></span></a>
-								<a data-toggle="modal" data-bind="<%= talentnum %>" data-bind-target="data-id" id="talent-photo" data-target="#talent-photos-modal" class="btn btn-xs btn-default function-item"><span class="fa fa-picture-o"></span></a>
+								<!-- <a data&#45;toggle="modal" data&#45;bind="<%= talentnum %>" data&#45;bind&#45;target="data&#45;id" id="talent&#45;photo" data&#45;target="#talent&#45;photos&#45;modal" class="btn btn&#45;xs btn&#45;default function&#45;item"><span class="fa fa&#45;picture&#45;o"></span></a> -->
 							</div>
 						</div>
 					</div>
