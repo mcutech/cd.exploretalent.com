@@ -36,6 +36,7 @@ handler.prototype.getProjectInfo = function() {
 }
 
 handler.prototype.refreshRole = function() {
+	self.roleId = $('#roles-list').val();
 	var role = _.find(self.project.bam_roles, function(r) {
 		return r.role_id == $('#roles-list').val();
 	});
@@ -94,7 +95,6 @@ handler.prototype.findMatches = function(append) {
 				talent.talent_role_id = self.roleId;
 				talent.talent_project_id = self.projectId;
 			});
-			console.log(talents);
 
 			self.core.service.databind('#role-matches-result', talents, append);
 			self.refreshing = false;
@@ -200,6 +200,10 @@ handler.prototype.getFilters = function() {
 			else {
 				data.query.push([ 'where', 'ethnicity', '=', form.ethnicity ]);
 			}
+		}
+
+		if (form.last_access) {
+			data.query.push([ 'where', 'last_access', '>', Math.floor(new Date().getTime() / 1000) - parseInt(form.last_access) ]);
 		}
 	}
 

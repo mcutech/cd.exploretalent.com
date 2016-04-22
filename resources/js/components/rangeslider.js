@@ -23,35 +23,6 @@ module.exports = function(core) {
 				break;
 			case 'height':
 				options.slide = function(event, ui) {
-					// if(ui.values[0] == '22' || ui.values[0] == '23') {
-					// 	var feet1 = '< 2';
-					// 	var inches1 = '0';
-
-					// 	if(ui.values[1] == '22' || ui.values[1] == '23') {
-					// 		var feet2 = '< 2';
-					// 		var inches2 = '0';
-					// 	}
-					// }
-					// else {
-					// 	var feet1 = Math.floor(ui.values[0] / 12);
-					// 	var inches1 = ui.values[0] % 12;
-					// 	var feet2 = Math.floor(ui.values[1] / 12);
-					// 	var inches2 = ui.values[1] % 12;
-					// }
-
-					// $('#height-min-text').text(feet1 + "'" + inches1 + '"');
-					// $('#height-max-text').text(feet2 + "'" + inches2 + '"');
-
-					// if(ui.values[0] == '23') {
-					// 	ui.values[0] == '22';
-					// }
-					// if(ui.values[1] == '23') {
-					// 	ui.values[1] == '22';
-					// }
-
-					// $('[name="height_min"]').val(ui.values[0]);
-					// $('[name="height_max"]').val(ui.values[1]);
-
 					var inches1 = ui.values[0];
 					var inches2 = ui.values[1];
 

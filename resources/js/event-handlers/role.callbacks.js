@@ -41,20 +41,19 @@ handler.prototype.refreshRole = function() {
 		return r.role_id == $('#roles-list').val();
 	});
 
-	window.history.pushState({}, '', '/projects/' + self.projectId + '/roles/' + role.role_id + '/submissions');
+	self.project.role = role;
+	self.project.role.bam_casting = self.project;
 
-	role.bam_casting = self.project;
-	self.core.service.databind('#role-filter-form', role);
+	// change url
+	window.history.pushState({}, '', '/projects/' + role.casting_id + '/roles/' + role.role_id + '/callbacks');
 
-	role.getLikeItListCount()
+	// update filter form
+	self.core.service.databind('#role-filter-form', self.project.role);
+
+	// submissions count
+	self.project.role.getSubmissionsCount()
 		.then(function(count) {
-			role.likeitlist = { total : count };
-
-			return role.getSubmissionsCount();
-		})
-		.then(function(count) {
-			role.submissions = { total : count };
-			self.project.role = role;
+			self.project.role.submissions = { total : count };
 
 			self.core.service.databind('#project-links', self.project )
 		});
@@ -89,7 +88,6 @@ handler.prototype.findMatches = function(append) {
 		.then(function(talents) {
 			_.each(talents.data, function(talent) {
 				talent.talent_role_id = self.roleId;
-				talent.talent_project_id = self.projectId;
 			});
 
 			self.core.service.databind('#role-matches-result', talents, append);
@@ -110,7 +108,8 @@ handler.prototype.getFilters = function() {
 		query : [
 			[ 'join', 'bam.laret_users', 'bam.laret_users.bam_talentnum', '=', 'search.talents.talentnum' ],
 			[ 'leftJoin', 'bam.laret_schedules', 'bam.laret_schedules.invitee_id', '=', 'bam.laret_users.id' ],
-			[ 'where', 'bam.laret_schedules.submission', '=', 1 ],
+			[ 'where', 'bam.laret_schedules.rating', '<>', 0 ],
+			[ 'where', 'bam.laret_schedules.status', '=', 2 ],
 			[ 'where', 'bam.laret_schedules.bam_role_id', '=', $('#roles-list').val() ]
 		]
 	}

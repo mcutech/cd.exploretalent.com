@@ -3,13 +3,12 @@
 	<div class="talent-item">
 		<div class="talent-photo-and-note-container">
 			<ul class="talent-functions-v2 list-unstyled">
+						<div >
 				<li id="view-profile"><span class="text-function-label profile">View Profile</span><a onclick="window.open(this.href, 'mywin', 'left=0,top=0,width=769,height=650,toolbar=1,resizable=0'); return false;" data-bind="/talents/<%= talentnum %>?casting_id=<%= talent_project_id %>&role_id=<%= talent_role_id %>" class="talent-function-icon profile"><i class="fa fa-user"></i></a></li>
-				<li><span class="text-function-label photos">View Photos</span><a data-toggle="modal" data-bind="<%= talentnum %>" data-bind-target="data-id" id="talent-photo" data-target="#talent-view-photos-modal" class="talent-function-icon photos"><i class="fa fa-picture-o"></i></a></li>
+				<li data-bind="<%= (bam_talent_media2.length) ? '1' : '' %>" data-bind-target="visibility"><span class="text-function-label photos">View Photos</span><a data-toggle="modal" data-bind="<%= talentnum %>" data-bind-target="data-id" id="talent-photo" data-target="#talent-view-photos-modal" class="talent-function-icon photos"><i class="fa fa-picture-o"></i></a></li>
 				@if (isset($favorites_notes) && $favorites_notes)
 					<li><span class="text-function-label notes">Add Notes</span><a class="talent-function-icon notes"><i class="fa fa-file-o"></i></a></li>
 				@endif
-				<!-- <li><span class="text-function-label favorites">Add to Favorites</span><a class="talent-function-icon favorites" data-bind="<%= (favorite) ? 'favorite-' + favorite.id : 'talentnum-' + talentnum %>" data-bind-target="data-id"><i class="fa fa-star-o"></i></a></li> -->
-				<!-- <li><span class="text&#45;function&#45;label add&#45;role">Add to Role</span><a class="talent&#45;function&#45;icon add&#45;role" href="#"><i class="fa fa&#45;plus"></i></a></li> -->
 			</ul>
 			<div class="talent-photo-v2">
 				<div class="photo-user-container">
@@ -41,30 +40,14 @@
 		</div>
 		<div class="talent-info-like-list-container border-bottom-width-zero">
 			<div class="like-it-list-parent row-fluid clearfix">
-				@if (isset($ratings) && $ratings)
 				<div class="col-md-12 col-sm-12 padding-zero">
 					<div class="like-it-list-container">
 						<div class="btn-group talent-function display-block-zz-xs display-flex-sm display-block-md">
-							<!-- turns to green when added to like list and change text to added and change icon to check -->
-
-							<!-- inactive -->
-							<button class="btn btn-outline function-item btn-block border-top-width-zero-sm-lg"><i class="fa fa-plus text-success"></i> <span class="text-success">Add Like it List</span></button>
-							<button class="btn btn-outline function-item btn-block border-top-width-zero-sm border-left-width-zero-sm border-left-width-zero-lg border-top-width-zero-sm-lg" rel="tooltip" title="Add to Favorites"><i class="fa fa-star-o font-size-normal-medium text-default"></i></button>
-
-							<!-- active -->
-							<!-- <button class="btn btn-success function-item"><i class="fa fa-check"></i> Added</button>
-							<button class="btn btn-outline function-item no-padding-vr" rel="tooltip" title="Added to Favorites"><i class="fa fa-star-o text-warning font-size-normal-medium"></i></button> -->
-
-							<!-- <button data-value="1" class="btn btn-xs btn-danger rating-button function-item" data-toggle="modal" data-bind="<%= user.id %>" data-bind-target="data-id" data-target="#addtolist">1</button>
-							<button data-value="2" class="btn btn-xs btn-warning rating-button function-item" data-toggle="modal" data-bind="<%= user.id %>" data-bind-target="data-id" data-target="#addtolist">2</button>
-							<button data-value="3" class="btn btn-xs btn-info rating-button function-item" data-toggle="modal" data-bind="<%= user.id %>" data-bind-target="data-id" data-target="#addtolist"	>3</button>
-							<button data-value="4" class="btn btn-xs btn-primary rating-button function-item" data-toggle="modal" data-bind="<%= user.id %>" data-bind-target="data-id" data-target="#addtolist">4</button>
-							<button data-value="5" class="btn btn-xs btn-success rating-button function-item" data-toggle="modal" data-bind="<%= user.id %>" data-bind-target="data-id" data-target="#addtolist">5</button>
-							<button data-value="6" class="btn btn-xs btn-default rating-button function-item" data-toggle="modal" data-bind="<%= user.id %>" data-bind-target="data-id" data-target="#addtolist">CB</button> -->
+							<button id="add-to-like-it-list" class="btn btn-outline function-item btn-block border-top-width-zero-sm-lg" data-bind-target="data-id" data-bind="<%= user.id + '-' + talent_role_id %>"><i class="fa fa-plus text-success"></i> <span class="text-success">Add Like it List</span></button>
+							<button class="favorite-button btn btn-outline function-item btn-block border-top-width-zero-sm border-left-width-zero-sm border-left-width-zero-lg border-top-width-zero-sm-lg" rel="tooltip" title="Add to Favorites" data-bind="<%= talentnum %>" data-bind-target="data-id"><i class="fa fa-star-o font-size-normal-medium" data-bind="<%= favorite ? 'text-warning' : 'text-default' %>" data-bind-target="class"></i></button>
 						</div>
 					</div>
 				</div>
-				@endif
 			</div>
 			<div class="talent-information-parent row-fluid clearfix" data-bind="talent-body-<%= talentnum %>" data-bind-target="id">
 				<div class="col-md-12 padding-zero">
@@ -139,26 +122,11 @@
 				</div>
 			</div>
 			<div class="row-fluid clearfix">
-					@if (isset($ratings) && $ratings)
-					<div class="col-md-12 col-sm-12 padding-zero">
-						<div class="like-it-list-container">
-							<div class="display-block title"> Add to like list </div>
-							<div class="btn-group talent-function">
-								<button data-value="1" class="btn btn-xs btn-danger rating-button function-item" data-toggle="modal" data-bind="<%= user.id %>" data-bind-target="data-id" data-target="#addtolist">1</button>
-								<button data-value="2" class="btn btn-xs btn-warning rating-button function-item" data-toggle="modal" data-bind="<%= user.id %>" data-bind-target="data-id" data-target="#addtolist">2</button>
-								<button data-value="3" class="btn btn-xs btn-info rating-button function-item" data-toggle="modal" data-bind="<%= user.id %>" data-bind-target="data-id" data-target="#addtolist"	>3</button>
-								<button data-value="4" class="btn btn-xs btn-primary rating-button function-item" data-toggle="modal" data-bind="<%= user.id %>" data-bind-target="data-id" data-target="#addtolist">4</button>
-								<button data-value="5" class="btn btn-xs btn-success rating-button function-item" data-toggle="modal" data-bind="<%= user.id %>" data-bind-target="data-id" data-target="#addtolist">5</button>
-							</div>
-						</div>
-					</div>
-					@endif
 					<div class="col-md-12 col-sm-12 padding-zero margin-top-small">
 						<div class="like-it-list-container">
 							<div class="btn-group talent-function">
-								<!-- <a data&#45;toggle="modal" data&#45;bind="<%= talentnum %>" data&#45;bind&#45;target="data&#45;id" id="talent&#45;resume1" data&#45;target="#talent&#45;resume&#45;modal" class="btn btn&#45;xs btn&#45;default"><span class="fa fa&#45;file&#45;text&#45;o"></span></a> -->
 								<a target="_blank" data-bind="/talents/<%= talentnum %>" class="btn btn-xs btn-default function-item"> <span class="fa fa-file-text-o"></span></a>
-								<a data-toggle="modal" data-bind="<%= talentnum %>" data-bind-target="data-id" id="talent-photo" data-target="#talent-photos-modal" class="btn btn-xs btn-default function-item"><span class="fa fa-picture-o"></span></a>
+								<!-- <a data&#45;toggle="modal" data&#45;bind="<%= talentnum %>" data&#45;bind&#45;target="data&#45;id" id="talent&#45;photo" data&#45;target="#talent&#45;photos&#45;modal" class="btn btn&#45;xs btn&#45;default function&#45;item"><span class="fa fa&#45;picture&#45;o"></span></a> -->
 							</div>
 						</div>
 					</div>
@@ -166,4 +134,5 @@
 		</div>
 	</div>
 </div> {{-- talent item container --}}
+
 
