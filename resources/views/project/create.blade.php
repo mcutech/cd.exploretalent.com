@@ -9,9 +9,9 @@
 	<div class="projects-content">
 		<div class="panel">
 			<div class="panel-body">
-				<div class="container">
+				<div class="container-fluid">
 					<div class="row">
-						<div class="col-md-5">
+						<div class="col-xs-12 col-sm-6 col-md-6 col-lg-5">
 							<div class="form-group">
 								<label class="control-label">Project Name <span class="text-success">*</span></label>
 								<input type="text" class="form-control" id="project-name" placeholder="Enter Project Name">
@@ -28,7 +28,7 @@
 								<div class="alert alert-page alert-danger submission-deadline-error-required" style="display:none;">This field is required.</div>
 							</div>
 
-							<div class="form-group col-md-6 padding-left-zero-md-lg">
+							<div class="form-group">
 								<label class="control-label">Audition Date</label>
 								<div class="input-group date">
 									<input type="text" id="bs-datepicker-audition" class="form-control calendar-input" style="cursor: pointer; background-color: #fff">
@@ -37,7 +37,7 @@
 								<div class="alert alert-page alert-danger audition-date-error-invalid" style="display:none;">Audition date should be after or on the same day as submission deadline.</div>
 							</div>
 
-							<div class="form-group col-md-6 padding-right-zero-md-lg">
+							<div class="form-group">
 								<label class="control-label">Shoot Date</label>
 								<div class="input-group date">
 									<input type="text" id="bs-datepicker-shootdate" class="form-control calendar-input" style="cursor: pointer; background-color: #fff">
@@ -45,9 +45,9 @@
 								</div>
 								<div class="alert alert-page alert-danger shoot-date-error-invalid" style="display:none;">Shoot date should be after audition date.</div>
 							</div>
-
 						</div> {{-- col-md-6 --}}
-						<div class="col-md-4">
+
+						<div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
 							<div class="form-group">
 								<label class="control-label">Category <span class="text-success">*</span></label>
 								<select class="form-control" id="project-category" name="cat">
@@ -118,19 +118,23 @@
 
 							<div class="form-group">
 								<label class="control-label">Rate <span class="text-success">*</span></label>
-								<form class="form-inline">
-									<div class="form-group">
-										<span class="display-inline font-size-normal">$</span>
-										<input type="text" id="project-rate" class="form-control">
-										<span class="padding-left-small padding-right-small">per</span>
-										<select name="" id="project-rate-desc" class="form-control">
-											<option value="0">n/a</option>
-											<option value="1">event</option>
-											<option value="2">hour</option>
-											<option value="3">day</option>
-											<option value="4">week</option>
-											<option value="5">month</option>
-										</select>
+								<form class="form-horizontal">
+									<div class="form-group row">
+										<label class="font-size-normal control-label col-xs-1 text-align-center padding-top-small-zz-sm">$</label>
+										<div class="col-xs-5">
+											<input type="text" id="project-rate" class="form-control">
+										</div>
+										<label class="font-sze-small control-label col-xs-1 text-align-center padding-top-small-zz-sm">per</label>
+										<div class="col-xs-5">
+											<select name="" id="project-rate-desc" class="form-control">
+												<option value="0">n/a</option>
+												<option value="1">event</option>
+												<option value="2">hour</option>
+												<option value="3">day</option>
+												<option value="4">week</option>
+												<option value="5">month</option>
+											</select>
+										</div>
 										<div class="alert alert-page alert-danger rate-error-required" style="display:none;">This field is required.</div>
 									</div>
 								</form>
@@ -149,11 +153,10 @@
 									</label>
 								</div>
 							</div>
-
 						</div> {{-- col-md-6 --}}
 					</div> {{-- row-fluid --}}
 
-					<div class="row-fluid">
+					<div class="row">
 						<div class="col-md-5">
 							<div class="form-group">
 								<label class="control-label">Submission Type<span class="text-success">*</span></label>
@@ -170,7 +173,7 @@
 						<div class="col-md-9">
 							<div class="form-group">
 								<div class="panel" id="self-submissions-option-content">
-									<div class="panel-body">
+									<div class="padding-normal">
 										<div class="form-group">
 											<label class="control-label">Email Address</label>
 											<input type="text" id="self-sub-email" class="form-control" placeholder="Enter Email Address" data-bind="<%= email %>">
@@ -184,7 +187,7 @@
 								</div> {{-- self-submission-option-content --}}
 
 								<div class="panel" id="open-call-option-content">
-									<div class="panel-body">
+									<div class="padding-normal">
 										<div class="col-md-4">
 											<div class="form-group">
 												<label class="control-label">Date and Time of Open Call <span class="text-success">*</span></label>
@@ -216,9 +219,8 @@
 								</div>
 							</div>
 						</div>
-
 					</div> {{-- row-fluid --}}
-					<div class="row-fluid">
+					<div class="row">
 						<div class="col-md-9">
 							<div class="form-group">
 								<label class="control-label">General Audition Info / Storyline / Synopsis / Logline <span class="text-success">*</span></label>
@@ -227,7 +229,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="row-fluid">
+					<div class="row">
 							<div class="col-md-6 padding-top-normal">
 								<div class="form-group margin-bottom-small">
 									<label class="control-label">Audition Location <span class="text-success">*</span></label>

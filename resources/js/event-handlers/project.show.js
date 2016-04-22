@@ -27,6 +27,8 @@ handler.prototype.getProjectInfo = function(e) {
 
 			self.project.markets = { data : markets };
 
+			self.core.service.databind('#project-details', self.project);
+
 			var promises = [];
 
 			_.each(self.project.bam_roles, function(role) {
@@ -36,7 +38,6 @@ handler.prototype.getProjectInfo = function(e) {
 			return $.when.apply($, promises);
 		})
 		.then(function() {
-			self.core.service.databind('#project-details', self.project);
 			self.core.service.databind('.find-talents-wrapper', self.project)
 		});
 }
@@ -46,6 +47,17 @@ handler.prototype.getRoleStats = function(role) {
 
 	role.getLikeItListCount().then(function(total) {
 		role.likeitlist = { total : total };
+
+		var data = {
+			query : [
+				[ 'where', 'bam_role_id', '=', role.role_id ]
+			]
+		}
+
+		return self.core.resource.campaign.get(data);
+	})
+	.then(function(res) {
+		role.campaign = _.first(res.data);
 		deferred.resolve();
 	});
 

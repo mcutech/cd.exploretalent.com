@@ -14,7 +14,7 @@
 		               <img data-bind="https://etdownload.s3.amazonaws.com/<%= bam_media_path_full %>">
 		            </div>
 		        </div>
-		            
+
 		        <!-- Controls -->
 		        <a class="left carousel-control" href="#carousel-inner" data-slide="prev">
 		            <span class="glyphicon glyphicon-chevron-left"></span>
@@ -23,7 +23,7 @@
 		            <span class="glyphicon glyphicon-chevron-right"></span>
 		        </a>
 		    </div>
-		    
+
 		    <!-- Indicators -->
 		    <ol id="carousel-indicators" class="carousel-indicators mCustomScrollbar">
 		    	<li data-bind-template="#carousel-indicators" data-bind-value="bam_talent_media2" data-target="#carousel-custom">
@@ -32,7 +32,7 @@
 			    	</div>
 		    	</li>
 		    </ol>
-		        {{-- <li data-target="#carousel-talent-photos" data-slide-to="0" class="active"><img class="thumbnail-size" src="http://placehold.it/100x50&text=slide1" alt=" /></li> --}} 	
+		        {{-- <li data-target="#carousel-talent-photos" data-slide-to="0" class="active"><img class="thumbnail-size" src="http://placehold.it/100x50&text=slide1" alt=" /></li> --}}
         </div>
       </div>
     </div>

@@ -3,7 +3,7 @@
 	<div class="talent-item">
 		<div class="talent-photo-and-note-container">
 			<ul class="talent-functions-v2 list-unstyled">
-				<li><span class="text-function-label profile">View Profile</span><a onclick="window.open(this.href, 'mywin', 'left=0,top=0,width=769,height=650,toolbar=1,resizable=0'); return false;" data-bind="/talents/<%= talentnum %>" class="talent-function-icon profile"><i class="fa fa-user"></i></a></li>
+				<li id="view-profile"><span class="text-function-label profile">View Profile</span><a onclick="window.open(this.href, 'mywin', 'left=0,top=0,width=769,height=650,toolbar=1,resizable=0'); return false;" data-bind="/talents/<%= talentnum %>?casting_id=<%= talent_project_id %>&role_id=<%= talent_role_id %>" class="talent-function-icon profile"><i class="fa fa-user"></i></a></li>
 				<li><span class="text-function-label photos">View Photos</span><a data-toggle="modal" data-bind="<%= talentnum %>" data-bind-target="data-id" id="talent-photo" data-target="#talent-view-photos-modal" class="talent-function-icon photos"><i class="fa fa-picture-o"></i></a></li>
 				@if (isset($favorites_notes) && $favorites_notes)
 					<li><span class="text-function-label notes">Add Notes</span><a class="talent-function-icon notes"><i class="fa fa-file-o"></i></a></li>
@@ -44,11 +44,11 @@
 					<div class="like-it-list-container">
 						<div class="btn-group talent-function display-block-zz-xs display-flex-sm display-block-md">
 							<!-- turns to green when added to like list and change text to added and change icon to check -->
-							
+
 							<!-- inactive -->
 							<button class="btn btn-outline function-item btn-block border-top-width-zero-sm-lg"><i class="fa fa-plus text-success"></i> <span class="text-success">Add Like it List</span></button>
 							<button class="btn btn-outline function-item btn-block border-top-width-zero-sm border-left-width-zero-sm border-left-width-zero-lg border-top-width-zero-sm-lg" rel="tooltip" title="Add to Favorites"><i class="fa fa-star-o font-size-normal-medium text-default"></i></button>
-							
+
 							<!-- active -->
 							<!-- <button class="btn btn-success function-item"><i class="fa fa-check"></i> Added</button>
 							<button class="btn btn-outline function-item no-padding-vr" rel="tooltip" title="Added to Favorites"><i class="fa fa-star-o text-warning font-size-normal-medium"></i></button> -->

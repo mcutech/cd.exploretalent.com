@@ -42,7 +42,7 @@ module.exports = function(core, user) {
 					}
 				});
 
-				
+
 				talent.bam_talent_media2 = photosArray;
 				self.core.service.databind('#talent-photos-modal, #talent-view-photos-modal', talent);
 
@@ -57,7 +57,7 @@ module.exports = function(core, user) {
 				});
 
 				hidePrevOrNextBtn();
-				
+
 			});
 	});
 

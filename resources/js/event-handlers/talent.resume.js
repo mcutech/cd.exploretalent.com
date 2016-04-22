@@ -7,10 +7,10 @@ function handler(core, user, talentnum){
 	self.user = user;
 	self.talentnum = talentnum;
 	self.refresh();
+	self.getRoleInfo();
 }
 
 handler.prototype.refresh = function() {
-
 	var data = {
 		talentId : self.talentnum,
 		query : [
@@ -24,7 +24,7 @@ handler.prototype.refresh = function() {
 	};
 	self.core.resource.talent.get(data)
 		.then(function(res) {
-			console.log(res);
+			// console.log(res);
 			if(!res.heightText() && !res.bam_talentinfo2.ethnicity && !res.bam_talentinfo1.weightpounds && !res.bam_talentinfo1.haircolor && !res.bam_talentinfo1.build && !res.bam_talentinfo1.eyecolor && !res.bam_talentinfo2.special_skills){
 				$('#acting-modeling-link, #acting-modeling').addClass('hide');
 			}
@@ -40,11 +40,11 @@ handler.prototype.refresh = function() {
 			self.core.service.databind('#talent-resume-info', res);
 			self.core.service.databind('#talent-primary-photo', res);
 			self.core.service.databind('#talent-resume-div', res);
+			self.core.service.databind('#talent-photo', res);
 
 			var photos = _.filter(res.bam_talent_media2, function(val){
 				return val.type == 1;
 			});
-			console.log(photos);
 			if(photos[0]){
 				var firstphoto = _.slice(photos, 0, 1);
 				self.core.service.databind('#first-photo', firstphoto[0]);
@@ -60,6 +60,27 @@ handler.prototype.refresh = function() {
 				self.core.service.databind('#third-photo', thirdphoto[0]);
 			}
 		});
+}
+
+handler.prototype.getRoleInfo = function() {
+	var qs = self.core.service.query_string();
+
+	if(qs.casting_id != 0 && qs.role_id != 0){
+
+		var data = {
+			projectId : qs.casting_id,
+			jobId : qs.role_id,
+			query : [
+				[ 'with', 'bam_casting' ]
+			]
+		}
+
+		self.core.resource.job.get(data)
+			.then(function(res) {
+				console.log(res);
+				self.core.service.databind('#casting-info', res);
+			});
+	};
 }
 
 module.exports = function(core, user, talentnum) {

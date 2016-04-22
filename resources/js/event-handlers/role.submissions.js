@@ -24,34 +24,40 @@ handler.prototype.getProjectInfo = function() {
 		.then(function(res) {
 			self.project = res;
 
-			var markets = _.map(self.project.market.split('>'), function(m) {
-				return { name : m };
-			});
-
-			self.project.markets = { data : markets };
 			self.core.service.databind('#project-details', self.project)
 			self.core.service.databind('#roles-list', { data : self.project.bam_roles })
-			if (parseInt(self.roleId)) {
-				$('#roles-list').val(self.roleId);
-			}
-			else {
-				$('#roles-list').val(_.first(self.project.bam_roles).role_id);
-			}
-			self.project.role_id = self.roleId || _.first(self.project.bam_roles).role_id;
+			$('#roles-list').val(self.roleId);
+
+			self.project.role = { role_id : self.roleId, likeitlist : { total : '' }, submissions : { total : '' } };
 			self.core.service.databind('#project-links', self.project )
+
 			self.refreshRole();
 		});
 }
 
 handler.prototype.refreshRole = function() {
-	var roleId = $('#roles-list').val();
-	var role = _.find(self.project.bam_roles, function(role) {
-		return role.role_id == roleId;
+	var role = _.find(self.project.bam_roles, function(r) {
+		return r.role_id == $('#roles-list').val();
 	});
 
-	role.bam_casting = self.project;
+	window.history.pushState({}, '', '/projects/' + self.projectId + '/roles/' + role.role_id + '/submissions');
 
+	role.bam_casting = self.project;
 	self.core.service.databind('#role-filter-form', role);
+
+	role.getLikeItListCount()
+		.then(function(count) {
+			role.likeitlist = { total : count };
+
+			return role.getSubmissionsCount();
+		})
+		.then(function(count) {
+			role.submissions = { total : count };
+			self.project.role = role;
+
+			self.core.service.databind('#project-links', self.project )
+		});
+
 	self.findMatches();
 }
 
@@ -80,6 +86,12 @@ handler.prototype.findMatches = function(append) {
 
 	self.core.resource.talent.search(data)
 		.then(function(talents) {
+			_.each(talents.data, function(talent) {
+				talent.talent_role_id = self.roleId;
+				talent.talent_project_id = self.projectId;
+			});
+			console.log(talents);
+
 			self.core.service.databind('#role-matches-result', talents, append);
 			self.refreshing = false;
 
