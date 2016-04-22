@@ -39,6 +39,10 @@ handler.prototype.refresh = function(append){
 		return self.core.resource.talent.search(data)
 	})
 	.then(function(talents) {
+		_.each(talents.data, function(talent) {
+			talent.talent_role_id = self.roleId;
+		});
+
 		self.core.service.databind('#favorite-result', talents, append);
 		self.refreshing = false;
 

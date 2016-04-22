@@ -90,7 +90,6 @@ handler.prototype.findMatches = function(append) {
 				talent.talent_role_id = self.roleId;
 				talent.talent_project_id = self.projectId;
 			});
-			console.log(talents);
 
 			self.core.service.databind('#role-matches-result', talents, append);
 			self.refreshing = false;
