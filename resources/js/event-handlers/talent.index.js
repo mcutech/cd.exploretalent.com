@@ -135,6 +135,10 @@ handler.prototype.getFilters = function() {
 		}
 	}
 
+	if (form.last_access) {
+		data.query.push([ 'where', 'last_access', '>', Math.floor(new Date().getTime() / 1000) - parseInt(form.last_access) ]);
+	}
+
 	return data;
 }
 module.exports = function(core, user) {

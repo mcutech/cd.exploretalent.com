@@ -190,11 +190,12 @@
 					</select>
 				</div>
 				<div class="col-md-3 margin-top-normal">
-					<select name="last_online" class="form-control" data-select>
-						<option>Last Active - 1 month</option>
-						<option>Last Active - 3 months</option>
-						<option>Last Active - 6 months</option>
-						<option>Last Active - 1 year</option>
+					<select name="last_access" class="form-control" data-select>
+						<option value="">Last Active - Any</option>
+						<option value="2592000">Last Active - 1 month</option>
+						<option value="7776000">Last Active - 3 months</option>
+						<option value="15552000">Last Active - 6 months</option>
+						<option value="31104000">Last Active - 1 year</option>
 					</select>
 				</div>
 			</div>
