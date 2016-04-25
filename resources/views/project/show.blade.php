@@ -82,9 +82,7 @@
 					</div>
 					<div class="col-md-3 details-label-container">
 						<div class="details-label">
-							<span>Hair Color : </span>
-							<span class="hair-color-label" data-bind="<%= getHairColors().length == 0 || getHairColors().length == 10 ? 'Any' : getHairColors().join(', ') %>">
-							</span>
+							<span>Talents Needed : </span><span class="hair-color-label" data-bind="<%=number_of_people %>"></span>
 						</div>
 					</div>
 				</div>
@@ -98,6 +96,10 @@
 							<li class=""><div class="title">Ethnicity:</div>
 								<span class="ethnicity-label" data-bind="<%= getEthnicities().length == 0 || getEthnicities().length == 12 ? 'Any' : getEthnicities().join(', ') %>"></span>
 							</li>
+							<li class=""><div class="title">Hair Color:</div>
+								<span class="hair-color-label" data-bind="<%= getHairColors().length == 0 || getHairColors().length == 10 ? 'Any' : getHairColors().join(', ') %>">
+							</li>
+
 						</ul>
 					</div>
 				</div>
