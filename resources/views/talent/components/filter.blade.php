@@ -118,7 +118,7 @@
 
 			<div class="row">
 				<div class="margin-top-small margin-bottom-small" id="selected-markets">
-					<label data-bind-template="#selected-markets" class="checkbox-inline margin-right-small">
+					<label class="checkbox-inline margin-right-small">
 						<input type="checkbox" name="market-checks" class="px check-markets"> <span class="lbl">Albany, NY</span>
 					</label>
 				</div>
@@ -127,10 +127,10 @@
 			<hr class="panel-wide margin-top-small-normal margin-bottom-small-normal">
 			<div class="row margin-bottom-large">
 				<div class="col-xs-12 col-sm-6 col-md-3">
-					<label class="text-bold margin-bottom-zero">Age Range: <span id="age-min-text" data-bind="<%= age_min || 0 %>" class="text-normal">0</span> - <span id="age-max-text" class="text-normal">100</span></label>
+					<label class="text-bold margin-bottom-zero">Age Range: <span id="age-min-text" class="text-normal">0</span> - <span id="age-max-text" class="text-normal">100</span></label>
 					<div class="padding-right-small">
 					<div class="padding-small">
-						<div data-range="true" data-values="[0, 100]" data-min="0" data-max="100" data-bind="[<%= age_min || 0 %>, <%= age_max || 100 %>]" data-type="age" data-slider></div>
+						<div data-range="true" data-values="[0, 100]" data-min="0" data-max="100" data-type="age" data-slider></div>
 						<input type="hidden" name="age_min" />
 						<input type="hidden" name="age_max" />
 					</div>
@@ -158,14 +158,14 @@
 
 			<div class="row margin-bottom-large">
 				<div class="col-xs-12 col-sm-6 col-md-3">
-					<label class="text-bold margin-bottom-zero">Height Range: <span id="height-min-text" class="text-normal" data-bind="<%= height_min ||'< 2\'0&quot;' %>">&lt; 2'0"</span> -
-						<span id="height-max-text" class="text-normal" data-bind="<%= height_max || '8\'0&quot;' %>">8'0"</span>
+					<label class="text-bold margin-bottom-zero">Height Range: <span id="height-min-text" class="text-normal">&lt; 2'0"</span> -
+						<span id="height-max-text" class="text-normal">8'0"</span>
 					</label>
 					<div class="padding-right-small">
 					<div class="padding-small">
-						<div class="ui-slider-range-height" data-slider data-range="true" data-min="22" data-max="96" data-values="[22,96]" data-type="height" data-bind="[<%= height_min ? height_min : 22 %>, <%= height_max ? height_max : 96 %>]"></div>
-						<input type="hidden" name="height_min" data-bind="<%= height_min %>" />
-						<input type="hidden" name="height_max" data-bind="<%= height_max %>" />
+						<div class="ui-slider-range-height" data-slider data-range="true" data-min="22" data-max="96" data-values="[22,96]" data-type="height"></div>
+						<input type="hidden" name="height_min" />
+						<input type="hidden" name="height_max" />
 					</div>
 					</div>
 				</div>
@@ -195,11 +195,12 @@
 					</select>
 				</div>
 				<div class="col-xs-12 col-sm-6 col-md-3 margin-top-normal">
-					<select name="last_online" class="form-control" data-select>
-						<option>Last Active - 1 month</option>
-						<option>Last Active - 3 months</option>
-						<option>Last Active - 6 months</option>
-						<option>Last Active - 1 year</option>
+					<select name="last_access" class="form-control" data-select>
+						<option value="">Last Active - Any</option>
+						<option value="2592000">Last Active - 1 month</option>
+						<option value="7776000">Last Active - 3 months</option>
+						<option value="15552000">Last Active - 6 months</option>
+						<option value="31104000">Last Active - 1 year</option>
 					</select>
 				</div>
 			</div>

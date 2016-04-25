@@ -36,6 +36,7 @@ handler.prototype.getProjectInfo = function() {
 }
 
 handler.prototype.refreshRole = function() {
+	self.roleId = $('#roles-list').val();
 	var role = _.find(self.project.bam_roles, function(r) {
 		return r.role_id == $('#roles-list').val();
 	});
@@ -199,6 +200,10 @@ handler.prototype.getFilters = function() {
 			else {
 				data.query.push([ 'where', 'ethnicity', '=', form.ethnicity ]);
 			}
+		}
+
+		if (form.last_access) {
+			data.query.push([ 'where', 'last_access', '>', Math.floor(new Date().getTime() / 1000) - parseInt(form.last_access) ]);
 		}
 	}
 

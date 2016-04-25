@@ -24,7 +24,6 @@ module.exports = function(core, user) {
 
 		return self.core.resource.talent.get(data)
 			.then(function(talent) {
-				console.log(talent);
 				_.each(talent.bam_talent_music, function(res, ind){
 					if(res.music_type2 == '1'){
 						talent.bam_talent_music[ind].music_role = "DJ";
@@ -33,7 +32,7 @@ module.exports = function(core, user) {
 						talent.bam_talent_music[ind].music_role = "Singer";
 					}
 					if(res.music_type2 == '3'){
-						talent.bam_talent_music[ind].music_role = "Song Writer";3.
+						talent.bam_talent_music[ind].music_role = "Song Writer";
 						talent.bam_talent_music[ind].music_role = "Player";
 					}
 					if(res.music_type2 == '6'){

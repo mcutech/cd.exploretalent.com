@@ -3,25 +3,24 @@
 <div class="talent-resume-wrapper">
 
 	<!-- project/role and actions -->
-	<div class="project-role-actions">
+	<div id="project-role-actions" class="project-role-actions">
 		<div class="row-fluid clearfix">
-			<div id="casting-info" class="col-md-4 col-sm-4 col-xs-8 margin-bottom-small-zz-xs">
+			<div class="col-md-4 col-sm-4 col-xs-8 margin-bottom-small-zz-xs">
 				<div class="padding-top-zero-small">
 					<label> <span  data-bind="<%= bam_casting.name %>"></span></label> <label class="text-muted"> <span data-bind="<%= name %>"></span></label>
 				</div>
 			</div>
 			<div class="col-md-2 col-sm-2 col-xs-4">
-				<a href="" class="btn btn-outline btn-sm btn-block">CallBack</a>
 			</div>
 			<div class="col-md-2 col-sm-2 col-xs-4">
-				<button id="btn-add-to-likeitlist" class="btn btn-outline btn-sm btn-block">
+				<button id="add-to-like-it-list" class="btn btn-outline btn-sm btn-block" data-bind="<%= talent.user.id + '-' + role_id %>" data-bind-target="data-id">
 					<i class="fa fa-plus text-success"></i>
 					<span class="text-success">Add Like it List</span>
 				</button>
 			</div>
 			<div class="col-md-2 col-sm-2 col-xs-4">
-				<button class="btn btn-outline btn-sm btn-block" rel="tooltip" title="Add to Favorites">
-					<i class="fa fa-star-o"></i>
+				<button class="btn btn-outline btn-sm btn-block favorite-button" rel="tooltip" title="Add to Favorites" data-bind="<%= talent.talentnum %>" data-bind-target="data-id">
+					<i class="fa fa-star-o text-default" data-bind="<%= talent.favorite ? 'text-warning' : 'text-default' %>" data-bind-target="class"></i>
 					<span class="">Add to Favorites</span>
 				</button>
 			</div>
@@ -340,5 +339,6 @@
 	</div>
 
 </div>
+@include('components.modals.talent-add-to-like-it-list')
 @include('components.modals.talent-view-photos')
 @stop

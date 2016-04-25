@@ -1,5 +1,5 @@
 <!-- Modal -->
-<div class="modal fade" id="addtolist" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="add-like-it-list-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -8,8 +8,8 @@
       </div>
 
       <div class="modal-body">
-      <div class = "row alert alert-success">    
-      To add Talent to Like it List, Please choose which Project and Role you would want to Add the Talent      
+      <div class = "row alert alert-success">
+      To add Talent to Like it List, Please choose which Project and Role you would want to Add the Talent
       </div>
         <div class="row">
 
@@ -34,9 +34,8 @@
         </div>
       </div>
 
-      <div class="modal-footer">      
-        <span class="alert alert-success padding-small hide" id="success-alert">Talent Added!</span>
-        <button id="btn-add-to-likeitlist" type="button" class="btn btn-primary">Add to like it list</button>      
+      <div class="modal-footer">
+        <button id="add-like-it-list-button" type="button" class="btn btn-primary">Add to like it list</button>
       </div>
     </div>
   </div>
