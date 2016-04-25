@@ -45,4 +45,9 @@ class RoleController extends Controller {
 	{
 		return view('project.role.booked');
 	}
+
+	public function landing()
+	{
+		return view('project.role.landing');
+	}
 }

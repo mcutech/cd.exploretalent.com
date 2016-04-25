@@ -4,7 +4,7 @@
 @stop
 
 @section('sidebar.body')
-	
+
 	<div class="email-landing-container">
 		<div class="alert alert-info border-radius-zero">
 			<div class="padding-xs-vr text-align-center-zz-sm">
@@ -18,7 +18,7 @@
 			<div class="row-fluid clearfix">
 				<div class="talents-wrapper">
 					<div class="talents-search-filter-content">
-						
+
 						<!-- modal for filter -->
 						<div id="filter-content-modal" class="modal fade" tabindex="1" role="dialog" aria-hidden="false">
 							<div class="modal-dialog modal-lg" role="document">
@@ -33,9 +33,14 @@
 								</div>
 							</div>
 						</div>
+						<div id="search-loader" class="text-center padding-top-large">
+							<h3>Loading Talents</h3>
+							<h1><i class="fa fa-spinner fa-spin"></i></h1>
+						</div>
 					</div>
 					<div class="talents-content">
 						@include('components.modals.talent-resume')
+						@include('components.modals.ghost-onboarding')
 					</div>
 				</div>
 			</div>

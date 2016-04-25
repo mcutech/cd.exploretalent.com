@@ -19,7 +19,6 @@ Route::get('login'           , 'LoginController@index');
 Route::get('register'        , 'RegisterController@index');
 Route::get('forgot-password' , 'ForgotPasswordController@index');
 Route::get('reset-password'  , 'ResetPasswordController@index');
-Route::get('landing'  , 'LandingController@index');
 
 Route::get('projects/quickpost'                                                    , 'ProjectController@quickpost');
 Route::get('projects/{projectId}/worksheet'                                        , 'ProjectController@worksheet');
@@ -31,6 +30,7 @@ Route::get('projects/{projectId}/roles/{roleId}/public-like-it-list'            
 Route::get('projects/{projectId}/roles/{roleId}/public-like-it-list/{accessToken}' , 'RoleController@publiclikeitlist');
 Route::get('projects/{projectId}/roles/{roleId}/callbacks'                         , 'RoleController@callbacks');
 Route::get('projects/{projectId}/roles/{roleId}/booked'                            , 'RoleController@booked');
+Route::get('projects/{projectId}/roles/{roleId}/landing'                            , 'RoleController@landing');
 Route::resource('projects'                                                         , 'ProjectController');
 Route::resource('projects.roles'                                                   , 'RoleController');
 Route::resource('projects.schedules'                                               , 'ScheduleController');
