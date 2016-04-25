@@ -164,6 +164,51 @@ handler.prototype.getFilters = function() {
 	return data;
 }
 
+
+
+handler.prototype.confirmCdInfo = function() {
+
+	// no logic applied on this other than when contact talent is clicked, 
+	// user is gonna go through forms and verify/update information
+
+	//hide the last form shown(assuming that user not skipping)
+	$('#onboarding-congratulations').hide();
+
+	//showing first modal
+	$('#ghost-onboarding-modal').show();
+	$('#onboarding-confirm-email').show();
+	// modal settings	
+	$('#ghost-onboarding-modal').modal({backdrop: 'static', keyboard: false})  
+
+	console.log(self.user.bam_cd_user);
+	return self.core.service.databind('#ghost-onboarding', self.user.bam_cd_user);
+}
+
+handler.prototype.updateCdInfo = function() {
+
+	var form = self.core.service.form.serializeObject('#ghost-onboarding-form');
+	
+	form.cdUserId =  self.user.bam_cd_user_id;
+	form.pass = form.cdpass;
+
+	delete form.cdpass;
+	delete form.conf_cdpass;
+	
+	//update information
+	self.core.resource.cd_user.patch(form)
+		.then(function(res) {
+			
+			$('#onboarding-company-name').hide();
+		 	$('#onboarding-congratulations').show();
+						
+		}, function(err) {
+			alert("errors while saving");
+				
+		});
+}
+
+
+
 module.exports = function(core, user, projectId, roleId) {
 	return new handler(core, user, projectId, roleId);
 }
