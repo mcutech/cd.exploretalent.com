@@ -28,6 +28,7 @@ handler.prototype.getProjectInfo = function(e) {
 			console.log(self.project);
 
 			self.core.service.databind('#project-details', self.project);
+			self.core.service.databind('#project-overview-link', self.project);
 		});
 }
 
