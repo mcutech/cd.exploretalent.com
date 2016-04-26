@@ -43,8 +43,11 @@
 				<div class="col-md-12 col-sm-12 padding-zero">
 					<div class="like-it-list-container">
 						<div class="btn-group talent-function display-block-zz-xs display-flex-sm display-block-md">
-							<button id="add-to-like-it-list" class="btn btn-outline function-item btn-block border-top-width-zero-sm-lg" data-bind-target="data-id" data-bind="<%= user.id + '-' + talent_role_id %>"><i class="fa fa-plus text-success"></i> <span class="text-success">Add Like it List</span></button>
-							<button class="favorite-button btn btn-outline function-item btn-block border-top-width-zero-sm border-left-width-zero-sm border-left-width-zero-lg border-top-width-zero-sm-lg" rel="tooltip" title="Add to Favorites" data-bind="<%= talentnum %>" data-bind-target="data-id"><i class="fa fa-star-o font-size-normal-medium" data-bind="<%= favorite ? 'text-warning' : 'text-default' %>" data-bind-target="class"></i></button>
+							<button id="add-to-like-it-list" class="btn btn-outline function-item btn-block border-top-width-zero-sm-lg" data-bind-target="data-id" data-bind="<%= user.id + '-' + talent_role_id %>"><i class="fa fa-plus text-success"></i> <span class="text-success">Add Like it List</span>
+							</button>
+							<button class="favorite-button btn btn-outline function-item btn-block border-top-width-zero-sm border-left-width-zero-sm border-left-width-zero-lg border-top-width-zero-sm-lg" rel="tooltip" title="Add to Favorites" data-bind="<%= talentnum %>" data-bind-target="data-id">
+								<i class="fa fa-star-o font-size-normal-medium" data-bind="<%= favorite ? 'text-warning' : 'text-default' %>" data-bind-target="class"></i>
+							</button>
 						</div>
 					</div>
 				</div>
