@@ -30,8 +30,8 @@ handler.prototype.getProjectInfo = function(e) {
 
 			self.project.markets = { data : markets };
 			console.log(self.project);
-
 			self.core.service.databind('#project-details', self.project);
+			self.core.service.databind('#project-overview-link', self.project);
 		});
 
 }

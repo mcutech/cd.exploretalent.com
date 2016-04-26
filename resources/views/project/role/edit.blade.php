@@ -231,9 +231,9 @@
 
 <div class="row-fluid clearfix action-buttons-div">
 	<div class="col-md-12">
-		<div class="form-group margin-top-normal">
+		<div id="project-overview-link" class="form-group margin-top-normal">
 			<button id="update-role-btn" class="btn btn-primary margin-left-small" type="submit">Update</button>
-			<a href="/projects" id="cancel-role-btn" class="btn btn-default margin-left-small">Cancel</a>
+			<a data-bind="/projects/<%= casting_id %>" id="cancel-role-btn" class="btn btn-default margin-left-small">Cancel</a>
 			<span class="text-success margin-left-normal role-updated-success" style="display: none;">Role has been updated.</span>
 		</div>
 	</div>
