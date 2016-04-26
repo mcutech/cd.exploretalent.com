@@ -200,6 +200,23 @@
 					</select>
 				</div>
 			</div>
+			<div id="additional-filters" class="row margin-bottom-large hide">
+				<div class="col-md-3">
+					
+				</div>
+				<div class="col-md-3">
+					<select name="favorite_talent" class="form-control" data-select>
+						<option value="0">Favorites - Any</option>
+						<option value="1">Favorite Talents</option>
+					</select>
+				</div>
+				<div class="col-md-3">
+					
+				</div>
+				<div class="col-md-3">
+					
+				</div>
+			</div>
 		</div>
 	</div>
 	</form>
