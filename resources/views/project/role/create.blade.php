@@ -20,7 +20,12 @@
 
 @section('project.body')
 
-<div id="create-role-div" class="row-fluid clearfix">
+<div id="create-role-div" class="clearfix">
+	<div class="col-md-12">
+		<div class=" alert alert-success">
+			<span> Please add your role details here. We match talents to your roles through these role details, specific role details result to specific role matches.</span>
+		</div>
+	</div>
 	<div class="col-md-12">
 		<div class="panel panel-default">
 		  <div class="panel-body">
