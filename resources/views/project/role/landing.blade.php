@@ -22,7 +22,7 @@
 						<!-- modal for filter -->
 						<div id="filter-content-modal" class="modal fade" tabindex="1" role="dialog" aria-hidden="false">
 							<div class="modal-dialog modal-lg" role="document">
-								@include('talent.components.filter')
+								@include('project.components.filter')
 							</div>
 						</div>
 
