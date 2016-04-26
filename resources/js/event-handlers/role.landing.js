@@ -53,7 +53,6 @@ handler.prototype.findMatches = function(append) {
 
 	self.core.resource.talent.search(data)
 		.then(function(talents) {
-			console.log(talents);
 			self.core.service.databind('#role-matches-result', talents, append);
 			self.refreshing = false;
 
@@ -65,7 +64,7 @@ handler.prototype.findMatches = function(append) {
 }
 
 handler.prototype.getFilters = function() {
-	var form = self.core.service.form.serializeObject('#role-filter-form');
+	var form = self.core.service.form.serializeObject('#talent-filter-form');
 	var data = {
 		per_page : 24,
 		page : self.page,
@@ -168,7 +167,7 @@ handler.prototype.getFilters = function() {
 
 handler.prototype.confirmCdInfo = function() {
 
-	// no logic applied on this other than when contact talent is clicked, 
+	// no logic applied on this other than when contact talent is clicked,
 	// user is gonna go through forms and verify/update information
 
 	//hide the last form shown(assuming that user not skipping)
@@ -177,33 +176,32 @@ handler.prototype.confirmCdInfo = function() {
 	//showing first modal
 	$('#ghost-onboarding-modal').show();
 	$('#onboarding-confirm-email').show();
-	// modal settings	
-	$('#ghost-onboarding-modal').modal({backdrop: 'static', keyboard: false})  
+	// modal settings
+	$('#ghost-onboarding-modal').modal({backdrop: 'static', keyboard: false})
 
-	console.log(self.user.bam_cd_user);
 	return self.core.service.databind('#ghost-onboarding', self.user.bam_cd_user);
 }
 
 handler.prototype.updateCdInfo = function() {
 
 	var form = self.core.service.form.serializeObject('#ghost-onboarding-form');
-	
+
 	form.cdUserId =  self.user.bam_cd_user_id;
 	form.pass = form.cdpass;
 
 	delete form.cdpass;
 	delete form.conf_cdpass;
-	
+
 	//update information
 	self.core.resource.cd_user.patch(form)
 		.then(function(res) {
-			
+
 			$('#onboarding-company-name').hide();
 		 	$('#onboarding-congratulations').show();
-						
+
 		}, function(err) {
 			alert("errors while saving");
-				
+
 		});
 }
 
