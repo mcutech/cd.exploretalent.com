@@ -37,6 +37,7 @@
 								<div class="alert alert-page alert-danger audition-date-error-invalid" style="display:none;">Audition date should be after or on the same day as submission deadline.</div>
 							</div>
 
+							<!-- -->
 							<div class="form-group col-md-6 padding-right-zero-md-lg">
 								<label class="control-label">Shoot Date</label>
 								<div class="input-group date">
@@ -225,9 +226,9 @@
 								<textarea id="audition-description" class="form-control" rows="4" cols="50" placeholder="Message" style="resize:vertical; box-sizzing: border-box;"></textarea>
 								<div class="alert alert-page alert-danger audition-description-error-required" style="display:none;">This field is required.</div>
 							</div>
-						</div>						
+						</div>
 					</div>
-					<div class="row-fluid">						
+					<div class="row-fluid">
 							<div class="col-md-6 padding-top-normal">
 								<div class="form-group margin-bottom-small">
 									<label class="control-label">Audition Location <span class="text-success">*</span></label>
@@ -259,7 +260,7 @@
 									or <a href="" id="toggle-manual-markets-div" style="text-decoration: underline;">Manually select markets</a>
 									<a class="btn btn-default btn-sm hide" href="" id="toggle-all-markets-checked" style="display: none;">Select All Markets</a>
 								</label>
-							</div>	
+							</div>
 							<div class="manual-markets-div display-none hide-if-nationwide">
 								<div class="col-md-2">
 									<label>
@@ -483,7 +484,7 @@
 										<input type="checkbox" name="manual-market-checkbox"> <span class="lbl">Vancouver, BC</span>
 									</label>
 								</div>
-							</div>	
+							</div>
 						</div>
 					</div>
 
