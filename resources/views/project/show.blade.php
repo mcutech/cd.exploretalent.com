@@ -12,7 +12,15 @@
 	</div>
 
 	<div class="alert alert-success">
-		<strong><span data-bind="<%= bam_roles.length %>"></span> role(s) </strong> <span>found for this casting</span>
+		<span data-bind="<%= (bam_roles.length) ? 1 : 0 %>" data-bind-target="visibility">
+			<strong><span data-bind="<%= bam_roles.length %>"></span> role(s)</strong>
+			<span>found for this casting</span>
+		</span>
+		<span data-bind="<%= (bam_roles.length) ? 0 : 1 %>" data-bind-target="visibility">
+		It seems you have no roles for this project. Please
+			<a data-bind="<%= casting_id %>/roles/create" class="text-success" ><strong>Add Role </strong></a>
+			to continue.
+		</span>
 	</div>
 
 	<div id="roles-list">
