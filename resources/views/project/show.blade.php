@@ -114,6 +114,9 @@
 			</div>
 		</div>
 	</div>
+	<div class="rows clearfix">
+		<a href="#" data-bind="<%=casting_id%>/roles/create" class="btn btn-success active" role="button"><i class="fa fa-plus"></i> Add Role</a>
+	</div>
 </div>
 @stop
 
