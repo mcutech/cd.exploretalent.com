@@ -1,4 +1,4 @@
-@extends('layouts.sidebar', [ 'pages' => [ [ 'name' => 'Manage Auditions', 'url' => '/audition-worksheet', 'active' => true] ] ])
+@extends('layouts.sidebar', [ 'pages' => [ [ 'name' => 'Manage Auditions', 'url' => '/projects/0/worksheet', 'active' => true] ] ])
 
 @section('sidebar.page-header')
 <i class="fa fa-tasks page-header-icon"></i> Manage Auditions
@@ -50,7 +50,7 @@
 					<tr data-bind-template="#campaigns-list" data-bind-value="data">
 						<td>
 							<div class="text-bold">
-								<a data-bind="/projects/<%= bam_role.bam_casting.casting_id %>/find-talents" data-bind-target="href"><span data-bind="<%= bam_role.bam_casting.name + ' (#' + bam_role.bam_casting.casting_id + ')' %>"></span></a>
+								<a data-bind="/projects/<%= bam_role.bam_casting.casting_id %>/roles/<%= bam_role_id %>/find-talents" data-bind-target="href"><span data-bind="<%= bam_role.bam_casting.name + ' (#' + bam_role.bam_casting.casting_id + ')' %>"></span></a>
 							</div>
 							<div data-bind="<%= bam_role.name + ' (#' + bam_role.role_id + ')' %>"></div>
 						</td>

@@ -61,6 +61,9 @@ jscore.run(function(core) {
 		.add('/talents/favorite'   , 'talent.favorite')
 		.add('/talents/{talentId}' , 'talent.resume')
 
+		//landing
+		.add('/landing' , 'landing.index')
+
 		// project pages
 		.add('/projects'                       , 'project.index')
 		.add('/projects/create'                , 'project.create')
@@ -77,6 +80,7 @@ jscore.run(function(core) {
 		.add('/projects/{projectId}/roles/{roleId}/submissions'                       , 'role.submissions')
 		.add('/projects/{projectId}/roles/{roleId}/callbacks'                         , 'role.callbacks')
 		.add('/projects/{projectId}/roles/{roleId}/booked'                            , 'role.booked')
+		.add('/projects/{projectId}/roles/{roleId}/landing'                           , 'role.landing')
 		.add('/projects/{projectId}/roles/{roleId}/public-like-it-list'               , 'role.publiclikeitlist')
 		.add('/projects/{projectId}/roles/{roleId}/public-like-it-list/{accessToken}' , 'role.publiclikeitlist')
 		.add('/projects/{projectId}/roles/{roleId}/edit'                              , 'role.edit')

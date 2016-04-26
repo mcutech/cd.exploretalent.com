@@ -20,7 +20,12 @@
 
 @section('project.body')
 
-<div id="create-role-div" class="row-fluid clearfix">
+<div id="create-role-div" class="clearfix">
+	<div class="col-md-12">
+		<div class=" alert alert-success">
+			<span> Please add your role details here. We match talents to your roles through these role details, specific role details result to specific role matches.</span>
+		</div>
+	</div>
 	<div class="col-md-12">
 		<div class="panel panel-default">
 		  <div class="panel-body">
@@ -216,10 +221,10 @@
 
 <div class="row-fluid clearfix action-buttons-div">
 	<div class="col-md-12">
-		<div class="form-group margin-top-normal">
+		<div id="project-overview-link" class="form-group margin-top-normal">
 			<a id="save-role-btn" class="btn btn-primary">Save</a>
 			<button id="save-and-add-role-btn" class="btn btn-success margin-left-small" type="submit">Save and Add a New Role</button>
-			<a href="/projects" id="cancel-role-btn" class="btn btn-default margin-left-small">Cancel</a>
+			<a data-bind="/projects/<%= casting_id %>" id="cancel-role-btn" class="btn btn-default margin-left-small">Cancel</a>
 			<span class="text-success margin-left-normal role-saved-success" style="display: none;">New role has been saved.</span>
 		</div>
 	</div>
