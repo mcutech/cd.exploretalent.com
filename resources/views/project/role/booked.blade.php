@@ -1,8 +1,7 @@
-
-@extends('layouts.project', [ 'active' => 'find-talents' ])
+@extends('layouts.project', [ 'active' => '', 'pages' => [ [ 'name' => 'My Projects', 'url' => '/projects' ], [ 'name' => 'Project Overview', 'url' => '../.././' ], [ 'name' => 'Booked', 'url' => './booked', 'active' => true ] ] ])
 
 @section('sidebar.page-header')
-<i class="fa fa-th-list page-header-icon"></i> Callbacks
+<i class="fa fa-th-list page-header-icon"></i> Booked - <b data-bind="<%= name %>"></b>
 @stop
 
 @section('project.body')
