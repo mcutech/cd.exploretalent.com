@@ -7,7 +7,6 @@
 @section('sidebar.body')
 <div class="audition-worksheet-list-wrapper">
 	<div class="row clearfix form-horizontal margin-bottom-normal">
-
 		<div class="col-md-6">
 			<div class="form-group margin-zero">
 				<label class="control-label col-md-4 padding-right-zero">Project Name:</label>
@@ -18,7 +17,6 @@
 				</div>
 			</div>
 		</div>
-
 		<div id="role-div" class="hide col-md-6">
 			<div class="form-group margin-zero">
 				<label class="control-label col-md-4 padding-right-zero">Role Name:</label>
@@ -33,6 +31,13 @@
 	</div>
 </div>
 
+<div id="no-casting-div" class="col-md-12 padding-right-zero padding-left-zero">
+	<div class="alert alert-success">
+		You have no worksheets available.
+		<strong><a data-bind="<%= current_role_id ? '/projects/'+ current_project_id + '/roles/'+ current_role_id +'/like-it-list' : (current_project_id ? '/projects/' + current_project_id : '/projects')  %>" class="text-success">Click here to go to your like it list and send an Audition Invite.</a></strong> If you have recently sent an Audition invite please wait 24 hours for your invitation to be reviewed and sent, thank you.
+	</div>
+</div>
+
 <div class="audition-worksheet-list-wrapper row-fluid">
 	<div class="col-md-12 panel">
 		<div class="panel-body">
@@ -43,8 +48,7 @@
 						<th>Status </th>
 						<th>Num Talents </th>
 						<th>Date Submitted </th>
-						<th></th>
-					</tr>
+						<th></th> </tr>
 				</thead>
 				<tbody id="campaigns-list">
 					<tr data-bind-template="#campaigns-list" data-bind-value="data">
