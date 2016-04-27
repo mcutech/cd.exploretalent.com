@@ -52,6 +52,11 @@ handler.prototype.refreshList = function(){
 
 	self.core.resource.project.get(data)
 		.then(function(res){
+
+			if(res.data.length == 0) {
+				$('#no-projects-found').removeClass('hide');
+			}
+
 			self.core.service.databind('#projects-list', res);
 			self.core.service.paginate('#projects-pagination', { total : res.total, class : 'pagination', name : 'page', per_page: res.per_page });
 			self.core.service.paginate('#projects-pagination2', { total : res.total, class : 'pagination', name : 'page', per_page: res.per_page });

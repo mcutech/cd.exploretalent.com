@@ -43,7 +43,7 @@ handler.prototype.findMatches = function(append) {
 	append = append === true;
 	self.page = append ? self.page + 1 : 1;
 	self.refreshing = true;
-	var data = self.getFilters();
+	var data = self.getFilters('submissions');
 
 	$('#search-loader').show();
 
@@ -52,6 +52,16 @@ handler.prototype.findMatches = function(append) {
 	}
 
 	self.core.resource.talent.search(data)
+		.then(function(talents) {
+			var promise = $.when(talents);
+
+			if (talents.total < 24) {
+				data = self.getFilters('matches');
+				promise = self.core.resource.talent.search(data);
+			}
+
+			return promise;
+		})
 		.then(function(talents) {
 			self.core.service.databind('#role-matches-result', talents, append);
 			self.refreshing = false;
@@ -63,17 +73,29 @@ handler.prototype.findMatches = function(append) {
 		});
 }
 
-handler.prototype.getFilters = function() {
+handler.prototype.getFilters = function(type) {
 	var form = self.core.service.form.serializeObject('#role-filter-form');
-	var data = {
-		per_page : 24,
-		page : self.page,
-		query : [
-			[ 'join', 'bam.laret_users', 'bam.laret_users.bam_talentnum', '=', 'search.talents.talentnum' ],
-			[ 'leftJoin', 'bam.laret_schedules', 'bam.laret_schedules.invitee_id', '=', 'bam.laret_users.id' ],
-			[ 'where', 'bam.laret_schedules.submission', '=', 1 ],
-			[ 'where', 'bam.laret_schedules.bam_role_id', '=', self.roleId ]
-		]
+	var data;
+
+	if (type == 'submissions') {
+		data = {
+			per_page : 24,
+			page : self.page,
+			query : [
+				[ 'join', 'bam.laret_users', 'bam.laret_users.bam_talentnum', '=', 'search.talents.talentnum' ],
+				[ 'leftJoin', 'bam.laret_schedules', 'bam.laret_schedules.invitee_id', '=', 'bam.laret_users.id' ],
+				[ 'where', 'bam.laret_schedules.submission', '=', 1 ],
+				[ 'where', 'bam.laret_schedules.bam_role_id', '=', self.roleId ]
+			]
+		}
+	}
+	else if (type == 'matches') {
+		data = {
+			per_page : 24,
+			page : self.page,
+			query : [
+			]
+		}
 	}
 
 	if (form.markets) {
