@@ -143,7 +143,7 @@
 					<select name="has_photo" class="form-control" data-select>
 						<option value="">Picture - All</option>
 						<option value="false">No Picture</option>
-						<option value="true">With Picture</option>
+						<option value="true" selected>With Picture</option>
 					</select>
 				</div>
 				<div class="col-md-3">
@@ -153,8 +153,9 @@
 
 			<div class="row margin-bottom-large">
 				<div class="col-md-3">
-					<label class="text-bold margin-bottom-zero">Height Range: <span id="height-min-text" class="text-normal" data-bind="<%= height_min ||'< 2\'0&quot;' %>">&lt; 2'0"</span> -
-						<span id="height-max-text" class="text-normal" data-bind="<%= height_max || '8\'0&quot;' %>">8'0"</span>
+					<label class="text-bold margin-bottom-zero">Height Range:
+						<span id="height-min-text" class="text-normal" data-bind="<%= height_min ? getHeightMinText() : '< 2\'0&quot;' %>">&lt; 2'0"</span> -
+						<span id="height-max-text" class="text-normal" data-bind="<%= height_max ? getHeightMaxText() : '8\'0&quot;' %>">8'0"</span>
 					</label>
 					<div class="padding-right-small">
 					<div class="padding-small">
@@ -197,6 +198,23 @@
 						<option value="15552000">Last Active - 6 months</option>
 						<option value="31104000">Last Active - 1 year</option>
 					</select>
+				</div>
+			</div>
+			<div id="additional-filters" class="row margin-bottom-large hide">
+				<div class="col-md-3">
+					
+				</div>
+				<div class="col-md-3">
+					<select name="favorite_talent" class="form-control" data-select>
+						<option value="0">Favorites - Any</option>
+						<option value="1">Favorite Talents</option>
+					</select>
+				</div>
+				<div class="col-md-3">
+					
+				</div>
+				<div class="col-md-3">
+					
 				</div>
 			</div>
 		</div>

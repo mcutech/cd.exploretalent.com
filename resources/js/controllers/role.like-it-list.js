@@ -23,4 +23,6 @@ module.exports = function(core, user, projectId, roleId) {
 	});
 
 	$('#send-invites-button').on('click', handler.sendInvites);
+
+	$('#additional-filters').removeClass('hide');
 }

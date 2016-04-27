@@ -9,8 +9,8 @@
 		<div class="alert alert-info border-radius-zero">
 			<div class="padding-xs-vr text-align-center-zz-sm">
 				<h4 class="margin-zero display-inline-block display-block-zz-sm font-size-normal-medium-zz-sm"><b>Welcome to ET's New CD/Producer Interface!</b></h4>
-				<h5 class="display-inline-block display-inline-zz-sm margin-zero font-size-normal-zz-sm">on this page you will find talents that are pre-matched to your project and role.</h5>
-				<h5 class="display-inline-zz-sm margin-top-zero-small margin-bottom-zero font-size-normal-zz-sm">Click on any talent's photo to view profile and "Contact Talent" button to start Iniviting Talent to audition.</h5>
+				<h5 class="display-inline-block display-inline-zz-sm margin-zero font-size-normal-zz-sm">On this page you will find talents that are pre-matched to your project and role.</h5>
+				<h5 class="display-inline-zz-sm margin-top-zero-small margin-bottom-zero font-size-normal-zz-sm">Click on any talent's photo to view profile and "Contact Talent" button to start Inviting Talent to audition.</h5>
 			</div>
 		</div>
 
@@ -22,7 +22,7 @@
 						<!-- modal for filter -->
 						<div id="filter-content-modal" class="modal fade" tabindex="1" role="dialog" aria-hidden="false">
 							<div class="modal-dialog modal-lg" role="document">
-								@include('talent.components.filter')
+								@include('project.components.filter')
 							</div>
 						</div>
 

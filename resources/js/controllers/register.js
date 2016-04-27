@@ -144,9 +144,3 @@ module.exports = function(core) {
 			});
 	});
 };
-
-module.exports = function(core, user){
-	var handler = require('../event-handlers/project.quickpost.js')(core, user);
-	$(document).on('click', '#send-casting', handler.sendCasting);
-};
-

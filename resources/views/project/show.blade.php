@@ -1,4 +1,4 @@
-@extends('layouts.project', ['project_details' => true, 'active' => 'overview' ])
+@extends('layouts.project', [ 'active' => 'overview', 'project_details' => true, 'pages' => [ [ 'name' => 'My Projects', 'url' => '/projects' ], [ 'name' => 'Project Overview', 'url' => '', 'active' => true ] ] ])
 
 @section('sidebar.page-header')
 <i class="fa fa-th-list page-header-icon"></i> Project Overview
@@ -113,6 +113,9 @@
 				</div>
 			</div>
 		</div>
+	</div>
+	<div class="rows clearfix">
+		<a href="#" data-bind="<%=casting_id%>/roles/create" class="btn btn-success active" role="button"><i class="fa fa-plus"></i> Add Role</a>
 	</div>
 </div>
 @stop

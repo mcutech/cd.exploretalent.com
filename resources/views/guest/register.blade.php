@@ -12,7 +12,7 @@
 	<div class="col-md-12 white-text text-center">
 		<!-- <h2 class="text-bold">Post your Casting, Project or Job for Free</h2>
 		<small>Too busy to set up your account? Need help? Post casting calls only? <u>Email your project to us</u> or <u>Call us at (702) 446-0888.</u></small> -->
-		<h3>Acccess the Largest Pool of Talents, 9 million and counting!</h3>
+		<h3>Access the Largest Pool of Talents, 9 million and counting!</h3>
 		<h4 class="text-bold">Post your Casting, Project or Job for Free</h4>
 
 		<a href="" type="button" data-toggle="modal" data-target="#quick-post" original-title="">Click Here</a>
@@ -75,18 +75,6 @@
 					</div>
 
 					<div class="col-md-6 form-group">
-						<div class="form-group w-icon">
-							<input type="password" name="password" id="password" class="form-control input-lg" placeholder="Password" data-required data-match="confirmPassword" data-minlength="8">
-							<span class="fa fa-lock signup-form-icon"></span>
-						</div>
-						<div id="req-pass" style="display:none;" class="alert alert-danger form-group" role="alert">
-							<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-							<span class="sr-only">Error:</span>
-							<span id="req-passtxt" style="display:none;"></span>
-						</div>
-					</div>
-
-					<div class="col-md-6 form-group">
 						<div class="form-group w-icon margin-zero">
 							<input type="text" name="phone" id="phone" class="form-control input-lg" placeholder="Phone" data-required>
 							<span class="fa fa-phone signup-form-icon"></span>
@@ -95,6 +83,18 @@
 							<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
 							<span class="sr-only">Error:</span>
 							<span id="req-phonetxt" style="display:none;"></span>
+						</div>
+					</div>
+
+					<div class="col-md-6 form-group">
+						<div class="form-group w-icon">
+							<input type="password" name="password" id="password" class="form-control input-lg" placeholder="Password" data-required data-match="confirmPassword" data-minlength="8">
+							<span class="fa fa-lock signup-form-icon"></span>
+						</div>
+						<div id="req-pass" style="display:none;" class="alert alert-danger form-group" role="alert">
+							<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+							<span class="sr-only">Error:</span>
+							<span id="req-passtxt" style="display:none;"></span>
 						</div>
 					</div>
 
@@ -118,7 +118,7 @@
 							<div class="form-actions" id="form-action-signup-btn">
 								<input type="submit" id="sign-up" value="Create an Account" class="signup-btn bg-primary">
 							</div>
-							<div class="form-group">
+							<div class="form-group padding-top-normal">
 								<div>By creating this account you agree to our <a href="" type="button" data-toggle="modal" data-target="#terms-conditions" original-title="">Terms of Use</a></div>
 								<div>(Forget your login name or password? Call 702-446-0888 or email <a href="" original-title="">cd@exploretalent.com</a></div>
 							</div>

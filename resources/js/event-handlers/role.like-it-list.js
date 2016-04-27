@@ -1,3 +1,4 @@
+var _ = require('lodash');
 'use strict';
 
 function handler(core, user, projectId, roleId) {
@@ -24,8 +25,9 @@ handler.prototype.getProjectInfo = function() {
 		.then(function(res) {
 			self.project = res;
 
-			self.core.service.databind('#project-details', self.project)
-			self.core.service.databind('#roles-list', { data : self.project.bam_roles })
+			self.core.service.databind('.page-header', self.project);
+			self.core.service.databind('#project-details', self.project);
+			self.core.service.databind('#roles-list', { data : self.project.bam_roles });
 			$('#roles-list').val(self.roleId);
 
 			self.project.role = { role_id : self.roleId, likeitlist : { total : '' }, submissions : { total : '' } };
@@ -67,6 +69,9 @@ handler.prototype.refreshRole = function() {
 }
 
 handler.prototype.findMatches = function(append) {
+
+	var form = self.core.service.form.serializeObject('#role-filter-form');
+
 	if (self.refreshing) {
 		return;
 	}
@@ -93,7 +98,7 @@ handler.prototype.findMatches = function(append) {
 		.then(function(talents) {
 			_.each(talents.data, function(talent) {
 				talent.talent_role_id = self.roleId;
-				talent.talent_project_id = self.projectId;
+				talent.talent_project_id = self.projectId;				
 			});
 
 			self.core.service.databind('#role-matches-result', talents, append);
@@ -204,6 +209,10 @@ handler.prototype.getFilters = function() {
 
 		if (form.last_access) {
 			data.query.push([ 'where', 'last_access', '>', Math.floor(new Date().getTime() / 1000) - parseInt(form.last_access) ]);
+		}
+
+		if(form.favorite_talent == '1') {
+			data.query.push([ 'join', 'bam.laret_favorite_talents', 'bam.laret_favorite_talents.bam_talentnum', '=', 'search.talents.talentnum' ]);
 		}
 	}
 
