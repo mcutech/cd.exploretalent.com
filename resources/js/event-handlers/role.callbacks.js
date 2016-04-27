@@ -23,9 +23,11 @@ handler.prototype.getProjectInfo = function() {
 	self.core.resource.project.get(data)
 		.then(function(res) {
 			self.project = res;
-
-			self.core.service.databind('#project-details', self.project)
-			self.core.service.databind('#roles-list', { data : self.project.bam_roles })
+			
+			self.core.service.databind('.page-header', self.project);
+			self.core.service.databind('#no-callbacks-div', self.project);
+			self.core.service.databind('#project-details', self.project);
+			self.core.service.databind('#roles-list', { data : self.project.bam_roles });
 			$('#roles-list').val(self.roleId);
 
 			self.project.role = { role_id : self.roleId, likeitlist : { total : '' }, submissions : { total : '' } };
@@ -89,7 +91,10 @@ handler.prototype.findMatches = function(append) {
 			_.each(talents.data, function(talent) {
 				talent.talent_role_id = self.roleId;
 			});
-
+			console.log(talents);
+			if(talents.total == 0){
+				$('#no-callbacks-div').removeClass('hide');
+			}
 			self.core.service.databind('#role-matches-result', talents, append);
 			self.refreshing = false;
 

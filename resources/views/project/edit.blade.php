@@ -222,7 +222,7 @@
 									<label class="control-label">Audition Location <span class="text-success">*</span></label>
 								<label class="checkbox-inline margin-left-normal" title="Mark as nationwide casting">
 									<input class="px" type="checkbox" name="nationwide-market-checkbox" id="nationwide-market-checkbox" value="0">
-									<span class="lbl">Any Market / Nationwide</span>
+									<span class="lbl">All of United States</span>
 								</label>	
 								<div class="input-group hide-if-nationwide">
 									<input type="text" id="zip-code" class="form-control" placeholder="Enter Zip Code" data-bind="<%= zip %>">
