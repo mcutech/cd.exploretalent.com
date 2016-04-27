@@ -33,29 +33,6 @@ handler.prototype.addToBooking = function(){
 
 }
 
-handler.prototype.sendCasting = function(e){
-
-	e.preventDefault();
-
-	var form = self.core.service.form.serializeObject("#quick-post");
-	form.lazy_project_status_id = 1;
-	self.core.resource.quickpost.post(form)
-		.then(function(result){
-		
-		$('#success-div').removeClass('hide');
- 		$("input[name='name']").val('');
-		$("textarea[name='body']").val('');		
-		setTimeout(function() { 
-			$('#quick-post').modal('hide');
-			$('#success-div').addClass('hide');
-	 	}, 1000);	
-		
-		self.refresh();
-	});
-
-}
-
-
 
 module.exports = function(core, user){
 	return new handler(core, user);
