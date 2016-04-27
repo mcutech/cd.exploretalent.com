@@ -1,6 +1,33 @@
 module.exports = function(core) {
 	$('#phone').mask('999-999-9999');
 
+		$("#send-casting").click(function(e){
+	
+		e.preventDefault();
+
+		var form = {};
+		//core.service.form.serializeObject("#quick-post");
+		form.user_id=1;
+		form.name=$("input[name='name']").val();
+		form.body=$("textarea[name='body']").val();		
+		form.lazy_project_status_id = 1;
+
+		core.resource.quickpost.post(form)
+			.then(function(result){
+			
+			$('#success-div').removeClass('hide');
+	 		$("input[name='name']").val('');
+			$("textarea[name='body']").val('');		
+			setTimeout(function() { 
+				$('#quick-post').modal('hide');
+				$('#success-div').addClass('hide');
+		 	}, 1000);	
+			
+			
+		});
+
+	});
+
 	$("#sign-up").click(function(e){
 		e.preventDefault();
 
