@@ -1,4 +1,4 @@
-@extends('layouts.sidebar', [ 'pages' => [ [ 'name' => 'Manage Auditions', 'url' => '/projects/0/worksheet', 'active' => true] ] ])
+@extends('layouts.sidebar', [ 'pages' => [ [ 'name' => 'My Projects', 'url' => '/projects' ], [ 'name' => 'Project Overview', 'url' => './' ], [ 'name' => 'Manage Auditions', 'url' => '/projects/0/worksheet', 'active' => true] ] ])
 
 @section('sidebar.page-header')
 <i class="fa fa-tasks page-header-icon"></i> Manage Auditions
