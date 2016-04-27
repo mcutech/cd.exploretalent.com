@@ -21,7 +21,7 @@
 			<div class="row">
 				<div class="col-md-12 talents-search-result" id="talent-search-result">
 					<div class="row" id="talent-result">
-						@include('components.talent4', [ 'databind' => [ 'template' => '#talent-result', 'value' => 'data' ], 'ratings' => true, 'notes' => false, 'favorites_notes' => true, 'class' => 'col-lg-2 col-md-2 col-sm-3 col-xs-6'  ])
+						@include('components.talent4', [ 'databind' => [ 'template' => '#talent-result', 'value' => 'data' ], 'ratings' => true, 'notes' => false, 'favorites_notes' => false, 'class' => 'col-lg-2 col-md-2 col-sm-3 col-xs-6'  ])
 					</div>
 				</div> {{-- talents-search-results --}}
 			</div>
