@@ -30,6 +30,7 @@ handler.prototype.getProjectInfo = function() {
 
 			role.bam_casting = self.project;
 			self.core.service.databind('#role-filter-form', role);
+			self.core.service.databind('#ghost-onboarding', self.user.bam_cd_user);
 
 			self.findMatches();
 		});
@@ -211,6 +212,9 @@ handler.prototype.updateCdInfo = function() {
 
 	delete form.cdpass;
 	delete form.conf_cdpass;
+
+	form.phone1 = form.phone1.replace(/-/g, '');
+	form.phone2 = form.phone2.replace(/-/g, '');
 
 	//update information
 	self.core.resource.cd_user.patch(form)

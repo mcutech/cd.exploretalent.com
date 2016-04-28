@@ -13,7 +13,7 @@
 				<div id="onboarding-confirm-email" class="row-fluid clearfix">
 					<div class="col-md-12 form-group">
 						<label class="control-label">Confirm Email Address</label>
-						<input class="form-control" data-bind="<%= email1 %>" name ="email1" placeholder="Email Address...">
+						<input class="form-control" data-bind="<%= email1 %>" name="email1" placeholder="Email Address...">
 					</div>
 					<div class="col-md-12">
 						<div class="pull-right">
@@ -25,7 +25,7 @@
 				<div id="onboarding-create-password" class="row-fluid clearfix" hidden>
 					<div class="col-md-12 form-group">
 						<label class="control-label">Please <i>Create a Password</i> to continue</label>
-						<input type="password" class="form-control" id="cdpass" name= "cdpass" placeholder="Enter Password...">
+						<input type="password" class="form-control" id="cdpass" name="cdpass" placeholder="Enter Password...">
 						<input type="password" class="form-control margin-top-small" id="conf_cdpass" name= "conf_cdpass" placeholder="Confirm Password...">
 					</div>
 					<div class="col-md-12">
@@ -40,11 +40,11 @@
 				<div id="onboarding-other-email" class="row-fluid clearfix" hidden>
 					<div class="col-md-12 form-group">
 						<label class="control-label">Do you have <i>another Email Address?</i></label>
-						<input class="form-control" data-bind="<%= email2 %>" name ="email2" placeholder="Another Email...">
+						<input class="form-control" data-bind="<%= email2 %>" name="email2" placeholder="Another Email...">
 					</div>
 					<div class="col-md-12">
 						<div class="pull-right">
-							<a class="btn btn-outline" href="">Skip</a>
+							<a class="btn btn-outline skip-btn other-email" href="#">Skip</a>
 							<a class="btn btn-success proceed-btn other-email" href="#">Confirm Email</a>
 						</div>
 					</div>
@@ -52,7 +52,8 @@
 
 				<div id="onboarding-name" class="row-fluid clearfix" hidden>
 					<div class="col-md-12 form-group">
-						<label class="control-label">Enter your Name</label>										<input class="form-control" data-bind="<%= fname %>" name ="fname" placeholder="First Name...">
+						<label class="control-label">Enter your Name</label>
+							<input class="form-control" data-bind="<%= fname %>" name="fname" placeholder="First Name...">
 							<input class="form-control margin-top-small" data-bind="<%= lname %>" name="lname" placeholder="Last Name...">
 					</div>
 					<div class="col-md-12">
@@ -65,7 +66,7 @@
 				<div id="onboarding-contact-num1" class="row-fluid clearfix" hidden>
 					<div class="col-md-12 form-group">
 						<label class="control-label">Enter <i>Contact Number</i> where you can be reached</label>
-						<input class="form-control" data-bind="<%= phone1 %>" placeholder="Contact Number...">
+						<input class="form-control" data-bind="<%= phone1 %>" name="phone1" placeholder="Contact Number...">
 					</div>
 					<div class="col-md-12">
 						<div class="pull-right">
@@ -77,11 +78,11 @@
 				<div id="onboarding-contact-num2" class="row-fluid clearfix" hidden>
 					<div class="col-md-12 form-group">
 						<label class="control-label">Do you have <i>another Contact Number</i>?</label>
-						<input class="form-control" data-bind="<%= phone2 %>" placeholder="Another Contact Number...">
+						<input class="form-control" data-bind="<%= phone2 %>" name="phone2" placeholder="Another Contact Number...">
 					</div>
 					<div class="col-md-12">
 						<div class="pull-right">
-							<a class="btn btn-outline" href="">Skip</a>
+							<a class="btn btn-outline skip-btn contact-num2" href="#">Skip</a>
 							<a class="btn btn-success proceed-btn contact-num2" href="#">Continue</a>
 						</div>
 					</div>
@@ -94,7 +95,7 @@
 					</div>
 					<div class="col-md-12">
 						<div class="pull-right">
-							<a class="btn btn-outline" href="">Skip</a>
+							<a class="btn btn-outline skip-btn company-name" href="#">Skip</a>
 							<a class="btn btn-success proceed-btn company-name" href="#">Continue</a>
 						</div>
 					</div>
