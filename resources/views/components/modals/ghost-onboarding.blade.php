@@ -52,7 +52,7 @@
 
 				<div id="onboarding-name" class="row-fluid clearfix" hidden>
 					<div class="col-md-12 form-group">
-						<label class="control-label">Enter your Name</label>										<input class="form-control" data-bind="<%= fname %>" name ="fname" placeholder="First Name...">						
+						<label class="control-label">Enter your Name</label>										<input class="form-control" data-bind="<%= fname %>" name ="fname" placeholder="First Name...">
 							<input class="form-control margin-top-small" data-bind="<%= lname %>" name="lname" placeholder="Last Name...">
 					</div>
 					<div class="col-md-12">
@@ -72,7 +72,7 @@
 							<a class="btn btn-success proceed-btn contact-num1" href="#">Continue</a>
 						</div>
 					</div>
-				</div> <!-- Contact 1-->	
+				</div> <!-- Contact 1-->
 
 				<div id="onboarding-contact-num2" class="row-fluid clearfix" hidden>
 					<div class="col-md-12 form-group">
@@ -98,19 +98,19 @@
 							<a class="btn btn-success proceed-btn company-name" href="#">Continue</a>
 						</div>
 					</div>
-				</div> <!-- Company Name-->	
+				</div> <!-- Company Name-->
 
 				<div id="onboarding-congratulations" class="row-fluid clearfix" hidden>
 					<div class="col-md-12 form-group">
-						<p>You have completed the information needed to create your account, 
+						<p>You have completed the information needed to create your account,
 						and you can now continue to use us to find all the talents for your projects.</p>
 					</div>
 					<div class="col-md-12">
 						<div class="pull-right">
-							<a class="btn btn-success proceed-btn congratulations-text" data-dismiss="modal" href="">Continue using site</a>
+							<a class="btn btn-success proceed-btn congratulations-text" data-bind="find-talents">Continue using site</a>
 						</div>
 					</div>
-				</div> <!-- Congratulations-->																				
+				</div> <!-- Congratulations-->
 			</div>
 			</form>
 		</div>

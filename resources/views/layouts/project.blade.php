@@ -8,7 +8,7 @@
 					<li class="{{ isset($active) && $active == 'overview' ? 'active' : '' }}">
 						<a href="#" data-bind="/projects/<%= casting_id %>">Project Overview</a>
 					</li>
-					<li class="{{ isset($active) && $active == 'find-talents' ? 'active' : '' }}">
+					<li id="find-talents-list" class="{{ isset($active) && $active == 'find-talents' ? 'active' : '' }}">
 						<a href="#" data-bind="/projects/<%= casting_id %>/roles/<%= bam_roles.length ? _.first(bam_roles).role_id : 0 %>/find-talents">Find Talents</a>
 					</li>
 					<li class="{{ isset($active) && $active == 'like-it-list' ? 'active' : '' }}">

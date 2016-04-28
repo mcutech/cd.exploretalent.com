@@ -84,6 +84,10 @@ module.exports = function(core, user) {
 							alert('Added to like it list.');
 							$('#add-like-it-list-modal').modal('hide');
 						});
+
+					window.findtalent.role.likeitlist.total += 1;
+
+					self.core.service.databind('#project-links', window.findtalent );
 				}
 			})
 	}
