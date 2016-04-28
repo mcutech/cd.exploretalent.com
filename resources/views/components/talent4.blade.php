@@ -40,11 +40,13 @@
 			<div class="like-it-list-parent row-fluid clearfix">
 				<div class="col-md-12 col-sm-12 padding-zero">
 					<div class="like-it-list-container">
-						<div class="btn-group talent-function display-block-zz-xs display-flex-sm display-block-md">
-							<button id="add-to-like-it-list" class="btn btn-outline function-item btn-block border-top-width-zero-sm-lg" data-bind-target="data-id" data-bind="<%= user.id + '-' + talent_role_id %>"><i class="fa fa-plus text-success"></i> <span class="text-success">Add Like it List</span>
+						<div class="btn-group talent-function display-block-zz-xs display-flex-sm display-block-md" data-bind-target="data-id" data-bind="<%= user.id + '-' + talent_role_id + '-' + talentnum %>">
+							<button id="add-to-like-it-list" class="btn function-item btn-block border-top-width-zero-sm-lg" data-bind="<%= schedule ? 'btn-success' : 'btn-outline' %>" data-bind-target="class">
+								<i class="fa fa-plus"></i>
+								<span data-bind="<%= schedule ? 'Added Like it List' : 'Add Like it List' %>" ></span>
 							</button>
-							<button class="favorite-button btn btn-outline function-item btn-block border-top-width-zero-sm border-left-width-zero-sm border-left-width-zero-lg border-top-width-zero-sm-lg" rel="tooltip" title="Add to Favorites" data-bind="<%= talentnum %>" data-bind-target="data-id">
-								<i class="fa fa-star-o font-size-normal-medium" data-bind="<%= favorite ? 'text-warning' : 'text-default' %>" data-bind-target="class"></i>
+							<button class="favorite-button btn function-item btn-block border-top-width-zero-sm border-left-width-zero-sm border-left-width-zero-lg border-top-width-zero-sm-lg" data-bind="<%= favorite ? 'btn-warning' : 'btn-outline' %>" data-bind-target="class">
+								<i class="fa fa-star-o font-size-normal-medium" data-bind-target="class"></i>
 							</button>
 						</div>
 					</div>
@@ -59,78 +61,6 @@
 						<div class="additional-info-item body-type">Body: <span>Athletic</span></div>
 					</div>
 				</div>
-			</div>
-		</div>
-	</div>
-
-	<div class="panel" hidden>
-		<div class="panel-body">
-			<div class="row-fluid clearfix">
-				<div class="tab-content padding-top-zero padding-bottom-small">
-					<div class="talent-tab tab-pane fade active in" data-bind="talent-body-<%= talentnum %>" data-bind-target="id">
-						<div class="head-area padding-zero padding-bottom-zero col-md-12">
-							<div class="talent-name font-size-normal text-semibold float-left text-succes"><span data-bind="<%= getFullName() %>"></span>, <span data-bind="<%= getAge() %>" class="age-area"></span><br><span data-bind="ID: <%= talentnum %>"></span></div>
-							<div class="favorite-indicator float-right">
-								<button class="btn-link fav-btn" data-bind="<%= (favorite) ? 'favorite-' + favorite.id : 'talentnum-' + talentnum %>" data-bind-target="data-id">
-									<i class="fa fa-star-o font-size-medium-large" data-bind="<%= (favorite) ? 'text-warning' : 'text-light-gray' %>" data-bind-target="class"></i>
-								</button>
-							</div>
-						</div>
-						<div class="row-fluid clearfix">
-							<div class="talent-photo col-lg-6 col-md-12 col-sm-4 col-xs-12">
-								<div class="photo-user-container">
-									<img data-bind="<%= getPrimaryPhoto() %>" class="img-responsive" />
-								</div>
-							</div>
-
-							<div class="col-lg-6 col-md-12 col-sm-6 padding-right-zero talent-information padding-top-small">
-								<div class="talent-location">
-									<i class="fa fa-map-marker"></i> <span data-bind="<%= getState() %>"></span>
-								</div>
-
-								<ul class="list-unstyled talents-list-details">
-									<li><span data-bind="<%= getHeight() %>"></span></li>
-									<li><span data-bind="<%= weightpounds %>"></span> lbs.</li>
-									<li><span data-bind="<%= ethnicity %>"></span></li>
-									<li><span data-bind="<%= build %>"></span></li>
-									<li><span data-bind="<%= eyecolor %>"></span></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-						@if (isset($notes) && $notes)
-						<div class="tab-pane fade" data-bind="like-it-note-<%= talentnum %>" data-bind-target="id">
-							<div class="tab-pane" id="tab-content-2">
-								<div class="item-container-holder">
-									<div id="schedule-notes" class="talent-item note-item-container padding-small">
-										<div class="note-item" data-bind-template="#schedule-notes" data-bind-value="schedule_notes">
-											<div class="note-header">
-												<div class="photo"></div>
-												<div class="name-date">
-													<div class="name" data-bind="<%= user.bam_cd_user.getFullName() %>"></div>
-													<div class="date" data-bind="<%= created_at %>"></div>
-												</div>
-												<div class="note-body" data-bind="<%= body %>">
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<a href="#"><div class="add-casting-note padding-top-small padding-bottom-small bordered text-align-center"><i class="fa fa-plus"></i> Add Note</div></a>
-							</div>
-						</div>
-						@endif
-				</div>
-			</div>
-			<div class="row-fluid clearfix">
-					<div class="col-md-12 col-sm-12 padding-zero margin-top-small">
-						<div class="like-it-list-container">
-							<div class="btn-group talent-function">
-								<a target="_blank" data-bind="/talents/<%= talentnum %>" class="btn btn-xs btn-default function-item"> <span class="fa fa-file-text-o"></span></a>
-								<!-- <a data&#45;toggle="modal" data&#45;bind="<%= talentnum %>" data&#45;bind&#45;target="data&#45;id" id="talent&#45;photo" data&#45;target="#talent&#45;photos&#45;modal" class="btn btn&#45;xs btn&#45;default function&#45;item"><span class="fa fa&#45;picture&#45;o"></span></a> -->
-							</div>
-						</div>
-					</div>
 			</div>
 		</div>
 	</div>

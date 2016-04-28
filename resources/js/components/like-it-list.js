@@ -2,6 +2,7 @@ module.exports = function(core, user) {
 	var projects;
 	var user_id
 	var bam_role_id;
+	var $button;
 
 	$(document).on('click', '#add-to-like-it-list', function() {
 		$('#add-like-it-list-modal #casting-list').val(-1).select2();
@@ -9,8 +10,9 @@ module.exports = function(core, user) {
 
 		var promise = $.when();
 		var $this = $(this);
+		$button = $this;
 
-		var id = $this.attr('data-id');
+		var id = $this.parent().attr('data-id');
 		id = id.split('-');
 		user_id = id[0];
 
@@ -80,14 +82,11 @@ module.exports = function(core, user) {
 				}
 				else {
 					core.resource.schedule.post(data)
-						.then(function() {
-							alert('Added to like it list.');
+						.then(function(res) {
+							$button.removeClass('btn-outline').addClass('btn-success');
+							$button.find('span').text('Added LIke it List');
 							$('#add-like-it-list-modal').modal('hide');
 						});
-
-					window.findtalent.role.likeitlist.total += 1;
-
-					self.core.service.databind('#project-links', window.findtalent );
 				}
 			})
 	}

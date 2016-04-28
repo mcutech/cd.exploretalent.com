@@ -23,7 +23,7 @@ handler.prototype.getProjectInfo = function() {
 	self.core.resource.project.get(data)
 		.then(function(res) {
 			self.project = res;
-			
+
 			self.core.service.databind('.page-header', self.project);
 			self.core.service.databind('#no-callbacks-div', self.project);
 			self.core.service.databind('#project-details', self.project);
@@ -86,12 +86,15 @@ handler.prototype.findMatches = function(append) {
 		$('#role-matches-result').hide();
 	}
 
-	self.core.resource.talent.search(data)
+	var options = {
+		bam_role_id : self.roleId
+	}
+
+	self.core.resource.talent.search(data, options)
 		.then(function(talents) {
 			_.each(talents.data, function(talent) {
 				talent.talent_role_id = self.roleId;
 			});
-			console.log(talents);
 			if(talents.total == 0){
 				$('#no-callbacks-div').removeClass('hide');
 			}
