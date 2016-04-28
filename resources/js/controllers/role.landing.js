@@ -1,6 +1,15 @@
  module.exports = function(core, user, projectId, roleId) {
 	var handler = require('../event-handlers/role.landing.js')(core, user, projectId, roleId);
 
+	// open modal if logo is clicked on this page
+	$(document).on('click', '#navbar-main-logo' , function(e) {
+		e.preventDefault();
+		$('#ghost-onboarding-modal').modal('show');
+	});
+
+	$('input[name="phone1"]').mask('999-999-9999');
+	$('input[name="phone2"]').mask('999-999-9999');
+
 	$('#search-button').on('click', handler.findMatches);
 
 	//refine search toggle location search
@@ -21,13 +30,15 @@
 	$(document).on('click', '.proceed-btn.confirm-email', function(){
 		$('#onboarding-confirm-email').hide();
 		$('#onboarding-create-password').show();
+		$('input[name="cdpass"]').focus();
 	});
 
 	$(document).on('click', '.proceed-btn.create-password', function(){
 		if($('#cdpass').val()){
 			if($('#cdpass').val()==$('#conf_cdpass').val()){
 				$('#onboarding-create-password').hide();
-				$('#onboarding-other-email').show();	
+				$('#onboarding-other-email').show();
+				$('input[name="email2"]').focus();	
 			}
 			else{
 				$('#empty_password').addClass('hide');
@@ -42,24 +53,28 @@
 		
 	});
 
-	$(document).on('click', '.proceed-btn.other-email', function(){
+	$(document).on('click', '.proceed-btn.other-email, .skip-btn.other-email', function(){
 		$('#onboarding-other-email').hide();
 		$('#onboarding-name').show();
+		$('input[name="fname"]').focus();
 	});
 
 	$(document).on('click', '.proceed-btn.your-name', function(){
 		$('#onboarding-name').hide();
 		$('#onboarding-contact-num1').show();
+		$('input[name="phone1"]').focus();
 	});
 
 	$(document).on('click', '.proceed-btn.contact-num1', function(){
 		$('#onboarding-contact-num1').hide();
 		$('#onboarding-contact-num2').show();
+		$('input[name="phone2"]').focus();
 	});
 
-	$(document).on('click', '.proceed-btn.contact-num2', function(){
+	$(document).on('click', '.proceed-btn.contact-num2, .skip-btn.contact-num2', function(){
 		$('#onboarding-contact-num2').hide();
 		$('#onboarding-company-name').show();
+		$('input[name="company"]').focus();
 	});
 
 	// $(document).on('click', '.proceed-btn.company-name', function(){
@@ -67,7 +82,7 @@
 	// 	$('#onboarding-congratulations').show();
 	// });
 
-	$(document).on('click', '.proceed-btn.company-name', handler.updateCdInfo);
+	$(document).on('click', '.proceed-btn.company-name, .skip-btn.company-name', handler.updateCdInfo);
 	
 
 	$(window).on('scroll', function() {
