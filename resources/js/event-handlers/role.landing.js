@@ -9,10 +9,29 @@ function handler(core, user, projectId, roleId) {
 	self.page = 1;
 	self.first_load = true;
 
+	self.getAllProjects();
 	self.getProjectInfo();
 }
 
+handler.prototype.getAllProjects = function(){
+
+	var data = {
+		query : [
+			[ 'with', 'bam_roles' ],
+			['orderBy', 'last_modified','DESC'],
+		],
+		per_page : 500
+	};
+
+	self.core.resource.project.get(data)
+		.then(function(res){
+			self.core.service.databind('#projects-list', { data : res.data });
+			$('#projects-list').val(self.projectId);
+		});
+}
+
 handler.prototype.getProjectInfo = function() {
+
 	var data = {
 		projectId : self.projectId,
 		query : [
@@ -22,18 +41,51 @@ handler.prototype.getProjectInfo = function() {
 
 	self.core.resource.project.get(data)
 		.then(function(res) {
+
 			self.project = res;
 
 			var role = _.find(self.project.bam_roles, function(r) {
 				return r.role_id == self.roleId;
 			});
 
+			self.core.service.databind('#roles-list', { data : self.project.bam_roles });
+			$('#roles-list').val(self.roleId);
 			role.bam_casting = self.project;
 			self.core.service.databind('#role-filter-form', role);
 			self.core.service.databind('#ghost-onboarding', self.user.bam_cd_user);
 
 			self.findMatches();
 		});
+}
+
+handler.prototype.findRolesForSelectedProject = function(projectId) {
+
+	var data = {
+		projectId : projectId,
+		query : [
+			[ 'with', 'bam_roles' ]
+		]
+	}
+
+	self.core.resource.project.get(data)
+		.then(function(res) {
+
+			self.project = res;
+
+			self.core.service.databind('#roles-list', { data : self.project.bam_roles });
+			$('#roles-list').val(self.roleId);
+
+		});
+}
+
+handler.prototype.redirectToSelectedRole = function() {
+	self.roleId = $('#roles-list').val();
+	var role = _.find(self.project.bam_roles, function(r) {
+		return r.role_id == $('#roles-list').val();
+	});
+
+	// redirect to new url
+	window.location.replace('/projects/' + role.casting_id + '/roles/' + role.role_id + '/landing');
 }
 
 handler.prototype.findMatches = function(append) {

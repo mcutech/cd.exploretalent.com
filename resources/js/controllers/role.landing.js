@@ -7,6 +7,16 @@
 		$('#ghost-onboarding-modal').modal('show');
 	});
 
+	$('#projects-list').on('change', function() {
+
+		var projectId = $(this).val();
+
+		return handler.findRolesForSelectedProject(projectId);
+
+	});
+	
+	$('#roles-list').on('change', handler.redirectToSelectedRole);
+
 	$('input[name="phone1"]').mask('999-999-9999');
 	$('input[name="phone2"]').mask('999-999-9999');
 
@@ -84,7 +94,6 @@
 
 	$(document).on('click', '.proceed-btn.company-name, .skip-btn.company-name', handler.updateCdInfo);
 	
-
 	$(window).on('scroll', function() {
 		if ($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
 			handler.findMatches(true);
