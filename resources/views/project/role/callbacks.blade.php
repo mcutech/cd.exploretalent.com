@@ -24,7 +24,7 @@
 				<div class="row">
 					<div id="no-callbacks-div" class="col-md-12 hide">
 						<div class="alert alert-success">
-							<a class="text-success">You have no callbacks set, please mark talents as callbacks in your auditions worksheet.</a>
+							<a data-bind="/projects/<%= casting_id %>/roles/<%= role.role_id %>/worksheet" class="text-success">You have no callbacks set, please mark talents as callbacks in your auditions worksheet.</a>
 						</div>
 					</div>
 					<div class="col-md-12 talents-search-result" id="role-matches-result">
