@@ -32,6 +32,9 @@ handler.prototype.getProjectInfo = function() {
 			self.project.role = { role_id : self.roleId, likeitlist : { total : '' }, submissions : { total : '' } };
 			self.core.service.databind('#project-links', self.project )
 
+			//add active class on Find Talents nav
+			$('#find-talents-list').addClass('active');
+
 			self.refreshRole();
 		});
 }
