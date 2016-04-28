@@ -52,11 +52,13 @@ handler.prototype.refreshRole = function() {
 
 			return role.getSubmissionsCount();
 		})
-		.then(function(count) {
+		.then(function(count) { 
 			role.submissions = { total : count };
 			self.project.role = role;
 
-			self.core.service.databind('#project-links', self.project )
+			self.core.service.databind('#project-links', self.project );
+
+			window.findtalent = self.project;
 		});
 
 	self.findMatches();
