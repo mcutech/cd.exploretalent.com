@@ -18,7 +18,6 @@ handler.prototype.refreshProjects = function() {
 
 		if (parseInt(self.projectId))
 			$('#projects-list').val(self.projectId).select2();
-
 		self.getRoles();
 		self.refreshList();
 	});
@@ -68,6 +67,21 @@ handler.prototype.refreshList = function() {
 		return $.when.apply($, promises);
 	})
 	.then(function() {
+		self.campaigns.current_project_id = $('#projects-list').val();
+		self.campaigns.current_role_id = $('#roles-list').val();
+
+		if($('#roles-list').val() == ''){
+			self.campaigns.current_role_id = $('#roles-list option:nth-child(2)').val();
+		}
+		console.log(self.campaigns);
+
+		$('#no-casting-div').addClass('hide');
+
+		if(self.campaigns.total == 0){
+			$('#no-casting-div').removeClass('hide');
+		}
+
+		self.core.service.databind('#no-casting-div', self.campaigns);
 		self.core.service.databind('#campaigns-list', self.campaigns);
 	});
 }

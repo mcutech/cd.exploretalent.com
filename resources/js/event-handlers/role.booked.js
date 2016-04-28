@@ -24,8 +24,10 @@ handler.prototype.getProjectInfo = function() {
 		.then(function(res) {
 			self.project = res;
 
-			self.core.service.databind('#project-details', self.project)
-			self.core.service.databind('#roles-list', { data : self.project.bam_roles })
+			self.core.service.databind('.page-header', self.project);
+			self.core.service.databind('#project-details', self.project);
+			self.core.service.databind('#roles-list', { data : self.project.bam_roles });
+			self.core.service.databind('#no-booked', self.project);
 			$('#roles-list').val(self.roleId);
 
 			self.project.role = { role_id : self.roleId, likeitlist : { total : '' }, submissions : { total : '' } };
@@ -95,7 +97,10 @@ handler.prototype.findMatches = function(append) {
 
 			$('#search-loader').hide();
 			if (!append) {
+				$('#no-booked').addClass('hide');
 				$('#role-matches-result').show();
+			}else{
+				$('#no-booked').removeClass('hide');
 			}
 		});
 }

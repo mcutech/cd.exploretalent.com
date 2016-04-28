@@ -65,7 +65,12 @@
 						<div class="bordered padding-small fixedheight">
 							<a data-bind="/projects/<%= casting_id %>/roles/<%= role_id %>/booked"><div><i class="fa fa-star-o fa-2x"></i></div>
 							<div>Booked Talents</div>
-							<b><div class="text-bg" data-bind="<%= campaign ? booked.total : 0 %>"></div></b></a>
+							<b>
+							
+							<div class ="text-bg" data-bind="<%= campaign ? booked.total : 0 %>"></div>
+							
+							</b>
+							</a>
 						</div>
 					</div>
 

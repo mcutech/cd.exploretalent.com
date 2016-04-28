@@ -22,7 +22,7 @@ handler.prototype.refresh = function() {
 				[ 'with', 'bam_role.bam_casting' ],
 				[ 'where', 'bam_role_id', '=', self.roleId ],
 				[ 'orderBy', 'created_at', 'DESC' ]
-			]
+			],
 		};
 
 		promise = self.core.resource.campaign.get(data)
@@ -46,9 +46,11 @@ handler.prototype.refresh = function() {
 						s.conversation = { messages : [] };
 					}
 				});
-
+				
 				self.core.service.databind('#campaign-details', self.campaign);
 				self.core.service.databind('#schedules', res);
+				self.core.service.paginate('#worksheet-pagination', { total : res.total, class : 'pagination', name : 'page', per_page: res.per_page });
+				self.core.service.paginate('#worksheet-pagination2', { total : res.total, class : 'pagination', name : 'page', per_page: res.per_page });
 			}
 			else {
 				self.core.service.databind('#schedules', { data : [] });
@@ -58,6 +60,7 @@ handler.prototype.refresh = function() {
 }
 
 handler.prototype.getSchedules = function() {
+	
 	var data = {
 		query : [
 			[ 'join', 'bam.laret_users', 'bam.laret_users.bam_talentnum', '=', 'search.talents.talentnum' ],
@@ -65,7 +68,7 @@ handler.prototype.getSchedules = function() {
 			[ 'where', 'bam.laret_schedules.bam_role_id', '=', self.campaign.bam_role_id ],
 			[ 'where', 'bam.laret_schedules.rating', '<>', 0 ],
 			[ 'select', 'bam.laret_schedules.id AS schedule_id' ]
-		]
+		],
 	};
 
 	var qs = self.core.service.form.serializeObject('#filter-form');
@@ -102,6 +105,8 @@ handler.prototype.getSchedules = function() {
 
 			schedule_ids.push(0);
 
+			var qs = self.core.service.query_string();
+
 			var data2 = {
 				query : [
 					[ 'whereIn', 'schedules.id', schedule_ids ],
@@ -111,7 +116,9 @@ handler.prototype.getSchedules = function() {
 					[ 'with', 'schedule_notes.user.bam_cd_user' ],
 					[ 'with', 'conversation.messages.user.bam_talentci' ],
 					[ 'with', 'bam_role' ],
-				]
+				],
+				page : qs.page || 1,
+				per_page : 25
 			}
 
 			return self.core.resource.schedule.get(data2);

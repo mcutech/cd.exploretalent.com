@@ -1,7 +1,7 @@
-@extends('layouts.project', [ 'active' => '' ])
+@extends('layouts.project', [ 'active' => '', 'pages' => [ [ 'name' => 'My Projects', 'url' => '/projects' ], [ 'name' => 'Project Overview', 'url' => '../.././' ], [ 'name' => 'Callbacks', 'url' => './callbacks', 'active' => true ] ] ])
 
 @section('sidebar.page-header')
-<i class="fa fa-th-list page-header-icon"></i> Callbacks
+<i class="fa fa-th-list page-header-icon"></i> Callbacks - <b data-bind="<%= name %>"></b>
 @stop
 
 @section('project.body')
@@ -14,7 +14,7 @@
 	</div>
 </div>
 
-<div class="panel role-item margin-top-medium">
+<div class="role-item margin-top-medium">
 	<div class="row-fluid clearfix">
 		<div class="talents-wrapper">
 			<div class="talents-search-filter-content">
@@ -22,6 +22,11 @@
 					@include('project.components.filter')
 				</div>
 				<div class="row">
+					<div id="no-callbacks-div" class="col-md-12 hide">
+						<div class="alert alert-success">
+							<a class="text-success">You have no callbacks set, please mark talents as callbacks in your auditions worksheet.</a>
+						</div>
+					</div>
 					<div class="col-md-12 talents-search-result" id="role-matches-result">
 						<div class="row" id="role-matches">
 							@include('components.talent4', [ 'databind' => [ 'template' => '#role-matches', 'value' => 'data' ], 'ratings' => true, 'notes' => false, 'class' => 'col-lg-2 col-md-3 col-sm-3 col-xs-6'  ])

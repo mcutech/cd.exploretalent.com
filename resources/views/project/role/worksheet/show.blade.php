@@ -26,7 +26,7 @@
 
 
 			<div class="col-md-9 audition-worksheet-talent-item">
-
+			<div id="worksheet-pagination" class="text-right"></div>
 				<div class="margin-bottom-small header-talent-item">
 					<div class="padding-normal padding-top-small padding-bottom-small">
 						<div class="row-fluid clearfix">
@@ -122,6 +122,7 @@
 						</div>
 					</div>
 				</div>
+				<div id="worksheet-pagination2" class="text-right"></div>
 			</div>
 
 		</div>
