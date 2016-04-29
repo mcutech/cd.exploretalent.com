@@ -1,12 +1,13 @@
 module.exports = function() {
 	$(document).on('click', '.favorite-button', function() {
 		var $this = $(this);
-		var $star = $this.find('i');
-		var talentnum = $this.attr('data-id');
+		var id = $this.parent().attr('data-id');
+		id = id.split('-');
+		var talentnum = id.length > 2 ? id[2] : '';
 
 		if (parseInt(talentnum)) {
 			// not favorited yet, favorite it!
-			if ($star.hasClass('text-default')) {
+			if ($this.hasClass('btn-outline')) {
 				var data = {
 					bam_talentnum : talentnum
 				}
@@ -15,11 +16,11 @@ module.exports = function() {
 				self.core.resource.favorite_talent.post(data)
 				.then(function(res) {
 					// change color
-					$star.removeClass('text-default').addClass('text-warning');
+					$this.removeClass('btn-outline').addClass('btn-warning');
 				});
 			}
 			// already favorite, remove favorite!
-			else if($star.hasClass('text-warning')) {
+			else if($this.hasClass('btn-warning')) {
 				// use id as favorite id
 				var data = {
 					favoriteId : talentnum
@@ -29,7 +30,7 @@ module.exports = function() {
 				self.core.resource.favorite_talent.delete(data)
 				.then(function(res) {
 					// change color
-					$star.removeClass('text-warning').addClass('text-default');
+					$star.removeClass('btn-warning').addClass('btn-outline');
 				});
 			}
 		}

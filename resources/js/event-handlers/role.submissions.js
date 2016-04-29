@@ -31,6 +31,7 @@ handler.prototype.getProjectInfo = function() {
 
 			self.project.role = { role_id : self.roleId, likeitlist : { total : '' }, submissions : { total : '' } };
 			self.core.service.databind('#project-links', self.project )
+			self.core.service.databind('#no-submission-div', self.project )
 
 			//add active class on Find Talents nav
 			$('#find-talents-list').addClass('active');
@@ -89,12 +90,21 @@ handler.prototype.findMatches = function(append) {
 		$('#role-matches-result').hide();
 	}
 
-	self.core.resource.talent.search(data)
+	var options = {
+		bam_role_id : self.roleId
+	}
+
+	self.core.resource.talent.search(data, options)
 		.then(function(talents) {
 			_.each(talents.data, function(talent) {
 				talent.talent_role_id = self.roleId;
 				talent.talent_project_id = self.projectId;
 			});
+			console.log(talents);
+
+			if(talents.total == 0){
+				$('#no-submission-div').removeClass('hide');
+			}
 
 			self.core.service.databind('#role-matches-result', talents, append);
 			self.refreshing = false;

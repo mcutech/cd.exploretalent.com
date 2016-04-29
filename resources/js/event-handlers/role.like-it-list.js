@@ -94,11 +94,15 @@ handler.prototype.findMatches = function(append) {
 		$('#role-matches-result').hide();
 	}
 
-	self.core.resource.talent.search(data)
+	var options = {
+		bam_role_id : self.roleId
+	}
+
+	self.core.resource.talent.search(data, options)
 		.then(function(talents) {
 			_.each(talents.data, function(talent) {
 				talent.talent_role_id = self.roleId;
-				talent.talent_project_id = self.projectId;				
+				talent.talent_project_id = self.projectId;
 			});
 
 			self.core.service.databind('#role-matches-result', talents, append);

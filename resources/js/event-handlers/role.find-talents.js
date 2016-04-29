@@ -52,13 +52,11 @@ handler.prototype.refreshRole = function() {
 
 			return role.getSubmissionsCount();
 		})
-		.then(function(count) { 
+		.then(function(count) {
 			role.submissions = { total : count };
 			self.project.role = role;
 
 			self.core.service.databind('#project-links', self.project );
-
-			window.findtalent = self.project;
 		});
 
 	self.findMatches();
@@ -81,7 +79,11 @@ handler.prototype.findMatches = function(append) {
 		$('#role-matches-result').hide();
 	}
 
-	self.core.resource.talent.search(data)
+	var options = {
+		bam_role_id : self.roleId
+	}
+
+	self.core.resource.talent.search(data, options)
 		.then(function(talents) {
 			_.each(talents.data, function(talent) {
 				talent.talent_role_id = self.roleId;

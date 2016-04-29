@@ -5,6 +5,11 @@
 @stop
 
 @section('role.body')
+<div id="no-submission-div" class="alert alert-success hide">
+	No talent has applied for this particular role yet. We have matched talents already for you to choose from. Please
+	<a data-bind="/projects/<%= casting_id %>/roles/<%= role.role_id %>/find-talents" class="text-success">click here</a>
+	to go to your Role Matches and talents to your like it list.
+</div>
 <div class="panel role-item margin-top-medium">
 	<div class="row-fluid clearfix">
 		<div class="talents-wrapper">
@@ -27,10 +32,8 @@
 			<div class="talents-content">
 				@include('components.modals.talent-add-to-like-it-list')
 				@include('components.modals.share-like-it-list')
-				@include('components.modals.talent-photos')
 				@include('components.modals.talent-view-photos')
 				@include('components.modals.talent-resume')
-				@include('components.modals.invite-to-audition')
 			</div>
 		</div>
 	</div>
