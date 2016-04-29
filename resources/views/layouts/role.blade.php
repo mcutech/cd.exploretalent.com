@@ -30,7 +30,7 @@
 			</div>
 			@if (isset($likeitlist) && $likeitlist)
 				<div class="col-md-2 pull-right margin-right-zero padding-right-zero">
-					<a data-bind="/projects/<%= casting_id %>/roles/<%= role.role_id %>/like-it-list" class="pull-right btn btn-{{ isset($active) && $active == 'like-it-list' ? 'success' : 'default' }}">View Like it List and Contact Talent <span data-bind="<%= role.likeitlist.total  !== '' ? '(' + role.likeitlist.total + ')' : ''%>"></span></a>
+					<a data-bind="/projects/<%= casting_id %>/roles/<%= role.role_id %>/like-it-list" class="pull-right btn btn-{{ isset($active) && $active == 'like-it-list' ? 'success' : 'default' }}">View Like it List and Contact Talent <span id="like-it-list-total" data-bind="<%= role.likeitlist.total  !== '' ? '(' + role.likeitlist.total + ')' : ''%>"></span></a>
 				</div>
 			@endif
 			@if (isset($matches) && $matches)

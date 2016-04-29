@@ -18,20 +18,18 @@
 			<div class="talent-note-v2">
 				<div class="back-add-note-container row-fluid clearfix">
 					<a class="back-btn btn btn-outline border-radius-zero col-xs-2 padding-left-small padding-right-small border-width-zero"><span class="text-default"><i class="fa fa-chevron-left"></i></span></a>
-					<a href="#" class="add-note-btn btn btn-outline border-radius-zero col-xs-10 padding-left-small padding-right-small border-width-zero"><span class="text-default"><i class="fa fa-plus"></i> Add Note</span></a>
+					<button class="show-add-note-btn btn btn-outline border-radius-zero col-xs-10 padding-left-small padding-right-small border-width-zero" data-bind="<%= schedule.id %>" data-bind-target="data-id"><span class="text-primary"><i class="fa fa-plus"></i> Add Note</span></button>
 				</div>
 				<div class="note-item-container-holder">
 					<div id="schedule-notes" class="talent-item note-item-container padding-small">
-						<?php for($x=0; $x<=10; $x++) { ?>
-						<div class="note-item">
+						<div class="note-item" data-bind-template="#schedule-notes" data-bind-value="schedule.schedule_notes">
 							<div class="name-date">
-								<div class="name">JohnTest CD</div>
-								<div class="date">03-31-16</div>
+								<div class="name" data-bind="<%= user.bam_cd_user.getFullName() %>"></div>
+								<div class="date" data-bind="<%= moment(created_at).format('YY-MM-DD HH:mm') %>"></div>
 							</div>
-							<div class="note-body">note testing</div>
-							<a data-toggle="modal" data-target="#talent-edit-note-modal" class="edit-note-link" data-bind-target="id" id="edit-note_722724_108"><i class="fa fa-pencil"></i> Edit this note</a>
+							<div class="note-body" data-bind="<%= body %>"></div>
+							<a data-toggle="modal" data-target="#talent-edit-note-modal" class="edit-note-link"><i class="fa fa-pencil"></i> Edit this note</a>
 						</div>
-						<?php }?>
 					</div>
 				</div>
 			</div>
@@ -41,9 +39,9 @@
 				<div class="col-md-12 col-sm-12 padding-zero">
 					<div class="like-it-list-container">
 						<div class="btn-group talent-function display-block-zz-xs display-flex-sm display-block-md" data-bind-target="data-id" data-bind="<%= user.id + '-' + talent_role_id + '-' + talentnum %>">
-							<button id="add-to-like-it-list" class="btn function-item btn-block border-top-width-zero-sm-lg" data-bind="<%= schedule ? 'btn-success' : 'btn-outline' %>" data-bind-target="class">
+							<button id="add-to-like-it-list" class="btn function-item btn-block border-top-width-zero-sm-lg" data-bind="<%= schedule && schedule.id ? 'btn-success' : 'btn-outline' %>" data-bind-target="class">
 								<i class="fa fa-plus"></i>
-								<span data-bind="<%= schedule ? 'Added Like it List' : 'Add Like it List' %>" ></span>
+								<span data-bind="<%= schedule && schedule.id ? 'Added Like it List' : 'Add Like it List' %>" ></span>
 							</button>
 							<button class="favorite-button btn function-item btn-block border-top-width-zero-sm border-left-width-zero-sm border-left-width-zero-lg border-top-width-zero-sm-lg" data-bind="<%= favorite ? 'btn-warning' : 'btn-outline' %>" data-bind-target="class">
 								<i class="fa fa-star-o font-size-normal-medium" data-bind-target="class"></i>
