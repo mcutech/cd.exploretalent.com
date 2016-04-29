@@ -20,12 +20,15 @@ handler.prototype.getProjectInfo = function(e) {
 	self.core.resource.project.get(data)
 		.then(function(res) {
 			self.project = res;
-
 			var markets = _.map(self.project.market.split('>'), function(m) {
 				return { name : m };
 			});
 
 			self.project.markets = { data : markets };
+
+			// if market is N/A change market value
+			if(self.project.markets.data[0].name == 'N/A')
+				self.project.markets.data[0].name = 'All of United States';
 
 			self.core.service.databind('#project-details', self.project);
 
