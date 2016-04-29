@@ -14,6 +14,19 @@
 			</div>
 		</div>
 
+		<div class="row-fluid clearfix">
+			<div id="project-roles" class="col-md-12 form-inline project-select-option">
+				<label >Project :</label>
+				<select id="projects-list" class="select-roles form-control margin-right-normal">
+					<option data-bind-template="#projects-list" data-bind-value="data" data-bind="<%= JSON.stringify({ key : casting_id, value : name + ' (' + casting_id + ')' }) %>"></option>
+				</select>
+				<label>Role :</label>
+				<select id="roles-list" class="select-roles form-control">
+					<option data-bind-template="#roles-list" data-bind-value="data" data-bind="<%= JSON.stringify({ key : role_id, value : name + ' (' + role_id + ')' }) %>"></option>
+				</select>
+			</div>
+		</div>
+
 		<div class="role-item margin-top-medium">
 			<div class="row-fluid clearfix">
 				<div class="talents-wrapper">
