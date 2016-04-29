@@ -38,7 +38,21 @@ module.exports = function(core, user, projectId, roleId) {
 
 	$(document).on('mouseleave', '.talent-function-icon', function(){
 		$('.text-function-label').css("opacity", "0");
-	});	
+	});
+
+	//add notes function back
+	$(document).on('click', '.talent-note-v2 .back-btn', function(){
+		$(this).closest('.talent-item').find('.talent-note-v2').hide();
+		$(this).closest('.talent-item').find('.talent-photo-v2').show();
+		$(this).closest('.talent-item').find('.talent-functions-v2 ').show();
+	});
+
+	//talents add notes function
+	$(document).on('click', '.talent-function-icon.notes', function() {
+		$(this).closest('.talent-item').find('.talent-note-v2').show();
+		$(this).closest('.talent-item').find('.talent-photo-v2').hide();
+		$(this).closest('.talent-item').find('.talent-functions-v2 ').hide();
+	});
 
 	$(window).on('scroll', function() {
 		if ($(window).scrollTop() + $(window).height() > $(document).height() - 100) {

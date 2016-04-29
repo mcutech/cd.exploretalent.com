@@ -83,6 +83,17 @@ module.exports = function(core, user) {
 				else {
 					core.resource.schedule.post(data)
 						.then(function(res) {
+							var total = parseInt($('#like-it-list-total').text().replace('(', '').replace(')', ''));
+
+							if (total) {
+								total++;
+							}
+							else {
+								total = 1;
+							}
+
+							$('#like-it-list-total').text('(' + total + ')');
+
 							$button.removeClass('btn-outline').addClass('btn-success');
 							$button.find('span').text('Added LIke it List');
 							$('#add-like-it-list-modal').modal('hide');

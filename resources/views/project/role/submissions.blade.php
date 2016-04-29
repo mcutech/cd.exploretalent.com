@@ -27,10 +27,8 @@
 			<div class="talents-content">
 				@include('components.modals.talent-add-to-like-it-list')
 				@include('components.modals.share-like-it-list')
-				@include('components.modals.talent-photos')
 				@include('components.modals.talent-view-photos')
 				@include('components.modals.talent-resume')
-				@include('components.modals.invite-to-audition')
 			</div>
 		</div>
 	</div>

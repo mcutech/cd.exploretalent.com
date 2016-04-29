@@ -82,4 +82,3 @@
 		<div id="projects-pagination2" class="text-right"></div>
 	</div>
 @stop
-@include('components.modals.ghost-onboarding')
