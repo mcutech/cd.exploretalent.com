@@ -11,6 +11,8 @@ function handler(core, user, projectId, roleId) {
 
 	self.getAllProjects();
 	self.getProjectInfo();
+
+	console.log(self.user);
 }
 
 handler.prototype.getAllProjects = function(){
@@ -267,6 +269,9 @@ handler.prototype.updateCdInfo = function() {
 
 	form.phone1 = form.phone1.replace(/-/g, '');
 	form.phone2 = form.phone2.replace(/-/g, '');
+
+	// set CD to active
+	form.status = 1;
 
 	//update information
 	self.core.resource.cd_user.patch(form)
