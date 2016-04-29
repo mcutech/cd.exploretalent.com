@@ -41,7 +41,7 @@
 						<li>
 							<a href="/talents/favorite" class="nav-link">
 								<div class="primary-nav-icon"><i class="fa fa-star-o"></i></div>
-								<div class="primary-nav-text">Favorite Talent</div>
+								<div class="primary-nav-text">Favorite Talents</div>
 							</a>
 						</li>
 						<li>
