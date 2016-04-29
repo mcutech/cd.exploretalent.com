@@ -8,13 +8,13 @@
 					<li class="{{ isset($active) && $active == 'overview' ? 'active' : '' }}">
 						<a href="#" data-bind="/projects/<%= casting_id %>">Project Overview</a>
 					</li>
-					<li id="find-talents-list" class="{{ isset($active) && $active == 'find-talents' ? 'active' : '' }}">
+					<li data-bind="<%= (bam_roles.length) ? 1 : 0 %>" data-bind-target="visibility" id="find-talents-list" class="{{ isset($active) && $active == 'find-talents' ? 'active' : '' }}">
 						<a href="#" data-bind="/projects/<%= casting_id %>/roles/<%= bam_roles.length ? _.first(bam_roles).role_id : 0 %>/find-talents">Find Talents</a>
 					</li>
-					<li class="{{ isset($active) && $active == 'like-it-list' ? 'active' : '' }}">
+					<li data-bind="<%= (bam_roles.length) ? 1 : 0 %>" data-bind-target="visibility" class="{{ isset($active) && $active == 'like-it-list' ? 'active' : '' }}">
 						<a href="#" data-bind="/projects/<%= casting_id %>/roles/<%= bam_roles.length ? _.first(bam_roles).role_id : 0 %>/like-it-list">Like it List</a>
 					</li>
-					<li class="">
+					<li data-bind="<%= (bam_roles.length) ? 1 : 0 %>" data-bind-target="visibility" class="">
 						<a href="#" data-bind="/projects/<%= casting_id %>/worksheet">Worksheet</a>
 					</li>
 				</ul>
