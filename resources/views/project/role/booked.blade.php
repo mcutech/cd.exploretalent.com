@@ -47,6 +47,8 @@
 				@include('components.modals.share-like-it-list')
 				@include('components.modals.talent-view-photos')
 				@include('components.modals.talent-resume')
+				@include('components.modals.talent-add-note')
+				@include('components.modals.talent-edit-note')
 			</div>
 
 		</div>
