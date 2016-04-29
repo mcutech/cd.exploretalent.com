@@ -36,6 +36,8 @@ handler.prototype.getProjectInfo = function() {
 }
 
 handler.prototype.refreshRole = function() {
+	self.done = false;
+	self.refreshing = false;
 	self.roleId = $('#roles-list').val();
 	var role = _.find(self.project.bam_roles, function(r) {
 		return r.role_id == $('#roles-list').val();
@@ -68,6 +70,11 @@ handler.prototype.findMatches = function(append) {
 	}
 
 	append = append === true;
+
+	if (append && self.done) {
+		return;
+	}
+
 	self.page = append ? self.page + 1 : 1;
 	self.refreshing = true;
 	var data = self.getFilters();
@@ -85,12 +92,17 @@ handler.prototype.findMatches = function(append) {
 
 	self.core.resource.talent.search(data, options)
 		.then(function(talents) {
+			self.done = (talents.total < talents.per_page);
+
 			_.each(talents.data, function(talent) {
 				talent.talent_role_id = self.roleId;
 				talent.talent_project_id = self.projectId;
 			});
 
+			try {
 			self.core.service.databind('#role-matches-result', talents, append);
+			} catch(e) { }
+
 			self.refreshing = false;
 
 			$('#search-loader').hide();
