@@ -18,7 +18,7 @@
 			<div class="talent-note-v2">
 				<div class="back-add-note-container row-fluid clearfix">
 					<a class="back-btn btn btn-outline border-radius-zero col-xs-2 padding-left-small padding-right-small border-width-zero"><span class="text-default"><i class="fa fa-chevron-left"></i></span></a>
-					<a href="#" class="add-note-btn btn btn-outline border-radius-zero col-xs-10 padding-left-small padding-right-small border-width-zero"><span class="text-default"><i class="fa fa-plus"></i> Add Note</span></a>
+					<button class="show-add-note-btn btn btn-outline border-radius-zero col-xs-10 padding-left-small padding-right-small border-width-zero" data-bind="<%= schedule.id %>" data-bind-target="data-id"><span class="text-primary"><i class="fa fa-plus"></i> Add Note</span></button>
 				</div>
 				<div class="note-item-container-holder">
 					<div id="schedule-notes" class="talent-item note-item-container padding-small">
@@ -28,7 +28,7 @@
 								<div class="date" data-bind="<%= moment(created_at).format('YY-MM-DD HH:mm') %>"></div>
 							</div>
 							<div class="note-body" data-bind="<%= body %>"></div>
-							<a data-toggle="modal" data-target="#talent-edit-note-modal" class="edit-note-link" data-bind-target="id" id="edit-note_722724_108"><i class="fa fa-pencil"></i> Edit this note</a>
+							<a data-toggle="modal" data-target="#talent-edit-note-modal" class="edit-note-link"><i class="fa fa-pencil"></i> Edit this note</a>
 						</div>
 					</div>
 				</div>
