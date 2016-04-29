@@ -11,8 +11,7 @@ function handler(core, user, projectId, roleId) {
 	self.refresh();
 }
 
-handler.prototype.refresh = function() {
-	self.core.service.databind('#schedules', { data : [] });
+handler.prototype.refresh = function() { self.core.service.databind('#schedules', { data : [] });
 	$('#schedules').append('<div class="text-center"> <h1><i class="fa fa-spinner fa-spin"></i></h1> </div>');
 	var promise = $.when();
 	if (!self.campaign) {
@@ -45,8 +44,14 @@ handler.prototype.refresh = function() {
 					if (!s.conversation) {
 						s.conversation = { messages : [] };
 					}
+
+					_.each(s.conversation.messages, function(val, ind){
+						var pstdate = new Date(val.created_at);
+						pstdate.setHours(pstdate.getHours() + 15);
+						s.conversation.messages[ind].created_at = pstdate;
+					});
 				});
-				
+
 				self.core.service.databind('#campaign-details', self.campaign);
 				self.core.service.databind('#schedules', res);
 				self.core.service.paginate('#worksheet-pagination', { total : res.total, class : 'pagination', name : 'page', per_page: res.per_page });
@@ -60,7 +65,7 @@ handler.prototype.refresh = function() {
 }
 
 handler.prototype.getSchedules = function() {
-	
+
 	var data = {
 		query : [
 			[ 'join', 'bam.laret_users', 'bam.laret_users.bam_talentnum', '=', 'search.talents.talentnum' ],
@@ -309,15 +314,12 @@ handler.prototype.refreshMessages = function(scheduleId) {
 		})
 		.then(function(res) {
 			conversation.campaign = _.first(res.data);
-			console.log(conversation);
 			_.each(conversation.messages, function(val, ind){
 				var pstdate = new Date(val.created_at);
-				pstdate.setHours(pstdate.getHours() + 8);
-				console.log(ind);
+				pstdate.setHours(pstdate.getHours() + 15);
 				conversation.messages[ind].created_at = pstdate;
 			});
-			/*var pstdate = moment(conversation.campaign.created_at);
-			console.log(pstdate);*/
+			$('#message-modal #messages .per-message:not([data-bind-template])').remove();
 			self.core.service.databind('#message-modal', conversation);
 			$('#message-modal #messages-container').animate({ scrollTop: $('#message-modal #messages').height() }, 1000);
 			self.conversation = conversation;
