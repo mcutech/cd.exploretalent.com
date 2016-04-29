@@ -28,7 +28,7 @@
 								<div class="date" data-bind="<%= moment(created_at).format('YY-MM-DD HH:mm') %>"></div>
 							</div>
 							<div class="note-body" data-bind="<%= body %>"></div>
-							<a data-toggle="modal" data-target="#talent-edit-note-modal" class="edit-note-link"><i class="fa fa-pencil"></i> Edit this note</a>
+							<a href="#" class="show-edit-note-btn" data-bind="<%= schedule_id + '-' + id %>" data-bind-target="data-id"><i class="fa fa-pencil"></i> Edit this note</a>
 						</div>
 					</div>
 				</div>
