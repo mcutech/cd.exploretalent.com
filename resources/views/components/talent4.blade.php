@@ -40,7 +40,7 @@
 					<div class="like-it-list-container">
 						<div class="btn-group talent-function display-block-zz-xs display-flex-sm display-block-md" data-bind-target="data-id" data-bind="<%= user.id + '-' + talent_role_id + '-' + talentnum %>">
 							<button id="add-to-like-it-list" class="btn function-item btn-block border-top-width-zero-sm-lg" data-bind="<%= schedule && schedule.id ? 'btn-success' : 'btn-outline' %>" data-bind-target="class">
-								<i class="fa fa-plus"></i>
+								<i class="fa fa-check"></i>
 								<span data-bind="<%= schedule && schedule.id ? 'Added Like it List' : 'Add Like it List' %>" ></span>
 							</button>
 							<button class="favorite-button btn function-item btn-block border-top-width-zero-sm border-left-width-zero-sm border-left-width-zero-lg border-top-width-zero-sm-lg" data-bind="<%= favorite ? 'btn-warning' : 'btn-outline' %>" data-bind-target="class">
