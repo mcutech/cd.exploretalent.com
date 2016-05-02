@@ -17,8 +17,8 @@
 				<div id="utility-buttons" class="row-fluid clearfix margin-top-small">
 					<div class="col-md-12 padding-zero">
 						<button id="add-note-btn" class="btn btn-success btn-lg">Add Note</button>
-						<span class="note-saved-success text-success margin-left-small display-none">Note has been saved.</span>
-						<span class="note-required text-danger margin-left-small display-none">This field is required.</span>
+						<span id="add-note-success" class="text-success margin-left-small display-none">Note has been saved.</span>
+						<span id="add-note-required" class="text-danger margin-left-small display-none">This field is required.</span>
 					</div>
 				</div>
 
