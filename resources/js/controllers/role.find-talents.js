@@ -3,6 +3,7 @@ module.exports = function(core, user, projectId, roleId) {
 
 	$('#roles-list').on('change', handler.refreshRole);
 	$('#search-button').on('click', handler.findMatches);
+	$('#add-all-button').on('click', handler.addAll);
 
 	//refine search toggle location search
 	$(document).on('click', '#location-search-change-btn', function(e){

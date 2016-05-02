@@ -40,6 +40,7 @@ handler.prototype.getProjectInfo = function() {
 handler.prototype.refreshRole = function() {
 	self.done = false;
 	self.refreshing = false;
+	self.first_load = false;
 	self.roleId = $('#roles-list').val();
 	var role = _.find(self.project.bam_roles, function(r) {
 		return r.role_id == $('#roles-list').val();
