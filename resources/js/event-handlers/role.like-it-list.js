@@ -254,6 +254,19 @@ handler.prototype.refreshInvitation = function() {
 				$('#invitetoauditionbutton').attr("disabled", true);
 		}
 		else {
+			var role = _.find(self.project.bam_roles, function(r) {
+				return r.role_id == $('#roles-list').val();
+			});
+
+			role.getLikeItListCount()
+				.then(function(count) {
+				role.likeitlist = { total : count };
+
+				self.core.service.databind('#invite-to-audition-modal', role);					
+			});
+			
+			
+			
 			$("#invitetoaudition-text").text('');
 			$('#invitetoauditionbutton').attr("disabled", false);
 		}
