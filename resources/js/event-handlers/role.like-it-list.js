@@ -40,7 +40,7 @@ handler.prototype.getProjectInfo = function() {
 handler.prototype.refreshRole = function() {
 	self.done = false;
 	self.refreshing = false;
-	self.first_load = false;
+	self.first_load = true;
 	self.roleId = $('#roles-list').val();
 	var role = _.find(self.project.bam_roles, function(r) {
 		return r.role_id == $('#roles-list').val();
@@ -265,11 +265,11 @@ handler.prototype.refreshInvitation = function() {
 				.then(function(count) {
 				role.likeitlist = { total : count };
 
-				self.core.service.databind('#invite-to-audition-modal', role);					
+				self.core.service.databind('#invite-to-audition-modal', role);
 			});
-			
-			
-			
+
+
+
 			$("#invitetoaudition-text").text('');
 			$('#invitetoauditionbutton').attr("disabled", false);
 		}
@@ -333,7 +333,7 @@ handler.prototype.removeAllChecked = function() {
 				}
 
 			}
-			
+
 		});
 
 		$.each(idArray, function(index, value) {
