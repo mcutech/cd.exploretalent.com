@@ -12,6 +12,17 @@
 				<div class="row clearfix">
 					@include('project.components.filter')
 				</div>
+				<div class="row margin-bottom-normal like-it-list-only hide">
+					<div class="col-md-12 margin-left-normal">
+						<div class="col-md-4">
+							<button id="mark-all-talents-as-checked-btn" class="btn btn-default">Check All</button>
+							<button id="remove-all-checked-talents-btn" class="btn btn-danger" disabled>Remove All Checked</button>
+						</div>
+						<div class="col-md-4 font-size-normal-medium margin-top-small">
+							You have <span id="checked-talents-counter" class="text-bold">0</span> talents checked.
+						</div>
+					</div>
+				</div>
 				<div class="row">
 					<div class="col-md-12 talents-search-result" id="role-matches-result">
 						<div class="row" id="role-matches">
