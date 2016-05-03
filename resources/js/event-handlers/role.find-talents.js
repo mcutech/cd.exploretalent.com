@@ -36,6 +36,8 @@ handler.prototype.getProjectInfo = function() {
 }
 
 handler.prototype.refreshRole = function() {
+	self.done = false;
+	self.refreshing = false;
 	self.roleId = $('#roles-list').val();
 	var role = _.find(self.project.bam_roles, function(r) {
 		return r.role_id == $('#roles-list').val();
@@ -45,11 +47,14 @@ handler.prototype.refreshRole = function() {
 
 	role.bam_casting = self.project;
 	self.core.service.databind('#role-filter-form', role);
+	$('#add-all-button span').text('Add All to Like it List');
+	$('#add-all-button').removeClass('disabled');
 
 	role.getLikeItListCount()
 		.then(function(count) {
 			role.likeitlist = { total : count };
 
+			self.core.service.databind('#add-all-total', role)
 			return role.getSubmissionsCount();
 		})
 		.then(function(count) {
@@ -68,6 +73,11 @@ handler.prototype.findMatches = function(append) {
 	}
 
 	append = append === true;
+
+	if (append && self.done) {
+		return;
+	}
+
 	self.page = append ? self.page + 1 : 1;
 	self.refreshing = true;
 	var data = self.getFilters();
@@ -85,12 +95,24 @@ handler.prototype.findMatches = function(append) {
 
 	self.core.resource.talent.search(data, options)
 		.then(function(talents) {
+			self.done = (talents.total < talents.per_page);
+
 			_.each(talents.data, function(talent) {
 				talent.talent_role_id = self.roleId;
 				talent.talent_project_id = self.projectId;
 			});
 
+			if(talents.total == 0) {
+				$('#add-all-div').addClass('hide');
+			}
+			else {
+				$('#add-all-div').removeClass('hide');
+			}
+
+			try {
 			self.core.service.databind('#role-matches-result', talents, append);
+			} catch(e) { }
+
 			self.refreshing = false;
 
 			$('#search-loader').hide();
@@ -196,6 +218,16 @@ handler.prototype.getFilters = function() {
 	}
 
 	return data;
+}
+
+handler.prototype.addAll = function() {
+	var data = self.getFilters();
+
+	self.core.service.rest.post(self.core.config.api.base + '/cd/talentci/import/' + self.roleId, data)
+		.then(function() {
+			$('#add-all-button span').text('Added to Like it List');
+			$('#add-all-button').addClass('disabled');
+		});
 }
 
 module.exports = function(core, user, projectId, roleId) {

@@ -11,6 +11,11 @@ handler.prototype.refresh = function(append){
 	}
 
 	append = append === true;
+
+	if (append && self.done) {
+		return;
+	}
+
 	self.page = append ? self.page + 1 : 1;
 	self.refreshing = true;
 
@@ -24,6 +29,8 @@ handler.prototype.refresh = function(append){
 
 	self.core.resource.favorite_talent.get()
 	.then(function(result){
+		self.done = (result.total < result.per_page);
+
 		var talentnums = _.map(result.data, function(talent) {
 			return talent.bam_talentnum;
 		});

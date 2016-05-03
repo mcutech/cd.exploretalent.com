@@ -38,6 +38,9 @@ handler.prototype.getProjectInfo = function() {
 }
 
 handler.prototype.refreshRole = function() {
+	self.done = false;
+	self.refreshing = false;
+	self.first_load = true;
 	self.roleId = $('#roles-list').val();
 	var role = _.find(self.project.bam_roles, function(r) {
 		return r.role_id == $('#roles-list').val();
@@ -69,7 +72,6 @@ handler.prototype.refreshRole = function() {
 }
 
 handler.prototype.findMatches = function(append) {
-
 	var form = self.core.service.form.serializeObject('#role-filter-form');
 
 	if (self.refreshing) {
@@ -77,6 +79,11 @@ handler.prototype.findMatches = function(append) {
 	}
 
 	append = append === true;
+
+	if (append && self.done) {
+		return;
+	}
+
 	self.page = append ? self.page + 1 : 1;
 	self.refreshing = true;
 	var data = self.getFilters();
@@ -100,17 +107,27 @@ handler.prototype.findMatches = function(append) {
 
 	self.core.resource.talent.search(data, options)
 		.then(function(talents) {
+			self.done = (talents.total < talents.per_page);
+
 			_.each(talents.data, function(talent) {
 				talent.talent_role_id = self.roleId;
 				talent.talent_project_id = self.projectId;
 			});
-
+			console.log(talents.total);
+			try {
 			self.core.service.databind('#role-matches-result', talents, append);
+			} catch(e) { }
+
 			self.refreshing = false;
 
 			$('#search-loader').hide();
+
 			if (!append) {
 				$('#role-matches-result').show();
+
+				if(talents.total > 0) {
+					$('.like-it-list-only').removeClass('hide');
+				}
 			}
 		});
 }
@@ -243,6 +260,19 @@ handler.prototype.refreshInvitation = function() {
 				$('#invitetoauditionbutton').attr("disabled", true);
 		}
 		else {
+			var role = _.find(self.project.bam_roles, function(r) {
+				return r.role_id == $('#roles-list').val();
+			});
+
+			role.getLikeItListCount()
+				.then(function(count) {
+				role.likeitlist = { total : count };
+
+				self.core.service.databind('#invite-to-audition-modal', role);
+			});
+
+
+
 			$("#invitetoaudition-text").text('');
 			$('#invitetoauditionbutton').attr("disabled", false);
 		}
@@ -284,6 +314,79 @@ handler.prototype.sendInvites = function() {
 
 			self.refreshInvitation();
 		});
+}
+
+handler.prototype.removeAllChecked = function() {
+
+	if(confirm('Are you sure you want to remove checked talents from your Like it List?')) {
+
+		var checkbox = $('.like-it-list-checkbox');
+		var idArray = [];
+
+		$.each(checkbox, function(index, value) {
+
+			if($(this).hasClass('checked')) {
+
+				var id = $(this).attr('id');
+
+				if(id) {
+					id = id.split('_');
+					id = id[1];
+					idArray.push(id);
+				}
+
+			}
+
+		});
+
+		$.each(idArray, function(index, value) {
+
+			var data = {
+				scheduleId : value,
+				rating : 0
+			};
+
+			self.core.resource.schedule.put(data)
+				.then(function(res) {
+
+					self.getProjectInfo();
+
+				});
+
+		});
+	}
+
+}
+
+handler.prototype.countCheckedTalents = function() {
+
+	var checked_talents = [];
+
+	var all_checkboxes = $('.like-it-list-checkbox').length;
+	var checked = $('.like-it-list-checkbox.checked');
+
+	$.each(checked, function(index, value) {
+		checked_talents.push(value);
+	});
+
+	var length = checked_talents.length;
+
+	$('#checked-talents-counter').text(length);
+
+}
+
+handler.prototype.removeAllLikeItList = function() {
+
+	if (confirm('Are you sure you want to remove all Like It List entries?')) {
+		self.project.role.deleteLikeItList()
+		.then(function() {
+
+			alert('Like It List entries removed.');
+			self.getProjectInfo();
+
+		});
+	}
+
 }
 
 module.exports = function(core, user, projectId, roleId) {

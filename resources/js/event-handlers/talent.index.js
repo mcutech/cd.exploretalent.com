@@ -14,6 +14,11 @@ handler.prototype.refresh = function(append) {
 	}
 
 	append = append === true;
+
+	if (append && self.done) {
+		return;
+	}
+
 	self.page = append ? self.page + 1 : 1;
 	self.refreshing = true;
 
@@ -29,6 +34,8 @@ handler.prototype.refresh = function(append) {
 
 	self.core.resource.talent.search(data)
 		.then(function(talents) {
+			self.done = (talents.total < talents.per_page);
+
 			_.each(talents.data, function(talent) {
 				talent.talent_role_id = 0;
 				talent.talent_project_id = 0;

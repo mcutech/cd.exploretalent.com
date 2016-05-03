@@ -1,6 +1,14 @@
 <div class="{{ $class or 'col-md-2' }} talent-item-container" data-bind-template="{{ $databind['template'] or '' }}" data-bind-value="{{ $databind['value'] or '' }}">
 	<div class="talent-item">
 		<div class="talent-photo-and-note-container">
+			<ul class="talent-functions-likeitlist like-it-list-only list-unstyled hide">
+				<li>
+					<label class="checkbox-inline" title="Mark talent as checked">
+						<input type="checkbox" class="px">
+						<span class="lbl like-it-list-checkbox" data-bind="<%= (schedule) ? 'checkbox_' + schedule.id : 0 %>" data-bind-target="id"></span>
+					</label>
+				</li>
+			</ul>
 			<ul class="talent-functions-v2 list-unstyled">
 				<li id="view-profile"><span class="text-function-label profile">View Profile</span><a onclick="window.open(this.href, 'mywin', 'left=0,top=0,width=769,height=650,toolbar=1,resizable=0'); return false;" data-bind="/talents/<%= talentnum %>?casting_id=<%= talent_project_id %>&role_id=<%= talent_role_id %>" class="talent-function-icon profile"><i class="fa fa-user"></i></a></li>
 				<li data-bind="<%= (bam_talent_media2.length) ? '1' : '' %>" data-bind-target="visibility"><span class="text-function-label photos">View Photos</span><a data-toggle="modal" data-bind="<%= talentnum %>" data-bind-target="data-id" id="talent-photo" data-target="#talent-view-photos-modal" class="talent-function-icon photos"><i class="fa fa-picture-o"></i></a></li>
@@ -39,9 +47,10 @@
 				<div class="col-md-12 col-sm-12 padding-zero">
 					<div class="like-it-list-container">
 						<div class="btn-group talent-function display-block-zz-xs display-flex-sm display-block-md" data-bind-target="data-id" data-bind="<%= user.id + '-' + talent_role_id + '-' + talentnum %>">
-							<button id="add-to-like-it-list" class="btn function-item btn-block border-top-width-zero-sm-lg" data-bind="<%= schedule && schedule.id ? 'btn-success' : 'btn-outline' %>" data-bind-target="class">
+							<button id="add-to-like-it-list" class="btn add-to-like-it-list function-item btn-block border-top-width-zero-sm-lg" data-bind="<%= schedule && schedule.id ? 'btn-success liked-talent' : 'btn-outline' %>" data-bind-target="class">
+								<input type="hidden" data-bind="<%= schedule && schedule.id ? schedule.id : 0 %>" class="like-it-list-schedule-id">
 								<i class="fa fa-check"></i>
-								<span data-bind="<%= schedule && schedule.id ? 'Added Like it List' : 'Add Like it List' %>" ></span>
+								<span data-bind="<%= schedule && schedule.id ? 'Added to Like it List' : 'Add to Like it List' %>"></span>
 							</button>
 							<button class="favorite-button btn function-item btn-block border-top-width-zero-sm border-left-width-zero-sm border-left-width-zero-lg border-top-width-zero-sm-lg" data-bind="<%= favorite ? 'btn-warning' : 'btn-outline' %>" data-bind-target="class">
 								<i class="fa fa-star-o font-size-normal-medium" data-bind-target="class"></i>

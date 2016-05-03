@@ -1,7 +1,7 @@
 @extends('layouts.role', [ 'active' => 'like-it-list', 'pages' => [ [ 'name' => 'My Projects', 'url' => '/projects' ], [ 'name' => 'Project Overview', 'url' => '../.././' ], [ 'name' => 'Like It List', 'url' => './like-it-list', 'active' => true ] ] , 'likeitlist' => false , 'matches' => true])
 
 @section('sidebar.page-header')
-	<i class="fa fa-th-list page-header-icon"></i> Like It List - <b data-bind="<%= name %>"></b>
+	<i class="fa fa-th-list page-header-icon"></i> Like It List - <b data-bind="<%= name + ' ' + '(#' + casting_id + ')' %>"></b>
 @stop
 
 @section('role.body')
@@ -11,6 +11,20 @@
 			<div class="talents-search-filter-content">
 				<div class="row clearfix">
 					@include('project.components.filter')
+				</div>
+				<div class="row margin-bottom-normal like-it-list-only hide">
+					<div class="col-md-12 margin-left-normal">
+						<div class="col-md-4">
+							<button id="mark-all-talents-as-checked-btn" class="btn btn-default">Check All</button>
+							<button id="remove-all-checked-talents-btn" class="btn btn-danger" disabled>Remove All Checked</button>
+						</div>
+						<div class="col-md-4 font-size-normal-medium margin-top-small">
+							You have <span id="checked-talents-counter" class="text-bold">0</span> talents checked.
+						</div>
+						<div class="col-md-4 text-align-right padding-right-large">
+							<button id="remove-all-like-it-list" class="btn btn-danger">Empty Like it List</button>
+						</div>
+					</div>
 				</div>
 				<div class="row">
 					<div class="col-md-12 talents-search-result" id="role-matches-result">

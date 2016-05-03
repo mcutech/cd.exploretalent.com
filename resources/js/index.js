@@ -19,6 +19,7 @@ jscore.run(function(core) {
 	if (qs.access_token) {
 		localStorage.setItem('access_token', qs.access_token);
 		localStorage.setItem('refresh_token', qs.refresh_token);
+		localStorage.setItem('access_date', qs.access_date);
 		core.service.rest.settings.headers = { Authorization : 'Bearer ' + qs.access_token };
 	}
 

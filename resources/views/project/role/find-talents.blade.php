@@ -2,7 +2,7 @@
 false, 'pages' => [ [ 'name' => 'My Projects', 'url' => '/projects' ], [ 'name' => 'Project Overview', 'url' => '../.././' ], [ 'name' => 'Find Talents', 'url' => './find-talents', 'active' => true ] ] , 'likeitlist' => true, 'matches' => false])
 
 @section('sidebar.page-header')
-<i class="fa fa-th-list page-header-icon"></i> Find Talents - <b data-bind="<%= name %>"></b>
+<i class="fa fa-th-list page-header-icon"></i> Find Talents - <b data-bind="<%= name + ' ' + '(#' + casting_id + ')' %>"></b>
 @stop
 
 @section('role.body')
@@ -12,6 +12,12 @@ false, 'pages' => [ [ 'name' => 'My Projects', 'url' => '/projects' ], [ 'name' 
 			<div class="talents-search-filter-content">
 				<div class="row clearfix">
 					@include('project.components.filter')
+				</div>
+				<div class="row" id="add-all-div">
+					<div class="col-md-12 padding-left-medium padding-bottom-medium">
+						<button id="add-all-button" class="btn btn-success margin-right-normal"><i class="fa fa-check"></i> <span>Add All to Like it List</span></button>
+						You have <span id="add-all-total" data-bind="<%= likeitlist.total %>">0</span> talents on your like it list.
+					</div>
 				</div>
 				<div class="row">
 					<div class="col-md-12 talents-search-result" id="role-matches-result">
