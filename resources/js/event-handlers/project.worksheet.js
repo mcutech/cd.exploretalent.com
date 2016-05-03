@@ -24,6 +24,9 @@ handler.prototype.refreshProjects = function() {
 }
 
 handler.prototype.refreshList = function() {
+
+	var qs = self.core.service.query_string();
+
 	var data = {
 		query : [
 			[ 'select', 'roles.role_id' ],
@@ -51,9 +54,11 @@ handler.prototype.refreshList = function() {
 				[ 'whereIn', 'bam_role_id', roleIds ],
 				[ 'with', 'bam_role.bam_casting' ],
 				[ 'orderBy', 'created_at', 'DESC' ]
-			]
-		}
-
+			],
+			page : qs.page || 1,
+			per_page : 25
+		};
+		
 		return self.core.resource.campaign.get(data2);
 	})
 	.then(function(res) {
@@ -83,6 +88,9 @@ handler.prototype.refreshList = function() {
 
 		self.core.service.databind('#no-casting-div', self.campaigns);
 		self.core.service.databind('#campaigns-list', self.campaigns);
+		self.core.service.paginate('#worksheet-pagination', { total : self.campaigns.total, class : 'pagination', name : 'page', per_page: self.campaigns.per_page });
+		self.core.service.paginate('#worksheet-pagination2', { total : self.campaigns.total, class : 'pagination', name : 'page', per_page: self.campaigns.per_page });
+
 	});
 }
 
