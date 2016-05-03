@@ -30,7 +30,7 @@ module.exports = function() {
 				self.core.resource.favorite_talent.delete(data)
 				.then(function(res) {
 					// change color
-					$star.removeClass('btn-warning').addClass('btn-outline');
+					$this.removeClass('btn-warning').addClass('btn-outline');
 				});
 			}
 		}
