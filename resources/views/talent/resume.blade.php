@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('master.body')
-<div class="talent-resume-wrapper">
+<div class="talent-resume-wrapper hide">
 
 	<!-- project/role and actions -->
 	<div id="project-role-actions" class="project-role-actions">
@@ -33,8 +33,7 @@
 			<div class="row-fluid clearfix">
 				<div class="col-sm-12 padding-zero">
 					<h3 class="margin-zero text-bold text-align-center-zz-xs">
-						<span data-bind="<%= getFullName() %>"></span>
-						,<span data-bind="<%= getAge() %>"></span>
+						<span data-bind="<%= getFullName() %>"></span>, <span data-bind="<%= getAge() %>"></span>
 					</h3>
 					<div class="skills-link text-align-center-zz-xs">
 						<a id="acting-modeling-link" href="#acting-modeling">Acting/Modeling</a>

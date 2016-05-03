@@ -1,7 +1,7 @@
 @extends('layouts.project', [ 'active' => '', 'pages' => [ [ 'name' => 'My Projects', 'url' => '/projects' ], [ 'name' => 'Project Overview', 'url' => '../.././' ], [ 'name' => 'Callbacks', 'url' => './callbacks', 'active' => true ] ] ])
 
 @section('sidebar.page-header')
-<i class="fa fa-th-list page-header-icon"></i> Callbacks - <b data-bind="<%= name + ' ' + '(#' + casting_id + ')' %>"></b>
+<i class="fa fa-th-list page-header-icon"></i> Callbacks - <b data-bind="<%= name + ' ' + '(' + casting_id + ')' %>"></b>
 @stop
 
 @section('project.body')
