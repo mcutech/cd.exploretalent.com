@@ -143,7 +143,7 @@ module.exports = function(core, user) {
 							$button.find('.like-it-list-schedule-id').val(res.id);
 							$button.removeClass('btn-outline').addClass('btn-success liked-talent');
 							$button.find('i').removeClass('fa-plus').addClass('fa-check');
-							$button.find('span').text('Added Like it List');
+							$button.find('span').text('Added to Like it List');
 							$('#add-like-it-list-modal').modal('hide');
 						});
 				}

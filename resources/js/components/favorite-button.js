@@ -3,7 +3,7 @@ module.exports = function() {
 		var $this = $(this);
 		var id = $this.parent().attr('data-id');
 		id = id.split('-');
-		var talentnum = id.length > 2 ? id[2] : '';
+		var talentnum = id.length > 2 ? id[2] : id[0];
 
 		if (parseInt(talentnum)) {
 			// not favorited yet, favorite it!
@@ -17,6 +17,7 @@ module.exports = function() {
 				.then(function(res) {
 					// change color
 					$this.removeClass('btn-outline').addClass('btn-warning');
+					$this.find('.favorite-button-text').text('Added to Favorites');
 				});
 			}
 			// already favorite, remove favorite!
@@ -31,6 +32,7 @@ module.exports = function() {
 				.then(function(res) {
 					// change color
 					$this.removeClass('btn-warning').addClass('btn-outline');
+					$this.find('.favorite-button-text').text('Add to Favorites');
 				});
 			}
 		}
