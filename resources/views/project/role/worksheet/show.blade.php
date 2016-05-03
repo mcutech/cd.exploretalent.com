@@ -10,8 +10,8 @@
 			<div id="campaign-details" class="col-md-12">
 				<div class="panel">
 					<div class="panel-body">
-						<h4 class="margin-bottom-zero-small" data-bind="Project: <%= bam_role.bam_casting.name + ' (#' + bam_role.bam_casting.casting_id + ')' %>"></h4>
-						<div data-bind="Role: <%= bam_role.name + ' (#' + bam_role.role_id + ')' %>"></div>
+						<h4 class="margin-bottom-zero-small" data-bind="Project: <%= bam_role.bam_casting.name + ' (' + bam_role.bam_casting.casting_id + ')' %>"></h4>
+						<div data-bind="Role: <%= bam_role.name + ' (' + bam_role.role_id + ')' %>"></div>
 						<div data-bind="Status: <%= status == 0 ? 'Pending' : (status >= 1 ? 'Approved' : 'Rejected') %>"></div>
 						<div data-bind="Message: <%= description %>"></div>
 					</div>
