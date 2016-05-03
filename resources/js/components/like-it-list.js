@@ -60,7 +60,7 @@ module.exports = function(core, user) {
 				self.core.resource.schedule.put(data)
 					.then(function(res) {
 						
-						$button.removeClass('btn-success').addClass('btn-outline');
+						$button.removeClass('btn-success liked-talent').addClass('btn-outline');
 						$button.find('span').text('Add to Like it List');
 
 					});
@@ -136,10 +136,14 @@ module.exports = function(core, user) {
 								total = 1;
 							}
 
+							console.log(res);
+
 							$('#like-it-list-total').text('(' + total + ')');
 
-							$button.removeClass('btn-outline').addClass('btn-success');
-							$button.find('span').text('Added to Like it List');
+							$button.find('.like-it-list-schedule-id').val(res.id);
+							$button.removeClass('btn-outline').addClass('btn-success liked-talent');
+							$button.find('i').removeClass('fa-plus').addClass('fa-check');
+							$button.find('span').text('Added Like it List');
 							$('#add-like-it-list-modal').modal('hide');
 						});
 				}
