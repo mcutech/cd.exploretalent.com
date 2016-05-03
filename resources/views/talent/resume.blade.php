@@ -14,6 +14,7 @@
 			</div>
 			<div class="col-md-3 col-sm-4 col-xs-4" data-bind="<%= talent.user.id + '-' + role_id %>" data-bind-target="data-id">
 				<button id="add-to-like-it-list" class="btn btn-outline btn-sm btn-block add-to-like-it-list">
+					<input type="hidden" class="like-it-list-schedule-id">
 					<i class="fa fa-plus"></i>
 					<span>Add to Like it List</span>
 				</button>
