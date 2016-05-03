@@ -113,7 +113,7 @@ handler.prototype.findMatches = function(append) {
 				talent.talent_role_id = self.roleId;
 				talent.talent_project_id = self.projectId;
 			});
-			console.log(talents.total);
+
 			try {
 			self.core.service.databind('#role-matches-result', talents, append);
 			} catch(e) { }
