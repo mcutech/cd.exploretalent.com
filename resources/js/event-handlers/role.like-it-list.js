@@ -128,6 +128,9 @@ handler.prototype.findMatches = function(append) {
 				if(talents.total > 0) {
 					$('.like-it-list-only').removeClass('hide');
 				}
+				else {
+					$('.like-it-list-only').addClass('hide');
+				}
 			}
 		});
 }
