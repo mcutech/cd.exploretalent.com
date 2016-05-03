@@ -21,6 +21,9 @@
 						<div class="col-md-4 font-size-normal-medium margin-top-small">
 							You have <span id="checked-talents-counter" class="text-bold">0</span> talents checked.
 						</div>
+						<div class="col-md-4 text-align-right padding-right-large">
+							<button id="remove-all-like-it-list" class="btn btn-danger">Empty Like it List</button>
+						</div>
 					</div>
 				</div>
 				<div class="row">

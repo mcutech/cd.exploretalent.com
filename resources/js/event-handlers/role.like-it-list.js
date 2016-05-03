@@ -113,7 +113,7 @@ handler.prototype.findMatches = function(append) {
 				talent.talent_role_id = self.roleId;
 				talent.talent_project_id = self.projectId;
 			});
-
+			console.log(talents.total);
 			try {
 			self.core.service.databind('#role-matches-result', talents, append);
 			} catch(e) { }
@@ -124,7 +124,10 @@ handler.prototype.findMatches = function(append) {
 
 			if (!append) {
 				$('#role-matches-result').show();
-				$('.like-it-list-only').removeClass('hide');
+
+				if(talents.total > 0) {
+					$('.like-it-list-only').removeClass('hide');
+				}
 			}
 		});
 }
@@ -346,7 +349,6 @@ handler.prototype.removeAllChecked = function() {
 			self.core.resource.schedule.put(data)
 				.then(function(res) {
 
-					alert('Removed from like it list.');
 					self.getProjectInfo();
 
 				});
@@ -369,10 +371,21 @@ handler.prototype.countCheckedTalents = function() {
 
 	var length = checked_talents.length;
 
-
-	console.log(length);
-
 	$('#checked-talents-counter').text(length);
+
+}
+
+handler.prototype.removeAllLikeItList = function() {
+
+	if (confirm('Are you sure you want to remove all Like It List entries?')) {
+		self.project.role.deleteLikeItList()
+		.then(function() {
+
+			alert('Like It List entries removed.');
+			self.getProjectInfo();
+
+		});
+	}
 
 }
 

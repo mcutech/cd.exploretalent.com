@@ -15,8 +15,8 @@ false, 'pages' => [ [ 'name' => 'My Projects', 'url' => '/projects' ], [ 'name' 
 				</div>
 				<div class="row" id="add-all-div">
 					<div class="col-md-12 padding-left-medium padding-bottom-medium">
-						<button id="add-all-button" class="btn btn-success"><i class="fa fa-check"></i> <span>Add All to Like it List</span></button>
-						You have <span id="add-all-total" data-bind="<%= likeitlist.total %>">0</span> talents on you like it list.
+						<button id="add-all-button" class="btn btn-success margin-right-normal"><i class="fa fa-check"></i> <span>Add All to Like it List</span></button>
+						You have <span id="add-all-total" data-bind="<%= likeitlist.total %>">0</span> talents on your like it list.
 					</div>
 				</div>
 				<div class="row">

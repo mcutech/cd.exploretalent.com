@@ -4,44 +4,88 @@ module.exports = function(core, user) {
 	var bam_role_id;
 	var $button;
 
-	$(document).on('click', '#add-to-like-it-list', function() {
-		$('#add-like-it-list-modal #casting-list').val(-1).select2();
-		$('#add-like-it-list-modal #role-list').val(-1).select2();
+	$(document).on('click', '.add-to-like-it-list', function() {
 
-		var promise = $.when();
-		var $this = $(this);
-		$button = $this;
+		if(!$(this).hasClass('liked-talent')) { // Add
+			$('#add-like-it-list-modal #casting-list').val(-1).select2();
+			$('#add-like-it-list-modal #role-list').val(-1).select2();
 
-		var id = $this.parent().attr('data-id');
-		id = id.split('-');
-		user_id = id[0];
+			var promise = $.when();
+			var $this = $(this);
+			$button = $this;
 
-		if (id.length > 1 && parseInt(id[1])) {
-			bam_role_id = id[1];
-			addToLikeItList();
-		}
-		else {
-			$('#add-like-it-list-modal').modal('show');
+			var id = $this.parent().attr('data-id');
+			id = id.split('-');
+			user_id = id[0];
 
-			if (!projects) {
-				var data = {
-					q : [
-						[ 'with', 'bam_roles' ]
-					]
-				}
-
-				promise = core.resource.project.get(data);
+			if (id.length > 1 && parseInt(id[1])) {
+				bam_role_id = id[1];
+				addToLikeItList();
 			}
+			else {
+				$('#add-like-it-list-modal').modal('show');
 
-			promise.then(function(res) {
 				if (!projects) {
-					projects = res;
+					var data = {
+						q : [
+							[ 'with', 'bam_roles' ]
+						]
+					}
+
+					promise = core.resource.project.get(data);
 				}
 
-				core.service.databind('#add-like-it-list-modal #casting-list', projects);
-			});
+				promise.then(function(res) {
+					if (!projects) {
+						projects = res;
+					}
+
+					core.service.databind('#add-like-it-list-modal #casting-list', projects);
+				});
+			}
 		}
+		else { // Remove
+			if(confirm('Are you sure you want to remove this talent from your Like it List?')) {
+
+				var $this = $(this);
+				$button = $this;
+
+				var scheduleId = $button.find('.like-it-list-schedule-id').val();
+
+				var data = {
+					scheduleId : scheduleId,
+					rating : 0
+				};
+
+				self.core.resource.schedule.put(data)
+					.then(function(res) {
+						
+						$button.removeClass('btn-success').addClass('btn-outline');
+						$button.find('span').text('Add to Like it List');
+
+					});
+			}	
+		}
+		
 	});
+
+	$(document).on('mouseenter', '.add-to-like-it-list', function(){
+
+		if($(this).hasClass('btn-success')) {
+			$(this).attr('title', 'Remove from Like it List');
+			$(this).removeClass('btn-success');
+			$(this).addClass('btn-danger');
+		}
+		
+	}).on('mouseleave', '.add-to-like-it-list', function(){
+
+		if($(this).hasClass('btn-danger')) {
+			$(this).removeAttr('title');
+		    $(this).removeClass('btn-danger');
+			$(this).addClass('btn-success');
+		}	
+
+    });
 
 	$('#add-like-it-list-modal #casting-list').on('change', function() {
 		var project = _.find(projects.data, function(p) {
@@ -95,7 +139,7 @@ module.exports = function(core, user) {
 							$('#like-it-list-total').text('(' + total + ')');
 
 							$button.removeClass('btn-outline').addClass('btn-success');
-							$button.find('span').text('Added LIke it List');
+							$button.find('span').text('Added to Like it List');
 							$('#add-like-it-list-modal').modal('hide');
 						});
 				}

@@ -47,9 +47,10 @@
 				<div class="col-md-12 col-sm-12 padding-zero">
 					<div class="like-it-list-container">
 						<div class="btn-group talent-function display-block-zz-xs display-flex-sm display-block-md" data-bind-target="data-id" data-bind="<%= user.id + '-' + talent_role_id + '-' + talentnum %>">
-							<button id="add-to-like-it-list" class="btn function-item btn-block border-top-width-zero-sm-lg" data-bind="<%= schedule && schedule.id ? 'btn-success' : 'btn-outline' %>" data-bind-target="class">
+							<button id="add-to-like-it-list" class="btn add-to-like-it-list function-item btn-block border-top-width-zero-sm-lg" data-bind="<%= schedule && schedule.id ? 'btn-success liked-talent' : 'btn-outline' %>" data-bind-target="class">
+								<input type="hidden" data-bind="<%= schedule && schedule.id ? schedule.id : 0 %>" class="like-it-list-schedule-id">
 								<i class="fa fa-check"></i>
-								<span data-bind="<%= schedule && schedule.id ? 'Added Like it List' : 'Add Like it List' %>" ></span>
+								<span data-bind="<%= schedule && schedule.id ? 'Added to Like it List' : 'Add to Like it List' %>"></span>
 							</button>
 							<button class="favorite-button btn function-item btn-block border-top-width-zero-sm border-left-width-zero-sm border-left-width-zero-lg border-top-width-zero-sm-lg" data-bind="<%= favorite ? 'btn-warning' : 'btn-outline' %>" data-bind-target="class">
 								<i class="fa fa-star-o font-size-normal-medium" data-bind-target="class"></i>
