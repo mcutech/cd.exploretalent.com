@@ -35,8 +35,6 @@ handler.prototype.refresh = function() {
 		})
 		.then(function(res) {
 
-			$('.talent-resume-wrapper').removeClass('hide');
-			
 			self.talent.favorite = _.first(res.data);
 			self.getRoleInfo();
 
@@ -74,6 +72,8 @@ handler.prototype.refresh = function() {
 				var thirdphoto = _.slice(photos, 2, 3);
 				self.core.service.databind('#third-photo', thirdphoto[0]);
 			}
+
+			$('.talent-resume-wrapper').removeClass('hide');
 
 		});
 }
