@@ -27,7 +27,13 @@
 				</div>
 			</div>
 		</div>
-
+	</div>
+	<div class="row margin-bottom-normal">
+		<div class="col-md-6"></div>
+		<div class="col-md-6">
+			<div id="worksheet-pagination" class="text-right"></div>
+		</div>
+		
 	</div>
 </div>
 
@@ -82,4 +88,5 @@
 		</div>
 	</div>
 </div>
+<div id="worksheet-pagination2" class="text-right"></div>
 @stop

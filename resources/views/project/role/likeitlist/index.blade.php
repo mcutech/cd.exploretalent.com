@@ -22,7 +22,7 @@
 							You have <span id="checked-talents-counter" class="text-bold">0</span> talents checked.
 						</div>
 						<div class="col-md-4 text-align-right padding-right-large">
-							<button id="remove-all-like-it-list" class="btn btn-danger">Empty Like it List</button>
+							<button id="remove-all-like-it-list" class="btn btn-danger">Clear Like it List</button>
 						</div>
 					</div>
 				</div>
