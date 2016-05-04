@@ -59,31 +59,35 @@ module.exports = function(core, user) {
 
 				self.core.resource.schedule.put(data)
 					.then(function(res) {
-						
+
 						$button.removeClass('btn-success liked-talent').addClass('btn-outline');
 						$button.find('span').text('Add to Like it List');
 
 					});
-			}	
+			}
 		}
-		
+
 	});
 
 	$(document).on('mouseenter', '.add-to-like-it-list', function(){
 
 		if($(this).hasClass('btn-success')) {
+            $(this).find('span').text('Remove from Like it List');
+			$(this).find('i').removeClass('fa-check').addClass('fa-times');
 			$(this).attr('title', 'Remove from Like it List');
 			$(this).removeClass('btn-success');
 			$(this).addClass('btn-danger');
 		}
-		
+
 	}).on('mouseleave', '.add-to-like-it-list', function(){
 
 		if($(this).hasClass('btn-danger')) {
+			$(this).find('span').text('Added to Like it List');
+	        $(this).find('i').removeClass('fa-times').addClass('fa-check');
 			$(this).removeAttr('title');
 		    $(this).removeClass('btn-danger');
 			$(this).addClass('btn-success');
-		}	
+		}
 
     });
 
