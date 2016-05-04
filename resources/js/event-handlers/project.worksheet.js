@@ -33,7 +33,8 @@ handler.prototype.refreshList = function() {
 			[ 'join', 'roles', 'roles.casting_id', '=', 'castings.casting_id' ],
 			[ 'join', 'laret_campaigns', 'laret_campaigns.bam_role_id', '=', 'roles.role_id' ],
 			[ 'groupBy', 'roles.role_id' ]
-		]
+		],
+		per_page: 500
 	}
 
 	if ($('#projects-list').val()) {
