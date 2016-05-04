@@ -1,7 +1,7 @@
 @extends('layouts.role', [ 'active' => 'like-it-list', 'pages' => [ [ 'name' => 'My Projects', 'url' => '/projects' ], [ 'name' => 'Project Overview', 'url' => '../.././' ], [ 'name' => 'Like It List', 'url' => './like-it-list', 'active' => true ] ] , 'likeitlist' => false , 'matches' => true])
 
 @section('sidebar.page-header')
-	<i class="fa fa-th-list page-header-icon"></i> Like It List - <b data-bind="<%= name + ' ' + '(#' + casting_id + ')' %>"></b>
+	<i class="fa fa-th-list page-header-icon"></i> Like It List - <b data-bind="<%= name + ' ' + '(' + casting_id + ')' %>"></b>
 @stop
 
 @section('role.body')
@@ -22,7 +22,7 @@
 							You have <span id="checked-talents-counter" class="text-bold">0</span> talents checked.
 						</div>
 						<div class="col-md-4 text-align-right padding-right-large">
-							<button id="remove-all-like-it-list" class="btn btn-danger">Empty Like it List</button>
+							<button id="remove-all-like-it-list" class="btn btn-danger">Clear Like it List</button>
 						</div>
 					</div>
 				</div>

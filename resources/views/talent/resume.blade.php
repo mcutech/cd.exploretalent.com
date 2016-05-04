@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('master.body')
-<div class="talent-resume-wrapper">
+<div class="talent-resume-wrapper hide">
 
 	<!-- project/role and actions -->
 	<div id="project-role-actions" class="project-role-actions">
@@ -12,16 +12,17 @@
 			</div>
 			<div class="col-md-2">
 			</div>
-			<div class="col-md-3 col-sm-4 col-xs-4">
-				<button id="add-to-like-it-list" class="btn btn-outline btn-sm btn-block" data-bind="<%= talent.user.id + '-' + role_id %>" data-bind-target="data-id">
-					<i class="fa fa-plus text-success"></i>
-					<span class="text-success">Add Like it List</span>
+			<div class="col-md-3 col-sm-4 col-xs-4" data-bind="<%= talent.user.id + '-' + role_id %>" data-bind-target="data-id">
+				<button id="add-to-like-it-list" class="btn btn-outline btn-sm btn-block add-to-like-it-list">
+					<input type="hidden" class="like-it-list-schedule-id">
+					<i class="fa fa-plus"></i>
+					<span>Add to Like it List</span>
 				</button>
 			</div>
-			<div class="col-md-3 col-sm-4 col-xs-4">
-				<button class="btn btn-outline btn-sm btn-block favorite-button" rel="tooltip" title="Add to Favorites" data-bind="<%= talent.talentnum %>" data-bind-target="data-id">
-					<i class="fa fa-star-o text-default" data-bind="<%= talent.favorite ? 'text-warning' : 'text-default' %>" data-bind-target="class"></i>
-					<span class="">Add to Favorites</span>
+			<div class="col-md-3 col-sm-4 col-xs-4" data-bind="<%= talent.talentnum %>" data-bind-target="data-id">
+				<button class="btn btn-sm btn-block favorite-button" data-bind="<%= talent.favorite ? 'btn-warning' : 'btn-outline' %>" data-bind-target="class" rel="tooltip" title="Add to Favorites">
+					<i class="fa fa-star-o"></i>
+					<span class="favorite-button-text" data-bind="<%= talent.favorite ? 'Added to Favorites' : 'Add to Favorites' %>"></span>
 				</button>
 			</div>
 		</div>
@@ -33,8 +34,7 @@
 			<div class="row-fluid clearfix">
 				<div class="col-sm-12 padding-zero">
 					<h3 class="margin-zero text-bold text-align-center-zz-xs">
-						<span data-bind="<%= getFullName() %>"></span>
-						,<span data-bind="<%= getAge() %>"></span>
+						<span data-bind="<%= getFullName() %>"></span>, <span data-bind="<%= getAge() %>"></span>
 					</h3>
 					<div class="skills-link text-align-center-zz-xs">
 						<a id="acting-modeling-link" href="#acting-modeling">Acting/Modeling</a>
