@@ -138,6 +138,7 @@ handler.prototype.findMatches = function(append) {
 handler.prototype.getFilters = function() {
 	var form = self.core.service.form.serializeObject('#role-filter-form');
 	var data = {
+		remember : 0,
 		per_page : 24,
 		page : self.page,
 		query : [
