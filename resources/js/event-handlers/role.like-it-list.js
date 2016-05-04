@@ -64,7 +64,7 @@ handler.prototype.refreshRole = function() {
 		});
 
 	// share like it list
-	var link = window.location.origin + '/login?' + $.param({access_token:localStorage.getItem('access_token')}) + '&redirect=' + encodeURIComponent(window.location.href.replace(/like-it-list/, '')) + 'public-like-it-list';
+	var link = window.location.origin + '/login?' + $.param({ access_token : localStorage.getItem('access_token'), /*refresh_token : localStorage.getItem('refresh_token'),*/ redirect : encodeURIComponent(window.location.href.replace(/like-it-list/, '')) + 'public-like-it-list'});
 	$('#share-like-list-link').val(link);
 
 	self.findMatches();
