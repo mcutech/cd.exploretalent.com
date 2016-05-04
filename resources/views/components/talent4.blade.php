@@ -47,8 +47,8 @@
 				<div class="col-md-12 col-sm-12 padding-zero">
 					<div class="like-it-list-container">
 						<div class="btn-group talent-function display-block-zz-xs display-flex-sm display-block-md" data-bind-target="data-id" data-bind="<%= user.id + '-' + talent_role_id + '-' + talentnum %>">
-							<button id="add-to-like-it-list" class="btn add-to-like-it-list function-item btn-block border-top-width-zero-sm-lg" data-bind="<%= schedule && schedule.id ? 'btn-success liked-talent' : 'btn-outline' %>" data-bind-target="class">
-								<input type="hidden" data-bind="<%= schedule && schedule.id ? schedule.id : 0 %>" class="like-it-list-schedule-id">
+							<button id="add-to-like-it-list" class="btn add-to-like-it-list function-item btn-block border-top-width-zero-sm-lg" data-bind="<%= schedule && schedule.id && schedule.rating != 0 ? 'btn-success liked-talent' : 'btn-outline' %>" data-bind-target="class">
+								<input type="hidden" data-bind="<%= schedule && schedule.id && schedule.rating != 0 ? schedule.id : 0 %>" class="like-it-list-schedule-id">
 								 <i data-bind="<%= schedule && schedule.id ? 'fa fa-check' : 'fa fa-plus' %>" data-bind-target="class"></i>
 								<span data-bind="<%= schedule && schedule.id ? 'Added to Like it List' : 'Add to Like it List' %>"></span>
 							</button>
