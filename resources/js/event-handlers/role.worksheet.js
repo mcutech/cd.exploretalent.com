@@ -157,6 +157,7 @@ handler.prototype.updateScheduleStatus = function(e) {
 }
 
 handler.prototype.updateScheduleCDStatus = function(e) {
+	e.preventDefault();
 	var $element = $(e.target);
 
 	if (!$element.is('button')) {
@@ -168,17 +169,17 @@ handler.prototype.updateScheduleCDStatus = function(e) {
 	if ($element.hasClass('callback-button')) {
 
 		if($element.hasClass('btn-success')) {
-			status = 1;
+			status = 1;			
 		}
 		else {
-			status = 2;
+			status = 2;			
 		}
 	}
 
 	else if ($element.hasClass('hired-button')) {
 
 		if($element.hasClass('btn-success')) {
-			status = 1;
+			status = 1;			
 		}
 		else {
 			status = 3;
@@ -192,7 +193,38 @@ handler.prototype.updateScheduleCDStatus = function(e) {
 
 	self.core.resource.schedule.patch(data)
 		.then(function(res) {
-			self.refresh();
+
+			//self.refresh();
+
+			if($element.hasClass('callback-button')){		
+			
+				if($element.hasClass('btn-success')){
+				 	$element.removeClass('btn-success');
+				 	$element.addClass('btn-outline');
+				}else{
+				 	$element.removeClass('btn-outline');
+				 	$element.addClass('btn-success');
+				 	if($element.parent('.actions-content').find('.hired-button').hasClass('btn-success'))
+				 	{
+				 		$element.parent('.actions-content').find('.hired-button').removeClass('btn-success');
+				 		$element.parent('.actions-content').find('.hired-button').addClass('btn-outline');
+				 	}				
+				}
+			}		
+			if($element.hasClass('hired-button')){								  
+			 	if($element.hasClass('btn-success')){
+			 	  	$element.removeClass('btn-success');				
+			 	  	$element.addClass('btn-outline');				
+			 	}else{
+			 	  	$element.removeClass('btn-outline');				
+			 	  	$element.addClass('btn-success');				
+			 	  	if($element.parent('.actions-content').find('.callback-button').hasClass('btn-success'))
+				 	{
+				 		$element.parent('.actions-content').find('.callback-button').removeClass('btn-success');
+				 		$element.parent('.actions-content').find('.callback-button').addClass('btn-outline');
+				 	}
+			 	}
+			}
 		});
 }
 

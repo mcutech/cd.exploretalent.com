@@ -64,7 +64,7 @@ handler.prototype.refreshRole = function() {
 		});
 
 	// share like it list
-	var link = window.location.origin + '/login?' + $.param({access_token:localStorage.getItem('access_token')}) + '&redirect=' + encodeURIComponent(window.location.href.replace(/like-it-list/, '')) + 'public-like-it-list';
+	var link = window.location.origin + '/login?' + $.param({ access_token : localStorage.getItem('access_token'), /*refresh_token : localStorage.getItem('refresh_token'),*/ redirect : encodeURIComponent(window.location.href.replace(/like-it-list/, '')) + 'public-like-it-list'});
 	$('#share-like-list-link').val(link);
 
 	self.findMatches();
@@ -138,6 +138,7 @@ handler.prototype.findMatches = function(append) {
 handler.prototype.getFilters = function() {
 	var form = self.core.service.form.serializeObject('#role-filter-form');
 	var data = {
+		remember : 0,
 		per_page : 24,
 		page : self.page,
 		query : [
