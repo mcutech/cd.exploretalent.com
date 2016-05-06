@@ -114,6 +114,7 @@ handler.prototype.findMatches = function(append) {
 				talent.talent_project_id = self.projectId;
 			});
 
+
 			if(talents.total == 0) {
 				$('#no-submission-div').removeClass('hide');
 				$('#add-all-div').addClass('hide');
@@ -122,6 +123,9 @@ handler.prototype.findMatches = function(append) {
 				$('#no-submission-div').addClass('hide');
 				$('#add-all-div').removeClass('hide');
 			}
+
+			//for total number of talent matches
+			self.core.service.databind('#submission-total', talents);
 
 			try {
 			self.core.service.databind('#role-matches-result', talents, append);
