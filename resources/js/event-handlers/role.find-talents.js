@@ -109,6 +109,9 @@ handler.prototype.findMatches = function(append) {
 				$('#add-all-div').removeClass('hide');
 			}
 
+			//for total number of talent matches
+			self.core.service.databind('#submission-total', talents);
+
 			try {
 			self.core.service.databind('#role-matches-result', talents, append);
 			} catch(e) { }
