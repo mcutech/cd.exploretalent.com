@@ -10,18 +10,21 @@
 		<div class="talents-wrapper">
 			<div class="talents-search-filter-content">
 				<div class="row clearfix">
-					@include('project.components.filter')
+					{{-- @include('project.components.filter') --}}
 				</div>
-				<div class="row margin-bottom-normal like-it-list-only hide">
-					<div class="col-md-12 margin-left-normal">
-						<div class="col-md-4">
+				<div class="row margin-bottom-normal margin-top-normal like-it-list-only hide">
+					<div class="col-md-12">
+						<div class="col-md-12 margin-bottom-normal">
+							<span>Check the talents in the like it list that you want to remove.</span>
+						</div>
+						<div class="col-md-6">
 							<button id="mark-all-talents-as-checked-btn" class="btn btn-default">Check All</button>
 							<button id="remove-all-checked-talents-btn" class="btn btn-danger" disabled>Remove All Checked</button>
 						</div>
-						<div class="col-md-4 font-size-normal-medium margin-top-small">
+						{{-- <div class="col-md-4 font-size-normal-medium margin-top-small">
 							You have <span id="checked-talents-counter" class="text-bold">0</span> talents checked.
-						</div>
-						<div class="col-md-4 text-align-right padding-right-large">
+						</div> --}}
+						<div class="col-md-6 text-align-right float-right">
 							<button id="remove-all-like-it-list" class="btn btn-danger">Clear Like it List</button>
 						</div>
 					</div>
