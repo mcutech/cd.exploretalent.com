@@ -49,12 +49,13 @@
 									</div>
 									<div class="talent-button-functions margin-top-small">
 										<div class="col-md-12 padding-zero margin-bottom-small">
-											<a class="btn btn-default btn-sm btn-outline btn-block border-radius-zero" data-toggle="modal" data-bind="<%= invitee.bam_talentnum %>" data-bind-target="data-id" id="talent-resume" data-target="#talent-resume-modal">
+											<!-- <a class="btn btn-default btn-sm btn-outline btn-block border-radius-zero" data-toggle="modal" data-bind="<%= invitee.bam_talentnum %>" data-bind-target="data-id" id="talent-resume" data-target="#talent-resume-modal"> -->
+											<a onclick="window.open(this.href, 'mywin', 'left=0,top=0,width=769,height=650,toolbar=1,resizable=0'); return false;" data-bind="/talents/<%= invitee.bam_talentnum %>?casting_id=0&role_id=0" class="btn btn-default btn-sm btn-outline btn-block border-radius-zero">
 												<i class="fa fa-file-text-o"></i> Resume
 											</a>
 										</div>
 										<div class="col-md-12 padding-zero">
-											<a class="btn btn-default btn-sm btn-outline btn-block border-radius-zero" data-toggle="modal" data-bind="<%= invitee.bam_talentnum %>" data-bind-target="data-id" id="talent-photo" data-target="#talent-photos-modal" >
+											<a class="btn btn-default btn-sm btn-outline btn-block border-radius-zero" data-toggle="modal" data-bind="<%= invitee.bam_talentnum %>" data-bind-target="data-id" id="talent-photo" data-target="#talent-view-photos-modal" >
 												<i class="fa fa-camera"></i> Photos
 											</a>
 										</div>
@@ -132,5 +133,6 @@
 @include('project.role.worksheet.modals.add-note')
 @include('project.role.worksheet.modals.message')
 @include('components.modals.talent-photos')
+@include('components.modals.talent-view-photos')
 @include('components.modals.talent-resume')
 @stop
