@@ -17,9 +17,14 @@
 				<div class="row clearfix">
 					@include('project.components.filter')
 				</div>
+				<div id="submission-total" class="row">
+					<div class="margin-left-small margin-bottom-small col-md-12">
+					There are <span data-bind="<%= total %>"></span> talents that match your search criteria.
+					</div>
+				</div>
 				<div class="row" id="add-all-div">
 					<div class="col-md-12 padding-left-medium padding-bottom-medium">
-						<button id="add-all-button" class="btn btn-success"><i class="fa fa-check"></i> <span>Add All to Like it List</span></button>
+						<button id="add-all-button" class="btn btn-default"><i class="fa fa-check"></i> <span>Add All to Like it List</span></button>
 						You have <span id="add-all-total" data-bind="<%= likeitlist.total %>">0</span> talents on you like it list.
 					</div>
 				</div>
