@@ -110,8 +110,15 @@ handler.prototype.findMatches = function(append) {
 			self.done = (res.total < res.per_page);
 
 			var talentnums = _.map(res.data, function(r) {
-				return r.invitee.bam_talentci.talentnum;
+				if (r.invitee && r.invitee.bam_talentci) {
+					return r.invitee.bam_talentci.talentnum;
+				}
+				else {
+					return 0;
+				}
 			});
+
+			talentnums.push(0);
 
 			var data2 = {
 				query : [
