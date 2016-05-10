@@ -43,7 +43,7 @@
 						<ul class="list-unstyled additional-details margin-zero">
 							<li><div class="title">Submission Type:</div> <span data-bind="<%= (project_type == 8) ? 'Open Call' : 'Self Response' %>"></span></li>
 							<li><div class="title">Union:</div> <span data-bind="<%= (union2 == 0) ? 'Non-union' : 'Union' %>"></span></li>
-							<li><div class="title">Release Date:</div> <span data-bind="<%= moment(sub_timestamp * 1000).format('MM-DD-YYYY') %>"></span></li>
+							<li><div class="title">Release Date:</div> <span data-bind="<%= moment(date_created * 1000).format('MM-DD-YYYY') %>"></span></li>
 							<li><div class="title">Deadline:</div> <span data-bind="<%= asap ? moment(asap * 1000).format('MM-DD-YYYY') : 'N/A' %>"></span></li>
 							<li><div class="title">Casting Category:</div> <span data-bind="<%= cat ? getCategory() : 'N/A' %>"></span></li>
 						</ul>
