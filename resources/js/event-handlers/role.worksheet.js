@@ -152,7 +152,15 @@ handler.prototype.updateScheduleStatus = function(e) {
 
 	self.core.resource.schedule.patch(data)
 		.then(function(res) {
-			self.refresh();
+			// self.refresh();
+			if ($element.hasClass('accept-button')) {
+				$element.removeClass('btn-outline').addClass('btn-success');
+				$element.siblings('.decline-button').removeClass('btn-danger');
+			}
+			else if ($element.hasClass('decline-button')) {
+				$element.removeClass('btn-outline').addClass('btn-danger');
+				$element.siblings('.accept-button').removeClass('btn-success');
+			}
 		});
 }
 
