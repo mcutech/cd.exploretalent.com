@@ -27,14 +27,6 @@
 							@include('components.talent4', [ 'databind' => [ 'template' => '#role-matches', 'value' => 'data' ], 'ratings' => true, 'notes' => false, 'class' => 'col-lg-2 col-md-3 col-sm-3 col-xs-6'  ])
 						</div>
 					</div>
-					<div class="col-md-12 padding-left-large padding-bottom-medium hide" id="no-booked">
-						<span class="alert-success text-bg">
-							You have no booked talents, please mark talents as booked in your <a class="text-success" data-bind="/projects/<%= casting_id %>/worksheet"> <strong>auditions worksheet</strong></a>
-						</span>
-					</div>
-
-
-
 				</div>
 				<div id="search-loader" class="text-center padding-top-large">
 					<h3>Loading Talents</h3>
@@ -52,6 +44,13 @@
 			</div>
 
 		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-12 padding-bottom-medium hide" id="no-booked">
+		<span class="alert alert-success display-block">
+			You have no booked talents, please mark talents as booked in your <a class="text-success" data-bind="/projects/<%= casting_id %>/worksheet"> <strong>auditions worksheet</strong></a>
+		</span>
 	</div>
 </div>
 @stop
