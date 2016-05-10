@@ -105,10 +105,30 @@ handler.prototype.findMatches = function(append) {
 		bam_role_id : self.roleId
 	}
 
-	self.core.resource.talent.search(data, options)
-		.then(function(talents) {
-			self.done = (talents.total < talents.per_page);
+	self.core.resource.schedule.get(data)
+		.then(function(res) {
+			self.done = (res.total < res.per_page);
 
+			var talentnums = _.map(res.data, function(r) {
+				if (r.invitee && r.invitee.bam_talentci) {
+					return r.invitee.bam_talentci.talentnum;
+				}
+				else {
+					return 0;
+				}
+			});
+
+			talentnums.push(0);
+
+			var data2 = {
+				query : [
+					[ 'whereIn', 'talentnum', talentnums ]
+				]
+			}
+
+			return self.core.resource.talent.search(data2, options);
+		})
+		.then(function(talents) {
 			_.each(talents.data, function(talent) {
 				talent.talent_role_id = self.roleId;
 				talent.talent_project_id = self.projectId;
@@ -136,109 +156,14 @@ handler.prototype.findMatches = function(append) {
 }
 
 handler.prototype.getFilters = function() {
-	var form = self.core.service.form.serializeObject('#role-filter-form');
 	var data = {
-		remember : 0,
 		per_page : 24,
 		page : self.page,
 		query : [
-			[ 'join', 'bam.laret_users', 'bam.laret_users.bam_talentnum', '=', 'search.talents.talentnum' ],
-			[ 'leftJoin', 'bam.laret_schedules', 'bam.laret_schedules.invitee_id', '=', 'bam.laret_users.id' ],
-			[ 'where', 'bam.laret_schedules.rating', '<>', 0 ],
-			[ 'where', 'bam.laret_schedules.bam_role_id', '=', $('#roles-list').val() ]
+			[ 'where', 'rating', '<>', 0 ],
+			[ 'where', 'bam_role_id', '=', $('#roles-list').val() ],
+			[ 'with', 'invitee.bam_talentci' ]
 		]
-	}
-
-	if (!self.first_load) {
-		if (form.markets) {
-			if (form.markets instanceof Array) {
-				var subquery = [];
-
-				_.each(form.markets, function(market) {
-					if (subquery.length == 0) {
-						subquery.push([ 'where', 'city', 'like', '%' + market + '%' ]);
-					}
-					else {
-						subquery.push([ 'orWhere', 'city', 'like', '%' + market + '%' ]);
-					}
-
-					subquery.push([ 'orWhere', 'city1', 'like', '%' + market + '%' ]);
-					subquery.push([ 'orWhere', 'city2', 'like', '%' + market + '%' ]);
-					subquery.push([ 'orWhere', 'city3', 'like', '%' + market + '%' ]);
-				});
-
-				data.query.push([ 'where', subquery ]);
-			}
-			else {
-				data.query.push([ 'where', [
-						[ 'where', 'city', '=', form.markets ],
-						[ 'orWhere', 'city1', '=', form.markets ],
-						[ 'orWhere', 'city2', '=', form.markets ],
-						[ 'orWhere', 'city3', '=', form.markets ]
-					]
-				]);
-			}
-		}
-
-		if (form.age_min) {
-			data.query.push([ 'where', 'dobyyyy', '<=', new Date().getFullYear() - parseInt(form.age_min) ]);
-		}
-
-		if (form.age_max) {
-			data.query.push([ 'where', 'dobyyyy', '>=', new Date().getFullYear() - parseInt(form.age_max) ]);
-		}
-
-		if (form.sex) {
-			data.query.push([ 'where', 'sex', '=', form.sex ]);
-		}
-
-		if (form.has_photo) {
-			data.query.push([ 'where', 'has_photos', '=', form.has_photo == 'true' ? 1 : 0 ]);
-		}
-
-		if(form.search_text) {
-			data.query.push([ 'where',
-				[
-					[ 'where', 'talentnum', '=', form.search_text ],
-					[ 'orWhere', 'fname', 'LIKE', '%' + form.search_text + '%' ],
-					[ 'orWhere', 'lname', 'LIKE', '%' + form.search_text + '%' ],
-				]
-			]);
-		}
-
-		if (form.height_min) {
-			data.query.push([ 'where', 'heightinches', '>=', form.height_min ]);
-		}
-
-		if (form.height_max) {
-			data.query.push([ 'where', 'heightinches', '<=', form.height_max ]);
-		}
-
-		if (form.build) {
-			if (form.build instanceof Array) {
-				data.query.push([ 'whereIn', 'build', form.build ]);
-			}
-			else {
-				data.query.push([ 'where', 'build', '=', form.build ]);
-			}
-		}
-
-		if (form.ethnicity) {
-			if (form.ethnicity instanceof Array) {
-				data.query.push([ 'whereIn', 'ethnicity', form.ethnicity ]);
-			}
-			else {
-				data.query.push([ 'where', 'ethnicity', '=', form.ethnicity ]);
-			}
-		}
-
-		if (form.last_access) {
-			data.query.push([ 'where', 'last_access', '>', Math.floor(new Date().getTime() / 1000) - parseInt(form.last_access) ]);
-		}
-
-		if(form.favorite_talent == '1') {
-			data.query.push([ 'join', 'bam.laret_favorite_talents', 'bam.laret_favorite_talents.bam_talentnum', '=', 'search.talents.talentnum' ]);
-		}
 	}
 
 	return data;

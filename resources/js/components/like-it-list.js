@@ -108,28 +108,22 @@ module.exports = function(core, user) {
 		var data = {
 			q : [
 				[ 'where', 'bam_role_id', '=', bam_role_id ],
-				[ 'where', 'invitee_id', '=', user_id ],
-				[ 'where', 'rating', '<>', 0 ]
+				[ 'where', 'invitee_id', '=', user_id ]
 			]
 		}
 
 		core.resource.schedule.get(data)
 			.then(function(res) {
-				var data = {
-					bam_role_id    : bam_role_id,
-					rating         : 5,
-					invitee_id     : user_id,
-					inviter_id     : user.id,
-					invitee_status : self.core.resource.schedule_cd_status.PENDING,
-					inviter_status : self.core.resource.schedule_cd_status.PENDING,
-					status         : self.core.resource.schedule_status.PENDING
-				}
+				var schedule = _.first(res.data);
 
-				if (res.total) {
-					alert('Already added to like it list.');
-				}
-				else {
-					core.resource.schedule.post(data)
+				if (schedule && schedule.rating == 0) {
+					// update
+					var data = {
+						scheduleId : schedule.id,
+						rating     : 5
+					}
+
+					core.resource.schedule.patch(data)
 						.then(function(res) {
 							var total = parseInt($('#like-it-list-total').text().replace('(', '').replace(')', ''));
 
@@ -140,7 +134,37 @@ module.exports = function(core, user) {
 								total = 1;
 							}
 
-							console.log(res);
+							$('#like-it-list-total').text('(' + total + ')');
+
+							$button.find('.like-it-list-schedule-id').val(res.id);
+							$button.removeClass('btn-outline').addClass('btn-success liked-talent');
+							$button.find('i').removeClass('fa-plus').addClass('fa-check');
+							$button.find('span').text('Added to Like it List');
+							$('#add-like-it-list-modal').modal('hide');
+						});
+				}
+				else if (!schedule) {
+					// create
+					var data = {
+						bam_role_id    : bam_role_id,
+						rating         : 5,
+						invitee_id     : user_id,
+						inviter_id     : user.id,
+						invitee_status : self.core.resource.schedule_cd_status.PENDING,
+						inviter_status : self.core.resource.schedule_cd_status.PENDING,
+						status         : self.core.resource.schedule_status.PENDING
+					}
+
+					core.resource.schedule.post(data)
+						.then(function(res) {
+							var total = parseInt($('#like-it-list-total').text().replace('(', '').replace(')', ''));
+
+							if (total) {
+								total++;
+							}
+							else {
+								total = 1;
+							}
 
 							$('#like-it-list-total').text('(' + total + ')');
 
