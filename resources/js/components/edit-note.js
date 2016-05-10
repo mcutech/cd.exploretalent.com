@@ -37,6 +37,7 @@ module.exports = function(core, user) {
 					.then(function(res) {
 						$('#edit-note-success').fadeIn().delay(3000).fadeOut();
 						$this.parents('.note-item').find('.note-body').text(res.body);
+						$('#talent-edit-note-modal').modal('hide');
 					});
 			}
 		}

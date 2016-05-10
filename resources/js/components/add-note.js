@@ -38,6 +38,7 @@ module.exports = function(core, user) {
 						'</div>';
 
 						$this.parents('.talent-note-v2').find('#schedule-notes').append(str);
+						$('#talent-add-note-modal').modal('hide');
 					});
 			}
 		}
