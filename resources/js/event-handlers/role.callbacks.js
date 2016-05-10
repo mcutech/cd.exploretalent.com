@@ -102,6 +102,7 @@ handler.prototype.findMatches = function(append) {
 
 			_.each(talents.data, function(talent) {
 				talent.talent_role_id = self.roleId;
+				talent.talent_project_id = self.projectId;
 			});
 			if(talents.total == 0){
 				$('#no-callbacks-div').removeClass('hide');
