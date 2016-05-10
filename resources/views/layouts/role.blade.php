@@ -15,10 +15,18 @@
 				<button type="button" class="close" data-dismiss="alert">×</button>
 				Find Talents by looking through your Role Matches or through the Submissions and add them to your like it list by clicking on the "Add to Like it List" button under each talent.
 			</div>
-			<div class="col-md-4 alert alert-success margin-bottom-zero pull-right">
-				<button type="button" class="close" data-dismiss="alert">×</button>
-				Here are the list of talents that you've chosen to invite to your audition. Click here to view them.
-			</div>
+			@if (isset($likeitlistList) && $likeitlistList)
+				<div class="col-md-4 alert alert-success margin-bottom-zero pull-right">
+					<button type="button" class="close" data-dismiss="alert">×</button>
+					Here are the list of talents that you've chosen to invite to your audition. Click here to send them a message.
+				</div>
+			@endif
+			@if (isset($talentList) && $talentList)
+				<div class="col-md-4 alert alert-success margin-bottom-zero pull-right">
+					<button type="button" class="close" data-dismiss="alert">×</button>
+					Here are the list of talents that you've chosen to invite to your audition. Click here to view them.
+				</div>
+			@endif
 		</div>
 		<div id="project-links" class="col-md-12 margin-bottom-small">
 			@if (isset($matches) && $matches)

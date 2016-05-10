@@ -1,5 +1,5 @@
 @extends('layouts.role', [ 'active' => 'find-talents','project_details' =>
-false, 'pages' => [ [ 'name' => 'My Projects', 'url' => '/projects' ], [ 'name' => 'Project Overview', 'url' => '../.././' ], [ 'name' => 'Find Talents', 'url' => './find-talents', 'active' => true ] ] , 'likeitlist' => true, 'matches' => false])
+false, 'pages' => [ [ 'name' => 'My Projects', 'url' => '/projects' ], [ 'name' => 'Project Overview', 'url' => '../.././' ], [ 'name' => 'Find Talents', 'url' => './find-talents', 'active' => true ] ] , 'likeitlist' => true, 'matches' => false, 'talentList' => true])
 
 @section('sidebar.page-header')
 <i class="fa fa-th-list page-header-icon"></i> Find Talents - <b data-bind="<%= name + ' ' + '(' + casting_id + ')' %>"></b>
