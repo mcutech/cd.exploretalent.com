@@ -164,11 +164,11 @@ handler.prototype.getFilters = function() {
 		}
 	}
 
-	if (form.age_min) {
+	if (parseInt(form.age_min)) {
 		data.query.push([ 'where', 'dobyyyy', '<=', new Date().getFullYear() - parseInt(form.age_min) ]);
 	}
 
-	if (form.age_max) {
+	if (parseInt(form.age_max)) {
 		data.query.push([ 'where', 'dobyyyy', '>=', new Date().getFullYear() - parseInt(form.age_max) ]);
 	}
 
@@ -190,11 +190,11 @@ handler.prototype.getFilters = function() {
 		]);
 	}
 
-	if (form.height_min) {
+	if (parseInt(form.height_min)) {
 		data.query.push([ 'where', 'heightinches', '>=', form.height_min ]);
 	}
 
-	if (form.height_max) {
+	if (parseInt(form.height_max)) {
 		data.query.push([ 'where', 'heightinches', '<=', form.height_max ]);
 	}
 
