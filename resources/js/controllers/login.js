@@ -37,7 +37,7 @@ module.exports = function(core, user) {
 
 					localStorage.setItem('access_token', result.access_token);
 					localStorage.setItem('refresh_token', result.refresh_token);
-					localStorage.setItem('expires_on', Math.round(new Date().getTime() / 1000) + result.expires_in);
+					localStorage.setItem('expires_on', Math.round(new Date().getTime() / 1000) + parseInt(result.expires_in));
 					window.location = qs.redirect ? decodeURIComponent(qs.redirect) : '/projects';
 				},
 				function(error){
