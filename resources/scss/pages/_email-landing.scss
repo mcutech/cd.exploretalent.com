@@ -2,17 +2,20 @@
 	position: relative;
 
 	.email-landing-filter-button{
-		display: block;
-		position: relative;
+		padding: 0px 7.4%;
+		position: fixed;
+		bottom: 10px;
+		z-index: 100;
+		left: 0;
+		width: 100%;
 
 		.btn{
-			position: fixed;
-			bottom: 10px;
-			z-index: 100;
-			width: 85%;
-			@media all and (max-width: 1199px){
-				width: 100%;
-			}
+		}
+	}
+
+	.read-more-message-container{
+		a, a:hover, a:visited, a:link, a:active{
+			text-decoration: none;
 		}
 	}
 
@@ -23,9 +26,11 @@
 
 			.view-profile-text{
 				position: absolute;
-				z-index: -1;
-				right: 37px;
-				bottom: 95px;
+				left: 50%;
+				top: 50%;
+				transform: translate(-50%, -50%);
+				max-width: 50%;
+				text-align: center;
 			}
 
 			.talent-info{
