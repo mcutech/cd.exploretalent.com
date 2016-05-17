@@ -2,13 +2,14 @@
 	<form id="role-filter-form" onsubmit="return false">
 	<div class="panel panel-talents-search">
 		<div class="panel-heading border-bottom-width-zero">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 			<span class="panel-title talents-refine-title">Refine Search</span>
 		</div>
 
 		<div class="panel-body form-horizontal">
-			<div id="location-search-display" class="col-md-9">
+			<div id="location-search-display" class="row">
 				<label class="control-label pull-left padding-left-normal"><a id="location-search-display-btn" href="">United States</a> <span class="padding-left-small">or</span></label>
-				<div class="col-md-3 margin-top-normal-zz-xs">
+				<div class="col-md-4 margin-top-normal-zz-xs">
 					<select id="markets-list" name="markets" class="form-control" tabindex="-1" data-select multiple data-bind="<%= bam_casting.market.split('>').join('|') %>">
 						<option> </option>
 						<option value="Albany, NY">Albany, NY</option>
@@ -83,7 +84,7 @@
 						<option value="Vancouver, BC">Vancouver, BC</option>
 					</select>
 				</div>
-				<div class="col-md-2 margin-top-normal-zz-xs">
+				<div class="col-md-3 margin-top-normal-zz-xs">
 					<select name="distance" class="form-control">
 						<option value="25">25 miles</option>
 						<option value="50">50 miles</option>
@@ -106,10 +107,6 @@
 						<a href="" id="location-search-change-btn" class="text-bold"><i class="fa fa-chevron-right"></i> Change Location</a>
 					</div>
 				</div>
-			</div>
-
-			<div class="col-md-2 pull-right margin-top-normal-zz-xs">
-				<button id="search-button" type="submit" class="btn btn-primary btn-block">Search</button>
 			</div>
 
 			<div class="row">
@@ -215,6 +212,11 @@
 				</div>
 				<div class="col-md-3">
 					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-3 pull-right margin-top-normal-zz-xs">
+					<button id="search-button" type="submit" class="btn btn-primary btn-block">Filter Search</button>
 				</div>
 			</div>
 		</div>
