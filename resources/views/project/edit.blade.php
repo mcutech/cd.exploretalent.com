@@ -22,12 +22,8 @@
 							<div class="form-group">
 								<label class="control-label">Submission Deadline <span class="text-success">*</span></label>
 								<div class="input-group date">
-									<input type="text"
-									id="bs-datepicker-submissiondeadline"
-									class="form-control calendar-input" style="cursor:
-									pointer; background-color: #fff"
-									data-bind="<%= (asap <= Date.now()) ?
-									date.formatYMD(Math.floor(new Date((new Date()).valueOf() + 1000*3600*24)/1000)) : 'greater'  %>">
+									<input type="text" id="bs-datepicker-submissiondeadline" class="form-control calendar-input" style="cursor: pointer; background-color: #fff" data-bind="<%= asap ? moment(asap * 1000).format('YYYY-MM-DD') : 'N/A' %>">
+
 									<span class="input-group-addon calendar-btn"><i class="fa fa-calendar"></i></span>
 								</div>
 								<div class="alert alert-page alert-danger submission-deadline-error-required" style="display:none;">This field is required.</div>
@@ -223,7 +219,7 @@
 								<label class="checkbox-inline margin-left-normal" title="Mark as nationwide casting">
 									<input class="px" type="checkbox" name="nationwide-market-checkbox" id="nationwide-market-checkbox" value="0">
 									<span class="lbl">All of United States</span>
-								</label>	
+								</label>
 								<div class="input-group hide-if-nationwide">
 									<input type="text" id="zip-code" class="form-control" placeholder="Enter Zip Code" data-bind="<%= zip %>">
 									<span class="input-group-btn">
@@ -248,7 +244,7 @@
 									or <a href="" id="toggle-manual-markets-div" style="text-decoration: underline;">Manually select markets</a>
 									<a class="btn btn-default btn-sm hide" href="" id="toggle-all-markets-checked" style="display: none;">Select All Markets</a>
 								</label>
-							</div>	
+							</div>
 							<div class="manual-markets-div display-none hide-if-nationwide">
 								<div class="col-md-2">
 									<label>
