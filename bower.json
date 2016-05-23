@@ -128,7 +128,7 @@
   },
   "resolutions": {
     "bootstrap": "~3",
-    "jquery": "~1.10.2",
+    "jquery": ">= 2.1.0",
     "moment": "~2.10.6",
     "bootstrap-datepicker": "~1.2.0",
     "components-font-awesome": "~4.2.0"
