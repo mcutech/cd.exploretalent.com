@@ -48,7 +48,7 @@
 
 	<div class="projects-wrapper panel border-zero">
 		<div id="no-projects-found" class="panel padding-normal hide">
-			<span>You have not created any projects yet. <a href="/projects/create" class="btn btn-primary btn-sm margin-left-normal">Click here to add a new project.</a></span>
+			<span>Casting not found. <a href="/projects/create" class="btn btn-primary btn-sm margin-left-normal">Click here to add a new project.</a></span>
 		</div>
 		<div class="panel-group panel-group-primary project-item" id="projects-list">
 			<div class="div-table-stripe-item" data-bind-template="#projects-list" data-bind-value="data">
