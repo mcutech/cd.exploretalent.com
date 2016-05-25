@@ -112,6 +112,7 @@
 							<li class=""><div class="title">Hair Color:</div>
 								<span class="hair-color-label" data-bind="<%= getHairColors().length == 0 || getHairColors().length == 10 ? 'Any' : getHairColors().join(', ') %>">
 							</li>
+							<li><div class="title">Description</div><p data-bind="<%= des %>"></p></li>
 
 						</ul>
 					</div>
