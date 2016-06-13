@@ -63,6 +63,11 @@
 				<div class="col-md-12 padding-zero">
 					<span class="name font-size-normal-zz-lg" data-bind="<%= getFullName() %>"></span>
 					<span class="age font-size-normal-zz-lg"><i>,</i><span data-bind="<%= getAge() %>" class="age-area"></span></span>
+
+					<div class="talent-additional-info">
+						<div class="additional-info-item">City: <span data-bind="<%= getLocation() %>"></span></div>
+					</div>
+
 					<div class="talent-additional-info">
 						<div class="additional-info-item height">Height: <span data-bind="<%= getHeight() %>"></span></div>
 						<div class="additional-info-item body-type">Body: <span>Athletic</span></div>
