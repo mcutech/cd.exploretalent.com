@@ -19,6 +19,7 @@ Route::get('login'           , 'LoginController@index');
 Route::get('register'        , 'RegisterController@index');
 Route::get('forgot-password' , 'ForgotPasswordController@index');
 Route::get('reset-password'  , 'ResetPasswordController@index');
+Route::get('unsubscribe'  , 'UnsubscribeController@index');
 
 Route::get('projects/quickpost'                                                    , 'ProjectController@quickpost');
 Route::get('projects/{projectId}/worksheet'                                        , 'ProjectController@worksheet');
