@@ -92,7 +92,7 @@
 	// 	$('#onboarding-congratulations').show();
 	// });
 
-	$(document).on('click', '.proceed-btn.company-name, .skip-btn.company-name', handler.updateCdInfo);
+	$(document).on('click', '.save-details-btn', handler.updateCdInfo);
 	
 	$(window).on('scroll', function() {
 		if ($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
