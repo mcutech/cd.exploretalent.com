@@ -17,7 +17,7 @@
 					</div>
 					<div class="col-md-12">
 						<div class="pull-right">
-							<a class="btn btn-success proceed-btn confirm-email" href="#">Confirm Email</a>
+							<a class="btn btn-success proceed-btn confirm-email save-details-btn" href="#">Confirm Email</a>
 						</div>
 					</div>
 				</div> <!-- Confirm Email -->
@@ -32,7 +32,7 @@
 						<div class="pull-right">
 							<span id="empty_password" class="text-danger margin-left-medium hide"><i class="fa fa-close"></i> Password Cannot Be Empty</span>
 							<span id="password_mismatch" class="text-danger margin-left-medium hide"><i class="fa fa-close"></i> Password Does Not Match</span>
-							<a class="btn btn-success proceed-btn create-password" href="#">Create Password</a>
+							<a class="btn btn-success proceed-btn create-password save-details-btn" href="#">Create Password</a>
 						</div>
 					</div>
 				</div> <!-- Create Password -->
@@ -44,21 +44,27 @@
 					</div>
 					<div class="col-md-12">
 						<div class="pull-right">
-							<a class="btn btn-outline skip-btn other-email" href="#">Skip</a>
-							<a class="btn btn-success proceed-btn other-email" href="#">Confirm Email</a>
+							<a class="btn btn-outline skip-btn other-email save-details-btn" href="#">Skip</a>
+							<a class="btn btn-success proceed-btn other-email save-details-btn" href="#">Confirm Email</a>
 						</div>
 					</div>
 				</div> <!-- Other Email -->
 
 				<div id="onboarding-name" class="row-fluid clearfix" hidden>
 					<div class="col-md-12 form-group">
-						<label class="control-label">Enter your Name</label>
-							<input class="form-control" data-bind="<%= fname %>" name="fname" placeholder="First Name...">
-							<input class="form-control margin-top-small" data-bind="<%= lname %>" name="lname" placeholder="Last Name...">
+						<label class="control-label col-md-12">Enter your Name</label>
+						<div class="col-md-12">
+							<span class="control-label col-md-3 text-align-right">First Name: </span>
+							<input class="col-md-9" data-bind="<%= fname %>" name="fname" placeholder="First Name...">
+						</div>
+						<div class="col-md-12">
+							<span class="control-label col-md-3 margin-top-small text-align-right">Last Name: </span>
+							<input class="col-md-9 margin-top-small" data-bind="<%= lname %>" name="lname" placeholder="Last Name...">
+						</div>
 					</div>
 					<div class="col-md-12">
 						<div class="pull-right">
-							<a class="btn btn-success proceed-btn your-name" href="#">Continue</a>
+							<a class="btn btn-success proceed-btn your-name save-details-btn" href="#">Continue</a>
 						</div>
 					</div>
 				</div> <!-- Name -->
@@ -70,7 +76,7 @@
 					</div>
 					<div class="col-md-12">
 						<div class="pull-right">
-							<a class="btn btn-success proceed-btn contact-num1" href="#">Continue</a>
+							<a class="btn btn-success proceed-btn contact-num1 save-details-btn" href="#">Continue</a>
 						</div>
 					</div>
 				</div> <!-- Contact 1-->
@@ -82,8 +88,8 @@
 					</div>
 					<div class="col-md-12">
 						<div class="pull-right">
-							<a class="btn btn-outline skip-btn contact-num2" href="#">Skip</a>
-							<a class="btn btn-success proceed-btn contact-num2" href="#">Continue</a>
+							<a class="btn btn-outline skip-btn contact-num2 save-details-btn" href="#">Skip</a>
+							<a class="btn btn-success proceed-btn contact-num2 save-details-btn" href="#">Continue</a>
 						</div>
 					</div>
 				</div> <!-- Contact 2-->
@@ -95,8 +101,8 @@
 					</div>
 					<div class="col-md-12">
 						<div class="pull-right">
-							<a class="btn btn-outline skip-btn company-name" href="#">Skip</a>
-							<a class="btn btn-success proceed-btn company-name" href="#">Continue</a>
+							<a class="btn btn-outline skip-btn company-name save-details-btn" href="#">Skip</a>
+							<a class="btn btn-success proceed-btn company-name save-details-btn" href="#">Continue</a>
 						</div>
 					</div>
 				</div> <!-- Company Name-->

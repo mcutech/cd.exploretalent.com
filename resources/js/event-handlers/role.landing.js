@@ -257,7 +257,9 @@ handler.prototype.confirmCdInfo = function() {
 	return self.core.service.databind('#ghost-onboarding', self.user.bam_cd_user);
 }
 
-handler.prototype.updateCdInfo = function() {
+handler.prototype.updateCdInfo = function(e) {
+
+	var btn = $(this);
 
 	var form = self.core.service.form.serializeObject('#ghost-onboarding-form');
 
@@ -277,8 +279,11 @@ handler.prototype.updateCdInfo = function() {
 	self.core.resource.cd_user.patch(form)
 		.then(function(res) {
 
-			$('#onboarding-company-name').hide();
-		 	$('#onboarding-congratulations').show();
+			// fire congratulations text if last detail to be saved (company)
+			if(btn.hasClass('company-name')) {
+				$('#onboarding-company-name').hide();
+		 		$('#onboarding-congratulations').show();
+			}
 
 		}, function(err) {
 			alert("errors while saving");
