@@ -30,6 +30,7 @@ handler.prototype.getProjectInfo = function(e) {
 			if(self.project.markets.data[0].name == 'N/A')
 				self.project.markets.data[0].name = 'All of United States';
 
+			console.log(self.project);
 			self.core.service.databind('#project-details', self.project);
 
 			// create dummy for faster databind

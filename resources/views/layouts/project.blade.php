@@ -36,20 +36,20 @@
 							<li><div class="title">Location:</div> <span data-bind="<%= location %>"></span></li>
 							<li><div class="title">Rate/Pay:</div> <span data-bind="$<%= rate %>"></span> <span data-bind="<%= (rate_des) ? 'per ' + getRate() : '' %>"></span></li>
 							<li><div class="title">Audition Date:</div> <span data-bind="<%= aud_timestamp ? moment(aud_timestamp * 1000).format('MM-DD-YYYY') : 'N/A' %>"></span></li>
-							<li></li>
+							<li><div class="title">Shoot Date:</div> <span data-bind="<%= shoot_timestamp ? moment(shoot_timestamp * 1000).format('MM-DD-YYYY') : 'N/A' %>"></span></li>
 						</ul>
 					</div>
 					<div class="col-sm-12 col-md-6">
 						<ul class="list-unstyled additional-details margin-zero">
 							<li><div class="title">Submission Type:</div> <span data-bind="<%= (snr == 2) ? 'Open Call' : 'Self Response' %>"></span></li>
 							<li><div class="title">Union:</div> <span data-bind="<%= (union2 == 0) ? 'Non-union' : 'Union' %>"></span></li>
-							<li><div class="title">Release Date:</div> <span data-bind="<%= moment(date_created * 1000).format('MM-DD-YYYY') %>"></span></li>
+							<li><div class="title">Release Date:</div> <span data-bind="<%= moment(sub_timestamp * 1000).format('MM-DD-YYYY') %>"></span></li>
 							<li><div class="title">Deadline:</div> <span data-bind="<%= asap ? moment(asap * 1000).format('MM-DD-YYYY') : 'N/A' %>"></span></li>
 							<li><div class="title">Casting Category:</div> <span data-bind="<%= cat ? getCategory() : 'N/A' %>"></span></li>
 						</ul>
 					</div>
 					<div class="col-md-12">
-					<ul class="list-unstyled margin-zero">
+					<ul class="list-unstyled margin-zero margin-top-small">
 						<li><div class="title">Description:</div> <span data-bind="<%= des || 'N/A' %>"></span></li>
 						<li>
 							<div id="casting-details-markets" class="title margin-top-small-normal">Markets:

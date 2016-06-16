@@ -179,7 +179,7 @@ handler.prototype.updateProject = function(e){
 			name_original : projectname,
 			project : projectname,
 			cat : category,
-			sub_timestamp : submissiontimestamp,
+			// sub_timestamp : submissiontimestamp,
 			asap : asaptimestamp,
 			rate : rate,
 			rate_des: ratedes,
