@@ -8,9 +8,6 @@ function handler(core, user, projectId) {
 
 	self.getProjectInfo();
 
-	// setTimeout(function(){
-	// 	self.autoSelectMarkets();
-	// }, 1000);
 }
 
 handler.prototype.getProjectInfo = function(e) {
@@ -315,6 +312,7 @@ handler.prototype.updateProject = function(e){
 }
 
 handler.prototype.autoSelectMarkets = function(){
+	$('.manual-markets-div div label input:checkbox').attr('checked',false);
 
 	var deferred = $.Deferred();
 

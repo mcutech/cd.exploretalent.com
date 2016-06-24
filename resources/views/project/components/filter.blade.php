@@ -36,10 +36,10 @@
 						<option value="El Paso, TX">El Paso, TX</option>
 						<option value="Fargo, ND">Fargo, ND</option>
 						<option value="Grand Junct, CO">Grand Junct, CO</option>
-						<option value="Harford, CT">Harford, CT</option>
+						<option value="Hartford, CT">Hartford, CT</option>
 						<option value="Honolulu, HI">Honolulu, HI</option>
-						<option value="Houston, TX">Houston, TX</option>
 						<option value="Indianapolis, IN">Indianapolis, IN</option>
+						<option value="Houston, TX">Houston, TX</option>
 						<option value="Jackson, MS">Jackson, MS</option>
 						<option value="Jacksonville, FL">Jacksonville, FL</option>
 						<option value="Kansas City, KS">Kansas City, KS</option>
@@ -54,7 +54,7 @@
 						<option value="Minneapolis, MN">Minneapolis, MN</option>
 						<option value="Nashville, TN">Nashville, TN</option>
 						<option value="New Orleans, LA">New Orleans, LA</option>
-						<option value="New York City, NY">New York City, NY</option>
+						<option value="New York, NY">New York, NY</option>
 						<option value="Norfolk, VA">Norfolk, VA</option>
 						<option value="Oklahoma City, OK">Oklahoma City, OK</option>
 						<option value="Omaha, NE">Omaha, NE</option>
@@ -199,7 +199,7 @@
 			</div>
 			<div id="additional-filters" class="row margin-bottom-large hide">
 				<div class="col-md-3">
-					
+
 				</div>
 				<div class="col-md-3">
 					<select name="favorite_talent" class="form-control" data-select>
@@ -208,10 +208,10 @@
 					</select>
 				</div>
 				<div class="col-md-3">
-					
+
 				</div>
 				<div class="col-md-3">
-					
+
 				</div>
 			</div>
 			<div class="row">
