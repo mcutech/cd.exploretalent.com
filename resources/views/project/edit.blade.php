@@ -421,7 +421,7 @@
 										<input type="checkbox" name="manual-market-checkbox" id="market_reno_nv"> <span class="lbl">Reno, NV</span>
 									</label>
 									<label>
-										<input type="checkbox" name="manual-market-checkbox" id="market_st_louis_mo"> <span class="lbl">St Louis, MO</span>
+										<input type="checkbox" name="manual-market-checkbox" id="market_saint_louis_mo"> <span class="lbl">Saint Louis, MO</span>
 									</label>
 									<label>
 										<input type="checkbox" name="manual-market-checkbox" id="market_salt_lake_city_ut"> <span class="lbl">Salt Lake City, UT</span>
