@@ -25,8 +25,8 @@
 			</div>
 			<div class="talent-note-v2">
 				<div class="back-add-note-container row-fluid clearfix">
+					<button class="show-add-note-btn btn btn-outline border-radius-zero col-xs-10 padding-left-small padding-right-small border-width-zero" data-bind="<%= schedule.id %>" data-bind-target="data-id"><span class="text-primary padding-left-medium"><i class="fa fa-plus"></i> Add Note</span></button>
 					<a class="back-btn btn btn-outline border-radius-zero col-xs-2 padding-left-small padding-right-small border-width-zero"><span class="text-default"><i class="fa fa-chevron-left"></i></span></a>
-					<button class="show-add-note-btn btn btn-outline border-radius-zero col-xs-10 padding-left-small padding-right-small border-width-zero" data-bind="<%= schedule.id %>" data-bind-target="data-id"><span class="text-primary"><i class="fa fa-plus"></i> Add Note</span></button>
 				</div>
 				<div class="note-item-container-holder">
 					<div id="schedule-notes" class="talent-item note-item-container padding-small">
