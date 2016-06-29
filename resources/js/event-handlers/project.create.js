@@ -15,27 +15,34 @@ handler.prototype.createNewProject = function(e){
 
 	e.preventDefault();
 
+	function convertToPST(timestamp) {
+		timestamp = timestamp - 25200; // -7 hours
+		return timestamp;
+	}
+
 	var projectname = $('#project-name').val();
 	var category = $('#project-category').val();
 
 	var submissiondeadline = $('#bs-datepicker-submissiondeadline').val();
 		submissiondeadline = submissiondeadline.split("-");
 	var asaptimestamp = Date.UTC(submissiondeadline[0],submissiondeadline[1]-1,submissiondeadline[2]) / 1000;
-		asaptimestamp = asaptimestamp + 28800;
+		asaptimestamp = convertToPST(asaptimestamp);
 
-	var submissiontimestamp = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate()) / 1000;
+	var submissiontimestamp = Math.floor((new Date()).getTime() / 1000);
+		submissiontimestamp = convertToPST(submissiontimestamp);
+
 	var rate = $('#project-rate').val();
 	var ratedes = $('#project-rate-desc').val();
 
 	var auditiondate = $('#bs-datepicker-audition').val();
 		auditiondate = auditiondate.split("-");
 	var auditiontimestamp = Date.UTC(auditiondate[0],auditiondate[1]-1,auditiondate[2]) / 1000;
-		auditiontimestamp = auditiontimestamp + 28800;
+		auditiontimestamp = convertToPST(auditiontimestamp);
 
 	var shootdate = $('#bs-datepicker-shootdate').val();
 		shootdate = shootdate.split("-");
 	var shoottimestamp = Date.UTC(shootdate[0],shootdate[1]-1,shootdate[2]) / 1000;
-		shoottimestamp = shoottimestamp + 28800;
+		shoottimestamp = convertToPST(shoottimestamp);
 
 	var union = $('input[type="radio"][name="radioUnion"]:checked').val();
 	var projecttype = $('input[type="radio"][name="radioSubmissionType"]:checked').val();
@@ -126,6 +133,8 @@ handler.prototype.createNewProject = function(e){
 			name_original : projectname,
 			project : projectname,
 			cat : category,
+			date_created : submissiontimestamp,
+			last_modified : submissiontimestamp,
 			sub_timestamp : submissiontimestamp,
 			asap : asaptimestamp,
 			rate : rate,
@@ -139,7 +148,7 @@ handler.prototype.createNewProject = function(e){
 			location : zipcode,
 			des: auditiondesc,
 		};
-		
+
 		if(projectname.length < 1) {
 			$('.project-name-error-required').fadeIn().delay(3000).fadeOut();
 			$('#project-name').focus();

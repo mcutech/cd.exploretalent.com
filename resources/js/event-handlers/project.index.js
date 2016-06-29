@@ -53,6 +53,7 @@ handler.prototype.refreshList = function(){
 	self.core.resource.project.get(data)
 		.then(function(res){
 
+			console.log(res);
 			if(res.data.length == 0) {
 				$('#no-projects-found').removeClass('hide');
 			}
