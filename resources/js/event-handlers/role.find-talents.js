@@ -46,6 +46,7 @@ handler.prototype.refreshRole = function() {
 	window.history.pushState({}, '', '/projects/' + self.projectId + '/roles/' + role.role_id + '/find-talents');
 
 	role.bam_casting = self.project;
+	console.log(role);
 	self.core.service.databind('#role-filter-form', role);
 	$('#add-all-button span').text('Add All to Like it List');
 	$('#add-all-button').removeClass('disabled');
