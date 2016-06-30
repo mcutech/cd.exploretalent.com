@@ -156,7 +156,18 @@
 					<div class="row-fluid">
 						<div class="col-md-12">
 							<div class="form-group">
-								<strong><p class="control-label" data-bind="<%= (snr == '2') ? 'Open Call Details' : 'Self Submission Details' %>"></p></strong>
+								<div class="form-group">
+									<label class="control-label">Submission Type<span class="text-success">*</span></label>
+									<label class="radio checkbox-inline">
+										<input type="radio" name="radioSubmissionType" id="self-submission-option" value="1" class="px">
+										<span class="lbl">Self Submission</span>
+									</label>
+									<label class="radio checkbox-inline">
+										<input type="radio" name="radioSubmissionType" id="open-call-option" value="2" class="px">
+										<span class="lbl">Open Call</span>
+									</label>
+								</div>
+								<strong><p class="control-label" id="project-type-title" data-bind="<%= (snr == '2') ? 'Open Call Details' : 'Self Submission Details' %>"></p></strong>
 								<div class="panel display-none" id="self-submissions-option-content">
 									<div class="panel-body">
 										<div class="col-md-4">
