@@ -59,7 +59,7 @@ handler.prototype.refreshList = function() {
 			page : qs.page || 1,
 			per_page : 25
 		};
-		
+
 		return self.core.resource.campaign.get(data2);
 	})
 	.then(function(res) {
