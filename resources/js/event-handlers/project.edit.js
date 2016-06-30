@@ -23,6 +23,13 @@ handler.prototype.getProjectInfo = function(e) {
 
 	return self.core.resource.project.get(data)
 		.then(function(res) {
+			var asap = res.data[0];
+
+			if(new Date().getTime() > asap.asap*1000){
+				alert("This project has already expired, please update the submission deadline to update this project.");
+				console.log(asap.asap);
+			}
+
 			if (res.total > 0) {
 				console.log(res);
 				var casting = res.data[0];
