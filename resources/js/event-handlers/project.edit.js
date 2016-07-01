@@ -59,10 +59,13 @@ handler.prototype.getProjectInfo = function(e) {
 				if(casting.snr == "2") {
 					$("#open-call-option-content").show();
         			$("#self-submissions-option-content").hide();
+        			$('#open-call-option').click();
+        			
 				}
 				else {
 					$("#self-submissions-option-content").show();
         			$("#open-call-option-content").hide();
+        			$('#self-submission-option').click();
 				}
 				self.core.service.databind('.edit-project-wrapper', casting)
 				return $.when();

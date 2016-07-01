@@ -9,6 +9,17 @@ module.exports = function(core, user, projectId) {
 		minDate: +1,
 	});
 
+	$("#self-submission-option").on('click', function(){
+        $("#self-submissions-option-content").show();
+        $('#project-type-title').text('Self Submission Details');
+        $("#open-call-option-content").hide();
+    });
+    $("#open-call-option").on('click', function(){
+        $("#open-call-option-content").show();
+        $('#project-type-title').text('Open Call Details');
+        $("#self-submissions-option-content").hide();
+    });
+
 	$('#bs-datepicker-submissiondeadline').datepicker('option', 'defaultDate', +1);
 
 	$('#bs-datepicker-submissiondeadline').mask('9999-99-99');
