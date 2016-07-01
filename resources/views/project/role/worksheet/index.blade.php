@@ -33,14 +33,14 @@
 		<div class="col-md-6">
 			<div id="worksheet-pagination" class="text-right"></div>
 		</div>
-		
+
 	</div>
 </div>
 
-<div id="no-casting-div" class="col-md-12 padding-right-zero padding-left-zero">
+<div id="no-casting-div" class="col-md-12 padding-right-zero padding-left-zero hide">
 	<div class="alert alert-success">
 		You have no worksheets available.
-		<strong><a data-bind="<%= current_role_id ? '/projects/'+ current_project_id + '/roles/'+ current_role_id +'/like-it-list' : (current_project_id ? '/projects/' + current_project_id : '/projects')  %>" class="text-success">Click here to go to your like it list and send an Audition Invite.</a></strong> If you have recently sent an Audition invite please wait 24 hours for your invitation to be reviewed and sent, thank you.
+		<strong><a data-bind="<%= current_role_id ? '/projects/'+ current_project_id + '/roles/'+ current_role_id +'/like-it-list' : (current_project_id ? '/projects/' + current_project_id : '/projects')  %>" class="text-success">Click here to go to your like it list and send an Audition Invite.</a></strong> If you have recently sent an Audition invite please wait for your invitation to be reviewed and sent, thank you.
 	</div>
 </div>
 
