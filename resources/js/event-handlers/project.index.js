@@ -12,7 +12,7 @@ handler.prototype.refreshList = function(){
 	var data = {
 		query : [
 			[ 'with', 'bam_roles' ],
-			['orderBy', 'last_modified','DESC'],
+			['orderBy', 'sub_timestamp','DESC'],
 		],
 		page : qs.page || 1,
 		per_page : 20
