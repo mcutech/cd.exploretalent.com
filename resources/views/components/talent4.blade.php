@@ -2,7 +2,7 @@
 	<div class="talent-item">
 		<div class="talent-photo-and-note-container">
 			<ul class="talent-functions-likeitlist like-it-list-only list-unstyled hide">
-				<li>
+				<li class="mark-talent-as-checked">
 					<label class="checkbox-inline" title="Mark talent as checked">
 						<input type="checkbox" class="px">
 						<span class="lbl like-it-list-checkbox" data-bind="<%= (schedule) ? 'checkbox_' + schedule.id : 0 %>" data-bind-target="id"></span>

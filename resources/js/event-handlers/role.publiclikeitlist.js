@@ -38,9 +38,23 @@ handler.prototype.findMatches = function(append) {
 	}
 
 	append = append === true;
+
+	if (append && self.done) {
+		return;
+	}
+
 	self.page = append ? self.page + 1 : 1;
 	self.refreshing = true;
-	var data = self.getFilters();
+
+	var data = {
+		per_page : 24,
+		page : self.page,
+		query : [
+			[ 'where', 'rating', '<>', 0 ],
+			[ 'where', 'bam_role_id', '=', self.roleId ],
+			[ 'with', 'invitee.bam_talentci' ]
+		]
+	}
 
 	if (append) {
 		self.first_load = self.first_load ? self.first_load : false;
@@ -55,33 +69,62 @@ handler.prototype.findMatches = function(append) {
 		$('#role-matches-result').hide();
 	}
 
-	self.core.resource.talent.search(data)
+	var options = {
+		bam_role_id : self.roleId
+	}
+
+	self.core.resource.schedule.get(data)
+		.then(function(res) {
+			self.done = (res.total < res.per_page);
+			var talentnums = _.map(res.data, function(r) {
+				if (r.invitee && r.invitee.bam_talentci) {
+					return r.invitee.bam_talentci.talentnum;
+				}
+				else {
+					return 0;
+				}
+			});
+
+			talentnums.push(0);
+
+			var data2 = self.getFilters(talentnums);
+
+			return self.core.resource.talent.search(data2, options);
+		})
 		.then(function(talents) {
 			_.each(talents.data, function(talent) {
 				talent.talent_role_id = self.roleId;
 				talent.talent_project_id = self.projectId;
 			});
 
+			try {
 			self.core.service.databind('#role-matches-result', talents, append);
+			} catch(e) { }
+
 			self.refreshing = false;
 
 			$('#search-loader').hide();
+
 			if (!append) {
 				$('#role-matches-result').show();
+
+				if(talents.total > 0) {
+					$('.like-it-list-only').removeClass('hide');
+				}
+				else {
+					$('.like-it-list-only').addClass('hide');
+				}
 			}
 		});
 }
 
-handler.prototype.getFilters = function() {
+handler.prototype.getFilters = function(talentnums) {
 	var form = self.core.service.form.serializeObject('#role-filter-form');
 	var data = {
 		per_page : 24,
 		page : self.page,
 		query : [
-			[ 'join', 'bam.laret_users', 'bam.laret_users.bam_talentnum', '=', 'search.talents.talentnum' ],
-			[ 'leftJoin', 'bam.laret_schedules', 'bam.laret_schedules.invitee_id', '=', 'bam.laret_users.id' ],
-			[ 'where', 'bam.laret_schedules.rating', '<>', 0 ],
-			[ 'where', 'bam.laret_schedules.bam_role_id', '=', self.roleId ]
+			[ 'whereIn', 'talentnum', talentnums ]
 		]
 	}
 
