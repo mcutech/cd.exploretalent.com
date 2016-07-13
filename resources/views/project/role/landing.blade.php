@@ -1,4 +1,4 @@
-@extends('layouts.fullpage')
+@extends('layouts.sidebar')
 
 @section('sidebar.page-header')
 @stop
@@ -6,7 +6,7 @@
 @section('sidebar.body')
 
 <div class="email-landing-container">
-	
+
 	<div class="read-more-message-container">
 		<div class="alert alert-info border-radius-zero margin-bottom-zero padding-small-zz-sm">
 			<a href="#read-more-message" data-toggle="collapse">
@@ -65,7 +65,7 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<div class="container-fluid">
 		<div class="row-fluid clearfix">
 			<div class="col-md-12">
