@@ -5,6 +5,12 @@ function handler(core, user){
 	self = this;
 	self.core = core;
 	self.user = user;
+	self.refresh();
+	console.log(self.user);
+}
+
+handler.prototype.refresh = function(){
+	self.core.service.databind('#talent-email', self.user);
 }
 
 handler.prototype.saveChanges = function() {

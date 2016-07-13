@@ -2,7 +2,9 @@
 @extends('layouts.unsubscribe-header')
 
 @section('sidebar.page-header')
- <i class="fa fa-envelope-o" aria-hidden="true"></i> Unsubscribe Email
+	<div id="talent-email">
+		<i class="fa fa-envelope-o" aria-hidden="true"></i> Unsubscribe Email: <strong><span data-bind="<%= email %>"></span></strong>
+	</div>
 @stop
 
 @section('sidebar.body')

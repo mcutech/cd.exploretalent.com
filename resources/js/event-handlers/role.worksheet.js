@@ -65,6 +65,7 @@ handler.prototype.refresh = function() { self.core.service.databind('#schedules'
 }
 
 handler.prototype.getSchedules = function() {
+	var qs = self.core.service.query_string();
 
 	var data = {
 		query : [
@@ -74,43 +75,46 @@ handler.prototype.getSchedules = function() {
 			[ 'where', 'bam.laret_schedules.rating', '<>', 0 ],
 			[ 'select', 'bam.laret_schedules.id AS schedule_id' ]
 		],
+		page : qs.page || 1
 	};
 
-	var qs = self.core.service.form.serializeObject('#filter-form');
+	var form = self.core.service.form.serializeObject('#filter-form');
 
-	if (qs.confirmation_status) {
-		data.query.push([ 'where', 'bam.laret_schedules.invitee_status', '=', qs.confirmation_status ]);
+	if (form.confirmation_status) {
+		data.query.push([ 'where', 'bam.laret_schedules.invitee_status', '=', form.confirmation_status ]);
 	}
 
-	if (qs.callback_status) {
-		data.query.push([ 'where', 'bam.laret_schedules.status', '=', qs.callback_status ]);
+	if (form.callback_status) {
+		data.query.push([ 'where', 'bam.laret_schedules.status', '=', form.callback_status ]);
 	}
 
-	if (qs.talentname) {
+	if (form.talentname) {
 		data.query.push([ 'where',
 			[
-				[ 'where', 'fname', 'LIKE', '%' + qs.talentname + '%' ],
-				[ 'orWhere', 'lname', 'LIKE', '%' + qs.talentname + '%' ],
-				[ 'orWhere', 'talentlogin', 'LIKE', '%' + qs.talentname + '%' ],
-				[ 'orWhere', 'talentnum', 'LIKE', '%' + qs.talentname + '%' ]
+				[ 'where', 'fname', 'LIKE', '%' + form.talentname + '%' ],
+				[ 'orWhere', 'lname', 'LIKE', '%' + form.talentname + '%' ],
+				[ 'orWhere', 'talentlogin', 'LIKE', '%' + form.talentname + '%' ],
+				[ 'orWhere', 'talentnum', 'LIKE', '%' + form.talentname + '%' ]
 			]
 		]);
 	}
 
-	if (qs.notes) {
+	if (form.notes) {
 		data.query.push([ 'join', 'bam.laret_schedule_notes', 'bam.laret_schedule_notes.schedule_id', '=', 'bam.laret_schedules.id' ])
-		data.query.push([ 'where', 'bam.laret_schedule_notes.body', 'LIKE', '%' + qs.notes + '%' ]);
+		data.query.push([ 'where', 'bam.laret_schedule_notes.body', 'LIKE', '%' + form.notes + '%' ]);
 	}
+
+	var talents;
 
 	return self.core.resource.search_talent.get(data)
 		.then(function(res) {
+			talents = res;
 			var schedule_ids = _.map(res.data, function(talent) {
 				return talent.schedule_id;
 			});
 
 			schedule_ids.push(0);
 
-			var qs = self.core.service.query_string();
 
 			var data2 = {
 				query : [
@@ -122,11 +126,14 @@ handler.prototype.getSchedules = function() {
 					[ 'with', 'conversation.messages.user.bam_talentci' ],
 					[ 'with', 'bam_role' ],
 				],
-				page : qs.page || 1,
 				per_page : 25
 			}
 
 			return self.core.resource.schedule.get(data2);
+		})
+		.then(function(res) {
+			res.total = talents.total;
+			return $.when(res);
 		});
 }
 
@@ -177,17 +184,17 @@ handler.prototype.updateScheduleCDStatus = function(e) {
 	if ($element.hasClass('callback-button')) {
 
 		if($element.hasClass('btn-success')) {
-			status = 1;			
+			status = 1;
 		}
 		else {
-			status = 2;			
+			status = 2;
 		}
 	}
 
 	else if ($element.hasClass('hired-button')) {
 
 		if($element.hasClass('btn-success')) {
-			status = 1;			
+			status = 1;
 		}
 		else {
 			status = 3;
@@ -204,8 +211,8 @@ handler.prototype.updateScheduleCDStatus = function(e) {
 
 			//self.refresh();
 
-			if($element.hasClass('callback-button')){		
-			
+			if($element.hasClass('callback-button')){
+
 				if($element.hasClass('btn-success')){
 				 	$element.removeClass('btn-success');
 				 	$element.addClass('btn-outline');
@@ -216,16 +223,16 @@ handler.prototype.updateScheduleCDStatus = function(e) {
 				 	{
 				 		$element.parent('.actions-content').find('.hired-button').removeClass('btn-success');
 				 		$element.parent('.actions-content').find('.hired-button').addClass('btn-outline');
-				 	}				
+				 	}
 				}
-			}		
-			if($element.hasClass('hired-button')){								  
+			}
+			if($element.hasClass('hired-button')){
 			 	if($element.hasClass('btn-success')){
-			 	  	$element.removeClass('btn-success');				
-			 	  	$element.addClass('btn-outline');				
+			 	  	$element.removeClass('btn-success');
+			 	  	$element.addClass('btn-outline');
 			 	}else{
-			 	  	$element.removeClass('btn-outline');				
-			 	  	$element.addClass('btn-success');				
+			 	  	$element.removeClass('btn-outline');
+			 	  	$element.addClass('btn-success');
 			 	  	if($element.parent('.actions-content').find('.callback-button').hasClass('btn-success'))
 				 	{
 				 		$element.parent('.actions-content').find('.callback-button').removeClass('btn-success');
