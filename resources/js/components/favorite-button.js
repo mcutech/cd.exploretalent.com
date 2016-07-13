@@ -1,9 +1,18 @@
 module.exports = function() {
 	$(document).on('click', '.favorite-button', function() {
 		var $this = $(this);
+		var talentnum;
+
 		var id = $this.parent().attr('data-id');
-		id = id.split('-');
-		var talentnum = id.length > 2 ? id[2] : id[0];
+
+		if(id){
+			id = id.split('-');
+			talentnum = id.length > 2 ? id[2] : id[0];
+		}else{
+			var getURL = window.location.pathname;
+			var extracttn = getURL.split('/');
+			talentnum = extracttn[2];
+		}
 
 		if (parseInt(talentnum)) {
 			// not favorited yet, favorite it!
