@@ -125,6 +125,7 @@ handler.prototype.findMatches = function(append) {
 			if (!append) {
 				$('#role-matches-result').show();
 			}
+			$('#filter-content-modal').modal('hide');
 		});
 }
 
