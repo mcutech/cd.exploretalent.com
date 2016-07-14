@@ -55,8 +55,8 @@
 		</div>
 		<a href="/projects/create" class="btn btn-primary margin-left-normal">Click here to add a new project.</a>
 		<a href="/projects/" class="btn btn-primary margin-left-normal">Click to browse talents</a>
-		<a href="/projects/" class="btn btn-primary margin-left-normal">Click to create castings</a
-		</div>
+		<a href="/projects/" class="btn btn-primary margin-left-normal">Click to create castings</a>
+	    </div>
 		<div class="panel-group panel-group-primary project-item" id="projects-list">
 			<div class="div-table-stripe-item" data-bind-template="#projects-list" data-bind-value="data">
 				<div class="row-fluid clearfix padding-xs-vr">
