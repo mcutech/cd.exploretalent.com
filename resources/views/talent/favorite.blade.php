@@ -13,7 +13,7 @@
 			<div class="row-fluid">
 				<div class="col-md-12 talents-search-result">
 					<div class="row-fluid clearfix" id="favorite-result">
-						@include('components.talent4', [ 'databind' => [ 'template' => '#favorite-result', 'value' => 'data' ], 'ratings' => true, 'favorites_notes' => false ])
+						@include('components.talent4', [ 'databind' => [ 'template' => '#favorite-result', 'value' => 'data' ], 'ratings' => true, 'default_btn' => true, 'favorites_notes' => false ])
 					</div>
 				</div> {{-- talents-search-results --}}
 				<div id="search-loader" class="text-center padding-top-large">

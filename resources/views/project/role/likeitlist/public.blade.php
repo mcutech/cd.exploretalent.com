@@ -35,7 +35,7 @@
 				</div>
 				<div id="role-matches-result" class="col-md-12 talents-search-result">
 					<div class="row-fluid clearfix" id="role-matches">
-						@include('components.talent4', [ 'databind' => [ 'template' => '#role-matches', 'value' => 'data' ], 'ratings' => false, 'notes' => false, 'favorites_notes' => true, 'class' => 'col-lg-2 col-md-3 col-sm-3 col-xs-6'  ])
+						@include('components.talent4', [ 'databind' => [ 'template' => '#role-matches', 'value' => 'data' ], 'ratings' => false, 'notes' => false, 'favorites_notes' => true, 'default_btn' => false, 'producers_pick_btn' => true, 'class' => 'col-lg-2 col-md-3 col-sm-3 col-xs-6'  ])
 					</div>
 				</div>
 			</div>
