@@ -8,4 +8,18 @@
 			border-top-width: 0px;
 		}
 	}
+    .like-it-list-page-wrapper{
+	.producers-pick{
+	    .favorite-button{
+		background-color: #f39c12 !important;
+		border: 1px solid #f39c12;
+		background-image: inherit;
+		color: #ffffff;
+		&:hover{
+		    background-color: #fdb037 !important;
+		    background-image: inherit !important;
+		}
+	    } 
+	}
+    }
 }

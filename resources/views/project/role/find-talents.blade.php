@@ -27,7 +27,7 @@ false, 'pages' => [ [ 'name' => 'My Projects', 'url' => '/projects' ], [ 'name' 
 				<div class="row">
 					<div class="col-md-12 talents-search-result" id="role-matches-result">
 						<div class="row" id="role-matches">
-							@include('components.talent4', [ 'databind' => [ 'template' => '#role-matches', 'value' => 'data' ], 'ratings' => true, 'notes' => false, 'favorites_notes' => true,  'class' => 'col-lg-2 col-md-3 col-sm-3 col-xs-6'  ])
+							@include('components.talent4', [ 'databind' => [ 'template' => '#role-matches', 'value' => 'data' ], 'ratings' => true, 'notes' => false, 'favorites_notes' => true, 'default_btn' => true, 'class' => 'col-lg-2 col-md-3 col-sm-3 col-xs-6'  ])
 						</div>
 					</div>
 				</div>
