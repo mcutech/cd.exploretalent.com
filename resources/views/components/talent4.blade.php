@@ -58,7 +58,7 @@
 								</button>
 							@endif
 							@if (isset($producers_pick_btn) && $producers_pick_btn)
-								<button class="favorite-button btn function-item btn-block border-top-width-zero-sm border-left-width-zero-sm border-left-width-zero-lg border-top-width-zero-sm-lg" data-bind="<%= favorite ? 'btn-warning' : 'btn-outline' %>" data-bind-target="class">
+								<button class="favorite-button producers-pick-btn btn function-item btn-block border-top-width-zero-sm border-left-width-zero-sm border-left-width-zero-lg border-top-width-zero-sm-lg" data-bind="<%= favorite ? 'producers-pick' : 'btn-outline' %>" data-bind-target="class">
 									<b>Producer's Pick</b>
 									<i class="fa fa-star-o font-size-normal-medium" data-bind-target="class"></i>
 								</button>
