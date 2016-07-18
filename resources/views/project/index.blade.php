@@ -46,16 +46,36 @@
 	</div>
 
 	<div class="projects-wrapper panel border-zero">
-	    <div id="no-projects-found" class="panel padding-normal text-align-center alert alert-info hide">
+	    <!-- <div id="no-projects-found" class="panel padding-normal text-align-center alert alert-info hide">
+		 <div class="no-project-title">
+		 <h3><b>Casting Not Found.</b></h3></div>
+		 <div class="no-project-video margin-bottom-normal">
+		 <iframe src="https://www.youtube.com/embed/Kaylr2ygOmA" frameborder="0" allowfullscreen></iframe>
+		 </div>
+		 <a href="/projects/create" class="btn btn-primary margin-left-normal">Click here to add a new project.</a>
+		 <a href="/projects/" class="btn btn-primary margin-left-normal">Click to browse talents</a>
+		 <a href="/projects/" class="btn btn-primary margin-left-normal">Click to create castings</a>
+		 </div> -->
+	    
+	    <div id="no-projects-found" class="panel padding-normal text-align-center hide">
 		<div class="no-project-title">
-		    <h3><b>Casting Not Found.</b></h3>
+		    <h4><b>Welcome to ET's New CD Interface!</b></h4>
 		</div>
-		<div class="no-project-video margin-bottom-normal">
+		<div class="no-project-video">
 		    <iframe src="https://www.youtube.com/embed/Kaylr2ygOmA" frameborder="0" allowfullscreen></iframe>
 		</div>
-		<a href="/projects/create" class="btn btn-primary margin-left-normal">Click here to add a new project.</a>
-		<a href="/projects/" class="btn btn-primary margin-left-normal">Click to browse talents</a>
-		<a href="/projects/" class="btn btn-primary margin-left-normal">Click to create castings</a>
+		<div class="row margin-bottom-small">
+		    <div class="col-md-12">
+			<div class="text-muted">Video Tutorial</div>
+		    </div>
+		</div>
+		<div class="project-btn-container row">
+		    <a href="/projects/create" class="btn btn-default project-btns create-btn col-xs-6"><i class="fa fa-plus"></i>Create Project</a>
+		    <a href="/projects/" class="btn btn-default project-btns browse-btn col-xs-6"><i class="fa fa-search"></i>Browse Talents</a>
+		</div>
+		<div>
+		    		    
+		</div>
 	    </div>
 		<div class="panel-group panel-group-primary project-item" id="projects-list">
 			<div class="div-table-stripe-item" data-bind-template="#projects-list" data-bind-value="data">
