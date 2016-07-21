@@ -62,7 +62,7 @@
 		    <h4><b>Welcome to ET's New CD Interface!</b></h4>
 		</div>
 		<div class="no-project-video">
-		   <iframe src="https://www.youtube.com/embed/0zdUrXfOd4I" frameborder="0" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/0zdUrXfOd4I" frameborder="0" allowfullscreen></iframe>
 		</div>
 		<div class="row margin-bottom-small">
 		    <div class="col-md-12">
