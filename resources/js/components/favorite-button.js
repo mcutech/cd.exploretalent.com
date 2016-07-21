@@ -25,12 +25,16 @@ module.exports = function() {
 				self.core.resource.favorite_talent.post(data)
 				.then(function(res) {
 					// change color
-					$this.removeClass('btn-outline').addClass('btn-warning');
+					if($this.hasClass('producers-pick-btn'))
+						$this.removeClass('btn-outline').addClass('producers-pick');
+					else
+						$this.removeClass('btn-outline').addClass('btn-warning');
 					$this.find('.favorite-button-text').text('Added to Favorites');
 				});
+
 			}
 			// already favorite, remove favorite!
-			else if($this.hasClass('btn-warning')) {
+			else if($this.hasClass('btn-warning') || $this.hasClass('producers-pick')) {
 				// use id as favorite id
 				var data = {
 					favoriteId : talentnum
@@ -40,7 +44,10 @@ module.exports = function() {
 				self.core.resource.favorite_talent.delete(data)
 				.then(function(res) {
 					// change color
-					$this.removeClass('btn-warning').addClass('btn-outline');
+					if($this.hasClass('producers-pick'))
+						$this.removeClass('producers-pick').addClass('btn-outline');
+					else
+						$this.removeClass('btn-warning').addClass('btn-outline');
 					$this.find('.favorite-button-text').text('Add to Favorites');
 				});
 			}

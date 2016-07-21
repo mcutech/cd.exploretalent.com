@@ -10,17 +10,17 @@
 			<div class="panel-heading">
 				<span class="panel-title"><i class="fa fa-fw fa-user"></i> User Information</span>
 			</div>
-			<div class="panel-body">				
-				<div class="row">							
+			<div class="panel-body">
+				<div class="row">
 					<div class="col-sm-6">
 						<div class="form-group no-margin-hr">
-						<label for="company" class="control-label">Company name *</label>							
-							<input data-bind="<%= company %>" type="text" class="form-control" name="company" placeholder="Company name" />																
-						</div>						
+						<label for="company" class="control-label">Company name *</label>
+							<input data-bind="<%= company %>" type="text" class="form-control" name="company" placeholder="Company name" />
+						</div>
 					</div>
-				</div>												
-					
-				
+				</div>
+
+
 				<div class="row">
 					<div class="col-sm-6">
 						<div class="form-group no-margin-hr">
@@ -134,19 +134,19 @@
 							<label for="phone2" class="control-label">Phone 2</label>
 							<input data-bind="<%= phone2 %>" type="text" class="form-control" name="phone2" placeholder="Phone 2" data-validate="phone-not-required" data-validate-error="This is not a valid phone number." />
 						</div>
-					</div>				
+					</div>
 					<div class="col-sm-3">
 						<div class="form-group no-margin-hr">
 							<label for="fax" class="control-label">Fax</label>
 							<input  data-bind="<%= fax %>" type="text" class="form-control" name="fax" placeholder="Fax" data-validate="phone-not-required" data-validate-error="This is not a valid fax number." />
 						</div>
-					</div>				
+					</div>
 					<div class="col-sm-3">
 						<div class="form-group no-margin-hr">
 							<label for="website" class="control-label">Website</label>
 							<input data-bind="<%= website %>" type="text" class="form-control" name="website" id="website" placeholder="Website">
 						</div>
-					</div>					
+					</div>
 				</div>
 				<div class="row">
 					<div class="col-sm-3">
@@ -161,17 +161,27 @@
 							<input data-bind="<%= email2 %>" type="email" class="form-control" name="email2" placeholder="Email 2" data-validate="email-not-required" data-validate-error="This is not a valid e-mail address." />
 						</div>
 					</div>
+					<div class="col-md-4" id="user_subscription">
+						<div class="form-group no-margin-hr">
+						<div class="checkbox col-sm-6">
+							<label><input type="checkbox" id="emailok" data-bind="<%= cd_user_subscription ? cd_user_subscription.email : '' %>">Email Ok</label>
+						</div>
+						<div class="checkbox col-sm-6">
+							<label><input type="checkbox" id="smsok" data-bind="<%= cd_user_subscription ? cd_user_subscription.sms : '' %>">SMS Ok</label>
+						</div>
+						</div>
+					</div>
 				</div>
 				<!--  -->
-				<div class="row">		
-					<div class="col-md-12">					
+				<div class="row">
+					<div class="col-md-12">
 					<button id="update-settings-button" type="submit" class="btn btn-primary"><i class="fa fa-fw fa-user"></i> Update information</button>
-					
+
 					<button id="update-password" type="submit" class="btn btn-primary" data-toggle="modal" data-target="#settings-modal">
-					<i class="fa fa-fw fa-lock"></i> Change Password</button>			
+					<i class="fa fa-fw fa-lock"></i> Change Password</button>
 					<span id="update-settings-success" class="text-success margin-left-medium" style="display: none;"><i class="fa fa-check"></i> Settings successfully updated.</span>
 					<span id="update-settings-fail" class="text-danger margin-left-medium" style="display: none;"><i class="fa fa-close"></i> Duplicate Email.</span>
-					</div>					
+					</div>
 				</div>
 
 			</div>
