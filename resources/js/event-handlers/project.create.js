@@ -2,336 +2,336 @@
 // var layoutInit = require('./layout.js');
 
 function handler(core, user, talentlogin) {
-	self = this;
-	self.core = core;
-	self.user = user;
+  self = this;
+  self.core = core;
+  self.user = user;
 
-	// email autofill with CD email
-	self.core.service.databind('#self-sub-email', self.user);
+  // email autofill with CD email
+  self.core.service.databind('#self-sub-email', self.user);
 
 }
 
 handler.prototype.createNewProject = function(e){
 
-	e.preventDefault();
+  e.preventDefault();
 
-	var projectname = $('#project-name').val();
-	var category = $('#project-category').val();
+  var projectname = $('#project-name').val();
+  var category = $('#project-category').val();
 
-	var submissiondeadline = $('#bs-datepicker-submissiondeadline').val();
-		submissiondeadline = submissiondeadline.split("-");
-	var asaptimestamp = Date.UTC(submissiondeadline[0],submissiondeadline[1]-1,submissiondeadline[2]) / 1000;
-		asaptimestamp = asaptimestamp + 28800;
+  var submissiondeadline = $('#bs-datepicker-submissiondeadline').val();
+  submissiondeadline = submissiondeadline.split("-");
+  var asaptimestamp = Date.UTC(submissiondeadline[0],submissiondeadline[1]-1,submissiondeadline[2]) / 1000;
+  //asaptimestamp = asaptimestamp + 28800;
 
-	var submissiontimestamp = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate()) / 1000;
-	var rate = $('#project-rate').val();
-	var ratedes = $('#project-rate-desc').val();
+  var submissiontimestamp = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate()) / 1000;
+  var rate = $('#project-rate').val();
+  var ratedes = $('#project-rate-desc').val();
 
-	var auditiondate = $('#bs-datepicker-audition').val();
-		auditiondate = auditiondate.split("-");
-	var auditiontimestamp = Date.UTC(auditiondate[0],auditiondate[1]-1,auditiondate[2]) / 1000;
-		auditiontimestamp = auditiontimestamp + 28800;
+  var auditiondate = $('#bs-datepicker-audition').val();
+  auditiondate = auditiondate.split("-");
+  var auditiontimestamp = Date.UTC(auditiondate[0],auditiondate[1]-1,auditiondate[2]) / 1000;
+  //auditiontimestamp = auditiontimestamp + 28800;
 
-	var shootdate = $('#bs-datepicker-shootdate').val();
-		shootdate = shootdate.split("-");
-	var shoottimestamp = Date.UTC(shootdate[0],shootdate[1]-1,shootdate[2]) / 1000;
-		shoottimestamp = shoottimestamp + 28800;
+  var shootdate = $('#bs-datepicker-shootdate').val();
+  shootdate = shootdate.split("-");
+  var shoottimestamp = Date.UTC(shootdate[0],shootdate[1]-1,shootdate[2]) / 1000;
+  //shoottimestamp = shoottimestamp + 28800;
 
-	var union = $('input[type="radio"][name="radioUnion"]:checked').val();
-	var projecttype = $('input[type="radio"][name="radioSubmissionType"]:checked').val();
-	var zipcode = $('#zip-code').val();
-	var auditiondesc = $('#audition-description').val();
+  var union = $('input[type="radio"][name="radioUnion"]:checked').val();
+  var projecttype = $('input[type="radio"][name="radioSubmissionType"]:checked').val();
+  var zipcode = $('#zip-code').val();
+  var auditiondesc = $('#audition-description').val();
 
-	var promise = $.when();
+  var promise = $.when();
 
-	// sets checked boxes as market (after Auto Select Markets button is clicked (will check zipcode))
-	var markets = [];
+  // sets checked boxes as market (after Auto Select Markets button is clicked (will check zipcode))
+  var markets = [];
 
-	// Nationwide Casting
-	if($('#nationwide-market-checkbox').hasClass('checked')) {
-		markets = 'N/A';
-		zipcode = 'N/A';
-	}
+  // Nationwide Casting
+  if($('#nationwide-market-checkbox').hasClass('checked')) {
+    markets = 'N/A';
+    zipcode = 'N/A';
+  }
 
-	else if(!$('.auto-markets-div').is(':visible')) { // if auto select markets btn was not clicked (save btn is clicked)
+  else if(!$('.auto-markets-div').is(':visible')) { // if auto select markets btn was not clicked (save btn is clicked)
 
-		promise = self.autoSelectMarkets()
-		.then(function(res) {
+    promise = self.autoSelectMarkets()
+      .then(function(res) {
 
-			_.each(res, function(data) {
+        _.each(res, function(data) {
 
-				markets.push(data.city + ", " + data.state);
+          markets.push(data.city + ", " + data.state);
 
-			});
+        });
 
-			// if all checkboxes checked, set markets as N/A
-			if($('input[type="checkbox"][name="manual-market-checkbox"]:checked').length == $('input[type="checkbox"][name="manual-market-checkbox"]').length) {
-				markets = 'N/A';
-			}
-			else {
-				// for manually selected markets
-				$('input[type="checkbox"][name="manual-market-checkbox"]:checked').next('span').each(function() {
+        // if all checkboxes checked, set markets as N/A
+        if($('input[type="checkbox"][name="manual-market-checkbox"]:checked').length == $('input[type="checkbox"][name="manual-market-checkbox"]').length) {
+          markets = 'N/A';
+        }
+        else {
+          // for manually selected markets
+          $('input[type="checkbox"][name="manual-market-checkbox"]:checked').next('span').each(function() {
 
-					var text = $(this).text();
-					if(markets.indexOf(text) == -1) {
-						markets.push($(this).text());
-					}
+            var text = $(this).text();
+            if(markets.indexOf(text) == -1) {
+              markets.push($(this).text());
+            }
 
-				});
+          });
 
-				markets = markets.join('>');
-			}
+          markets = markets.join('>');
+        }
 
-			return $.when();
-		});
+        return $.when();
+      });
 
-	}
+  }
 
-	else {
+  else {
 
-		$('input[type="checkbox"][name="market-checkbox"]:checked').next('span').each(function() {
-			markets.push($(this).text());
-		});
+    $('input[type="checkbox"][name="market-checkbox"]:checked').next('span').each(function() {
+      markets.push($(this).text());
+    });
 
-		// if all checkboxes checked, set markets as N/A
-		if($('input[type="checkbox"][name="manual-market-checkbox"]:checked').length == $('input[type="checkbox"][name="manual-market-checkbox"]').length) {
-			markets = 'N/A';
-		}
-		else {
-			// for manually selected markets
-			$('input[type="checkbox"][name="manual-market-checkbox"]:checked').next('span').each(function() {
+    // if all checkboxes checked, set markets as N/A
+    if($('input[type="checkbox"][name="manual-market-checkbox"]:checked').length == $('input[type="checkbox"][name="manual-market-checkbox"]').length) {
+      markets = 'N/A';
+    }
+    else {
+      // for manually selected markets
+      $('input[type="checkbox"][name="manual-market-checkbox"]:checked').next('span').each(function() {
 
-				var text = $(this).text();
-				if(markets.indexOf(text) == -1) {
-					markets.push($(this).text());
-				}
+        var text = $(this).text();
+        if(markets.indexOf(text) == -1) {
+          markets.push($(this).text());
+        }
 
-			});
+      });
 
-			markets = markets.join('>');
-			// because checkboxes are checked by default, the first hidden div in loop is included.. this will remove it from the value of market sent to data
-			while(markets.charAt(0) === '>')
-		    markets = markets.substr(1);
-		}
+      markets = markets.join('>');
+      // because checkboxes are checked by default, the first hidden div in loop is included.. this will remove it from the value of market sent to data
+      while(markets.charAt(0) === '>')
+        markets = markets.substr(1);
+    }
 
-	}
+  }
 
-	promise.then(function() {
+  promise.then(function() {
 
-		var submissiondeadline = $('#bs-datepicker-submissiondeadline').val();
+    var submissiondeadline = $('#bs-datepicker-submissiondeadline').val();
 
-		var data = {
-			user_id : self.user.bam_cd_user_id,
-			name : projectname,
-			name_original : projectname,
-			project : projectname,
-			cat : category,
-			sub_timestamp : submissiontimestamp,
-			asap : asaptimestamp,
-			rate : rate,
-			rate_des: ratedes,
-			aud_timestamp: auditiontimestamp,
-			shoot_timestamp: shoottimestamp,
-			union2: union,
-			project_type : projecttype,
-			zip : zipcode,
-			market: markets,
-			location : zipcode,
-			des: auditiondesc,
-		};
-		
-		if(projectname.length < 1) {
-			$('.project-name-error-required').fadeIn().delay(3000).fadeOut();
-			$('#project-name').focus();
-		}
+    var data = {
+      user_id : self.user.bam_cd_user_id,
+      name : projectname,
+      name_original : projectname,
+      project : projectname,
+      cat : category,
+      sub_timestamp : submissiontimestamp,
+      asap : asaptimestamp,
+      rate : rate,
+      rate_des: ratedes,
+      aud_timestamp: auditiontimestamp,
+      shoot_timestamp: shoottimestamp,
+      union2: union,
+      project_type : projecttype,
+      zip : zipcode,
+      market: markets,
+      location : zipcode,
+      des: auditiondesc,
+    };
 
-		else if(projectname.length < 5) {
-			$('.project-name-error-five').fadeIn().delay(3000).fadeOut();
-			$('#project-name').focus();
-		}
+    if(projectname.length < 1) {
+      $('.project-name-error-required').fadeIn().delay(3000).fadeOut();
+      $('#project-name').focus();
+    }
 
-		else if(category.length < 1) {
-			$('.category-error-required').fadeIn().delay(3000).fadeOut();
-			$('#project-category').focus();
-		}
+    else if(projectname.length < 5) {
+      $('.project-name-error-five').fadeIn().delay(3000).fadeOut();
+      $('#project-name').focus();
+    }
 
-		else if(submissiondeadline.length < 1) {
-			$('.submission-deadline-error-required').fadeIn().delay(3000).fadeOut();
-			$('#bs-datepicker-submissiondeadline').focus();
-			$('.ui-datepicker').hide().delay(3000).fadeIn();
-		}
+    else if(category.length < 1) {
+      $('.category-error-required').fadeIn().delay(3000).fadeOut();
+      $('#project-category').focus();
+    }
 
-		else if(auditiontimestamp < asaptimestamp) {
-			$('.audition-date-error-invalid').fadeIn().delay(3000).fadeOut();
-			$('#bs-datepicker-audition').focus();
-			$('.ui-datepicker').hide().delay(3000).fadeIn();
-		}
+    else if(submissiondeadline.length < 1) {
+      $('.submission-deadline-error-required').fadeIn().delay(3000).fadeOut();
+      $('#bs-datepicker-submissiondeadline').focus();
+      $('.ui-datepicker').hide().delay(3000).fadeIn();
+    }
 
-		else if(shoottimestamp <= auditiontimestamp) {
-			$('.shoot-date-error-invalid').fadeIn().delay(3000).fadeOut();
-			$('#bs-datepicker-shootdate').focus();
-			$('.ui-datepicker').hide().delay(3000).fadeIn();
-		}
+    else if(auditiontimestamp < asaptimestamp) {
+      $('.audition-date-error-invalid').fadeIn().delay(3000).fadeOut();
+      $('#bs-datepicker-audition').focus();
+      $('.ui-datepicker').hide().delay(3000).fadeIn();
+    }
 
-		else if(rate.length < 1) {
-			$('.rate-error-required').fadeIn().delay(3000).fadeOut();
-			$('#project-rate').focus();
-		}
+    else if(shoottimestamp <= auditiontimestamp) {
+      $('.shoot-date-error-invalid').fadeIn().delay(3000).fadeOut();
+      $('#bs-datepicker-shootdate').focus();
+      $('.ui-datepicker').hide().delay(3000).fadeIn();
+    }
 
-		else if(zipcode.length < 1) {
-			$('.zipcode-error-required').fadeIn().delay(3000).fadeOut();
-			$('#zip-code').focus();
-		}
+    else if(rate.length < 1) {
+      $('.rate-error-required').fadeIn().delay(3000).fadeOut();
+      $('#project-rate').focus();
+    }
 
-		else if(markets.length < 1) {
-			$('.markets-error-required').fadeIn().delay(3000).fadeOut();
-			$('.auto-markets-div').focus();
-		}
+    else if(zipcode.length < 1) {
+      $('.zipcode-error-required').fadeIn().delay(3000).fadeOut();
+      $('#zip-code').focus();
+    }
 
-		else if(auditiondesc.length < 1) {
-			$('.audition-description-error-required').fadeIn().delay(3000).fadeOut();
-			$('#audition-description').focus();
-		}
+    else if(markets.length < 1) {
+      $('.markets-error-required').fadeIn().delay(3000).fadeOut();
+      $('.auto-markets-div').focus();
+    }
 
-		else {
-			if(projecttype == "1") {
+    else if(auditiondesc.length < 1) {
+      $('.audition-description-error-required').fadeIn().delay(3000).fadeOut();
+      $('#audition-description').focus();
+    }
 
-				var selfSubEmail = $('#self-sub-email').val();
-				var selfSubAddress = $('#self-sub-address').val();
+    else {
+      if(projecttype == "1") {
 
-				if(selfSubEmail.length < 1 && selfSubAddress.length < 1) {
-					$('.self-sub-error-required').fadeIn().delay(3000).fadeOut();
-					$('#self-sub-email').focus();
-				}
+        var selfSubEmail = $('#self-sub-email').val();
+        var selfSubAddress = $('#self-sub-address').val();
 
-				else {
-					data["snr"] = '1';
-					data["snr_email"] = selfSubEmail;
-					// data["address2"] = selfSubAddress;
-					data["srn_address"] = selfSubAddress;
+        if(selfSubEmail.length < 1 && selfSubAddress.length < 1) {
+          $('.self-sub-error-required').fadeIn().delay(3000).fadeOut();
+          $('#self-sub-email').focus();
+        }
 
-					return self.core.resource.project.post(data)
-					.then(function(res) {
-						console.log(res);
-						window.location = "/projects/"+res.casting_id;
-					});
-				}
+        else {
+          data["snr"] = '1';
+          data["snr_email"] = selfSubEmail;
+          // data["address2"] = selfSubAddress;
+          data["srn_address"] = selfSubAddress;
 
-			}
+          return self.core.resource.project.post(data)
+            .then(function(res) {
+              console.log(res);
+              window.location = "/projects/"+res.casting_id;
+            });
+        }
 
-			else if(projecttype == "2") {
+      }
 
-				if($('#bs-datepicker-open-call').val().length < 1) {
+      else if(projecttype == "2") {
 
-					$('.open-call-date-error-required').fadeIn().delay(3000).fadeOut();
-					$('#bs-datepicker-open-call').focus();
-					$('.ui-datepicker').hide().delay(3000).fadeIn();
-				}
+        if($('#bs-datepicker-open-call').val().length < 1) {
 
-				else if($('#open-call-location').val().length < 1) {
+          $('.open-call-date-error-required').fadeIn().delay(3000).fadeOut();
+          $('#bs-datepicker-open-call').focus();
+          $('.ui-datepicker').hide().delay(3000).fadeIn();
+        }
 
-					$('.open-call-location-error-required').fadeIn().delay(3000).fadeOut();
-					$('#open-call-location').focus();
-				}
+        else if($('#open-call-location').val().length < 1) {
 
-				else {
-					data["snr"] = '2';
-					data["app_date_time"] = $('#bs-datepicker-open-call').val() + " from " + $('#bs-timepicker-open-call-from').val() + " to " + $('#bs-timepicker-open-call-to').val();
-					data["app_loc"] = $('#open-call-location').val();
+          $('.open-call-location-error-required').fadeIn().delay(3000).fadeOut();
+          $('#open-call-location').focus();
+        }
 
-					if($('#appointment-only-checkbox:checked').length > 0) {
-						data["by_app_only"] = '1';
-					}
-					else {
-						data["by_app_only"] = '0';
-					}
+        else {
+          data["snr"] = '2';
+          data["app_date_time"] = $('#bs-datepicker-open-call').val() + " from " + $('#bs-timepicker-open-call-from').val() + " to " + $('#bs-timepicker-open-call-to').val();
+          data["app_loc"] = $('#open-call-location').val();
 
-					return self.core.resource.project.post(data)
-					.then(function(res) {
-						console.log(res);
-						window.location = "/projects/"+res.casting_id;
-					});
-				}
+          if($('#appointment-only-checkbox:checked').length > 0) {
+            data["by_app_only"] = '1';
+          }
+          else {
+            data["by_app_only"] = '0';
+          }
 
-			}
-		}
-	});
+          return self.core.resource.project.post(data)
+            .then(function(res) {
+              console.log(res);
+              window.location = "/projects/"+res.casting_id;
+            });
+        }
+
+      }
+    }
+  });
 }
 
 handler.prototype.autoSelectMarkets = function(){
 
-	var deferred = $.Deferred();
+  var deferred = $.Deferred();
 
-	var zipcode = $('#zip-code').val();
+  var zipcode = $('#zip-code').val();
 
-	if(zipcode.length < 1) {
-		$('.zipcode-error-required').fadeIn().delay(3000).fadeOut();
-		$('#zip-code').focus();
+  if(zipcode.length < 1) {
+    $('.zipcode-error-required').fadeIn().delay(3000).fadeOut();
+    $('#zip-code').focus();
 
-		deferred.resolve();
-	}
+    deferred.resolve();
+  }
 
-	else {
+  else {
 
-		var data = {
-			zip : zipcode,
-			distance: 500,
-		}
+    var data = {
+      zip : zipcode,
+      distance: 500,
+    }
 
-		self.core.resource.market.get(data)
-		.then(function(res) {
+    self.core.resource.market.get(data)
+      .then(function(res) {
 
-			if(res.length < 1) {
+        if(res.length < 1) {
 
-				$('.zipcode-error-invalid').fadeIn().delay(3000).fadeOut();
-				$('#zip-code').focus();
+          $('.zipcode-error-invalid').fadeIn().delay(3000).fadeOut();
+          $('#zip-code').focus();
 
-			}
+        }
 
-			self.core.service.databind('.auto-markets-div', { data : res });
+        self.core.service.databind('.auto-markets-div', { data : res });
 
-			deferred.resolve(res);
+        deferred.resolve(res);
 
-		});
+      });
 
-	}
+  }
 
-	return deferred.promise();
+  return deferred.promise();
 
 }
 
 handler.prototype.toggleManualMarketsDiv = function(e) {
 
-	e.preventDefault();
-	$('.manual-markets-div').toggleClass('display-none');
+  e.preventDefault();
+  $('.manual-markets-div').toggleClass('display-none');
 
-	if($('.manual-markets-div').hasClass('display-none')) {
-		$(this).text("Manually select markets");
-		$('#toggle-all-markets-checked').hide();
-	}
-	else {
-		$(this).text("Hide markets");
-		$('#toggle-all-markets-checked').show();
-	}
+  if($('.manual-markets-div').hasClass('display-none')) {
+    $(this).text("Manually select markets");
+    $('#toggle-all-markets-checked').hide();
+  }
+  else {
+    $(this).text("Hide markets");
+    $('#toggle-all-markets-checked').show();
+  }
 
 }
 
 handler.prototype.toggleAllMarketsChecked = function(e) {
 
-	e.preventDefault();
-	$(this).toggleClass('checked');
+  e.preventDefault();
+  $(this).toggleClass('checked');
 
-	if($(this).hasClass('checked')) {
-		$(this).text("Unselect All Markets");
-		$('input[type="checkbox"][name="manual-market-checkbox"]').prop('checked', 'checked');
-	}
-	else {
-		$(this).text("Select All Markets");
-		$('input[type="checkbox"][name="manual-market-checkbox"]').removeAttr('checked');
-	}
+  if($(this).hasClass('checked')) {
+    $(this).text("Unselect All Markets");
+    $('input[type="checkbox"][name="manual-market-checkbox"]').prop('checked', 'checked');
+  }
+  else {
+    $(this).text("Select All Markets");
+    $('input[type="checkbox"][name="manual-market-checkbox"]').removeAttr('checked');
+  }
 
 }
 
 module.exports = function(core, user, talentlogin) {
-	return new handler(core, user, talentlogin);
+  return new handler(core, user, talentlogin);
 };
