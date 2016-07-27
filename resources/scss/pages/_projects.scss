@@ -180,6 +180,9 @@
 	} //roles-container
 }
 #watch-video-modal{
+	.moda-header{
+		display: list-item;
+	}
 	.modal-body{
 		iframe{
 			min-height: 335px;
