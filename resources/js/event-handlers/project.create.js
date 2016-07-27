@@ -11,6 +11,9 @@ function handler(core, user, talentlogin) {
 
 }
 
+function parseDate(date){
+}
+
 handler.prototype.createNewProject = function(e){
 
   e.preventDefault();
@@ -19,9 +22,12 @@ handler.prototype.createNewProject = function(e){
   var category = $('#project-category').val();
 
   var submissiondeadline = $('#bs-datepicker-submissiondeadline').val();
-  submissiondeadline = submissiondeadline.split("-");
-  var asaptimestamp = Date.UTC(submissiondeadline[0],submissiondeadline[1]-1,submissiondeadline[2]) / 1000;
-  //asaptimestamp = asaptimestamp + 28800;
+  submissiondeadline = submissiondeadline.split('-');
+  parseDate(submissiondeadline);
+  var asaptimestamp = new Date();
+  asaptimestamp.setUTCDate(submissiondeadline[2]);
+  asaptimestamp.setUTCFullYear(submissiondeadline[0]);
+  asaptimestamp.setUTCMonth(submissiondeadline[1]-1);
 
   var submissiontimestamp = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate()) / 1000;
   var rate = $('#project-rate').val();
@@ -29,13 +35,17 @@ handler.prototype.createNewProject = function(e){
 
   var auditiondate = $('#bs-datepicker-audition').val();
   auditiondate = auditiondate.split("-");
-  var auditiontimestamp = Date.UTC(auditiondate[0],auditiondate[1]-1,auditiondate[2]) / 1000;
-  //auditiontimestamp = auditiontimestamp + 28800;
+  var auditiontimestamp = new Date();
+  auditiontimestamp.setUTCDate(auditiondate[2]);
+  auditiontimestamp.setUTCFullYear(auditiondate[0]);
+  auditiontimestamp.setUTCMonth(auditiondate[1]-1);
 
   var shootdate = $('#bs-datepicker-shootdate').val();
   shootdate = shootdate.split("-");
-  var shoottimestamp = Date.UTC(shootdate[0],shootdate[1]-1,shootdate[2]) / 1000;
-  //shoottimestamp = shoottimestamp + 28800;
+  var shoottimestamp = new Date();
+  shoottimestamp.setUTCDate(shootdate[2]);
+  shoottimestamp.setUTCFullYear(shootdate[0]);
+  shoottimestamp.setUTCMonth(shootdate[1]-1);
 
   var union = $('input[type="radio"][name="radioUnion"]:checked').val();
   var projecttype = $('input[type="radio"][name="radioSubmissionType"]:checked').val();
