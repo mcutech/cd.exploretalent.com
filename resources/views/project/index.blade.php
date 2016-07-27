@@ -1,11 +1,11 @@
 @extends('layouts.sidebar')
 
 @section('sidebar.page-header')
-<i class="fa fa-th-list page-header-icon"></i> My Projects
+<span class="no-project-found-header-hide"><i class="fa fa-th-list page-header-icon"></i> My Projects </span>
 @stop
 
 @section('sidebar.body')
-    <div class="margin-top-small margin-bottom-small row">
+    <div class="margin-top-small margin-bottom-small row no-project-found-header-hide">
         <div class="col-xs-6 col-sm-2">
             <div class="input-group">
                 <input type="text" class="form-control" id="project-name" name="project" placeholder="Search for Project">
@@ -36,7 +36,7 @@
         </div>
     </div>
 
-    <div class="panel padding-xs-vr padding-xs-hr margin-bottom-zero text-left row-fluid clearfix">
+    <div class="panel padding-xs-vr padding-xs-hr margin-bottom-zero text-left row-fluid clearfix no-project-found-header-hide">
         <div class="col-xs-5 col-sm-2"><strong>Title</strong></div>
         <div class="col-xs-4 col-sm-3"><strong>Type</strong></div>
         <div class="col-xs-2 col-sm-2 display-none-zz-xs"><strong>Submission</strong></div>
@@ -51,12 +51,12 @@
         <div>
             <h2><b>Welcome to our New CD Interface</b></h2>
             <p class="margin-zero">Our tools are always 100% FREE for you to cast talents for your projects.</p>
-            <p>We're here to help. Call us at <b class="text-primary">702-446-0888</b> or <a href="#" class="text-primary"><b>Leave Message</b></a></p>
+            <p>We're here to help. Call us at <b class="text-primary">702-446-0888</b> or <a href="/feedback" class="text-primary"><b>Leave Message</b></a></p>
         </div>
         <div class="video-btn">
             See what we can do for you
             <div class="video">
-                <a href="#" class="btn btn-primary btn-lg">Watch the video <i class="fa fa-arrow-circle-right"></i></a>
+                <a href="#" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#watch-video-modal">Watch the video <i class="fa fa-arrow-circle-right"></i></a>
             </div>
         </div>
         <div class="project-btn-container row">
@@ -65,6 +65,7 @@
             <a href="/projects/" class="btn btn-default project-btns browse-btn col-xs-5"><i class="fa fa-search"></i>Browse Talents</a>
         </div>
     </div>
+
 {{--         <div id="no-projects-found" class="panel padding-normal text-align-center hide">
             <h3><b>Casting Not Found.</b></h3>
         </div> --}}
@@ -117,4 +118,5 @@
         </div>
         <div id="projects-pagination2" class="text-right"></div>
     </div>
+@include('project.modals.watch-video')    
 @stop
