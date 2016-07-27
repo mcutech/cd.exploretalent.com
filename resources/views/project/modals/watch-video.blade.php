@@ -6,7 +6,7 @@
 			</div>
 
 			<div class="modal-body padding-zero">
-				<iframe width="100%" height="100%" src="https://www.youtube.com/embed/0zdUrXfOd4I?autoplay=1" frameborder="0" allowfullscreen></iframe>
+				<iframe width="100%" height="100%" src="https://www.youtube.com/embed/0zdUrXfOd4I" frameborder="0" allowfullscreen></iframe>
 			</div>
 		</div> <!-- / .modal-content -->
 	</div> <!-- / .modal-dialog -->
