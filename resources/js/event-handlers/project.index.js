@@ -58,6 +58,10 @@ handler.prototype.refreshList = function(){
 				$('#no-projects-found').removeClass('hide');
 			}
 
+			if(res.data.length == 0) {
+				$('.no-project-found-header-hide, .breadcrumb').addClass('hide');
+			}
+
 			self.core.service.databind('#projects-list', res);
 			self.core.service.paginate('#projects-pagination', { total : res.total, class : 'pagination', name : 'page', per_page: res.per_page });
 			self.core.service.paginate('#projects-pagination2', { total : res.total, class : 'pagination', name : 'page', per_page: res.per_page });

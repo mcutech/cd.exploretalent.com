@@ -1,6 +1,9 @@
 .projects-wrapper{
-
     #no-projects-found{
+    	padding: 50px 20px;
+		h2{
+			margin-top: 0px;
+		}
 		.no-project-title{
 		    max-width: 400px;
 		    width: 100%;
@@ -176,3 +179,11 @@
 		}
 	} //roles-container
 }
+#watch-video-modal{
+	.modal-body{
+		iframe{
+			min-height: 335px;
+		}
+	}	
+}
+
