@@ -11,6 +11,12 @@ function handler(core, user, talentlogin) {
 
 }
 
+function parseDate(inputDate){
+  var timestamp = new Date();
+  inputDate = inputDate.split('-');
+  return Date.UTC(inputDate[0], inputDate[1]-1, inputDate[2])/1000;
+}
+
 handler.prototype.createNewProject = function(e){
 
   e.preventDefault();
@@ -24,25 +30,18 @@ handler.prototype.createNewProject = function(e){
   var category = $('#project-category').val();
 
   var submissiondeadline = $('#bs-datepicker-submissiondeadline').val();
-  submissiondeadline = submissiondeadline.split("-");
-  var asaptimestamp = Date.UTC(submissiondeadline[0],submissiondeadline[1]-1,submissiondeadline[2]) / 1000;
-  asaptimestamp = convertToPST(asaptimestamp);
+  var asaptimestamp = parseDate(submissiondeadline);
 
-  var submissiontimestamp = Math.floor((new Date()).getTime() / 1000);
-  submissiontimestamp = convertToPST(submissiontimestamp);
+  var submissiontimestamp = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
 
   var rate = $('#project-rate').val();
   var ratedes = $('#project-rate-desc').val();
 
   var auditiondate = $('#bs-datepicker-audition').val();
-  auditiondate = auditiondate.split("-");
-  var auditiontimestamp = Date.UTC(auditiondate[0],auditiondate[1]-1,auditiondate[2]) / 1000;
-  auditiontimestamp = convertToPST(auditiontimestamp);
+  var auditiontimestamp = parseDate(auditiondate);
 
   var shootdate = $('#bs-datepicker-shootdate').val();
-  shootdate = shootdate.split("-");
-  var shoottimestamp = Date.UTC(shootdate[0],shootdate[1]-1,shootdate[2]) / 1000;
-  shoottimestamp = convertToPST(shoottimestamp);
+  var shoottimestamp = parseDate(shootdate);
 
   var union = $('input[type="radio"][name="radioUnion"]:checked').val();
   var projecttype = $('input[type="radio"][name="radioSubmissionType"]:checked').val();
