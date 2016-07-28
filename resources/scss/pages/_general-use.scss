@@ -913,6 +913,7 @@
 	}
 
 	// for all views except desktop
+	z-index: 500;
 	position: fixed;
     bottom: 0px;
     right: 0px;
@@ -940,6 +941,12 @@
 	    -ms-transition: all 0.3s ease;
 	    -o-transition: all 0.3s ease;
 	    transition: all 0.3s ease;
+    }
+
+    &.talents-page-goto-top-btn{
+		bottom: inherit;
+		width: 15%;
+		top: 5px;
     }
 	
 }
