@@ -46,7 +46,7 @@
 
 <div class="audition-worksheet-list-wrapper row-fluid">
 	<div class="col-md-12 panel">
-		<div class="panel-body">
+		<div class="panel-body padding-zero-zz-xs">
 			<table class="table table-striped">
 				<thead>
 					<tr>
@@ -70,20 +70,12 @@
 						<td><span data-bind="<%= bam_role.likeitlist.total %>"></span></td>
 						<td><span data-bind="<%= created_at %>"></span></td>
 						<td>
-							<a class="btn btn-default btn-xs" data-bind="/projects/<%= bam_role.casting_id %>/roles/<%= bam_role.role_id %>/worksheet"> Manage Worksheet</a>
+							<a class="btn btn-default btn-xs display-none-zz-xs" data-bind="/projects/<%= bam_role.casting_id %>/roles/<%= bam_role.role_id %>/worksheet"> Manage Worksheet
+							<a class="btn btn-default btn-xs display-none-sm-lg" data-bind="/projects/<%= bam_role.casting_id %>/roles/<%= bam_role.role_id %>/worksheet"> Manage</a>
 							<a class="hide btn btn-success btn-xs" href="#">Send Times</a>
 						</td>
 					</tr>
 				</tbody>
-				<tfoot>
-					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-				</tfoot>
 			</table>
 		</div>
 	</div>

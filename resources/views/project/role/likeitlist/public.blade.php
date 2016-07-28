@@ -51,4 +51,8 @@
 	@include('components.modals.talent-resume')
 	@include('components.modals.talent-add-note')
 	@include('components.modals.talent-edit-note')
+
+<a href="javascript:" id="go-to-top-btn">
+	<i class="fa fa-chevron-up"></i>
+</a>	
 @stop

@@ -90,10 +90,10 @@
 				</div> <!--notes-->
 
 				<div class="row-fluid clearfix">
-					<div class="col-md-6 padding-left-zero">
+					<div class="col-md-6 padding-left-zero-md-lg">
 						<button id="filter-button" type="button" class="btn btn-success btn-block">Filter</button>
 					</div>
-					<div class="col-md-6 padding-right-zero">
+					<div class="col-md-6 padding-right-zero-md-lg margin-top-small-zz-sm">
 						<button type="reset" class="btn btn-default btn-block">Clear</button>
 					</div>
 				</div>
