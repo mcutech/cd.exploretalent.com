@@ -32,7 +32,12 @@ handler.prototype.createNewProject = function(e){
   var submissiondeadline = $('#bs-datepicker-submissiondeadline').val();
   var asaptimestamp = parseDate(submissiondeadline);
 
-  var submissiontimestamp = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
+  var dd = new Date();
+  var submissiontimestamp = Date.UTC(
+    dd.getFullYear(),
+    dd.getMonth(),
+    dd.getDate()
+  )/1000;
 
   var rate = $('#project-rate').val();
   var ratedes = $('#project-rate-desc').val();
