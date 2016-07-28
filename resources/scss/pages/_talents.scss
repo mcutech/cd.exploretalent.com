@@ -8,7 +8,10 @@
 	.button-float-bottom{
 		position: fixed;
 		z-index: 999;
-		bottom: 20px;
+		bottom: 10px;
+
+		&.talents-index{
+		}
 	}
 	.talents-search-filter-content {
 		.panel-talents-search{
