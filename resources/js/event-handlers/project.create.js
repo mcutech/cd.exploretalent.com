@@ -14,7 +14,7 @@ function handler(core, user, talentlogin) {
 function parseDate(inputDate){
   var timestamp = new Date();
   inputDate = inputDate.split('-');
-  return Date.UTC(inputDate[0], inputDate[1]-1, inputDate[2]);
+  return Date.UTC(inputDate[0], inputDate[1]-1, inputDate[2])/1000;
 }
 
 handler.prototype.createNewProject = function(e){
