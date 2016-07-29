@@ -886,8 +886,8 @@
 #go-to-top-btn {
 
 	// desktop view
-	@media (min-width: 1200px) {
-	    bottom: 20px;
+	@media (min-width: 768px) {
+	    bottom: 20px !important;
 	    right: 20px;
 	    text-align: left;
 	    background: rgba(0, 0, 0, 0.7);
@@ -908,6 +908,7 @@
 
 	    i {
 	    	left: 16px;
+	    	top: 0px;
 	    }
 
 	}
@@ -931,22 +932,27 @@
     transition: all 0.3s ease;
 
     i {
-    	color: #fff;
-	    margin: 0;
-	    position: relative;
-	    top: 13px;
-	    font-size: 19px;
-	    -webkit-transition: all 0.3s ease;
-	    -moz-transition: all 0.3s ease;
-	    -ms-transition: all 0.3s ease;
-	    -o-transition: all 0.3s ease;
-	    transition: all 0.3s ease;
+		color: #fff;
+		margin: 0;
+		position: relative;
+		top: 13px;
+		font-size: 19px;
+		-webkit-transition: all 0.3s ease;
+		-moz-transition: all 0.3s ease;
+		-ms-transition: all 0.3s ease;
+		-o-transition: all 0.3s ease;
+		transition: all 0.3s ease;
     }
 
     &.talents-page-goto-top-btn{
-		bottom: inherit;
-		width: 15%;
-		top: 5px;
+    	@media (min-width: 248px){
+			bottom: 65px;
+			width: 50px;
+			height: 50px;
+			-webkit-border-radius: 35px;
+			-moz-border-radius: 35px;
+			border-radius: 35px;
+		}
     }
 	
 }
