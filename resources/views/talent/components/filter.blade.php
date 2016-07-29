@@ -8,9 +8,9 @@
 
 		<div class="panel-body form-horizontal">
 			<div class="row text-center-zz-sm">
-				<div id="location-search-display" class="col-md-9">
+				<div id="location-search-display" class="col-md-9 padding-zero-zz-sm">
 					<label class="control-label pull-left padding-left-normal"><a id="location-search-display-btn" href="">United States</a> <span class="padding-left-small">or</span></label>
-					<div class="col-md-3 margin-top-normal-zz-xs">
+					<div class="col-md-3 margin-top-normal-zz-sm">
 						<select id="markets-list" name="markets" class="form-control" tabindex="-1" data-select multiple data-bind="<%= bam_casting.market.split('>').join('|') %>">
 							<option> </option>
 							<option value="Albany, NY">Albany, NY</option>
@@ -85,7 +85,7 @@
 							<option value="Vancouver, BC">Vancouver, BC</option>
 						</select>
 					</div>
-					<div class="col-md-2 margin-top-normal-zz-xs">
+					<div class="col-md-2 margin-top-normal-zz-sm">
 						<select name="distance" class="form-control">
 							<option value="25">25 miles</option>
 							<option value="50">50 miles</option>
@@ -96,7 +96,7 @@
 					</div>
 				</div>
 
-				<div id="location-search-change" class="col-md-9" hidden >
+				<div id="location-search-change" class="col-md-9 padding-zero-zz-sm" hidden >
 					<div class="col-md-12 search-result-counter">
 						<div class="hide bordered no-border-vr border-left-width-zero display-inline-block padding-right-normal margin-right-normal-sm-lg border-zero-zz-sm">
 							<h2 class="margin-zero text-bold">5,000</h2>
@@ -109,8 +109,7 @@
 						</div>
 					</div>
 				</div>
-
-				<div class="col-md-2 pull-right margin-top-normal-zz-xs">
+				<div class="col-xs-12 col-md-2 pull-right margin-top-normal-zz-sm">
 					<button id="search-button" type="submit" class="btn btn-primary btn-block">Search</button>
 				</div>
 			</div>
