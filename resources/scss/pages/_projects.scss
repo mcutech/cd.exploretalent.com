@@ -1,6 +1,8 @@
 .projects-wrapper{
     #no-projects-found{
     	padding: 50px 20px;
+   	    margin-left: -10px;
+   	    margin-right: -10px;
 		h2{
 			margin-top: 0px;
 		}
@@ -180,12 +182,36 @@
 	} //roles-container
 }
 #watch-video-modal{
-	.modal-header{
-		// display: list-item;
-	}
-	.modal-body{
-		iframe{
-			min-height: 335px;
+	.modal-content{
+		background: none;
+		border: none;
+	    box-shadow: none;
+
+		.modal-header{
+			background: none;
+			padding: 0;
+			border:none;
+			button{
+				padding: 5px 15px;
+				float: right;
+				margin: 0;
+				outline: none;
+				font-size: 35px;
+				color: #111111;
+				background-color: #cccccc;
+				opacity: 0.5;
+				transition: 0.4s;
+
+				&:hover{
+					background-color: #aaaaaa;
+				}
+			}
+		}
+		.modal-body{
+			background: none;
+			iframe{
+				min-height: 335px;
+			}
 		}
 	}	
 }
