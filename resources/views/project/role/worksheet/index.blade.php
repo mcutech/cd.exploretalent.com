@@ -27,13 +27,9 @@
 				</div>
 			</div>
 		</div>
-	</div>
-	<div class="row margin-bottom-normal">
-		<div class="col-md-6"></div>
-		<div class="col-md-6">
+		<div class="col-md-6 margin-top-normal-zz-xs">
 			<div id="worksheet-pagination" class="text-right"></div>
 		</div>
-
 	</div>
 </div>
 
@@ -45,9 +41,9 @@
 </div>
 
 <div class="audition-worksheet-list-wrapper row-fluid">
-	<div class="col-md-12 panel">
+{{--	<div class="panel">
 		<div class="panel-body padding-zero-zz-xs">
-			<table class="table table-striped">
+ 			<table class="table table-striped">
 				<thead>
 					<tr>
 						<th>Casting </th>
@@ -76,9 +72,53 @@
 						</td>
 					</tr>
 				</tbody>
-			</table>
+			</table> 
+		</div> 
+		</div> --}}
+		<div class="display-none-zz-xs panel padding-xs-vr padding-xs-hr margin-bottom-zero text-left border-bottom-width-zero row-fluid clearfix">
+			<div class="col-sm-3"><b>Casting</b></div>
+			<div class="col-sm-2"><b>Status</b></div>
+			<div class="col-sm-2"><b>Num Talents</b></div>
+			<div class="col-sm-2"><b>Date Submitted</b></div>
+			<div class="col-sm-2"></div>
 		</div>
-	</div>
+		<div class="display-none-sm-lg text-align-center">
+			<h4>Castings</h4>
+		</div>
+
+		<div class="panel default-table-responsive">
+			<div class="panel-group panel-group-primary table-body">
+				<div id="campaigns-list" class="">
+					<div class="row-fluid clearfix padding-xs-vr table-row" data-bind-template="#campaigns-list" data-bind-value="data">
+						<div class="col-xs-12 col-sm-3">
+							<div class="text-bold">
+								<a data-bind="/projects/<%= bam_role.bam_casting.casting_id %>/roles/<%= bam_role_id %>/find-talents" data-bind-target="href"><span data-bind="<%= bam_role.bam_casting.name + ' (#' + bam_role.bam_casting.casting_id + ')' %>"></span></a>
+							</div>
+							<div data-bind="<%= bam_role.name + ' (#' + bam_role.role_id + ')' %>"></div>
+						</div>
+
+						<div class="col-xs-12 col-sm-2">
+							<span class="display-none-sm-lg"><b>Status:</b> </span><b data-bind="<%= status == 0 ? 'text-warning' : (status >= 1 ? 'text-success' : 'text-danger') %>" data-bind-target="class"><span data-bind="<%= status == 0 ? 'Pending' : (status >= 1 ? 'Approved' : 'Rejected') %>"></span></b>
+						</div>
+
+						<div class="col-xs-12 col-sm-2">
+							<span class="display-none-sm-lg"><b>Num Talents:</b> </span><span data-bind="<%= bam_role.likeitlist.total %>"></span>
+						</div>
+
+						<div class="col-xs-12 col-sm-3">
+							<span class="display-none-sm-lg"><b>Date Submitted:</b> </span><span data-bind="<%= created_at %>"></span>
+						</div>
+
+						<div class="col-xs-12 col-sm-2">
+							<a class="btn btn-default btn-block btn-xs display-none-zz-xs padding-top-normal-zz-xs padding-bottom-normal-zz-xs" data-bind="/projects/<%= bam_role.casting_id %>/roles/<%= bam_role.role_id %>/worksheet"> Manage Worksheet
+							<a class="btn btn-default btn-xs display-none-sm-lg btn-block padding-top-normal-zz-xs padding-bottom-normal-zz-xs" data-bind="/projects/<%= bam_role.casting_id %>/roles/<%= bam_role.role_id %>/worksheet"> Manage</a>
+							<a class="hide btn btn-success btn-xs btn-block padding-top-normal-zz-xs padding-bottom-normal-zz-xs" href="#">Send Times</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	
 </div>
 <div id="worksheet-pagination2" class="text-right"></div>
 @stop

@@ -1,3 +1,40 @@
+//for table div
+.default-table-responsive{
+    overflow-x: hidden;
+
+    .table-header{
+        padding: 5px;
+        font-weight: bold;
+        border-bottom: 1px solid #dddddd;
+        &.list-table{
+            padding: 15px 5px;
+            h3{
+                color: #555555;
+                font-size: 14px;
+                color: #555;
+                font-weight: 800;
+            }
+        }
+    }
+    .table-body{
+        .table-row{
+            border-bottom: 1px solid #dddddd;
+            padding: 5px;
+            &:hover{
+                background-color: #efefef !important;
+                cursor: pointer;
+            }
+            &:nth-child(even){
+                background-color: #f9f9f9;
+            }
+            &:last-child{
+                border-bottom-width: 0px;
+            }
+        }
+    }
+}
+
+
 // customize range slider design
 .ui-slider-horizontal{
 	.ui-slider-handle{
