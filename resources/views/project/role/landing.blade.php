@@ -77,7 +77,7 @@
 	</div>
 </div>
 
-<a href="javascript:" id="go-to-top-btn">
+<a href="javascript:" id="go-to-top-btn" class="talents-page-goto-top-btn">
 	<i class="fa fa-chevron-up"></i>
 </a>
 
