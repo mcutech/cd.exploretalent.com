@@ -6,7 +6,7 @@
 
 @section('sidebar.body')
 	<div class="audition-worksheet-wrapper audition-worksheet-talents-wrapper">
-		<div class="row-fluid clearfix">
+		<div class="row">
 			<div id="campaign-details" class="col-md-12">
 				<div class="panel">
 					<div class="panel-body">
@@ -19,7 +19,7 @@
 			</div>
 		</div>
 
-		<div class="row-fluid clearfix">
+		<div class="row">
 			<div class="col-md-3 talents-search-filter-content">
 				@include('project.role.worksheet.components.filter')
 			</div> {{-- filter-search-sidebar --}}
