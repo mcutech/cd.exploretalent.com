@@ -62,7 +62,7 @@
         <div class="project-btn-container row">
             <a href="/projects/create" class="btn btn-default project-btns create-btn col-xs-5"><i class="fa fa-plus"></i>Create a Casting for Free now!</a>
             <div class="col-xs-2 divider"><span>or</span></div>
-            <a href="/projects/" class="btn btn-default project-btns browse-btn col-xs-5"><i class="fa fa-search"></i>Browse Talents</a>
+            <a href="/talents" class="btn btn-default project-btns browse-btn col-xs-5"><i class="fa fa-search"></i>Browse Talents</a>
         </div>
     </div>
 

@@ -5,12 +5,19 @@
 .audition-worksheet-talents-wrapper,
 .audition-worksheet-wrapper
 {
+	#favorite-result{
+	    margin: -11px;
+	}
+	
 	.button-float-bottom{
 		position: fixed;
 		z-index: 999;
-		bottom: 20px;
+		bottom: 10px;
+
+		&.talents-index{
+		}
 	}
-	.talents-search-filter-content{
+	.talents-search-filter-content {
 		.panel-talents-search{
 			.panel-heading{
 				background-color: #23272D;

@@ -54,6 +54,7 @@ handler.prototype.refresh = function() {
 			self.core.service.databind('#talent-primary-photo', self.talent);
 			self.core.service.databind('#talent-resume-div', self.talent);
 			self.core.service.databind('#talent-photo', self.talent);
+			// self.core.service.databind('#talent-photo', self.talent);
 
 			var photos = _.filter(self.talent.bam_talent_media2, function(val){
 				return val.type == 1;
