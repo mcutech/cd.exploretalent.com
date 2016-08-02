@@ -12,9 +12,10 @@ function handler(core, user, talentlogin) {
 }
 
 function parseDate(inputDate){
-  var timestamp = new Date();
+  var timestamp = new Date(),
+      revert = (-1 * timestamp.getTimezoneOffset() * 60);
   inputDate = inputDate.split('-');
-  return Date.UTC(inputDate[0], inputDate[1]-1, inputDate[2])/1000;
+  return Date.UTC(inputDate[0], inputDate[1]-1, inputDate[2])/1000 + revert;
 }
 
 handler.prototype.createNewProject = function(e){
@@ -37,7 +38,7 @@ handler.prototype.createNewProject = function(e){
     dd.getFullYear(),
     dd.getMonth(),
     dd.getDate()
-  )/1000;
+  )/1000 + (-1 * dd.getTimezoneOffset() * 60);
 
   var rate = $('#project-rate').val();
   var ratedes = $('#project-rate-desc').val();
