@@ -11,20 +11,15 @@ function handler(core, user, talentlogin) {
 
 }
 
-function parseDate(inputDate){
-  var timestamp = new Date(),
-      revert = (-1 * timestamp.getTimezoneOffset() * 60);
-  inputDate = inputDate.split('-');
-  return Date.UTC(inputDate[0], inputDate[1]-1, inputDate[2])/1000 + revert;
-}
-
 handler.prototype.createNewProject = function(e){
 
   e.preventDefault();
 
-  function convertToPST(timestamp) {
-    //timestamp = timestamp - 25200; // -7 hours
-    return timestamp;
+  function parseDate(inputDate){
+    var timestamp = new Date(),
+        revert = -1 * timestamp.getTimezoneOffset() * 60;
+    inputDate = inputDate.split('-');
+    return Date.UTC(inputDate[0], inputDate[1]-1, inputDate[2])/1000 - revert;
   }
 
   var projectname = $('#project-name').val();
@@ -33,12 +28,10 @@ handler.prototype.createNewProject = function(e){
   var submissiondeadline = $('#bs-datepicker-submissiondeadline').val();
   var asaptimestamp = parseDate(submissiondeadline);
 
-  var dd = new Date();
-  var submissiontimestamp = Date.UTC(
-    dd.getFullYear(),
-    dd.getMonth(),
-    dd.getDate()
-  )/1000 + (-1 * dd.getTimezoneOffset() * 60);
+
+  var dd = new Date(),
+      dn = dd.getFullYear() + '-' + (dd.getMonth() + 1) + '-' + dd.getDate();
+  var submissiontimestamp = parseDate(dn);
 
   var rate = $('#project-rate').val();
   var ratedes = $('#project-rate-desc').val();
