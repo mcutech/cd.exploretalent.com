@@ -51,23 +51,23 @@
 		<div class="panel-body padding-small-zz-xs">
 			<div class="row-fluid clearfix">
 				<div class="col-sm-3 col-xs-4 padding-zero-zz-xs padding-right-small-zz-xs"> <!-- photos -->
-					<div id="talent-primary-photo" class="col-sm-12 padding-zero">
+					<div id="talent-primary-photo" class="col-sm-12 padding-zero photo-click" style="cursor: pointer;">
 						<img data-bind="<%= getPrimaryPhoto() %>" class="" width="100%">
 					</div>
 					<div class="col-sm-12 padding-zero">
-						<div id="first-photo" class="col-sm-6 col-xs-6 padding-right-zero padding-left-zero">
+						<div id="first-photo" class="col-sm-6 col-xs-6 padding-right-zero padding-left-zero photo-click" style="cursor: pointer;">
 							<img data-bind="https://etdownload.s3.amazonaws.com/<%= bam_media_path_full %>" class="margin-top-small" width="100%">
 						</div>
-						<div id="second-photo" class="col-sm-6 col-xs-6 padding-right-zero padding-left-zero">
+						<div id="second-photo" class="col-sm-6 col-xs-6 padding-right-zero padding-left-zero photo-click" style="cursor: pointer;">
 							<img data-bind="https://etdownload.s3.amazonaws.com/<%= bam_media_path_full %>" class="margin-top-small" width="100%">
 						</div>
 					</div>
-					<div id="third-photo" class="col-sm-12 col-xs-6 padding-zero">
+					<div id="third-photo" class="col-sm-12 col-xs-6 padding-zero photo-click" style="cursor: pointer;">
 						<img data-bind="https://etdownload.s3.amazonaws.com/<%= bam_media_path_full %>" class="margin-top-small" width="100%">
 					</div>
 					<div class="col-sm-12 col-xs-12 padding-zero">
 						<a data-toggle="modal" data-bind="<%= talentnum %>" data-bind-target="data-id" id="talent-photo" data-target="#talent-view-photos-modal" class="btn btn-default btn-block margin-top-small">
-							<span class="display-none-zz-xs">View Photos</span>
+							<span>View Photos</span>
 						</a>
 					</div>
 				</div> <!-- photos -->

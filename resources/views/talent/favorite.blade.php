@@ -11,7 +11,7 @@
 
 		<div class="talents-search-filter-content">
 			<div class="row-fluid">
-				<div class="col-md-12 talents-search-result">
+				<div class="col-md-12 talents-search-result padding-zero">
 					<div class="row-fluid clearfix" id="favorite-result">
 						@include('components.talent4', [ 'databind' => [ 'template' => '#favorite-result', 'value' => 'data' ], 'ratings' => true, 'default_btn' => true, 'favorites_notes' => false ])
 					</div>
