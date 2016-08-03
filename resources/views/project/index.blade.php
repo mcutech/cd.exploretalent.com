@@ -31,8 +31,11 @@
                 Quick Post
             </a>
         </div>
+        <div class="col-xs-6 col-sm-2">
+			<a href="projects?expired=true" id="btn-show-expired-castings" class="btn btn-success">Show Expired Project</a>
+		</div>
         <div class="col-xs-12 col-sm-4">
-            <div id="projects-pagination" class="pull-right margin-top-normal-zz-xs"></div>
+            <div id="projects-pagination" class="pull-right margin-top-large"></div>
         </div>
     </div>
 
@@ -46,7 +49,7 @@
     </div>
 
     <div class="projects-wrapper panel border-zero">
-    
+
     <div id="no-projects-found" class="panel padding-normal text-align-center hide">
         <div>
             <h2><b>Welcome to our New CD Interface</b></h2>
@@ -118,5 +121,5 @@
         </div>
         <div id="projects-pagination2" class="text-right"></div>
     </div>
-@include('project.modals.watch-video')    
+@include('project.modals.watch-video')
 @stop

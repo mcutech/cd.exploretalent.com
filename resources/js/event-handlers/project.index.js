@@ -9,14 +9,33 @@ function handler(core, user){
 
 handler.prototype.refreshList = function(){
 	var qs = self.core.service.query_string();
-	var data = {
-		query : [
-			[ 'with', 'bam_roles' ],
-			['orderBy', 'sub_timestamp','DESC'],
-		],
-		page : qs.page || 1,
-		per_page : 20
-	};
+	var btnExpiredCastings = $('#btn-show-expired-castings');
+
+	if(qs.expired == 'true'){
+		var data = {
+			query : [
+				[ 'with', 'bam_roles' ],
+				['orderBy', 'sub_timestamp','DESC'],
+			],
+			page : qs.page || 1,
+			per_page : 20
+		};
+		btnExpiredCastings.text('Do not show Expired Projects');
+		btnExpiredCastings.attr('href', 'projects?expired=false');
+	}
+	else{
+		var data = {
+			query : [
+				[ 'with', 'bam_roles' ],
+				[ 'where', 'asap', '>=', Math.floor(new Date().getTime() / 1000)],
+				['orderBy', 'sub_timestamp','DESC'],
+			],
+			page : qs.page || 1,
+			per_page : 20
+		};
+		btnExpiredCastings.text('Show Expired Projects');
+		btnExpiredCastings.attr('href', 'projects?expired=true');
+	}
 
 	var searchterm = $('#project-name').val();
 
@@ -52,7 +71,6 @@ handler.prototype.refreshList = function(){
 
 	self.core.resource.project.get(data)
 		.then(function(res){
-
 			console.log(res);
 			if(res.data.length == 0) {
 				$('#no-projects-found').removeClass('hide');
