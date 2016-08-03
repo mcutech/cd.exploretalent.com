@@ -31,8 +31,8 @@
                 Quick Post
             </a>
         </div>
-        <div class="col-xs-6 col-sm-2">
-			<a href="projects?expired=true" id="btn-show-expired-castings" class="btn btn-success">Show Expired Project</a>
+        <div class="col-xs-12 col-sm-2 margin-top-normal-zz-xs">
+			<a href="projects?expired=true" id="btn-show-expired-castings" class="btn btn-success btn-block">Show Expired Project</a>
 		</div>
         <div class="col-xs-12 col-sm-4">
             <div id="projects-pagination" class="pull-right margin-top-large"></div>
@@ -50,7 +50,7 @@
 
     <div class="projects-wrapper panel border-zero">
 
-    <div id="no-projects-found" class="panel padding-normal text-align-center hide">
+    <div id="no-projects-found" class="panel padding-normal text-align-center hide padding-top-normal-zz-xs">
         <div>
             <h2><b>Welcome to our New CD Interface</b></h2>
             <p class="margin-zero">Our tools are always 100% FREE for you to cast talents for your projects.</p>
@@ -63,9 +63,9 @@
             </div>
         </div>
         <div class="project-btn-container row">
-            <a href="/projects/create" class="btn btn-default project-btns create-btn col-xs-5"><i class="fa fa-plus"></i>Create a Casting for Free now!</a>
-            <div class="col-xs-2 divider"><span>or</span></div>
-            <a href="/talents" class="btn btn-default project-btns browse-btn col-xs-5"><i class="fa fa-search"></i>Browse Talents</a>
+            <a href="/projects/create" class="btn btn-default project-btns create-btn col-xs-12 col-sm-5"><i class="fa fa-plus"></i>Create a Casting for Free now!</a>
+            <div class="col-xs-12 col-sm-2 divider margin-top-zero-small-zz-xs margin-bottom-zero-small-zz-xs"><span>or</span></div>
+            <a href="/talents" class="btn btn-default project-btns browse-btn col-xs-12 col-sm-5"><i class="fa fa-search"></i>Browse Talents</a>
         </div>
     </div>
 
