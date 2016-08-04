@@ -9,4 +9,8 @@ module.exports = function(core, user) {
 			$('#project-search-btn').click();
 		}
 	})
+
+	$("#watch-video-modal").on('hidden.bs.modal', function (e) {
+		$("#watch-video-modal iframe").attr("src", $("#watch-video-modal iframe").attr("src"));
+	});
 }
