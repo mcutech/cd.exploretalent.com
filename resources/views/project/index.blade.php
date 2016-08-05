@@ -85,5 +85,4 @@
         </div>
         <div id="projects-pagination2" class="text-right"></div>
     </div>
-@include('project.modals.watch-video')
 @stop
