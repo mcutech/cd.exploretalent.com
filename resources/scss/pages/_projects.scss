@@ -1,73 +1,21 @@
 .projects-wrapper{
-    #no-projects-found{
-    	padding: 50px 20px;
-   	    margin-left: -10px;
-   	    margin-right: -10px;
-		h2{
-			margin-top: 0px;
-		}
-		.no-project-title{
-		    max-width: 400px;
-		    width: 100%;
-		    margin-left: auto;
-		    margin-right: auto;
-		    background-color: #d9edf7;
-		    color: #4083a9;
-		    padding: 10px 0;
-		    margin-bottom: 10px;
-		    h3{
-			margin: 0px;
-		    }
-		}
-		.no-project-video{
-		    background-color: #ffffff;
-		    height: 210px;
-		    max-width: 400px;
-		    width: 100%;
-		    text-align: center;
-		    margin-left: auto;
-		    margin-right: auto;
-		    iframe{
-			width: 100%;
-			height: 100%;
-		    }
-		}
-		.project-btn-container{
-		    max-width: 570px;
-		    width: 100%;
-		    margin-left: auto;
-		    margin-right: auto;
-		    .project-btns{
-				font-size: 15px;
-				padding: 15px 5px;
-				i{
-				    display: block;
-				    margin-bottom: 5px;
-				    font-size: 28px;
-				}
-				&.browse-btn{
-				}
-				
-				&.create-btn{
-				    
-				}
-		    }
-
-		    .divider{
-		    	vertical-align: middle;
-		    	text-align: center;
-		    	margin-top: 20px;
-		    	font-size: 28px;
-		    	color: #aaaaaa;
-		    }
-		}
-		.video-btn{
-			margin: 20px 0;
-			h4{
-				margin: 0px;
+	#no-projects-found{
+	    .project-btns{
+			font-size: 15px;
+			padding: 15px 10px;
+			i{
+			    display: block;
+			    margin-bottom: 5px;
+			    font-size: 28px;
 			}
-		}
-    }
+			&.browse-btn{
+			}
+			
+			&.create-btn{
+			    
+			}
+	    }
+	}
 	#projects-list{
 
 		.div-table-stripe-item{
