@@ -24,6 +24,7 @@ handler.prototype.refresh = function(append) {
 
 	var talents;
 	var talentnums;
+	var promise;
 
 	var data = self.getFilters();
 	$('#talent-search-loader').show();
@@ -32,23 +33,39 @@ handler.prototype.refresh = function(append) {
 		$('#talent-search-result').hide();
 	}
 
-	self.core.resource.talent.search(data)
-		.then(function(talents) {
-			self.done = (talents.total < talents.per_page);
+	var form = self.core.service.form.serializeObject('#talent-filter-form');
 
-			_.each(talents.data, function(talent) {
-				talent.talent_role_id = 0;
-				talent.talent_project_id = 0;
-			});
+	if (form.search_text && !isNaN(form.search_text)) {
+		promise = self.core.resource.talent.get({ talentId : form.search_text, query : [ [ 'with', 'bam_talent_media2' ], [ 'with', 'bam_talentinfo1' ] ] });
+	}
+	else {
+		promise = self.core.resource.talent.search(data);
+	}
 
-			self.core.service.databind('#talent-search-result', talents, append);
-			self.refreshing = false;
+	promise.then(function(talents) {
+		if (!talents.data) {
+			console.log(talents);
+			talents.schedule = {};
+			talents.favorite = null;
+			talents.data = [ talents ];
+			talents.total = 1;
+			talents.per_page = 25;
+		}
 
-			$('#talent-search-loader').hide();
-			if (!append) {
-				$('#talent-search-result').show();
-			}
+		self.done = (talents.total < talents.per_page);
+
+		_.each(talents.data, function(talent) {
+			talent.talent_role_id = 0;
+			talent.talent_project_id = 0;
 		});
+		self.core.service.databind('#talent-search-result', talents, append);
+		self.refreshing = false;
+
+		$('#talent-search-loader').hide();
+		if (!append) {
+			$('#talent-search-result').show();
+		}
+	});
 }
 
 handler.prototype.getFilters = function() {

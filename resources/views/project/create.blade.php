@@ -1,7 +1,10 @@
 @extends('layouts.sidebar', ['pages' => [ [ 'name' => 'My Projects', 'url' => '/projects' ], [ 'name' => 'Create Project', 'url' => '/projects/create', 'active' => true ] ] ])
 
 @section('sidebar.page-header')
-<i class="fa fa-file-text"></i> Create New Project
+	<i class="fa fa-file-text"></i> Create New Project
+	<span class="font-size-small-normal">
+		In a hurry? Use our <a href="/projects/quickpost">Quick Post</a>
+	</span>
 @stop
 
 @section('sidebar.body')

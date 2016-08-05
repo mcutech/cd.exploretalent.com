@@ -71,18 +71,44 @@ handler.prototype.refreshList = function(){
 
 	self.core.resource.project.get(data)
 		.then(function(res){
-			console.log(res);
-			if(res.data.length == 0) {
-				$('#no-projects-found').removeClass('hide');
-			}
+			if (!res.total) {
+				// check if we have no search result, get active and non active projects
+				var expiredCount = 0,
+					notExpiredCount = 0;
 
-			if(res.data.length == 0) {
-				$('.no-project-found-header-hide, .breadcrumb').addClass('hide');
-			}
+				self.core.resource.project.get({ query : [ [ 'where', 'asap', '>=', Math.floor(new Date().getTime() / 1000) ] ] })
+					.then(function(res) {
+						notExpiredCount = res.total;
 
-			self.core.service.databind('#projects-list', res);
-			self.core.service.paginate('#projects-pagination', { total : res.total, class : 'pagination', name : 'page', per_page: res.per_page });
-			self.core.service.paginate('#projects-pagination2', { total : res.total, class : 'pagination', name : 'page', per_page: res.per_page });
+						return self.core.resource.project.get({ query : [ [ 'where', 'asap', '<', Math.floor(new Date().getTime() / 1000) ] ] });
+					})
+					.then(function(res) {
+						expiredCount = res.total;
+
+						if (notExpiredCount == 0) {
+							if (expiredCount > 0) {
+								// show you have no active project message
+								$('#no-projects-found').removeClass('hide');
+							}
+							else {
+								// redirect to welcome page
+								window.location = '/welcome';
+							}
+						}
+					});
+			}
+			else {
+				self.core.resource.project.get({ query : [ [ 'where', 'asap', '<', Math.floor(new Date().getTime() / 1000) ] ] })
+					.then(function(res) {
+						if (res.total) {
+							$('#btn-show-expired-castings').removeClass('hide');
+						}
+					});
+
+				self.core.service.databind('#projects-list', res);
+				self.core.service.paginate('#projects-pagination', { total : res.total, class : 'pagination', name : 'page', per_page: res.per_page });
+				self.core.service.paginate('#projects-pagination2', { total : res.total, class : 'pagination', name : 'page', per_page: res.per_page });
+			}
 		});
 }
 
