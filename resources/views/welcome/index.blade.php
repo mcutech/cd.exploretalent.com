@@ -26,5 +26,5 @@
 			<div class="text-center"><a href="/projects">View my Projects</a></div>
 		</div>
 	</div>
-@include('project.modals.watch-video')
+@include('welcome.modals.watch-video')
 @stop
