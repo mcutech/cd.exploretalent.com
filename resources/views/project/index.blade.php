@@ -32,7 +32,7 @@
             </a>
         </div>
         <div class="col-xs-12 col-sm-2 margin-top-normal-zz-xs">
-			<a href="projects?expired=true" id="btn-show-expired-castings" class="btn btn-success btn-block">Show Expired Project</a>
+			<a href="projects?expired=true" id="btn-show-expired-castings" class="btn btn-success btn-block hide">Show Expired Project</a>
 		</div>
         <div class="col-xs-12 col-sm-4">
             <div id="projects-pagination" class="pull-right margin-top-large"></div>
@@ -50,45 +50,9 @@
 
     <div class="projects-wrapper panel border-zero">
 
-    <div id="no-projects-found" class="panel padding-normal text-align-center hide padding-top-normal-zz-xs">
-        <div>
-            <h2><b>Welcome to our New CD Interface</b></h2>
-            <p class="margin-zero">Our tools are always 100% FREE for you to cast talents for your projects.</p>
-            <p>We're here to help. Call us at <b class="text-primary">702-446-0888</b> or <a href="/feedback" class="text-primary"><b>Leave Message</b></a></p>
-        </div>
-        <div class="video-btn">
-            See what we can do for you
-            <div class="video">
-                <a href="#" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#watch-video-modal">Watch the video <i class="fa fa-arrow-circle-right"></i></a>
-            </div>
-        </div>
-        <div class="project-btn-container row">
-            <a href="/projects/create" class="btn btn-default project-btns create-btn col-xs-12 col-sm-5"><i class="fa fa-plus"></i>Create a Casting for Free now!</a>
-            <div class="col-xs-12 col-sm-2 divider margin-top-zero-small-zz-xs margin-bottom-zero-small-zz-xs"><span>or</span></div>
-            <a href="/talents" class="btn btn-default project-btns browse-btn col-xs-12 col-sm-5"><i class="fa fa-search"></i>Browse Talents</a>
-        </div>
-    </div>
-
-{{--         <div id="no-projects-found" class="panel padding-normal text-align-center hide">
-            <h3><b>Casting Not Found.</b></h3>
-        </div> --}}
-{{--         <div id="no-projects-found" class="panel padding-normal text-align-center hide">
-            <div class="no-project-title">
-                <h4><b>Welcome to ET's New CD Interface!</b></h4>
-            </div>
-            <div class="no-project-video">
-               <iframe src="https://www.youtube.com/embed/0zdUrXfOd4I" frameborder="0" allowfullscreen></iframe>
-            </div>
-            <div class="row margin-bottom-small">
-                <div class="col-md-12">
-                <div class="text-muted">Video Tutorial</div>
-                </div>
-            </div>
-            <div class="project-btn-container row">
-                <a href="/projects/create" class="btn btn-default project-btns create-btn col-xs-6"><i class="fa fa-plus"></i>Create Project</a>
-                <a href="/projects/" class="btn btn-default project-btns browse-btn col-xs-6"><i class="fa fa-search"></i>Browse Talents</a>
-            </div>
-        </div> --}}
+		<div id="no-projects-found" class="panel padding-normal text-align-center hide padding-top-normal-zz-xs">
+			You have no active projects. <a href="/projects/create">[ Create a Free Casting Now! ]</a>
+		</div>
 
         <div class="panel-group panel-group-primary project-item" id="projects-list">
             <div class="div-table-stripe-item" data-bind-template="#projects-list" data-bind-value="data">

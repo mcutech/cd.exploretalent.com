@@ -1,7 +1,7 @@
 module.exports = function(core, user) {
 	if (parseInt(user.bam_cd_user_id)) {
 		var qs = core.service.query_string();
-		window.location = qs.redirect ? decodeURIComponent(qs.redirect) : '/projects';
+		window.location = qs.redirect ? decodeURIComponent(qs.redirect) : '/welcome';
 	}
 	else {
 		core.service.rest.settings.headers = {};
