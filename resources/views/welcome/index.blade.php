@@ -22,7 +22,7 @@
 			<div class="col-xs-12 col-sm-2 divider margin-top-zero-small-zz-xs margin-bottom-zero-small-zz-xs"><span>or</span></div>
 			<a href="/talents" class="btn btn-default project-btns browse-btn col-xs-12 col-sm-5"><i class="fa fa-search"></i>Browse Talents</a>
 		</div>
-		<div class="row">
+		<div class="row hide" id="profile-link">
 			<div class="text-center"><a href="/projects">View my Projects</a></div>
 		</div>
 	</div>
