@@ -11,7 +11,7 @@
 
 			<div class="navigation-header-container">
 				<div class="navbar-header">
-					<a id="navbar-main-logo" href="/projects"
+					<a id="navbar-main-logo" href="/welcome"
 						class="navbar-brand">
 						<img src="/images/logo-home-et-cd.png" width="180px" class="logo-for-desktop">
 					</a>
