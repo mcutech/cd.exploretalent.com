@@ -87,6 +87,7 @@ handler.prototype.refreshList = function(){
 
 						if (notExpiredCount == 0) {
 							if (expiredCount > 0) {
+								$('#btn-show-expired-castings').removeClass('hide');
 								// show you have no active project message
 								$('#no-projects-found').removeClass('hide');
 							}
