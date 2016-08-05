@@ -91,7 +91,7 @@ handler.prototype.updateProject = function(e){
   var asaptimestamp = parseDate(submissiondeadline);
 
   var dn = new Date(),
-      dd = dd.getFullYear() + '-' + (dd.getMonth() + 1) + '-' + dd.getDate();
+      dd = dn.getFullYear() + '-' + (dn.getMonth() + 1) + '-' + dn.getDate();
   var submissiontimestamp = parseDate(dd);
 
   var rate = $('#project-rate').val();
