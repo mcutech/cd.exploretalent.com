@@ -31,7 +31,7 @@
                 Quick Post
             </a>
         </div>
-        <div class="col-xs-12 col-sm-2 margin-top-normal-zz-xs">
+        <div class="col-xs-12 col-sm-2 margin-top-normal-zz-xs padding-right-zero-sm-lg">
 			<a href="projects?expired=true" id="btn-show-expired-castings" class="btn btn-success btn-block hide">Show Expired Project</a>
 		</div>
         <div class="col-xs-12 col-sm-4">
@@ -49,10 +49,15 @@
     </div>
 
     <div class="projects-wrapper panel border-zero">
-
-		<div id="no-projects-found" class="panel padding-normal text-align-center hide padding-top-normal-zz-xs">
-			You have no active projects. <a href="/projects/create">[ Create a Free Casting Now! ]</a>
-		</div>
+        
+        <div class="row-fluid clearfix">
+            <div class="col-xs-12">
+                <div id="no-projects-found" class="panel padding-normal text-align-center hide padding-top-normal-zz-xs">
+                    <h4 class="margin-top-zero text-danger">You have no active projects.</h4>
+                    <a href="/projects/create" class="btn btn-default project-btns create-btn"><i class="fa fa-plus"></i> Create a Free Casting Now!</a>
+                </div>                
+            </div>
+        </div>
 
         <div class="panel-group panel-group-primary project-item" id="projects-list">
             <div class="div-table-stripe-item" data-bind-template="#projects-list" data-bind-value="data">
@@ -85,5 +90,4 @@
         </div>
         <div id="projects-pagination2" class="text-right"></div>
     </div>
-@include('project.modals.watch-video')
 @stop
