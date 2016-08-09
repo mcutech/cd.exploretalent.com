@@ -2,9 +2,9 @@
 
 @section('sidebar.page-header')
 	<i class="fa fa-file-text"></i> Create New Project
-	<span class="font-size-small-normal">
+	<p class="font-size-small-normal">
 		In a hurry? Use our <a href="/projects/quickpost">Quick Post</a>
-	</span>
+	</p>
 @stop
 
 @section('sidebar.body')
