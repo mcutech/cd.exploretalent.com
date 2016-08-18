@@ -76,7 +76,7 @@ handler.prototype.refreshList = function(){
 				var expiredCount = 0,
 					notExpiredCount = 0;
 
-				self.core.resource.project.get({ query : [ [ 'where', 'asap', '>=', Math.floor(new Date().getTime() / 1000) ] ] })
+				self.core.resource.project.get({ query : [ [ 'where', 'asap', '>=', Math.floor( (new Date().getTime() / 1000) - (8*3600*1000)) ] ] })
 					.then(function(res) {
 						notExpiredCount = res.total;
 
