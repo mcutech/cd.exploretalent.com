@@ -48,10 +48,10 @@
 					<div class="like-it-list-container">
 						<div class="btn-group talent-function display-block-zz-xs display-flex-sm display-block-md" data-bind-target="data-id" data-bind="<%= user.id + '-' + talent_role_id + '-' + talentnum %>">
 							@if (isset($default_btn) && $default_btn)
-								<button id="add-to-like-it-list" class="btn add-to-like-it-list function-item btn-block border-top-width-zero-sm-lg" data-bind="<%= schedule && schedule.id && schedule.rating != 0 ? 'btn-success liked-talent' : 'btn-outline' %>" data-bind-target="class">
+								<button id="add-to-like-it-list" class="btn add-to-like-it-list function-item btn-block border-top-width-zero-sm-lg" data-bind="<%= schedule && schedule.id && schedule.rating ? 'btn-success liked-talent' : 'btn-outline' %>" data-bind-target="class">
 									<input type="hidden" data-bind="<%= schedule && schedule.id && schedule.rating != 0 ? schedule.id : 0 %>" class="like-it-list-schedule-id">
-									 <i data-bind="<%= schedule && schedule.id ? 'fa fa-check' : 'fa fa-plus' %>" data-bind-target="class"></i>
-									<span data-bind="<%= schedule && schedule.id && schedule.rating != 0 ? 'Added to Like it List' : 'Add to Like it List' %>"></span>
+									 <i data-bind="<%= schedule && schedule.id && schedule.rating ? 'fa fa-check' : 'fa fa-plus' %>" data-bind-target="class"></i>
+									<span data-bind="<%= schedule && schedule.id && schedule.rating ? 'Added to Like it List' : 'Add to Like it List' %>"></span>
 								</button>
 								<button class="favorite-button btn function-item btn-block border-top-width-zero-sm border-left-width-zero-sm border-left-width-zero-lg border-top-width-zero-sm-lg" data-bind="<%= favorite ? 'btn-warning' : 'btn-outline' %>" data-bind-target="class">
 									<i class="fa fa-star-o font-size-normal-medium" data-bind-target="class"></i>
