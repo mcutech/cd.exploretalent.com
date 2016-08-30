@@ -173,9 +173,22 @@ handler.prototype.getFilters = function() {
 		data.query.push([ 'where', 'dobyyyy', '>=', new Date().getFullYear() - parseInt(form.age_max) ]);
 	}
 
-	if (form.sex) {
-		data.query.push([ 'where', 'sex', '=', form.sex ]);
+	if (form.sexMale && !form.sexFemale) {
+		data.query.push([ 'where', 'sex', '=', form.sexMale ]);
 	}
+
+	if (form.sexFemale && !form.sexMale) {
+		data.query.push([ 'where', 'sex', '=', form.sexFemale ]);
+	}
+
+	if (form.sexFemale && form.sexMale) {
+		var any = "";
+		data.query.push([ 'where', 'sex', '=', any ]);
+	}
+
+	// if (form.sex) {
+	// 	data.query.push([ 'where', 'sex', '=', form.sex ]);
+	// }
 
 	if (form.has_photo) {
 		data.query.push([ 'where', 'has_photos', '=', form.has_photo == 'true' ? 1 : 0 ]);

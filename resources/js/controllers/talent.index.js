@@ -1,6 +1,30 @@
 module.exports = function(core, user) {
 	var handler = require('../event-handlers/talent.index.js')(core, user);
 
+	$('#genderForm :checkbox').change(function (){
+		if ($(this).is(':checked')) {
+			if($('#checkboxFemale').is(':checked')){
+				$('#selected').text($(this).val());
+			}
+			else if($('#checkboxMale').is(':checked')){
+				$('#selected').text($(this).val());
+			}
+			if($('#checkboxMale').is(':checked') && $('#checkboxFemale').is(':checked')){
+				$('#selected').text("Any");
+			}
+		} else {
+			if($('#checkboxFemale').is(':checked')){
+				$('#selected').text("Female");
+			}
+			else if($('#checkboxMale').is(':checked')){
+				$('#selected').text("Male");
+			}
+			if(!$('#checkboxMale').is(':checked') && !$('#checkboxFemale').is(':checked')){
+				$('#selected').text("Any");
+			}
+		}
+	});
+
 	$('#search-button').on('click', handler.refresh);
 
 	// talents functions menu
