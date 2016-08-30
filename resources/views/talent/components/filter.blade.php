@@ -127,11 +127,20 @@
 					</div>
 				</div>
 				<div class="col-xs-12 col-sm-3 col-md-3 margin-top-normal">
-					<select name="sex" class="form-control" data-select>
-						<option value="">Gender - Both</option>
-						<option value="Male">Male</option>
-						<option value="Female">Female</option>
-					</select>
+					<div id="genderForm">
+						<label for="" class="checkbox-inline"><strong>Gender: </strong> <span id="selected">Any</span></label>
+						<label class="checkbox-inline">
+						  <input type="checkbox" id="checkboxMale" name="sexMale" value="Male"> Male
+						</label>
+						<label class="checkbox-inline">
+						  <input type="checkbox" id="checkboxFemale" name="sexFemale" value="Female"> Female
+						</label>
+					</div>
+					{{-- <select name="sex" class="form-control" data-select> --}}
+					{{-- 	<option value="">Gender - Both</option> --}}
+					{{-- 	<option value="Male">Male</option> --}}
+					{{-- 	<option value="Female">Female</option> --}}
+					{{-- </select> --}}
 				</div>
 				<div class="col-xs-12 col-sm-3 col-md-3 margin-top-normal">
 					<select name="has_photo" class="form-control" data-select>
