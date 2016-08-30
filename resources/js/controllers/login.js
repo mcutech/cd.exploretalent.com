@@ -1,5 +1,6 @@
 module.exports = function(core, user) {
 	if (parseInt(user.bam_cd_user_id)) {
+		$('#redirect-login-page').fadeIn();
 		var qs = core.service.query_string();
 		window.location = qs.redirect ? decodeURIComponent(qs.redirect) : '/welcome';
 	}
@@ -8,6 +9,8 @@ module.exports = function(core, user) {
 
 		localStorage.removeItem('refresh_token');
 		localStorage.removeItem('access_token');
+
+		$('.signin-input').fadeIn();
 
 		$("#login-form").on('submit', function(e){
 			e.preventDefault();

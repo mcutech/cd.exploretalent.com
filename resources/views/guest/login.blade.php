@@ -19,14 +19,14 @@
 					<span class="text-primary">Casting Director Module</span>
 				</div>
 
-				<div class="form-group ">
+				<div class="form-group signin-input" style="display: none;">
 					<input type="text" name="email" id="email" class="form-control input-lg" placeholder="Email / Username" autofocus data-required>
 				</div>
 
-				<div class="form-group ">
+				<div class="form-group signin-input" style="display: none;">
 					<input type="password" name="password" id="password" class="form-control input-lg" placeholder="Password" data-required>
 				</div>
-				<div class="form-actions">
+				<div class="form-actions signin-input" style="display: none;">
 					<input type="submit" value="SIGN IN" class="signin-btn bg-primary" id="sign-in">
 					<a href="/forgot-password" class="forgot-password" id="forgot-password-link">Forgot your password?</a>
 				</div>
@@ -54,6 +54,12 @@
 						<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
 						<span class="sr-only">Error:</span>
 						Invalid Password
+					</div>
+				</div>
+
+				<div id="redirect-login-page" class="row margin-top-small font-size-normal-medium display-none">
+					<div class="col-md-12">
+						<span>You are being redirected, please wait... <i class="fa fa-spinner fa-spin"></i></span>
 					</div>
 				</div>
 			</form>
