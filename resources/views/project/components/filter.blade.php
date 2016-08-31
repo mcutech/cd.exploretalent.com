@@ -131,19 +131,18 @@
 				</div>
 				<div class="col-md-3 margin-top-normal">
 					<div id="genderForm">
-						<label for="" class="checkbox-inline"><strong>Gender: </strong> <span id="selected">Any</span></label>
-						<label class="checkbox-inline">
-						<input type="checkbox" id="checkboxMale" name="sexMale" value="Male"> Male
+						<label for="" class="checkbox-inline"><strong>Gender: </strong>
+						<span id="selected" class="display-none" data-bind="<%= (gender_male == '1' && gender_female =='0') ? '1' : '0' %>" data-bind-target="visibility">Male</span>
+						<span id="selected" class="display-none" data-bind="<%= (gender_female == '0' && gender_female =='1') ? '1' : '0' %>" data-bind-target="visibility">Female</span>
+						<span id="selected" class="display-none" data-bind="<%= (gender_male == '1' && gender_female =='1') || (gender_male == '0' && gender_female =='0')? '1' : '0' %>" data-bind-target="visibility">Any</span>
 						</label>
 						<label class="checkbox-inline">
-						<input type="checkbox" id="checkboxFemale" name="sexFemale" value="Female"> Female
+						<input type="checkbox" id="checkboxMale" name="sexMale" data-bind="<%= gender_male %>" value="Male"> Male
+						</label>
+						<label class="checkbox-inline">
+						<input type="checkbox" id="checkboxFemale" name="sexFemale" data-bind="<%= gender_female %>" value="Female"> Female
 						</label>
 					</div>
-					{{-- <select name="sex" class="form-control" data-select data-bind="<%= getGenders().length > 1 ? '' : getGenders()[0] %>"> --}}
-					{{-- 	<option value="">Gender - Both</option> --}}
-					{{-- 	<option value="Male">Male</option> --}}
-					{{-- 	<option value="Female">Female</option> --}}
-					{{-- </select> --}}
 				</div>
 				<div class="col-md-3 margin-top-normal">
 					<div id="hasphotoForm">
