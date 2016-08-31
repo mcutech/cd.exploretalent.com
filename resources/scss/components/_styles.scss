@@ -604,3 +604,10 @@ a.cebumodeling{
 	margin: 15px auto;
 	padding: 0 15px;
 }
+
+/* gray out disabled datepicker dates (before today) */
+#ui-datepicker-div {
+	td.ui-state-disabled:not(.ui-datepicker-other-month) {
+		background-color: #ddd;
+	}
+}
