@@ -23,7 +23,6 @@ handler.prototype.refresh = function(append) {
 	self.refreshing = true;
 
 	var talents;
-	var talentnums;
 	var promise;
 
 	var data = self.getFilters();
@@ -31,8 +30,54 @@ handler.prototype.refresh = function(append) {
 
 	if (!append) {
 		$('#talent-search-result').hide();
+		self.preloadTalents = null;
 	}
 
+	self.getTalents().then(function(talents) {
+		try {
+			self.core.service.databind('#talent-search-result', talents, append);
+		}
+		catch(e) { }
+
+		self.refreshing = false;
+
+		$('#talent-search-loader').hide();
+		if (!append) {
+			$('#talent-search-result').show();
+		}
+	});
+}
+
+handler.prototype.getTalents = function() {
+	var deferred = $.Deferred();
+
+	if (self.preloadTalents) {
+		deferred.resolve(self.preloadTalents);
+	}
+	else {
+		self.searchTalents().then(function(res) {
+			deferred.resolve(res);
+		});
+	}
+
+	self.searchTalents(true).then(function(res) {
+		self.preloadTalents = res;
+	});
+
+	return deferred.promise();
+}
+
+handler.prototype.searchTalents = function(nextPage) {
+	var deferred = $.Deferred();
+
+	if (nextPage) {
+		self.page = self.page + 1;
+	}
+
+	var talents;
+	var promise;
+
+	var data = self.getFilters();
 	var form = self.core.service.form.serializeObject('#talent-filter-form');
 
 	if (form.search_text && !isNaN(form.search_text)) {
@@ -44,7 +89,6 @@ handler.prototype.refresh = function(append) {
 
 	promise.then(function(talents) {
 		if (!talents.data) {
-			console.log(talents);
 			talents.schedule = {};
 			talents.favorite = null;
 			talents.data = [ talents ];
@@ -52,20 +96,15 @@ handler.prototype.refresh = function(append) {
 			talents.per_page = 25;
 		}
 
-		self.done = (talents.total < talents.per_page);
-
 		_.each(talents.data, function(talent) {
 			talent.talent_role_id = 0;
 			talent.talent_project_id = 0;
 		});
-		self.core.service.databind('#talent-search-result', talents, append);
-		self.refreshing = false;
 
-		$('#talent-search-loader').hide();
-		if (!append) {
-			$('#talent-search-result').show();
-		}
+		deferred.resolve(talents);
 	});
+
+	return deferred.promise();
 }
 
 handler.prototype.getFilters = function() {
@@ -122,15 +161,6 @@ handler.prototype.getFilters = function() {
 	if (form.sexFemale && !form.sexMale) {
 		data.query.push([ 'where', 'sex', '=', form.sexFemale ]);
 	}
-
-	if (form.sexFemale && form.sexMale) {
-		var any = "";
-		data.query.push([ 'where', 'sex', '=', any ]);
-	}
-
-	// if (form.sex) {
-	// 	data.query.push([ 'where', 'sex', '=', form.sex ]);
-	// }
 
 	if (form.has_photo) {
 		data.query.push([ 'where', 'has_photos', '=', form.has_photo == 'true' ? 1 : 0 ]);
