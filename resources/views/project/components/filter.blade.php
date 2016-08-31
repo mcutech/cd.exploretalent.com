@@ -145,11 +145,20 @@
 					</div>
 				</div>
 				<div class="col-md-3 margin-top-normal">
-					<select name="has_photo" class="form-control" data-select>
-						<option value="">Picture - All</option>
-						<option value="false">No Picture</option>
-						<option value="true" selected>With Picture</option>
-					</select>
+					<div id="hasphotoForm">
+						<label for="" class="radio-inline"><strong>Has Photo: </strong> <span id="radio-selected">Yes</span></label>
+						<label class="radio-inline">
+						  <input type="radio" id="has-photo" checked="checked" name="has_photo" value="true"> Yes
+						</label>
+						<label class="radio-inline">
+						  <input type="radio" id="any-photo" name="has_photo" value="false"> Any
+						</label>
+					</div>
+					{{-- <select name="has_photo" class="form-control" data-select> --}}
+					{{-- 	<option value="">Picture - All</option> --}}
+					{{-- 	<option value="false">No Picture</option> --}}
+					{{-- 	<option value="true" selected>With Picture</option> --}}
+					{{-- </select> --}}
 				</div>
 				<div class="col-md-3">
 					<input id="search-text" name="search_text" class="form-control margin-top-normal" placeholder="Keyword..."></input>

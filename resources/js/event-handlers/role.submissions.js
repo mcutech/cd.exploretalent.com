@@ -126,6 +126,7 @@ handler.prototype.findMatches = function(append) {
 
 			//for total number of talent matches
 			self.core.service.databind('#submission-total', talents);
+			console.log(talents);
 
 			try {
 			self.core.service.databind('#role-matches-result', talents, append);
@@ -200,7 +201,7 @@ handler.prototype.getFilters = function() {
 			data.query.push([ 'where', 'sex', '=', form.sexFemale ]);
 		}
 
-		if (form.has_photo) {
+		if (form.has_photo == "true") {
 			data.query.push([ 'where', 'has_photos', '=', form.has_photo == 'true' ? 1 : 0 ]);
 		}
 
@@ -244,7 +245,9 @@ handler.prototype.getFilters = function() {
 			data.query.push([ 'where', 'last_access', '>', Math.floor(new Date().getTime() / 1000) - parseInt(form.last_access) ]);
 		}
 	}
-
+	console.log(form);
+	console.log("------");
+	console.log(data);
 	return data;
 }
 
