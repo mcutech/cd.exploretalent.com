@@ -1,6 +1,30 @@
 module.exports = function(core, user, projectId, roleId) {
 	var handler = require('../event-handlers/role.submissions.js')(core, user, projectId, roleId);
 
+	$('#genderForm :checkbox').change(function (){
+		if ($(this).is(':checked')) {
+			if($('#checkboxFemale').is(':checked')){
+				$('#selected').text($(this).val());
+			}
+			else if($('#checkboxMale').is(':checked')){
+				$('#selected').text($(this).val());
+			}
+			if($('#checkboxMale').is(':checked') && $('#checkboxFemale').is(':checked')){
+				$('#selected').text("Any");
+			}
+		} else {
+			if($('#checkboxFemale').is(':checked')){
+				$('#selected').text("Female");
+			}
+			else if($('#checkboxMale').is(':checked')){
+				$('#selected').text("Male");
+			}
+			if(!$('#checkboxMale').is(':checked') && !$('#checkboxFemale').is(':checked')){
+				$('#selected').text("Any");
+			}
+		}
+	});
+
 	$('#roles-list').on('change', handler.refreshRole);
 	$('#search-button').on('click', handler.findMatches);
 	$('#add-all-button').on('click', handler.addAll);
