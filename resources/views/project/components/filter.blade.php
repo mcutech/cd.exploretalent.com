@@ -146,9 +146,9 @@
 				</div>
 				<div class="col-md-3 margin-top-normal">
 					<div id="hasphotoForm">
-						<label for="" class="radio-inline"><strong>Has Photo: </strong> <span id="radio-selected">Any</span></label>
+						<label for="" class="radio-inline"><strong>Has Photo: </strong> <span id="radio-selected">Yes</span></label>
 						<label class="radio-inline">
-						  <input type="radio" id="has-photo" name="has_photo" value="true"> Yes
+						  <input type="radio" id="has-photo" checked="checked" name="has_photo" value="true"> Yes
 						</label>
 						<label class="radio-inline">
 						  <input type="radio" id="any-photo" name="has_photo" value="false"> Any
