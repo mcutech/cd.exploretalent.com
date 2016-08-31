@@ -126,7 +126,6 @@ handler.prototype.findMatches = function(append) {
 
 			//for total number of talent matches
 			self.core.service.databind('#submission-total', talents);
-			console.log(talents);
 
 			try {
 			self.core.service.databind('#role-matches-result', talents, append);
@@ -186,11 +185,19 @@ handler.prototype.getFilters = function() {
 		}
 
 		if (parseInt(form.age_min)) {
-			data.query.push([ 'where', 'dobyyyy', '<=', new Date().getFullYear() - parseInt(form.age_min) ]);
+			if(form.age_min <= 2){
+				data.query.push([ 'where', 'dobyyyy', '<=', new Date().getFullYear() - 2 ]);
+			}else{
+				data.query.push([ 'where', 'dobyyyy', '<=', new Date().getFullYear() - parseInt(form.age_min) ]);
+			}
 		}
 
 		if (parseInt(form.age_max)) {
-			data.query.push([ 'where', 'dobyyyy', '>=', new Date().getFullYear() - parseInt(form.age_max) ]);
+			if(form.age_max >= 71){
+				data.query.push([ 'where', 'dobyyyy', '>=', new Date().getFullYear() - 71 ]);
+			}else{
+				data.query.push([ 'where', 'dobyyyy', '>=', new Date().getFullYear() - parseInt(form.age_max) ]);
+			}
 		}
 
 		if (form.sexMale && !form.sexFemale) {
@@ -245,10 +252,7 @@ handler.prototype.getFilters = function() {
 			data.query.push([ 'where', 'last_access', '>', Math.floor(new Date().getTime() / 1000) - parseInt(form.last_access) ]);
 		}
 	}
-	console.log(form);
-	console.log("------");
-	console.log(data);
-	return data;
+		return data;
 }
 
 handler.prototype.addAll = function() {

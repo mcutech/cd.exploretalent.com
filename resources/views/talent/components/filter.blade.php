@@ -117,10 +117,10 @@
 			<hr class="panel-wide margin-top-small-normal margin-bottom-small-normal">
 			<div class="row margin-bottom-large">
 				<div class="col-xs-12 col-sm-6 col-md-3">
-					<label class="text-bold margin-bottom-zero">Age Range: <span id="age-min-text" class="text-normal">0</span> - <span id="age-max-text" class="text-normal">100</span></label>
+					<label class="text-bold margin-bottom-zero">Age Range: <span id="age-min-text" class="text-normal"><3</span> - <span id="age-max-text" class="text-normal">70+</span></label>
 					<div class="padding-right-small">
 					<div class="padding-small">
-						<div data-range="true" data-values="[0, 100]" data-min="0" data-max="100" data-type="age" data-slider></div>
+						<div data-range="true" data-values="[2, 71]" data-min="2" data-max="71" data-type="age" data-slider></div>
 						<input type="hidden" name="age_min" />
 						<input type="hidden" name="age_max" />
 					</div>
