@@ -143,10 +143,19 @@
 					{{-- </select> --}}
 				</div>
 				<div class="col-xs-12 col-sm-3 col-md-3 margin-top-normal">
-					<select name="has_photo" class="form-control" data-select>
-						<option value="true">With Picture</option>
-						<option value="false">No Picture</option>
-					</select>
+					<div id="hasphotoForm">
+						<label for="" class="radio-inline"><strong>Has Photo: </strong> <span id="radio-selected">Any</span></label>
+						<label class="radio-inline">
+						  <input type="radio" id="has-photo" name="has_photo" value="true"> Yes
+						</label>
+						<label class="radio-inline">
+						  <input type="radio" id="any-photo" name="has_photo" value="false"> Any
+						</label>
+					</div>
+					{{-- <select name="has_photo" class="form-control" data-select> --}}
+					{{-- 	<option value="true">With Picture</option> --}}
+					{{-- 	<option value="false">No Picture</option> --}}
+					{{-- </select> --}}
 				</div>
 				<div class="col-xs-12 col-md-3">
 					<div>

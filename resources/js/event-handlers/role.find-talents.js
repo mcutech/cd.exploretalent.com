@@ -190,7 +190,7 @@ handler.prototype.getFilters = function() {
 	// 	data.query.push([ 'where', 'sex', '=', form.sex ]);
 	// }
 
-	if (form.has_photo) {
+	if (form.has_photo == "true") {
 		data.query.push([ 'where', 'has_photos', '=', form.has_photo == 'true' ? 1 : 0 ]);
 	}
 
