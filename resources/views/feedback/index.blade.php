@@ -25,8 +25,8 @@
 			<div class="panel">
 				<div class="panel-heading panel-active">
 					<a class="accordion-toggle collapsed" data-toggle="collapse" data-bind="#feedback_<%= id %>">
-						<b><span data-bind="ID# <%= id %>"></span></b>
-						<span class="label label-success font-size-small-normal-zz padding-small-zz margin-top-small-zz-xs pull-right" data-bind="<%= date.formatDateTime(created_at) %>"></span>
+						<b><span data-bind="Left feedback on <%= moment(created_at).format('MMMM DD, YYYY, hh:MM:SS a') %>"></span></b>
+						{{-- <span class="label label-success font-size-small-normal-zz padding-small-zz margin-top-small-zz-xs pull-right" data-bind="<%= date.formatDateTime(created_at) %>"></span> --}}
 					</a>
 				</div>
 				<div data-bind="feedback_<%= id %>" data-bind-target="id" class="panel-collapse collapse" aria-expanded="true">
