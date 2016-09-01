@@ -4,41 +4,43 @@ module.exports = function(core, user) {
 
 	$('#create-project-btn').on('click', handler.createNewProject);
 
-    $("#self-submission-option").on('click', function(){
-        $("#self-submissions-option-content").show();
-        $("#open-call-option-content").hide();
-    });
-    $("#open-call-option").on('click', function(){
-        $("#open-call-option-content").show();
-        $("#self-submissions-option-content").hide();
-    });
-
-    $("#self-submission-option").click();
+    $('.calendar-input').mask('9999-99-99');	
 
 	$('#bs-datepicker-submissiondeadline').datepicker({
+		defaultDate: +1,
 		dateFormat: 'yy-mm-dd',
-		minDate: +1,
+		minDate: 0
 	});
-
-	$('#bs-datepicker-submissiondeadline').datepicker('option', 'defaultDate', +1);
-
-	$('#bs-datepicker-submissiondeadline').mask('9999-99-99');
 
 	$('#bs-datepicker-audition').datepicker({
-		dateFormat: 'yy-mm-dd'
+		dateFormat: 'yy-mm-dd',
+		minDate: 0
 	});
-	$('#bs-datepicker-audition').mask('9999-99-99');
 
 	$('#bs-datepicker-shootdate').datepicker({
-		dateFormat: 'yy-mm-dd'
+		dateFormat: 'yy-mm-dd',
+		minDate: 0
 	});
-	$('#bs-datepicker-shootdate').mask('9999-99-99');
 
 	$('#bs-datepicker-open-call').datepicker({
-		dateFormat: 'DD, MM dth'
+		dateFormat: 'DD, MM dth',
+		minDate: 0
 	});
+	
 	$('#bs-timepicker-open-call-from').timepicker();
 	$('#bs-timepicker-open-call-to').timepicker();
+
+	$("#self-submission-option").on('click', function(){
+        $("#self-submissions-option-content").show();
+        $('#project-type-title').text('Self Submission Details');
+        $("#open-call-option-content").hide();
+    });
+    
+    $("#open-call-option").on('click', function(){
+        $("#open-call-option-content").show();
+        $('#project-type-title').text('Open Call Details');
+        $("#self-submissions-option-content").hide();
+    });
 
 	function dontAllowLetters(element) {
 		element.keydown(function (e) {
