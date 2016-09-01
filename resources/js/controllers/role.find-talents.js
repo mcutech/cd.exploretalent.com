@@ -1,6 +1,15 @@
 module.exports = function(core, user, projectId, roleId) {
 	var handler = require('../event-handlers/role.find-talents.js')(core, user, projectId, roleId);
 
+	$('#hasphotoForm').click(function() {
+		if($('#has-photo').is(':checked')) {
+			$("#radio-selected").text("Yes");
+		}
+		else   {
+			$("#radio-selected").text("Any");
+		}
+	});
+
 	$('#genderForm :checkbox').change(function (){
 		if ($(this).is(':checked')) {
 			if($('#checkboxFemale').is(':checked')){

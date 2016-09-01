@@ -14,9 +14,18 @@ module.exports = function(core) {
 		switch($(this).data('type')) {
 			case 'age':
 				options.slide = function(event, ui) {
-					$('#age-min-text').text(ui.values[0]);
+					if(ui.values[0] < 3){
+						$('#age-min-text').text("<3");
+					}else{
+						$('#age-min-text').text(ui.values[0]);
+					}
 					$('[name="age_min"]').val(ui.values[0]);
-					$('#age-max-text').text(ui.values[1])
+
+					if(ui.values[1] > 70){
+						$('#age-max-text').text("70+");
+					}else{
+						$('#age-max-text').text(ui.values[1])
+					}
 					$('[name="age_max"]').val(ui.values[1]);
 				}
 
