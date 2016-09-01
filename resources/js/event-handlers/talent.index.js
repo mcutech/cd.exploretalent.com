@@ -56,6 +56,7 @@ handler.prototype.getTalents = function() {
 	}
 	else {
 		self.searchTalents().then(function(res) {
+			console.log(res);
 			deferred.resolve(res);
 		});
 	}
@@ -81,7 +82,12 @@ handler.prototype.searchTalents = function(nextPage) {
 	var form = self.core.service.form.serializeObject('#talent-filter-form');
 
 	if (form.search_text && !isNaN(form.search_text)) {
-		promise = self.core.resource.talent.get({ talentId : form.search_text, query : [ [ 'with', 'bam_talent_media2' ], [ 'with', 'bam_talentinfo1' ] ] });
+		if (nextPage) {
+			promise = $.when({});
+		}
+		else {
+			promise = self.core.resource.talent.get({ talentId : form.search_text, query : [ [ 'with', 'bam_talent_media2' ], [ 'with', 'bam_talentinfo1' ] ] });
+		}
 	}
 	else {
 		promise = self.core.resource.talent.search(data);
