@@ -1,6 +1,15 @@
 module.exports = function(core, user) {
 	var handler = require('../event-handlers/talent.index.js')(core, user);
 
+	$('#hasphotoForm').click(function() {
+		if($('#has-photo').is(':checked')) {
+			$("#radio-selected").text("Yes");
+		}
+		else   {
+			$("#radio-selected").text("Any");
+		}
+	});
+
 	$('#genderForm :checkbox').change(function (){
 		if ($(this).is(':checked')) {
 			if($('#checkboxFemale').is(':checked')){

@@ -166,11 +166,19 @@ handler.prototype.getFilters = function() {
 	}
 
 	if (parseInt(form.age_min)) {
-		data.query.push([ 'where', 'dobyyyy', '<=', new Date().getFullYear() - parseInt(form.age_min) ]);
+		if(form.age_min <= 2){
+			data.query.push([ 'where', 'dobyyyy', '<=', new Date().getFullYear() - 2 ]);
+		}else{
+			data.query.push([ 'where', 'dobyyyy', '<=', new Date().getFullYear() - parseInt(form.age_min) ]);
+		}
 	}
 
 	if (parseInt(form.age_max)) {
-		data.query.push([ 'where', 'dobyyyy', '>=', new Date().getFullYear() - parseInt(form.age_max) ]);
+		if(form.age_max >= 71){
+			data.query.push([ 'where', 'dobyyyy', '>=', new Date().getFullYear() - 71 ]);
+		}else{
+			data.query.push([ 'where', 'dobyyyy', '>=', new Date().getFullYear() - parseInt(form.age_max) ]);
+		}
 	}
 
 	if (form.sexMale && !form.sexFemale) {
@@ -181,7 +189,7 @@ handler.prototype.getFilters = function() {
 		data.query.push([ 'where', 'sex', '=', form.sexFemale ]);
 	}
 
-	if (form.has_photo) {
+	if (form.has_photo == "true") {
 		data.query.push([ 'where', 'has_photos', '=', form.has_photo == 'true' ? 1 : 0 ]);
 	}
 
@@ -224,7 +232,7 @@ handler.prototype.getFilters = function() {
 	if (form.last_access) {
 		data.query.push([ 'where', 'last_access', '>', Math.floor(new Date().getTime() / 1000) - parseInt(form.last_access) ]);
 	}
-
+	console.log(data);
 	return data;
 }
 
