@@ -10,6 +10,16 @@
 			<div class="col-md-12 alert alert-success">
 				Don't have time to post your casting, we will post it for you. Just paste the info of the casting into the textbox below.
 			</div>
+			<div class="col-md-12 panel">
+				<div class="panel-body">
+					<p>
+						Remember to include in your casting breakdown; general project description, market area, pay rate, deadline date, role information and criteria.
+					</p>
+					<p>
+						Please allow 24-48 hours for the review.
+					</p>
+				</div>
+			</div>
 		</div>
 		<div class="row">
 			<div class="panel">
