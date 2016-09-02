@@ -240,11 +240,37 @@ handler.prototype.getFilters = function() {
 		}
 
 		if (form.ethnicity) {
+			// African and African American are both searched if either is chosen
 			if (form.ethnicity instanceof Array) {
+
+				if(form.ethnicity.indexOf('African') > -1 && form.ethnicity.indexOf('African American') == -1) {
+					form.ethnicity.push('African American');
+				}
+				else if(form.ethnicity.indexOf('African American') > -1 && form.ethnicity.indexOf('African') == -1) {
+					form.ethnicity.push('African');
+				}
+
 				data.query.push([ 'whereIn', 'ethnicity', form.ethnicity ]);
+
 			}
 			else {
-				data.query.push([ 'where', 'ethnicity', '=', form.ethnicity ]);
+				if(form.ethnicity == 'African') {
+					data.query.push(['where', [
+							[ 'where', 'ethnicity', '=', 'African' ],
+							[ 'orWhere', 'ethnicity', '=', 'African American' ]
+						]
+					]);
+				}
+				else if(form.ethnicity == 'African American') {
+					data.query.push(['where', [
+							[ 'where', 'ethnicity', '=', 'African American' ],
+							[ 'orWhere', 'ethnicity', '=', 'African' ]
+						]
+					]);
+				}
+				else {
+					data.query.push([ 'where', 'ethnicity', '=', form.ethnicity ]);
+				}
 			}
 		}
 
