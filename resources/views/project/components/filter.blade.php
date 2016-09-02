@@ -198,13 +198,32 @@
 						<option value="Middle Eastern">Middle Eastern</option>
 					</select>
 				</div>
-				<div class="col-md-3 margin-top-normal">
+				<div class="col-md-3 margin-top-large">
+					<a href="#" id="toggle-advanced-filters-btn" class="text-xs pull-right">Advanced Filters</a>
+				</div>
+			</div>
+			<div id="advanced-filters-div" class="row margin-bottom-large" style="display: none;">
+				<div class="col-md-3 margin-top-large">
 					<select name="last_access" class="form-control" data-select>
 						<option value="">Last Active - Any</option>
 						<option value="2592000">Last Active - 1 month</option>
 						<option value="7776000">Last Active - 3 months</option>
 						<option value="15552000">Last Active - 6 months</option>
 						<option value="31104000">Last Active - 1 year</option>
+					</select>
+				</div>
+				<div class="col-md-3 margin-top-large">
+					<select name="young_old" class="form-control" data-select>
+						<option value="">Age - Default</option>
+						<option value="ASC">Age - Oldest to Youngest</option>
+						<option value="DESC">Age - Youngest to Oldest</option>
+					</select>
+				</div>
+				<div class="col-md-3 margin-top-large">
+					<select name="union" class="form-control" data-select>
+						<option value="">Union - Any</option>
+						<option value="1">Union - Union</option>
+						<option value="0">Union - Non-Union</option>
 					</select>
 				</div>
 			</div>

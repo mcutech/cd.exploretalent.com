@@ -50,6 +50,11 @@ module.exports = function(core, user, projectId, roleId) {
 		$('#location-search-change').show();
 	});
 
+	$(document).on('click', '#toggle-advanced-filters-btn', function(e) {
+		e.preventDefault();
+		$('#advanced-filters-div').slideToggle();
+	});
+
 	$(document).on('mouseover', '.talent-function-icon.profile', function() {
 		$('.text-function-label.profile').css("opacity", "1");
 	});

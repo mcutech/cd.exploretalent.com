@@ -16,6 +16,11 @@ module.exports = function(core, user, roleId, projectId) {
 		$('#location-search-change').show();
 	});
 
+	$(document).on('click', '#toggle-advanced-filters-btn', function(e) {
+		e.preventDefault();
+		$('#advanced-filters-div').slideToggle();
+	});
+
 	$(window).on('scroll', function() {
 		if ($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
 			handler.findMatches(true);
