@@ -11,6 +11,10 @@
 		        <!-- Wrapper for slides -->
 		        <div id="carousel-inner" class="carousel-inner">
 		            <div data-bind-template="#carousel-inner" data-bind-value="bam_talent_media2" class="item">
+		            	{{-- <a data-bind="https://etdownload.s3.amazonaws.com/<%= bam_media_path_full %>" target="_blank" class="zoom-container"> --}}
+		            	<a class="zoom-container" onclick="window.open(this.href, 'mywin', 'left=0,top=0,width=769,height=650,toolbar=1,resizable=0'); return false;" data-bind="https://etdownload.s3.amazonaws.com/<%= bam_media_path_full %>">
+		            		<i class="fa fa-search-plus"></i>
+		            	</a>
 		               <img data-bind="https://etdownload.s3.amazonaws.com/<%= bam_media_path_full %>">
 		            </div>
 		        </div>
