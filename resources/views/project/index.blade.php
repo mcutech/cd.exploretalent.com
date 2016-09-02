@@ -32,9 +32,9 @@
             </a>
         </div>
         <div class="col-xs-12 col-sm-2 margin-top-normal-zz-xs padding-right-zero-sm-lg">
-			<a href="projects?expired=true" id="btn-show-expired-castings" class="btn btn-success btn-block hide">Show Expired Project</a>
+			<a href="projects?expired=true" id="btn-show-expired-castings" class="btn btn-success hide">Show Expired Project</a>
 		</div>
-        <div class="col-xs-12 col-sm-4">
+        <div class="col-xs-12 col-sm-12">
             <div id="projects-pagination" class="pull-right margin-top-large"></div>
         </div>
     </div>
@@ -60,6 +60,12 @@
         </div>
 
         <div class="panel-group panel-group-primary project-item" id="projects-list">
+            <div class="row">
+                <div class="col-md-12 text-align-center">
+                    <h3>Loading Projects</h3>
+                    <h1><i class="fa fa-spinner fa-spin"></i></h1>
+                </div>
+            </div>
             <div class="div-table-stripe-item" data-bind-template="#projects-list" data-bind-value="data">
                 <div class="row-fluid clearfix padding-xs-vr">
                     <a class="col-md-12" data-bind="projects/<%= casting_id %>">
@@ -84,10 +90,9 @@
                             </div>
                         </a>
                     </div>
-
                 </div>
             </div>
         </div>
-        <div id="projects-pagination2" class="text-right"></div>
     </div>
+    <div id="projects-pagination2" class="text-right"></div>
 @stop
