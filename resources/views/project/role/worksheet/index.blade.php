@@ -89,6 +89,12 @@
 		<div class="panel default-table-responsive">
 			<div class="panel-group panel-group-primary table-body">
 				<div id="campaigns-list" class="">
+					<div class="row">
+		                <div class="col-md-12 text-align-center">
+		                    <h3>Loading Projects</h3>
+		                    <h1><i class="fa fa-spinner fa-spin"></i></h1>
+		                </div>
+		            </div>
 					<div class="row-fluid clearfix padding-xs-vr table-row" data-bind-template="#campaigns-list" data-bind-value="data">
 						<div class="col-xs-12 col-sm-3">
 							<div class="text-bold">
