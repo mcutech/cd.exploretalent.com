@@ -308,6 +308,26 @@ handler.prototype.showMessageModal = function(e) {
 		$element = $element.parents('button');
 	}
 
+	// databind dummy to modal first
+	var dummy = {
+		schedule : {
+			bam_role : { },
+			invitee : {
+				bam_talentci : {
+					getPrimaryPhoto : function() { },
+					getFullName : function() { },
+					getLocation : function() { },
+					getAge : function() { },
+					heightText : function() { },
+					bam_talentinfo1 : { }
+				}
+			}
+		},
+		campaign : { }
+	}
+
+	self.core.service.databind('#message-modal', dummy);
+
 	var scheduleId = $element.parents('.schedule').attr('data-id');
 	self.refreshMessages(scheduleId);
 
