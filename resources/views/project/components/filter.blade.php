@@ -120,13 +120,18 @@
 			<hr class="panel-wide margin-top-small-normal margin-bottom-small-normal">
 			<div class="row margin-bottom-large">
 				<div class="col-md-3">
-					<label class="text-bold margin-bottom-zero">Age Range: <span id="age-min-text" data-bind="<%= (age_min < 3) ? '<3' : age_min || 0 %>" class="text-normal"><3</span> - <span id="age-max-text" class="text-normal" data-bind="<%= (age_max > 70) ? '70+' : age_max || 0 %>">70+</span></label>
+					<label class="text-bold margin-bottom-zero">Age Range: <span class="text-normal">from</span>
+						<input id="age-min-input" class="text-normal" data-bind="<%= (age_min < 3) ? '<3' : age_min || 0 %>" style="width: 30px;"> 
+						<span class="text-normal">to</span>
+						<input id="age-max-input" class="text-normal" data-bind="<%= (age_max > 70) ? '70+' : age_max || 0 %>" style="width: 30px;">
+						<span class="text-normal">years</span>
+					</label>
 					<div class="padding-right-small">
-					<div class="padding-small">
-						<div data-range="true" data-values="[2, 71]" data-min="2" data-max="71" data-bind="[<%= age_min || 0 %>, <%= age_max %>]" data-type="age" data-slider></div>
-						<input type="hidden" name="age_min" data-bind="<%= age_min || 0 %>" />
-						<input type="hidden" name="age_max" data-bind="<%= age_max || 0 %>" />
-					</div>
+						<div class="padding-small">
+							<div id="age-range-slider" data-range="true" data-values="[2, 71]" data-min="2" data-max="71" data-bind="[<%= age_min || 0 %>, <%= age_max %>]" data-type="age" data-slider></div>
+							<input type="hidden" name="age_min" data-bind="<%= age_min || 0 %>" />
+							<input type="hidden" name="age_max" data-bind="<%= age_max || 0 %>" />
+						</div>
 					</div>
 				</div>
 				<div class="col-md-3 margin-top-normal">
@@ -162,12 +167,49 @@
 			<div class="row margin-bottom-large">
 				<div class="col-md-3">
 					<label class="text-bold margin-bottom-zero">Height Range:
-						<span id="height-min-text" class="text-normal" data-bind="<%= height_min ? getHeightMinText() : '< 2\'0&quot;' %>">&lt; 2'0"</span> -
-						<span id="height-max-text" class="text-normal" data-bind="<%= height_max ? getHeightMaxText() : '8\'0&quot;' %>">8'0"</span>
+						<select id="height-min-dropdown" data-bind="<%= height_min ? height_min : 22 %>">
+							<?php 
+								$bool = false;
+								for ($i = 22; $i <= 96; $i++) {
+									$feet = floor($i / 12);
+									$inches = $i % 12;
+									
+									if($i < 24) {
+										if($bool == false) {
+											echo "<option value=".$i."><2' 0\"</option>";
+											$bool = true;
+										}
+									}
+									else {
+										echo "<option value=".$i.">".$feet."' ".$inches."\"</option>";
+									}
+								}
+							?>
+						</select>
+						<span class="text-normal">to</span>
+						<select id="height-max-dropdown" data-bind="<%= height_max ? height_max : 96 %>">
+							<?php 
+								$bool = false;
+								for ($i = 22; $i <= 96; $i++) {
+									$feet = floor($i / 12);
+									$inches = $i % 12;
+									
+									if($i < 24) {
+										if($bool == false) {
+											echo "<option value=".$i."><2' 0\"</option>";
+											$bool = true;
+										}
+									}
+									else {
+										echo "<option value=".$i.">".$feet."' ".$inches."\"</option>";
+									}
+								}
+							?>
+						</select>
 					</label>
 					<div class="padding-right-small">
 					<div class="padding-small">
-						<div class="ui-slider-range-height" data-slider data-range="true" data-min="22" data-max="96" data-values="[22,96]" data-type="height" data-bind="[<%= height_min ? height_min : 22 %>, <%= height_max ? height_max : 96 %>]"></div>
+						<div id="height-range-slider" class="ui-slider-range-height" data-slider data-range="true" data-min="22" data-max="96" data-values="[22,96]" data-type="height" data-bind="[<%= height_min ? height_min : 22 %>, <%= height_max ? height_max : 96 %>]"></div>
 						<input type="hidden" name="height_min" data-bind="<%= height_min %>" />
 						<input type="hidden" name="height_max" data-bind="<%= height_max %>" />
 					</div>
