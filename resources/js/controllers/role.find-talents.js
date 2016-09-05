@@ -98,4 +98,24 @@ module.exports = function(core, user, projectId, roleId) {
 			handler.findMatches(true);
 		}
 	});
+
+	$(document).on('keyup', '#age-min-text', function() {
+		$('#age-range-slider').slider('values', 0, $(this).val());
+		$('input[name="age_min"]').val($(this).val());
+	});
+
+	$(document).on('keyup', '#age-max-text', function() {
+		$('#age-range-slider').slider('values', 1, $(this).val());
+		$('input[name="age_max"]').val($(this).val());
+	});
+
+	$(document).on('change', '#height-min-dropdown', function() {
+		$('#height-range-slider').slider('values', 0, $(this).val());
+		$('input[name="height_min"]').val($(this).val());
+	});
+
+	$(document).on('change', '#height-max-dropdown', function() {
+		$('#height-range-slider').slider('values', 1, $(this).val());
+		$('input[name="height_max"]').val($(this).val());
+	});
 };

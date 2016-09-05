@@ -16,15 +16,19 @@ module.exports = function(core) {
 				options.slide = function(event, ui) {
 					if(ui.values[0] < 3){
 						$('#age-min-text').text("<3");
+						$('#age-min-input').val("<3");
 					}else{
 						$('#age-min-text').text(ui.values[0]);
+						$('#age-min-input').val(ui.values[0]);
 					}
 					$('[name="age_min"]').val(ui.values[0]);
 
 					if(ui.values[1] > 70){
 						$('#age-max-text').text("70+");
+						$('#age-max-input').val("70+");
 					}else{
-						$('#age-max-text').text(ui.values[1])
+						$('#age-max-text').text(ui.values[1]);
+						$('#age-max-input').val(ui.values[1])
 					}
 					$('[name="age_max"]').val(ui.values[1]);
 				}
@@ -77,6 +81,8 @@ module.exports = function(core) {
 
 					$('[name="height_min"]').val(ui.values[0]);
 					$('[name="height_max"]').val(ui.values[1]);
+					$('#height-min-dropdown').val(ui.values[0]);
+					$('#height-max-dropdown').val(ui.values[1]);
 				}
 				break;
 		}

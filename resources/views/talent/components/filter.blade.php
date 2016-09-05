@@ -117,13 +117,18 @@
 			<hr class="panel-wide margin-top-small-normal margin-bottom-small-normal">
 			<div class="row margin-bottom-large">
 				<div class="col-xs-12 col-sm-6 col-md-3">
-					<label class="text-bold margin-bottom-zero">Age Range: <span id="age-min-text" class="text-normal"><3</span> - <span id="age-max-text" class="text-normal">70+</span></label>
+					<label class="text-bold margin-bottom-zero">Age Range: <span class="text-normal">from</span>
+						<input id="age-min-input" class="text-normal" style="width: 30px;" value="<3"> 
+						<span class="text-normal">to</span>
+						<input id="age-max-input" class="text-normal" style="width: 30px;" value="70+">
+						<span class="text-normal">years</span>
+					</label>
 					<div class="padding-right-small">
-					<div class="padding-small">
-						<div data-range="true" data-values="[2, 71]" data-min="2" data-max="71" data-type="age" data-slider></div>
-						<input type="hidden" name="age_min" />
-						<input type="hidden" name="age_max" />
-					</div>
+						<div class="padding-small">
+							<div id="age-range-slider" data-range="true" data-values="[2, 71]" data-min="2" data-max="71" data-type="age" data-slider></div>
+							<input type="hidden" name="age_min" />
+							<input type="hidden" name="age_max" />
+						</div>
 					</div>
 				</div>
 				<div class="col-xs-12 col-sm-3 col-md-3 margin-top-normal">
@@ -160,12 +165,53 @@
 
 			<div class="row">
 				<div class="col-xs-12 col-sm-6 col-md-3">
-					<label class="text-bold margin-bottom-zero">Height Range: <span id="height-min-text" class="text-normal">&lt; 2'0"</span> -
-						<span id="height-max-text" class="text-normal">8'0"</span>
+					<label class="text-bold margin-bottom-zero">Height Range:
+						<select id="height-min-dropdown">
+							<?php 
+								$bool = false;
+								for ($i = 22; $i <= 96; $i++) {
+									$feet = floor($i / 12);
+									$inches = $i % 12;
+									
+									if($i < 24) {
+										if($bool == false) {
+											echo "<option value=".$i."><2' 0\"</option>";
+											$bool = true;
+										}
+									}
+									else {
+										echo "<option value=".$i.">".$feet."' ".$inches."\"</option>";
+									}
+								}
+							?>
+						</select>
+						<span class="text-normal">to</span>
+						<select id="height-max-dropdown">
+							<?php 
+								$bool = false;
+								for ($i = 22; $i <= 96; $i++) {
+									$feet = floor($i / 12);
+									$inches = $i % 12;
+									
+									if($i < 24) {
+										if($bool == false) {
+											echo "<option value=".$i."><2' 0\"</option>";
+											$bool = true;
+										}
+									}
+									else if($i == 96) {
+										echo "<option value=".$i." selected>".$feet."' ".$inches."\"</option>";
+									}
+									else {
+										echo "<option value=".$i.">".$feet."' ".$inches."\"</option>";
+									}
+								}
+							?>
+						</select>
 					</label>
 					<div class="padding-right-small">
 					<div class="padding-small">
-						<div class="ui-slider-range-height" data-slider data-range="true" data-min="22" data-max="96" data-values="[22,96]" data-type="height"></div>
+						<div id="height-range-slider" class="ui-slider-range-height" data-slider data-range="true" data-min="22" data-max="96" data-values="[22,96]" data-type="height"></div>
 						<input type="hidden" name="height_min" />
 						<input type="hidden" name="height_max" />
 					</div>
