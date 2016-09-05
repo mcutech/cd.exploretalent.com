@@ -221,18 +221,71 @@ handler.prototype.getFilters = function() {
 	}
 
 	if (form.ethnicity) {
+		// African and African American are both searched if either is chosen
 		if (form.ethnicity instanceof Array) {
+
+			if(form.ethnicity.indexOf('African') > -1 && form.ethnicity.indexOf('African American') == -1) {
+				form.ethnicity.push('African American');
+			}
+			else if(form.ethnicity.indexOf('African American') > -1 && form.ethnicity.indexOf('African') == -1) {
+				form.ethnicity.push('African');
+			}
+
 			data.query.push([ 'whereIn', 'ethnicity', form.ethnicity ]);
+
 		}
 		else {
-			data.query.push([ 'where', 'ethnicity', '=', form.ethnicity ]);
+			if(form.ethnicity == 'African') {
+				data.query.push(['where', [
+						[ 'where', 'ethnicity', '=', 'African' ],
+						[ 'orWhere', 'ethnicity', '=', 'African American' ]
+					]
+				]);
+			}
+			else if(form.ethnicity == 'African American') {
+				data.query.push(['where', [
+						[ 'where', 'ethnicity', '=', 'African American' ],
+						[ 'orWhere', 'ethnicity', '=', 'African' ]
+					]
+				]);
+			}
+			else {
+				data.query.push([ 'where', 'ethnicity', '=', form.ethnicity ]);
+			}
 		}
 	}
 
 	if (form.last_access) {
 		data.query.push([ 'where', 'last_access', '>', Math.floor(new Date().getTime() / 1000) - parseInt(form.last_access) ]);
 	}
-	console.log(data);
+
+	if(form.young_old) {
+		data.query.push([ 'orderBy', 'dobyyyy', form.young_old ]);
+		data.query.push([ 'orderBy', 'dobmm', form.young_old ]);
+		data.query.push([ 'orderBy', 'dobdd', form.young_old ]);
+	}
+
+	if(form.union) {
+		if(form.union == '1') {
+			data.query.push([ 'where', [
+					[ 'where', 'union_aea', '=', 'Yes' ],
+					[ 'orWhere', 'union_aftra', '=', 'Yes' ],
+					[ 'orWhere', 'union_other', '=', 'Yes' ],
+					[ 'orWhere', 'union_sag', '=', 'Yes' ],
+				] 
+			]);
+		}
+		else {
+			data.query.push([ 'where', [
+					[ 'where', 'union_aea', '=', 'No' ],
+					[ 'orWhere', 'union_aftra', '=', 'No' ],
+					[ 'orWhere', 'union_other', '=', 'No' ],
+					[ 'orWhere', 'union_sag', '=', 'No' ],
+				] 
+			]);
+		}
+	}
+	
 	return data;
 }
 

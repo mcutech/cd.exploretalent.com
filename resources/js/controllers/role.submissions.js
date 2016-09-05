@@ -50,6 +50,11 @@ module.exports = function(core, user, projectId, roleId) {
 		$('#location-search-change').show();
 	});
 
+	$(document).on('click', '#toggle-advanced-filters-btn', function(e) {
+		e.preventDefault();
+		$('#advanced-filters-div').slideToggle();
+	});
+
 	//add notes function back
 	$(document).on('click', '.talent-note-v2 .back-btn', function(){
 		$(this).closest('.talent-item').find('.talent-note-v2').hide();

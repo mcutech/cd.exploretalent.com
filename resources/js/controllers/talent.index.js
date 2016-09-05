@@ -93,6 +93,11 @@ module.exports = function(core, user) {
 		$('#location-search-change').show();
 	});
 
+	$(document).on('click', '#toggle-advanced-filters-btn', function(e) {
+		e.preventDefault();
+		$('#advanced-filters-div').slideToggle();
+	});
+
 	//responsive filter turns to modal when mobile
 	$(document).ready(function(){
 		if($(this).width() <= 752){

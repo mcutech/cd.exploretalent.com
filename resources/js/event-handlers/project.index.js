@@ -9,33 +9,15 @@ function handler(core, user){
 
 handler.prototype.refreshList = function(){
 	var qs = self.core.service.query_string();
-	var btnExpiredCastings = $('#btn-show-expired-castings');
 
-	if(qs.expired == 'true'){
-		var data = {
-			query : [
-				[ 'with', 'bam_roles' ],
-				['orderBy', 'sub_timestamp','DESC'],
-			],
-			page : qs.page || 1,
-			per_page : 20
-		};
-		btnExpiredCastings.text('Do not show Expired Projects');
-		btnExpiredCastings.attr('href', 'projects?expired=false');
-	}
-	else{
-		var data = {
-			query : [
-				[ 'with', 'bam_roles' ],
-				[ 'where', 'asap', '>=', Math.floor(new Date().getTime() / 1000)],
-				['orderBy', 'sub_timestamp','DESC'],
-			],
-			page : qs.page || 1,
-			per_page : 20
-		};
-		btnExpiredCastings.text('Show Expired Projects');
-		btnExpiredCastings.attr('href', 'projects?expired=true');
-	}
+	var data = {
+		query : [
+			[ 'with', 'bam_roles' ],
+			['orderBy', 'sub_timestamp','DESC'],
+		],
+		page : qs.page || 1,
+		per_page : 20
+	};
 
 	var searchterm = $('#project-name').val();
 
@@ -69,8 +51,25 @@ handler.prototype.refreshList = function(){
 		}
 	}
 
+	var btnExpiredCastings = $('#btn-show-expired-castings');
+
+	if(qs.expired == 'true'){
+		btnExpiredCastings.text('Do not show Expired Projects');
+		btnExpiredCastings.attr('href', 'projects?expired=false');
+	}
+	else {
+		// only filter expired by searchterm isn't provided
+		if(!searchterm) {
+			data.query.push([ 'where', 'asap', '>=', Math.floor(new Date().getTime() / 1000)]);
+		}
+		
+		btnExpiredCastings.text('Show Expired Projects');
+		btnExpiredCastings.attr('href', 'projects?expired=true');
+	}
+
 	self.core.resource.project.get(data)
 		.then(function(res){
+
 			if (!res.total) {
 				// check if we have no search result, get active and non active projects
 				var expiredCount = 0,
