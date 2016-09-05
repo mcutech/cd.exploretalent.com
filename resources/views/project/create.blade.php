@@ -178,7 +178,7 @@
 								<div class="panel" id="self-submissions-option-content">
 									<div class="padding-normal">
 										<div class="form-group">
-											<label class="control-label">Email Address</label>
+											<label class="control-label"><i class="fa fa-envelope"></i> Please enter email address for talent submissions</label>
 											<input type="text" id="self-sub-email" class="form-control" placeholder="Enter Email Address" data-bind="<%= email %>">
 										</div>
 										<div class="form-group">
@@ -235,7 +235,7 @@
 					<div class="row">
 							<div class="col-md-6 padding-top-normal">
 								<div class="form-group margin-bottom-small">
-									<label class="control-label">Audition Location <span class="text-success">*</span></label>
+									<label class="control-label"><i class="fa fa-map-marker text-danger"></i> What area would you like to accept talent from? <span class="text-success">*</span></label>
 									<label class="checkbox-inline margin-left-normal" title="Mark as nationwide casting">
 										<input class="px" type="checkbox" name="nationwide-market-checkbox" id="nationwide-market-checkbox" value="0">
 										<span class="lbl">All of United States</span>
