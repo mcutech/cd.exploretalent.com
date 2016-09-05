@@ -81,12 +81,12 @@ module.exports = function(core, user) {
 		}
 	});
 
-	$(document).on('keyup', '#age-min-text', function() {
+	$(document).on('keyup', '#age-min-input', function() {
 		$('#age-range-slider').slider('values', 0, $(this).val());
 		$('input[name="age_min"]').val($(this).val());
 	});
 
-	$(document).on('keyup', '#age-max-text', function() {
+	$(document).on('keyup', '#age-max-input', function() {
 		$('#age-range-slider').slider('values', 1, $(this).val());
 		$('input[name="age_max"]').val($(this).val());
 	});
