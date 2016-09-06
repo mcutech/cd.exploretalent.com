@@ -321,9 +321,10 @@ handler.prototype.showMessageModal = function(e) {
 					heightText : function() { },
 					bam_talentinfo1 : { }
 				}
-			}
+			},
 		},
-		campaign : { }
+		campaign : { },
+		messages : [ ]
 	}
 
 	self.core.service.databind('#message-modal', dummy);
@@ -385,7 +386,17 @@ handler.prototype.refreshMessages = function(scheduleId) {
 				var pstdate = new Date(val.created_at);
 				pstdate.setHours(pstdate.getHours() + 15);
 				conversation.messages[ind].created_at = pstdate;
+
+				// check if contains youtube video
+				var regex = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
+				var path = val.body.match(regex);
+
+				if (path && path.length >= 8 && path[7]) {
+					var embed = '<br/><iframe style="border:0px" width="420" height="315" src="https://www.youtube.com/embed/' + path[7] + '"> </iframe>';
+					val.body += embed;
+				}
 			});
+
 			$('#message-modal #messages .per-message:not([data-bind-template])').remove();
 			self.core.service.databind('#message-modal', conversation);
 			$('#message-modal #messages-container').animate({ scrollTop: $('#message-modal #messages').height() }, 1000);
@@ -394,16 +405,19 @@ handler.prototype.refreshMessages = function(scheduleId) {
 }
 
 handler.prototype.reply = function() {
-	var data = {
-		conversationId 	: self.conversation.id,
-		user_id 		: self.user.id,
-		body			: $('#message-text').val()
-	};
+	if ($('#message-text').val()) {
+		var data = {
+			conversationId 	: self.conversation.id,
+			user_id 		: self.user.id,
+			body			: $('#message-text').val()
+		};
 
-	self.core.resource.message.post(data)
-		.then(function() {
-			self.refreshMessages(self.conversation.schedule.id);
-		});
+		self.core.resource.message.post(data)
+			.then(function() {
+				self.refreshMessages(self.conversation.schedule.id);
+				$('#message-text').val('');
+			});
+	}
 }
 
 module.exports = function(core, user, projectId, roleId) {
