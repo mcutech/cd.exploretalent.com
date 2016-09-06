@@ -17,7 +17,7 @@
 					</div>
 					<div class="label-primary">
 						<div class="col-md-2 col-xs-2 prof-pic">
-							<img data-bind="<%= schedule.invitee.bam_talentci.getPrimaryPhoto() %>" width="70%" />
+							<img data-bind="<%= schedule.invitee.bam_talentci.getPrimaryPhoto() %>" width="70%" height="50" />
 						</div>
 						<div class="row">
 							<div class="col-md-10 margin-top-small">
