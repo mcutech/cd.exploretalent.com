@@ -81,6 +81,26 @@ module.exports = function(core, user) {
 		}
 	});
 
+	$(document).on('keyup', '#age-min-input', function() {
+		$('#age-range-slider').slider('values', 0, $(this).val());
+		$('input[name="age_min"]').val($(this).val());
+	});
+
+	$(document).on('keyup', '#age-max-input', function() {
+		$('#age-range-slider').slider('values', 1, $(this).val());
+		$('input[name="age_max"]').val($(this).val());
+	});
+
+	$(document).on('change', '#height-min-dropdown', function() {
+		$('#height-range-slider').slider('values', 0, $(this).val());
+		$('input[name="height_min"]').val($(this).val());
+	});
+
+	$(document).on('change', '#height-max-dropdown', function() {
+		$('#height-range-slider').slider('values', 1, $(this).val());
+		$('input[name="height_max"]').val($(this).val());
+	});
+
 	//refine search toggle location search
 	$(document).on('click', '#location-search-change-btn', function(e){
 		e.preventDefault();

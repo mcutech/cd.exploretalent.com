@@ -79,7 +79,7 @@
 			</div>
 		    <div class="col-md-12">
 				<label class="checkbox-inline margin-bottom-normal">
-				  <input class="px" type="checkbox" name="ethnicity" id="ethnicity-any" value="0">
+				  <input class="px ethnicity-any-checkbox" type="checkbox" name="ethnicity" id="ethnicity-any" value="0">
 				  <span class="lbl">Any</span>
 				</label>
 				<label class="checkbox-inline margin-bottom-normal">
@@ -127,7 +127,7 @@
 			</div>
 		    <div class="col-md-12">
 				<label class="checkbox-inline margin-bottom-normal">
-				  <input class="px" type="checkbox" name="built" id="built-any" value="0">
+				  <input class="px built-any-checkbox" type="checkbox" name="built" id="built-any" value="0">
 				  <span class="lbl">Any</span>
 				</label>
 				<label class="checkbox-inline margin-bottom-normal">
@@ -169,7 +169,7 @@
 			</div>
 		    <div class="col-md-10">
 				<label class="checkbox-inline margin-bottom-normal">
-				  <input class="px" type="checkbox" name="hair-color" id="hair-any" value="0">
+				  <input class="px hair-any-checkbox" type="checkbox" name="hair-color" id="hair-any" value="0">
 				  <span class="lbl">Any</span>
 				</label>
 				<label class="checkbox-inline margin-bottom-normal">
