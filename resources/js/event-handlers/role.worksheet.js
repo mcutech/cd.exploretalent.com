@@ -125,6 +125,13 @@ handler.prototype.getSchedules = function() {
 					[ 'with', 'schedule_notes.user.bam_cd_user' ],
 					[ 'with', 'conversation.messages.user.bam_talentci' ],
 					[ 'with', 'bam_role' ],
+					[ 'with', {
+						'conversation.messages': [
+							['skip', 0],
+							['take', 5],
+							[ 'orderBy', 'created_at', 'DESC' ]
+						]
+					}],
 				],
 				per_page : 25
 			}
@@ -133,6 +140,7 @@ handler.prototype.getSchedules = function() {
 		})
 		.then(function(res) {
 			res.total = talents.total;
+			console.log(res);
 			return $.when(res);
 		});
 }
