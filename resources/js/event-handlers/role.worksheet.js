@@ -412,10 +412,13 @@ handler.prototype.reply = function() {
 			body			: $('#message-text').val()
 		};
 
+		$('#message-text').val('');
+		$('#reply-button').addClass('disabled');
+
 		self.core.resource.message.post(data)
 			.then(function() {
 				self.refreshMessages(self.conversation.schedule.id);
-				$('#message-text').val('');
+				$('#reply-button').removeClass('disabled');
 			});
 	}
 }
