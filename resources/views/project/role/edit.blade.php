@@ -84,7 +84,7 @@
 				</div>
 			    <div class="col-md-12">
 					<label class="checkbox-inline margin-bottom-normal">
-					  <input type="checkbox" class="px" name="ethnicity" id="ethnicity-any" value="0" data-bind="<%= ethnicity_any %>">
+					  <input type="checkbox" class="px ethnicity-any-checkbox" name="ethnicity" id="ethnicity-any" value="0" data-bind="<%= ethnicity_any %>">
 					  <span class="lbl">Any</span>
 					</label>
 					<label class="checkbox-inline margin-bottom-normal">
@@ -133,7 +133,7 @@
 				</div>
 			    <div class="col-md-12">
 					<label class="checkbox-inline margin-bottom-normal">
-					  <input type="checkbox" class="px" name="built" id="built-any" value="0" data-bind="<%= built_any %>">
+					  <input type="checkbox" class="px built-any-checkbox" name="built" id="built-any" value="0" data-bind="<%= built_any %>">
 					  <span class="lbl">Any</span>
 					</label>
 					<label class="checkbox-inline margin-bottom-normal">
@@ -175,7 +175,7 @@
 				</div>
 			    <div class="col-md-10">
 					<label class="checkbox-inline margin-bottom-normal">
-					  <input type="checkbox" class="px" name="hair-color" id="hair-any" value="0" data-bind="<%= hair_any %>">
+					  <input type="checkbox" class="px hair-any-checkbox" name="hair-color" id="hair-any" value="0" data-bind="<%= hair_any %>">
 					  <span class="lbl">Any</span>
 					</label>
 					<label class="checkbox-inline margin-bottom-normal">

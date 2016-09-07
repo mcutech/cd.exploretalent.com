@@ -1,5 +1,5 @@
 <div id="message-modal" class="modal fade" tabindex="-1" role="dialog" style="display: none;">
-	<div class="modal-dialog">
+	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -17,7 +17,7 @@
 					</div>
 					<div class="label-primary">
 						<div class="col-md-2 col-xs-2 prof-pic">
-							<img data-bind="<%= schedule.invitee.bam_talentci.getPrimaryPhoto() %>" width="70%" />
+							<img data-bind="<%= schedule.invitee.bam_talentci.getPrimaryPhoto() %>" width="70%" height="50" />
 						</div>
 						<div class="row">
 							<div class="col-md-10 margin-top-small">

@@ -80,7 +80,7 @@ handler.prototype.updateRole = function() {
 		ethnicity_hispanic : $('#ethnicity-hispanic').val(),
 		ethnicity_mediterranean : $('#ethnicity-mediterranean').val(),
 		ethnicity_middle_est : $('#ethnicity-middle-est').val(),
-		ethnicity_native_am : $('#ethnicity-native-am').val(),
+		ethnicity_american_in : $('#ethnicity-american-in').val(),
 		built_any : $('#built-any').val(),
 		built_medium : $('#built-medium').val(),
 		built_athletic : $('#built-athletic').val(),
@@ -102,6 +102,29 @@ handler.prototype.updateRole = function() {
 		hair_salt_paper : $('#hair-salt-paper').val(),
 		hair_white : $('#hair-white').val()
 	};
+
+	// if any is chosen, change all keys to 0 aside from any
+	if(data["ethnicity_any"] == 1) {
+		for(var key in data) {
+		    if(key.startsWith('ethnicity') && key != 'ethnicity_any') {
+		    	data[key] = 0;
+		    }
+		}
+	}
+	if(data["built_any"] == 1) {
+		for(var key in data) {
+		    if(key.startsWith('built') && key != 'built_any') {
+		    	data[key] = 0;
+		    }
+		}
+	}
+	if(data["hair_any"] == 1) {
+		for(var key in data) {
+		    if(key.startsWith('hair') && key != 'hair_any') {
+		    	data[key] = 0;
+		    }
+		}
+	}
 
 	if (self.core.service.form.validate('#edit-role-div')) { // for required text fields
 		if($('input[type="checkbox"][name="gender"]:checked').length < 1) {

@@ -76,6 +76,31 @@ module.exports = function(core, user, projectId, roleId) {
 		$('#heightinches').val(ui.values[0] + "," + ui.values[1]);
 	});
 
+	// uncheck all checkboxes if any is chosen
+	$('#ethnicity-any').on('click', function() {
+		$('input[name="ethnicity"]:not(".ethnicity-any-checkbox")').attr('checked','checked');
+		$('input[name="ethnicity"]:not(".ethnicity-any-checkbox")').val(1);
+	}, function() {
+		$('input[name="ethnicity"]:not(".ethnicity-any-checkbox")').removeAttr('checked');
+		$('input[name="ethnicity"]:not(".ethnicity-any-checkbox")').val(0);
+	});
+
+	$('#built-any').on('click', function() {
+		$('input[name="built"]:not(".built-any-checkbox")').attr('checked','checked');
+		$('input[name="built"]:not(".built-any-checkbox")').val(1);
+	}, function() {
+		$('input[name="built"]:not(".built-any-checkbox")').removeAttr('checked');
+		$('input[name="built"]:not(".built-any-checkbox")').val(0);
+	});
+
+	$('#hair-any').on('click', function() {
+		$('input[name="hair-color"]:not(".hair-any-checkbox")').attr('checked','checked');
+		$('input[name="hair-color"]:not(".hair-any-checkbox")').val(1);
+	}, function() {
+		$('input[name="hair-color"]:not(".hair-any-checkbox")').removeAttr('checked');
+		$('input[name="hair-color"]:not(".hair-any-checkbox")').val(0);
+	});
+
 	// for checkbox values convert to 1 (if checked) and 0 (if not checked)
 	$("input[type='checkbox']").change(function(){
 	    this.value = (Number(this.checked));

@@ -84,6 +84,29 @@ handler.prototype.saveNewRole = function(e) {
 		hair_white : $('#hair-white').val()
 	};
 
+	// if any is chosen, change all keys to 0 aside from any
+	if(data["ethnicity_any"] == 1) {
+		for(var key in data) {
+		    if(key.startsWith('ethnicity') && key != 'ethnicity_any') {
+		    	data[key] = 0;
+		    }
+		}
+	}
+	if(data["built_any"] == 1) {
+		for(var key in data) {
+		    if(key.startsWith('built') && key != 'built_any') {
+		    	data[key] = 0;
+		    }
+		}
+	}
+	if(data["hair_any"] == 1) {
+		for(var key in data) {
+		    if(key.startsWith('hair') && key != 'hair_any') {
+		    	data[key] = 0;
+		    }
+		}
+	}
+
 	if (self.core.service.form.validate('#create-role-div')) { // for required text fields
 
 		if($('input[type="checkbox"][name="gender"]:checked').length < 1) {
