@@ -285,7 +285,7 @@ handler.prototype.getFilters = function() {
 			]);
 		}
 	}
-	
+
 	return data;
 }
 
