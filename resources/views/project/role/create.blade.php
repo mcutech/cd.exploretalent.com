@@ -173,7 +173,7 @@
 				  <span class="lbl">Any</span>
 				</label>
 				<label class="checkbox-inline margin-bottom-normal">
-				  <input class="px" type="checkbox" name="hair-color " id="hair-auburn" value="0">
+				  <input class="px" type="checkbox" name="hair-color" id="hair-auburn" value="0">
 				  <span class="lbl">Auburn</span>
 				</label>
 				<label class="checkbox-inline margin-bottom-normal">
