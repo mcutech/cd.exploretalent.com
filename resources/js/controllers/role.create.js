@@ -101,6 +101,25 @@ module.exports = function(core, user, projectId) {
 		$('input[name="hair-color"]:not(".hair-any-checkbox")').val(0);
 	});
 
+	//uncheck Any checkbox if specific value is checked
+	$('input[name="ethnicity"]:not(".ethnicity-any-checkbox")').on('click', function(){
+		$('#ethnicity-any').removeAttr('checked');
+		$('#ethnicity-any').val(0);
+	});
+
+	$('input[name="built"]:not(".built-any-checkbox")').on('click', function(){
+		$('#built-any').removeAttr('checked');
+		$('#built-any').val('checked');
+
+	});
+
+	$('input[name="hair-color"]:not(".hair-any-checkbox")').on('click', function(){
+		$('#hair-any').removeAttr('checked');
+		$('#hair-any').val(0);
+	});
+
+
+
 	// for checkbox values convert to 1 (if checked) and 0 (if not checked)
 	$("input[type='checkbox']").change(function(){
 	    this.value = (Number(this.checked));
