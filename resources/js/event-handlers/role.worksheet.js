@@ -46,9 +46,7 @@ handler.prototype.refresh = function() { self.core.service.databind('#schedules'
 					}
 
 					_.each(s.conversation.messages, function(val, ind){
-						var pstdate = new Date(val.created_at);
-						pstdate.setHours(pstdate.getHours() + 15);
-						s.conversation.messages[ind].created_at = pstdate;
+						s.conversation.messages[ind].created_at += ' GMT-0700';
 					});
 				});
 
@@ -383,9 +381,7 @@ handler.prototype.refreshMessages = function(scheduleId) {
 		.then(function(res) {
 			conversation.campaign = _.first(res.data);
 			_.each(conversation.messages, function(val, ind){
-				var pstdate = new Date(val.created_at);
-				pstdate.setHours(pstdate.getHours() + 15);
-				conversation.messages[ind].created_at = pstdate;
+				conversation.messages[ind].created_at += ' GMT-0700';
 
 				// check if contains youtube video
 				var regex = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
