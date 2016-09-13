@@ -55,7 +55,7 @@
 					</div>
 				</div>
 
-				<div class="col-md-3">
+				<!-- <div class="col-md-3">
 					<label class="text-bold margin-bottom-zero">Age Range: <span id="age-min-text" data-bind="<%= age_min || 0 %>" class="text-normal">0</span> - <span id="age-max-text" data-bind="<%= age_max || 100 %>" class="text-normal">100</span></label>
 					<div class="padding-right-small">
 					<div class="padding-small">
@@ -64,9 +64,25 @@
 						<input type="hidden" name="age_max" data-bind="<%= age_max || 0 %>" />
 					</div>
 					</div>
-				</div>
+				</div> -->
 
-				<div class="col-md-3">
+				<div class="col-md-4 margin-top-normal">
+					<label class="text-bold margin-bottom-zero">Age Range: <span class="text-normal">from</span>
+						<input id="age-min-input" class="text-normal" style="width: 30px;" data-bind="<%= age_min %>"> 
+						<span class="text-normal">to</span>
+						<input id="age-max-input" class="text-normal" style="width: 30px;" data-bind="<%= age_max %>" >
+						<span class="text-normal">years</span>
+					</label>
+					<div class="padding-right-small">
+						<div class="padding-small">
+							<div id="age-range-slider" data-range="true" data-values="[2, 71]" data-min="2" data-bind="[<%= age_min || 0 %>, <%= age_max || 100 %>]" data-max="71" data-type="age" data-slider></div>
+							<input type="hidden" name="age_min" data-bind="<%= age_min || 0 %>" />
+							<input type="hidden" name="age_max" data-bind="<%= age_max || 0 %>" />
+						</div>
+					</div>
+				</div>				
+
+				<!-- <div class="col-md-3">
 					<label class="text-bold margin-bottom-zero">Height Range: <span id="height-min-text" class="text-normal" data-bind="<%= getHeightMinText() ||'< 2\'0&quot;' %>">&lt; 2'0"</span> -
 						<span id="height-max-text" class="text-normal" data-bind="<%= getHeightMaxText() || '8\'0&quot;' %>">8'0"</span>
 					</label>
@@ -75,6 +91,60 @@
 						<div class="ui-slider-range-height" data-slider data-range="true" data-min="22" data-max="96" data-values="[22,96]" data-type="height" data-bind="[<%= height_min ? height_min : 22 %>, <%= height_max ? height_max : 96 %>]"></div>
 						<input type="hidden" name="height_min" data-bind="<%= height_min %>" />
 						<input type="hidden" name="height_max" data-bind="<%= height_max %>" />
+					</div>
+					</div>
+				</div> -->
+
+				<div class="col-md-4 margin-top-normal">
+					<label class="text-bold margin-bottom-zero">Height Range:
+						<select id="height-min-dropdown" data-bind="<%= height_min %>">
+							<?php 
+								$bool = false;
+								for ($i = 22; $i <= 96; $i++) {
+									$feet = floor($i / 12);
+									$inches = $i % 12;
+									
+									if($i < 24) {
+										if($bool == false) {
+											echo "<option value=".$i."><2' 0\"</option>";
+											$bool = true;
+										}
+									}
+									else {
+										echo "<option value=".$i.">".$feet."' ".$inches."\"</option>";
+									}
+								}
+							?>
+						</select>
+						<span class="text-normal">to</span>
+						<select id="height-max-dropdown">
+							<?php 
+								$bool = false;
+								for ($i = 22; $i <= 96; $i++) {
+									$feet = floor($i / 12);
+									$inches = $i % 12;
+									
+									if($i < 24) {
+										if($bool == false) {
+											echo "<option value=".$i."><2' 0\"</option>";
+											$bool = true;
+										}
+									}
+									else if($i == 96) {
+										echo "<option value=".$i." selected>".$feet."' ".$inches."\"</option>";
+									}
+									else {
+										echo "<option value=".$i.">".$feet."' ".$inches."\"</option>";
+									}
+								}
+							?>
+						</select>
+					</label>
+					<div class="padding-right-small">
+					<div class="padding-small margin-top-small">
+						<div id="height-range-slider" class="ui-slider-range-height" data-slider data-range="true" data-bind="[<%= height_min || 0 %>, <%= height_max || 100 %>]" data-min="22" data-max="96" data-values="[22,96]" data-type="height"></div>
+						<input type="hidden" name="height_min" id ="height_min" data-bind="<%= height_min %>"/>
+						<input type="hidden" name="height_max" id ="height_max" data-bind="<%= height_max %>" />
 					</div>
 					</div>
 				</div>
