@@ -141,6 +141,7 @@ module.exports = function(core, user) {
 							$button.find('i').removeClass('fa-plus').addClass('fa-check');
 							$button.find('span').text('Added to Like it List');
 							$('#add-like-it-list-modal').modal('hide');
+							$button.closest('.talent-item').find('.show-add-note-btn').attr('data-id', res.id);
 						});
 				}
 				else if (!schedule) {
@@ -173,6 +174,7 @@ module.exports = function(core, user) {
 							$button.find('i').removeClass('fa-plus').addClass('fa-check');
 							$button.find('span').text('Added to Like it List');
 							$('#add-like-it-list-modal').modal('hide');
+							$button.closest('.talent-item').find('.show-add-note-btn').attr('data-id', res.id);
 						});
 				}
 			})
