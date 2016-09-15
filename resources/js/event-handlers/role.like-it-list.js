@@ -212,7 +212,7 @@ handler.prototype.sendInvites = function() {
 	var form = self.core.service.form.serializeObject('#invite-to-audition-form');
 
 	var data = [
-		[ 'join', 'bam.laret_users', 'bam.laret_users.bam_talentnum', '=', 'search.talents.talentnum' ],
+		[ 'join', 'bam.laret_users', 'bam.laret_users.bam_talentnum', '=', 'bam.talentci.talentnum' ],
 		[ 'join', 'bam.laret_schedules', 'bam.laret_schedules.invitee_id', '=', 'bam.laret_users.id' ],
 		[ 'where', 'bam.laret_schedules.rating', '<>', 0 ],
 		[ 'where', 'bam.laret_schedules.bam_role_id', '=', self.project.role.role_id ]
