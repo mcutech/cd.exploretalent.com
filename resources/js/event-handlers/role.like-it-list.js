@@ -212,11 +212,18 @@ handler.prototype.sendInvites = function() {
 	var form = self.core.service.form.serializeObject('#invite-to-audition-form');
 
 	var data = [
-		[ 'where', 'rating', '<>', 0 ],
-		[ 'where', 'bam_role_id', '=', self.project.role.role_id ],
-		[ 'join', 'users', 'users.id', '=', 'invitee_id' ],
-		[ 'select', 'bam_talentnum AS talentnum' ]
+		[ 'join', 'bam.laret_users', 'bam.laret_users.bam_talentnum', '=', 'search.talents.talentnum' ],
+		[ 'join', 'bam.laret_schedules', 'bam.laret_schedules.invitee_id', '=', 'bam.laret_users.id' ],
+		[ 'where', 'bam.laret_schedules.rating', '<>', 0 ],
+		[ 'where', 'bam.laret_schedules.bam_role_id', '=', self.project.role.role_id ]
 	];
+
+	// var data = [
+	// 	[ 'where', 'rating', '<>', 0 ],
+	// 	[ 'where', 'bam_role_id', '=', self.project.role.role_id ],
+	// 	[ 'join', 'users', 'users.id', '=', 'invitee_id' ],
+	// 	[ 'select', 'bam_talentnum AS talentnum' ]
+	// ];
 
 	var campaignData = {
 		campaign_type_id 	: self.core.resource.campaign_type.CD_INVITE,
@@ -226,7 +233,7 @@ handler.prototype.sendInvites = function() {
 		where				: form.where,
 		name				: 'CD Invite Role #' + self.project.role.role_id,
 		description			: form.message,
-		query_model			: 'Schedule',
+		query_model			: 'Search\\Talent',
 		query_model_raw     : 'Bam\\Talentci',
 		query_key_id        : 'talentnum',
 		query_key_cell      : 'cell',
