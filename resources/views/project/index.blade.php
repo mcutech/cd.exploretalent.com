@@ -61,7 +61,7 @@
 
         <div class="panel-group panel-group-primary project-item" id="projects-list">
             <div class="row">
-                <div class="col-md-12 text-align-center">
+                <div class="col-md-12 text-align-center loading-projects">
                     <h3>Loading Projects</h3>
                     <h1><i class="fa fa-spinner fa-spin"></i></h1>
                 </div>

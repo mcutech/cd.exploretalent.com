@@ -46,6 +46,9 @@ handler.prototype.getRoleInfo = function(e) {
 	return self.core.resource.job.get(data)
 		.then(function(res) {
 			console.log(res);
+			if(res.age_min<3){
+				res.age_min = '<3';
+			}
 			self.core.service.databind('#edit-role-div', res)
 			return $.when();
 		});
@@ -59,6 +62,21 @@ handler.prototype.updateRole = function() {
 		$(this).val(1);
 	});
 
+	var age_min_val, age_max_val, height_min_val, height_max_val;
+	if($('#age-min-input').val()=='<3'){
+		age_min_val = 0;
+	}else{
+		age_min_val = $('#age-min-input').val();
+	}
+	if($('#age-max-input').val()=='70+'){
+		age_max_val =70;	
+	}else{
+		age_max_val = $('#age-max-input').val();	
+	}
+
+	height_min_val = $('#height-min-dropdown').val();
+	height_max_val = $('#height-max-dropdown').val();	
+
 	var data = {
 		projectId : self.projectId,
 		jobId : self.roleId,
@@ -67,10 +85,14 @@ handler.prototype.updateRole = function() {
 		des : $('#role-description-text').val(),
 		gender_male : $('#gender-male-checkbox').val(),
 		gender_female : $('#gender-female-checkbox').val(),
-		age_min : $('#age-min-text').text(),
-		age_max : $('#age-max-text').text(),
-		height_min : $('input[name="height_min"]').val(),
-		height_max : $('input[name="height_max"]').val(),
+		// age_min : $('#age-min-text').text(),
+		// age_max : $('#age-max-text').text(),
+		// height_min : $('input[name="height_min"]').val(),
+		// height_max : $('input[name="height_max"]').val(),				
+		age_min : age_min_val,		
+		age_max: age_max_val,		
+		height_min: height_min_val,		
+		height_max: height_max_val,
 		ethnicity_any : $('#ethnicity-any').val(),
 		ethnicity_african : $('#ethnicity-african').val(),
 		ethnicity_african_am : $('#ethnicity-african-am').val(),
