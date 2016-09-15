@@ -47,7 +47,15 @@ handler.prototype.getRoleInfo = function(e) {
 		.then(function(res) {
 			console.log(res);
 			if(res.age_min<3){
-				res.age_min = '<3';
+				// res.age_min = '<3';
+				$('#age-min-input').val('<3');
+			}else{
+				$('#age-min-input').val(res.age_min);
+			}
+			if(res.age_max>70){
+				$('#age-max-input').val('70+');
+			}else{
+				$('#age-max-input').val(res.age_max);
 			}
 			self.core.service.databind('#edit-role-div', res)
 			return $.when();
