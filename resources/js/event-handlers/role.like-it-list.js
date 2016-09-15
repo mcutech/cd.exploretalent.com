@@ -233,7 +233,7 @@ handler.prototype.sendInvites = function() {
 		where				: form.where,
 		name				: 'CD Invite Role #' + self.project.role.role_id,
 		description			: form.message,
-		query_model			: 'Search\\Talent',
+		query_model			: 'Bam\\Talentci',
 		query_model_raw     : 'Bam\\Talentci',
 		query_key_id        : 'talentnum',
 		query_key_cell      : 'cell',
