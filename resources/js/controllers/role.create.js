@@ -118,6 +118,25 @@ module.exports = function(core, user, projectId) {
 		$('#hair-any').val(0);
 	});
 
+	$(document).on('keyup', '#age-min-input', function() {
+		$('#age-range-slider').slider('values', 0, $(this).val());
+		$('input[name="age_min"]').val($(this).val());
+	});
+
+	$(document).on('keyup', '#age-max-input', function() {
+		$('#age-range-slider').slider('values', 1, $(this).val());
+		$('input[name="age_max"]').val($(this).val());
+	});	
+
+	$(document).on('change', '#height-min-dropdown', function() {
+		$('#height-range-slider').slider('values', 0, $(this).val());
+		$('input[name="height_min"]').val($(this).val());
+	});
+
+	$(document).on('change', '#height-max-dropdown', function() {
+		$('#height-range-slider').slider('values', 1, $(this).val());
+		$('input[name="height_max"]').val($(this).val());
+	});
 
 
 	// for checkbox values convert to 1 (if checked) and 0 (if not checked)

@@ -89,6 +89,9 @@ handler.prototype.refreshList = function(){
 								$('#btn-show-expired-castings').removeClass('hide');
 								// show you have no active project message
 								$('#no-projects-found').removeClass('hide');
+								//hide loading GIF
+								$('.loading-projects').addClass('hide');
+
 							}
 							else {
 								// redirect to welcome page
