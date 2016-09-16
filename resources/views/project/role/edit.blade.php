@@ -68,14 +68,14 @@
 
 				<div class="col-md-4 margin-top-normal">
 					<label class="text-bold margin-bottom-zero">Age Range: <span class="text-normal">from</span>
-						<input id="age-min-input" class="text-normal" style="width: 30px;" data-bind="<%= age_min %>"> 
+						<input id="age-min-input" class="text-normal" style="width: 30px;"> 
 						<span class="text-normal">to</span>
-						<input id="age-max-input" class="text-normal" style="width: 30px;" data-bind="<%= age_max %>" >
+						<input id="age-max-input" class="text-normal" style="width: 30px;">
 						<span class="text-normal">years</span>
 					</label>
 					<div class="padding-right-small">
 						<div class="padding-small">
-							<div id="age-range-slider" data-range="true" data-values="[2, 71]" data-min="2" data-bind="[<%= age_min || 0 %>, <%= age_max || 100 %>]" data-max="71" data-type="age" data-slider></div>
+							<div id="age-range-slider" data-range="true" data-values="[2, 71]" data-min="2" data-bind="[<%= age_min || 0 %>, <%= age_max || 71 %>]" data-max="71" data-type="age" data-slider></div>
 							<input type="hidden" name="age_min" data-bind="<%= age_min || 0 %>" />
 							<input type="hidden" name="age_max" data-bind="<%= age_max || 0 %>" />
 						</div>
@@ -117,7 +117,7 @@
 							?>
 						</select>
 						<span class="text-normal">to</span>
-						<select id="height-max-dropdown">
+						<select id="height-max-dropdown" data-bind="<%= height_max %>">
 							<?php 
 								$bool = false;
 								for ($i = 22; $i <= 96; $i++) {
@@ -142,7 +142,7 @@
 					</label>
 					<div class="padding-right-small">
 					<div class="padding-small margin-top-small">
-						<div id="height-range-slider" class="ui-slider-range-height" data-slider data-range="true" data-bind="[<%= height_min || 0 %>, <%= height_max || 100 %>]" data-min="22" data-max="96" data-values="[22,96]" data-type="height"></div>
+						<div id="height-range-slider" class="ui-slider-range-height" data-slider data-range="true" data-bind="[<%= height_min || 22 %>, <%= height_max || 96 %>]" data-min="22" data-max="96" data-values="[22,96]" data-type="height"></div>
 						<input type="hidden" name="height_min" id ="height_min" data-bind="<%= height_min %>"/>
 						<input type="hidden" name="height_max" id ="height_max" data-bind="<%= height_max %>" />
 					</div>
