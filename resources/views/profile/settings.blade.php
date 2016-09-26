@@ -163,12 +163,20 @@
 					</div>
 					<div class="col-md-4" id="user_subscription">
 						<div class="form-group no-margin-hr">
-						<div class="checkbox col-sm-6">
+						<div class="checkbox col-sm-8">
 							<label><input type="checkbox" id="emailok" data-bind="<%= cd_user_subscription ? cd_user_subscription.email : '' %>">Email Ok</label>
 						</div>
-						<div class="checkbox col-sm-6">
+						<div class="checkbox col-sm-4">
 							<label><input type="checkbox" id="smsok" data-bind="<%= cd_user_subscription ? cd_user_subscription.sms : '' %>">SMS Ok</label>
 						</div>
+
+						<div class="checkbox col-sm-12">
+							<label><input type="checkbox" id="talentReply">Notify me when talents reply</label>
+						</div>
+						<div class="checkbox col-sm-12">
+							<label><input type="checkbox" id="talentSubmitProject">Notify me when talent submits to a project</label>
+						</div>
+
 						</div>
 					</div>
 				</div>
