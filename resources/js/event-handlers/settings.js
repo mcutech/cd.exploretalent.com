@@ -4,24 +4,62 @@ function handler(core, user) {
 	self = this;
 	self.core = core;
 	self.user = user;
-
 	self.refresh();
+	self.userOption();
+}
+
+handler.prototype.userOption = function() {
+	var data = {
+		query:[
+			['where', 'user_id', '=', self.user.id]
+		]
+	}
+
+	self.core.resource.user_option.get(data)
+		.then(function(res){
+			if(!res.total){
+				var trnData = {
+					option:'Talent Reply Notification',
+					value: 0,
+				}
+				self.core.resource.user_option.post(trnData)
+					.then(function(){
+						var tsnData = {
+							option:'Talent Submit Notification',
+							value: 0,
+						}
+						self.core.resource.user_option.post(tsnData)
+							.then(function(res){
+							});
+					})
+			}
+		});
 }
 
 handler.prototype.refresh = function() {
+
 	var user_subs = {
 		cdUserId: self.user.bam_cd_user.user_id,
 		query : [
 			['with', 'cd_user_subscription']
 		]
 	}
+
 	self.core.resource.cd_user.get(user_subs)
 		.then(function(res) {
-			console.log(res);
-			return self.core.service.databind('#settings', res);
+			var data = {
+				query:[
+					['where', 'user_id', '=', self.user.id]
+				]
+			}
+
+			self.core.resource.user_option.get(data)
+			.then(function(res2) {
+				res.user_options = res2;//adding user_option resource to res.
+				self.core.service.databind('#settings', res);
+			})
 	});
 }
-
 
 handler.prototype.updatePassword = function(e) {
 
@@ -86,7 +124,7 @@ handler.prototype.updateUser = function(e) {
 							}else{
 								subscription_form.sms = 0;
 							}
-							console.log(subscription_form);
+
 							// return;
 
 							self.core.resource.cd_user_subscription.patch(subscription_form)
@@ -116,6 +154,48 @@ handler.prototype.updateUser = function(e) {
 						}
 
 				});
+
+				var userOption_trn_form = {}
+				var userOption_tsn_form = {}
+
+				var data = {
+					query:[
+						['where', 'user_id', '=', self.user.id]
+					]
+				}
+
+				self.core.resource.user_option.get(data)
+					.then(function(res){
+
+						if($('#talentReply').is(':checked')){
+							userOption_trn_form.option = 'Talent Reply Notification';
+							userOption_trn_form.value  = 1;
+						}else{
+							userOption_trn_form.option = 'Talent Reply Notification';
+							userOption_trn_form.value  = 0;
+						}
+
+						if($('#talentSubmitProject').is(':checked')){
+							userOption_tsn_form.option = 'Talent Submit Notification';
+							userOption_tsn_form.value  = 1;
+						}else{
+							userOption_tsn_form.option = 'Talent Submit Notification';
+							userOption_tsn_form.value  = 0;
+						}
+
+						userOption_trn_form.id = res.data[0].id;
+						userOption_tsn_form.id = res.data[1].id;
+
+						self.core.resource.user_option.patch(userOption_trn_form)
+							.then(function(res){
+						});
+
+						self.core.resource.user_option.patch(userOption_tsn_form)
+							.then(function(res){
+						});
+
+				});
+
 
 				$('#update-settings-success').fadeIn().delay(5000).fadeOut();
 			}, function(err) {
