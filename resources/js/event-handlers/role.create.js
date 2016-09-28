@@ -40,6 +40,8 @@ handler.prototype.saveNewRole = function(e) {
 	var buttonId = $(this).attr('id');
 	//var height = $('#heightinches').val(),
 		//height = height.split(",");
+	
+	
 
 	var age_min_val, age_max_val, height_min_val, height_max_val;
 	if($('#age-min-input').val()=='<3'){
@@ -128,12 +130,21 @@ handler.prototype.saveNewRole = function(e) {
 
 	if (self.core.service.form.validate('#create-role-div')) { // for required text fields
 
+		
+
 		if($('input[type="checkbox"][name="gender"]:checked').length < 1) {
 	        $('.gender-error-required').fadeIn().delay(3000).fadeOut();
 	        $('.gender-error-required').focus();
 		}
 
 		else {
+
+			if(buttonId=="save-and-add-role-btn"){
+				
+				$(this).prop('disabled', true);			
+				$('#loading_role').addClass('fa fa-spin fa-spinner');
+			}
+			
 
 			if($('input[type="checkbox"][name="ethnicity"]:checked').length < 1) {
 		        data["ethnicity_any"] = 1;
