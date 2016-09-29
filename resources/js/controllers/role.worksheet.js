@@ -14,4 +14,8 @@ module.exports = function(core, user, projectId, roleId) {
 	$(document).on('click', '.callback-button', handler.updateScheduleCDStatus);
 	$(document).on('click', '.hired-button', handler.updateScheduleCDStatus);
 	$(document).on('click', '.message-button', handler.showMessageModal);
+
+	$("#message-modal").on('hidden.bs.modal', function (e) {
+    	$("#message-modal iframe").attr("src", $("#message-modal iframe").attr("src"));
+	});
 }
