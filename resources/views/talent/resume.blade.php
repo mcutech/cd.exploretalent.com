@@ -174,83 +174,83 @@
 							<div class="col-sm-12 border-t"></div>
 						</div>
 						<div class="row resume-info">
-							<div class="col-sm-6 col-xs-12 padding-zero talent-info-item" data-bind="<%= bam_talent_music[0].music_role ? '1' : '' %>" data-bind-target="visibility">
+							<div class="col-sm-6 col-xs-12 padding-zero talent-info-item" data-bind="<%= bam_talent_music.length > 0 && bam_talent_music[0].music_role ? '1' : '' %>" data-bind-target="visibility">
 								<div class="col-sm-6 col-xs-6">
 									<label style="width=20px;">Primary Role</label>
 								</div>
 								<div class="col-sm-6 col-xs-6">
-									<span data-bind="<%= bam_talent_music[0].music_role %>"></span>
+									<span data-bind="<%= bam_talent_music.length > 0 ? bam_talent_music[0].music_role : '' %>"></span>
 								</div>
 							</div>
 
-							<div class="col-sm-6 col-xs-12 padding-zero talent-info-item" data-bind="<%= bam_talent_music[0].number_of_gigs ? '1' : '' %>" data-bind-target="visibility">
+							<div class="col-sm-6 col-xs-12 padding-zero talent-info-item" data-bind="<%= bam_talent_music.length > 0 && bam_talent_music[0].number_of_gigs ? '1' : '' %>" data-bind-target="visibility">
 								<div class="col-sm-6 col-xs-6">
 									<label>Performances</label>
 								</div>
 								<div class="col-sm-6 col-xs-6">
-									<span data-bind="<%= bam_talent_music[0].number_of_gigs %>"></span>
+									<span data-bind="<%= bam_talent_music.length > 0 ? bam_talent_music[0].number_of_gigs : '' %>"></span>
 								</div>
 							</div>
 
-							<div class="col-sm-6 col-xs-12 padding-zero talent-info-item" data-bind="<%= bam_talent_music[0].genre ? '1' : '' %>" data-bind-target="visibility">
+							<div class="col-sm-6 col-xs-12 padding-zero talent-info-item" data-bind="<%= bam_talent_music.length > 0 && bam_talent_music[0].genre ? '1' : '' %>" data-bind-target="visibility">
 								<div class="col-sm-6 col-xs-6">
 									<label style="width=20px;">Genres</label>
 								</div>
 								<div class="col-sm-6 col-xs-6">
-									<span data-bind="<%= bam_talent_music[0].genre %>"> </span>
+									<span data-bind="<%= bam_talent_music.length > 0 ? bam_talent_music[0].genre : '' %>"> </span>
 								</div>
 							</div>
 
-							<div class="col-sm-6 col-xs-12 padding-zero talent-info-item" data-bind="<%= bam_talent_music[0].music_instruments ? '1' : '' %>" data-bind-target="visibility">
+							<div class="col-sm-6 col-xs-12 padding-zero talent-info-item" data-bind="<%= bam_talent_music.length > 0 && bam_talent_music[0].music_instruments ? '1' : '' %>" data-bind-target="visibility">
 								<div class="col-sm-6 col-xs-6">
 									<label> Intruments</label>
 								</div>
 								<div class="col-sm-6 col-xs-6">
-									<span data-bind="<%= bam_talent_music[0].music_instruments %>"></span>
+									<span data-bind="<%= bam_talent_music.length > 0 ? bam_talent_music[0].music_instruments : '' %>"></span>
 								</div>
 							</div>
 
-							<div class="col-sm-6 col-xs-12 padding-zero talent-info-item" data-bind="<%= bam_talent_music[0].years_experience ? '1' : '' %>" data-bind-target="visibility">
+							<div class="col-sm-6 col-xs-12 padding-zero talent-info-item" data-bind="<%= bam_talent_music.length > 0 && bam_talent_music[0].years_experience ? '1' : '' %>" data-bind-target="visibility">
 								<div class="col-sm-6 col-xs-6">
 									<label style="width=20px;">Experience</label>
 								</div>
 								<div class="col-sm-6 col-xs-6">
-									<span data-bind="<%= bam_talent_music[0].years_experience %>"></span>
+									<span data-bind="<%= bam_talent_music.length > 0 ? bam_talent_music[0].years_experience : '' %>"></span>
 								</div>
 							</div>
 
-							<div class="col-xs-12 padding-zero talent-info-item" data-bind="<%= (bam_talent_music[0].des_1) ? 1 : 0 %>" data-bind-target="visibility">
+							<div class="col-xs-12 padding-zero talent-info-item" data-bind="<%= bam_talent_music.length > 0 && (bam_talent_music[0].des_1) ? 1 : 0 %>" data-bind-target="visibility">
 								<div class="col-sm-12 margin-top-normal-medium">
 									<h5 class="text-bold margin-zero text-primary">Musician Information</h5>
 								</div>
 								<div class="col-sm-12">
-									<p class="main" data-bind="<%= bam_talent_music[0].des_1 %>">
+									<p class="main" data-bind="<%= bam_talent_music.length > 0 ? bam_talent_music[0].des_1 : '' %>">
 									</p>
-									<p class="extended hide" data-bind="<%= bam_talent_music[0].des_1 %>">
+									<p class="extended hide" data-bind="<%= bam_talent_music.length > 0 ? bam_talent_music[0].des_1 : '' %>">
 									</p>
 								</div>
 							</div>
 
-							<div class="col-xs-12 padding-zero talent-info-item" data-bind="<%= (bam_talent_music[0].searching_gig_des) ? 1 : 0 %>" data-bind-target="visibility">
+							<div class="col-xs-12 padding-zero talent-info-item" data-bind="<%= bam_talent_music.length > 0 && (bam_talent_music[0].searching_gig_des) ? 1 : 0 %>" data-bind-target="visibility">
 								<div class="col-sm-12 margin-top-large">
 									<h5 class="text-bold margin-zero text-primary">Looking for this kind of gig</h5>
 								</div>
 								<div class="col-sm-12">
-									<p class="main" data-bind="<%= bam_talent_music[0].searching_gig_des %>">
+									<p class="main" data-bind="<%= bam_talent_music.length > 0 && bam_talent_music[0].searching_gig_des : '' %>">
 									</p>
-									<p class="extended hide" data-bind="<%= bam_talent_music[0].searching_gig_des %>">
+									<p class="extended hide" data-bind="<%= bam_talent_music.length > 0 ? bam_talent_music[0].searching_gig_des : '' %>">
 									</p>
 								</div>
 							</div>
 
-							<div class="col-sm-6 col-xs-12 padding-zero talent-info-item" data-bind="<%= (bam_talent_music[0].major_influence) ? 1 : 0 %>" data-bind-target="visibility">
+							<div class="col-sm-6 col-xs-12 padding-zero talent-info-item" data-bind="<%= bam_talent_music.length > 0 && (bam_talent_music[0].major_influence) ? 1 : 0 %>" data-bind-target="visibility">
 								<div class="col-sm-12 margin-top-large">
 									<h5 class="text-bold margin-zero text-primary">Musical Influences</h5>
 								</div>
 								<div class="col-sm-12">
-									<p class="main" data-bind="<%= bam_talent_music[0].major_influence %>">
+									<p class="main" data-bind="<%= bam_talent_music.length > 0 ? bam_talent_music[0].major_influence : '' %>">
 									</p>
-									<p class="extended hide" data-bind="<%= bam_talent_music[0].major_influence %>">
+									<p class="extended hide" data-bind="<%= bam_talent_music.length > 0 ? bam_talent_music[0].major_influence : '' %>">
 									</p>
 								</div>
 							</div>
@@ -263,64 +263,64 @@
 							<div class="col-sm-12 border-t"></div>
 						</div>
 						<div class="row">
-							<div data-bind="<%= (bam_talent_dance[0].dance_style_1) ? '1' : '' %>" data-bind-target="visibility">
+							<div data-bind="<%= bam_talent_dance.length > 0 && (bam_talent_dance[0].dance_style_1) ? '1' : '' %>" data-bind-target="visibility">
 								<div class="col-sm-6 col-xs-6">
 									<label style="width=20px;">Primary Style</label>
 								</div>
 								<div class="col-sm-6 col-xs-6">
-									<span data-bind="<%= bam_talent_dance[0].dance_style_1 %>"></span>
+									<span data-bind="<%= bam_talent_dance.length > 0 ? bam_talent_dance[0].dance_style_1 : '' %>"></span>
 								</div>
 							</div>
-							<div data-bind="<%= (bam_talent_dance[0].num_of_perfom) ? '1' : '' %>" data-bind-target="visibility">
+							<div data-bind="<%= bam_talent_dance.length > 0 && (bam_talent_dance[0].num_of_perfom) ? '1' : '' %>" data-bind-target="visibility">
 								<div class="col-sm-3 col-xs-6">
 									<label style="width=20px;">Performance</label>
 								</div>
 								<div class="col-sm-3 col-xs-6">
-									<span data-bind="<%= bam_talent_dance[0].num_of_perfom %>"></span>
+									<span data-bind="<%= bam_talent_dance.length > 0 ? bam_talent_dance[0].num_of_perfom : '' %>"></span>
 								</div>
 							</div>
 						</div>
 						<div class="row">
-							<div data-bind="<%= (bam_talent_dance[0].years_experience) ? '1' : '' %>" data-bind-target="visibility">
+							<div data-bind="<%= bam_talent_dance.length > 0 && (bam_talent_dance[0].years_experience) ? '1' : '' %>" data-bind-target="visibility">
 								<div class="col-sm-3 col-xs-6">
 									<label style="width=20px;">Experience</label>
 								</div>
 								<div class="col-sm-3 col-xs-6">
-									<span data-bind="<%= bam_talent_dance[0].years_experience %>"></span>
+									<span data-bind="<%= bam_talent_dance.length > 0 ? bam_talent_dance[0].years_experience : '' %>"></span>
 								</div>
 							</div>
 						</div>
 						<div class="row">
-							<div data-bind="<%= (bam_talent_dance[0].dancer_background) ? 1 : 0%>" data-bind-target="visibility">
+							<div data-bind="<%= bam_talent_dance.length > 0 && (bam_talent_dance[0].dancer_background) ? 1 : 0 %>" data-bind-target="visibility">
 								<div class="col-sm-12 margin-top-normal-medium">
 									<h4>Dancer Background</h4>
 								</div>
 								<div class="col-sm-12">
-									<p class="margin-top-large main" data-bind="<%=  bam_talent_dance[0].dancer_background %>">
+									<p class="margin-top-large main" data-bind="<%= bam_talent_dance.length > 0 ?  bam_talent_dance[0].dancer_background : '' %>">
 									</p>
-									<p class="margin-top-large extended hide" data-bind="<%= bam_talent_dance[0].dancer_background %>">
+									<p class="margin-top-large extended hide" data-bind="<%= bam_talent_dance.length > 0 ? bam_talent_dance[0].dancer_background : '' %>">
 									</p>
 								</div>
 							</div>
-							<div data-bind="<%= (bam_talent_dance[0].influences) ? 1 : 0 %>" data-bind-target="visibility">
+							<div data-bind="<%= bam_talent_dance.length > 0 && (bam_talent_dance[0].influences) ? 1 : 0 %>" data-bind-target="visibility">
 								<div class="col-sm-12 margin-top-large">
 									<h4>Influences</h4>
 								</div>
 								<div class="col-sm-12">
-									<p class="margin-top-normal-medium main" data-bind="<%=  bam_talent_dance[0].influences %>">
+									<p class="margin-top-normal-medium main" data-bind="<%=  bam_talent_dance.length > 0 ? bam_talent_dance[0].influences : '' %>">
 									</p>
-									<p class="margin-top-normal-medium extended hide" data-bind="<%= bam_talent_dance[0].influences %>">
+									<p class="margin-top-normal-medium extended hide" data-bind="<%= bam_talent_dance.length > 0 ? bam_talent_dance[0].influences : '' %>">
 									</p>
 								</div>
 							</div>
-							<div data-bind="<%= (bam_talent_dance[0].searching_gig_des) ? 1 : 0 %>" data-bind-target="visibility">
+							<div data-bind="<%= bam_talent_dance.length > 0 && (bam_talent_dance[0].searching_gig_des) ? 1 : 0 %>" data-bind-target="visibility">
 								<div class="col-sm-12 margin-top-large">
 									<h4>Gig Description</h4>
 								</div>
 								<div class="col-sm-12">
-									<p class="margin-top-normal-medium main" data-bind="<%=  bam_talent_dance[0].searching_gig_des %>">
+									<p class="margin-top-normal-medium main" data-bind="<%= bam_talent_dance.length > 0 ? bam_talent_dance[0].searching_gig_des : '' %>">
 									</p>
-									<p class="margin-top-normal-medium extended hide" data-bind="<%= bam_talent_dance[0].searching_gig_des %>">
+									<p class="margin-top-normal-medium extended hide" data-bind="<%= bam_talent_dance.length > 0 ? bam_talent_dance[0].searching_gig_des : '' %>">
 									</p>
 								</div>
 							</div>
