@@ -117,7 +117,7 @@ module.exports = function(core, user) {
 			.then(function(res) {
 				var schedule = _.first(res.data);
 
-				if (schedule && schedule.rating == 0) {
+				if (schedule) {
 					// update
 					var data = {
 						scheduleId : schedule.id,
