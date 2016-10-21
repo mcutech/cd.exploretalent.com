@@ -287,6 +287,11 @@
 				</div>
 			</div>
 			<div class="row">
+				<div class="col-md-9">
+				<label class="checkbox-inline">
+					<input type="checkbox" id="show_only_matched"> <b>Only show talents that match the role criteria</b>
+				</label>
+				</div>
 				<div class="col-md-3 pull-right margin-top-normal-zz-xs">
 					<button id="search-button" type="submit" class="btn btn-primary btn-block">Filter Search</button>
 				</div>
