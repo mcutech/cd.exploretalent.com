@@ -236,9 +236,9 @@
 									<h5 class="text-bold margin-zero text-primary">Looking for this kind of gig</h5>
 								</div>
 								<div class="col-sm-12">
-									<p class="main" data-bind="<%= bam_talent_music.length > 0 && bam_talent_music[0].searching_gig_des : '' %>">
-									</p>
-									<p class="extended hide" data-bind="<%= bam_talent_music.length > 0 ? bam_talent_music[0].searching_gig_des : '' %>">
+									 <p class="main" data-bind="<%= bam_talent_music.length > 0 ? bam_talent_music[0].searching_gig_des : '' %>">
+									</p> 
+									<p class="extended" data-bind="<%= bam_talent_music.length > 0 ? bam_talent_music[0].searching_gig_des : '' %>">
 									</p>
 								</div>
 							</div>
