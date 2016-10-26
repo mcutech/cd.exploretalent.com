@@ -34,7 +34,16 @@ module.exports = function(core, user, projectId, roleId) {
 		}
 	});
 
-	$('#roles-list').on('change', handler.refreshRole);
+	//$('#roles-list').on('change', handler.refreshRole);
+
+	$(document).on('change','#roles-list', function (e){
+
+		e.preventDefault()
+
+		handler.refreshRole();
+	});
+
+
 	$('#search-button').on('click', handler.findMatches);
 	$('#add-all-button').on('click', handler.addAll);
 

@@ -46,7 +46,7 @@ handler.prototype.refreshRole = function() {
 	window.history.pushState({}, '', '/projects/' + self.projectId + '/roles/' + role.role_id + '/find-talents');
 
 	role.bam_casting = self.project;
-	console.log(role);
+	
 	self.core.service.databind('#role-filter-form', role);
 	$('#add-all-button span').text('Add All to Like it List');
 	$('#add-all-button').removeClass('disabled');
@@ -69,6 +69,7 @@ handler.prototype.refreshRole = function() {
 }
 
 handler.prototype.findMatches = function(append) {
+
 	if (self.refreshing) {
 		return;
 	}
@@ -127,6 +128,18 @@ handler.prototype.findMatches = function(append) {
 }
 
 handler.prototype.getFilters = function() {
+
+	if($('#show_only_matched').is(':checked')==true){		
+		var role = _.find(self.project.bam_roles, function(r) {
+			return r.role_id == $('#roles-list').val();
+		});
+
+		window.history.pushState({}, '', '/projects/' + self.projectId + '/roles/' + role.role_id + '/find-talents');
+
+		role.bam_casting = self.project;
+		self.core.service.databind('#role-filter-form', role);
+	}
+
 	var form = self.core.service.form.serializeObject('#role-filter-form');
 	var data = {
 		per_page : 24,
