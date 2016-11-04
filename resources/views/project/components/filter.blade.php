@@ -289,7 +289,7 @@
 			<div class="row">
 				<div class="col-md-9">
 				<label class="checkbox-inline">
-					<input type="checkbox" id="show_only_matched"> <b>Only show talents that match the role criteria</b>
+					<input type="checkbox" id="show_only_matched" checked="true"> <b>Only show talents that match the role criteria</b>
 				</label>
 				</div>
 				<div class="col-md-3 pull-right margin-top-normal-zz-xs">
