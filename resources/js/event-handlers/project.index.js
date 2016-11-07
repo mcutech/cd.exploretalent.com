@@ -8,6 +8,7 @@ function handler(core, user){
 }
 
 handler.prototype.refreshList = function(){
+
 	var qs = self.core.service.query_string();
 
 	var data = {
@@ -69,38 +70,46 @@ handler.prototype.refreshList = function(){
 
 	self.core.resource.project.get(data)
 		.then(function(res){
+			
 
 			if (!res.total) {
+				
 				// check if we have no search result, get active and non active projects
-				var expiredCount = 0,
-					notExpiredCount = 0;
+				// var expiredCount = 0,
+				// 	notExpiredCount = 0;
 
-				self.core.resource.project.get({ query : [ [ 'where', 'asap', '>=', Math.floor( (new Date().getTime() / 1000) - (8*3600)) ] ] })
-					.then(function(res) {
-						notExpiredCount = res.total;
+				// self.core.resource.project.get({ query : [ [ 'where', 'asap', '>=', Math.floor( (new Date().getTime() / 1000) - (8*3600)) ] ] })
+				// 	.then(function(res) {
+				// 		notExpiredCount = res.total;
 
-						return self.core.resource.project.get({ query : [ [ 'where', 'asap', '<', Math.floor(new Date().getTime() / 1000) ] ] });
-					})
-					.then(function(res) {
-						expiredCount = res.total;
+				// 		return self.core.resource.project.get({ query : [ [ 'where', 'asap', '<', Math.floor(new Date().getTime() / 1000) ] ] });
+				// 	})
+				// 	.then(function(res) {
+				// 		expiredCount = res.total;
 
-						if (notExpiredCount == 0) {
-							if (expiredCount > 0) {
-								$('#btn-show-expired-castings').removeClass('hide');
-								// show you have no active project message
-								$('#no-projects-found').removeClass('hide');
-								//hide loading GIF
-								$('.loading-projects').addClass('hide');
+				// 		if (notExpiredCount == 0) {
+				// 			if (expiredCount > 0) {
+				// 				$('#btn-show-expired-castings').removeClass('hide');
+				// 				// show you have no active project message
+				// 				$('#no-projects-found').removeClass('hide');
+				// 				//hide loading GIF
+				// 				$('.loading-projects').addClass('hide');
 
-							}
-							else {
-								// redirect to welcome page
-								window.location = '/welcome';
-							}
-						}
-					});
+				// 			}
+				// 			else {
+				// 				// redirect to welcome page
+				// 				window.location = '/welcome';
+				// 			}
+				// 		}				
+				// 	});
+
+				//per issue-472 don't show any result
+				self.core.service.databind('#projects-list', res);
+				$('#no-projects-found').removeClass('hide');				
 			}
 			else {
+				$('#no-projects-found').addClass('hide');
+				
 				self.core.resource.project.get({ query : [ [ 'where', 'asap', '<', Math.floor(new Date().getTime() / 1000) ] ] })
 					.then(function(res) {
 						if (res.total) {

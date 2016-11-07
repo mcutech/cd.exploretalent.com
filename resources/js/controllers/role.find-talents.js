@@ -127,4 +127,11 @@ module.exports = function(core, user, projectId, roleId) {
 		$('#height-range-slider').slider('values', 1, $(this).val());
 		$('input[name="height_max"]').val($(this).val());
 	});
+
+	$('#show_only_matched').on('click', function(){
+		if ($(this).is(':checked')) {
+			 handler.findMatches();
+		}
+	});
+
 };
