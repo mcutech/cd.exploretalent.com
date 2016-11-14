@@ -88,6 +88,8 @@ handler.prototype.findMatches = function(append) {
 	self.refreshing = true;
 	var data = self.getFilters();
 
+	console.log(append);
+
 	if (append) {
 		self.first_load = self.first_load ? self.first_load : false;
 	}
@@ -153,7 +155,10 @@ handler.prototype.getFilters = function() {
 		]
 	}
 
-	if (!self.first_load) {
+	if (!self.first_load || $('#show_only_matched').is(':checked')==true) {
+
+		if($('#show_only_matched').is(':checked')==true){
+
 		if (form.markets) {
 			if (form.markets instanceof Array) {
 				var subquery = [];
@@ -303,6 +308,8 @@ handler.prototype.getFilters = function() {
 					] 
 				]);
 			}
+		}
+	
 		}
 	}
 		return data;
