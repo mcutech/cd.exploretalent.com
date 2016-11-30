@@ -63,17 +63,18 @@ handler.prototype.refreshList = function(){
 		if(!searchterm) {
 			data.query.push([ 'where', 'asap', '>=', Math.floor(new Date().getTime() / 1000)]);
 		}
-		
+
 		btnExpiredCastings.text('Show Expired Projects');
 		btnExpiredCastings.attr('href', 'projects?expired=true');
 	}
 
+	console.log(data);
 	self.core.resource.project.get(data)
 		.then(function(res){
-			
+
 
 			if (!res.total) {
-				
+
 				// check if we have no search result, get active and non active projects
 				// var expiredCount = 0,
 				// 	notExpiredCount = 0;
@@ -100,16 +101,24 @@ handler.prototype.refreshList = function(){
 				// 				// redirect to welcome page
 				// 				window.location = '/welcome';
 				// 			}
-				// 		}				
+				// 		}
 				// 	});
+
+				// to show the expired button
+				self.core.resource.project.get({ query : [ [ 'where', 'asap', '<', Math.floor(new Date().getTime() / 1000) ] ] })
+					.then(function(res) {
+						if (res.total) {
+							$('#btn-show-expired-castings').removeClass('hide');
+						}
+					});
 
 				//per issue-472 don't show any result
 				self.core.service.databind('#projects-list', res);
-				$('#no-projects-found').removeClass('hide');				
+				$('#no-projects-found').removeClass('hide');
 			}
 			else {
 				$('#no-projects-found').addClass('hide');
-				
+
 				self.core.resource.project.get({ query : [ [ 'where', 'asap', '<', Math.floor(new Date().getTime() / 1000) ] ] })
 					.then(function(res) {
 						if (res.total) {
