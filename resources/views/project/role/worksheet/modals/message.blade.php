@@ -17,7 +17,7 @@
 					</div>
 					<div class="label-primary" style="height: 40px;">
 						<div class="display-inline-block">
-							<div class="" style="display: flex; align-items: center; overflow: hidden; width: 35px; height: 40px; ">
+							<div class="" style="align-items: center; overflow: hidden; width: 35px; height: 40px; ">
 								<img data-bind="<%= schedule.invitee.bam_talentci.getPrimaryPhoto() %>" class="img-responsive"/>
 							</div>
 						</div>
