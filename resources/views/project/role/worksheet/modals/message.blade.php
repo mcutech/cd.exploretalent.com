@@ -5,7 +5,7 @@
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 				<h4 class="modal-title">Messaging</h4>
 			</div>
-			<div class="modal-body">
+			<div class="modal-body" style="padding-top: 10px;">
 				<div class="messaging-modal-wrapper">
 					<div class="row">
 						<div class="col-md-12">
@@ -15,9 +15,9 @@
 							</div>
 						</div>
 					</div>
-					<div class="label-primary" style="height: 75px;">
+					<div class="label-primary" style="height: 40px;">
 						<div class="display-inline-block">
-							<div class="" style="width:50px; display: flex; align-items: center; overflow: hidden; width: 60px; height: 75px; ">
+							<div class="" style="align-items: center; overflow: hidden; width: 35px; height: 40px; ">
 								<img data-bind="<%= schedule.invitee.bam_talentci.getPrimaryPhoto() %>" class="img-responsive"/>
 							</div>
 						</div>
@@ -53,10 +53,10 @@
 					</div>
 				</div>
 			</div> <!-- / .modal-body -->
-			<div class="modal-footer text-align-left">
+			<div class="modal-footer text-align-left" style="padding: 5px 20px;">
 				<div class="row">
 					<div class="col-md-12 margin-top-small">
-						<textarea id="message-text" class="form-control" rows="3"></textarea>
+						<textarea id="message-text" class="form-control" rows="2"></textarea>
 					</div>
 				</div>
 				<div class="row-fluid margin-top-small">
