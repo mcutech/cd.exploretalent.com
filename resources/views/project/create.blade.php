@@ -173,7 +173,7 @@
 							<div class="form-group">
 								<label class="control-label">Submission Type<span class="text-success">*</span></label>
 								<label class="radio checkbox-inline">
-									<input type="radio" name="radioSubmissionType" id="self-submission-option" value="1" class="px">
+									<input type="radio" name="radioSubmissionType" id="self-submission-option" value="1" class="px" checked="checked">
 									<span class="lbl">Self Submission</span>
 								</label>
 								<label class="radio checkbox-inline">
