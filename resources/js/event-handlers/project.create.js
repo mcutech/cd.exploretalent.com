@@ -220,6 +220,7 @@ handler.prototype.createNewProject = function(e){
           return self.core.resource.project.post(data)
             .then(function(res) {
               console.log(res);
+				$('#create-project-btn').attr('disabled', 'disabled');
               window.location = "/projects/"+res.casting_id;
             });
         }
@@ -256,6 +257,7 @@ handler.prototype.createNewProject = function(e){
           return self.core.resource.project.post(data)
             .then(function(res) {
               console.log(res);
+				$('#create-project-btn').attr('disabled', 'disabled');
               window.location = "/projects/"+res.casting_id;
             });
         }
