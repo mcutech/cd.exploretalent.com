@@ -50,6 +50,8 @@ handler.prototype.getProjectInfo = function() {
 				return r.role_id == self.roleId;
 			});
 
+			console.log(res);
+			self.core.service.databind('#cd-email', res);
 			self.core.service.databind('#roles-list', { data : self.project.bam_roles });
 			$('#roles-list').val(self.roleId);
 			role.bam_casting = self.project;
