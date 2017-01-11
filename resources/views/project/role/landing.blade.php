@@ -14,7 +14,7 @@
 				</div>
 
 			<div id="read-more-message" class="panel-collapse" style="height: auto;">
-				<h5 class="display-inline-zz-sm margin-top-zero-small margin-bottom-zero font-size-normal-zz-sm">Dear Casting Directore, on this page you will find talent pre-matched to your project with email submission, <span id="cd-email" data-bind="<%=snr_email%>"></span> and role. Click on any talent's photo to view profile and "Contact Talent" button to start Inviting Talent to audition.</h5>
+				<h5 class="display-inline-zz-sm margin-top-zero-small margin-bottom-zero font-size-normal-zz-sm">Dear Casting Director, on this page you will find talent pre-matched to your project with email submission, <span id="cd-email" data-bind="<%=snr_email%>"></span> and role. Click on any talent's photo to view profile and "Contact Talent" button to start Inviting Talent to audition.</h5>
 				<div class="row margin-top-small">
 					<div id="project-roles" class="col-md-12 form-inline project-select-option">
 						<label class="text-default">Project :</label>
