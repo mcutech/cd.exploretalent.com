@@ -9,15 +9,12 @@
 
 	<div class="read-more-message-container">
 		<div class="alert alert-info border-radius-zero margin-bottom-zero padding-small-zz-sm">
-			<a href="#read-more-message" data-toggle="collapse">
 				<div class="display-block text-align-center-zz-sm">
 				<h4 class="margin-zero display-inline-block font-size-normal-medium-zz-sm"><b>Welcome to <span class="display-none-zz-sm">ET's </span>New CD<span class="display-none-sm-lg">!</span><span class="display-none-zz-sm"> Interface!</span></b></h4>
-				<h5 class="display-inline-block margin-zero margin-left-small font-size-normal-zz-sm">Read more...</h5>
 				</div>
-			</a>
 
-			<div id="read-more-message" class="panel-collapse collapse" style="height: auto;">
-				<h5 class="display-inline-zz-sm margin-top-zero-small margin-bottom-zero font-size-normal-zz-sm">On this page you will find talent pre-matched to your project and role. Click on any talent's photo to view profile and "Contact Talent" button to start Inviting Talent to audition.</h5>
+			<div id="read-more-message" class="panel-collapse" style="height: auto;">
+				<h5 class="display-inline-zz-sm margin-top-zero-small margin-bottom-zero font-size-normal-zz-sm">Dear Casting Director, on this page you will find talent pre-matched to your project with email submission, <span id="cd-email" data-bind="<%=snr_email%>"></span> and role. Click on any talent's photo to view profile and "Contact Talent" button to start Inviting Talent to audition.</h5>
 				<div class="row margin-top-small">
 					<div id="project-roles" class="col-md-12 form-inline project-select-option">
 						<label class="text-default">Project :</label>
