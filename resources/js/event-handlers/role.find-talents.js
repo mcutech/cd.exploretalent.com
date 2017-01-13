@@ -46,7 +46,7 @@ handler.prototype.refreshRole = function() {
 	window.history.pushState({}, '', '/projects/' + self.projectId + '/roles/' + role.role_id + '/find-talents');
 
 	role.bam_casting = self.project;
-	
+
 	self.core.service.databind('#role-filter-form', role);
 	$('#add-all-button span').text('Add All to Like it List');
 	$('#add-all-button').removeClass('disabled');
@@ -98,11 +98,19 @@ handler.prototype.findMatches = function(append) {
 	self.core.resource.talent.search(data, options)
 		.then(function(talents) {
 			self.done = (talents.total < talents.per_page);
+			var results;
 
-			_.each(talents.data, function(talent) {
+			_.each(talents.data, function(talent, ind) {
+				// for specific date for birthday
+				// if(talent.dobyyyy <= new Date().getFullYear()) {
+				// 	if(talent.dobmm > (new Date().getMonth() + 1)) {
+				// 		delete talents.data[ind];
+				// 	}
+				// }
 				talent.talent_role_id = self.roleId;
 				talent.talent_project_id = self.projectId;
 			});
+			console.log(talents);
 
 			if(talents.total == 0) {
 				$('#add-all-div').addClass('hide');
@@ -129,7 +137,7 @@ handler.prototype.findMatches = function(append) {
 
 handler.prototype.getFilters = function() {
 
-	if($('#show_only_matched').is(':checked')==true){		
+	if($('#show_only_matched').is(':checked')==true){
 		var role = _.find(self.project.bam_roles, function(r) {
 			return r.role_id == $('#roles-list').val();
 		});
@@ -182,7 +190,21 @@ handler.prototype.getFilters = function() {
 		if(form.age_min <= 2){
 			data.query.push([ 'where', 'dobyyyy', '<=', new Date().getFullYear() - 2 ]);
 		}else{
-			data.query.push([ 'where', 'dobyyyy', '<=', new Date().getFullYear() - parseInt(form.age_min) ]);
+			// data.query.push([ 'where', 'dobyyyy', '<=', new Date().getFullYear() - parseInt(form.age_min) ]);
+			data.query.push([ 'where', [
+					[ 'where', 'dobyyyy', '<', new Date().getFullYear() - parseInt(form.age_min) ],
+					[ 'orWhere', [
+						[ 'where', 'dobyyyy', '=', new Date().getFullYear() - parseInt(form.age_min) ],
+						[ 'where', [
+							[ 'where', 'dobmm', '<', new Date().getMonth() + 1 ],
+							[ 'orWhere', [
+								[ 'where', 'dobmm', '=', new Date().getMonth() + 1 ],
+								[ 'where', 'dobdd', '<=', new Date().getDate() ]
+							]]
+						]]
+					]]
+				]
+			]);
 		}
 	}
 
@@ -285,7 +307,7 @@ handler.prototype.getFilters = function() {
 					[ 'orWhere', 'union_aftra', '=', 'Yes' ],
 					[ 'orWhere', 'union_other', '=', 'Yes' ],
 					[ 'orWhere', 'union_sag', '=', 'Yes' ],
-				] 
+				]
 			]);
 		}
 		else {
@@ -294,11 +316,12 @@ handler.prototype.getFilters = function() {
 					[ 'orWhere', 'union_aftra', '=', 'No' ],
 					[ 'orWhere', 'union_other', '=', 'No' ],
 					[ 'orWhere', 'union_sag', '=', 'No' ],
-				] 
+				]
 			]);
 		}
 	}
 
+	console.log(data);
 	return data;
 }
 
