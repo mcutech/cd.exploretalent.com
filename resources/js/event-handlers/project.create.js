@@ -221,7 +221,7 @@ handler.prototype.createNewProject = function(e){
             .then(function(res) {
               console.log(res);
 				$('#create-project-btn').attr('disabled', 'disabled');
-              window.location = "/projects/"+res.casting_id;
+              window.location = "/projects/"+res.casting_id+"/roles/create";
             });
         }
 
