@@ -15,7 +15,7 @@
 							<span><strong>Talents:</strong> <span data-bind="<%= likeitlist.total %>"></span></span>
 						</div>
 					</div>
-					<div class="row hide" id="when-where-container">
+					<div class="row" id="when-where-container">
 						<div class="col-md-6 margin-top-small">
 							<div class="checkbox">
 								<label for="acc-toggle">
@@ -25,7 +25,7 @@
 						</div>
 					</div>
 					<div class="row">
-						<div id="date-location" class="hide">
+						<div id="date-location" >
 							<div class="col-md-4">
 								<div class="input-group date">
 									<input type="text" class="form-control" placeholder="date" data-date-picker data-date-format="yy/mm/dd" name="when">
