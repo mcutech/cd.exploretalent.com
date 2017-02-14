@@ -120,8 +120,6 @@ handler.prototype.findMatches = function(append) {
 			});
 
 			//sort state
-			var getStateProp = _.property('sortState');
-			var getCityProp = _.property('sortCity')
 			var sortResult = _.chain(talents.data).sortBy('sortCity').sortBy('sortState').value();
 			talents.data = null; //empty the array
 			talents.data = sortResult; //replace with sorted result
