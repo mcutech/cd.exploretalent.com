@@ -109,8 +109,20 @@ handler.prototype.findMatches = function(append) {
 				// }
 				talent.talent_role_id = self.roleId;
 				talent.talent_project_id = self.projectId;
+
+				var talentLoc = talent.getLocation();
+
+				//since we use talent search, we assume city1 field
+				var getState = talentLoc.split(", ");
+				talent.sortState = getState[1];
+				talent.sortCity = getState[0];
+
 			});
-			console.log(talents);
+
+			//sort state
+			var sortResult = _.chain(talents.data).sortBy('sortCity').sortBy('sortState').value();
+			talents.data = null; //empty the array
+			talents.data = sortResult; //replace with sorted result
 
 			if(talents.total == 0) {
 				$('#add-all-div').addClass('hide');
