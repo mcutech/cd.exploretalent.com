@@ -96,6 +96,16 @@
 							<span class="sr-only">Error:</span>
 							<span id="req-passtxt" style="display:none;"></span>
 						</div>
+						<div id="pass-min-letter" style="display:none;" class="alert alert-danger form-group" role="alert">
+							<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+							<span class="sr-only">Error:</span>							
+							<span id="pass-min-length-text" style="display:none;"></span>
+						</div>
+						<div id="pass-min-length" style="display:none;" class="alert alert-danger form-group" role="alert">
+							<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+							<span class="sr-only">Error:</span>							
+							<span id="pass-min-length-text" style="display:none;"></span>
+						</div>
 					</div>
 
 					<div class="col-md-6 form-group">
