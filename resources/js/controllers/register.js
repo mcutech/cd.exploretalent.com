@@ -105,10 +105,23 @@ module.exports = function(core) {
 					$('#req-pass').show().delay(5000).fadeOut();
 					$('#req-passtxt').text('Invalid Password.').show().delay(5000).fadeOut();
 					return;
-				}
+				}else{
+					if(!/[A-Z]+/.test(pass)){ 
+						$('#password').focus().css("border-color","#b94a48");
+						$('#pass-min-letter').show().delay(5000).fadeOut();
+						$('#pass-min-letter').text('Password must have atleast 1 capital letter').show().delay(5000).fadeOut();
+						return;
+					}else{
+						if(pass.length < 8) {
+							$('#password').focus().css("border-color","#b94a48");
+							$('#pass-min-length').show().delay(5000).fadeOut();
+							$('#pass-min-length').text('Password must contain atleast 8 characters').show().delay(5000).fadeOut();
+							return;	
+						}
+					}
+				}				
 				$('#password').css("border-color","#d6d6d6");
 			}
-
 			if(!confirmpass){
 				$('#confirm-password').focus().css("border-color","#b94a48");
 				$('#req-confirmpass').show().delay(5000).fadeOut();
