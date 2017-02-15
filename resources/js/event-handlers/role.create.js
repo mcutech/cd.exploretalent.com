@@ -40,8 +40,8 @@ handler.prototype.saveNewRole = function(e) {
 	var buttonId = $(this).attr('id');
 	//var height = $('#heightinches').val(),
 		//height = height.split(",");
-	
-	
+
+
 
 	var age_min_val, age_max_val, height_min_val, height_max_val;
 	if($('#age-min-input').val()=='<3'){
@@ -50,14 +50,14 @@ handler.prototype.saveNewRole = function(e) {
 		age_min_val = $('#age-min-input').val();
 	}
 	if($('#age-max-input').val()=='70+'){
-		age_max_val =70;	
+		age_max_val =70;
 	}else{
-		age_max_val = $('#age-max-input').val();	
+		age_max_val = $('#age-max-input').val();
 	}
 
 	height_min_val = $('#height-min-dropdown').val();
 	height_max_val = $('#height-max-dropdown').val();
-		
+
 	var data = {
 		projectId : self.projectId,
 		name : $('#role-name-text').val(),
@@ -130,7 +130,7 @@ handler.prototype.saveNewRole = function(e) {
 
 	if (self.core.service.form.validate('#create-role-div')) { // for required text fields
 
-		
+
 
 		if($('input[type="checkbox"][name="gender"]:checked').length < 1) {
 	        $('.gender-error-required').fadeIn().delay(3000).fadeOut();
@@ -140,11 +140,11 @@ handler.prototype.saveNewRole = function(e) {
 		else {
 
 			if(buttonId=="save-and-add-role-btn"){
-				
-				$(this).prop('disabled', true);			
+
+				$(this).prop('disabled', true);
 				$('#loading_role').addClass('fa fa-spin fa-spinner');
 			}
-			
+
 
 			if($('input[type="checkbox"][name="ethnicity"]:checked').length < 1) {
 		        data["ethnicity_any"] = 1;
@@ -167,7 +167,7 @@ handler.prototype.saveNewRole = function(e) {
 						.then(function(res) {
 							setTimeout(function(){
 								console.log('save-role-btn');
-								window.location = '/projects/' + self.projectId;
+								window.location = '/projects/' + self.projectId + "/roles/" + res.casting_id + "/find-talents";
 							}, 3000);
 						});
 
