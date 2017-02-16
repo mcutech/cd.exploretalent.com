@@ -6,6 +6,7 @@ function handler(core, user){
 	self.core = core;
 	self.user = user;
 	self.refresh();
+	
 }
 
 handler.prototype.refresh = function(append) {
@@ -34,6 +35,7 @@ handler.prototype.refresh = function(append) {
 	}
 
 	self.getTalents().then(function(talents) {
+		console.log(talents);
 		try {
 			self.core.service.databind('#talent-search-result', talents, append);
 		}
