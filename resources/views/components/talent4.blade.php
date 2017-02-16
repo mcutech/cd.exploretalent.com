@@ -78,7 +78,7 @@
 
 					<div class="talent-additional-info">
 						<div class="additional-info-item height">Height: <span data-bind="<%= getHeight() %>"></span></div>
-						<div class="additional-info-item body-type">Body: <span>Athletic</span></div>
+						<div class="additional-info-item body-type">Body: <span data-bind="<%= build %>">Athletic</span></div>
 					</div>
 				</div>
 			</div>
