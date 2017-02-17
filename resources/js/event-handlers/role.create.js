@@ -1,6 +1,6 @@
 'use strict';
 
-function handler(core, user, projectId) {
+function handler(core, user, projectId, roleId) {
 	self = this;
 	self.core = core;
 	self.user = user;
