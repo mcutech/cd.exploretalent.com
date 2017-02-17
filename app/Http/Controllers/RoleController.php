@@ -1,9 +1,9 @@
 <?php namespace App\Http\Controllers;
 
 class RoleController extends Controller {
-	public function create()
+	public function create($projectId)
 	{
-		return view('project.role.create');
+		return view('project.role.create', ['projectId' => $projectId]);
 	}
 
 	public function edit($projectId, $roleId)
