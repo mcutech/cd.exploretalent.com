@@ -2,7 +2,7 @@
 	<form id="role-filter-form" onsubmit="return false">
 	<div class="panel panel-talents-search">
 		<div class="panel-heading border-bottom-width-zero">
-			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+			<button type="button" class="close hide" data-dismiss="modal" aria-hidden="true">×</button>
 			<span class="panel-title talents-refine-title">Refine Search</span>
 		</div>
 

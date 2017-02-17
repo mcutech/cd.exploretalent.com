@@ -3,7 +3,7 @@
 	<div class="panel panel-talents-search">
 		<div class="panel-heading border-bottom-width-zero">
 			<span class="panel-title talents-refine-title">Refine Search</span>
-			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+			<button type="button" class="close hide" data-dismiss="modal" aria-hidden="true">×</button>
 		</div>
 
 		<div class="panel-body form-horizontal">
