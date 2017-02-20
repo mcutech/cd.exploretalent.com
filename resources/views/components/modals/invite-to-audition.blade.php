@@ -40,7 +40,7 @@
 					<div class="row">
 						<div class="col-md-12 margin-top-normal">
 							<div>
-								<textarea class="form-control" rows="3" placeholder="message" name="message"></textarea>
+								<textarea class="form-control" rows="3" placeholder="Type a message" name="message"></textarea>
 							</div>
 						</div>
 					</div>
