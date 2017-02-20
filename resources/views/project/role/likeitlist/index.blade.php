@@ -1,7 +1,7 @@
 @extends('layouts.role', [ 'active' => 'like-it-list', 'pages' => [ [ 'name' => 'My Projects', 'url' => '/projects' ], [ 'name' => 'Project Overview', 'url' => '../.././' ], [ 'name' => 'Like It List', 'url' => './like-it-list', 'active' => true ] ] , 'likeitlist' => false , 'matches' => true,'likeitlistList' => true])
 
 @section('sidebar.page-header')
-	<i class="fa fa-th-list page-header-icon"></i> Like It List - <b data-bind="<%= name + ' ' + '(' + casting_id + ')' %>"></b>
+	<i class="fa fa-th-list page-header-icon"></i> Like It Lists - <b data-bind="<%= name + ' ' + '(' + casting_id + ')' %>"></b>
 @stop
 
 @section('role.body')
@@ -36,6 +36,17 @@
 						</div>
 					</div>
 				</div>
+				<div class="row-fluid clearfix">
+		            <div class="col-xs-12">
+		                <div id="no-likeitlist-found" class="padding-normal text-align-center hide padding-top-normal-zz-xs">
+		                    <i class="fa fa-exclamation-triangle fa-5x text-danger"></i>
+		                     	<div class="padding-zero">
+			                      <span class="margin-zero text-danger">You currently have no talents in your like it list, talents in your like it list are the ones you wish to invite to auditions. </span><br>
+			                     <span class="margin-zero text-danger">Please add them from the <a href="find-talents"><u>Role Matches</u></a> or <a href="submissions"><u>Submissions page</u></a>.</span>
+								</div>
+		                </div>
+		            </div>
+		        </div>
 				<div id="search-loader" class="text-center padding-top-large">
 					<h3>Loading Talents</h3>
 					<h1><i class="fa fa-spinner fa-spin"></i></h1>
