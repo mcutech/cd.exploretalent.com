@@ -3,7 +3,7 @@
 	<div class="panel panel-talents-search">
 		<div class="panel-heading border-bottom-width-zero">
 			<span class="panel-title talents-refine-title">Refine Search</span>
-			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+			<button type="button" class="close hide" data-dismiss="modal" aria-hidden="true">×</button>
 		</div>
 
 		<div class="panel-body form-horizontal">
@@ -131,29 +131,27 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-xs-12 col-sm-3 col-md-3 margin-top-normal">
+				<div class="col-xs-12 col-sm-3 col-md-6 margin-top-normal padding-zero">
 					<div id="genderForm">
-						<label for="" class="checkbox-inline"><strong>Gender: </strong> <span id="selected">Any</span></label>
+						<label for="" class="checkbox-inline padding-left-normal col-md-3"><strong>Gender: </strong><strong><span id="selected">Any</span></strong></label>
+							<label class="checkbox-inline padding-zero">
+							  	<input type="checkbox" id="checkboxMale" name="sexMale" value="Male"> Male
+							</label>
+							<label class="checkbox-inline padding-right-large">
+							  	<input type="checkbox" id="checkboxFemale" name="sexFemale" value="Female"> Female
+							</label>
 						<label class="checkbox-inline">
-						  <input type="checkbox" id="checkboxMale" name="sexMale" value="Male"> Male
-						</label>
-						<label class="checkbox-inline">
-						  <input type="checkbox" id="checkboxFemale" name="sexFemale" value="Female"> Female
+					  		<input type="checkbox" id="has-photo" name="has_photo" checked="checked" value="true"><strong>With Picture</strong>
 						</label>
 					</div>
+					{{-- <select name="has_photo" class="form-control" data-select> --}}
+					{{-- 	<option value="true">With Picture</option> --}}
+					{{-- 	<option value="false">No Picture</option> --}}
+					{{-- </select> --}}
 					{{-- <select name="sex" class="form-control" data-select> --}}
 					{{-- 	<option value="">Gender - Both</option> --}}
 					{{-- 	<option value="Male">Male</option> --}}
 					{{-- 	<option value="Female">Female</option> --}}
-					{{-- </select> --}}
-				</div>
-				<div class="col-xs-12 col-sm-3 col-md-3 margin-top-normal">
-					<label class="checkbox-inline">
-					  <input type="checkbox" id="has-photo" name="has_photo" checked="checked" value="true"><strong>With Picture</strong>
-					</label>
-					{{-- <select name="has_photo" class="form-control" data-select> --}}
-					{{-- 	<option value="true">With Picture</option> --}}
-					{{-- 	<option value="false">No Picture</option> --}}
 					{{-- </select> --}}
 				</div>
 				<div class="col-xs-12 col-md-3">

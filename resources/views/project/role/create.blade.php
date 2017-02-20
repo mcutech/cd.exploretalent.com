@@ -1,4 +1,4 @@
-@extends('layouts.project', ['project_details' => true, 'pages' => [ [ 'name' => 'Roles', 'url' => '/settings' ], [ 'name' => 'Create Role', 'url' => '/settings', 'active' => true] ] ])
+@extends('layouts.project', ['project_details' => true, 'pages' => [ [ 'name' => 'Project Overview', 'url' => '/projects/'.$projectId ], [ 'name' => 'Add Role', 'url' => '/projects/'.$projectId.'/roles/create', 'active' => true] ] ])
 
 @section('sidebar.page-header')
 <div class="col-md-12">
@@ -69,7 +69,7 @@
 
 			<div class="col-md-4 margin-top-normal">
 					<label class="text-bold margin-bottom-zero">Age Range: <span class="text-normal">from</span>
-						<input id="age-min-input" class="text-normal" style="width: 30px;" value="<3"> 
+						<input id="age-min-input" class="text-normal" style="width: 30px;" value="<3">
 						<span class="text-normal">to</span>
 						<input id="age-max-input" class="text-normal" style="width: 30px;" value="70+">
 						<span class="text-normal">years</span>
@@ -93,12 +93,12 @@
 			<div class="col-md-4 margin-top-normal">
 					<label class="text-bold margin-bottom-zero">Height Range:
 						<select id="height-min-dropdown">
-							<?php 
+							<?php
 								$bool = false;
 								for ($i = 22; $i <= 96; $i++) {
 									$feet = floor($i / 12);
 									$inches = $i % 12;
-									
+
 									if($i < 24) {
 										if($bool == false) {
 											echo "<option value=".$i."><2' 0\"</option>";
@@ -113,12 +113,12 @@
 						</select>
 						<span class="text-normal">to</span>
 						<select id="height-max-dropdown">
-							<?php 
+							<?php
 								$bool = false;
 								for ($i = 22; $i <= 96; $i++) {
 									$feet = floor($i / 12);
 									$inches = $i % 12;
-									
+
 									if($i < 24) {
 										if($bool == false) {
 											echo "<option value=".$i."><2' 0\"</option>";
