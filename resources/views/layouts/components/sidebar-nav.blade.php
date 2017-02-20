@@ -6,12 +6,18 @@
 		</a>
 	</li>
 
-	<li>
+	<li class="">
 		<a href="/projects/create">
 			<i class="menu-icon fa fa-file-text"></i>
 			<span class="mm-text">Create New Project</span>
 		</a>
 	</li>
+		<ul class="hide">
+			<li>
+				<a href="/projects/quickpost"><i class="menu-icon fa fa-bolt"></i>
+				<span class="mm-text">Quick Post</span></a>
+			</li>
+		</ul>
 
 	<li>
 		<a href="/talents">
@@ -31,6 +37,13 @@
 		<a href="/audition-worksheet">
 			<i class="menu-icon fa fa-tasks"></i>
 			<span class="mm-text">Manage Auditions</span>
+		</a>
+	</li>
+
+	<li>
+		<a href="/feedback">
+			<i class="menu-icon fa fa-comment"></i>
+			<span class="mm-text">Feedback</span>
 		</a>
 	</li>
 </ul>

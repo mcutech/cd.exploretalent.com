@@ -10,8 +10,13 @@
 	<!-- Container -->
 	<div class="row-fluid clearfix padding-large">
 	<div class="col-md-12 white-text text-center">
-		<h2 class="text-bold">Post your Casting, Project or Job for Free</h2>
-		<small>Too busy to set up your account? Need help? Post casting calls only? <u>Email your project to us</u> or <u>Call us at (702) 446-0888.</u></small>
+		<!-- <h2 class="text-bold">Post your Casting, Project or Job for Free</h2>
+		<small>Too busy to set up your account? Need help? Post casting calls only? <u>Email your project to us</u> or <u>Call us at (702) 446-0888.</u></small> -->
+		<h3>Access the Largest Pool of Talents, 9 million and counting!</h3>
+		<h4 class="text-bold">Post your Casting, Project or Job for Free</h4>
+
+		<a href="" type="button" data-toggle="modal" data-target="#quick-post" original-title="">Click Here</a>
+		to Quickly Post Your Job or call us at (702) 446-0888
 
 	</div>
 	<div class="col-md-2"></div>
@@ -70,6 +75,18 @@
 					</div>
 
 					<div class="col-md-6 form-group">
+						<div class="form-group w-icon margin-zero">
+							<input type="text" name="phone" id="phone" class="form-control input-lg" placeholder="Phone" data-required>
+							<span class="fa fa-phone signup-form-icon"></span>
+						</div>
+						<div id="req-phone" style="display:none;" class="alert alert-danger form-group" role="alert">
+							<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+							<span class="sr-only">Error:</span>
+							<span id="req-phonetxt" style="display:none;"></span>
+						</div>
+					</div>
+
+					<div class="col-md-6 form-group">
 						<div class="form-group w-icon">
 							<input type="password" name="password" id="password" class="form-control input-lg" placeholder="Password" data-required data-match="confirmPassword" data-minlength="8">
 							<span class="fa fa-lock signup-form-icon"></span>
@@ -78,6 +95,16 @@
 							<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
 							<span class="sr-only">Error:</span>
 							<span id="req-passtxt" style="display:none;"></span>
+						</div>
+						<div id="pass-min-letter" style="display:none;" class="alert alert-danger form-group" role="alert">
+							<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+							<span class="sr-only">Error:</span>							
+							<span id="pass-min-length-text" style="display:none;"></span>
+						</div>
+						<div id="pass-min-length" style="display:none;" class="alert alert-danger form-group" role="alert">
+							<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+							<span class="sr-only">Error:</span>							
+							<span id="pass-min-length-text" style="display:none;"></span>
 						</div>
 					</div>
 
@@ -96,24 +123,12 @@
 						</div>
 					</div>
 
-					<div class="col-md-6 form-group">
-						<div class="form-group w-icon margin-zero">
-							<input type="text" name="phone" id="phone" class="form-control input-lg" placeholder="Phone" data-required>
-							<span class="fa fa-phone signup-form-icon"></span>
-						</div>
-						<div id="req-phone" style="display:none;" class="alert alert-danger form-group" role="alert">
-							<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-							<span class="sr-only">Error:</span>
-							<span id="req-phonetxt" style="display:none;"></span>
-						</div>
-					</div>
-
 					<div class="col-md-12 form-group">
 						<div class="text-center">
 							<div class="form-actions" id="form-action-signup-btn">
 								<input type="submit" id="sign-up" value="Create an Account" class="signup-btn bg-primary">
 							</div>
-							<div class="form-group">
+							<div class="form-group padding-top-normal">
 								<div>By creating this account you agree to our <a href="" type="button" data-toggle="modal" data-target="#terms-conditions" original-title="">Terms of Use</a></div>
 								<div>(Forget your login name or password? Call 702-446-0888 or email <a href="" original-title="">cd@exploretalent.com</a></div>
 							</div>
@@ -323,7 +338,7 @@
 						<hr>
 						<span itemprop="description">
 							<p class="text-gray text-center">
-							ExploreTalent is neither an employment agent nor a modeling agency. We do not guarantee employment, jobs or bookings. Explore Talent only provides Internet exposure, resources, and tools for you to match your talent with auditions and casting directors. If you have any questions, contact our <a class="" href="/faq.php" original-title="">Customer Service department</a> at (800) 598-7500. Here is our <a class="" href="/about/agreement" original-title="">User Agreement</a>.
+							ExploreTalent is neither an employment agent nor a modeling agency. We do not guarantee employment, jobs or bookings. Explore Talent only provides Internet exposure, resources, and tools for you to match your talent with auditions and casting directors. If you have any questions, contact our <a class="" href="https://www.exploretalent.com/faq.php" original-title="">Customer Service department</a> at (800) 598-7500. Here is our <a class="" href="https://www.exploretalent.com/about/agreement" original-title="">User Agreement</a>.
 							</p>
 							<p class="text-gray text-center">
 							ExploreTalent.com is the worldwide leader in acting Modeling Auditions. We are offering thousands of casting calls and Auditions. Get more Casting, auditions resources and Talent Agents than all other sites combined. Spending hours and not finding the Acting Jobs &amp; Modeling Jobs you need? Find Reality TV Shows Casting Calls the modeling auditions Acting Auditions, modeling jobs, acting jobs, all in one place. Stop spending hours searching for casting &amp; auditions. Submit yourself to casting calls, auditions - Get a call when Casting directors wants you.
@@ -346,34 +361,33 @@
 						<div class="text-center margin-bottom-zero">
 							<ul class="list-unstyled list-inline">
 								<li>Find acting auditions by city:</li>
-								<li><a class="text-lblue mb-0 padTB-10" target="_blank" href="/acting-auditions-new-york" original-title="acting auditions new york">Acting Auditions in New York</a>,</li>
+								<li><a class="text-lblue mb-0 padTB-10" target="_blank" href="https://www.exploretalent.com/acting-auditions-new-york" original-title="acting auditions new york">Acting Auditions in New York</a>,</li>
 
-								<li><a class="text-lblue" target="_blank" href="/acting-auditions-los-angeles" original-title="acting auditions los angeles">Acting Auditions Los Angeles</a>,</li>
+								<li><a class="text-lblue" target="_blank" href="https://www.exploretalent.com/acting-auditions-los-angeles" original-title="acting auditions los angeles">Acting Auditions Los Angeles</a>,</li>
 
-								<li><a class="text-lblue" target="_blank" href="/acting-auditions-chicago" original-title="acting auditions chicago">Acting Auditions Chicago</a>,</li>
+								<li><a class="text-lblue" target="_blank" href="https://www.exploretalent.com/acting-auditions-chicago" original-title="acting auditions chicago">Acting Auditions Chicago</a>,</li>
 
-								<li><a class="text-lblue" target="_blank" href="/acting-auditions-atlanta" original-title="acting auditions atlanta">the Acting Auditions Atlanta</a>,</li>
+								<li><a class="text-lblue" target="_blank" href="https://www.exploretalent.com/acting-auditions-atlanta" original-title="acting auditions atlanta">the Acting Auditions Atlanta</a>,</li>
 
-								<li><a class="text-lblue" target="_blank" href="/acting-auditions-miami" original-title="acting auditions miami">Acting Auditions Miami</a></li>
+								<li><a class="text-lblue" target="_blank" href="https://www.exploretalent.com/acting-auditions-miami" original-title="acting auditions miami">Acting Auditions Miami</a></li>
 							</ul>
 						</div>
 						<div class="text-center">
 							<ul class="list-unstyled list-inline">
 								<li>Find Modeling jobs by city:</li>
-								<li><a class="text-lblue" target="_blank" href="/modeling-jobs-new-york" original-title="modeling jobs new york">Modeling Jobs in New York</a>,</li>
-								<li><a class="text-lblue" target="_blank" href="/modeling-jobs-los-angeles" original-title="modeling jobs los angeles">Modeling Jobs in Los Angeles</a>,</li>
-								<li><a class="text-lblue" target="_blank" href="/modeling-jobs-chicago" original-title="modeling jobs chicago">Modeling Jobs in Chicago</a>,</li>
-								<li><a class="text-lblue" target="_blank" href="/modeling-jobs-atlanta" original-title="modeling jobs atlanta">Modeling Jobs in Atlanta</a></li>
+								<li><a class="text-lblue" target="_blank" href="https://www.exploretalent.com/modeling-jobs-los-angeles" original-title="modeling jobs los angeles">Modeling Jobs in Los Angeles</a>,</li>
+								<li><a class="text-lblue" target="_blank" href="https://www.exploretalent.com/modeling-jobs-chicago" original-title="modeling jobs chicago">Modeling Jobs in Chicago</a>,</li>
+								<li><a class="text-lblue" target="_blank" href="https://www.exploretalent.com/modeling-jobs-atlanta" original-title="modeling jobs atlanta">Modeling Jobs in Atlanta</a></li>
 							</ul>
 						</div>
 						<hr>
 						<ul class="list-unstyled list-inline text-center">
 							<li>©  ExploreTalent.com</li>
 							<li><a class="text-lblue padLR-5" href="http://www.exploretalent.com/about" original-title="">About ExploreTalent.com</a></li>
-							<li><a class="text-lblue padLR-5" href="/tour" original-title="">Tour</a></li>
+							<li><a class="text-lblue padLR-5" href="https://www.exploretalent.com/tour" original-title="">Tour</a></li>
 							<li><a class="text-lblue padLR-5" href="http://www.exploretalent.com/" original-title="">Home</a></li>
 							<li><a class="text-lblue padLR-5" href="http://www.exploretalent.com/about/privacy" original-title="">Privacy Policy</a></li>
-							<li><a class="text-lblue padLR-5" href="/search/acting" original-title="">Acting Auditions</a></li>
+							<li><a class="text-lblue padLR-5" href="http://www.exploretalent.com/search/acting" original-title="">Acting Auditions</a></li>
 							<li><a class="text-lblue padLR-5" href="http://www.exploretalent.com/about/agreement" original-title="">Terms of Use</a></li>
 							<li><a class="text-lblue padLR-5" href="http://www.exploretalent.com/articles" original-title="">Articles</a></li>
 							<li><a class="text-lblue padLR-5" href="http://www.exploretalent.com/about/advertise" original-title="">Become an Affiliate</a></li>
@@ -392,4 +406,5 @@
 
 </div>
 @include('guest.modals.terms-conditions')
+@include('guest.modals.quick-post-modal')
 @stop

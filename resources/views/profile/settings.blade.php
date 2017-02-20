@@ -12,13 +12,15 @@
 			</div>
 			<div class="panel-body">
 				<div class="row">
-					<div class="col-sm-12">
+					<div class="col-sm-6">
 						<div class="form-group no-margin-hr">
-							<label for="company" class="control-label">Company name *</label>
-							<input data-bind="<%= company %>" type="text" class="form-control" name="company" placeholder="Company name" data-validate="required" data-validate-error="This field is required." />
+						<label for="company" class="control-label">Company name *</label>
+							<input data-bind="<%= company %>" type="text" class="form-control" name="company" placeholder="Company name" />
 						</div>
 					</div>
 				</div>
+
+
 				<div class="row">
 					<div class="col-sm-6">
 						<div class="form-group no-margin-hr">
@@ -34,15 +36,13 @@
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-sm-12">
+					<div class="col-sm-6">
 						<div class="form-group no-margin-hr">
 							<label for="address1" class="control-label">Street address 1</label>
 							<input data-bind="<%= address1 %>" type="text" class="form-control" name="address1" id="address1" placeholder="Street address 1">
 						</div>
 					</div>
-				</div>
-				<div class="row">
-					<div class="col-sm-12">
+					<div class="col-sm-6">
 						<div class="form-group no-margin-hr">
 							<label for="address2" class="control-label">Street address 2</label>
 							<input data-bind="<%= address2 %>" type="text" class="form-control" name="address2" id="address2" placeholder="Street address 2">
@@ -50,13 +50,13 @@
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-sm-5">
+					<div class="col-sm-4">
 						<div class="form-group no-margin-hr">
 							<label for="city" class="control-label">City</label>
 							<input data-bind="<%= city %>" type="text" class="form-control" name="city" id="city" placeholder="City">
 						</div>
 					</div>
-					<div class="col-sm-5">
+					<div class="col-sm-4">
 						<div class="form-group no-margin-hr">
 							<label for="state" class="control-label">State</label>
 							<select data-bind="<%= state %>" class="form-control" name="state" id="state">
@@ -115,7 +115,7 @@
 							</select>
 						</div>
 					</div>
-					<div class="col-sm-2">
+					<div class="col-sm-4">
 						<div class="form-group no-margin-hr">
 							<label for="zip" class="control-label">Zip</label>
 							<input  data-bind="<%= zip %>" type="text" class="form-control" name="zip" placeholder="Zip" data-validate="zip" data-validate-error="This is not a valid zip code." />
@@ -123,61 +123,77 @@
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-sm-6">
+					<div class="col-sm-3">
 						<div class="form-group no-margin-hr">
 							<label for="phone1" class="control-label">Phone 1 *</label>
 							<input data-bind="<%= phone1 %>" type="text" class="form-control" name="phone1" placeholder="Phone 1" data-validate="phone" data-validate-error="This is not a valid phone number." />
 						</div>
 					</div>
-					<div class="col-sm-6">
+					<div class="col-sm-3">
 						<div class="form-group no-margin-hr">
 							<label for="phone2" class="control-label">Phone 2</label>
 							<input data-bind="<%= phone2 %>" type="text" class="form-control" name="phone2" placeholder="Phone 2" data-validate="phone-not-required" data-validate-error="This is not a valid phone number." />
 						</div>
 					</div>
-				</div>
-				<div class="row">
-					<div class="col-sm-6">
-						<div class="form-group no-margin-hr">
-							<label for="website" class="control-label">Website</label>
-							<input data-bind="<%= website %>" type="text" class="form-control" name="website" id="website" placeholder="Website">
-						</div>
-					</div>
-					<div class="col-sm-6">
+					<div class="col-sm-3">
 						<div class="form-group no-margin-hr">
 							<label for="fax" class="control-label">Fax</label>
 							<input  data-bind="<%= fax %>" type="text" class="form-control" name="fax" placeholder="Fax" data-validate="phone-not-required" data-validate-error="This is not a valid fax number." />
 						</div>
 					</div>
-				</div>
-				<hr>
-
-				<div class="row">
-					<div class="col-sm-6">
+					<div class="col-sm-3">
 						<div class="form-group no-margin-hr">
-							<label for="email1" class="control-label">Email 1 *</label>
-							<input data-bind="<%= email1 %>" type="email" class="form-control" name="email1" placeholder="Email 1" data-validate="email" data-validate-error="This is not a valid e-mail address." />
+							<label for="website" class="control-label">Website</label>
+							<input data-bind="<%= website %>" type="text" class="form-control" name="website" id="website" placeholder="Website">
 						</div>
 					</div>
-					<div class="col-sm-6">
+				</div>
+				<div class="row">
+					<div class="col-sm-3">
+						<div class="form-group no-margin-hr">
+							<label for="email1" class="control-label">Email 1 *</label>
+							<input data-bind="<%= email1 %>" type="email" class="form-control" id="emailid" name="email1" placeholder="Email 1" data-validate="email" data-validate-error="This is not a valid e-mail address." />
+						</div>
+					</div>
+					<div class="col-sm-3">
 						<div class="form-group no-margin-hr">
 							<label for="email2" class="control-label">Email 2</label>
 							<input data-bind="<%= email2 %>" type="email" class="form-control" name="email2" placeholder="Email 2" data-validate="email-not-required" data-validate-error="This is not a valid e-mail address." />
 						</div>
 					</div>
-				</div>
-				<div class="row">
-					<div class="col-sm-6">
+					<div class="col-md-4" id="user_subscription">
 						<div class="form-group no-margin-hr">
-							<label for="pass" class="control-label">Password</label>
-							<input data-bind="<%= pass %>" type="password" class="form-control" id="pass" placeholder="Password">
+							<div class="checkbox col-sm-8">
+								<label><input type="checkbox" id="emailok" data-bind="<%= cd_user_subscription ? cd_user_subscription.email : '' %>">Email Ok</label>
+							</div>
+							<div class="checkbox col-sm-4">
+								<label><input type="checkbox" id="smsok" data-bind="<%= cd_user_subscription ? cd_user_subscription.sms : '' %>">SMS Ok</label>
+							</div>
+							<div class="checkbox col-sm-12" >
+								<label><input type="checkbox" id="talentReply" data-bind="<%= user_options.data[0].value%>">Notify me when talents reply</label>
+							</div>
+							<div class="checkbox col-sm-12">
+								<label><input type="checkbox" id="talentSubmitProject" data-bind="<%= user_options.data[1].value%>">Notify me when talent submits to a project</label>
+							</div>
 						</div>
 					</div>
+
 				</div>
-				<button id="update-settings-button" type="submit" class="btn btn-primary"><i class="fa fa-fw fa-user"></i> Update information</button>
-				<span id="update-settings-success" class="text-success margin-left-medium" style="display: none;"><i class="fa fa-check"></i> Settings successfully updated.</span>
+				<!--  -->
+				<div class="row">
+					<div class="col-md-12">
+					<button id="update-settings-button" type="submit" class="btn btn-primary"><i class="fa fa-fw fa-user"></i> Update information</button>
+
+					<button id="update-password" type="submit" class="btn btn-primary" data-toggle="modal" data-target="#settings-modal">
+					<i class="fa fa-fw fa-lock"></i> Change Password</button>
+					<span id="update-settings-success" class="text-success margin-left-medium" style="display: none;"><i class="fa fa-check"></i> Settings successfully updated.</span>
+					<span id="update-settings-fail" class="text-danger margin-left-medium" style="display: none;"><i class="fa fa-close"></i> Duplicate Email.</span>
+					</div>
+				</div>
+
 			</div>
 		</form>
 	</div>
 </div>
+@include('profile.modals.change-password')
 @stop

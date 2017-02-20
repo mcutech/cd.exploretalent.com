@@ -10,14 +10,17 @@ jscore.config(function(core) {
 	// @endif
 
 	core.config.api.type = '/cd';
+	core.config.api.client_id      = '1397ef61d42ee4b09f89349b2613a92bda90a1e4';
+	core.config.api.client_secret  = '61c9b2b17db77a27841bbeeabff923448b0f6388';
 });
 
 jscore.run(function(core) {
 	var qs = core.service.query_string();
 	if (qs.access_token) {
 		localStorage.setItem('access_token', qs.access_token);
-		localStorage.setItem('refresh_token', qs.refresh_token);
-		core.service.rest.settings.headers = { Authorization : qs.access_token };
+		localStorage.setItem('refresh_token', qs.refresh_token || '');
+		localStorage.setItem('expires_on', Math.round(new Date().getTime() / 1000) + parseInt(qs.expires_in));
+		core.service.rest.settings.headers = { Authorization : 'Bearer ' + qs.access_token };
 	}
 
 	core.resource.user.get({ userId : 'me', withs : [ 'bam_cd_user' ] })
@@ -26,7 +29,7 @@ jscore.run(function(core) {
 	function init(user) {
 		core.service.rest.settings.statusCode = {
 			401: function() {
-				if(window.location.pathname !== '/login' && window.location.pathname !== '/register' && window.location.pathname !== '/forgot-password') {
+				if(window.location.pathname !== '/login' && window.location.pathname !== '/register' && window.location.pathname !== '/forgot-password' && window.location.pathname !== '/reset-password') {
 					window.location.href = '/login?redirect=' + encodeURIComponent(window.location);
 				}
 			}
@@ -48,32 +51,49 @@ jscore.run(function(core) {
 		core.service.router
 
 		// add routes here
+		.add('/login'           , 'login')
+		.add('/register'        , 'register')
+		.add('/settings'        , 'settings')
+		.add('/welcome'         , 'welcome')
+		.add('/reset-password'  , 'password.reset')
+		.add('/forgot-password' , 'password.forgot')
 
-		.add('/login', 'login')
-		.add('/register', 'register')
-		.add('/settings', 'settings')
+		// talents
+		.add('/talents'            , 'talent.index')
+		.add('/talents/favorite'   , 'talent.favorite')
+		.add('/talents/{talentId}' , 'talent.resume')
 
-		.add('/talents', 'talents')
-		.add('/talents/favorite', 'talent.favorite')
+		//landing
+		.add('/landing' , 'landing.index')
+
 		// project pages
-		.add('/projects', 'projects')
-		.add('/projects/create', 'projects.create')
-		.add('/projects/{projectId}', 'project.show')
-		.add('/projects/{projectId}/edit', 'projects.edit')
-	    .add('/messages/{projectId}/{roleId}', 'message')
-	    .add('/messages/{projectId}', 'message')
-	    .add('/messages', 'message')
-
-		.add('/projects/{projectId}/roles/{roleId}/matches', 'role.match')
-		.add('/projects/{projectId}/roles/{roleId}/like-it-list', 'role.likeitlist')
-		.add('/projects/{projectId}/roles/{roleId}/public-like-it-list', 'role.publiclikeitlist')
-		.add('/projects/{projectId}/roles/{roleId}/self-submissions', 'role.selfsubmission')
-		.add('/audition-worksheet/{campaignId}', 'worksheet.show')
-		.add('/audition-worksheet', 'worksheet')
+		.add('/projects'                       , 'project.index')
+		.add('/projects/create'                , 'project.create')
+		.add('/projects/quickpost'             , 'project.quickpost')
+		.add('/projects/{projectId}/edit'      , 'project.edit')
+		.add('/projects/{projectId}/worksheet' , 'project.worksheet')
+		.add('/projects/{projectId}'           , 'project.show')
 
 		// roles pages
-		.add('/projects/{projectId}/roles/create', 'roles.create')
-		.add('/projects/{projectId}/roles/{roleId}/edit', 'roles.edit')
+		.add('/projects/{projectId}/roles/create'                                     , 'role.create')
+		.add('/projects/{projectId}/roles/{roleId}/worksheet'                         , 'role.worksheet')
+		.add('/projects/{projectId}/roles/{roleId}/like-it-list'                      , 'role.like-it-list')
+		.add('/projects/{projectId}/roles/{roleId}/find-talents'                      , 'role.find-talents')
+		.add('/projects/{projectId}/roles/{roleId}/submissions'                       , 'role.submissions')
+		.add('/projects/{projectId}/roles/{roleId}/callbacks'                         , 'role.callbacks')
+		.add('/projects/{projectId}/roles/{roleId}/booked'                            , 'role.booked')
+		.add('/projects/{projectId}/roles/{roleId}/landing'                           , 'role.landing')
+		.add('/projects/{projectId}/roles/{roleId}/public-like-it-list'               , 'role.publiclikeitlist')
+		.add('/projects/{projectId}/roles/{roleId}/public-like-it-list/{accessToken}' , 'role.publiclikeitlist')
+		.add('/projects/{projectId}/roles/{roleId}/edit'                              , 'role.edit')
+
+		.add('/audition-worksheet/{campaignId}' , 'worksheet.show')
+		.add('/audition-worksheet'              , 'worksheet')
+	    .add('/messages/{projectId}/{roleId}'   , 'message')
+	    .add('/messages/{projectId}'            , 'message')
+	    .add('/messages'                        , 'message')
+		.add('/feedback'                        , 'feedback')
+		.add('/unsubscribe'						, 'unsubscribe')
 
 		// end routes
 

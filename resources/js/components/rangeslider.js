@@ -14,44 +14,28 @@ module.exports = function(core) {
 		switch($(this).data('type')) {
 			case 'age':
 				options.slide = function(event, ui) {
-					$('#age-min-text').text(ui.values[0]);
+					if(ui.values[0] < 3){
+						$('#age-min-text').text("<3");
+						$('#age-min-input').val("<3");
+					}else{
+						$('#age-min-text').text(ui.values[0]);
+						$('#age-min-input').val(ui.values[0]);
+					}
 					$('[name="age_min"]').val(ui.values[0]);
-					$('#age-max-text').text(ui.values[1])
+
+					if(ui.values[1] > 70){
+						$('#age-max-text').text("70+");
+						$('#age-max-input').val("70+");
+					}else{
+						$('#age-max-text').text(ui.values[1]);
+						$('#age-max-input').val(ui.values[1])
+					}
 					$('[name="age_max"]').val(ui.values[1]);
 				}
 
 				break;
 			case 'height':
 				options.slide = function(event, ui) {
-					// if(ui.values[0] == '22' || ui.values[0] == '23') {
-					// 	var feet1 = '< 2';
-					// 	var inches1 = '0';
-
-					// 	if(ui.values[1] == '22' || ui.values[1] == '23') {
-					// 		var feet2 = '< 2';
-					// 		var inches2 = '0';
-					// 	}
-					// }
-					// else {
-					// 	var feet1 = Math.floor(ui.values[0] / 12);
-					// 	var inches1 = ui.values[0] % 12;
-					// 	var feet2 = Math.floor(ui.values[1] / 12);
-					// 	var inches2 = ui.values[1] % 12;
-					// }
-
-					// $('#height-min-text').text(feet1 + "'" + inches1 + '"');
-					// $('#height-max-text').text(feet2 + "'" + inches2 + '"');
-
-					// if(ui.values[0] == '23') {
-					// 	ui.values[0] == '22';
-					// }
-					// if(ui.values[1] == '23') {
-					// 	ui.values[1] == '22';
-					// }
-
-					// $('[name="height_min"]').val(ui.values[0]);
-					// $('[name="height_max"]').val(ui.values[1]);
-
 					var inches1 = ui.values[0];
 					var inches2 = ui.values[1];
 
@@ -97,6 +81,8 @@ module.exports = function(core) {
 
 					$('[name="height_min"]').val(ui.values[0]);
 					$('[name="height_max"]').val(ui.values[1]);
+					$('#height-min-dropdown').val(ui.values[0]);
+					$('#height-max-dropdown').val(ui.values[1]);
 				}
 				break;
 		}

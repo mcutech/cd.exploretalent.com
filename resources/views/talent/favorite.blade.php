@@ -11,46 +11,23 @@
 
 		<div class="talents-search-filter-content">
 			<div class="row-fluid">
-
-				<div class="col-md-12 talents-search-result">
-					<div class="row-fluid clearfix top-results-heading margin-bottom-normal">
-						<div class="col-md-12">
-							<div class="float-right">
-								<ul class="pagination pagination-xs">
-									<li class="disabled"><a href="#">«</a></li>
-									<li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
-									<li><a href="#">2</a></li>
-									<li><a href="#">3</a></li>
-									<li><a href="#">4</a></li>
-									<li><a href="#">5</a></li>
-									<li><a href="#">»</a></li>
-								</ul>
-								<div class="results-counter">Showing: 1 to 25 of 7862526</div>
-							</div>
-						</div>
-					</div>
-					<div id="loading-div">
-						<div class="f_circleG" id="frotateG_01"></div>
-						<div class="f_circleG" id="frotateG_02"></div>
-						<div class="f_circleG" id="frotateG_03"></div>
-						<div class="f_circleG" id="frotateG_04"></div>
-						<div class="f_circleG" id="frotateG_05"></div>
-						<div class="f_circleG" id="frotateG_06"></div>
-						<div class="f_circleG" id="frotateG_07"></div>
-						<div class="f_circleG" id="frotateG_08"></div>
-					</div>
+				<div class="col-md-12 talents-search-result padding-zero">
 					<div class="row-fluid clearfix" id="favorite-result">
-						@include('components.talent', [ 'databind' => [ 'template' => '#favorite-result', 'value' => 'data' ] ])
+						@include('components.talent4', [ 'databind' => [ 'template' => '#favorite-result', 'value' => 'data' ], 'ratings' => true, 'default_btn' => true, 'favorites_notes' => false ])
 					</div>
 				</div> {{-- talents-search-results --}}
+				<div id="search-loader" class="text-center padding-top-large">
+					<h3>Loading Talents</h3>
+					<h1><i class="fa fa-spinner fa-spin"></i></h1>
+				</div>
 			</div>
 		</div>
 
 		<div class="talents-content">
+		 	@include('components.modals.talent-add-to-like-it-list')
 			@include('components.modals.share-like-it-list')
-			@include('components.modals.talent-photos')
+			@include('components.modals.talent-view-photos')
 			@include('components.modals.talent-resume')
-			@include('components.modals.invite-to-audition')
 		</div>
 
 	</div>

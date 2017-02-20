@@ -1,12 +1,16 @@
 module.exports = function(core, user) {
 	if (parseInt(user.bam_cd_user_id)) {
-		window.location = '/projects';
+		$('#redirect-login-page').fadeIn();
+		var qs = core.service.query_string();
+		window.location = qs.redirect ? decodeURIComponent(qs.redirect) : '/welcome';
 	}
 	else {
 		core.service.rest.settings.headers = {};
 
 		localStorage.removeItem('refresh_token');
 		localStorage.removeItem('access_token');
+
+		$('.signin-input').fadeIn();
 
 		$("#login-form").on('submit', function(e){
 			e.preventDefault();
@@ -26,6 +30,7 @@ module.exports = function(core, user) {
 			core.service.rest.post(core.config.api.base.replace('/v1', '') + '/oauth/access_token', {
 					username       : email,
 					password       : pass,
+					user_type      : 'bam_cd_user',
 					client_id      : '74d89ce4c4838cf495ddf6710796ae4d5420dc91',
 					client_secret  : '61c9b2b17db77a27841bbeeabff923448b0f6388',
 					grant_type     : 'password'
@@ -34,7 +39,9 @@ module.exports = function(core, user) {
 					var qs = core.service.query_string();
 
 					localStorage.setItem('access_token', result.access_token);
-					window.location = qs.redirect ? decodeURIComponent(qs.redirect) : '/projects';
+					localStorage.setItem('refresh_token', result.refresh_token);
+					localStorage.setItem('expires_on', Math.round(new Date().getTime() / 1000) + parseInt(result.expires_in));
+					window.location = qs.redirect ? decodeURIComponent(qs.redirect) : '/welcome';
 				},
 				function(error){
 					if (error.responseText) {

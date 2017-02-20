@@ -1,4 +1,4 @@
-@extends('layouts.sidebar', [ 'pages' => [ [ 'name' => 'Roles', 'url' => '/projects/'.$projectId ], [ 'name' => 'Edit Role', 'url' => '/projects/'.$projectId.'/roles/'.$roleId.'/edit', 'active' => true] ] ])
+@extends('layouts.project', ['project_details' => true, 'pages' => [ [ 'name' => 'Roles', 'url' => '/projects/'.$projectId ], [ 'name' => 'Edit Role', 'url' => '/projects/'.$projectId.'/roles/'.$roleId.'/edit', 'active' => true] ] ])
 
 @section('sidebar.page-header')
 <i class="fa fa-th-list page-header-icon"></i> Edit Roles
@@ -16,57 +16,8 @@
 </div>
 @stop
 
-@section('sidebar.body')
-
-
-<div class="row-fluid clearfix project-details-div">
-	<div class="col-md-10">
-		<div class="panel panel-default">
-		  <!-- Default panel contents -->
-		  <div class="panel-heading">Project Details</div>
-		  <div class="panel-body">
-			<div class="project-details-container">
-				<div class="panel-group panel-group-primary project-item panel-blue">
-					<div class="row-fluid clearfix margin-bottom-normal">
-						<div class="col-md-6">
-							<strong><p data-bind="<%= name %>"></p></strong>
-							<strong>Project ID# <span data-bind="<%= casting_id %>"></span></strong>
-						</div>
-					</div>
-					<div class="row-fluid col-no-padding clearfix project-details-container">
-						<div class="col-sm-12 col-md-6">
-							<ul class="list-unstyled additional-details margin-zero">
-								<li><div class="title">Project Type:</div><span data-bind="<%= (cat) ? getCategory().split(' ',1) : 'N/A' %>"></span></li>
-								<li><div class="title">Location:</div><span data-bind="<%= (location) ? location : 'Not Specified' %>"></span></li>
-								<li><div class="title">Rate/Pay:</div><span data-bind="$<%= rate %>"></span><span data-bind="<%= (rate_des != 0) ? ' per ' + rate_des : '' %>"></span></li>
-								<li><div class="title">Audition Date:</div><span data-bind="<%= (aud_timestamp) ? date.formatYMD(aud_timestamp) : 'Not Specified' %>"></span></li>
-								<li><div class="title">Casting Category:</div><span data-bind="<%= (cat) ? getCategory() : 'N/A' %>"></span></li>
-								<li><div class="title">Market In:</div><span data-bind="<%= (market) ? market : 'Not Specified' %>"></span></li>
-							</ul>
-						</div>
-
-						<div class="col-sm-12 col-md-6">
-							<ul class="list-unstyled additional-details margin-zero">
-								<li><div class="title">Submission Type:</div><span data-bind="<%= (project_type == 8) ? 'Open Call' : 'Self Response' %>"></span></li>
-								<li><div class="title">Union:</div><span data-bind="<%= (union2 == 0) ? 'Non-Union' : 'Union' %>"></span></li>
-								<li><div class="title">Release Date:</div><span data-bind="<%= date.formatYMD(parseInt(sub_timestamp)) %>"></span></li>
-								<li><div class="title">Deadline:</div><span class="text-danger" data-bind="<%= asap1 %>"></span></li>
-							</ul>
-						</div>
-
-						<div class="col-md-10">
-							<ul class="list-unstyled description">
-								<li><div class="title">Description:</div><span data-bind="<%= des %>"></span></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-		  </div>
-		</div>
-	</div>
-</div>
-
+@section('project.body')
+<div class="row">
 <div id="edit-role-div" class="row-fluid clearfix">
 	<div class="col-md-10">
 		<div class="panel panel-default">
@@ -86,7 +37,7 @@
 			    <div class="col-md-12">
 			    	<div class="form-group">
 					    <label>Role Description</label>
-					    <textarea id="role-description-text" class="form-control" rows="3" style="resize: none;" data-bind="<%= des %>" data-validate="required" data-validate-error="This field is required."></textarea>
+					    <textarea id="role-description-text" class="form-control" rows="3" style="resize: none;" data-bind="<%= des %>" data-validate="required" data-validate-error="This field is required.">test test</textarea>
 				  	</div>
 			    </div>
 				<div class="col-md-3 margin-top-normal">
@@ -103,17 +54,99 @@
 						<div class="alert alert-page alert-danger gender-error-required" style="display: none;">This field is required.</div>
 					</div>
 				</div>
-				<div class="col-md-4 margin-top-normal">
-					<label for="">Age Range: </label>
-					<span id="age-range-min" data-bind=" <%= age_min %>"> 0</span> to <span id="age-range-max" data-bind="<%= age_max %>">100</span> y.o.
-					<div class="ui-slider-age-range" data-slider data-bind="[<%= age_min %>, <%= age_max %>]"></div>
-				</div>
+
+				<!-- <div class="col-md-3">
+					<label class="text-bold margin-bottom-zero">Age Range: <span id="age-min-text" data-bind="<%= age_min || 0 %>" class="text-normal">0</span> - <span id="age-max-text" data-bind="<%= age_max || 100 %>" class="text-normal">100</span></label>
+					<div class="padding-right-small">
+					<div class="padding-small">
+						<div data-range="true" data-values="[0, 100]" data-min="0" data-max="100" data-bind="[<%= age_min || 0 %>, <%= age_max || 100 %>]" data-type="age" data-slider></div>
+						<input type="hidden" name="age_min" data-bind="<%= age_min || 0 %>" />
+						<input type="hidden" name="age_max" data-bind="<%= age_max || 0 %>" />
+					</div>
+					</div>
+				</div> -->
 
 				<div class="col-md-4 margin-top-normal">
-					<label for="">Height Range: </label>
-					<span id="height-min-span" data-bind="<%= getHeightMinText() %>"></span> to <span id="height-max-span"data-bind="<%= getHeightMaxText() %>"></span>
-					<input name="height" id="heightinches" data-bind="<%= height_min %>,<%= height_max %>" style="display: none;">
-	                <div class="ui-slider-height-range" data-slider data-bind="[<%= height_min %>, <%= height_max %>]"></div>
+					<label class="text-bold margin-bottom-zero">Age Range: <span class="text-normal">from</span>
+						<input id="age-min-input" class="text-normal" style="width: 30px;"> 
+						<span class="text-normal">to</span>
+						<input id="age-max-input" class="text-normal" style="width: 30px;">
+						<span class="text-normal">years</span>
+					</label>
+					<div class="padding-right-small">
+						<div class="padding-small">
+							<div id="age-range-slider" data-range="true" data-values="[2, 71]" data-min="2" data-bind="[<%= age_min || 0 %>, <%= age_max || 71 %>]" data-max="71" data-type="age" data-slider></div>
+							<input type="hidden" name="age_min" data-bind="<%= age_min || 0 %>" />
+							<input type="hidden" name="age_max" data-bind="<%= age_max || 0 %>" />
+						</div>
+					</div>
+				</div>				
+
+				<!-- <div class="col-md-3">
+					<label class="text-bold margin-bottom-zero">Height Range: <span id="height-min-text" class="text-normal" data-bind="<%= getHeightMinText() ||'< 2\'0&quot;' %>">&lt; 2'0"</span> -
+						<span id="height-max-text" class="text-normal" data-bind="<%= getHeightMaxText() || '8\'0&quot;' %>">8'0"</span>
+					</label>
+					<div class="padding-right-small">
+					<div class="padding-small">
+						<div class="ui-slider-range-height" data-slider data-range="true" data-min="22" data-max="96" data-values="[22,96]" data-type="height" data-bind="[<%= height_min ? height_min : 22 %>, <%= height_max ? height_max : 96 %>]"></div>
+						<input type="hidden" name="height_min" data-bind="<%= height_min %>" />
+						<input type="hidden" name="height_max" data-bind="<%= height_max %>" />
+					</div>
+					</div>
+				</div> -->
+
+				<div class="col-md-4 margin-top-normal">
+					<label class="text-bold margin-bottom-zero">Height Range:
+						<select id="height-min-dropdown" data-bind="<%= height_min %>">
+							<?php 
+								$bool = false;
+								for ($i = 22; $i <= 96; $i++) {
+									$feet = floor($i / 12);
+									$inches = $i % 12;
+									
+									if($i < 24) {
+										if($bool == false) {
+											echo "<option value=".$i."><2' 0\"</option>";
+											$bool = true;
+										}
+									}
+									else {
+										echo "<option value=".$i.">".$feet."' ".$inches."\"</option>";
+									}
+								}
+							?>
+						</select>
+						<span class="text-normal">to</span>
+						<select id="height-max-dropdown" data-bind="<%= height_max %>">
+							<?php 
+								$bool = false;
+								for ($i = 22; $i <= 96; $i++) {
+									$feet = floor($i / 12);
+									$inches = $i % 12;
+									
+									if($i < 24) {
+										if($bool == false) {
+											echo "<option value=".$i."><2' 0\"</option>";
+											$bool = true;
+										}
+									}
+									else if($i == 96) {
+										echo "<option value=".$i." selected>".$feet."' ".$inches."\"</option>";
+									}
+									else {
+										echo "<option value=".$i.">".$feet."' ".$inches."\"</option>";
+									}
+								}
+							?>
+						</select>
+					</label>
+					<div class="padding-right-small">
+					<div class="padding-small margin-top-small">
+						<div id="height-range-slider" class="ui-slider-range-height" data-slider data-range="true" data-bind="[<%= height_min || 22 %>, <%= height_max || 96 %>]" data-min="22" data-max="96" data-values="[22,96]" data-type="height"></div>
+						<input type="hidden" name="height_min" id ="height_min" data-bind="<%= height_min %>"/>
+						<input type="hidden" name="height_max" id ="height_max" data-bind="<%= height_max %>" />
+					</div>
+					</div>
 				</div>
 
 				<div class="col-md-12 margin-top-large">
@@ -121,7 +154,7 @@
 				</div>
 			    <div class="col-md-12">
 					<label class="checkbox-inline margin-bottom-normal">
-					  <input type="checkbox" class="px" name="ethnicity" id="ethnicity-any" value="0" data-bind="<%= ethnicity_any %>">
+					  <input type="checkbox" class="px ethnicity-any-checkbox" name="ethnicity" id="ethnicity-any" value="0" data-bind="<%= ethnicity_any %>">
 					  <span class="lbl">Any</span>
 					</label>
 					<label class="checkbox-inline margin-bottom-normal">
@@ -170,7 +203,7 @@
 				</div>
 			    <div class="col-md-12">
 					<label class="checkbox-inline margin-bottom-normal">
-					  <input type="checkbox" class="px" name="built" id="built-any" value="0" data-bind="<%= built_any %>">
+					  <input type="checkbox" class="px built-any-checkbox" name="built" id="built-any" value="0" data-bind="<%= built_any %>">
 					  <span class="lbl">Any</span>
 					</label>
 					<label class="checkbox-inline margin-bottom-normal">
@@ -212,7 +245,7 @@
 				</div>
 			    <div class="col-md-10">
 					<label class="checkbox-inline margin-bottom-normal">
-					  <input type="checkbox" class="px" name="hair-color" id="hair-any" value="0" data-bind="<%= hair_any %>">
+					  <input type="checkbox" class="px hair-any-checkbox" name="hair-color" id="hair-any" value="0" data-bind="<%= hair_any %>">
 					  <span class="lbl">Any</span>
 					</label>
 					<label class="checkbox-inline margin-bottom-normal">
@@ -251,7 +284,7 @@
 			    <div class="col-md-12">
 			    	<label class="checkbox-inline margin-bottom-normal">
 					  <input type="checkbox" class="px" name="hair-color" id="hair-salt-paper" value="0" data-bind="<%= hair_salt_paper %>">
-					  <span class="lbl">Salt & Pepper</span>
+					  <span class="lbl">Salt &amp; Pepper</span>
 					</label>
 					<label class="checkbox-inline margin-bottom-normal">
 					  <input type="checkbox" class="px" name="hair-color" id="hair-white" value="0" data-bind="<%= hair_white %>">
@@ -264,14 +297,19 @@
 	</div>
 </div>
 
-<div class="row-fluid clearfix">
+</div>
+
+<div class="row-fluid clearfix action-buttons-div">
 	<div class="col-md-12">
-		<div class="form-group margin-top-normal">
+		<div id="project-overview-link" class="form-group margin-top-normal">
 			<button id="update-role-btn" class="btn btn-primary margin-left-small" type="submit">Update</button>
-			<a href="/projects" id="cancel-role-btn" class="btn btn-default margin-left-small">Cancel</a>
+			<a data-bind="/projects/<%= casting_id %>" id="cancel-role-btn" class="btn btn-default margin-left-small">Cancel</a>
 			<span class="text-success margin-left-normal role-updated-success" style="display: none;">Role has been updated.</span>
 		</div>
 	</div>
 </div>
+
+
+
 
 @stop

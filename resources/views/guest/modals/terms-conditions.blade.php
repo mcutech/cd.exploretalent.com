@@ -43,9 +43,7 @@
           </p>
           <p>
             You, likewise, agree to represent yourself accurately. You acknowledge that misuse of the Services may lead us, in our sole discretion, to cancel 
-            your use of the Services and delete any of your Content.  Additionally, Explore Talent has the right to deactivate your account and may 
-            file suit against you or any representative of your organization /representation if you or your representatives violate or abuse the 
-            posting conduct defined here.  Compensation may be sought from you, for damage or possible damage to the Explore Talent name.
+            your use of the Services and delete any of your Content.  Additionally, Explore Talent has the right to deactivate your account.
           </p>
           <p>b. Access</p>
           <p>
@@ -125,6 +123,51 @@
           <p>
             Scammers Beware: We validate listings and assist talent in tracking down and prosecuting Fraudulent Check Scams and other Talent Scams.
           </p>
+        </div>
+
+        <div>
+          <h4>
+            6. ARBITRATION PROVISION
+          </h4>
+          <p>
+            Any dispute, claim or controversy arising out of or relating to this Agreement or the breach, termination, enforcement, interpretation or validity thereof, including the determination of the scope or applicability of this agreement to arbitrate, shall be determined by arbitration in Las Vegas, Nevada before one arbitrator,. The arbitration shall be administered by JAMS pursuant to its Comprehensive Arbitration Rules and Procedures. Judgment on the Award may be entered in any court having jurisdiction.
+          </p>
+
+          <p>
+            The parties shall maintain the confidential nature of the arbitration proceeding and the Award, including the Hearing, except as may be necessary to prepare for or conduct the arbitration hearing on the merits, or except as may be necessary in connection with a court application for a preliminary remedy, a judicial challenge to an Award or its enforcement, or unless otherwise required by law or judicial decision.
+          </p>
+
+          <p>
+            This Agreement and the rights of the parties hereunder shall be governed by and construed in accordance with the laws of the State of Nevada.
+          </p>
+
+          <p>
+            The parties acknowledge that this Agreement evidences a transaction involving interstate commerce. Notwithstanding the provision in the preceding paragraph with respect to applicable substantive law, any arbitration conducted pursuant to the terms of this Agreement shall be governed by the Federal Arbitration Act (9 U.S.C., Secs. 1-16).
+          </p>
+
+          <p>
+            In any arbitration arising out of or related to this Agreement, the arbitrator is not empowered to award punitive or exemplary damages, except where permitted by statute, and the parties waive any right to recover any such damages.
+          </p>
+
+          <p>
+            NEITHER YOU NOR WE WILL HAVE THE RIGHT TO LITIGATE THAT CLAIM IN COURT OR HAVE A JURY TRIAL ON THAT CLAIM, OR TO ENGAGE IN PRE-ARBITRATION DISCOVERY EXCEPT AS PROVIDED FOR IN THE APPLICABLE ARBITRATION RULES. FURTHER, YOU WILL NOT HAVE THE RIGHT TO PARTICIPATE AS A REPRESENTATIVE OR MEMBER OF ANY CLASS OF CLAIMANTS PERTAINING TO ANY CLAIM SUBJECT TO ARBITRATION. EXCEPT AS SET FORTH BELOW, THE ARBITRATOR'S DECISION WILL BE FINAL AND BINDING. YOU UNDERSTAND THAT OTHER RIGHTS THAT YOU WOULD HAVE IF YOU WENT TO COURT MAY ALSO NOT BE AVAILABLE IN ARBITRATION. THE FEES CHARGED BY THE ARBITRATION ADMINISTRATOR MAY BE GREATER THAN THE FEES CHARGED BY A COURT.
+          </p>
+
+          <p>
+            There shall be no authority for any Claims to be arbitrated on a class action or private attorney general basis. Furthermore, arbitration can only decide your or our Claim(s) and may not consolidate or join the claims of other persons that may have similar claims. There shall be no pre-arbitration discovery except as provided for in the applicable Arbitration Rules. Each party shall bear the expense of that party's attorneys', experts', and witness fees, regardless of which party prevails in the arbitration, unless applicable law gives a party the right to recover any of those fees from the other party.
+          </p>
+
+          <p>
+            Contacting Arbitration Administrators If you have a question about the arbitration administrators mentioned in this Arbitration Provision or would like to obtain a copy of their Arbitration Rules or fee schedules, you can contact them as follows: J.A.M.S, at http://www.jamsadr.com/rules-comprehensive-arbitration/ 222 South Riverside Plaza, Suite 1850, Chicago, IL 60606, www.jams-endispute.com, (800) 352-5267, Financial Services Arbitration Rules and Procedures, or National Arbitration Forum, P.O. Box 50191, Minneapolis, MN 55405, www.arbitration-forum.com, (800) 474-2371, Code of Procedure.
+          </p>
+        </div>
+
+        <div>
+          <h4>7. LIMITATION ON LIABILITY</h4>
+          <p>
+            ExploreTalent.com is not responsible for any problems or technical malfunction of any telephone network or lines, computer online systems, servers, or providers, computer equipment, software, failure of any e-mail or redemption to be received by ExploreTalent.com on account of technical problems or traffic congestion online or on the Internet or at any web site, or any combination thereof including any injury or damage to entrant's or any other person's computer related to or resulting from downloading any materials consistent with this use of ExploreTalent.com. If, for any reason, the site is not capable of running online as planned, including infection by computer virus, bugs, tampering, unauthorized intervention, fraud, technical failures, or any other causes beyond the control of ExploreTalent.com which threatens or corrupts or adversely affects the administration, security, fairness, integrity or proper conduct of this service, ExploreTalent.com, reserves the right, in its sole discretion, to cancel, terminate or suspend the offer and/or any service.
+          </p>
+
         </div>
 
       </div>

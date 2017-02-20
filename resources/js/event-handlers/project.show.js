@@ -1,147 +1,93 @@
 'use strict';
 
-function handler(core, user, projectId){
+function handler(core, user, projectId) {
 	self = this;
 	self.core = core;
 	self.user = user;
 	self.projectId = projectId;
-	self.project;
-	self.refresh();
+
+	self.getProjectInfo();
 }
 
-handler.prototype.refresh = function(){
+handler.prototype.getProjectInfo = function(e) {
 	var data = {
-		projectId	: self.projectId,
-		withs		: [ 'bam_roles' ]
+		projectId : self.projectId,
+		query : [
+			[ 'with', 'bam_roles' ]
+		]
 	}
 
 	self.core.resource.project.get(data)
-	.then(function(result){
-		self.project = result;
-		self.projectStat = result.status;
-		result.date = self.core.service.date;
-		var eths = ['ethnicity_african', 'ethnicity_african_am', 'ethnicity_american_in', 'ethnicity_asian', 'ethnicity_caribbian', 'ethnicity_caucasian', 'ethnicity_east_indian', 'ethnicity_hispanic', 'ethnicity_mediterranean', 'ethnicity_middle_est', 'ethnicity_mixed', 'ethnicity_native_am'];
-		var builds = ['built_athletic', 'built_average', 'built_bb', 'built_large', 'built_lm', 'built_medium', 'built_petite', 'built_thin', 'built_xlarge'];
+		.then(function(res) {
+			self.project = res;			
+			var markets = _.map(self.project.market.split('>'), function(m) {
+				return { name : m };
+			});
 
-		_.each(result.bam_roles, function(res){
+			self.project.markets = { data : markets };
 
-			var group1 = [], group2 = [];
-			//for gender
-			if(res.gender_male == 1 && res.gender_female == 1){
-				res.gender = "Any";
-			}
-			else if(res.gender_male == 1 && res.gender_female == 0){
-				res.gender = "Male";
-			} else {
-				res.gender = "Female";
-			}
+			// if market is N/A change market value
+			if(self.project.markets.data[0].name == 'N/A')
+				self.project.markets.data[0].name = 'All of United States';
 
-			//for ethnicity
-			if(res.ethnicity_any == 1){
-				res.ethnicity = "Any";
-			} else {
-				_.each(eths, function(val, index){
-					if(res[val]){
-						if(val == 'ethnicity_american_in'){
-							group1.push('American Indian');
-						} else if(val == 'ethnicity_african_am'){
-							group1.push('African American');
-						} else if(val == 'ethnicity_east_indian'){
-							group1.push('East Indian');
-						} else if(val == 'ethnicity_native_am'){
-							group1.push('Native American');
-						} else {
-							group1.push(val.split('ethnicity_')[1].replace(/^[a-z]/, function(m){ return m.toUpperCase() }));
-						}
-						res.ethnicity = group1;
-					}
-				});
+			console.log(self.project);
+			self.core.service.databind('#project-details', self.project);
 
-			}
+			// create dummy for faster databind
+			_.each(self.project.bam_roles, function(role) {
+				role.likeitlist = { total : '' };
+				role.callbacks = { total : '' };
+				role.booked = { total : '' };
+				role.campaign = null;
+			});
 
-			//for build
-			if(res.built_any == 1){
-				res.build = "Any";
-			} else {
-				_.each(builds, function(val, index){
-					if(res[val]){
-						if(val == 'built_bb'){
-							group2.push('Body Builder');
-						} else if(val == 'built_lm'){
-							group2.push('Lean Muscle');
-						} else if(val == 'built_xlarge'){
-							group2.push('Extra Large');
-						} else {
-							group2.push(val.split('built_')[1].replace(/^[a-z]/, function(m){ return m.toUpperCase() }));
-						}
-						res.build = group2;
-					}
-				});
-			}
+			self.core.service.databind('.find-talents-wrapper', self.project)
 
-			if(result.status == '1') {
-				$('.panel-active').removeClass('hide');
-			}
-			else {
-				$('.panel-inactive').removeClass('hide');
-			}
+			var promises = [];
+
+			_.each(self.project.bam_roles, function(role) {
+				promises.push(self.getRoleStats(role));
+			});
+
+			return $.when.apply($, promises);
+		})
+		.then(function() {
+			self.core.service.databind('.find-talents-wrapper', self.project)
 		});
-		console.log(result);
-		self.core.service.databind('.project-overview-wrapper', result);
-		self.refreshStats();
-	})
 }
 
-handler.prototype.refreshStats = function() {
-	var promises = [];
+handler.prototype.getRoleStats = function(role) {
+	var deferred = $.Deferred();
 
-	_.each(self.project.bam_roles, function(role) {
-		promises.push(role.getLikeItList());
-		promises.push(role.getSelfSubmissions());
+	role.getLikeItListCount().then(function(total) {
+		role.likeitlist = { total : total };
+
+		return role.getSchedulesCount(2);
+	})
+	.then(function(total) {
+		role.callbacks = { total : total };
+
+		return role.getSchedulesCount(3);
+	})
+	.then(function(total) {
+		role.booked = { total : total };
+
+		var data = {
+			query : [
+				[ 'where', 'bam_role_id', '=', role.role_id ]
+			]
+		}
+
+		return self.core.resource.campaign.get(data);
+	})
+	.then(function(res) {
+		role.campaign = _.first(res.data);
+		deferred.resolve();
 	});
 
-	$.when.apply($, promises)
-		.then(function() {
-			_.each(arguments, function(arg, index) {
-				if (arg.total > 0) {
-					var role_id = _.first(arg.data).bam_role_id;
-
-					switch(index % 2) {
-						case 0: // likeitlist
-							$('#role-' + role_id + ' .like-it-list').text(arg.total);
-							break;
-						case 1: // self submissions
-							$('#role-' + role_id + ' .self-submissions').text(arg.total);
-							break;
-						default:
-							break;
-					}
-				}
-			});
-		});
+	return deferred.promise();
 }
 
-handler.prototype.deleteRole = function(e) {
-	e.preventDefault();
-	var ids = $(this).attr('id');
-	console.log(ids);
-	// console.log(self.projectStat);
-	if(confirm("Are you sure you want to delete this role?")){
-		self.core.resource.job.delete({ projectId : self.projectId, jobId : ids})
-			.then(function(res){
-
-				self.core.resource.project.patch({projectId : self.projectId, status : 0})
-				.then(function(res) {
-					console.log(res);
-				});
-
-				self.refresh();
-			});
-	}
-}
-
-module.exports = function(core, user, projectId){
+module.exports = function(core, user, projectId) {
 	return new handler(core, user, projectId);
-}
-
-// 8 == open call
+};

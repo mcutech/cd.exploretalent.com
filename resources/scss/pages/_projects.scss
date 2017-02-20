@@ -1,6 +1,30 @@
 .projects-wrapper{
+	#no-projects-found{
+	    .project-btns{
+			font-size: 15px;
+			padding: 15px 10px;
+			i{
+			    display: block;
+			    margin-bottom: 5px;
+			    font-size: 28px;
+			}
+			&.browse-btn{
+			}
+			
+			&.create-btn{
+			    
+			}
+	    }
+	}
+	#projects-list{
 
-	#project-listing{
+		.div-table-stripe-item{
+			border: 1px solid #dddddd;;
+			border-top-width: 0px;
+			&:nth-child(odd){
+			     background-color: #f9f9f9;
+			}
+		}
 
 		.panel-active {
 			background-color: #1976B3;
@@ -9,7 +33,7 @@
 				text-decoration: none !important;
 				&::after{
 					color: #fff;
-				}  
+				}
 			}
 		}
 
@@ -20,7 +44,7 @@
 				text-decoration: none !important;
 				&::after{
 					color: #fff;
-				} 
+				}
 			}
 		}
 
@@ -48,7 +72,7 @@
 					}
 
 					&:nth-child(odd){
-						background-color: #e8e8e8;	
+						background-color: #e8e8e8;
 					}
 				}
 
@@ -73,7 +97,7 @@
 			}
 
 		}
-	} //project listing
+	}
 
 	.roles-container{
 		.roles-item{
@@ -105,3 +129,39 @@
 		}
 	} //roles-container
 }
+#watch-video-modal{
+	.modal-content{
+		background: none;
+		border: none;
+	    box-shadow: none;
+
+		.modal-header{
+			background: none;
+			padding: 0;
+			border:none;
+			min-height: 45px;
+			button{
+				padding: 5px 15px;
+				float: right;
+				margin: 0;
+				outline: none;
+				font-size: 35px;
+				color: #111111;
+				background-color: #cccccc;
+				opacity: 0.5;
+				transition: 0.4s;
+
+				&:hover{
+					background-color: #aaaaaa;
+				}
+			}
+		}
+		.modal-body{
+			background: none;
+			iframe{
+				min-height: 335px;
+			}
+		}
+	}	
+}
+

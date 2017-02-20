@@ -5,56 +5,61 @@ function handler(core, user){
 	self.talent = null;
 	self.refresh();
 }
-handler.prototype.refresh = function(){
-	var qs = self.core.service.query_string();
-	var data = {
-		withs	: [
-			'bam_talentci.bam_talentinfo1',
-			'bam_talentci.bam_talentinfo2',
-			'bam_talentci.bam_talent_media2'
-		],
-		page : qs.page || 0
+handler.prototype.refresh = function(append){
+	if (self.refreshing) {
+		return;
 	}
 
-	self.core.resource.favorite_talent.get(data)
+	append = append === true;
+
+	if (append && self.done) {
+		return;
+	}
+
+	self.page = append ? self.page + 1 : 1;
+	self.refreshing = true;
+
+	var talents;
+
+	$('#search-loader').show();
+
+	if (!append) {
+		$('#talent-search-result').hide();
+	}
+
+	self.core.resource.favorite_talent.get()
 	.then(function(result){
-		var talent = {
-			data : [],
-		}
-		_.each(result.data, function(res){
-			res.bam_talentci.favorite = res.id;
-			res.bam_talentci.schedule ={};
-			res.bam_talentci.rating = null;
-			talent.data.push(res.bam_talentci);
+		self.done = (result.total < result.per_page);
+
+		var talentnums = _.map(result.data, function(talent) {
+			return talent.bam_talentnum;
 		});
-		console.log(talent);
-		self.core.service.databind('#favorite-result', talent);
-		self.talent = talent;
-		$('#loading-div').hide();
+
+		talentnums.push(0);
+
+		var data = {
+			query : [
+				[ 'whereIn', 'talentnum', talentnums ],
+			]
+		};
+
+		return self.core.resource.talent.search(data)
 	})
+	.then(function(talents) {
+		_.each(talents.data, function(talent) {
+			talent.talent_role_id = 0;
+			talent.talent_project_id = 0;
+		});
 
-};
+		self.core.service.databind('#favorite-result', talents, append);
+		self.refreshing = false;
 
-handler.prototype.addToFav = function(){
-	var b = $(this).closest('.talent-tab').attr('id');
-	var talentnum = (b.split('-')[2]);
-
-	var talents = _.find(self.talent.data, function(n){
-		return n.talentnum == talentnum;
+		$('#search-loader').hide();
+		if (!append) {
+			$('#talent-search-result').show();
+		}
 	});
-
-	if(talents){
-		self.core.resource.favorite_talent.delete({ favoriteId : talentnum})
-			.then(function(res){
-				self.refresh();
-			});
-	} else {
-		self.core.resource.favorite_talent.post({ bam_cd_user_id : self.user.bam_cd_user_id, bam_talentnum : talentnum})
-			.then(function(res){
-				self.refresh();
-			});
-	}
-}
+};
 
 module.exports = function(core, user){
 	return new handler(core, user);

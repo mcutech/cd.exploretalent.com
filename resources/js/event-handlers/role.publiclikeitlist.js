@@ -1,3 +1,4 @@
+var _ = require('lodash');
 'use strict';
 
 function handler(core, user, projectId, roleId) {
@@ -6,244 +7,336 @@ function handler(core, user, projectId, roleId) {
 	self.user = user;
 	self.projectId = projectId;
 	self.roleId = roleId;
-	self.project = null;
-	self.favTalent = null;
-	self.refreshProjectDetails();
+	self.page = 1;
+	self.first_load = true;
+
+	self.getDetails();
 }
 
-handler.prototype.refreshProjectDetails = function() {
+handler.prototype.getDetails = function() {
 	var data = {
 		projectId : self.projectId,
-		withs : [ 'bam_roles', 'bam_cd_user' ]
-	};
-
-	self.core.resource.project.get(data)
-		.then(function(result) {
-			self.project = result;
-			// get current role object
-			self.project.role = _.find(self.project.bam_roles, function (role) {
-				return role.role_id == self.roleId;
-			});
-			self.core.service.databind('#header', self.project);
-
-			return self.refreshLikeItList();
-		})
-}
-
-handler.prototype.refreshLikeItList = function() {
-	var qs = self.core.service.query_string();
-	var data = {
-		page : qs.page || 1
-	};
-
-	return self.project.role.getLikeItList(data)
-		.then(function(result) {
-			self.project.role.likeitlist = result;
-			self.core.service.databind('#like-it-list', self.project);
-
-			self.core.service.paginate('#like-it-list-pagination', { class : 'pagination', total : result.total, name : 'page' });
-
-			self.getFavoriteTalents();
-
-			$('#loading-div').hide();
-		});
-}
-
-handler.prototype.getFavoriteTalents = function() {
-	var talents = _.map(self.project.role.likeitlist.data, function(n) {
-		return n.getTalent().bam_talentnum;
-	});
-
-	console.log(talents);
-	if (talents.length > 0) {
-		var data = {
-			query : [
-				[ 'with', 'bam_talentci.user' ],
-				[ 'whereIn', 'bam_talentnum', talents ]
-			]
-		};
-
-		self.core.resource.favorite_talent.get(data)
-			.then(function(result) {
-				self.favTalent = result;
-				_.each(result.data, function(talent) {
-					$('#favorite-' + talent.bam_talentci.user.id).removeClass('text-light-gray').addClass('text-warning');
-				});
-			});
-	}
-}
-
-handler.prototype.viewAllModal = function() {
-	// fire modal code
-    $(".modal-photos").modal();
-}
-handler.prototype.refreshTalentPhotos = function(e){
-	var id;
-
-	// Bind null data first
-	self.core.service.databind('#talent-photos-modal', {
-		getFullName: function() { return "Loading" },
-		bam_talent_media2: []
-	});
-
-	if ($(e.target).is('a'))
-		id = $(e.target).attr('data-id');
-	else {
-		id = $(e.target).parents('a').attr('data-id');
-	}
-	var data = {
-		talentId :id,
-		withs : [
-			'bam_talent_media2'
+		jobId : self.roleId,
+		query : [
+			[ 'with', 'bam_casting.bam_cd_user' ]
 		]
-	};
-	return self.core.resource.talent.get(data)
-		.then(function(talent) {
-			console.log(talent.getFullName());
-			self.core.service.databind('#talent-photos-modal', talent);
+	}
+
+	self.core.resource.job.get(data)
+		.then(function(res) {
+			self.core.service.databind('#project-details', res)
+			self.core.service.databind('#role-filter-form', res);
+			self.findMatches();
 		});
 }
 
+handler.prototype.findMatches = function(append) {
+	var form = self.core.service.form.serializeObject('#role-filter-form');
 
-handler.prototype.addToFav = function(){
-	var b = $(this).closest('.talent-tab').attr('id');
-	var talentnum = (b.split('-')[2]);
-
-	var talents = _.find(self.favTalent.data, function(n){
-		return n.bam_talentnum == talentnum;
-	});
-
-	if(talents){
-		self.core.resource.favorite_talent.delete({ favoriteId : talentnum})
-			.then(function(res){
-				self.refreshProjectDetails();
-			});
-	} else {
-		self.core.resource.favorite_talent.post({ bam_cd_user_id : self.user.bam_cd_user_id, bam_talentnum : talentnum})
-			.then(function(res){
-				self.refreshProjectDetails();
-			});
+	if (self.refreshing) {
+		return;
 	}
-}
 
-handler.prototype.getDetailsForAddNoteModal = function() {
+	append = append === true;
 
-	self.core.service.databind('#cd-full-name-span', self.user);
+	if (append && self.done) {
+		return;
+	}
 
-	var scheduleId = $(this).attr('id');
-		scheduleId = scheduleId.split("_");
-		scheduleId = scheduleId[1];
-
-	var data = {
-		scheduleId : scheduleId
-	};
-
-
-	_.find(self.project.role.likeitlist.data, function(obj) {
-	  if(obj.id == scheduleId) {
-	  	self.core.service.databind('#utility-buttons', obj);
-	  }
-	});
-
-}
-
-handler.prototype.getDetailsForEditNoteModal = function() {
-	var ids = $(this).attr('id');
-		ids = ids.split("_");
-
-	var scheduleId = ids[1];
-	var noteId = ids[2];
+	self.page = append ? self.page + 1 : 1;
+	self.refreshing = true;
 
 	var data = {
-		scheduleId: scheduleId,
-		noteId: noteId,
-	};
+		per_page : 24,
+		page : self.page,
+		query : [
+			[ 'where', 'rating', '<>', 0 ],
+			[ 'where', 'bam_role_id', '=', self.roleId ],
+			[ 'with', 'invitee.bam_talentci' ]
+		]
+	}
 
-	self.core.resource.schedule_note.get(data)
-	.then(function(res) {
+	if (append) {
+		self.first_load = self.first_load ? self.first_load : false;
+	}
+	else {
+		self.first_load = false;
+	}
 
-		self.core.service.databind('.talent-note-body-edit', res);
-		self.core.service.databind('#note-created-at', res);
-		self.core.service.databind('#note-utility', res);
+	$('#search-loader').show();
 
-		var data = {
-			cdUserId : self.user.bam_cd_user_id
+	if (!append) {
+		$('#role-matches-result').hide();
+	}
+
+	var options = {
+		bam_role_id : self.roleId
+	}
+
+	self.core.resource.schedule.get(data)
+		.then(function(res) {
+			self.done = (res.total < res.per_page);
+			var talentnums = _.map(res.data, function(r) {
+				if (r.invitee && r.invitee.bam_talentci) {
+					return r.invitee.bam_talentci.talentnum;
+				}
+				else {
+					return 0;
+				}
+			});
+
+			talentnums.push(0);
+
+			var data2 = self.getFilters(talentnums);
+
+			return self.core.resource.talent.search(data2, options);
+		})
+		.then(function(talents) {
+			_.each(talents.data, function(talent) {
+				talent.talent_role_id = self.roleId;
+				talent.talent_project_id = self.projectId;
+			});
+
+			try {
+			self.core.service.databind('#role-matches-result', talents, append);
+			} catch(e) { }
+
+			self.refreshing = false;
+
+			$('#search-loader').hide();
+
+			if (!append) {
+				$('#role-matches-result').show();
+
+				if(talents.total > 0) {
+					$('.like-it-list-only').removeClass('hide');
+				}
+				else {
+					$('.like-it-list-only').addClass('hide');
+				}
+			}
+		});
+}
+
+handler.prototype.getFilters = function(talentnums) {
+	var form = self.core.service.form.serializeObject('#role-filter-form');
+	var data = {
+		per_page : 24,
+		page : self.page,
+		query : [
+			[ 'whereIn', 'talentnum', talentnums ]
+		]
+	}
+
+	if (!self.first_load) {
+		if (form.markets) {
+			if (form.markets instanceof Array) {
+				var subquery = [];
+
+				_.each(form.markets, function(market) {
+					if (subquery.length == 0) {
+						subquery.push([ 'where', 'city', 'like', '%' + market + '%' ]);
+					}
+					else {
+						subquery.push([ 'orWhere', 'city', 'like', '%' + market + '%' ]);
+					}
+
+					subquery.push([ 'orWhere', 'city1', 'like', '%' + market + '%' ]);
+					subquery.push([ 'orWhere', 'city2', 'like', '%' + market + '%' ]);
+					subquery.push([ 'orWhere', 'city3', 'like', '%' + market + '%' ]);
+				});
+
+				data.query.push([ 'where', subquery ]);
+			}
+			else {
+				data.query.push([ 'where', [
+						[ 'where', 'city', '=', form.markets ],
+						[ 'orWhere', 'city1', '=', form.markets ],
+						[ 'orWhere', 'city2', '=', form.markets ],
+						[ 'orWhere', 'city3', '=', form.markets ]
+					]
+				]);
+			}
 		}
 
-		self.core.resource.cd_user.get(data)
-		.then(function(res){
-			self.core.service.databind('#cd-full-name-span-edit', res);
-		});
+		if (parseInt(form.age_min)) {
+			data.query.push([ 'where', 'dobyyyy', '<=', new Date().getFullYear() - parseInt(form.age_min) ]);
+		}
+
+		if (parseInt(form.age_max)) {
+			data.query.push([ 'where', 'dobyyyy', '>=', new Date().getFullYear() - parseInt(form.age_max) ]);
+		}
+
+		if (form.sex) {
+			data.query.push([ 'where', 'sex', '=', form.sex ]);
+		}
+
+		if (form.has_photo) {
+			data.query.push([ 'where', 'has_photos', '=', form.has_photo == 'true' ? 1 : 0 ]);
+		}
+
+		if(form.search_text) {
+			data.query.push([ 'where',
+				[
+					[ 'where', 'talentnum', '=', form.search_text ],
+					[ 'orWhere', 'fname', 'LIKE', '%' + form.search_text + '%' ],
+					[ 'orWhere', 'lname', 'LIKE', '%' + form.search_text + '%' ],
+				]
+			]);
+		}
+
+		if (parseInt(form.height_min)) {
+			data.query.push([ 'where', 'heightinches', '>=', form.height_min ]);
+		}
+
+		if (parseInt(form.height_max)) {
+			data.query.push([ 'where', 'heightinches', '<=', form.height_max ]);
+		}
+
+		if (form.build) {
+			if (form.build instanceof Array) {
+				data.query.push([ 'whereIn', 'build', form.build ]);
+			}
+			else {
+				data.query.push([ 'where', 'build', '=', form.build ]);
+			}
+		}
+
+		if (form.ethnicity) {
+			// African and African American are both searched if either is chosen
+			if (form.ethnicity instanceof Array) {
+
+				if(form.ethnicity.indexOf('African') > -1 && form.ethnicity.indexOf('African American') == -1) {
+					form.ethnicity.push('African American');
+				}
+				else if(form.ethnicity.indexOf('African American') > -1 && form.ethnicity.indexOf('African') == -1) {
+					form.ethnicity.push('African');
+				}
+
+				data.query.push([ 'whereIn', 'ethnicity', form.ethnicity ]);
+
+			}
+			else {
+				if(form.ethnicity == 'African') {
+					data.query.push(['where', [
+							[ 'where', 'ethnicity', '=', 'African' ],
+							[ 'orWhere', 'ethnicity', '=', 'African American' ]
+						]
+					]);
+				}
+				else if(form.ethnicity == 'African American') {
+					data.query.push(['where', [
+							[ 'where', 'ethnicity', '=', 'African American' ],
+							[ 'orWhere', 'ethnicity', '=', 'African' ]
+						]
+					]);
+				}
+				else {
+					data.query.push([ 'where', 'ethnicity', '=', form.ethnicity ]);
+				}
+			}
+		}
+
+		if (form.last_access) {
+			data.query.push([ 'where', 'last_access', '>', Math.floor(new Date().getTime() / 1000) - parseInt(form.last_access) ]);
+		}
+
+		if(form.young_old) {
+			data.query.push([ 'orderBy', 'dobyyyy', form.young_old ]);
+			data.query.push([ 'orderBy', 'dobmm', form.young_old ]);
+			data.query.push([ 'orderBy', 'dobdd', form.young_old ]);
+		}
+
+		if(form.union) {
+			if(form.union == '1') {
+				data.query.push([ 'where', [
+						[ 'where', 'union_aea', '=', 'Yes' ],
+						[ 'orWhere', 'union_aftra', '=', 'Yes' ],
+						[ 'orWhere', 'union_other', '=', 'Yes' ],
+						[ 'orWhere', 'union_sag', '=', 'Yes' ],
+					] 
+				]);
+			}
+			else {
+				data.query.push([ 'where', [
+						[ 'where', 'union_aea', '=', 'No' ],
+						[ 'orWhere', 'union_aftra', '=', 'No' ],
+						[ 'orWhere', 'union_other', '=', 'No' ],
+						[ 'orWhere', 'union_sag', '=', 'No' ],
+					] 
+				]);
+			}
+		}
+
+		if(form.favorite_talent == '1') {
+			data.query.push([ 'join', 'bam.laret_favorite_talents', 'bam.laret_favorite_talents.bam_talentnum', '=', 'search.talents.talentnum' ]);
+		}
+	}
+
+	return data;
+}
+
+handler.prototype.refreshInvitation = function() {
+	var data = {
+		query : [
+			[ 'where', 'bam_role_id', self.project.role.role_id ],
+			[ 'orderBy', 'created_at', 'DESC' ]
+		],
+		per_page : 1
+	}
+
+	self.core.resource.campaign.get(data)
+	.then(function(res){
+		var campaign = _.first(res.data);
+		if (campaign && (campaign.status > 0 || campaign.status == 0)) {
+				$("#invitetoaudition-text")
+				.html('<span class="text-muted">You have already sent an invitation on</span> ' + campaign.updated_at +
+					  '<a href="/projects/' + self.project.role.casting_id + '/roles/' + self.project.role.role_id + '/worksheet" class="btn-link margin-left-small"><i class="fa fa-pencil"></i> Manage Here</a>');
+
+				$('#invitetoauditionbutton').attr("disabled", true);
+		}
+		else {
+			$("#invitetoaudition-text").text('');
+			$('#invitetoauditionbutton').attr("disabled", false);
+		}
 	});
 }
 
-handler.prototype.addNoteForTalent = function(e) {
+handler.prototype.sendInvites = function() {
+	var form = self.core.service.form.serializeObject('#invite-to-audition-form');
 
-	e.preventDefault();
+	var data = [
+		[ 'where', 'rating', '<>', 0 ],
+		[ 'where', 'bam_role_id', '=', self.project.role.role_id ],
+		[ 'join', 'users', 'users.id', '=', 'invitee_id' ],
+		[ 'select', 'bam_talentnum AS talentnum' ]
+	];
 
-	var scheduleId = $(this).attr('id');
-		scheduleId = scheduleId.split("_");
-		scheduleId = scheduleId[1];
-
-	var noteBody = $('.talent-note-body').val();
-
-	if(noteBody.length < 1) {
-		$('.talent-note-body').focus();
-		$('.note-required').fadeIn().delay(3000).fadeOut();
+	var campaignData = {
+		campaign_type_id 	: self.core.resource.campaign_type.CD_INVITE,
+		bam_cd_user_id		: self.user.bam_cd_user_id,
+		bam_role_id			: self.project.role.role_id,
+		when				: form.when,
+		where				: form.where,
+		name				: 'CD Invite Role #' + self.project.role.role_id,
+		description			: form.message,
+		query_model			: 'Schedule',
+		query_model_raw     : 'Bam\\Talentci',
+		query_key_id        : 'talentnum',
+		query_key_cell      : 'cell',
+		query_key_email     : 'email1',
+		query				: JSON.stringify(data),
+		replies				: form.replies,
+		status				: 0
 	}
 
-	else {
-		var data = {
-			scheduleId: scheduleId,
-			body: noteBody,
-		};
-
-		self.core.resource.schedule_note.post(data)
+	self.core.resource.campaign.post(campaignData)
 		.then(function(res) {
-			$('.note-required').hide();
-			$('.note-saved-success').fadeIn();
-			setTimeout(function() {
-				location.reload();
-			}, 3000);
+			alert('Invitations sent!');
+			$('#invite-to-audition-modal').modal('toggle');
+
+			self.refreshInvitation();
 		});
-	}
-
-}
-
-handler.prototype.editNoteForTalent = function(e) {
-
-	e.preventDefault();
-
-	var ids = $(this).attr('id');
-		ids = ids.split("_");
-
-	var	scheduleId = ids[1];
-	var noteId = ids[2];
-
-	var noteBody = $('.talent-note-body-edit').val();
-
-	if(noteBody.length < 1) {
-		$('.talent-note-body-edit').focus();
-		$('.note-required').fadeIn().delay(3000).fadeOut();
-	}
-
-	else {
-		var data = {
-			scheduleId: scheduleId,
-			noteId: noteId,
-			body: noteBody,
-		};
-
-		self.core.resource.schedule_note.patch(data)
-		.then(function(res) {
-			$('.note-required').hide();
-			$('.note-saved-success').fadeIn();
-			setTimeout(function() {
-				location.reload();
-			}, 3000);
-		});
-	}
-
 }
 
 module.exports = function(core, user, projectId, roleId) {

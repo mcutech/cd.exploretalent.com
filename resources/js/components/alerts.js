@@ -16,7 +16,6 @@ module.exports = function(core, user){
 
 	self.core.resource.alert.get(data)
 	.then(function(res) {
-		console.log(res);
 		self.core.service.databind('#top-alert-div', res.data[0]);
 		// to determine margin-top of body.. move down if top-alert-div is visible
 		var topAlertDiv = $('#top-alert-div');

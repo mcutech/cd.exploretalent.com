@@ -1,0 +1,38 @@
+body.modal-open{
+
+	.modal{
+		.modal-dialog{
+		    
+		    .modal-content{
+				box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+				border: 1px solid #cfcfcf;
+				.modal-body{
+				}
+		    }
+
+		}
+	}
+	#ghost-onboarding-modal{
+		@extend .modal;
+		.modal-dialog{
+		    margin: 130px auto;
+		    background-color: #fafafa;
+		    .modal-content{
+				.modal-body{
+					h5{
+					    font-size: 17px;
+					}
+					label, p{
+						font-size: 15px;
+						font-weight: 400;
+					}
+				}
+		    }
+		}
+	}
+
+	.modal-backdrop.fade.in{
+		background-color: #ffffff;
+		opacity: 0.8 !important;
+	}	
+}

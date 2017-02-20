@@ -12,13 +12,13 @@
 					</div>
 				</div>
 
-				<textarea class="form-control talent-note-body" rows="7" placeholder="Enter Note for this talent..." style="resize: none;"></textarea>
+				<textarea id="add-note-body" class="form-control" rows="7" placeholder="Enter Note for this talent..." style="resize: none;"></textarea>
 
 				<div id="utility-buttons" class="row-fluid clearfix margin-top-small">
 					<div class="col-md-12 padding-zero">
-						<a href="#" class="add-note-for-talent btn btn-success btn-lg" data-bind="add-note_<%= id %>" data-bind-target="id">Add Note</a>
-						<span class="note-saved-success text-success margin-left-small display-none">Note has been saved.</span>
-						<span class="note-required text-danger margin-left-small display-none">This field is required.</span>
+						<button id="add-note-btn" class="btn btn-success btn-lg">Add Note</button>
+						<span id="add-note-success" class="text-success margin-left-small display-none">Note has been saved.</span>
+						<span id="add-note-required" class="text-danger margin-left-small display-none">This field is required.</span>
 					</div>
 				</div>
 

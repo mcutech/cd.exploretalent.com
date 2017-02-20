@@ -20,4 +20,14 @@ class ProjectController extends Controller {
 	{
 		return view('project.edit', ['projectId' => $projectId]);
 	}
+
+	public function quickpost()
+	{
+		return view('project.quick-post');
+	}
+
+	public function worksheet($projectId)
+	{
+		return view('project.role.worksheet.index', [ 'projectId' => $projectId ]);
+	}
 }

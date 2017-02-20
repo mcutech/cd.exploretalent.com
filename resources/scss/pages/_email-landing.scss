@@ -1,0 +1,63 @@
+.email-landing-container{
+	position: relative;
+
+	.email-landing-filter-button{
+		padding: 0px 7.4%;
+		position: fixed;
+		bottom: 10px;
+		z-index: 100;
+		left: 0;
+		width: 100%;
+
+		.btn{
+		}
+	}
+
+	.read-more-message-container{
+		a, a:hover, a:visited, a:link, a:active{
+			text-decoration: none;
+		}
+	}
+
+	.talent-photo-and-note-container{
+		position: relative;
+		a{
+			cursor: pointer;
+
+			.view-profile-text{
+				position: absolute;
+				left: 50%;
+				top: 50%;
+				transform: translate(-50%, -50%);
+				max-width: 50%;
+				text-align: center;
+			}
+
+			.talent-info{
+				position: absolute;
+				right: 0;
+				bottom: 0;
+				z-index: 10;
+				width: 100%;
+				padding: 8px;
+				h5{
+					color: #ffffff;
+					font-size: 14px;
+				    text-shadow: 1px 1px 1px #555555;	
+				    text-align: center;			
+				}
+			}
+
+			.talent-photo-v2{
+				opacity: 1;
+				transition: 0.3s;
+				z-index: 1;
+			}
+			&:hover{
+				.talent-photo-v2{
+					opacity: 0.5;
+				}
+			}
+		}
+	}
+}

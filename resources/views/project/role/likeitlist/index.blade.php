@@ -1,52 +1,62 @@
-@extends('layouts.role', [ 'pages' => [ [ 'name' => 'My Projects', 'url' => '/projects' ], [ 'name' => 'Project', 'url' => '/projects/' . $projectId ], [ 'name' => 'Like it List', 'url' => '/projects/' . $projectId . '/roles/' . $roleId . '/likeitlist', 'active' => true] ] ])
+@extends('layouts.role', [ 'active' => 'like-it-list', 'pages' => [ [ 'name' => 'My Projects', 'url' => '/projects' ], [ 'name' => 'Project Overview', 'url' => '../.././' ], [ 'name' => 'Like It List', 'url' => './like-it-list', 'active' => true ] ] , 'likeitlist' => false , 'matches' => true,'likeitlistList' => true])
 
-@section('header.title', 'Like It List')
+@section('sidebar.page-header')
+	<i class="fa fa-th-list page-header-icon"></i> Like It List - <b data-bind="<%= name + ' ' + '(' + casting_id + ')' %>"></b>
+@stop
 
-@section('sidebar.body')
-	<div class="like-it-list-talents-wrapper like-it-list-page-wrapper">
-		<div class="talents-search-filter-content">
-			@parent
-			<div class="row-fluid clearfix">
-
-				<div id="like-it-list" class="col-md-12 talents-search-result">
-					<div class="row-fluid clearfix top-results-heading margin-bottom-normal">
-						<div class="col-md-6">
-							<div class="float-left">
-								<div id="like-it-list-pagination">
-								</div>
-							</div>
+@section('role.body')
+<div class="panel role-item margin-top-medium">
+	<div class="row-fluid clearfix">
+		<div class="talents-wrapper">
+			<div class="talents-search-filter-content">
+				<div class="row clearfix">
+					{{-- @include('project.components.filter') --}}
+				</div>
+				<div class="row margin-bottom-normal margin-top-normal like-it-list-only hide">
+					<div class="col-md-12">
+						<div class="col-md-12 margin-bottom-normal">
+							<span>Check the talents in the like it list that you want to remove.</span>
 						</div>
-						{{-- <div class="col-md-6 text-align-right">
-							<a data-toggle="modal" data-target="#share-like-it-list" class="btn btn-primary">Share Like It List</a>
-							<a data-toggle="modal" data-target="#invite-to-audition-modal" class="btn btn-primary"><i class="fa fa-envelope-o"></i> Invite to Audition</a>
-							<button id="remove-all-likeitlist" class="btn btn-danger"><i class="fa fa-times"></i> Remove All</button>
+						<div class="col-md-6">
+							<button id="mark-all-talents-as-checked-btn" class="btn btn-default">Check All</button>
+							<button id="remove-all-checked-talents-btn" class="btn btn-danger" disabled>Remove All Checked</button>
+						</div>
+						{{-- <div class="col-md-4 font-size-normal-medium margin-top-small">
+							You have <span id="checked-talents-counter" class="text-bold">0</span> talents checked.
 						</div> --}}
+						<div class="col-md-6 text-align-right float-right">
+							<button id="remove-all-like-it-list" class="btn btn-danger">Clear Like it List</button>
+						</div>
 					</div>
-					<div id="loading-div">
-						<div class="f_circleG" id="frotateG_01"></div>
-						<div class="f_circleG" id="frotateG_02"></div>
-						<div class="f_circleG" id="frotateG_03"></div>
-						<div class="f_circleG" id="frotateG_04"></div>
-						<div class="f_circleG" id="frotateG_05"></div>
-						<div class="f_circleG" id="frotateG_06"></div>
-						<div class="f_circleG" id="frotateG_07"></div>
-						<div class="f_circleG" id="frotateG_08"></div>
+				</div>
+				<div class="row">
+					<div class="col-md-12 talents-search-result" id="role-matches-result">
+						<div class="row-fluid clearfix" id="role-matches">
+							@include('components.talent4', [ 'databind' => [ 'template' => '#role-matches', 'value' => 'data' ], 'ratings' => false, 'default_btn' => true, 'notes' => false, 'favorites_notes' => true, 'class' => 'col-lg-2 col-md-3 col-sm-3 col-xs-6'  ])
+						</div>
 					</div>
-					<div class="row-fluid clearfix" id="like-it-list-results">
-						@include('components.talent2', [ 'databind' => [ 'template' => '#like-it-list-results', 'value' => 'role.likeitlist.data' ], 'unrate' => true, 'remove' => true, 'class' => 'col-lg-3 col-md-4 col-sm-6 col-xs-12 talent-item-container' ])
-					</div>
+				</div>
+				<div id="search-loader" class="text-center padding-top-large">
+					<h3>Loading Talents</h3>
+					<h1><i class="fa fa-spinner fa-spin"></i></h1>
+				</div>
+			</div>
 
-				</div> {{-- talents-search-results --}}
+			<div class="talents-content">
+				@include('components.modals.talent-add-to-like-it-list')
+				@include('components.modals.share-like-it-list')
+				@include('components.modals.talent-view-photos')
+				@include('components.modals.talent-resume')
+				@include('components.modals.invite-to-audition')
+				@include('components.modals.talent-add-note')
+				@include('components.modals.talent-edit-note')
 			</div>
 		</div>
 	</div>
+</div>
 
-	@include('components.modals.talent-message')
-	@include('components.modals.talent-add-note')
-	@include('components.modals.talent-edit-note')
-	@include('components.modals.share-like-it-list')
-	@include('components.modals.talent-photos')
-	@include('components.modals.talent-resume')
-	@include('components.modals.invite-to-audition')
-
+<a href="javascript:" id="go-to-top-btn">
+	<i class="fa fa-chevron-up"></i>
+</a>
 @stop
+

@@ -1,9 +1,9 @@
 <?php namespace App\Http\Controllers;
 
 class RoleController extends Controller {
-	public function create()
+	public function create($projectId)
 	{
-		return view('project.role.create');
+		return view('project.role.create', ['projectId' => $projectId]);
 	}
 
 	public function edit($projectId, $roleId)
@@ -11,25 +11,43 @@ class RoleController extends Controller {
 		return view('project.role.edit', ['projectId' => $projectId, 'roleId' => $roleId]);
 	}
 
-	public function selfsubmissions($projectId, $roleId)
+	public function submissions($projectId, $roleId)
 	{
-		return view('project.role.selfsubmission.index', ['projectId' => $projectId, 'roleId' => $roleId]);
+		return view('project.role.submissions', ['projectId' => $projectId, 'roleId' => $roleId]);
+	}
+
+	public function findtalents($projectId, $roleId)
+	{
+		return view('project.role.find-talents', ['projectId' => $projectId, 'roleId' => $roleId ]);
 	}
 
 	public function likeitlist($projectId, $roleId)
 	{
 		return view('project.role.likeitlist.index', ['projectId' => $projectId, 'roleId' => $roleId]);
 	}
+
 	public function publiclikeitlist()
 	{
 		return view('project.role.likeitlist.public');
 	}
-	public function matches($projectId, $roleId)
+
+	public function worksheet($projectId, $roleId)
 	{
-		return view('project.role.match.index', ['projectId' => $projectId, 'roleId' => $roleId]);
+		return view('project.role.worksheet.show', ['projectId' => $projectId, 'roleId' => $roleId]);
 	}
-	public function auditionworksheet()
+
+	public function callbacks()
 	{
-		return view('project.role.auditionworksheet.index');
+		return view('project.role.callbacks');
+	}
+
+	public function booked()
+	{
+		return view('project.role.booked');
+	}
+
+	public function landing()
+	{
+		return view('project.role.landing');
 	}
 }

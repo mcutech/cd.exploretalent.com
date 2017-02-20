@@ -15,7 +15,8 @@
   "dependencies": {
     "pixel-admin-base-assets": "git@gitlab.com:utech/pixel-admin-base-assets.git#v0.0.5",
     "bootstrap-tagsinput": "~0.5.0",
-    "moment": "~2.10.6"
+    "moment": "~2.10.6",
+    "bootstrap-multiselect": "~0.9.13"
   },
   "overrides": {
     "slimScroll": {
@@ -127,7 +128,7 @@
   },
   "resolutions": {
     "bootstrap": "~3",
-    "jquery": "~1.10.2",
+    "jquery": ">= 2.1.0",
     "moment": "~2.10.6",
     "bootstrap-datepicker": "~1.2.0",
     "components-font-awesome": "~4.2.0"
