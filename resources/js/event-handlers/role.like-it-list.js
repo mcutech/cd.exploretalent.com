@@ -150,6 +150,8 @@ handler.prototype.findMatches = function(append) {
 				}
 				else {
 					$('.like-it-list-only').addClass('hide');
+					$('#no-likeitlist-found').removeClass('hide');
+					$('#no-likeitlist-found').show();
 				}
 			}
 		});
