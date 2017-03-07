@@ -35,7 +35,7 @@ handler.prototype.refresh = function(append) {
 	}
 
 	self.getTalents().then(function(talents) {
-		console.log(talents);
+		console.log(talents.total);
 		try {
 			self.core.service.databind('#talent-search-result', talents, append);
 		}
@@ -46,6 +46,10 @@ handler.prototype.refresh = function(append) {
 		$('#talent-search-loader').hide();
 		if (!append) {
 			$('#talent-search-result').show();
+				if(talents.total == 0) {
+					$('#no-talent-result').removeClass('hide');
+					$('#no-talent-result').show();
+				}
 		}
 	});
 }
