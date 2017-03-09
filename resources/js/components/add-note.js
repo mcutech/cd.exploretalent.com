@@ -42,7 +42,7 @@ module.exports = function(core, user) {
 
 						setTimeout(function() {
 							$('#talent-add-note-modal').modal('hide');
-						}, 4000);
+						}, 800);
 						
 					});
 			}
