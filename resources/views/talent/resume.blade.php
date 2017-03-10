@@ -158,7 +158,7 @@
 								<p data-bind="<%= bam_talentinfo2.special_skills%>" class="margin-top-zero"></p>
 							</div>
 						</div>
-						<div data-bind="<%= (bam_talentinfo2.special_skills) ? '1' : '' %>" data-bind-target="visibility">
+						<div data-bind="<%= (bam_talentinfo2.experience ) ? '1' : '' %>" data-bind-target="visibility">
 							<div class="col-sm-12 margin-top-small">
 								<h5 class="margin-zero text-bold text-primary">Short Resume</h5>
 							</div>
@@ -237,7 +237,7 @@
 								</div>
 								<div class="col-sm-12">
 									 <p class="main" data-bind="<%= bam_talent_music.length > 0 ? bam_talent_music[0].searching_gig_des : '' %>">
-									</p> 
+									</p>
 									<p class="extended" data-bind="<%= bam_talent_music.length > 0 ? bam_talent_music[0].searching_gig_des : '' %>">
 									</p>
 								</div>
