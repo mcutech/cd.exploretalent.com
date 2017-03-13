@@ -12,7 +12,7 @@
 						<a href="#" data-bind="/projects/<%= casting_id %>/roles/<%= bam_roles.length ? _.first(bam_roles).role_id : 0 %>/find-talents">Find Talents</a>
 					</li>
 					<li data-bind="<%= (bam_roles.length) ? 1 : 0 %>" data-bind-target="visibility" class="{{ isset($active) && $active == 'like-it-list' ? 'active' : '' }}">
-						<a href="#" data-bind="/projects/<%= casting_id %>/roles/<%= bam_roles.length ? _.first(bam_roles).role_id : 0 %>/like-it-list">Like it List</a>
+						<a href="#" data-bind="/projects/<%= casting_id %>/roles/<%= bam_roles.length ? _.first(bam_roles).role_id : 0 %>/like-it-list">Like It List</a>
 					</li>
 					<li data-bind="<%= (bam_roles.length) ? 1 : 0 %>" data-bind-target="visibility" class="">
 						<a href="#" data-bind="/projects/<%= casting_id %>/worksheet">Worksheet</a>
