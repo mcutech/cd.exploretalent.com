@@ -2,28 +2,28 @@ module.exports = function(core) {
 	$('#phone').mask('999-999-9999');
 
 		$("#send-casting").click(function(e){
-	
+
 		e.preventDefault();
 
 		var form = {};
 		//core.service.form.serializeObject("#quick-post");
 		form.user_id=1;
 		form.name=$("input[name='name']").val();
-		form.body=$("textarea[name='body']").val();		
+		form.body=$("textarea[name='body']").val();
 		form.lazy_project_status_id = 1;
 
 		core.resource.quickpost.post(form)
 			.then(function(result){
-			
+
 			$('#success-div').removeClass('hide');
 	 		$("input[name='name']").val('');
-			$("textarea[name='body']").val('');		
-			setTimeout(function() { 
+			$("textarea[name='body']").val('');
+			setTimeout(function() {
 				$('#quick-post').modal('hide');
 				$('#success-div').addClass('hide');
-		 	}, 1000);	
-			
-			
+		 	}, 1000);
+
+
 		});
 
 	});
@@ -93,6 +93,7 @@ module.exports = function(core) {
 				// remove all hyphens from phone (mask)
 				phone = phone.replace(/-/g, '');
 			}
+			$('#phone').css("border-color","#d6d6d6");
 
 			if(!pass){
 				$('#password').focus().css("border-color","#b94a48");
@@ -106,7 +107,7 @@ module.exports = function(core) {
 					$('#req-passtxt').text('Invalid Password.').show().delay(5000).fadeOut();
 					return;
 				}else{
-					if(!/[A-Z]+/.test(pass)){ 
+					if(!/[A-Z]+/.test(pass)){
 						$('#password').focus().css("border-color","#b94a48");
 						$('#pass-min-letter').show().delay(5000).fadeOut();
 						$('#pass-min-letter').text('Password must have atleast 1 capital letter').show().delay(5000).fadeOut();
@@ -116,10 +117,10 @@ module.exports = function(core) {
 							$('#password').focus().css("border-color","#b94a48");
 							$('#pass-min-length').show().delay(5000).fadeOut();
 							$('#pass-min-length').text('Password must contain atleast 8 characters').show().delay(5000).fadeOut();
-							return;	
+							return;
 						}
 					}
-				}				
+				}
 				$('#password').css("border-color","#d6d6d6");
 			}
 			if(!confirmpass){

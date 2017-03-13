@@ -6,7 +6,7 @@ function handler(core, user){
 	self.core = core;
 	self.user = user;
 	self.refresh();
-	
+
 }
 
 handler.prototype.refresh = function(append) {
@@ -35,7 +35,6 @@ handler.prototype.refresh = function(append) {
 	}
 
 	self.getTalents().then(function(talents) {
-		console.log(talents.total);
 		try {
 			self.core.service.databind('#talent-search-result', talents, append);
 		}
@@ -58,11 +57,12 @@ handler.prototype.getTalents = function() {
 	var deferred = $.Deferred();
 
 	if (self.preloadTalents) {
-		deferred.resolve(self.preloadTalents);
+    var ret = self.preloadTalents;
+    self.preloadTalents = null;
+		deferred.resolve(ret);
 	}
 	else {
 		self.searchTalents().then(function(res) {
-			console.log(res);
 			deferred.resolve(res);
 		});
 	}
@@ -265,7 +265,7 @@ handler.prototype.getFilters = function() {
 					[ 'orWhere', 'union_aftra', '=', 'Yes' ],
 					[ 'orWhere', 'union_other', '=', 'Yes' ],
 					[ 'orWhere', 'union_sag', '=', 'Yes' ],
-				] 
+				]
 			]);
 		}
 		else {
@@ -274,7 +274,7 @@ handler.prototype.getFilters = function() {
 					[ 'orWhere', 'union_aftra', '=', 'No' ],
 					[ 'orWhere', 'union_other', '=', 'No' ],
 					[ 'orWhere', 'union_sag', '=', 'No' ],
-				] 
+				]
 			]);
 		}
 	}
