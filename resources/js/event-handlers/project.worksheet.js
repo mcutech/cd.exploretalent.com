@@ -63,6 +63,7 @@ handler.prototype.refreshList = function() {
 		return self.core.resource.campaign.get(data2);
 	})
 	.then(function(res) {
+		console.log(res);
 		self.campaigns = res;
 		var promises = [];
 
