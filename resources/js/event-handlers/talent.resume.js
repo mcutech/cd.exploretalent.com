@@ -51,6 +51,14 @@ handler.prototype.refresh = function() {
 				$('#dance-link, #dance').addClass('hide');
 			}
 
+			if (!self.talent.bam_talent_music.length) {
+				$('#musician').addClass('hide');
+			}
+
+			if (!self.talent.bam_talent_dance.length) {
+				$('#dance').addClass('hide');
+			}
+
 			self.core.service.databind('#talent-resume-info', self.talent);
 			self.core.service.databind('#talent-primary-photo', self.talent);
 			self.core.service.databind('#talent-resume-div', self.talent);
