@@ -27,7 +27,7 @@
 			</div>
 			<div class="row-fluid clearfix">
 	             <div class="col-xs-12">
-		                <div id="no-talent-result" class="padding-normal text-align-center hide padding-top-normal-zz-xs">
+		                <div id="no-talent-result" class="padding-normal text-align-center padding-top-normal-zz-xs hidden">
 		                    <i class="fa fa-exclamation-triangle fa-5x text-danger"></i>
 		                     	<div class="padding-zero">
 			                      <span class="margin-zero text-danger"><h4>There's no found talents!</h4></span>

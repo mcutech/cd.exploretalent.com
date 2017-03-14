@@ -96,6 +96,7 @@ handler.prototype.findMatches = function(append) {
 	}
 
 	$('#search-loader').show();
+	$('#no-likeitlist-found').addClass('hide');
 
 	if (!append) {
 		$('#role-matches-result').hide();
