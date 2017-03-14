@@ -57,6 +57,11 @@ handler.prototype.refresh = function(append){
 		$('#search-loader').hide();
 		if (!append) {
 			$('#talent-search-result').show();
+			 if (talents.total == 0) {
+			 		$('#talent-search-result').hide();
+			 		$('#no-favorite-talent').removeClass('hide');
+			 		$('#no-favorite-talent').show();
+			 }
 		}
 	});
 };
