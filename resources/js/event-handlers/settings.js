@@ -86,7 +86,7 @@ handler.prototype.updatePassword = function(e) {
 					setTimeout(function() {
 						$('#settings-modal').modal('hide');
 						$('#update-password-success').addClass('hide');
-				 	}, 1000);
+				 	}, 500);
 				},function(err){
 				//there's an error when trying to update password
 				});
