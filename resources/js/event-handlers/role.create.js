@@ -158,19 +158,16 @@ handler.prototype.saveNewRole = function(e) {
 		        data["hair_any"] = 1;
 			}
 
+
 			return self.core.resource.job.post(data)
 			.then(function(res) {
+				var role = res;
 				$('.role-saved-success').fadeIn();
-
 				if(buttonId == 'save-role-btn') { // link to project overview page
 					self.core.resource.project.patch({projectId : self.projectId, status : 0})
 						.then(function(res) {
-							setTimeout(function(){
-								console.log('save-role-btn');
-								window.location = '/projects/' + self.projectId + "/roles/" + res.casting_id + "/find-talents";
-							}, 3000);
+							window.location = '/projects/' + self.projectId + "/roles/" + role.role_id + "/find-talents";
 						});
-
 				}
 
 				else { // 'save-and-add-role-btn' just reloads page
