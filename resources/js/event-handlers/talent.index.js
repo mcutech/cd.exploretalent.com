@@ -31,6 +31,7 @@ handler.prototype.refresh = function(append) {
 
 	if (!append) {
 		$('#talent-search-result').hide();
+		$('#no-talent-result').addClass('hidden');
 		self.preloadTalents = null;
 	}
 
@@ -38,17 +39,16 @@ handler.prototype.refresh = function(append) {
 		try {
 			self.core.service.databind('#talent-search-result', talents, append);
 		}
-		catch(e) { }
+		catch(e) {}
 
 		self.refreshing = false;
 
 		$('#talent-search-loader').hide();
 		if (!append) {
 			$('#talent-search-result').show();
-				if(talents.total == 0) {
-					$('#no-talent-result').removeClass('hide');
-					$('#no-talent-result').show();
-				}
+			if(talents.total === 0) {
+				$('#no-talent-result').removeClass('hidden');
+			} 
 		}
 	});
 }
@@ -100,6 +100,7 @@ handler.prototype.searchTalents = function(nextPage) {
 	}
 
 	promise.then(function(talents) {
+		console.log(talents);
 		if (!talents.data) {
 			talents.schedule = {};
 			talents.favorite = null;
