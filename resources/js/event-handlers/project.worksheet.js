@@ -15,7 +15,6 @@ handler.prototype.refreshProjects = function() {
 	.then(function(projects) {
 		self.project = projects;
 		self.core.service.databind('#projects-list', projects);
-
 		if (parseInt(self.projectId))
 			$('#projects-list').val(self.projectId).select2();
 		self.getRoles();
@@ -63,6 +62,7 @@ handler.prototype.refreshList = function() {
 		return self.core.resource.campaign.get(data2);
 	})
 	.then(function(res) {
+		console.log(res);
 		self.campaigns = res;
 		var promises = [];
 
@@ -84,6 +84,7 @@ handler.prototype.refreshList = function() {
 		$('#no-casting-div').addClass('hide');
 
 		if(self.campaigns.total == 0){
+			$('.no-worksheet').addClass('hide');
 			$('#no-casting-div').removeClass('hide');
 		}
 

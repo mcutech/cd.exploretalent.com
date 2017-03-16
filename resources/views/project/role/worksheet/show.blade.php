@@ -52,7 +52,7 @@
 									<div class="talent-button-functions margin-top-small">
 										<div class="col-md-12 padding-zero margin-bottom-small">
 											<!-- <a class="btn btn-default btn-sm btn-outline btn-block border-radius-zero" data-toggle="modal" data-bind="<%= invitee.bam_talentnum %>" data-bind-target="data-id" id="talent-resume" data-target="#talent-resume-modal"> -->
-											<a onclick="window.open(this.href, 'mywin', 'left=0,top=0,width=769,height=650,toolbar=1,resizable=0'); return false;" data-bind="/talents/<%= invitee.bam_talentnum %>?casting_id=0&role_id=0" class="btn btn-default btn-sm btn-outline btn-block border-radius-zero">
+											<a onclick="window.open(this.href, 'mywin', 'left=0,top=0,width=769,height=650,toolbar=1,resizable=0'); return false;" data-bind="/talents/<%= invitee.bam_talentnum %>?casting_id=<%= bam_role.casting_id %>&role_id=<%= bam_role_id %>" class="btn btn-default btn-sm btn-outline btn-block border-radius-zero">
 												<i class="fa fa-file-text-o"></i> Resume
 											</a>
 										</div>
