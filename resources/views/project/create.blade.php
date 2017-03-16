@@ -504,7 +504,7 @@
 					<div class="row-fluid">
 						<div class="col-md-9">
 							<div class="pull-right">
-								<a href="#" id="create-project-btn" class="btn btn-success btn-lg">Save</a>
+								<a href="#" id="create-project-btn" class="btn btn-success btn-lg">Save and Add Roles</a>
 							</div>
 						</div>
 					</div>
