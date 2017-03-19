@@ -23,7 +23,7 @@
 								<div class="col-md-12">
 								  <div class="form-group">
 									<label for="exampleInputEmail1">Casting Name:</label>
-									<input name="name" class="form-control" placeholder="">
+									<input name="name" maxlength="50" class="form-control" placeholder="">
 								  </div>
 								</div>
 								<div class="col-md-12">
