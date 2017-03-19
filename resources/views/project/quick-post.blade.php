@@ -23,7 +23,7 @@
 								<div class="col-md-12">
 								  <div class="form-group" id="name-error">
 									<label for="exampleInputEmail1">Casting Name:</label>
-									<input name="name" class="form-control" placeholder="" required>
+									<input name="name" class="form-control" maxlength="50"  placeholder="" required>
 								  </div>
 								</div>
 								<div class="col-md-12">
