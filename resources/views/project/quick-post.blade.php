@@ -21,7 +21,7 @@
 						<div class="row-fluid">
 							<form id="booking-form">
 								<div class="col-md-12">
-								  <div class="form-group">
+								  <div class="form-group" id="name-error">
 									<label for="exampleInputEmail1">Casting Name:</label>
 									<input name="name" maxlength="50" class="form-control" placeholder="">
 								  </div>
@@ -29,13 +29,13 @@
 								<div class="col-md-12">
 									<label for="">Casting Details:</label>
 								</div>
-								<div class="col-md-12 margin-bottom-small">
-									<textarea name="body" class="form-control" rows="5" style="resize:vertical;"></textarea>
+								<div class="col-md-12 margin-bottom-small" id="body-error">
+									<textarea name="body" class="form-control" rows="5" style="resize:vertical;" required></textarea>
+								</div>
+								<div class="col-md-12">
+									<button id="btn-send-to-booking" type="submit" class="btn btn-success pull-right">Send to booking department</button>
 								</div>
 							</form>
-							<div class="col-md-12">
-								<button id="btn-send-to-booking" type="button" class="btn btn-success pull-right">Send to booking department</button>
-							</div>
 
 							<div id="success-div" class="col-md-12 hide">
 								<p class="text-success text-right">Quick Post has been successfully submitted.</p>
@@ -49,4 +49,3 @@
 		</div>
 	</div>
 @stop
-
