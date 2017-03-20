@@ -77,6 +77,7 @@ handler.prototype.findMatches = function(append) {
 	append = append === true;
 
 	if (append && self.done) {
+		$('#search-loader').addClass('hide');
 		return;
 	}
 
@@ -97,6 +98,9 @@ handler.prototype.findMatches = function(append) {
 
 	self.core.resource.talent.search(data, options)
 		.then(function(talents) {
+			if (talents.data.length == 0) {
+				$('#search-loader').addClass('hide');
+			}
 			self.done = (talents.total < talents.per_page);
 			var results;
 
