@@ -37,6 +37,17 @@
 						</div>
 					</div>
 				</div>
+				<div id="no-result-found" class="alert-info padding-medium hide">
+						You currently have no talents to manage in your worksheet. Invite them from your
+						<a href="#" data-bind="<%= '/projects/' + bam_role.bam_casting.casting_id + '/roles/' + bam_role.role_id + '/like-it-list' %>"><u>like it list</u></a> now!
+						Talents in your like it list are the ones you wish to invite to auditions.
+						Please add them from the
+
+						<a href="#" data-bind="<%= '/projects/' + bam_role.bam_casting.casting_id + '/roles/' + bam_role.role_id + '/find-talents' %>"><u>Role Matches</u></a>
+						or
+						<a href="#" data-bind="<%= '/projects/' + bam_role.bam_casting.casting_id + '/roles/' + bam_role.role_id + '/submissions' %>"><u>Submissions Page</u></a>
+				</div>
+
 				<div id="schedules">
 					<div class="panel schedule margin-bottom-small" data-bind-template="#schedules" data-bind-value="data" data-bind="<%= id %>" data-bind-target="data-id">
 						<div class="panel-body">
