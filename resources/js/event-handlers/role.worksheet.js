@@ -32,7 +32,7 @@ handler.prototype.refresh = function() { self.core.service.databind('#schedules'
 	}
 
 	promise.then(function() {
-			if (self.campaign)
+		if (self.campaign)
 				return self.getSchedules();
 			else
 				return $.when();
@@ -50,14 +50,21 @@ handler.prototype.refresh = function() { self.core.service.databind('#schedules'
 					});
 				});
 
+				if(res.total==0){
+					$('#no-result-found').removeClass('hide');
+					self.core.service.databind('#no-result-found', self.campaign);
+				}
+
 				self.core.service.databind('#campaign-details', self.campaign);
 				self.core.service.databind('#schedules', res);
 				self.core.service.paginate('#worksheet-pagination', { total : res.total, class : 'pagination', name : 'page', per_page: res.per_page });
 				self.core.service.paginate('#worksheet-pagination2', { total : res.total, class : 'pagination', name : 'page', per_page: res.per_page });
 			}
 			else {
+
+
 				self.core.service.databind('#schedules', { data : [] });
-				alert('Worksheet not available. Create an invite first.');
+				// alert('Worksheet not available. Create an invite first.');
 			}
 		});
 }
