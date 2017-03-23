@@ -31,7 +31,23 @@ module.exports = function(core, user, projectId, roleId) {
 
 		$(this).toggleClass('checked');
 		handler.countCheckedTalents();
-		$('#remove-all-checked-talents-btn').removeAttr('disabled');
+
+		$('#remove-all-checked-talents-btn-disabled').removeAttr('disabled');
+
+
+		var checked_talents = [];
+		var checked = $('.like-it-list-checkbox.checked');
+
+		$.each(checked, function(index, value) {
+			checked_talents.push(value);
+		});
+
+		var length = checked_talents.length;
+		if (length == 0) {
+			$('#remove-all-checked-talents-btn-disabled').prop('disabled', true);
+			$('#mark-all-talents-as-checked-btn').removeClass('hide');
+			$('#mark-all-talents-as-unchecked-btn').addClass('hide');
+		}
 
 	});
 
@@ -49,6 +65,28 @@ module.exports = function(core, user, projectId, roleId) {
 			}
 		});
 
+		$('#mark-all-talents-as-checked-btn').addClass('hide');
+		$('#mark-all-talents-as-unchecked-btn').removeClass('hide');
+	});
+
+	$(document).on('click', '#mark-all-talents-as-unchecked-btn', function() {
+
+
+		var checkbox = $('.like-it-list-checkbox');
+
+		$.each(checkbox, function(index, value) {
+			// check if already checked
+			if($(this).hasClass('checked')) {
+				// check if not 1st element (dummy data-bind element has no id attribute)
+				if($(this).attr('id')) {
+					$(this).click();
+				}
+			}
+		});
+
+		$('#remove-all-checked-talents-btn-disabled').prop('disabled', true);
+		$('#mark-all-talents-as-checked-btn').removeClass('hide');
+		$('#mark-all-talents-as-unchecked-btn').addClass('hide');
 	});
 
 	$(document).on('click', '#remove-all-checked-talents-btn', handler.removeAllChecked);
