@@ -9,6 +9,7 @@ function handler(core, user, projectId, roleId) {
 	self.roleId = roleId;
 	self.page = 1;
 	self.first_load = true;
+	self.likeitlistTotal;
 
 	self.getProjectInfo();
 }
@@ -108,6 +109,7 @@ handler.prototype.findMatches = function(append) {
 
 	self.core.resource.schedule.get(data)
 		.then(function(res) {
+			self.likeitlistTotal = res.total;
 			self.done = (res.total < res.per_page);
 
 			var talentnums = _.map(res.data, function(r) {
@@ -309,6 +311,11 @@ handler.prototype.countCheckedTalents = function() {
 	});
 
 	var length = checked_talents.length;
+
+	if(checked.length == self.likeitlistTotal){
+		$('#mark-all-talents-as-checked-btn').addClass('hide');
+		$('#mark-all-talents-as-unchecked-btn').removeClass('hide');
+	}
 
 	$('#checked-talents-counter').text(length);
 
