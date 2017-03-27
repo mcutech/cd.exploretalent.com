@@ -19,7 +19,8 @@
 						</div>
 						<div class="col-md-6">
 							<button id="mark-all-talents-as-checked-btn" class="btn btn-default">Check All</button>
-							<button id="remove-all-checked-talents-btn" class="btn btn-danger" disabled>Remove All Checked</button>
+							<button id="mark-all-talents-as-unchecked-btn" class="btn btn-default hide">Uncheck All</button>
+							<button id="remove-all-checked-talents-btn-disabled" class="btn btn-danger" disabled>Remove All Checked</button>
 						</div>
 						{{-- <div class="col-md-4 font-size-normal-medium margin-top-small">
 							You have <span id="checked-talents-counter" class="text-bold">0</span> talents checked.
