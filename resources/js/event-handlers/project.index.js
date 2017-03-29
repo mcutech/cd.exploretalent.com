@@ -9,6 +9,8 @@ function handler(core, user){
 
 handler.prototype.refreshList = function(){
 
+	var searchflag =0;
+
 	var qs = self.core.service.query_string();
 
 	var data = {
@@ -68,7 +70,14 @@ handler.prototype.refreshList = function(){
 		btnExpiredCastings.attr('href', 'projects?expired=true');
 	}
 
-	console.log(data);
+	if(searchterm || status != ""){
+		searchflag = 1;
+	}
+
+
+
+	console.log(searchflag);
+
 	self.core.resource.project.get(data)
 		.then(function(res){
 
@@ -110,11 +119,18 @@ handler.prototype.refreshList = function(){
 						if (res.total) {
 							$('#btn-show-expired-castings').removeClass('hide');
 						}
-					});
-
-				//per issue-472 don't show any result
+				});
 				self.core.service.databind('#projects-list', res);
+
+
 				$('#no-projects-found').removeClass('hide');
+
+				if(searchflag==1){
+					$(".no-projects-text").text("The Project Does Not Exist");
+				}else{
+
+					$(".no-projects-text").text("You Have No Active Projects");
+				}
 			}
 			else {
 				$('#no-projects-found').addClass('hide');
