@@ -53,7 +53,7 @@
         <div class="row-fluid clearfix">
             <div class="col-xs-12">
                 <div id="no-projects-found" class="panel padding-normal text-align-center hide padding-top-normal-zz-xs">
-                    <h4 class="margin-top-zero text-danger">You have no active projects.</h4>
+					<h4 class="margin-top-zero text-danger"><span class="no-projects-text"> You have no active projects.</span> </h4>
                     <a href="/projects/create" class="btn btn-default project-btns create-btn"><i class="fa fa-plus"></i> Create a Free Casting Now!</a>
                 </div>
             </div>
