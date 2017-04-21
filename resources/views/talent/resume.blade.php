@@ -155,9 +155,20 @@
 								<h5 class="margin-zero text-bold text-primary">About</h5>
 							</div>
 							<div class="col-sm-12">
-								<p data-bind="<%= bam_talentinfo2.special_skills%>" class="margin-top-zero"></p>
+								<p data-bind="<%= bam_talentinfo2.special_skills %>" class="margin-top-zero"></p>
 							</div>
 						</div>
+                        <div data-bind="<%= (video_id) ? '1' : '' %>" data-bind-target="visibility">
+                            <div class="col-sm-12 margin-top-small">
+                                <h5 class="margin-zero text-bold text-primary">Greeting Video</h5>
+                            </div>
+                            <div class="col-sm-12">
+                                <p data-bind="<%= video_path %>" class="margin-top-zero"></p>
+                                {{-- <video width="480" height="300" controls>
+                                    <source src="https://www.youtube.com/watch?v=gKXP8Lcmp5M" type="video/mp4">
+                                </video> --}}
+                            </div>
+                        </div>
 						<div data-bind="<%= (bam_talentinfo2.experience ) ? '1' : '' %>" data-bind-target="visibility">
 							<div class="col-sm-12 margin-top-small">
 								<h5 class="margin-zero text-bold text-primary">Short Resume</h5>
