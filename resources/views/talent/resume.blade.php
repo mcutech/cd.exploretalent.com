@@ -1,5 +1,6 @@
 @extends('layouts.master')
 @section('master.body')
+
 <div class="talent-resume-wrapper hide">
 
 	<!-- project/role and actions -->
@@ -161,16 +162,19 @@
                         <div data-bind="<%= (video_id) ? '1' : '' %>" data-bind-target="visibility">
                             <div class="col-sm-12 margin-top-small">
                                 <h5 class="margin-zero text-bold text-primary">Greeting Video</h5>
-                            </div>
-                            <div class="col-sm-12">
-                                <p data-bind="<%= video_path %>" class="margin-top-zero"></p>
-                                {{-- <video width="480" height="300" controls>
-                                    <source src="https://www.youtube.com/watch?v=gKXP8Lcmp5M" type="video/mp4">
-                                </video> --}}
+                                <div id="jplayer-greeting-video" class="jp-jplayer margin-zero-auto margin-top-normal"></div>
+                                <div class="margin-top-small" style="text-align: center;">
+                                    <button id="jplayer-play" class="btn btn-sm btn-default">play</button><button id="jplayer-pause"  class="btn btn-sm btn-default">pause</button>
+                                    <button id="jplayer-stop" class="btn btn-sm btn-default">stop</button>
+                                    <button id="jplayer-mute" class="btn btn-sm btn-default">mute</button><button id="jplayer-unmute" class="btn btn-sm btn-default">unmute</button>
+                                    <button id="jplayer-fullscreen" class="btn btn-sm btn-default"><i class="fa fa-desktop"></i></button>
+                                    <strong><span id="jplayer-title"></span></strong>
+                                    <span id="jplayer-currentTime"></span> / <span id="jplayer-duration"></span>
+                                </div>
                             </div>
                         </div>
 						<div data-bind="<%= (bam_talentinfo2.experience ) ? '1' : '' %>" data-bind-target="visibility">
-							<div class="col-sm-12 margin-top-small">
+							<div class="col-sm-12 margin-top-normal">
 								<h5 class="margin-zero text-bold text-primary">Short Resume</h5>
 							</div>
 							<div class="col-sm-12">
