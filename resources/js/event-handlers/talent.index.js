@@ -39,7 +39,9 @@ handler.prototype.refresh = function(append) {
 		try {
 			self.core.service.databind('#talent-search-result', talents, append);
 		}
-		catch(e) {}
+		catch(e) {
+            console.log(e);
+        }
 
 		self.refreshing = false;
 
@@ -48,7 +50,7 @@ handler.prototype.refresh = function(append) {
 			$('#talent-search-result').show();
 			if(talents.total === 0) {
 				$('#no-talent-result').removeClass('hidden');
-			} 
+			}
 		}
 	});
 }
@@ -57,19 +59,20 @@ handler.prototype.getTalents = function() {
 	var deferred = $.Deferred();
 
 	if (self.preloadTalents) {
-    var ret = self.preloadTalents;
-    self.preloadTalents = null;
+        var ret = self.preloadTalents;
+        self.searchTalents(true).then(function(res) {
+            self.preloadTalents = res;
+        });
 		deferred.resolve(ret);
 	}
 	else {
 		self.searchTalents().then(function(res) {
+            self.searchTalents(true).then(function(res) {
+                self.preloadTalents = res;
+            });
 			deferred.resolve(res);
 		});
 	}
-
-	self.searchTalents(true).then(function(res) {
-		self.preloadTalents = res;
-	});
 
 	return deferred.promise();
 }
@@ -100,13 +103,21 @@ handler.prototype.searchTalents = function(nextPage) {
 	}
 
 	promise.then(function(talents) {
-		console.log(talents);
 		if (!talents.data) {
-			talents.schedule = {};
-			talents.favorite = null;
-			talents.data = [ talents ];
-			talents.total = 1;
-			talents.per_page = 25;
+            talents.schedule = {};
+            talents.favorite = null;
+
+            talents = _.assign(talents, talents.bam_talentinfo1);
+
+            var ret = {
+                data: [
+                    talents
+                ],
+                total: 1,
+                per_page: 25
+            };
+
+            talents = ret;
 		}
 
 		_.each(talents.data, function(talent) {
