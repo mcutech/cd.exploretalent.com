@@ -123,16 +123,45 @@ handler.prototype.getTalentVideos = function(talent) {
     var data = {
         query : [
             [ 'where', 'talentnum', '=', talent.talentnum ],
-            [ 'where', 'type', '=', '6' ]
+            [ 'where', 'type', '=', '6' ] // greeting video
         ]
     };
 
     self.core.resource.talent_videos.get(data)
         .then(function(video){
-            console.log(video);
+
             talent.video_id = (video.data.length > 0) ? video.data[0].video_id : '';
-            talent.video_title = (video.data.length > 0) ? video.data[0].video_title : '';
+            talent.video_title = (video.data.length > 0) ? video.data[0].title : '';
             talent.video_path = (video.data.length > 0) ? video.data[0].video_path : '';
+
+            $('#jplayer-greeting-video').jPlayer({
+                ready: function () {
+                    $(this).jPlayer("setMedia", {
+                        title: video.data[0].title,
+                        flv: video.data[0].video_path,
+                        poster: video.data[0].image_path
+                    });
+                },
+                swfPath: "/",
+                supplied: "flv",
+                cssSelectorAncestor: "",
+                cssSelector: {
+                  title: "#jplayer-title",
+                  play: "#jplayer-play",
+                  pause: "#jplayer-pause",
+                  stop: "#jplayer-stop",
+                  mute: "#jplayer-mute",
+                  unmute: "#jplayer-unmute",
+                  fullScreen: "#jplayer-fullscreen",
+                  currentTime: "#jplayer-currentTime",
+                  duration: "#jplayer-duration"
+                },
+                size: {
+                    width: "320px",
+                    height: "180px"
+                }
+            });
+
             deferred.resolve();
         });
 
