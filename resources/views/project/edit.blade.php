@@ -10,7 +10,7 @@
         <div class="panel">
             <div class="panel-body">
                 <div class="container-fluid">
-                    <div class="row-fluid">
+                    <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="control-label">Project Name <span class="text-success">*</span></label>
@@ -163,10 +163,10 @@
                         </div> {{-- col-md-6 --}}
                     </div> {{-- row-fluid --}}
 
-                    <div class="row-fluid">
+                    <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <div class="form-group">
+                                <div class="form-group margin-bottom-medium">
                                     <label class="control-label">Submission Type<span class="text-success">*</span></label>
                                     <label class="radio checkbox-inline">
                                         <input type="radio" name="radioSubmissionType" id="self-submission-option" value="1" class="px">
@@ -177,21 +177,17 @@
                                         <span class="lbl">Open Call</span>
                                     </label>
                                 </div>
-                                <strong><p class="control-label" id="project-type-title" data-bind="<%= (snr == '2') ? 'Open Call Details' : 'Self Submission Details' %>"></p></strong>
+                                <div class=""><strong><span class="control-label" id="project-type-title" data-bind="<%= (snr == '2') ? 'Open Call Details:' : 'Self Submission Details:' %>"></span></strong></div>
                                 <div class="panel display-none" id="self-submissions-option-content">
                                     <div class="panel-body">
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label class="control-label">Please enter email address for talent submissions</label>
-                                                <input type="text" id="self-sub-email" class="form-control" placeholder="Enter Email Address" data-bind="<%= (snr_email) ? snr_email : '' %>">
-                                            </div>
+                                        <div class="form-group">
+                                            <label class="control-label"><i class="fa fa-envelope"></i> Please enter email address for talent submissions</label>
+                                            <input type="text" id="self-sub-email" class="form-control" placeholder="Enter Email Address" data-bind="<%= (snr_email) ? snr_email : '' %>">
                                         </div>
-                                        <div class="col-md-8">
-                                            <div class="form-group">
-                                                <label class="control-label">and / or postal address</label>
-                                                <textarea id="self-sub-address" class="form-control" rows="5" placeholder="Address" style="resize: none;" data-bind="<%= (srn_address) ? srn_address : '' %>"></textarea>
-                                                <div class="alert alert-page alert-danger self-sub-error-required" style="display:none;">This field is required.</div>
-                                            </div>
+                                        <div class="form-group">
+                                            <label class="control-label">and / or postal address</label>
+                                            <textarea id="self-sub-address" class="form-control" rows="5" placeholder="Address" style="resize: none;" data-bind="<%= (srn_address) ? srn_address : '' %>"></textarea>
+                                            <div class="alert alert-page alert-danger self-sub-error-required" style="display:none;">This field is required.</div>
                                         </div>
                                     </div>
                                 </div> {{-- self-submission-option-content --}}
@@ -223,7 +219,7 @@
                         </div>
                     </div> {{-- row-fluid --}}
 
-                    <div class="row-fluid">
+                    <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label class="control-label">General Audition Info / Storyline / Synopsis / Logline <span class="text-success">*</span></label>
@@ -234,7 +230,7 @@
                     </div>
 
                     {{-- upload image for casting --}}
-                    <div class="row-fluid clearfix">
+                    <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label class="control-label">Upload Casting Image<span class="text-success">*</span></label>
@@ -263,7 +259,7 @@
                     </div>
 
 
-                    <div class="row-fluid">
+                    <div class="row">
                             <div class="col-md-6 padding-top-normal">
                                 <div class="form-group margin-bottom-small">
                                     <label class="control-label">What area would you like to accept talents from? <span class="text-success">*</span></label>
@@ -291,7 +287,7 @@
                                 </div>
                             </div>
                             <div class="col-md-12 input-group margin-top-small hide-if-nationwide">
-                                <label for="manual-markets-div">
+                                <label for="manual-markets-div" class="padding-left-normal">
                                     or <a href="" id="toggle-manual-markets-div" style="text-decoration: underline;">Manually select markets</a>
                                     <a class="btn btn-default btn-sm hide" href="" id="toggle-all-markets-checked" style="display: none;">Select All Markets</a>
                                 </label>
@@ -523,7 +519,7 @@
                         </div>
                     </div>
 
-                    <div class="row-fluid">
+                    <div class="row">
                         <div class="col-md-12">
                             <div class="pull-right">
                                 <a href="#" id="update-project-btn" class="btn btn-success btn-lg">Update</a>
