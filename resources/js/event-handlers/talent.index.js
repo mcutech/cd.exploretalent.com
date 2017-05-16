@@ -6,7 +6,7 @@ function handler(core, user){
 	self.core = core;
 	self.user = user;
 	self.refresh();
-	
+
 }
 
 handler.prototype.refresh = function(append) {
@@ -31,21 +31,26 @@ handler.prototype.refresh = function(append) {
 
 	if (!append) {
 		$('#talent-search-result').hide();
+		$('#no-talent-result').addClass('hidden');
 		self.preloadTalents = null;
 	}
 
 	self.getTalents().then(function(talents) {
-		console.log(talents);
 		try {
 			self.core.service.databind('#talent-search-result', talents, append);
 		}
-		catch(e) { }
+		catch(e) {
+            console.log(e);
+        }
 
 		self.refreshing = false;
 
 		$('#talent-search-loader').hide();
 		if (!append) {
 			$('#talent-search-result').show();
+			if(talents.total === 0) {
+				$('#no-talent-result').removeClass('hidden');
+			}
 		}
 	});
 }
@@ -54,18 +59,20 @@ handler.prototype.getTalents = function() {
 	var deferred = $.Deferred();
 
 	if (self.preloadTalents) {
-		deferred.resolve(self.preloadTalents);
+        var ret = self.preloadTalents;
+        self.searchTalents(true).then(function(res) {
+            self.preloadTalents = res;
+        });
+		deferred.resolve(ret);
 	}
 	else {
 		self.searchTalents().then(function(res) {
-			console.log(res);
+            self.searchTalents(true).then(function(res) {
+                self.preloadTalents = res;
+            });
 			deferred.resolve(res);
 		});
 	}
-
-	self.searchTalents(true).then(function(res) {
-		self.preloadTalents = res;
-	});
 
 	return deferred.promise();
 }
@@ -97,11 +104,20 @@ handler.prototype.searchTalents = function(nextPage) {
 
 	promise.then(function(talents) {
 		if (!talents.data) {
-			talents.schedule = {};
-			talents.favorite = null;
-			talents.data = [ talents ];
-			talents.total = 1;
-			talents.per_page = 25;
+            talents.schedule = {};
+            talents.favorite = null;
+
+            talents = _.assign(talents, talents.bam_talentinfo1);
+
+            var ret = {
+                data: [
+                    talents
+                ],
+                total: 1,
+                per_page: 25
+            };
+
+            talents = ret;
 		}
 
 		_.each(talents.data, function(talent) {
@@ -261,7 +277,7 @@ handler.prototype.getFilters = function() {
 					[ 'orWhere', 'union_aftra', '=', 'Yes' ],
 					[ 'orWhere', 'union_other', '=', 'Yes' ],
 					[ 'orWhere', 'union_sag', '=', 'Yes' ],
-				] 
+				]
 			]);
 		}
 		else {
@@ -270,7 +286,7 @@ handler.prototype.getFilters = function() {
 					[ 'orWhere', 'union_aftra', '=', 'No' ],
 					[ 'orWhere', 'union_other', '=', 'No' ],
 					[ 'orWhere', 'union_sag', '=', 'No' ],
-				] 
+				]
 			]);
 		}
 	}

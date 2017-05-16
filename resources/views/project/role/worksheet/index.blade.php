@@ -7,7 +7,7 @@
 @section('sidebar.body')
 <div class="audition-worksheet-list-wrapper">
 	<div class="row clearfix form-horizontal margin-bottom-normal">
-		<div class="col-md-6">
+		<div class="col-md-6 no-worksheet">
 			<div class="form-group margin-zero">
 				<label class="control-label col-md-4 padding-right-zero">Project Name:</label>
 				<div class="col-md-8">
@@ -35,11 +35,10 @@
 
 <div id="no-casting-div" class="col-md-12 padding-right-zero padding-left-zero hide">
 	<div class="alert alert-success">
-		You have no worksheets available.
-		<strong><a data-bind="<%= current_role_id ? '/projects/'+ current_project_id + '/roles/'+ current_role_id +'/like-it-list' : (current_project_id ? '/projects/' + current_project_id : '/projects')  %>" class="text-success">Click here to go to your like it list and send an Audition Invite.</a></strong> If you have recently sent an Audition invite please wait for your invitation to be reviewed and sent, thank you.
+		You have no projects to manage, please invite talents to your castings.
+		<strong><a data-bind="<%= current_role_id ? '/projects/'+ current_project_id + '/roles/'+ current_role_id +'/like-it-list' : (current_project_id ? '/projects/' + current_project_id : '/projects')  %>" class="text-success">Go back to Projects.</a></strong>
 	</div>
 </div>
-
 <div class="audition-worksheet-list-wrapper row-fluid">
 {{--	<div class="panel">
 		<div class="panel-body padding-zero-zz-xs">
@@ -75,7 +74,7 @@
 			</table> 
 		</div> 
 		</div> --}}
-		<div class="display-none-zz-xs panel padding-xs-vr padding-xs-hr margin-bottom-zero text-left border-bottom-width-zero row-fluid clearfix">
+		<div class="display-none-zz-xs panel padding-xs-vr padding-xs-hr margin-bottom-zero text-left border-bottom-width-zero row-fluid clearfix no-worksheet">
 			<div class="col-sm-3"><b>Casting</b></div>
 			<div class="col-sm-2"><b>Status</b></div>
 			<div class="col-sm-2"><b>Num Talents</b></div>
@@ -86,7 +85,7 @@
 			<h4>Castings</h4>
 		</div>
 
-		<div class="panel default-table-responsive">
+		<div class="panel default-table-responsive no-worksheet">
 			<div class="panel-group panel-group-primary table-body">
 				<div id="campaigns-list" class="">
 					<div class="row">

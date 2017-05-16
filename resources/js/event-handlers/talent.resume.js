@@ -36,18 +36,27 @@ handler.prototype.refresh = function() {
 		.then(function(res) {
 
 			self.talent.favorite = _.first(res.data);
+			console.log(self.talent.bam_talent_music);
 			self.getRoleInfo();
 
 			if(!self.talent.heightText() && !self.talent.bam_talentinfo2.ethnicity && !self.talent.bam_talentinfo1.weightpounds && !self.talent.bam_talentinfo1.haircolor && !self.talent.bam_talentinfo1.build && !self.talent.bam_talentinfo1.eyecolor && !self.talent.bam_talentinfo2.special_skills){
 				$('#acting-modeling-link, #acting-modeling').addClass('hide');
 			}
 
-			if(!self.talent.bam_talent_music[0].music_role && !self.talent.bam_talent_music[0].number_of_gigs && !self.talent.bam_talent_music[0].genre && !self.talent. bam_talent_music[0].music_instruments && !self.talent.bam_talent_music[0].des_1 && !self.talent.bam_talent_music[0].searching_gig_des && !self.talent.bam_talent_music[0].major_influence){
+			if(!self.talent.bam_talent_music && !self.talent.bam_talent_music[0].music_role && !self.talent.bam_talent_music[0].number_of_gigs && !self.talent.bam_talent_music[0].genre && !self.talent. bam_talent_music[0].music_instruments && !self.talent.bam_talent_music[0].des_1 && !self.talent.bam_talent_music[0].searching_gig_des && !self.talent.bam_talent_music[0].major_influence){
 				$('#musician-link, #musician').addClass('hide');
 			}
 
-			if(!self.talent.bam_talent_dance[0].dance_style_1 && !self.talent.bam_talent_dance[0].num_of_perfom && !self.talent.bam_talent_dance[0].years_experience && !self.talent.bam_talent_dance[0].dancer_background && !self.talent.bam_talent_dance[0].influences && !self.talent.bam_talent_dance[0].searching_gig_des){
+			if(!self.talent.bam_talent_dance && !self.talent.bam_talent_dance[0].dance_style_1 && !self.talent.bam_talent_dance[0].num_of_perfom && !self.talent.bam_talent_dance[0].years_experience && !self.talent.bam_talent_dance[0].dancer_background && !self.talent.bam_talent_dance[0].influences && !self.talent.bam_talent_dance[0].searching_gig_des){
 				$('#dance-link, #dance').addClass('hide');
+			}
+
+			if (!self.talent.bam_talent_music.length) {
+				$('#musician').addClass('hide');
+			}
+
+			if (!self.talent.bam_talent_dance.length) {
+				$('#dance').addClass('hide');
 			}
 
 			self.core.service.databind('#talent-resume-info', self.talent);

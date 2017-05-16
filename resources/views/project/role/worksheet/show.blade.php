@@ -37,6 +37,17 @@
 						</div>
 					</div>
 				</div>
+				<div id="no-result-found" class="alert-info padding-medium hide">
+						You currently have no talents to manage in your worksheet. Invite them from your
+						<a href="#" data-bind="<%= '/projects/' + bam_role.bam_casting.casting_id + '/roles/' + bam_role.role_id + '/like-it-list' %>"><u>like it list</u></a> now!
+						Talents in your like it list are the ones you wish to invite to auditions.
+						Please add them from the
+
+						<a href="#" data-bind="<%= '/projects/' + bam_role.bam_casting.casting_id + '/roles/' + bam_role.role_id + '/find-talents' %>"><u>Role Matches</u></a>
+						or
+						<a href="#" data-bind="<%= '/projects/' + bam_role.bam_casting.casting_id + '/roles/' + bam_role.role_id + '/submissions' %>"><u>Submissions Page</u></a>
+				</div>
+
 				<div id="schedules">
 					<div class="panel schedule margin-bottom-small" data-bind-template="#schedules" data-bind-value="data" data-bind="<%= id %>" data-bind-target="data-id">
 						<div class="panel-body">
@@ -52,7 +63,7 @@
 									<div class="talent-button-functions margin-top-small">
 										<div class="col-md-12 padding-zero margin-bottom-small">
 											<!-- <a class="btn btn-default btn-sm btn-outline btn-block border-radius-zero" data-toggle="modal" data-bind="<%= invitee.bam_talentnum %>" data-bind-target="data-id" id="talent-resume" data-target="#talent-resume-modal"> -->
-											<a onclick="window.open(this.href, 'mywin', 'left=0,top=0,width=769,height=650,toolbar=1,resizable=0'); return false;" data-bind="/talents/<%= invitee.bam_talentnum %>?casting_id=0&role_id=0" class="btn btn-default btn-sm btn-outline btn-block border-radius-zero">
+											<a onclick="window.open(this.href, 'mywin', 'left=0,top=0,width=769,height=650,toolbar=1,resizable=0'); return false;" data-bind="/talents/<%= invitee.bam_talentnum %>?casting_id=<%= bam_role.casting_id %>&role_id=<%= bam_role_id %>" class="btn btn-default btn-sm btn-outline btn-block border-radius-zero">
 												<i class="fa fa-file-text-o"></i> Resume
 											</a>
 										</div>

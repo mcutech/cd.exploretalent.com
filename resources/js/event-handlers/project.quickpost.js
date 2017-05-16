@@ -18,6 +18,18 @@ handler.prototype.refresh = function(){
 handler.prototype.addToBooking = function(){
 	var form = self.core.service.form.serializeObject('#booking-form');
 
+	if(!form.name){
+		$('#name-error').addClass('has-error');
+	}else{
+		$('#name-error').removeClass('has-error');
+	}
+
+	if(form.name && !form.body){
+		$('#body-error').addClass('has-error');
+	}else{
+		$('#body-error').removeClass('has-error');
+	}
+
 	if(form.name && form.body){
 		form.user_id = self.user.id;
 		form.lazy_project_status_id = 1;

@@ -20,6 +20,16 @@
 					<h3>Loading Talents</h3>
 					<h1><i class="fa fa-spinner fa-spin"></i></h1>
 				</div>
+				<div class="row-fluid clearfix">
+	             <div class="col-xs-12">
+		                <div id="no-favorite-talent" class="padding-normal hide text-align-center padding-top-normal-zz-xs">
+		                    <i class="fa fa-exclamation-triangle fa-4x text-danger"></i>
+		                     	<div class="padding-zero">
+			                      <span class="margin-zero text-danger"><h5>You have no favorite talents.</h5></span>
+								</div>
+		                </div>
+		            </div>
+		    	</div>
 			</div>
 		</div>
 
