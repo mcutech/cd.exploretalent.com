@@ -241,6 +241,38 @@
 							</div>
 						</div>
 					</div>
+
+                    {{-- upload image for casting --}}
+                    <div class="row">
+                        <div class="col-md-9">
+                            <div class="form-group">
+                                <label class="control-label">Upload Casting Image<span class="text-success">*</span></label>
+
+                                {{-- add class *uploaded* in casting-upload-image class if image is uploaded to view UI --}}
+                                <div class="casting-upload-image">
+                                    <div class="img-width">
+                                        <div class="img-holder">
+                                            <div class="img-preview-container">
+                                                <img src="http://us.hellomagazine.com/images/stories/1/2016/02/12/000/131/742/featured_5_3.jpg" class="img-responsive">
+                                                <div class="default">
+                                                    <div class="item text-align-center">
+                                                        <div><i class="fa fa-picture-o fa-5x"></i></div>
+                                                        <div>Click here to Upload Casting Image</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="change-image-btn">
+                                            <button class="btn btn-default btn-lg btn-block border-radius-zero">
+                                                <i class="fa fa-times"></i> Remove Casting Image
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
 					<div class="row">
 							<div class="col-md-6 padding-top-normal">
 								<div class="form-group margin-bottom-small">
@@ -269,7 +301,7 @@
 								</div>
 							</div>
 							<div class="col-md-12 input-group margin-top-small hide-if-nationwide">
-								<label for="manual-markets-div">
+								<label for="manual-markets-div" class="padding-left-normal">
 									or <a href="" id="toggle-manual-markets-div" style="text-decoration: underline;">Manually select markets</a>
 									<a class="btn btn-default btn-sm hide" href="" id="toggle-all-markets-checked" style="display: none;">Select All Markets</a>
 								</label>
