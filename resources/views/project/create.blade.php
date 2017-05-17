@@ -198,7 +198,7 @@
 									</div>
 								</div> {{-- self-submission-option-content --}}
 
-								<div class="panel" id="open-call-option-content">
+								<div class="panel hide" id="open-call-option-content">
 									<div class="panel-body padding-normal">
 										<div class="col-md-4">
 											<div class="form-group">
