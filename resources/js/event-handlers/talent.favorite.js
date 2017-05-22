@@ -27,7 +27,7 @@ handler.prototype.refresh = function(append){
 		$('#talent-search-result').hide();
 	}
 
-	self.core.resource.favorite_talent.get()
+	self.core.resource.favorite_talent.get({ page: self.page })
 	.then(function(result){
 		self.done = (result.total < result.per_page);
 
