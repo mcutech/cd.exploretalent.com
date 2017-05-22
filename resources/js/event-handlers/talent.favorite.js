@@ -59,7 +59,13 @@ handler.prototype.refresh = function(append){
         return $.when.apply($, promises);
     })
     .then(function() {
-		self.core.service.databind('#favorite-result', talents, append);
+        try {
+		    self.core.service.databind('#favorite-result', talents, append);
+        }
+        catch(e) {
+            console.log(e);
+        }
+
 		self.refreshing = false;
 
 		$('#search-loader').hide();
