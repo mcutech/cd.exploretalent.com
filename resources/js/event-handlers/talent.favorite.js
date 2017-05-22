@@ -27,7 +27,7 @@ handler.prototype.refresh = function(append){
 		$('#talent-search-result').hide();
 	}
 
-	self.core.resource.favorite_talent.get()
+	self.core.resource.favorite_talent.get({ page: self.page })
 	.then(function(result){
 		self.done = (result.total < result.per_page);
 
@@ -59,7 +59,13 @@ handler.prototype.refresh = function(append){
         return $.when.apply($, promises);
     })
     .then(function() {
-		self.core.service.databind('#favorite-result', talents, append);
+        try {
+		    self.core.service.databind('#favorite-result', talents, append);
+        }
+        catch(e) {
+            console.log(e);
+        }
+
 		self.refreshing = false;
 
 		$('#search-loader').hide();
