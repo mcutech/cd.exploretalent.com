@@ -86,4 +86,53 @@ module.exports = function(core, user) {
 
 	});
 
+	
+	$(document).on('click', '#image-holder', function() {
+
+		$('#file').click();
+
+	});
+
+	function readURL(input) {
+        
+        var reader = new FileReader();
+        
+        reader.onload = function (e) {
+            $('#preview').attr('src', e.target.result);
+            $('#main-casting-image-div').addClass('uploaded');
+        }
+        
+        reader.readAsDataURL(input.files[0]);
+    }
+    
+    $("#file").change(function(){
+
+    	if (this.files && this.files[0]) {
+
+    		// if(this.files[0].size > 528385){
+
+    		// 	alert("Image Size should not be greater than 500Kb");
+    		// 	$("#preview").attr("src","blank");
+    		// 	$('#main-casting-image-div').removeClass('uploaded');
+    		// 	return false;
+    		// }
+    		if(this.files[0].type.indexOf("image")==-1){
+
+    			alert("Invalid Type");
+    			$("#preview").attr("src","blank");
+    			$('#main-casting-image-div').removeClass('uploaded');
+    			return false;
+    		}
+    		// console.log("render");
+        	readURL(this);
+    	}
+    });
+
+
+    $(document).on('click', '#remove-button', function() {
+
+		$('#main-casting-image-div').removeClass('uploaded');
+
+	});
+
 };
