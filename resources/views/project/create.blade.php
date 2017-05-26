@@ -196,7 +196,7 @@
 											<div class="alert alert-page alert-danger self-sub-error-required" style="display:none;">This field is required.</div>
 										</div>
 									</div>
-								</div> {{-- self-submission-option-content --}}
+								</div> {{-- self-submission-option-content  --}}
 
 								<div class="panel hide" id="open-call-option-content">
 									<div class="panel-body padding-normal">
