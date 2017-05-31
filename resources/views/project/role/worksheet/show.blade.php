@@ -85,7 +85,7 @@
 											<div class="padding-small">
 												<div class="text-xs">
 													<span data-bind="<%= submission ? 'Self Submitted on ' : 'Added to Like It List on ' %>"></span>
-													<span data-bind="<%= moment(created_at).utcOffset(-480).format('MM-DD-YY hh:mm A') %>"></span>
+													<span data-bind="<%= moment(created_at).isSame(Date.now(), 'day') &&  moment(created_at).isSame(moment().add(1, 'days'), 'day') ?  moment.calendar : moment(created_at).utcOffset(-480).format('MM-DD-YY [at] hh:mm A') %>"></span>
 												</div>
 												<div>
 													<span data-bind="<%= campaign.description %>" data-bind-target="html"></span>
