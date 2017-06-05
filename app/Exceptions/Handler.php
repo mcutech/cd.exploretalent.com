@@ -24,8 +24,7 @@ class Handler extends ExceptionHandler {
 	 */
 	public function report(Exception $e)
 	{
-		// return parent::report($e);
-        return response()->view('error.index', [], 500);
+		return parent::report($e);
 	}
 
 	/**
@@ -37,7 +36,9 @@ class Handler extends ExceptionHandler {
 	 */
 	public function render($request, Exception $e)
 	{
-		return parent::render($request, $e);
+        return redirect('error');
+        // return response()->view('error.index', [], 500);
+		// return parent::render($request, $e);
 	}
 
 }

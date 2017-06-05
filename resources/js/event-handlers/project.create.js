@@ -144,7 +144,7 @@ handler.prototype.createNewProject = function(e){
 			zip : zipcode,
 			market: markets,
 			location : zipcode,
-			des: auditiondesc
+			des: auditiondesc,
 			app_id : 1
 		};
 
