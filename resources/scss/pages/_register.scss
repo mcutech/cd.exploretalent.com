@@ -99,13 +99,13 @@
 		}
 
 		.celebrity-advice-container{
-			display: flex;
+			display: block;
 			flex-wrap: wrap;
 			.image-container{
 			  	display: flex;
 				justify-content: center;
 				img{
-					width: 100%;
+					max-width: 100%;
 					flex: 0 1 auto;
 					align-self: center;
 				}					
