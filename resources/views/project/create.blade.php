@@ -245,24 +245,29 @@
                     {{-- upload image for casting --}}
                     <div class="row">
                         <div class="col-md-9">
+                         <!-- <form id="casting-upload-image" method="post" enctype="multipart/form-data" > -->
                             <div class="form-group">
+                            	<input id="photo-uploader" type="file" name="file" accept="image/*" class="hide"/>
+                            
                                 <label class="control-label">Upload Casting Image<span class="text-success">*</span></label>
 
                                 {{-- add class *uploaded* in casting-upload-image class if image is uploaded to view UI --}}
-                                <div class="casting-upload-image">
+
+                                <div class="casting-upload-image" id="main-casting-image-div">
                                     <div class="img-width">
-                                        <div class="img-holder">
+                                        <div class="img-holder" id="image-holder">
                                             <div class="img-preview-container">
-                                                <img src="http://us.hellomagazine.com/images/stories/1/2016/02/12/000/131/742/featured_5_3.jpg" class="img-responsive">
-                                                <div class="default">
+                                                <img src="blank" class="img-responsive" id="preview">
+                                                <div class="default" id="default">
                                                     <div class="item text-align-center">
                                                         <div><i class="fa fa-picture-o fa-5x"></i></div>
+                                         
                                                         <div>Click here to Upload Casting Image</div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="change-image-btn">
+                                        <div class="change-image-btn" id="remove-button">
                                             <button class="btn btn-default btn-lg btn-block border-radius-zero">
                                                 <i class="fa fa-times"></i> Remove Casting Image
                                             </button>
@@ -270,6 +275,8 @@
                                     </div>
                                 </div>
                             </div>
+                        
+                          <!-- </form> -->
                         </div>
                     </div>
 

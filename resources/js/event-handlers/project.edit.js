@@ -25,13 +25,22 @@ handler.prototype.getProjectInfo = function(e) {
     .then(function(res) {
       var asap = res.data[0];
 
+      self.casting = asap;
+
+      console.log(asap);
+
       if(new Date().getTime() > asap.asap*1000){
         alert("This project has already expired, please update the submission deadline to update this project.");
         console.log(asap.asap);
       }
 
+      if(asap.casting_image && !($("#main-casting-image-div").hasClass("edited-image"))){
+          $("#preview").attr("src","https://etdownload.s3.amazonaws.com/" + asap.casting_image.media_path_full);
+          $('#main-casting-image-div').addClass('uploaded');
+      }
+
       if (res.total > 0) {
-        console.log(res);
+      // 
         var casting = res.data[0];
 
         if(casting.market == 'N/A') {
@@ -67,6 +76,9 @@ handler.prototype.getProjectInfo = function(e) {
           $("#open-call-option-content").hide();
           $('#self-submission-option').click();
         }
+
+        
+
         self.core.service.databind('.edit-project-wrapper', casting)
         return $.when();
       }
@@ -280,6 +292,14 @@ handler.prototype.updateProject = function(e){
           return self.core.resource.project.patch(data)
             .then(function(res) {
 
+              if($('#main-casting-image-div').hasClass('image-edited')){
+                if($('#main-casting-image-div').hasClass('uploaded')){
+                    self.uploadImage(self.casting.casting_id);  
+                }else{
+                    self.deleteImage(self.casting.casting_image.id);
+                }        
+              }
+
               $('#update-profile-success-text').fadeIn().delay(3000).fadeOut();
 
             });
@@ -317,6 +337,15 @@ handler.prototype.updateProject = function(e){
 
           return self.core.resource.project.patch(data)
             .then(function(res) {
+
+              if($('#main-casting-image-div').hasClass('image-edited')){
+                if($('#main-casting-image-div').hasClass('uploaded')){
+                    self.uploadImage(self.casting.casting_id);  
+                }else{
+                    self.deleteImage(self.casting.casting_image.id);
+                }        
+              }
+              
 
               $('#update-profile-success-text').fadeIn().delay(3000).fadeOut();
 
@@ -401,6 +430,50 @@ handler.prototype.toggleAllMarketsChecked = function(e) {
   }
 
 }
+
+handler.prototype.uploadImage = function(casting_id) {
+
+    var data = new FormData();
+    data.append('casting_id', casting_id);
+    data.append('file', $('#photo-uploader')[0].files[0]);
+
+
+    $.ajax({
+      url: self.core.config.api.base + '/cd/casting_images',
+      type: 'POST',
+      data: data,
+      headers : {
+        Authorization : 'Bearer ' + localStorage.getItem('access_token')
+      },
+      cache: false,
+      dataType: 'json',
+      processData: false, // Don't process the files
+      contentType: false, // Set content type to false as jQuery will tell the server its a query string request,
+      crossDomain: true
+
+    });
+
+}
+
+handler.prototype.deleteImage = function(image_id) {
+
+    console.log(image_id);
+
+    $.ajax({
+      url: self.core.config.api.base + '/cd/casting_images/' + image_id,
+      type: 'DELETE',
+      headers : {
+        Authorization : 'Bearer ' + localStorage.getItem('access_token')
+      },
+      cache: false,
+      processData: false, // Don't process the files
+      contentType: false, // Set content type to false as jQuery will tell the server its a query string request,
+      crossDomain: true
+    
+    });
+
+}
+
 module.exports = function(core, user, projectId) {
   return new handler(core, user, projectId);
 };
