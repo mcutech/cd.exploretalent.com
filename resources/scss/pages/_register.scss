@@ -39,6 +39,8 @@
 			padding: 5px;
 			text-align: center;
 			margin-bottom: 5px;
+			max-width: 100%;
+			height: auto;
 		}
 	}
 	// .talent-search-container{
@@ -101,11 +103,13 @@
 		.celebrity-advice-container{
 			display: block;
 			flex-wrap: wrap;
+
 			.image-container{
 			  	display: flex;
 				justify-content: center;
 				img{
 					max-width: 100%;
+					height: auto !important;
 					flex: 0 1 auto;
 					align-self: center;
 				}					
