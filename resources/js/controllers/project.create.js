@@ -89,7 +89,7 @@ module.exports = function(core, user) {
 	
 	$(document).on('click', '#image-holder', function() {
 
-		$('#file').click();
+		$('#photo-uploader').click();
 
 	});
 
@@ -105,7 +105,7 @@ module.exports = function(core, user) {
         reader.readAsDataURL(input.files[0]);
     }
     
-    $("#file").change(function(){
+    $("#photo-uploader").change(function(){
 
     	if (this.files && this.files[0]) {
 
@@ -132,6 +132,7 @@ module.exports = function(core, user) {
     $(document).on('click', '#remove-button', function() {
 
 		$('#main-casting-image-div').removeClass('uploaded');
+		$("#preview").attr("src","blank");
 
 	});
 

@@ -89,7 +89,7 @@ module.exports = function(core, user, projectId) {
 
 	$(document).on('click', '#image-holder', function() {
 
-		$('#file').click();
+		$('#photo-uploader').click();
 
 	});
 
@@ -100,12 +100,13 @@ module.exports = function(core, user, projectId) {
         reader.onload = function (e) {
             $('#preview').attr('src', e.target.result);
             $('#main-casting-image-div').addClass('uploaded');
+            $('#main-casting-image-div').addClass('image-edited');
         }
         
         reader.readAsDataURL(input.files[0]);
     }
     
-    $("#file").change(function(){
+    $("#photo-uploader").change(function(){
 
     	if (this.files && this.files[0]) {
 
@@ -132,6 +133,8 @@ module.exports = function(core, user, projectId) {
     $(document).on('click', '#remove-button', function() {
 
 		$('#main-casting-image-div').removeClass('uploaded');
+		$("#preview").attr("src","blank");
+		$('#main-casting-image-div').addClass('image-edited');
 
 	});
 

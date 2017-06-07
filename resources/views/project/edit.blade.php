@@ -233,13 +233,13 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <input id="file" type="file" name="file" accept="image/*" class="hide"/>
+                                <input id="photo-uploader" type="file" name="file" accept="image/*" class="hide"/>
                                 <label class="control-label">Upload Casting Image<span class="text-success">*</span></label>
                                 <div class="casting-upload-image " id="main-casting-image-div">
                                     <div class="img-width">
                                         <div class="img-holder" id="image-holder">
                                             <div class="img-preview-container">
-                                                <img src="http://us.hellomagazine.com/images/stories/1/2016/02/12/000/131/742/featured_5_3.jpg" class="img-responsive" id="preview" >
+                                                <img src="blank" id="preview" >
                                                 <div class="default">
                                                     <div class="item text-align-center">
                                                         <div><i class="fa fa-picture-o fa-5x"></i></div>
