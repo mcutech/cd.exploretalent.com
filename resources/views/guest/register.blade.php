@@ -26,7 +26,7 @@
 			<form action="index.html" id="signup-form">
 				<div class="row-fluid clearfix text-center">
 					<div class="col-md-12">
-						<img src="/images/logo-home-et.png" alt="">
+						<img src="/images/logo-home-et.png" style="max-width: 100%" alt="">
 					</div>
 				</div>
 				<div class="signup-text">
@@ -213,16 +213,16 @@
 					<span class="panel-body-in-title title">Samples of Past Projects</span>
 					<div class="sample-projects-container text-center">
 						<div class="sample-projects-item">
-							<img src="/images/sample1.jpg" alt="">
+							<img src="/images/sample1.jpg" style="max-width: 100%" alt="">
 						</div>
 						<div class="sample-projects-item">
-							<img src="/images/sample2.jpg" alt="">
+							<img src="/images/sample2.jpg" style="max-width: 100%" alt="">
 						</div>
 						<div class="sample-projects-item">
-							<img src="/images/sample3.jpg" alt="">
+							<img src="/images/sample3.jpg" style="max-width: 100%" alt="">
 						</div>
 						<div class="sample-projects-item">
-							<img src="/images/sample4.jpg" alt="">
+							<img src="/images/sample4.jpg" style="max-width: 100%" alt="">
 						</div>
 					</div>
 				</div>
