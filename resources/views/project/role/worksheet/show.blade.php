@@ -91,12 +91,12 @@
 													<span data-bind="<%= campaign.description %>" data-bind-target="html"></span>
 												</div>
 												<div class="note-description" id="messages">
-													<div class="message row" data-bind-template="#messages" data-bind-value="conversation.messages">
+													<div class="message" data-bind-template="#messages" data-bind-value="conversation.messages">
 														<div class="col-md-12">
 															<b><span data-bind="<%= user.bam_talentci ? user.bam_talentci.getFullName() : 'Me'  %>"></span></b>
 															<span class="pull-right" data-bind="<%= moment(created_at).utcOffset(-480).fromNow() %>"></span>
 														</div>
-														<div class="col-md-12">
+														<div class="col-md-12 wrap">
 															<span data-bind="<%= body %>"></span>
 														</div>
 													</div>
