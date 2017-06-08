@@ -9,6 +9,10 @@
 	    margin: -11px;
 	}
 
+	.wrap {
+		word-break: break-all;
+	}
+
 	.button-float-bottom{
 		position: fixed;
 		z-index: 999;
