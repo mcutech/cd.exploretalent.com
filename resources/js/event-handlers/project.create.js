@@ -144,8 +144,8 @@ handler.prototype.createNewProject = function(e){
 			zip : zipcode,
 			market: markets,
 			location : zipcode,
-			des: auditiondesc,
-			app_id : 1
+			des: auditiondesc
+			// app_id : 1
 		};
 
 		if(projectname.length < 1) {
@@ -202,6 +202,9 @@ handler.prototype.createNewProject = function(e){
 		}
 
 		else {
+
+
+
 			if(projecttype == "1") {
 
 				var selfSubEmail = $('#self-sub-email').val();
@@ -221,11 +224,18 @@ handler.prototype.createNewProject = function(e){
 					return self.core.resource.project.post(data)
 						.then(function(res) {
 
+							if($('#main-casting-image-div').addClass('uploaded')){
+								self.uploadImage(res.casting_id);
+								// self.loadImage(res.casting_id);
+							}
+
 							var data = { app_id : 1, casting_id: res.casting_id };
 							self.core.resource.project_app.post(data).then(function(res){
-								console.log(res);
+								// console.log(res);
 								$('#create-project-btn').attr('disabled', 'disabled');
-								window.location = "/projects/"+res.casting_id+"/roles/create";
+								setTimeout(function() {
+									window.location = "/projects/"+res.casting_id+"/roles/create";
+								}, 3000 );
 							});
 						});
 				}
@@ -261,12 +271,17 @@ handler.prototype.createNewProject = function(e){
 
 					return self.core.resource.project.post(data)
 						.then(function(res) {
-							console.log(res);
+							if($('#main-casting-image-div').addClass('uploaded')){
+								self.uploadImage(res.casting_id);
+							}
+
 							var data = { app_id : 1, casting_id: res.casting_id };
 							self.core.resource.project_app.post(data).then(function(res){
-								console.log(res);
+								// console.log(res);
 								$('#create-project-btn').attr('disabled', 'disabled');
-								window.location = "/projects/"+res.casting_id;
+								setTimeout(function() {
+									window.location = "/projects/"+res.casting_id;
+								}, 3000);
 							});
 
 						});
@@ -349,6 +364,30 @@ handler.prototype.toggleAllMarketsChecked = function(e) {
     $(this).text("Select All Markets");
     $('input[type="checkbox"][name="manual-market-checkbox"]').removeAttr('checked');
   }
+
+}
+
+handler.prototype.uploadImage = function(casting_id) {
+
+    var data = new FormData();
+    data.append('casting_id', casting_id);
+    data.append('file', $('#photo-uploader')[0].files[0]);
+
+
+    $.ajax({
+      url: self.core.config.api.base + '/cd/casting_images',
+      type: 'POST',
+      data: data,
+      headers : {
+        Authorization : 'Bearer ' + localStorage.getItem('access_token')
+      },
+      cache: false,
+      dataType: 'json',
+      processData: false, // Don't process the files
+      contentType: false, // Set content type to false as jQuery will tell the server its a query string request,
+      crossDomain: true
+
+    });
 
 }
 
