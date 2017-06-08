@@ -17,7 +17,7 @@
 						<div class="col-xs-12 col-sm-6 col-md-6 col-lg-5">
 							<div class="form-group">
 								<label class="control-label">Project Name <span class="text-success">*</span></label>
-								<input type="text" class="form-control" id="project-name" placeholder="Enter Project Name">
+								<input type="text" class="form-control" id="project-name" placeholder="Enter Project Name" maxlength="50">
 								<div class="alert alert-page alert-danger project-name-error-five" style="display:none;">This field must be at least 5 characters.</div>
 								<div class="alert alert-page alert-danger project-name-error-required" style="display:none;">This field is required.</div>
 							</div>
