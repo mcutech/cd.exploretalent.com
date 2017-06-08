@@ -519,10 +519,32 @@
                         </div>
                     </div>
 
+                    <!-- Modal -->
+                      <div class="modal fade" id="confirmUpdateModal" role="dialog">
+                        <div class="modal-dialog">
+                        
+                          <!-- Modal content-->
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                              <h4 class="modal-title">Confirm Update</h4>
+                            </div>
+                            <div class="modal-body">
+                              <p>Pending review, normally reviewed within 6-12 business hours.</p>
+                            </div>
+                            <div class="modal-footer">
+                              <button href="#" id="update-project-btn" class="btn btn-success" data-dismiss="modal">Continue Update</button>
+                              <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                            </div>
+                          </div>
+                          
+                        </div>
+                      </div>
+
                     <div class="row">
                         <div class="col-md-12">
                             <div class="pull-right">
-                                <a href="#" id="update-project-btn" class="btn btn-success btn-lg">Update</a>
+                                <a href="#" data-toggle="modal" data-target="#confirmUpdateModal" class="btn btn-success btn-lg">Update</a>
                             </div>
                             <div id="update-profile-success-text" class="pull-right margin-right-normal margin-top-normal" style="display: none;">
                                 <span class="text-success">Profile details updated.</span>
