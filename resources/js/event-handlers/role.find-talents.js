@@ -153,7 +153,7 @@ handler.prototype.findMatches = function(append) {
 
 			try {
 			self.core.service.databind('#role-matches-result', talents, append);
-			} catch(e) { }
+		} catch(e) { console.log(e); }
 
 			self.refreshing = false;
 
