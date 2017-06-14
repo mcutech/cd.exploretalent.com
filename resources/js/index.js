@@ -23,7 +23,7 @@ jscore.run(function(core) {
 		core.service.rest.settings.headers = { Authorization : 'Bearer ' + qs.access_token };
 	}
 
-	core.resource.user.get({ userId : 'me', withs : [ 'bam_cd_user' ] })
+	core.resource.user.get({ userId : 'me', withs : [ 'bam_cd_user', 'user_apps', 'user_apps.app', 'user_apps.app.app_xorigins' ] })
 		.then(init, init);
 
 	function init(user) {

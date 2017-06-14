@@ -3,6 +3,19 @@ function handler(core, user){
 	self.core = core;
 	self.user = user;
 	self.talent = null;
+
+	self.xorigins = [];
+
+	if (self.user.user_apps.length > 0) {
+		_.each(self.user.user_apps, function(app) {
+			self.xorigins = _.union(self.xorigins, _.map(app.app.app_xorigins, function(xorigin){
+				return xorigin.x_origin;
+			}));
+		});
+	}
+
+  self.xorigins = self.xorigins.length == 0 ? [-1] : self.xorigins;
+
 	self.refresh();
 }
 handler.prototype.refresh = function(append){
@@ -40,6 +53,7 @@ handler.prototype.refresh = function(append){
 		var data = {
 			query : [
 				[ 'whereIn', 'talentnum', talentnums ],
+				[ 'whereIn', 'x_origin', self.xorigins ]
 			]
 		};
 
