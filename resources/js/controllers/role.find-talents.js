@@ -103,7 +103,7 @@ module.exports = function(core, user, projectId, roleId) {
 	});
 
 	$(window).on('scroll', function() {
-		if ($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
+		if ($(window).scrollTop() + $(window).height() > $(document).height() - 100) {			
 			handler.findMatches(true);
 		}
 	});

@@ -9,6 +9,18 @@ function handler(core, user, projectId, roleId) {
 	self.page = 1;
 	self.first_load = true;
 
+	self.xorigins = [];
+
+	if (self.user.user_apps.length > 0) {
+		_.each(self.user.user_apps, function(app) {
+			self.xorigins = _.union(self.xorigins, _.map(app.app.app_xorigins, function(xorigin){
+				return xorigin.x_origin;
+			}));
+		});
+	}
+
+  self.xorigins = self.xorigins.length == 0 ? [-1] : self.xorigins;
+
 	self.getProjectInfo();
 }
 
@@ -56,12 +68,12 @@ handler.prototype.refreshRole = function() {
 	$('#add-all-button span').text('Add All to Like it List');
 	$('#add-all-button').removeClass('disabled');
 
-	role.getLikeItListCount()
+	role.getLikeItListCount(self.xorigins)
 		.then(function(count) {
 			role.likeitlist = { total : count };
 
 			self.core.service.databind('#add-all-total', role)
-			return role.getSubmissionsCount();
+			return role.getSubmissionsCount(self.xorigins);
 		})
 		.then(function(count) {
 			role.submissions = { total : count };
@@ -156,6 +168,10 @@ handler.prototype.getFilters = function() {
 	}
 
 	if (!self.first_load || $('#show_only_matched').is(':checked')==true) {
+
+		if (self.xorigins.length > 0) {
+			data.query.push( [ 'whereIn', 'x_origin', self.xorigins ] );
+		}
 
 		if($('#show_only_matched').is(':checked')==true){
 
@@ -296,7 +312,7 @@ handler.prototype.getFilters = function() {
 						[ 'orWhere', 'union_aftra', '=', 'Yes' ],
 						[ 'orWhere', 'union_other', '=', 'Yes' ],
 						[ 'orWhere', 'union_sag', '=', 'Yes' ],
-					] 
+					]
 				]);
 			}
 			else {
@@ -305,11 +321,11 @@ handler.prototype.getFilters = function() {
 						[ 'orWhere', 'union_aftra', '=', 'No' ],
 						[ 'orWhere', 'union_other', '=', 'No' ],
 						[ 'orWhere', 'union_sag', '=', 'No' ],
-					] 
+					]
 				]);
 			}
 		}
-	
+
 		}
 	}
 		return data;

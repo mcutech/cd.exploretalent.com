@@ -11,6 +11,18 @@ function handler(core, user, projectId, roleId) {
 	self.first_load = true;
 	self.likeitlistTotal;
 
+	self.xorigins = [];
+
+	if (self.user.user_apps.length > 0) {
+		_.each(self.user.user_apps, function(app) {
+			self.xorigins = _.union(self.xorigins, _.map(app.app.app_xorigins, function(xorigin){
+				return xorigin.x_origin;
+			}));
+		});
+	}
+
+  self.xorigins = self.xorigins.length == 0 ? [-1] : self.xorigins;
+
 	self.getProjectInfo();
 }
 
@@ -57,7 +69,7 @@ handler.prototype.refreshRole = function() {
 	self.core.service.databind('#role-filter-form', self.project.role);
 
 	// submissions count
-	self.project.role.getSubmissionsCount()
+	self.project.role.getSubmissionsCount(self.xorigins)
 		.then(function(count) {
 			self.project.role.submissions = { total : count };
 
@@ -125,7 +137,8 @@ handler.prototype.findMatches = function(append) {
 
 			var data2 = {
 				query : [
-					[ 'whereIn', 'talentnum', talentnums ]
+					[ 'whereIn', 'talentnum', talentnums ],
+					[ 'whereIn', 'x_origin', self.xorigins ]
 				]
 			}
 
@@ -198,7 +211,7 @@ handler.prototype.refreshInvitation = function() {
 				return r.role_id == $('#roles-list').val();
 			});
 
-			role.getLikeItListCount()
+			role.getLikeItListCount(self.xorigins)
 				.then(function(count) {
 				role.likeitlist = { total : count };
 
