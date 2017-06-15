@@ -12,19 +12,19 @@ module.exports = function(core) {
 		form.body=$("textarea[name='body']").val();
 		form.lazy_project_status_id = 1;
 
-		core.resource.quickpost.post(form)
-			.then(function(result){
+		if(form.body.length > 0 && form.name.length > 0) {
+			core.resource.quickpost.post(form)
+				.then(function(result){
 
-			$('#success-div').removeClass('hide');
-	 		$("input[name='name']").val('');
-			$("textarea[name='body']").val('');
-			setTimeout(function() {
-				$('#quick-post').modal('hide');
-				$('#success-div').addClass('hide');
-		 	}, 1000);
-
-
-		});
+				$('#success-div').removeClass('hide');
+		 		$("input[name='name']").val('');
+				$("textarea[name='body']").val('');
+				setTimeout(function() {
+					$('#quick-post').modal('hide');
+					$('#success-div').addClass('hide');
+			 	}, 1000);
+			});
+		}
 
 	});
 
