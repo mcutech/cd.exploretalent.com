@@ -5,6 +5,19 @@ function handler(core, user){
 	self = this;
 	self.core = core;
 	self.user = user;
+
+	self.xorigins = [];
+
+	if (self.user.user_apps.length > 0) {
+		_.each(self.user.user_apps, function(app) {
+			self.xorigins = _.union(self.xorigins, _.map(app.app.app_xorigins, function(xorigin){
+				return xorigin.x_origin;
+			}));
+		});
+	}
+
+  self.xorigins = self.xorigins.length == 0 ? [-1] : self.xorigins;
+
 	self.refresh();
 }
 
@@ -146,6 +159,10 @@ handler.prototype.getFilters = function() {
 		],
 		per_page : 24,
 		page : self.page
+	}
+
+	if (self.xorigins.length > 0) {
+		data.query.push( [ 'whereIn', 'x_origin', self.xorigins ] );
 	}
 
 	if (form.markets) {

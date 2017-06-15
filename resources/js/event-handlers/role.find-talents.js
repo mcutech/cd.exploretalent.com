@@ -8,6 +8,18 @@ function handler(core, user, projectId, roleId) {
 	self.roleId = roleId;
 	self.page = 1;
 
+	self.xorigins = [];
+
+	if (self.user.user_apps.length > 0) {
+		_.each(self.user.user_apps, function(app) {
+			self.xorigins = _.union(self.xorigins, _.map(app.app.app_xorigins, function(xorigin){
+				return xorigin.x_origin;
+			}));
+		});
+	}
+
+  self.xorigins = self.xorigins.length == 0 ? [-1] : self.xorigins;
+
 	self.getProjectInfo();
 }
 
@@ -51,12 +63,13 @@ handler.prototype.refreshRole = function() {
 	$('#add-all-button span').text('Add All to Like it List');
 	$('#add-all-button').removeClass('disabled');
 
-	role.getLikeItListCount()
+	role.getLikeItListCount(self.xorigins)
 		.then(function(count) {
+
 			role.likeitlist = { total : count };
 
 			self.core.service.databind('#add-all-total', role)
-			return role.getSubmissionsCount();
+			return role.getSubmissionsCount(self.xorigins);
 		})
 		.then(function(count) {
 			role.submissions = { total : count };
@@ -140,7 +153,7 @@ handler.prototype.findMatches = function(append) {
 
 			try {
 			self.core.service.databind('#role-matches-result', talents, append);
-			} catch(e) { }
+		} catch(e) { console.log(e); }
 
 			self.refreshing = false;
 
@@ -152,7 +165,6 @@ handler.prototype.findMatches = function(append) {
 }
 
 handler.prototype.getFilters = function() {
-
 	if($('#show_only_matched').is(':checked')==true){
 		var role = _.find(self.project.bam_roles, function(r) {
 			return r.role_id == $('#roles-list').val();
@@ -170,6 +182,10 @@ handler.prototype.getFilters = function() {
 		page : self.page,
 		query : [
 		]
+	}
+
+	if (self.xorigins.length > 0) {
+		data.query.push( [ 'whereIn', 'x_origin', self.xorigins ] );
 	}
 
 	if (form.markets) {
@@ -337,7 +353,6 @@ handler.prototype.getFilters = function() {
 		}
 	}
 
-	console.log(data);
 	return data;
 }
 
@@ -354,5 +369,3 @@ handler.prototype.addAll = function() {
 module.exports = function(core, user, projectId, roleId) {
 	return new handler(core, user, projectId, roleId);
 }
-
-
