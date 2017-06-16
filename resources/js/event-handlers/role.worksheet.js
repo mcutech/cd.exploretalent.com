@@ -8,6 +8,18 @@ function handler(core, user, projectId, roleId) {
 	self.projectId = projectId;
 	self.roleId = roleId;
 
+	self.xorigins = [];
+
+	if (self.user.user_apps.length > 0) {
+		_.each(self.user.user_apps, function(app) {
+			self.xorigins = _.union(self.xorigins, _.map(app.app.app_xorigins, function(xorigin){
+				return xorigin.x_origin;
+			}));
+		});
+	}
+
+  self.xorigins = self.xorigins.length == 0 ? [-1] : self.xorigins;
+
 	self.refresh();
 }
 
@@ -110,6 +122,10 @@ handler.prototype.getSchedules = function() {
 	}
 
 	var talents;
+
+	if (self.xorigins.length > 0) {
+		data.query.push( [ 'whereIn', 'x_origin', self.xorigins ] );
+	}
 
 	return self.core.resource.search_talent.get(data)
 		.then(function(res) {
