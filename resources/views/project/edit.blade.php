@@ -14,7 +14,7 @@
 						<div class="col-md-6">
 							<div class="form-group">
 								<label class="control-label">Project Name <span class="text-success">*</span></label>
-								<input type="text" class="form-control" id="project-name" placeholder="Enter Project Name" data-bind="<%= project %>">
+								<input type="text" class="form-control" id="project-name" placeholder="Enter Project Name" data-bind="<%= project %>" maxlength="40">
 								<div class="alert alert-page alert-danger project-name-error-five" style="display:none;">This field must be at least 5 characters.</div>
 								<div class="alert alert-page alert-danger project-name-error-required" style="display:none;">This field is required.</div>
 							</div>
