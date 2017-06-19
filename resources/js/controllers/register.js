@@ -12,7 +12,8 @@ module.exports = function(core) {
 		form.body=$("textarea[name='body']").val();
 		form.lazy_project_status_id = 1;
 
-		if(form.body.length > 0 && form.name.length > 0) {
+		if(form.body.length > 0 && form.name.length > 0 && /^[\s\n]$/.test(form.body.length) && 
+			/^[\s\n]$/.test(form.name.length)) {
 			core.resource.quickpost.post(form)
 				.then(function(result){
 
