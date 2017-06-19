@@ -16,6 +16,9 @@
 					<li><span class="text-function-label notes">Add Notes</span><a class="talent-function-icon notes"><i class="fa fa-file-o"></i></a></li>
 				@endif
 			</ul>
+            <div class="talent-greeting-video-v2" data-bind="<%= (video_id) ? '1' : '0' %>" data-bind-target="visibility">
+                <a onclick="window.open(this.href, 'mywin', 'left=0,top=0,width=769,height=650,toolbar=1,resizable=0'); return false;" data-bind="/talents/<%= talentnum %>?casting_id=<%= talent_project_id %>&role_id=<%= talent_role_id %>" class="btn btn-view-greeting-video btn-sm">View Greeting Video</a>
+            </div>
 			<div class="talent-photo-v2">
 				<div class="photo-user-container">
 					<a onclick="window.open(this.href, 'mywin', 'left=0,top=0,width=769,height=650,toolbar=1,resizable=0'); return false;" data-bind="/talents/<%= talentnum %>?casting_id=<%= talent_project_id %>&role_id=<%= talent_role_id %>" class="talent-function-icon profile">

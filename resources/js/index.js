@@ -23,13 +23,13 @@ jscore.run(function(core) {
 		core.service.rest.settings.headers = { Authorization : 'Bearer ' + qs.access_token };
 	}
 
-	core.resource.user.get({ userId : 'me', withs : [ 'bam_cd_user' ] })
+	core.resource.user.get({ userId : 'me', withs : [ 'bam_cd_user', 'user_apps', 'user_apps.app', 'user_apps.app.app_xorigins' ] })
 		.then(init, init);
 
 	function init(user) {
 		core.service.rest.settings.statusCode = {
 			401: function() {
-				if(window.location.pathname !== '/login' && window.location.pathname !== '/register' && window.location.pathname !== '/forgot-password' && window.location.pathname !== '/reset-password') {
+				if(window.location.pathname !== '/login' && window.location.pathname !== '/register' && window.location.pathname !== '/forgot-password' && window.location.pathname !== '/reset-password' && window.location.pathname !== '/error') {
 					window.location.href = '/login?redirect=' + encodeURIComponent(window.location);
 				}
 			}
@@ -93,6 +93,7 @@ jscore.run(function(core) {
 	    .add('/messages/{projectId}'            , 'message')
 	    .add('/messages'                        , 'message')
 		.add('/feedback'                        , 'feedback')
+		.add('/error'	                        , 'error-page')
 		.add('/unsubscribe'						, 'unsubscribe')
 
 		// end routes

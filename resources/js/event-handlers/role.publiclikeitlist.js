@@ -10,6 +10,18 @@ function handler(core, user, projectId, roleId) {
 	self.page = 1;
 	self.first_load = true;
 
+	self.xorigins = [];
+
+	if (self.user.user_apps.length > 0) {
+		_.each(self.user.user_apps, function(app) {
+			self.xorigins = _.union(self.xorigins, _.map(app.app.app_xorigins, function(xorigin){
+				return xorigin.x_origin;
+			}));
+		});
+	}
+
+  self.xorigins = self.xorigins.length == 0 ? [-1] : self.xorigins;
+
 	self.getDetails();
 }
 
@@ -124,7 +136,8 @@ handler.prototype.getFilters = function(talentnums) {
 		per_page : 24,
 		page : self.page,
 		query : [
-			[ 'whereIn', 'talentnum', talentnums ]
+			[ 'whereIn', 'talentnum', talentnums ],
+			[ 'whereIn', 'x_origin', self.xorigins ]
 		]
 	}
 
@@ -254,7 +267,7 @@ handler.prototype.getFilters = function(talentnums) {
 						[ 'orWhere', 'union_aftra', '=', 'Yes' ],
 						[ 'orWhere', 'union_other', '=', 'Yes' ],
 						[ 'orWhere', 'union_sag', '=', 'Yes' ],
-					] 
+					]
 				]);
 			}
 			else {
@@ -263,7 +276,7 @@ handler.prototype.getFilters = function(talentnums) {
 						[ 'orWhere', 'union_aftra', '=', 'No' ],
 						[ 'orWhere', 'union_other', '=', 'No' ],
 						[ 'orWhere', 'union_sag', '=', 'No' ],
-					] 
+					]
 				]);
 			}
 		}
