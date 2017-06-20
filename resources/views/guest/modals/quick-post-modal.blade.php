@@ -11,7 +11,7 @@
           <div class="col-md-12 margin-bottom-normal">
             <div class="form-group">
               <label for="">Project Name</label>
-              <input type="text" name="name"  class="form-control input-sm" autofocus data-required>
+              <input type="text" name="name"  id="project-name" class="form-control input-sm" autofocus data-required>
               </div>
           </div>
         </div>
