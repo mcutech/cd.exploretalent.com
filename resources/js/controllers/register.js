@@ -1,4 +1,12 @@
 module.exports = function(core) {
+
+	$('#project-name').keypress(function(event) {
+	    if (event.keyCode == 13) {
+	        event.preventDefault();
+	        console.log('pressing enter key');
+	    }
+	});
+
 	$('#phone').mask('999-999-9999');
 
 		$("#send-casting").click(function(e){
@@ -12,8 +20,8 @@ module.exports = function(core) {
 		form.body=$("textarea[name='body']").val();
 		form.lazy_project_status_id = 1;
 
-		if(form.body.length > 0 && form.name.length > 0 && /^[\s\n]$/.test(form.body.length) && 
-			/^[\s\n]$/.test(form.name.length)) {
+		if(form.body.length > 0 && form.name.length > 0 && 
+			/[^\s\n]$/.test(form.body) && /[^\s\n]$/.test(form.name)) {
 			core.resource.quickpost.post(form)
 				.then(function(result){
 
