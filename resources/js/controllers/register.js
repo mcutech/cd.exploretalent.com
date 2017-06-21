@@ -4,6 +4,10 @@ module.exports = function(core) {
 	    if (event.keyCode == 13) {
 	        event.preventDefault();
 	        console.log('pressing enter key');
+            $('#failure-div').removeClass('hide');
+            setTimeout(function() {
+                $('#failure-div').addClass('hide');
+            }, 1000);
 	    }
 	});
 
@@ -20,7 +24,7 @@ module.exports = function(core) {
 		form.body=$("textarea[name='body']").val();
 		form.lazy_project_status_id = 1;
 
-		if(form.body.length > 0 && form.name.length > 0 && 
+		if(form.body.length > 0 && form.name.length > 0 &&
 			/[^\s\n]$/.test(form.body) && /[^\s\n]$/.test(form.name)) {
 			core.resource.quickpost.post(form)
 				.then(function(result){
@@ -33,13 +37,17 @@ module.exports = function(core) {
 					$('#success-div').addClass('hide');
 			 	}, 1000);
 			});
-		}
+		} else {
+            $('#failure-div').removeClass('hide');
+            setTimeout(function() {
+                $('#failure-div').addClass('hide');
+            }, 1000);
+        }
 
 	});
 
 	$("#sign-up").click(function(e){
 		e.preventDefault();
-
 		var lname = $('#last-name').val();
 		var fname = $('#first-name').val();
 		var email = $('#email').val();
@@ -55,6 +63,7 @@ module.exports = function(core) {
 			$('#last-name').focus().css("border-color","#b94a48");
 			$('#req-lname').show().delay(5000).fadeOut();
 			$('#req-lnametxt').text('This field is required.').show().delay(5000).fadeOut();
+
 			return;
 		}else{
 			if ( !regexName.test(lname) ){
