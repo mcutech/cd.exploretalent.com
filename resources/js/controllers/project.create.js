@@ -33,11 +33,11 @@ module.exports = function(core, user) {
 	$("#self-submission-option").on('click', function(){
         $("#self-submissions-option-content").show();
         $('#project-type-title').text('Self Submission Details');
-        $("#open-call-option-content").hide();
+        $("#open-call-option-content").addClass("hide");
     });
     
     $("#open-call-option").on('click', function(){
-        $("#open-call-option-content").show();
+        $("#open-call-option-content").removeClass("hide");
         $('#project-type-title').text('Open Call Details');
         $("#self-submissions-option-content").hide();
     });
@@ -83,6 +83,56 @@ module.exports = function(core, user) {
 		else {
 			$('.hide-if-nationwide').removeClass('hide');
 		}
+
+	});
+
+	
+	$(document).on('click', '#image-holder', function() {
+
+		$('#photo-uploader').click();
+
+	});
+
+	function readURL(input) {
+        
+        var reader = new FileReader();
+        
+        reader.onload = function (e) {
+            $('#preview').attr('src', e.target.result);
+            $('#main-casting-image-div').addClass('uploaded');
+        }
+        
+        reader.readAsDataURL(input.files[0]);
+    }
+    
+    $("#photo-uploader").change(function(){
+
+    	if (this.files && this.files[0]) {
+
+    		// if(this.files[0].size > 528385){
+
+    		// 	alert("Image Size should not be greater than 500Kb");
+    		// 	$("#preview").attr("src","blank");
+    		// 	$('#main-casting-image-div').removeClass('uploaded');
+    		// 	return false;
+    		// }
+    		if(this.files[0].type.indexOf("image")==-1){
+
+    			alert("Invalid Type");
+    			$("#preview").attr("src","blank");
+    			$('#main-casting-image-div').removeClass('uploaded');
+    			return false;
+    		}
+    		// console.log("render");
+        	readURL(this);
+    	}
+    });
+
+
+    $(document).on('click', '#remove-button', function() {
+
+		$('#main-casting-image-div').removeClass('uploaded');
+		$("#preview").attr("src","blank");
 
 	});
 

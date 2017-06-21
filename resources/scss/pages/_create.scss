@@ -1,4 +1,4 @@
-.create-wrapper{
+.create-wrapper, .edit-project-wrapper{
 	.roles-container{
 		.roles-item{
 			margin-bottom: 10px;
@@ -28,5 +28,100 @@
 			}
 		}
 	} //roles-container
+
+    .casting-upload-image{
+
+        &.uploaded{
+            .img-preview-container{
+                border: 0px dashed #dedede !important;
+                background-color: rgba(224,224,224,0.8);
+                img{
+                    display: block !important;
+                }
+            }
+            .change-image-btn{
+                display: block !important;
+            }
+            .default{
+                display: none !important;
+            }
+            .img-width{
+                &:hover, &:active, &:focus{
+                    .img-holder{
+                        .img-preview-container{
+                            background-color: rgba(224,224,224,0.6) !important;
+                        }
+                    }
+                }
+            }
+        }
+
+        .img-width{
+            width: 280px;
+            // height: 206px;
+            cursor: pointer;
+
+            &:hover, &:active, &:focus{
+                .img-holder{
+                    .img-preview-container{
+                        background-color: rgba(224,224,224,0.3);
+                    }
+                }
+            }
+
+            .img-holder{
+                width: 100%;
+                padding: 73.25% 0 0;
+                display: block;
+                position: relative;
+                height: 0;
+                overflow: hidden;
+
+                .img-preview-container{
+                    border: 3px dashed #dadada;
+                    position: absolute;
+                    max-height: 100%;
+                    max-width: 100%;
+                    height: auto;
+                    display: flex;
+                    justify-content: center;
+                    left: 0;
+                    right: 0;
+                    top: 0;
+                    bottom: 0;
+                    background-color: rgba(224,224,224,0.6);
+                    transition: 0.3s;
+
+                    .default{
+                        display: block;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        color: #aaaaaa;
+                        .item{
+
+                        }
+                    }
+
+                    img{
+                        flex: 0 1 auto;
+                        align-self: center;
+                        width: 100%;
+                        height: auto;
+                        max-height: none;
+                        margin: 0 auto;
+                        display: none;
+                    }
+                }
+            }
+            .change-image-btn{
+                display: none;
+                button{
+                    background-color: transparent;
+                    background: transparent;
+                }
+            }
+        }
+    }
 }
 

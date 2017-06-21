@@ -17,7 +17,7 @@
 						<div class="col-xs-12 col-sm-6 col-md-6 col-lg-5">
 							<div class="form-group">
 								<label class="control-label">Project Name <span class="text-success">*</span></label>
-								<input type="text" class="form-control" id="project-name" placeholder="Enter Project Name">
+								<input type="text" class="form-control" id="project-name" placeholder="Enter Project Name" maxlength="40">
 								<div class="alert alert-page alert-danger project-name-error-five" style="display:none;">This field must be at least 5 characters.</div>
 								<div class="alert alert-page alert-danger project-name-error-required" style="display:none;">This field is required.</div>
 							</div>
@@ -198,7 +198,7 @@
 									</div>
 								</div> {{-- self-submission-option-content --}}
 
-								<div class="panel" id="open-call-option-content">
+								<div class="panel hide" id="open-call-option-content">
 									<div class="panel-body padding-normal">
 										<div class="col-md-4">
 											<div class="form-group">
@@ -241,6 +241,45 @@
 							</div>
 						</div>
 					</div>
+
+                    {{-- upload image for casting --}}
+                    <div class="row">
+                        <div class="col-md-9">
+                         <!-- <form id="casting-upload-image" method="post" enctype="multipart/form-data" > -->
+                            <div class="form-group">
+                            	<input id="photo-uploader" type="file" name="file" accept="image/*" class="hide"/>
+                            
+                                <label class="control-label">Upload Casting Image<span class="text-success">*</span></label>
+
+                                {{-- add class *uploaded* in casting-upload-image class if image is uploaded to view UI --}}
+
+                                <div class="casting-upload-image" id="main-casting-image-div">
+                                    <div class="img-width">
+                                        <div class="img-holder" id="image-holder">
+                                            <div class="img-preview-container">
+                                                <img src="blank" class="img-responsive" id="preview">
+                                                <div class="default" id="default">
+                                                    <div class="item text-align-center">
+                                                        <div><i class="fa fa-picture-o fa-5x"></i></div>
+                                         
+                                                        <div>Click here to Upload Casting Image</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="change-image-btn" id="remove-button">
+                                            <button class="btn btn-default btn-lg btn-block border-radius-zero">
+                                                <i class="fa fa-times"></i> Remove Casting Image
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                          <!-- </form> -->
+                        </div>
+                    </div>
+
 					<div class="row">
 							<div class="col-md-6 padding-top-normal">
 								<div class="form-group margin-bottom-small">
@@ -269,7 +308,7 @@
 								</div>
 							</div>
 							<div class="col-md-12 input-group margin-top-small hide-if-nationwide">
-								<label for="manual-markets-div">
+								<label for="manual-markets-div" class="padding-left-normal">
 									or <a href="" id="toggle-manual-markets-div" style="text-decoration: underline;">Manually select markets</a>
 									<a class="btn btn-default btn-sm hide" href="" id="toggle-all-markets-checked" style="display: none;">Select All Markets</a>
 								</label>

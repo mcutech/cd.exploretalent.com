@@ -16,7 +16,8 @@
     "pixel-admin-base-assets": "git@gitlab.com:utech/pixel-admin-base-assets.git#v0.0.5",
     "bootstrap-tagsinput": "~0.5.0",
     "moment": "~2.10.6",
-    "bootstrap-multiselect": "~0.9.13"
+    "bootstrap-multiselect": "~0.9.13",
+    "jplayer": "~2.9.2"
   },
   "overrides": {
     "slimScroll": {
