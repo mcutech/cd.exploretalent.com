@@ -94,6 +94,9 @@
 							<option value="200">200 miles</option>
 						</select>
 					</div>
+					<div class="col-md-2 margin-top-normal-zz-sm">
+						<a href="#" id="toggle-add-location-filter-btn" class="text-xs">Add Location</a>
+					</div>
 				</div>
 
 				<div id="location-search-change" class="col-md-9 padding-zero-zz-sm" hidden >
@@ -114,11 +117,18 @@
 				</div>
 			</div>
 
+			<div id="add-location-filter-div" class="row margin-bottom-large">
+				<div class="col-lg-12 margin-top-large">
+					<input id="location-search-box" type="text" class="form-control" placeholder="Enter Address" />
+					<div id="location-filter-map" style="height: 400px"></div>
+				</div>
+			</div>
+
 			<hr class="panel-wide margin-top-small-normal margin-bottom-small-normal">
 			<div class="row margin-bottom-large">
 				<div class="col-xs-12 col-sm-6 col-md-3">
 					<label class="text-bold margin-bottom-zero">Age Range: <span class="text-normal">from</span>
-						<input id="age-min-input" class="text-normal" style="width: 30px;" value="<3"> 
+						<input id="age-min-input" class="text-normal" style="width: 30px;" value="<3">
 						<span class="text-normal">to</span>
 						<input id="age-max-input" class="text-normal" style="width: 30px;" value="70+">
 						<span class="text-normal">years</span>
@@ -165,12 +175,12 @@
 				<div class="col-xs-12 col-sm-6 col-md-3">
 					<label class="text-bold margin-bottom-zero">Height Range:
 						<select id="height-min-dropdown">
-							<?php 
+							<?php
 								$bool = false;
 								for ($i = 22; $i <= 96; $i++) {
 									$feet = floor($i / 12);
 									$inches = $i % 12;
-									
+
 									if($i < 24) {
 										if($bool == false) {
 											echo "<option value=".$i."><2' 0\"</option>";
@@ -185,12 +195,12 @@
 						</select>
 						<span class="text-normal">to</span>
 						<select id="height-max-dropdown">
-							<?php 
+							<?php
 								$bool = false;
 								for ($i = 22; $i <= 96; $i++) {
 									$feet = floor($i / 12);
 									$inches = $i % 12;
-									
+
 									if($i < 24) {
 										if($bool == false) {
 											echo "<option value=".$i."><2' 0\"</option>";

@@ -118,6 +118,11 @@ module.exports = function(core, user) {
 		$('#advanced-filters-div').slideToggle();
 	});
 
+	$(document).on('click', '#toggle-add-location-filter-btn', function(e) {
+		e.preventDefault();
+		$('#add-location-filter-div').slideToggle();
+	});
+
 	//responsive filter turns to modal when mobile
 	$(document).ready(function(){
 		if($(this).width() <= 752){

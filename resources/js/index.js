@@ -9,6 +9,8 @@ jscore.config(function(core) {
 	core.config.api.base = 'https://api.exploretalent.com/api/v1';
 	// @endif
 
+	core.config.gapi.key = 'AIzaSyDrPvalUo7Qc6hGNU9jpyyXhZOvSOf6ock';
+
 	core.config.api.type = '/cd';
 	core.config.api.client_id      = '1397ef61d42ee4b09f89349b2613a92bda90a1e4';
 	core.config.api.client_secret  = '61c9b2b17db77a27841bbeeabff923448b0f6388';
