@@ -94,7 +94,7 @@
 							<option value="200">200 miles</option>
 						</select>
 					</div>
-					<div class="col-md-2 margin-top-normal-zz-sm">
+					<div class="col-md-2 padding-top-small-normal">
 						<a href="#" id="toggle-add-location-filter-btn" class="text-xs">Add Location</a>
 					</div>
 				</div>
@@ -117,10 +117,19 @@
 				</div>
 			</div>
 
-			<div id="add-location-filter-div" class="row margin-bottom-large">
-				<div class="col-lg-12 margin-top-large">
-					<input id="location-search-box" type="text" class="form-control" placeholder="Enter Address" />
-					<div id="location-filter-map" style="height: 400px"></div>
+			<div id="add-location-filter-div" class="row margin-top-large">
+				<div class="row margin-bottom-normal">
+					<div class="col-lg-6">
+						<input id="location-search-box" type="text" class="form-control" placeholder="Enter Address" />
+					</div>
+					<div class="col-lg-6 padding-top-normal">
+						<div id="place-miles" data-range="false" data-step="5" data-type="miles" data-slider></div>
+					</div>
+				</div>
+				<div class="row margin-bottom-large">
+					<div class="col-lg-12">
+						<div id="location-filter-map" style="height: 400px"></div>
+					</div>
 				</div>
 			</div>
 

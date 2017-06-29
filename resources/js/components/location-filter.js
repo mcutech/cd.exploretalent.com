@@ -31,7 +31,7 @@ module.exports = function(core, user) {
 
     var opt = {
       center: new google.LatLng(location.LAT, location.LNG),
-      zoom: 3,
+      zoom: 5,
       mapTypeId: google.MapTypeId.ROADMAP,
       //mapTypeControl: false,
       //scrollwheel: false,
@@ -62,8 +62,6 @@ module.exports = function(core, user) {
     // create the search box and link it to the UI element
     var input = $('#location-search-box').get(0);
     var searchBox = new google.places.SearchBox(input);
-    //map.controls[google.ControlPosition.TOP_CENTER].push(input);
-    console.log(google.ControlPosition);
 
     // Bias the SearchBox results towards current map's viewport.
     map.addListener('bounds_changed', function() {
@@ -115,9 +113,9 @@ module.exports = function(core, user) {
 
     });
 
-    setTimeout(function() {
-        el.parents('#add-location-filter-div').hide();
-    }, 100);
+    //setTimeout(function() {
+    //    el.parents('#add-location-filter-div').hide();
+    //}, 100);
 
   }
 
