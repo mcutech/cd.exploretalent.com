@@ -137,6 +137,9 @@
 						<div class="change-location-button display-inline-block margin-left-normal margin-zero-zz-sm">
 							<a href="" id="location-search-change-btn" class="text-bold"><i class="fa fa-chevron-right"></i> Change Location</a>
 						</div>
+						<div class="display-inline-block margin-left-normal margin-zero-zz-sm">
+							<button type="submit" class="btn btn-primary btn-block search-button">Search</button>
+						</div>						
 					</div>
 				</div>				
 			</div>			
