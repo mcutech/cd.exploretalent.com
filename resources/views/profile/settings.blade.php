@@ -170,10 +170,10 @@
 								<label><input type="checkbox" id="smsok" data-bind="<%= cd_user_subscription ? cd_user_subscription.sms : '' %>">SMS Ok</label>
 							</div>
 							<div class="checkbox col-sm-12" >
-								<label><input type="checkbox" id="talentReply" data-bind="<%= user_options.data[0].value%>">Notify me when talents reply</label>
+								<label><input type="checkbox" id="talentReply" data-bind="<%= cd_user_campaign_subscription.data[1].ok%>">Notify me every time a talent submits to a project</label>
 							</div>
 							<div class="checkbox col-sm-12">
-								<label><input type="checkbox" id="talentSubmitProject" data-bind="<%= user_options.data[1].value%>">Notify me when talent submits to a project</label>
+								<label><input type="checkbox" id="talentSubmitProject" data-bind="<%= cd_user_campaign_subscription.data[0].ok%>">Notify me daily for talent submissions</label>
 							</div>
 						</div>
 					</div>

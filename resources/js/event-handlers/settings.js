@@ -6,6 +6,11 @@ function handler(core, user) {
 	self.user = user;
 	self.refresh();
 	self.userOption();
+
+    self.core.resource.cd_user_campaign_subscription.get()
+        .then(function(res) {
+            console.log(res);
+        });
 }
 
 handler.prototype.userOption = function() {
@@ -15,20 +20,20 @@ handler.prototype.userOption = function() {
 		]
 	}
 
-	self.core.resource.user_option.get(data)
+	self.core.resource.cd_user_campaign_subscription.get(data)
 		.then(function(res){
 			if(!res.total){
 				var trnData = {
-					option:'Talent Reply Notification',
-					value: 0,
+					campaign_id:7078,
+					OK: 1,
 				}
-				self.core.resource.user_option.post(trnData)
+				self.core.resource.cd_user_campaign_subscription.post(trnData)
 					.then(function(){
 						var tsnData = {
-							option:'Talent Submit Notification',
-							value: 0,
+							campaign_id:7250,
+							OK: 1,
 						}
-						self.core.resource.user_option.post(tsnData)
+						self.core.resource.cd_user_campaign_subscription.post(tsnData)
 							.then(function(res){
 							});
 					})
@@ -53,9 +58,11 @@ handler.prototype.refresh = function() {
 				]
 			}
 
-			self.core.resource.user_option.get(data)
+			self.core.resource.cd_user_campaign_subscription.get(data)
 			.then(function(res2) {
-				res.user_options = res2;//adding user_option resource to res.
+                console.log('RES2');
+                console.log(res2);
+				res.cd_user_campaign_subscription = res2;
 				self.core.service.databind('#settings', res);
 			})
 	});
@@ -104,10 +111,12 @@ handler.prototype.updateUser = function(e) {
 
 		self.core.resource.cd_user.patch(form)
 			.then(function(res) {
+                console.log(res);
 				//update cd user subscription
 				var subscription_form = {}
 				self.core.resource.cd_user_subscription.get({bam_cd_user_id : self.user.bam_cd_user_id})
 					.then(function(res){
+                        console.log(res);
 
 						if(res.total>0){
 
@@ -130,6 +139,8 @@ handler.prototype.updateUser = function(e) {
 							self.core.resource.cd_user_subscription.patch(subscription_form)
 								.then(function(res){
 									//console.log(res);
+                                    console.log('for email and sms res');
+                                    console.log(res);
 
 								});
 
@@ -149,7 +160,8 @@ handler.prototype.updateUser = function(e) {
 
 							self.core.resource.cd_user_subscription.post(subscription_form)
 								.then(function(res){
-
+                                    console.log('for email and sms res');
+                                    console.log(res);
 								});
 						}
 
@@ -158,43 +170,71 @@ handler.prototype.updateUser = function(e) {
 				var userOption_trn_form = {}
 				var userOption_tsn_form = {}
 
-				var data = {
-					query:[
-						['where', 'user_id', '=', self.user.id]
-					]
+				// var data = {
+				// 	query:[
+				// 		['where', 'user_id', '=', self.user.id]
+				// 	]
+				// }
+
+				if($('#talentReply').is(':checked')){
+					userOption_trn_form.campaign_id = 7078;
+					userOption_trn_form.OK  = 1;
+				}else{
+					userOption_trn_form.campaign_id = 7078;
+					userOption_trn_form.OK  = 0;
 				}
 
-				self.core.resource.user_option.get(data)
+				if($('#talentSubmitProject').is(':checked')){
+					userOption_tsn_form.campaign_id = 7250;
+					userOption_tsn_form.OK  = 1;
+				}else{
+					userOption_tsn_form.campaign_id = 7250;
+					userOption_tsn_form.OK  = 0;
+				}
+
+                self.core.resource.cd_user_campaign_subscription.get({bam_cd_user_id : self.user.bam_cd_user_id})
 					.then(function(res){
+                        console.log('does the campaign exist');
+                        console.log(res);
 
-						if($('#talentReply').is(':checked')){
-							userOption_trn_form.option = 'Talent Reply Notification';
-							userOption_trn_form.value  = 1;
-						}else{
-							userOption_trn_form.option = 'Talent Reply Notification';
-							userOption_trn_form.value  = 0;
-						}
+                        userOption_trn_form.id = res.data[0].id;
+                        userOption_tsn_form.id = res.data[1].id;
 
-						if($('#talentSubmitProject').is(':checked')){
-							userOption_tsn_form.option = 'Talent Submit Notification';
-							userOption_tsn_form.value  = 1;
-						}else{
-							userOption_tsn_form.option = 'Talent Submit Notification';
-							userOption_tsn_form.value  = 0;
-						}
+						if(res.total>0){
+             				self.core.resource.cd_user_campaign_subscription.patch(userOption_trn_form)
+            					.then(function(res){
+                                    console.log('Patching TRN');
+                                    console.log(res);
+            				});
 
-						userOption_trn_form.id = res.data[0].id;
-						userOption_tsn_form.id = res.data[1].id;
+            				self.core.resource.cd_user_campaign_subscription.patch(userOption_tsn_form)
+            					.then(function(res){
+                                    console.log('Patching TSN');
+                                    console.log(res);
+            				});
 
-						self.core.resource.user_option.patch(userOption_trn_form)
-							.then(function(res){
-						});
 
-						self.core.resource.user_option.patch(userOption_tsn_form)
-							.then(function(res){
-						});
+                        } else {
+            				self.core.resource.cd_user_campaign_subscription.post(userOption_trn_form)
+            					.then(function(res){
+                                    console.log('Posting TRN');
+                                    console.log(res);
+            				});
 
-				});
+            				self.core.resource.cd_user_campaign_subscription.post(userOption_tsn_form)
+            					.then(function(res){
+                                    console.log('Posting TSN');
+                                    console.log(res);
+            				});
+
+                        }
+                    });
+
+
+
+				// userOption_trn_form.id = form.cdUserId;
+				// userOption_tsn_form.id = form.cdUserId;
+
 
 
 				$('#update-settings-success').fadeIn().delay(5000).fadeOut();
