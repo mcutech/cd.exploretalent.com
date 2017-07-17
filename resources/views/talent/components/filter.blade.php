@@ -1,13 +1,25 @@
 <div class="col-md-12 refine-search-sidebar">
 	<form id="talent-filter-form" onsubmit="return false">
+	<input type="hidden" id="address-search" name="address_search" value="1" />
 	<div class="panel panel-talents-search">
 		<div class="panel-heading border-bottom-width-zero">
 			<span class="panel-title talents-refine-title">Refine Search</span>
 			<button type="button" class="close hide" data-dismiss="modal" aria-hidden="true">×</button>
 		</div>
-
 		<div class="panel-body form-horizontal">
-			<div class="row text-center-zz-sm">
+			<ul class="nav nav-tabs">
+				<li role="presentation">
+					<a data-toggle="tab" class="tabs" role="tab" href="#market-search">Search by Market</a>
+					<input type="hidden" value="0" />
+				</li>
+				<li role="presentation" class="active">
+					<a  class="tabs" data-toggle="tab" data-search-by="locations" role="tab" href="#location-search">Search by Location</a>
+					<input type="hidden" value="1" />
+				</li>				
+			</ul>
+		</div>		
+		<div class="tab-content padding-zero">
+			<div role="tabpanel" class="tab-pane fade form-horizontal" id="market-search">
 				<div id="location-search-display" class="col-md-9 padding-zero-zz-sm">
 					<label class="control-label pull-left padding-left-normal"><a id="location-search-display-btn" href="">United States</a> <span class="padding-left-small">or</span></label>
 					<div class="col-md-3 margin-top-normal-zz-sm">
@@ -84,17 +96,35 @@
 							<option value="Toronto, ON">Toronto, ON</option>
 							<option value="Vancouver, BC">Vancouver, BC</option>
 						</select>
+					</div>	
+					<div class="col-xs-12 col-md-2 margin-top-normal-zz-sm">
+						<button id="search-button" name="market_search_btn" type="submit" class="btn btn-primary btn-block search-button">Search</button>
+					</div>				
+				</div>
+			</div>
+			<div role="tabpanel" class="tab-pane fade in active" id="location-search">
+				<div class="col-md-12 padding-zero-zz-sm">
+					<div class="col-md-5 margin-top-normal-zz-sm">
+						<label class="control-label">Search Address</label>
+						<input id="location-search-box" type="text" name="locations" class="form-control" placeholder="Enter Address" />
+						<div class="margin-top-normal">
+							Distance from point <input type="text" value="5" id="place-miles-in" class="form-control" style="display: inline-block; width: 12%" readonly="readonly" /> Miles
+						</div>		
+						<div class="margin-top-normal">
+							<div id="place-miles" data-range="false" data-step="5" data-type="miles" data-slider></div>
+						</div>	
+						<div class="col-md-4 margin-top-medium padding-zero">
+							<button type="submit" id="location_search_btn" name="location_search_btn" class="btn btn-primary btn-block search-button">Search</button>
+						</div>			
 					</div>
-					<div class="col-md-2 margin-top-normal-zz-sm">
-						<select name="distance" class="form-control">
-							<option value="25">25 miles</option>
-							<option value="50">50 miles</option>
-							<option value="100">100 miles</option>
-							<option value="150">150 miles</option>
-							<option value="200">200 miles</option>
-						</select>
+					<div class="col-md-7 margin-top-normal-zz-sm">
+					<div id="location-filter-map" style="height: 200px"></div>
 					</div>
 				</div>
+			</div>
+		</div>
+		<div class="panel-body form-horizontal">
+			<div class="row text-center-zz-sm">				
 
 				<div id="location-search-change" class="col-md-9 padding-zero-zz-sm" hidden >
 					<div class="col-md-12 search-result-counter">
@@ -108,17 +138,14 @@
 							<a href="" id="location-search-change-btn" class="text-bold"><i class="fa fa-chevron-right"></i> Change Location</a>
 						</div>
 					</div>
-				</div>
-				<div class="col-xs-12 col-md-2 pull-right margin-top-normal-zz-sm">
-					<button id="search-button" type="submit" class="btn btn-primary btn-block">Search</button>
-				</div>
-			</div>
+				</div>				
+			</div>			
 
 			<hr class="panel-wide margin-top-small-normal margin-bottom-small-normal">
 			<div class="row margin-bottom-large">
 				<div class="col-xs-12 col-sm-6 col-md-3">
 					<label class="text-bold margin-bottom-zero">Age Range: <span class="text-normal">from</span>
-						<input id="age-min-input" class="text-normal" style="width: 30px;" value="<3"> 
+						<input id="age-min-input" class="text-normal" style="width: 30px;" value="<3">
 						<span class="text-normal">to</span>
 						<input id="age-max-input" class="text-normal" style="width: 30px;" value="70+">
 						<span class="text-normal">years</span>
@@ -165,12 +192,12 @@
 				<div class="col-xs-12 col-sm-6 col-md-3">
 					<label class="text-bold margin-bottom-zero">Height Range:
 						<select id="height-min-dropdown">
-							<?php 
+							<?php
 								$bool = false;
 								for ($i = 22; $i <= 96; $i++) {
 									$feet = floor($i / 12);
 									$inches = $i % 12;
-									
+
 									if($i < 24) {
 										if($bool == false) {
 											echo "<option value=".$i."><2' 0\"</option>";
@@ -185,12 +212,12 @@
 						</select>
 						<span class="text-normal">to</span>
 						<select id="height-max-dropdown">
-							<?php 
+							<?php
 								$bool = false;
 								for ($i = 22; $i <= 96; $i++) {
 									$feet = floor($i / 12);
 									$inches = $i % 12;
-									
+
 									if($i < 24) {
 										if($bool == false) {
 											echo "<option value=".$i."><2' 0\"</option>";
