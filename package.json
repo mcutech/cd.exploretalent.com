@@ -64,9 +64,11 @@
   },
   "dependencies": {
     "crossroads": "^0.12.0",
+    "google-maps": "^3.2.1",
+    "google-maps-api": "^2.0.1",
     "gulp": "^3.9.0",
     "jquery": "^2.1.3",
     "jscore": "git+ssh://git@gitlab.com/utech/jscore.exploretalent.com.git",
-    "lodash": "^3.0.1"    
+    "lodash": "^3.0.1"
   }
 }
