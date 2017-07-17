@@ -34,7 +34,10 @@ module.exports = function(core, user) {
 		}
 	});
 
-	$('#search-button').on('click', handler.refresh);
+	$('.search-button').on('click', handler.refresh);
+	$('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
+		$('#address-search').val($(this).siblings('input[type="hidden"').val());		
+	});
 
 	// talents functions menu
 	$(document).on('mouseover', '.talent-function-icon.profile', function() {
@@ -96,6 +99,13 @@ module.exports = function(core, user) {
 		$('input[name="height_min"]').val($(this).val());
 	});
 
+	
+	$('#place-miles').slider('value', $('#place-miles-in').val());	
+
+	$('#place-miles').on('slide', function(e, ui) {
+		$('#place-miles-in').val(ui.value);
+	});
+
 	$(document).on('change', '#height-max-dropdown', function() {
 		$('#height-range-slider').slider('values', 1, $(this).val());
 		$('input[name="height_max"]').val($(this).val());
@@ -116,6 +126,11 @@ module.exports = function(core, user) {
 	$(document).on('click', '#toggle-advanced-filters-btn', function(e) {
 		e.preventDefault();
 		$('#advanced-filters-div').slideToggle();
+	});
+
+	$(document).on('click', '#toggle-add-location-filter-btn', function(e) {
+		e.preventDefault();
+		$('#add-location-filter-div').slideToggle();
 	});
 
 	//responsive filter turns to modal when mobile
