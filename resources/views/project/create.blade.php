@@ -198,7 +198,7 @@
 									</div>
 								</div> {{-- self-submission-option-content --}}
 
-								<div class="panel hide" id="open-call-option-content">
+								<div class="panel" id="open-call-option-content">
 									<div class="panel-body padding-normal">
 										<div class="col-md-4">
 											<div class="form-group">
@@ -241,6 +241,8 @@
 							</div>
 						</div>
 					</div>
+<<<<<<< HEAD
+=======
 
                     {{-- upload image for casting --}}
                     <div class="row">
@@ -280,6 +282,7 @@
                         </div>
                     </div>
 
+>>>>>>> origin
 					<div class="row">
 							<div class="col-md-6 padding-top-normal">
 								<div class="form-group margin-bottom-small">
@@ -308,7 +311,7 @@
 								</div>
 							</div>
 							<div class="col-md-12 input-group margin-top-small hide-if-nationwide">
-								<label for="manual-markets-div" class="padding-left-normal">
+								<label for="manual-markets-div">
 									or <a href="" id="toggle-manual-markets-div" style="text-decoration: underline;">Manually select markets</a>
 									<a class="btn btn-default btn-sm hide" href="" id="toggle-all-markets-checked" style="display: none;">Select All Markets</a>
 								</label>

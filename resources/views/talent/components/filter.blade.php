@@ -132,7 +132,7 @@
 					</div>
 				</div>
 				<div class="col-xs-12 col-sm-3 col-md-6 margin-top-normal padding-zero">
-					<div id="genderForm" class="checkbox-inline indent">
+					<div id="genderForm">
 						<label for="" class="checkbox-inline padding-left-normal col-md-3"><strong>Gender: </strong><strong><span id="selected">Any</span></strong></label>
 							<label class="checkbox-inline padding-zero">
 							  	<input type="checkbox" id="checkboxMale" name="sexMale" value="Male"> Male
