@@ -34,7 +34,10 @@ module.exports = function(core, user) {
 		}
 	});
 
-	$('#search-button').on('click', handler.refresh);
+	$('.search-button').on('click', handler.refresh);
+	$('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
+		$('#address-search').val($(this).siblings('input[type="hidden"').val());		
+	});
 
 	// talents functions menu
 	$(document).on('mouseover', '.talent-function-icon.profile', function() {
@@ -94,6 +97,13 @@ module.exports = function(core, user) {
 	$(document).on('change', '#height-min-dropdown', function() {
 		$('#height-range-slider').slider('values', 0, $(this).val());
 		$('input[name="height_min"]').val($(this).val());
+	});
+
+	
+	$('#place-miles').slider('value', $('#place-miles-in').val());	
+
+	$('#place-miles').on('slide', function(e, ui) {
+		$('#place-miles-in').val(ui.value);
 	});
 
 	$(document).on('change', '#height-max-dropdown', function() {
