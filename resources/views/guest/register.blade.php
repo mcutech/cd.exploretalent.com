@@ -26,7 +26,7 @@
 			<form action="index.html" id="signup-form">
 				<div class="row-fluid clearfix text-center">
 					<div class="col-md-12">
-						<img src="/images/logo-home-et.png" style="max-width: 100%" alt="">
+						<img src="/images/logo-home-et.png" alt="">
 					</div>
 				</div>
 				<div class="signup-text">
@@ -130,7 +130,7 @@
 							</div>
 							<div class="form-group padding-top-normal">
 								<div>By creating this account you agree to our <a href="" type="button" data-toggle="modal" data-target="#terms-conditions" original-title="">Terms of Use</a></div>
-								<div>(Forget your login name or password? Call 702-446-0888 or email <a href="mailto:cd@exploretalent.com" original-title="">cd@exploretalent.com</a></div>
+								<div>(Forget your login name or password? Call 702-446-0888 or email <a href="" original-title="">cd@exploretalent.com</a></div>
 							</div>
 						</div>
 
@@ -213,16 +213,16 @@
 					<span class="panel-body-in-title title">Samples of Past Projects</span>
 					<div class="sample-projects-container text-center">
 						<div class="sample-projects-item">
-							<img src="/images/sample1.jpg" style="max-width: 100%" alt="">
+							<img src="/images/sample1.jpg" alt="">
 						</div>
 						<div class="sample-projects-item">
-							<img src="/images/sample2.jpg" style="max-width: 100%" alt="">
+							<img src="/images/sample2.jpg" alt="">
 						</div>
 						<div class="sample-projects-item">
-							<img src="/images/sample3.jpg" style="max-width: 100%" alt="">
+							<img src="/images/sample3.jpg" alt="">
 						</div>
 						<div class="sample-projects-item">
-							<img src="/images/sample4.jpg" style="max-width: 100%" alt="">
+							<img src="/images/sample4.jpg" alt="">
 						</div>
 					</div>
 				</div>
@@ -238,7 +238,7 @@
 				<div class="panel-body">
 				<ul class="list-inline margin-zero">
 					<li><span class="panel-body-in-title title hide">Talent Agents</span></li>
-					<li><span class="panel-body-in-title text-default text-underline">Email us: <a href="mailto:cd@exploretalent.com"><u>cd@exploretalent.com</u></a></span></li>
+					<li><span class="panel-body-in-title text-default text-underline">Email us: <a href=""><u>cd@exploretalent.com</u></a></span></li>
 				</ul>
 				</div>
 			</div>

@@ -8,11 +8,7 @@
 	#favorite-result{
 	    margin: -11px;
 	}
-
-	.wrap {
-		word-break: break-all;
-	}
-
+	
 	.button-float-bottom{
 		position: fixed;
 		z-index: 999;
@@ -314,26 +310,6 @@
 						}
 					}
 
-                    .talent-greeting-video-v2{
-                        position: absolute;
-                        left: 23px;
-                        bottom: 10px;
-                        opacity: 1;
-                        transition: 0.3s;
-                        z-index: 100;
-
-                        .btn-view-greeting-video {
-                            background: #111 !important;
-                            border: 0;
-                            color: #fff;
-                            opacity: 0.7;
-
-                            &:hover {
-                                opacity: 1;
-                            }
-                        }
-                    }
-
 					.talent-functions-likeitlist {
 						position: absolute;
 						text-align: left;
@@ -366,7 +342,10 @@
 						color: #777777;
 						font-size: 12px;
 						padding: 0px;
-						display: block;
+						display: flex;
+						.additional-info-item{
+							flex-grow: 1;
+						}
 					}
 				}
 

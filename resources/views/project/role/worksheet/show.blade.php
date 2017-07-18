@@ -85,18 +85,18 @@
 											<div class="padding-small">
 												<div class="text-xs">
 													<span data-bind="<%= submission ? 'Self Submitted on ' : 'Added to Like It List on ' %>"></span>
-													<span data-bind="<%= moment(created_at).isSame(Date.now(), 'day') &&  moment(created_at).isSame(moment().add(1, 'days'), 'day') ?  moment.calendar : moment(created_at).utcOffset(-480).format('MM-DD-YY [at] hh:mm A') %>"></span>
+													<span data-bind="<%= moment(created_at).utcOffset(-480).format('MM-DD-YY hh:mm A') %>"></span>
 												</div>
 												<div>
 													<span data-bind="<%= campaign.description %>" data-bind-target="html"></span>
 												</div>
 												<div class="note-description" id="messages">
-													<div class="message" data-bind-template="#messages" data-bind-value="conversation.messages">
+													<div class="message row" data-bind-template="#messages" data-bind-value="conversation.messages">
 														<div class="col-md-12">
 															<b><span data-bind="<%= user.bam_talentci ? user.bam_talentci.getFullName() : 'Me'  %>"></span></b>
 															<span class="pull-right" data-bind="<%= moment(created_at).utcOffset(-480).fromNow() %>"></span>
 														</div>
-														<div class="col-md-12 wrap">
+														<div class="col-md-12">
 															<span data-bind="<%= body %>"></span>
 														</div>
 													</div>
