@@ -146,7 +146,6 @@ handler.prototype.createNewProject = function(e){
 			location : zipcode,
 			des: auditiondesc
 			// app_id : 1
-
 		};
 
 		if(projectname.length < 1) {
@@ -228,7 +227,7 @@ handler.prototype.createNewProject = function(e){
 							if($('#main-casting-image-div').addClass('uploaded')){
 								self.uploadImage(res.casting_id);
 								// self.loadImage(res.casting_id);
-							}		
+							}
 
 							var data = { app_id : 1, casting_id: res.casting_id };
 							self.core.resource.project_app.post(data).then(function(res){
@@ -369,7 +368,7 @@ handler.prototype.toggleAllMarketsChecked = function(e) {
 }
 
 handler.prototype.uploadImage = function(casting_id) {
- 
+
     var data = new FormData();
     data.append('casting_id', casting_id);
     data.append('file', $('#photo-uploader')[0].files[0]);
