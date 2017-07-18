@@ -10,8 +10,6 @@
 	<!-- Container -->
 	<div class="row-fluid clearfix padding-large">
 	<div class="col-md-12 white-text text-center">
-		<!-- <h2 class="text-bold">Post your Casting, Project or Job for Free</h2>
-		<small>Too busy to set up your account? Need help? Post casting calls only? <u>Email your project to us</u> or <u>Call us at (702) 446-0888.</u></small> -->
 		<h3>Access the Largest Pool of Talents, 9 million and counting!</h3>
 		<h4 class="text-bold">Post your Casting, Project or Job for Free</h4>
 
@@ -98,12 +96,12 @@
 						</div>
 						<div id="pass-min-letter" style="display:none;" class="alert alert-danger form-group" role="alert">
 							<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-							<span class="sr-only">Error:</span>							
+							<span class="sr-only">Error:</span>
 							<span id="pass-min-length-text" style="display:none;"></span>
 						</div>
 						<div id="pass-min-length" style="display:none;" class="alert alert-danger form-group" role="alert">
 							<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-							<span class="sr-only">Error:</span>							
+							<span class="sr-only">Error:</span>
 							<span id="pass-min-length-text" style="display:none;"></span>
 						</div>
 					</div>
