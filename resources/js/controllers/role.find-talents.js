@@ -47,6 +47,17 @@ module.exports = function(core, user, projectId, roleId) {
 	$('#search-button').on('click', handler.findMatches);
 	$('#add-all-button').on('click', handler.addAll);
 
+	/* TAB */
+	$('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {		
+		$('#address-search').val($(this).siblings('input[type="hidden"').val());				
+	});
+
+	$('#place-miles').slider('value', $('#place-miles-in').val());	
+
+	$('#place-miles').on('slide', function(e, ui) {
+		$('#place-miles-in').val(ui.value);
+	});
+
 	//refine search toggle location search
 	$(document).on('click', '#location-search-change-btn', function(e){
 		e.preventDefault();

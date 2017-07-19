@@ -10,6 +10,17 @@ module.exports = function(core, user, projectId, roleId) {
 		}
 	});
 
+	/* TAB */
+	$('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {		
+		$('#address-search').val($(this).siblings('input[type="hidden"').val());				
+	});
+
+	$('#place-miles').slider('value', $('#place-miles-in').val());	
+
+	$('#place-miles').on('slide', function(e, ui) {
+		$('#place-miles-in').val(ui.value);
+	});
+
 	$('#genderForm :checkbox').change(function (){
 		if ($(this).is(':checked')) {
 			if($('#checkboxFemale').is(':checked')){

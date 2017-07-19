@@ -1,6 +1,7 @@
 <div class="col-md-12 refine-search-sidebar">
 	<form id="talent-filter-form" onsubmit="return false">
 	<input type="hidden" id="address-search" name="address_search" value="1" />
+	<input type="hidden" id="lng-lat" name="lng_lat" value="[]" />
 	<div class="panel panel-talents-search">
 		<div class="panel-heading border-bottom-width-zero">
 			<span class="panel-title talents-refine-title">Refine Search</span>

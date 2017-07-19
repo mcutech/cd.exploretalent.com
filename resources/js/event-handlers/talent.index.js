@@ -17,7 +17,7 @@ function handler(core, user){
 	}
 
     self.xorigins = self.xorigins.length == 0 ? [-1] : self.xorigins;
-	
+
 	self.refresh();
 }
 
@@ -196,9 +196,25 @@ handler.prototype.getFilters = function() {
 			}
 		}
 	} else if (form.address_search == 1) { // location filter
-		if (form.locations) {
-			// TODO: add location filter
+		
+		var lngLat = JSON.parse(form.lng_lat);
+	
+		if (lngLat.length > 0) {			
+			data.query.push(['join', 'bam.laret_users', 'bam.laret_users.bam_talentnum', '=', 'talentnum']);
+			data.query.push(['join', 'bam.laret_locations', 'bam.laret_locations.user_id', '=', 'bam.laret_users.id']);
+			
+			var lngLatFilter = [];			
+			
+			_.each(lngLat, function(loc) {
+				lngLatFilter.push(['orWhere', [
+					['where', 'bam.laret_locations.longitude', '=', loc.lng],
+					['where', 'bam.laret_locations.latitude', '=', loc.lat]
+				]])
+			});
+			
+			data.query.push(['where', lngLatFilter]);
 		}
+		
 	}
 
 	if (parseInt(form.age_min)) {
