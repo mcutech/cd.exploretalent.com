@@ -1,12 +1,15 @@
 module.exports = function(core, user) {
 
   var markers = [];
+  var circles = [];
   var google = null;
 
   var location = {
     LAT: 37.09024,
     LNG: -95.712891
   }
+
+  var lngLat = [];
 
   var addMarker = function (location, map, options) {
       var marker = new google.Marker($.extend({map: map, position: location}, options));
@@ -15,23 +18,48 @@ module.exports = function(core, user) {
         location.LAT = event.latLng.lat();
         location.LNG = event.latLng.lng();
       });
-      markers.push(marker);
+      markers.push(marker);                            
   }
+
+  var addCircle = function(center, radius, map) {    
+    var circle = new google.Circle({
+        strokeColor: '#FF0000',
+        strokeOpacity: 0.8,
+        strokeWeight: 2,
+        fillColor: '#FF0000',
+        fillOpacity: 0.35,
+        map: map,
+        center: center,
+        radius: radius
+      });
+      circles.push(circle);
+  }
+
+  var radius = function() {
+    var miles = $('#place-miles-in').val();
+    return miles * 1609.344;
+  }
+  
 
   var clearMarkers = function() {
     _.each(markers, function(marker) {
       marker.setMap(null);
     });
+    _.each(circles, function(circle) {
+      circle.setMap(null);
+    });
     markers = [];
+    circles = [];
   }
 
   var init = function (mapOptions) {
 
     var el = $('#location-filter-map');
+    var el2 = $('#lng-lat');      
 
     var opt = {
       center: new google.LatLng(location.LAT, location.LNG),
-      zoom: 5,
+      zoom: 7,
       mapTypeId: google.MapTypeId.ROADMAP,
       //mapTypeControl: false,
       //scrollwheel: false,
@@ -49,15 +77,16 @@ module.exports = function(core, user) {
       scaledSize: new google.Size(25, 25)
     };
 
-    addMarker(
-        opt.center,
-        map,
-        {
-          icon: icon,
-          title: '',
-          draggable: true,
-          animation: google.Animation.DROP
-        });
+    //addMarker(
+    //    opt.center,
+    //    map,
+    //    {
+    //      icon: icon,
+    //      title: '',
+    //      draggable: true,
+    //      animation: google.Animation.DROP
+    //    });
+    addCircle(opt.center, 8046.72, map);
 
     // create the search box and link it to the UI element
     var input = $('#location-search-box').get(0);
@@ -67,18 +96,22 @@ module.exports = function(core, user) {
     map.addListener('bounds_changed', function() {
       searchBox.setBounds(map.getBounds());
     });
-
+    
     // Listen for the event fired when the user selects a prediction and retrieve
     // more details for that place
     searchBox.addListener('places_changed', function() {
       var places = searchBox.getPlaces();
-
+      
       if (places.length == 0) {
         return;
-      }
+      }      
+
+      lngLat = [];   
+      el2.val("[]");         
 
       // Clear old markers
-      clearMarkers();
+      clearMarkers();      
+
 
       // For each place, get the icon, name, and location
       var bounds = new google.LatLngBounds();
@@ -92,12 +125,16 @@ module.exports = function(core, user) {
         //icon.url = place.icon;
 
         // Create marker for each place
-        addMarker(place.geometry.location, map, {
-          icon: icon,
-          title: place.name,
-          draggable: true,
-          animation: google.Animation.DROP
-        });
+        //addMarker(place.geometry.location, map, {
+        //  icon: icon,
+        //  title: place.name,
+        //  draggable: true,
+        //  animation: google.Animation.DROP
+        //});
+        
+        lngLat.push({lng: place.geometry.location.lng(), lat: place.geometry.location.lat()});              
+
+        addCircle(place.geometry.location, radius(), map);
 
         if (place.geometry.viewport) {
           // Only geocodes have viewport
@@ -106,10 +143,12 @@ module.exports = function(core, user) {
           bounds.extend(place.geometry.location);
         }
 
-      });
+      });            
 
+      el2.val(JSON.stringify(lngLat));
+      
       map.fitBounds(bounds);
-      map.setZoom(8);
+      map.setZoom(8);      
 
     });
 
@@ -121,7 +160,7 @@ module.exports = function(core, user) {
 
   var mapsApi = require('google-maps-api')(core.config.gapi.key, ['places']);
   mapsApi().then(function(mapApi) {
-    google = mapApi;
+    google = mapApi;    
     init({});
   });
 }
