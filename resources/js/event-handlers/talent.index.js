@@ -202,13 +202,15 @@ handler.prototype.getFilters = function() {
 		if (lngLat.length > 0) {			
 			data.query.push(['join', 'bam.laret_users', 'bam.laret_users.bam_talentnum', '=', 'talentnum']);
 			data.query.push(['join', 'bam.laret_locations', 'bam.laret_locations.user_id', '=', 'bam.laret_users.id']);
-			
+						
 			var lngLatFilter = [];			
 			
 			_.each(lngLat, function(loc) {
+				var lng = loc.lng.toString();
+				var lat = loc.lat.toString()				
 				lngLatFilter.push(['orWhere', [
-					['where', 'bam.laret_locations.longitude', '=', loc.lng],
-					['where', 'bam.laret_locations.latitude', '=', loc.lat]
+					['where', 'bam.laret_locations.longitude', 'LIKE', lng.substr(0, lng.indexOf('.')) + '%'],
+					['where', 'bam.laret_locations.latitude', 'LIKE', lat.substr(0, lat.indexOf('.')) + '%']
 				]])
 			});
 			
