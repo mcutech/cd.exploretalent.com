@@ -163,7 +163,7 @@
 					</div>
 				</div>
 				<div class="col-md-3 margin-top-normal">
-					<div id="genderForm" class="indent">
+					<div id="genderForm">
 						<label for="" class="checkbox-inline"><strong>Gender: </strong>
 						<span id="selected" class="display-none" data-bind="<%= (gender_male == '1' && gender_female =='0') ? '1' : '0' %>" data-bind-target="visibility">Male</span>
 						<span id="selected" class="display-none" data-bind="<%= (gender_female == '0' && gender_female =='1') ? '1' : '0' %>" data-bind-target="visibility">Female</span>
