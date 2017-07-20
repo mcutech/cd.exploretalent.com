@@ -6,6 +6,8 @@ function handler(core, user, talentlogin) {
   self.core = core;
   self.user = user;
 
+    console.log(self.core.resource);
+
   // email autofill with CD email
   self.core.service.databind('#self-sub-email', self.user);
 
@@ -221,22 +223,31 @@ handler.prototype.createNewProject = function(e){
 					// data["address2"] = selfSubAddress;
 					data["srn_address"] = selfSubAddress;
 
-					return self.core.resource.project.post(data)
+                    var body1 = {};
+                    var body2 = {};
+
+                    body1.app_id = 1;
+                    body2.app_id = 4;
+
+                    return self.core.resource.project.post(data)
 						.then(function(res) {
 
-							if($('#main-casting-image-div').addClass('uploaded')){
+                            body1.casting_id = res.casting_id;
+                            body2.casting_id = res.casting_id;
+
+                            if($('#main-casting-image-div').addClass('uploaded')){
 								self.uploadImage(res.casting_id);
 								// self.loadImage(res.casting_id);
 							}
 
-							var data = { app_id : 1, casting_id: res.casting_id };
-							self.core.resource.project_app.post(data).then(function(res){
-								// console.log(res);
-								$('#create-project-btn').attr('disabled', 'disabled');
-								setTimeout(function() {
-									window.location = "/projects/"+res.casting_id+"/roles/create";
-								}, 3000 );
-							});
+                            self.core.resource.project_app.post(body1).then(function(res) {
+                                console.log('result from ET post');
+                                console.log(res);
+                            });
+                            self.core.resource.project_app.post(body2).then(function(res) {
+                                console.log('result from AU psot');
+                                console.log(res);
+                            });
 						});
 				}
 
@@ -269,21 +280,28 @@ handler.prototype.createNewProject = function(e){
 						data["by_app_only"] = '0';
 					}
 
+                    var body1 = {};
+                    var body2 = {};
+
+                    body1.app_id = 1;
+                    body2.app_id = 4;
+
 					return self.core.resource.project.post(data)
 						.then(function(res) {
+                            body1.casting_id = res.casting_id;
+                            body2.casting_id = res.casting_id;
 							if($('#main-casting-image-div').addClass('uploaded')){
 								self.uploadImage(res.casting_id);
 							}
 
-							var data = { app_id : 1, casting_id: res.casting_id };
-							self.core.resource.project_app.post(data).then(function(res){
-								// console.log(res);
-								$('#create-project-btn').attr('disabled', 'disabled');
-								setTimeout(function() {
-									window.location = "/projects/"+res.casting_id;
-								}, 3000);
-							});
-
+                            self.core.resource.project_app.post(body1).then(function(res) {
+                                console.log('results from ET post');
+                                console.log(res);
+                            });
+                            self.core.resource.project_app.post(body2).then(function(res) {
+                                console.log('results from AU post');
+                                console.log(res);
+                            });
 						});
 				}
 
