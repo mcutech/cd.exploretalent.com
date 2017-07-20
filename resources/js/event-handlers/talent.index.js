@@ -197,7 +197,7 @@ handler.prototype.getFilters = function() {
 		}
 	} else if (form.address_search == 1) { // location filter
 		
-		var lngLat = JSON.parse(form.lng_lat);
+		var lngLat = JSON.parse(form.lng_lat);		
 	
 		if (lngLat.length > 0) {			
 			data.query.push(['join', 'bam.laret_users', 'bam.laret_users.bam_talentnum', '=', 'talentnum']);

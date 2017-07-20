@@ -3,6 +3,7 @@ module.exports = function(core, user) {
   var markers = [];
   var circles = [];
   var google = null;
+  var DISTANCE_UNIT = 'm';
 
   var location = {
     LAT: 37.09024,
@@ -10,6 +11,7 @@ module.exports = function(core, user) {
   }
 
   var lngLat = [];
+    
 
   var addMarker = function (location, map, options) {
       var marker = new google.Marker($.extend({map: map, position: location}, options));
@@ -52,10 +54,55 @@ module.exports = function(core, user) {
     circles = [];
   }
 
-  var init = function (mapOptions) {
+  var bpotGetDueCoords = function (lat, lng, bearing, distance) {
+
+      if (DISTANCE_UNIT == 'm') {
+        r = 3963.1676;;
+      } else {
+        r = 6378.1;
+      }
+      
+      // new latitude in degrees      
+      var newLat = GeoPoint.radiansToDegrees(Math.asin(Math.sin(GeoPoint.degreesToRadians(lat))*Math.cos(distance/r)+Math.cos(GeoPoint.degreesToRadians(lat))*Math.sin(distance/r)*Math.cos(GeoPoint.degreesToRadians(bearing))));      
+
+      // new longitude in degrees
+      var newLng = GeoPoint.radiansToDegrees(GeoPoint.degreesToRadians(lng)+Math.atan2(Math.sin(GeoPoint.degreesToRadians(bearing))*Math.sin(distance/r) * Math.cos(GeoPoint.degreesToRadians(lat)), Math.cos(distance / r) - Math.sin(GeoPoint.degreesToRadians(lat)) * Math.sin(GeoPoint.degreesToRadians(newLat))));          
+      
+      return {
+        lng: newLng,
+        lat: newLat
+      };
+      
+    };
+
+  var calculateRange = function(lng, lat, distance) {
+    var path_top_right = bpotGetDueCoords(lat, lng, 45, distance);
+    var path_bottom_right = bpotGetDueCoords(lat, lng, 135, distance);
+    var path_bottom_left = bpotGetDueCoords(lat, lng, 225, distance);
+    var path_top_left = bpotGetDueCoords(lat, lng, 315, distance);
+
+    // longitude
+    var longitude = {
+      max: _.max([path_top_right.lng, path_bottom_right.lng, path_bottom_left.lng, path_top_left.lng]),
+      min: _.min([path_top_right.lng, path_bottom_right.lng, path_bottom_left.lng, path_top_left.lng])
+    }; 
+    
+    // latitude
+    var latitude = {
+      max: _.max([path_top_right.lat, path_bottom_right.lat, path_bottom_left.lat, path_top_left.lat]),
+      min: _.min([path_top_right.lat, path_bottom_right.lat, path_bottom_left.lat, path_top_left.lat])
+    };             
+    
+    return {
+      lng: longitude,
+      lat: latitude
+    }
+  }
+
+  var init = function (mapOptions) {    
 
     var el = $('#location-filter-map');
-    var el2 = $('#lng-lat');      
+    var el2 = $('#lng-lat');               
 
     var opt = {
       center: new google.LatLng(location.LAT, location.LNG),
@@ -86,7 +133,7 @@ module.exports = function(core, user) {
     //      draggable: true,
     //      animation: google.Animation.DROP
     //    });
-    addCircle(opt.center, 8046.72, map);
+    addCircle(opt.center, 8046.72, map);    
 
     // create the search box and link it to the UI element
     var input = $('#location-search-box').get(0);
@@ -106,7 +153,7 @@ module.exports = function(core, user) {
         return;
       }      
 
-      lngLat = [];   
+      lngLat = [];
       el2.val("[]");         
 
       // Clear old markers
@@ -122,6 +169,8 @@ module.exports = function(core, user) {
           return;
         }
 
+        //console.log(place);
+
         //icon.url = place.icon;
 
         // Create marker for each place
@@ -131,8 +180,12 @@ module.exports = function(core, user) {
         //  draggable: true,
         //  animation: google.Animation.DROP
         //});
-        
-        lngLat.push({lng: place.geometry.location.lng(), lat: place.geometry.location.lat()});              
+        lngLat.push(
+                    calculateRange(
+                      place.geometry.location.lng(), 
+                      place.geometry.location.lat(), 
+                      $('#place-miles-in').val())
+                    );        
 
         addCircle(place.geometry.location, radius(), map);
 
@@ -146,6 +199,7 @@ module.exports = function(core, user) {
       });            
 
       el2.val(JSON.stringify(lngLat));
+      console.log(lngLat);
       
       map.fitBounds(bounds);
       map.setZoom(8);      
@@ -157,8 +211,8 @@ module.exports = function(core, user) {
     //}, 100);
 
   }
-
-  var mapsApi = require('google-maps-api')(core.config.gapi.key, ['places']);
+  var GeoPoint = require('geopoint');
+  var mapsApi  = require('google-maps-api')(core.config.gapi.key, ['places']);
   mapsApi().then(function(mapApi) {
     google = mapApi;    
     init({});
