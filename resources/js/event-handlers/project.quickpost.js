@@ -18,19 +18,19 @@ handler.prototype.refresh = function(){
 handler.prototype.addToBooking = function(){
 	var form = self.core.service.form.serializeObject('#booking-form');
 
-	if (!form.name) {
+	if(!form.name){
 		$('#name-error').addClass('has-error');
-	} else {
+	}else{
 		$('#name-error').removeClass('has-error');
 	}
 
-	if (form.name && !form.body) {
+	if(form.name && !form.body){
 		$('#body-error').addClass('has-error');
-	} else {
+	}else{
 		$('#body-error').removeClass('has-error');
 	}
 
-	if (form.name && form.body) {
+	if(form.name && form.body){
 		form.user_id = self.user.id;
 		form.lazy_project_status_id = 1;
 		self.core.resource.quickpost.post(form)
@@ -49,3 +49,4 @@ handler.prototype.addToBooking = function(){
 module.exports = function(core, user){
 	return new handler(core, user);
 }
+

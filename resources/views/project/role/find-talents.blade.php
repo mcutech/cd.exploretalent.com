@@ -11,7 +11,7 @@ false, 'pages' => [ [ 'name' => 'My Projects', 'url' => '/projects' ], [ 'name' 
 		<div class="talents-wrapper">
 			<div class="talents-search-filter-content">
 				<div class="row clearfix">
-					@include('project.components.filter')
+					@include('project.components.filter')					
 				</div>
 				<div id="submission-total" class="row">
 					<div class="margin-left-small margin-bottom-small col-md-12">

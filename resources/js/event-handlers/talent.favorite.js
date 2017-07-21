@@ -59,20 +59,12 @@ handler.prototype.refresh = function(append){
 
 		return self.core.resource.talent.search(data)
 	})
-	.then(function(res) {
-        talents = res;
-
-        var promises = [];
-
+	.then(function(talents) {
 		_.each(talents.data, function(talent) {
 			talent.talent_role_id = 0;
 			talent.talent_project_id = 0;
-            promises.push(self.getTalentVideos(talent));
 		});
 
-        return $.when.apply($, promises);
-    })
-    .then(function() {
         try {
 		    self.core.service.databind('#favorite-result', talents, append);
         }
@@ -93,25 +85,6 @@ handler.prototype.refresh = function(append){
 		}
 	});
 };
-
-handler.prototype.getTalentVideos = function(talent) {
-
-    var deferred = $.Deferred();
-    var data = {
-        query : [
-            [ 'where', 'talentnum', '=', talent.talentnum ],
-            [ 'where', 'type', '=', '6' ]
-        ]
-    };
-
-    self.core.resource.talent_videos.get(data)
-        .then(function(video){
-            talent.video_id = (video.data.length > 0) ? video.data[0].video_id : '';
-            deferred.resolve();
-        });
-
-    return deferred.promise();
-}
 
 module.exports = function(core, user){
 	return new handler(core, user);

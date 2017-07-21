@@ -36,6 +36,7 @@ handler.prototype.refresh = function() {
 		.then(function(res) {
 
 			self.talent.favorite = _.first(res.data);
+			console.log(self.talent.bam_talent_music);
 			self.getRoleInfo();
 
 			if(!self.talent.heightText() && !self.talent.bam_talentinfo2.ethnicity && !self.talent.bam_talentinfo1.weightpounds && !self.talent.bam_talentinfo1.haircolor && !self.talent.bam_talentinfo1.build && !self.talent.bam_talentinfo1.eyecolor && !self.talent.bam_talentinfo2.special_skills){
@@ -58,37 +59,31 @@ handler.prototype.refresh = function() {
 				$('#dance').addClass('hide');
 			}
 
-            var promises = [];
+			self.core.service.databind('#talent-resume-info', self.talent);
+			self.core.service.databind('#talent-primary-photo', self.talent);
+			self.core.service.databind('#talent-resume-div', self.talent);
+			self.core.service.databind('#talent-photo', self.talent);
+			// self.core.service.databind('#talent-photo', self.talent);
 
-            promises.push(self.getTalentVideos(self.talent));
+			var photos = _.filter(self.talent.bam_talent_media2, function(val){
+				return val.type == 1;
+			});
+			if(photos[0]){
+				var firstphoto = _.slice(photos, 0, 1);
+				self.core.service.databind('#first-photo', firstphoto[0]);
+			}
 
-            return $.when.apply($, promises).then(function() {
-                console.log(self.talent);
-                self.core.service.databind('#talent-resume-info', self.talent);
-                self.core.service.databind('#talent-primary-photo', self.talent);
-                self.core.service.databind('#talent-resume-div', self.talent);
-                self.core.service.databind('#talent-photo', self.talent);
+			if(photos[1]){
+				var secondphoto = _.slice(photos, 1, 2);
+				self.core.service.databind('#second-photo', secondphoto[0]);
+			}
 
-                var photos = _.filter(self.talent.bam_talent_media2, function(val){
-                    return val.type == 1;
-                });
-                if(photos[0]){
-                    var firstphoto = _.slice(photos, 0, 1);
-                    self.core.service.databind('#first-photo', firstphoto[0]);
-                }
+			if(photos[2]){
+				var thirdphoto = _.slice(photos, 2, 3);
+				self.core.service.databind('#third-photo', thirdphoto[0]);
+			}
 
-                if(photos[1]){
-                    var secondphoto = _.slice(photos, 1, 2);
-                    self.core.service.databind('#second-photo', secondphoto[0]);
-                }
-
-                if(photos[2]){
-                    var thirdphoto = _.slice(photos, 2, 3);
-                    self.core.service.databind('#third-photo', thirdphoto[0]);
-                }
-
-                $('.talent-resume-wrapper').removeClass('hide');
-            });
+			$('.talent-resume-wrapper').removeClass('hide');
 
 		});
 }
@@ -115,57 +110,6 @@ handler.prototype.getRoleInfo = function() {
 		self.core.service.databind('#add-to-like-it-list', { talent : self.talent, role_id : 0 });
 		self.core.service.databind('.favorite-button', { talent : self.talent, role_id : 0 });
 	}
-}
-
-handler.prototype.getTalentVideos = function(talent) {
-
-    var deferred = $.Deferred();
-    var data = {
-        query : [
-            [ 'where', 'talentnum', '=', talent.talentnum ],
-            [ 'where', 'type', '=', '6' ] // greeting video
-        ]
-    };
-
-    self.core.resource.talent_videos.get(data)
-        .then(function(video){
-
-            talent.video_id = (video.data.length > 0) ? video.data[0].video_id : '';
-            talent.video_title = (video.data.length > 0) ? video.data[0].title : '';
-            talent.video_path = (video.data.length > 0) ? video.data[0].video_path : '';
-
-            $('#jplayer-greeting-video').jPlayer({
-                ready: function () {
-                    $(this).jPlayer("setMedia", {
-                        title: video.data[0].title,
-                        flv: video.data[0].video_path,
-                        poster: video.data[0].image_path
-                    });
-                },
-                swfPath: "/",
-                supplied: "flv",
-                cssSelectorAncestor: "",
-                cssSelector: {
-                  title: "#jplayer-title",
-                  play: "#jplayer-play",
-                  pause: "#jplayer-pause",
-                  stop: "#jplayer-stop",
-                  mute: "#jplayer-mute",
-                  unmute: "#jplayer-unmute",
-                  fullScreen: "#jplayer-fullscreen",
-                  currentTime: "#jplayer-currentTime",
-                  duration: "#jplayer-duration"
-                },
-                size: {
-                    width: "320px",
-                    height: "180px"
-                }
-            });
-
-            deferred.resolve();
-        });
-
-    return deferred.promise();
 }
 
 module.exports = function(core, user, talentnum) {
