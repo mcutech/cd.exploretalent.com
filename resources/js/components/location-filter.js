@@ -60,7 +60,7 @@ module.exports = function(core, user) {
         r = 3963.1676;;
       } else {
         r = 6378.1;
-      }
+      }      
       
       // new latitude in degrees      
       var newLat = GeoPoint.radiansToDegrees(Math.asin(Math.sin(GeoPoint.degreesToRadians(lat))*Math.cos(distance/r)+Math.cos(GeoPoint.degreesToRadians(lat))*Math.sin(distance/r)*Math.cos(GeoPoint.degreesToRadians(bearing))));      
@@ -180,12 +180,21 @@ module.exports = function(core, user) {
         //  draggable: true,
         //  animation: google.Animation.DROP
         //});
-        lngLat.push(
-                    calculateRange(
+        var range = calculateRange(
                       place.geometry.location.lng(), 
                       place.geometry.location.lat(), 
-                      $('#place-miles-in').val())
-                    );        
+                      $('#place-miles-in').val());                            
+        if (lngLat.length == 0) {
+          lngLat.push(range);                    
+        } else {
+          // calculated longitude
+          lngLat[0].lng.max = _.max([lngLat[0].lng.max, range.lng.max]);
+          lngLat[0].lng.min = _.min([lngLat[0].lng.min, range.lng.min]);
+          // calculated latitude
+          lngLat[0].lat.max = _.max([lngLat[0].lat.max, range.lat.max]);
+          lngLat[0].lat.min = _.min([lngLat[0].lat.min, range.lat.min]);
+        }
+        
 
         addCircle(place.geometry.location, radius(), map);
 
@@ -199,7 +208,7 @@ module.exports = function(core, user) {
       });            
 
       el2.val(JSON.stringify(lngLat));
-      console.log(lngLat);
+      console.log("LNGLAT", lngLat);
       
       map.fitBounds(bounds);
       map.setZoom(8);      
