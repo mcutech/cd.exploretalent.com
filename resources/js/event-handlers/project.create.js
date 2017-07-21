@@ -247,6 +247,10 @@ handler.prototype.createNewProject = function(e){
                             self.core.resource.project_app.post(body2).then(function(res) {
                                 console.log('result from AU psot');
                                 console.log(res);
+                                $('#create-project-btn').attr('disabled', 'disabled');
+                                setTimeout(function() {
+                                    window.location = "/projects/"+res.casting_id+"/roles/create";
+                                }, 3000);
                             });
 						});
 				}
@@ -301,6 +305,10 @@ handler.prototype.createNewProject = function(e){
                             self.core.resource.project_app.post(body2).then(function(res) {
                                 // console.log('results from AU post');
                                 console.log(res);
+                                setTimeout(function() {
+                                    window.location = "/projects/"+res.casting_id+"/roles/create";
+                                }, 3000);
+
                             });
 						});
 				}
