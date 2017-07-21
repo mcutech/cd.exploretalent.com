@@ -111,14 +111,13 @@
 							<input type="password" name="confirmPassword" id="confirm-password" class="form-control input-lg" placeholder="Confirm Password" data-required data-match="password">
 							<span class="fa fa-lock signup-form-icon"></span>
 						</div>
-						<div id="req-confirmpass" style="display:none;" class="alert alert-danger form-group" role="alert">
-							<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-							<span class="sr-only">Error:</span>
-							<span id="req-confirmpasstxt" style="display:none;"></span>
-							<span id="req-unmatchtxt" style="display:none;"></span>
-							<span id="req-uniqueemailtxt"
-							style="display:none;"></span>
-						</div>
+					</div>
+					<div id="req-confirmpass" style="display:none;" class="alert alert-danger form-group col-md-12" role="alert">
+						<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+						<span class="sr-only">Error:</span>
+						<span id="req-confirmpasstxt" style="display:none;"></span>
+						<span id="req-unmatchtxt" style="display:none;"></span>
+						<span id="req-uniqueemailtxt"	style="display:none;"></span>
 					</div>
 
 					<div class="col-md-12 form-group">
