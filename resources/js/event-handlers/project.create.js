@@ -295,11 +295,11 @@ handler.prototype.createNewProject = function(e){
 							}
 
                             self.core.resource.project_app.post(body1).then(function(res) {
-                                console.log('results from ET post');
+                                // console.log('results from ET post');
                                 console.log(res);
                             });
                             self.core.resource.project_app.post(body2).then(function(res) {
-                                console.log('results from AU post');
+                                // console.log('results from AU post');
                                 console.log(res);
                             });
 						});
