@@ -212,16 +212,11 @@ handler.prototype.getFilters = function() {
 				//data.query.push(['join', 'bam.laret_users', 'bam.laret_users.bam_talentnum', '=', 'talentnum']);
 				data.query.push(['join', 'bam.laret_locations', 'bam.laret_locations.user_id', '=', 'bam.laret_users.id']);
 				
-				var lngLatFilter = [];			
+				data.query.push(['where', 'bam.laret_locations.longitude', '>=', lngLat[0].lng.min - 0.3]);
+				data.query.push(['where', 'bam.laret_locations.longitude', '<=', lngLat[0].lng.max + 0.3]);
 				
-				_.each(lngLat, function(loc) {
-					lngLatFilter.push(['orWhere', [
-						['where', 'bam.laret_locations.longitude', '=', loc.lng],
-						['where', 'bam.laret_locations.latitude', '=', loc.lat]
-					]])
-				});
-				
-				data.query.push(['where', lngLatFilter]);
+				data.query.push(['where', 'bam.laret_locations.latitude', '>=', lngLat[0].lat.min - 0.3]);
+				data.query.push(['where', 'bam.laret_locations.latitude', '<=', lngLat[0].lat.max + 0.3]);										
 			}
 		}	 		
 
