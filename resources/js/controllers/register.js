@@ -192,14 +192,18 @@ module.exports = function(core) {
 			.then(function(result){
 				localStorage.setItem('access_token', result.access_token);
 				core.service.rest.settings.headers = { Authorization : 'Bearer ' + result.access_token };
-
-				window.location = '/projects';
+                $('#req-confirmemail').show().delay(5000).fadeOut();
+                $('#req-ok').text('We\'ve sent you a message on your email address with a link to log you into your account.').show().delay(5000).fadeOut();
+                // window.location = '/register';
+                console.log('valid');
+                return;
 			}, function(){
 				$('#email').focus().css("border-color","#b94a48");
 				$('#req-confirmpass').show().delay(5000).fadeOut();
 				$('#req-uniqueemailtxt').text('The email has already been taken.').show().delay(5000).fadeOut();
 
 				$('#error-signup').show().delay(5000).fadeOut();
+                console.log('invalid');
 			});
 	});
 };

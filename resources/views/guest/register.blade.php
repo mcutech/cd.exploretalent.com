@@ -116,11 +116,12 @@
 							<span class="sr-only">Error:</span>
 							<span id="req-confirmpasstxt" style="display:none;"></span>
 							<span id="req-unmatchtxt" style="display:none;"></span>
-							<span id="req-uniqueemailtxt"
-							style="display:none;"></span>
+							<span id="req-uniqueemailtxt" style="display:none;"></span>
 						</div>
+                        <div id="req-confirmemail" class="alert alert-success form-group" style="display:none;" role="alert">
+                            <span id="req-ok" style="display:none;"></span>
+                        </div>
 					</div>
-
 					<div class="col-md-12 form-group">
 						<div class="text-center">
 							<div class="form-actions" id="form-action-signup-btn">
