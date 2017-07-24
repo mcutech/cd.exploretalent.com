@@ -200,6 +200,9 @@ handler.prototype.getFilters = function() {
 		var lngLat = JSON.parse(form.lng_lat);		
 	
 		if (lngLat.length > 0) {			
+			
+			var d = lngLat.distance / 69;
+
 			data.query.push(['join', 'bam.laret_users', 'bam.laret_users.bam_talentnum', '=', 'talentnum']);
 			data.query.push(['join', 'bam.laret_locations', 'bam.laret_locations.user_id', '=', 'bam.laret_users.id']);
 						

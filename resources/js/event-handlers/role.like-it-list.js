@@ -10,6 +10,7 @@ function handler(core, user, projectId, roleId) {
 	self.page = 1;
 	self.first_load = true;
 	self.likeitlistTotal;
+	self.filter = 0;
 
 	self.xorigins = [];
 
@@ -182,6 +183,176 @@ handler.prototype.getFilters = function() {
 			[ 'where', 'bam_role_id', '=', $('#roles-list').val() ],
 			[ 'with', 'invitee.bam_talentci' ]
 		]
+	}
+
+	if (self.filter = 1) data = self.getFilters2(data);
+
+	return data;
+}
+
+handler.prototype.getFilters2 = function(data) {
+	var form = self.core.service.form.serializeObject('#role-filter-form');	
+
+	if (!self.first_load) {
+		
+		if (form.address_search == 0) { // market filter
+			if (form.markets) {
+				if (form.markets instanceof Array) {
+					var subquery = [];
+
+					_.each(form.markets, function(market) {
+						if (subquery.length == 0) {
+							subquery.push([ 'where', 'city', 'like', '%' + market + '%' ]);
+						}
+						else {
+							subquery.push([ 'orWhere', 'city', 'like', '%' + market + '%' ]);
+						}
+
+						subquery.push([ 'orWhere', 'city1', 'like', '%' + market + '%' ]);
+						subquery.push([ 'orWhere', 'city2', 'like', '%' + market + '%' ]);
+						subquery.push([ 'orWhere', 'city3', 'like', '%' + market + '%' ]);
+					});
+
+					data.query.push([ 'where', subquery ]);
+				}
+				else {
+					data.query.push([ 'where', [
+							[ 'where', 'city', '=', form.markets ],
+							[ 'orWhere', 'city1', '=', form.markets ],
+							[ 'orWhere', 'city2', '=', form.markets ],
+							[ 'orWhere', 'city3', '=', form.markets ]
+						]
+					]);
+				}
+			} 
+		} else { // location filter
+				
+			var lngLat = JSON.parse(form.lng_lat);			
+		
+			if (lngLat.length > 0) {			
+				data.query.push(['join', 'bam.laret_users', 'bam.laret_users.bam_talentnum', '=', 'talentnum']);
+				data.query.push(['join', 'bam.laret_locations', 'bam.laret_locations.user_id', '=', 'bam.laret_users.id']);										
+				
+				data.query.push(['where', 'bam.laret_locations.longitude', '>=', lngLat[0].lng.min - 0.3]);
+				data.query.push(['where', 'bam.laret_locations.longitude', '<=', lngLat[0].lng.max + 0.3]);
+				
+				data.query.push(['where', 'bam.laret_locations.latitude', '>=', lngLat[0].lat.min - 0.3]);
+				data.query.push(['where', 'bam.laret_locations.latitude', '<=', lngLat[0].lat.max + 0.3]);										
+			}
+		}		
+
+		if (parseInt(form.age_min)) {
+			data.query.push([ 'where', 'dobyyyy', '<=', new Date().getFullYear() - parseInt(form.age_min) ]);
+		}
+
+		if (parseInt(form.age_max)) {
+			data.query.push([ 'where', 'dobyyyy', '>=', new Date().getFullYear() - parseInt(form.age_max) ]);
+		}
+
+		if (form.sex) {
+			data.query.push([ 'where', 'sex', '=', form.sex ]);
+		}
+
+		if (form.has_photo) {
+			data.query.push([ 'where', 'has_photos', '=', form.has_photo == 'true' ? 1 : 0 ]);
+		}
+
+		if(form.search_text) {
+			data.query.push([ 'where',
+				[
+					[ 'where', 'talentnum', '=', form.search_text ],
+					[ 'orWhere', 'fname', 'LIKE', '%' + form.search_text + '%' ],
+					[ 'orWhere', 'lname', 'LIKE', '%' + form.search_text + '%' ],
+				]
+			]);
+		}
+
+		if (parseInt(form.height_min)) {
+			data.query.push([ 'where', 'heightinches', '>=', form.height_min ]);
+		}
+
+		if (parseInt(form.height_max)) {
+			data.query.push([ 'where', 'heightinches', '<=', form.height_max ]);
+		}
+
+		if (form.build) {
+			if (form.build instanceof Array) {
+				data.query.push([ 'whereIn', 'build', form.build ]);
+			}
+			else {
+				data.query.push([ 'where', 'build', '=', form.build ]);
+			}
+		}
+
+		if (form.ethnicity) {
+			// African and African American are both searched if either is chosen
+			if (form.ethnicity instanceof Array) {
+
+				if(form.ethnicity.indexOf('African') > -1 && form.ethnicity.indexOf('African American') == -1) {
+					form.ethnicity.push('African American');
+				}
+				else if(form.ethnicity.indexOf('African American') > -1 && form.ethnicity.indexOf('African') == -1) {
+					form.ethnicity.push('African');
+				}
+
+				data.query.push([ 'whereIn', 'ethnicity', form.ethnicity ]);
+
+			}
+			else {
+				if(form.ethnicity == 'African') {
+					data.query.push(['where', [
+							[ 'where', 'ethnicity', '=', 'African' ],
+							[ 'orWhere', 'ethnicity', '=', 'African American' ]
+						]
+					]);
+				}
+				else if(form.ethnicity == 'African American') {
+					data.query.push(['where', [
+							[ 'where', 'ethnicity', '=', 'African American' ],
+							[ 'orWhere', 'ethnicity', '=', 'African' ]
+						]
+					]);
+				}
+				else {
+					data.query.push([ 'where', 'ethnicity', '=', form.ethnicity ]);
+				}
+			}
+		}
+
+		if (form.last_access) {
+			data.query.push([ 'where', 'last_access', '>', Math.floor(new Date().getTime() / 1000) - parseInt(form.last_access) ]);
+		}
+
+		if(form.young_old) {
+			data.query.push([ 'orderBy', 'dobyyyy', form.young_old ]);
+			data.query.push([ 'orderBy', 'dobmm', form.young_old ]);
+			data.query.push([ 'orderBy', 'dobdd', form.young_old ]);
+		}
+
+		if(form.union) {
+			if(form.union == '1') {
+				data.query.push([ 'where', [
+						[ 'where', 'union_aea', '=', 'Yes' ],
+						[ 'orWhere', 'union_aftra', '=', 'Yes' ],
+						[ 'orWhere', 'union_other', '=', 'Yes' ],
+						[ 'orWhere', 'union_sag', '=', 'Yes' ],
+					]
+				]);
+			}
+			else {
+				data.query.push([ 'where', [
+						[ 'where', 'union_aea', '=', 'No' ],
+						[ 'orWhere', 'union_aftra', '=', 'No' ],
+						[ 'orWhere', 'union_other', '=', 'No' ],
+						[ 'orWhere', 'union_sag', '=', 'No' ],
+					]
+				]);
+			}
+		}
+
+		if(form.favorite_talent == '1') {
+			data.query.push([ 'join', 'bam.laret_favorite_talents', 'bam.laret_favorite_talents.bam_talentnum', '=', 'search.talents.talentnum' ]);
+		}
 	}
 
 	return data;

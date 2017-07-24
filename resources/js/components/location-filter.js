@@ -57,9 +57,11 @@ module.exports = function(core, user) {
   var bpotGetDueCoords = function (lat, lng, bearing, distance) {
 
       if (DISTANCE_UNIT == 'm') {
-        r = 3963.1676;;
+        //r = 3963.1676;;
+        r = distance * 1609.34;
       } else {
-        r = 6378.1;
+        //r = 6378.1;
+        r = distance * 1.60934;
       }      
       
       // new latitude in degrees      
@@ -81,6 +83,11 @@ module.exports = function(core, user) {
     var path_bottom_left = bpotGetDueCoords(lat, lng, 225, distance);
     var path_top_left = bpotGetDueCoords(lat, lng, 315, distance);
 
+    console.log('TR', path_top_right);
+    console.log('BR', path_bottom_right);
+    console.log('BL', path_bottom_left);
+    console.log('TL', path_top_left);
+
     // longitude
     var longitude = {
       max: _.max([path_top_right.lng, path_bottom_right.lng, path_bottom_left.lng, path_top_left.lng]),
@@ -92,6 +99,8 @@ module.exports = function(core, user) {
       max: _.max([path_top_right.lat, path_bottom_right.lat, path_bottom_left.lat, path_top_left.lat]),
       min: _.min([path_top_right.lat, path_bottom_right.lat, path_bottom_left.lat, path_top_left.lat])
     };             
+
+    console.log('LNGLAT', {lng: longitude, lat: latitude});
     
     return {
       lng: longitude,
