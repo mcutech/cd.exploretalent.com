@@ -143,6 +143,8 @@ handler.prototype.findMatches = function(append) {
 				]
 			}
 
+			data2 = self.getFilters2(data2);
+
 			return self.core.resource.talent.search(data2, options);
 		})
 		.then(function(talents) {
@@ -183,10 +185,7 @@ handler.prototype.getFilters = function() {
 			[ 'where', 'bam_role_id', '=', $('#roles-list').val() ],
 			[ 'with', 'invitee.bam_talentci' ]
 		]
-	}
-
-	if (self.filter = 1) data = self.getFilters2(data);
-
+	}	
 	return data;
 }
 

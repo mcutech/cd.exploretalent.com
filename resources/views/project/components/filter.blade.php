@@ -113,7 +113,7 @@
 								Distance from point <input type="text" value="5" id="place-miles-in" class="form-control" style="display: inline-block; width: 12%" readonly="readonly" /> Miles
 							</div>		
 							<div class="margin-top-normal">
-								<div id="place-miles" data-range="false" data-step="5" data-type="miles" data-slider></div>
+								<div id="place-miles" data-range="false" data-step="5" data-min="5" data-max="200" data-type="miles" data-slider></div>
 							</div>										
 						</div>
 						<div class="col-md-7 margin-top-normal-zz-sm">

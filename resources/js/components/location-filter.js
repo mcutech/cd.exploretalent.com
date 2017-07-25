@@ -3,15 +3,20 @@ module.exports = function(core, user) {
   var markers = [];
   var circles = [];
   var google = null;
-  var DISTANCE_UNIT = 'm';
+  var DISTANCE_UNIT = 'm';  
 
   var location = {
     LAT: 37.09024,
     LNG: -95.712891
   }
 
-  var lngLat = [];
-    
+  var lngLat = [];    
+  var placesLngLat = [];
+
+
+  var el = $('#location-filter-map');
+  var el2 = $('#lng-lat');               
+
 
   var addMarker = function (location, map, options) {
       var marker = new google.Marker($.extend({map: map, position: location}, options));
@@ -54,6 +59,37 @@ module.exports = function(core, user) {
     circles = [];
   }
 
+  var updateStatus = function() {
+    if (placesLngLat.length > 0) {
+      lngLat = [];
+      _.each(placesLngLat, function(place, index) {
+        
+        updateCircleRadius(circles[index]);
+
+        var range = calculateRange(
+                      place.lng, 
+                      place.lat, 
+                      $('#place-miles-in').val());                            
+        if (lngLat.length == 0) {
+          lngLat.push(range);                    
+        } else {
+          // calculated longitude
+          lngLat[0].lng.max = _.max([lngLat[0].lng.max, range.lng.max]);
+          lngLat[0].lng.min = _.min([lngLat[0].lng.min, range.lng.min]);
+          // calculated latitude
+          lngLat[0].lat.max = _.max([lngLat[0].lat.max, range.lat.max]);
+          lngLat[0].lat.min = _.min([lngLat[0].lat.min, range.lat.min]);
+        }
+      });
+      el2.val(JSON.stringify(lngLat));
+    }
+  }
+
+  var updateCircleRadius = function(circle) {    
+    var miles = $('#place-miles-in').val();
+    circle.setRadius(miles * 1609.344);
+  };
+
   var bpotGetDueCoords = function (lat, lng, bearing, distance) {
 
       if (DISTANCE_UNIT == 'm') {
@@ -76,7 +112,7 @@ module.exports = function(core, user) {
       };
       
     };
-
+ 
   var calculateRange = function(lng, lat, distance) {
     var path_top_right = bpotGetDueCoords(lat, lng, 45, distance);
     var path_bottom_right = bpotGetDueCoords(lat, lng, 135, distance);
@@ -110,9 +146,6 @@ module.exports = function(core, user) {
 
   var init = function (mapOptions) {    
 
-    var el = $('#location-filter-map');
-    var el2 = $('#lng-lat');               
-
     var opt = {
       center: new google.LatLng(location.LAT, location.LNG),
       zoom: 7,
@@ -144,6 +177,10 @@ module.exports = function(core, user) {
     //    });
     addCircle(opt.center, 8046.72, map);    
 
+    placesLngLat.push({lng: location.LNG, lat: location.LAT});
+
+    el2.val(JSON.stringify(lngLat));
+
     // create the search box and link it to the UI element
     var input = $('#location-search-box').get(0);
     var searchBox = new google.places.SearchBox(input);
@@ -163,7 +200,8 @@ module.exports = function(core, user) {
       }      
 
       lngLat = [];
-      el2.val("[]");         
+      el2.val("[]");       
+      placesLngLat = [];  
 
       // Clear old markers
       clearMarkers();      
@@ -203,6 +241,8 @@ module.exports = function(core, user) {
           lngLat[0].lat.max = _.max([lngLat[0].lat.max, range.lat.max]);
           lngLat[0].lat.min = _.min([lngLat[0].lat.min, range.lat.min]);
         }
+
+        placesLngLat.push({lng: place.geometry.location.lng(), lat: place.geometry.location.lat()});
         
 
         addCircle(place.geometry.location, radius(), map);
@@ -216,8 +256,7 @@ module.exports = function(core, user) {
 
       });            
 
-      el2.val(JSON.stringify(lngLat));
-      console.log("LNGLAT", lngLat);
+      el2.val(JSON.stringify(lngLat));      
       
       map.fitBounds(bounds);
       map.setZoom(8);      
@@ -234,5 +273,15 @@ module.exports = function(core, user) {
   mapsApi().then(function(mapApi) {
     google = mapApi;    
     init({});
+    
+    $('#place-miles').slider('value', $('#place-miles-in').val());	
+
+    $('#place-miles').on('slide', function(e, ui) {
+      $('#place-miles-in').val(ui.value);
+      if (circles.length > 0) {
+        updateStatus();
+      }
+    });
+
   });
 }
