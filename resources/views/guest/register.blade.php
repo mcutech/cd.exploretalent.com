@@ -120,6 +120,10 @@
 						<span id="req-uniqueemailtxt"	style="display:none;"></span>
 					</div>
 
+                    <div id="req-confirmemail" class="alert alert-success form-group col-md-12" style="display:none;" role="alert">
+                        <span id="req-ok" style="display:none;"></span>
+                    </div>
+
 					<div class="col-md-12 form-group">
 						<div class="text-center">
 							<div class="form-actions" id="form-action-signup-btn">
