@@ -182,8 +182,8 @@ module.exports = function(core) {
                 $('#password').val('');
                 $('#confirm-password').val('');
 
-                $('req-confirmemail').show().delay(5000).fadeOut();
-                $('req-ok').text('We\'ve sent you a message on your email address with a link to log you into your account.').show().delay(5000).fadeOut();
+                $('#req-confirmemail').show().delay(5000).fadeOut();
+                $('#req-ok').text('We\'ve sent you a message on your email address with a link to log you into your account.').show().delay(5000).fadeOut();
 			}, function(){
 				$('#email').focus().css("border-color","#b94a48");
 				$('#req-confirmpass').show().delay(5000).fadeOut();
