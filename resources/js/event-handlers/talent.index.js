@@ -16,7 +16,7 @@ function handler(core, user){
 		});
 	}
 
-  self.xorigins = self.xorigins.length == 0 ? [-1] : self.xorigins;
+    self.xorigins = self.xorigins.length == 0 ? [-1] : self.xorigins;
 
 	self.refresh();
 
@@ -155,36 +155,60 @@ handler.prototype.getFilters = function() {
 
 	if (self.xorigins.length > 0) {
 		data.query.push( [ 'whereIn', 'x_origin', self.xorigins ] );
-	}
+	}	
 
-	if (form.markets) {
-		if (form.markets instanceof Array) {
-			var subquery = [];
+	if (form.address_search == 0) { // market filter
+		if (form.markets) {
+			if (form.markets instanceof Array) {
+				var subquery = [];
 
-			_.each(form.markets, function(market) {
-				if (subquery.length == 0) {
-					subquery.push([ 'where', 'city', 'like', '%' + market + '%' ]);
-				}
-				else {
-					subquery.push([ 'orWhere', 'city', 'like', '%' + market + '%' ]);
-				}
+				_.each(form.markets, function(market) {
+					if (subquery.length == 0) {
+						subquery.push([ 'where', 'city', 'like', '%' + market + '%' ]);
+					}
+					else {
+						subquery.push([ 'orWhere', 'city', 'like', '%' + market + '%' ]);
+					}
 
-				subquery.push([ 'orWhere', 'city1', 'like', '%' + market + '%' ]);
-				subquery.push([ 'orWhere', 'city2', 'like', '%' + market + '%' ]);
-				subquery.push([ 'orWhere', 'city3', 'like', '%' + market + '%' ]);
+					subquery.push([ 'orWhere', 'city1', 'like', '%' + market + '%' ]);
+					subquery.push([ 'orWhere', 'city2', 'like', '%' + market + '%' ]);
+					subquery.push([ 'orWhere', 'city3', 'like', '%' + market + '%' ]);
+				});
+
+				data.query.push([ 'where', subquery ]);
+			}
+			else {
+				data.query.push([ 'where', [
+						[ 'where', 'city', '=', form.markets ],
+						[ 'orWhere', 'city1', '=', form.markets ],
+						[ 'orWhere', 'city2', '=', form.markets ],
+						[ 'orWhere', 'city3', '=', form.markets ]
+					]
+				]);
+			}
+		}
+	} else if (form.address_search == 1) { // location filter
+		
+		var lngLat = JSON.parse(form.lng_lat);
+	
+		if (lngLat.length > 0) {			
+			data.query.push(['join', 'bam.laret_users', 'bam.laret_users.bam_talentnum', '=', 'talentnum']);
+			data.query.push(['join', 'bam.laret_locations', 'bam.laret_locations.user_id', '=', 'bam.laret_users.id']);
+						
+			var lngLatFilter = [];			
+			
+			_.each(lngLat, function(loc) {
+				var lng = loc.lng.toString();
+				var lat = loc.lat.toString()				
+				lngLatFilter.push(['orWhere', [
+					['where', 'bam.laret_locations.longitude', 'LIKE', lng.substr(0, lng.indexOf('.')) + '%'],
+					['where', 'bam.laret_locations.latitude', 'LIKE', lat.substr(0, lat.indexOf('.')) + '%']
+				]])
 			});
-
-			data.query.push([ 'where', subquery ]);
+			
+			data.query.push(['where', lngLatFilter]);
 		}
-		else {
-			data.query.push([ 'where', [
-					[ 'where', 'city', '=', form.markets ],
-					[ 'orWhere', 'city1', '=', form.markets ],
-					[ 'orWhere', 'city2', '=', form.markets ],
-					[ 'orWhere', 'city3', '=', form.markets ]
-				]
-			]);
-		}
+		
 	}
 
 	if (parseInt(form.age_min)) {

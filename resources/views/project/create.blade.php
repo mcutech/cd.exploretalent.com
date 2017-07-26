@@ -198,7 +198,7 @@
 									</div>
 								</div> {{-- self-submission-option-content --}}
 
-								<div class="panel" id="open-call-option-content">
+								<div class="panel hide" id="open-call-option-content">
 									<div class="panel-body padding-normal">
 										<div class="col-md-4">
 											<div class="form-group">
@@ -241,8 +241,6 @@
 							</div>
 						</div>
 					</div>
-<<<<<<< HEAD
-=======
 
                     {{-- upload image for casting --}}
                     <div class="row">
@@ -250,7 +248,7 @@
                          <!-- <form id="casting-upload-image" method="post" enctype="multipart/form-data" > -->
                             <div class="form-group">
                             	<input id="photo-uploader" type="file" name="file" accept="image/*" class="hide"/>
-                            
+
                                 <label class="control-label">Upload Casting Image<span class="text-success">*</span></label>
 
                                 {{-- add class *uploaded* in casting-upload-image class if image is uploaded to view UI --}}
@@ -263,7 +261,7 @@
                                                 <div class="default" id="default">
                                                     <div class="item text-align-center">
                                                         <div><i class="fa fa-picture-o fa-5x"></i></div>
-                                         
+
                                                         <div>Click here to Upload Casting Image</div>
                                                     </div>
                                                 </div>
@@ -277,12 +275,11 @@
                                     </div>
                                 </div>
                             </div>
-                        
+
                           <!-- </form> -->
                         </div>
                     </div>
 
->>>>>>> origin
 					<div class="row">
 							<div class="col-md-6 padding-top-normal">
 								<div class="form-group margin-bottom-small">
@@ -311,7 +308,7 @@
 								</div>
 							</div>
 							<div class="col-md-12 input-group margin-top-small hide-if-nationwide">
-								<label for="manual-markets-div">
+								<label for="manual-markets-div" class="padding-left-normal">
 									or <a href="" id="toggle-manual-markets-div" style="text-decoration: underline;">Manually select markets</a>
 									<a class="btn btn-default btn-sm hide" href="" id="toggle-all-markets-checked" style="display: none;">Select All Markets</a>
 								</label>
