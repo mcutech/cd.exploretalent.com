@@ -10,7 +10,7 @@
 		<div class="talents-wrapper">
 			<div class="talents-search-filter-content">
 				<div class="row clearfix">
-					{{-- @include('project.components.filter') --}}
+					@include('project.components.filter')
 				</div>
 				<div class="row margin-bottom-normal margin-top-normal like-it-list-only hide">
 					<div class="col-md-12">

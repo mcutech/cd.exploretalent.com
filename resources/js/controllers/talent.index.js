@@ -34,10 +34,7 @@ module.exports = function(core, user) {
 		}
 	});
 
-	$('.search-button').on('click', handler.refresh);
-	$('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
-		$('#address-search').val($(this).siblings('input[type="hidden"').val());		
-	});
+	$('.search-button').on('click', handler.refresh);	
 
 	// talents functions menu
 	$(document).on('mouseover', '.talent-function-icon.profile', function() {

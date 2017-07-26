@@ -45,12 +45,7 @@ module.exports = function(core, user, projectId, roleId) {
 
 
 	$('#search-button').on('click', handler.findMatches);
-	$('#add-all-button').on('click', handler.addAll);
-
-	/* TAB */
-	$('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {		
-		$('#address-search').val($(this).siblings('input[type="hidden"').val());				
-	});
+	$('#add-all-button').on('click', handler.addAll);	
 
 	$('#place-miles').slider('value', $('#place-miles-in').val());	
 
