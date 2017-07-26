@@ -2,12 +2,10 @@ module.exports = function(core, user, projectId, roleId) {
 	var handler = require('../event-handlers/role.publiclikeitlist.js')(core, user, projectId, roleId);
 
 	$('#roles-list').on('change', handler.refreshRole);
-	$('#search-button').on('click', handler.findMatches);
-
-	/* TAB */
-	$('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {		
-		$('#address-search').val($(this).siblings('input[type="hidden"').val());						
-	});
+	$('#search-button').on('click', function(e) {
+		handler.filter = 1;
+		handler.findMatches();
+	});	
 
 	$('#place-miles').slider('value', $('#place-miles-in').val());	
 
