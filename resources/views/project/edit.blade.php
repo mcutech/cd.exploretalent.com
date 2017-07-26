@@ -523,7 +523,7 @@
                     <!-- Modal -->
                       <div class="modal fade" id="confirmUpdateModal" role="dialog">
                         <div class="modal-dialog">
-                        
+
                           <!-- Modal content-->
                           <div class="modal-content">
                             <div class="modal-header">
@@ -538,7 +538,7 @@
                               <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                             </div>
                           </div>
-                          
+
                         </div>
                       </div>
 

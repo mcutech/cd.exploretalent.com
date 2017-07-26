@@ -248,7 +248,7 @@
                          <!-- <form id="casting-upload-image" method="post" enctype="multipart/form-data" > -->
                             <div class="form-group">
                             	<input id="photo-uploader" type="file" name="file" accept="image/*" class="hide"/>
-                            
+
                                 <label class="control-label">Upload Casting Image<span class="text-success">*</span></label>
 
                                 {{-- add class *uploaded* in casting-upload-image class if image is uploaded to view UI --}}
@@ -261,7 +261,7 @@
                                                 <div class="default" id="default">
                                                     <div class="item text-align-center">
                                                         <div><i class="fa fa-picture-o fa-5x"></i></div>
-                                         
+
                                                         <div>Click here to Upload Casting Image</div>
                                                     </div>
                                                 </div>
@@ -275,7 +275,7 @@
                                     </div>
                                 </div>
                             </div>
-                        
+
                           <!-- </form> -->
                         </div>
                     </div>
