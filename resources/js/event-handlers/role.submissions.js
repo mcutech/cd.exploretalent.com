@@ -171,9 +171,7 @@ handler.prototype.getFilters = function() {
 
 		if (self.xorigins.length > 0) {
 			data.query.push( [ 'whereIn', 'x_origin', self.xorigins ] );
-		}
-
-		if($('#show_only_matched').is(':checked')==true){
+		}		
 		
 		if (form.address_search == 0) { // market filter
 			if (form.markets) {
@@ -340,8 +338,7 @@ handler.prototype.getFilters = function() {
 				]);
 			}
 		}
-
-		}
+		
 	}
 		return data;
 }

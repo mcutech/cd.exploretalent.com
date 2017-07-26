@@ -100,6 +100,7 @@ handler.prototype.findMatches = function(append) {
 
 	self.page = append ? self.page + 1 : 1;
 	self.refreshing = true;
+
 	var data = self.getFilters();
 
 	if (append) {
@@ -194,7 +195,7 @@ handler.prototype.getFilters2 = function(data) {
 
 	if (!self.first_load) {
 		
-		if (form.address_search == 0) { // market filter
+		if (form.address_search == 0 && self.filter == 1) { // market filter
 			if (form.markets) {
 				if (form.markets instanceof Array) {
 					var subquery = [];
@@ -224,8 +225,8 @@ handler.prototype.getFilters2 = function(data) {
 					]);
 				}
 			} 
-		} else { // location filter
-				
+		} else if (form.address_search == 1 && self.filter == 1)  { // location filter
+			
 			var lngLat = JSON.parse(form.lng_lat);			
 		
 			if (lngLat.length > 0) {			

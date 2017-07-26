@@ -9,6 +9,7 @@ function handler(core, user, projectId, roleId) {
 	self.roleId = roleId;
 	self.page = 1;
 	self.first_load = true;
+	self.filter = 0;
 
 	self.xorigins = [];
 
@@ -143,7 +144,7 @@ handler.prototype.getFilters = function(talentnums) {
 
 	if (!self.first_load) {
 		
-		if (form.address_search == 0) { // market filter
+		if (form.address_search == 0 && self.filter == 1) { // market filter
 			if (form.markets) {
 				if (form.markets instanceof Array) {
 					var subquery = [];
@@ -173,7 +174,7 @@ handler.prototype.getFilters = function(talentnums) {
 					]);
 				}
 			} 
-		} else { // location filter
+		} else if (form.address_search == 1 && self.filter == 1){ // location filter
 				
 			var lngLat = JSON.parse(form.lng_lat);			
 		

@@ -1,13 +1,14 @@
 module.exports = function(core, user) {
 
+  var isInit = false;
   var markers = [];
   var circles = [];
   var google = null;
   var DISTANCE_UNIT = 'm';  
 
   var location = {
-    LAT: 37.09024,
-    LNG: -95.712891
+    LAT: 39.154557,
+    LNG: -101.008301
   }
 
   var lngLat = [];    
@@ -92,13 +93,8 @@ module.exports = function(core, user) {
 
   var bpotGetDueCoords = function (lat, lng, bearing, distance) {
 
-      if (DISTANCE_UNIT == 'm') {
-        r = 3963.1676;;
-        //r = distance * 1609.34;
-      } else {
-        r = 6378.1;
-        //r = distance * 1.60934;
-      }      
+      if (DISTANCE_UNIT == 'm') r = 3963.1676;
+      else r = 6378.1;
       
       // new latitude in degrees      
       var newLat = GeoPoint.radiansToDegrees(Math.asin(Math.sin(GeoPoint.degreesToRadians(lat))*Math.cos(distance/r)+Math.cos(GeoPoint.degreesToRadians(lat))*Math.sin(distance/r)*Math.cos(GeoPoint.degreesToRadians(bearing))));      
@@ -117,12 +113,7 @@ module.exports = function(core, user) {
     var path_top_right = bpotGetDueCoords(lat, lng, 45, distance);
     var path_bottom_right = bpotGetDueCoords(lat, lng, 135, distance);
     var path_bottom_left = bpotGetDueCoords(lat, lng, 225, distance);
-    var path_top_left = bpotGetDueCoords(lat, lng, 315, distance);
-
-    console.log('TR', path_top_right);
-    console.log('BR', path_bottom_right);
-    console.log('BL', path_bottom_left);
-    console.log('TL', path_top_left);
+    var path_top_left = bpotGetDueCoords(lat, lng, 315, distance);   
 
     // longitude
     var longitude = {
@@ -134,28 +125,22 @@ module.exports = function(core, user) {
     var latitude = {
       max: _.max([path_top_right.lat, path_bottom_right.lat, path_bottom_left.lat, path_top_left.lat]),
       min: _.min([path_top_right.lat, path_bottom_right.lat, path_bottom_left.lat, path_top_left.lat])
-    };             
-    console.log('DISTANCE', distance);
-    console.log('LNGLAT', {lng: longitude, lat: latitude});
+    };                 
     
     return {
       lng: longitude,
       lat: latitude
     }
-  }
+  }  
 
   var init = function (mapOptions) {    
 
     var opt = {
       center: new google.LatLng(location.LAT, location.LNG),
-      zoom: 7,
-      mapTypeId: google.MapTypeId.ROADMAP,
-      //mapTypeControl: false,
-      //scrollwheel: false,
-      //scaleControl: false,
-      navigationControl: false,
-      //draggable: false
-    };
+      zoom: 6,
+      mapTypeId: google.MapTypeId.ROADMAP,      
+      navigationControl: false      
+    };    
 
     var map = new google.Map(el.get(0), $.extend(opt, mapOptions));
     var icon = {
@@ -164,17 +149,8 @@ module.exports = function(core, user) {
       origin: new google.Point(0, 0),
       anchor: new google.Point(17, 34),
       scaledSize: new google.Size(25, 25)
-    };
-
-    //addMarker(
-    //    opt.center,
-    //    map,
-    //    {
-    //      icon: icon,
-    //      title: '',
-    //      draggable: true,
-    //      animation: google.Animation.DROP
-    //    });
+    };    
+    
     addCircle(opt.center, 8046.72, map);    
 
     placesLngLat.push({lng: location.LNG, lat: location.LAT});
@@ -204,8 +180,7 @@ module.exports = function(core, user) {
       placesLngLat = [];  
 
       // Clear old markers
-      clearMarkers();      
-
+      clearMarkers();            
 
       // For each place, get the icon, name, and location
       var bounds = new google.LatLngBounds();
@@ -216,17 +191,6 @@ module.exports = function(core, user) {
           return;
         }
 
-        //console.log(place);
-
-        //icon.url = place.icon;
-
-        // Create marker for each place
-        //addMarker(place.geometry.location, map, {
-        //  icon: icon,
-        //  title: place.name,
-        //  draggable: true,
-        //  animation: google.Animation.DROP
-        //});
         var range = calculateRange(
                       place.geometry.location.lng(), 
                       place.geometry.location.lat(), 
@@ -261,18 +225,26 @@ module.exports = function(core, user) {
       map.fitBounds(bounds);
       map.setZoom(8);      
 
-    });
-
-    //setTimeout(function() {
-    //    el.parents('#add-location-filter-div').hide();
-    //}, 100);
+    });    
 
   }
   var GeoPoint = require('geopoint');
   var mapsApi  = require('google-maps-api')(core.config.gapi.key, ['places']);
   mapsApi().then(function(mapApi) {
-    google = mapApi;    
-    init({});
+    google = mapApi;   
+    
+    if ($('#address-search').val() == 1) {
+      init({});
+      isInit = true;
+    };  
+    
+    $('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {		
+      $('#address-search').val($(this).siblings('input[type="hidden"').val());				
+      if ($('#address-search').val() == 1 && !isInit) {
+        init({});
+        isInit = true;
+      }            
+    });
     
     $('#place-miles').slider('value', $('#place-miles-in').val());	
 

@@ -40,7 +40,7 @@ jscore.run(function(core) {
 		// run all components
 		var components = require('./components/**/*.js', { hash : true });
 
-		_.each(components, function(component) {
+		_.each(components, function(component) {			
 			component(core, user);
 		});
 
