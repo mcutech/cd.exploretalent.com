@@ -1,16 +1,4 @@
 module.exports = function(core) {
-
-	$('#project-name').keypress(function(event) {
-	    if (event.keyCode == 13) {
-	        event.preventDefault();
-	        console.log('pressing enter key');
-            $('#failure-div').removeClass('hide');
-            setTimeout(function() {
-                $('#failure-div').addClass('hide');
-            }, 1000);
-	    }
-	});
-
 	$('#phone').mask('999-999-9999');
 
 		$("#send-casting").click(function(e){
@@ -24,30 +12,25 @@ module.exports = function(core) {
 		form.body=$("textarea[name='body']").val();
 		form.lazy_project_status_id = 1;
 
-		if(form.body.length > 0 && form.name.length > 0 &&
-			/[^\s\n]$/.test(form.body) && /[^\s\n]$/.test(form.name)) {
-			core.resource.quickpost.post(form)
-				.then(function(result){
+		core.resource.quickpost.post(form)
+			.then(function(result){
 
-				$('#success-div').removeClass('hide');
-		 		$("input[name='name']").val('');
-				$("textarea[name='body']").val('');
-				setTimeout(function() {
-					$('#quick-post').modal('hide');
-					$('#success-div').addClass('hide');
-			 	}, 1000);
-			});
-		} else {
-            $('#failure-div').removeClass('hide');
-            setTimeout(function() {
-                $('#failure-div').addClass('hide');
-            }, 1000);
-        }
+			$('#success-div').removeClass('hide');
+	 		$("input[name='name']").val('');
+			$("textarea[name='body']").val('');
+			setTimeout(function() {
+				$('#quick-post').modal('hide');
+				$('#success-div').addClass('hide');
+		 	}, 1000);
+
+
+		});
 
 	});
 
 	$("#sign-up").click(function(e){
 		e.preventDefault();
+
 		var lname = $('#last-name').val();
 		var fname = $('#first-name').val();
 		var email = $('#email').val();
@@ -63,7 +46,6 @@ module.exports = function(core) {
 			$('#last-name').focus().css("border-color","#b94a48");
 			$('#req-lname').show().delay(5000).fadeOut();
 			$('#req-lnametxt').text('This field is required.').show().delay(5000).fadeOut();
-
 			return;
 		}else{
 			if ( !regexName.test(lname) ){
@@ -192,14 +174,18 @@ module.exports = function(core) {
 			.then(function(result){
 				localStorage.setItem('access_token', result.access_token);
 				core.service.rest.settings.headers = { Authorization : 'Bearer ' + result.access_token };
-
-				window.location = '/projects';
+                $('#req-confirmemail').show().delay(5000).fadeOut();
+                $('#req-ok').text('We\'ve sent you a message on your email address with a link to log you into your account.').show().delay(5000).fadeOut();
+                // window.location = '/register';
+                console.log('valid');
+                return;
 			}, function(){
 				$('#email').focus().css("border-color","#b94a48");
 				$('#req-confirmpass').show().delay(5000).fadeOut();
 				$('#req-uniqueemailtxt').text('The email has already been taken.').show().delay(5000).fadeOut();
 
 				$('#error-signup').show().delay(5000).fadeOut();
+                console.log('invalid');
 			});
 	});
 };
