@@ -2,7 +2,7 @@ function handler(core, user){
 	self = this;
 	self.core = core;
 	self.user = user;
-	self.talent = null;
+	self.talent = null;	
 	self.filter = 0;
 
 	self.xorigins = [];
@@ -41,7 +41,15 @@ handler.prototype.refresh = function(append){
 		$('#talent-search-result').hide();
 	}
 
-	self.core.resource.favorite_talent.get({ page: self.page })
+	var data = {
+		page: self.page,
+		query: [
+			//['join', 'talentci', 'talentci.talentnum', '=', 'bam_talentnum']
+			//['whereIn', 'talentci.x_origin', self.x_origins]
+		]
+	};
+
+	self.core.resource.favorite_talent.get(data)
 	.then(function(result){		
 		self.done = (result.total < result.per_page);
 
@@ -53,14 +61,14 @@ handler.prototype.refresh = function(append){
 
 		var data = {
 			query : [
-				[ 'whereIn', 'talentnum', talentnums ],
-				[ 'whereIn', 'x_origin', self.xorigins ]
+				[ 'whereIn', 'talentnum', talentnums ]
+				//[ 'whereIn', 'x_origin', self.xorigins ]
 			]
 		};
 
 		if (self.filter == 1) data = self.getFilters(data);
 
-		return self.core.resource.talent.search(data)
+		return self.core.resource.talent.search(data);
 	})
 	.then(function(talents) {
 		_.each(talents.data, function(talent) {
@@ -78,13 +86,14 @@ handler.prototype.refresh = function(append){
 		self.refreshing = false;
 
 		$('#search-loader').hide();
+		
 		if (!append) {
 			$('#talent-search-result').show();
 			 if (talents.total == 0) {
 			 		$('#talent-search-result').hide();
 			 		$('#no-favorite-talent').removeClass('hide');
 			 		$('#no-favorite-talent').show();
-			 }
+			 } 
 		}
 	});
 };
@@ -261,25 +270,6 @@ handler.prototype.getFilters = function(data) {
 	}
 
 	return data;
-}
-
-handler.prototype.getTalentVideos = function(talent) {
-
-    var deferred = $.Deferred();
-    var data = {
-        query : [
-            [ 'where', 'talentnum', '=', talent.talentnum ],
-            [ 'where', 'type', '=', '6' ]
-        ]
-    };
-
-    self.core.resource.talent_videos.get(data)
-        .then(function(video){
-            talent.video_id = (video.data.length > 0) ? video.data[0].video_id : '';
-            deferred.resolve();
-        });
-
-    return deferred.promise();
 }
 
 module.exports = function(core, user){
