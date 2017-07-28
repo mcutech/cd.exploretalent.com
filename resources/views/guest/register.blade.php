@@ -38,7 +38,7 @@
 				<div class="row-fluid clearfix">
 					<div class="col-md-6">
 						<div class="form-group w-icon">
-							<input type="text" name="fname" id="first-name" class="form-control input-lg" placeholder="First Name" data-required>
+							<input type="text" name="fname" id="first-name" class="form-control input-lg" placeholder="First Name" data-required autofocus >
 							<span class="fa fa-user signup-form-icon"></span>
 						</div>
 						<div id="req-fname" style="display:none;" class="alert alert-danger form-group" role="alert">
@@ -50,7 +50,7 @@
 
 					<div class="col-md-6 form-group">
 						<div class="form-group w-icon">
-							<input type="text" name="lname" id="last-name" class="form-control input-lg" placeholder="Last Name" data-required autofocus>
+							<input type="text" name="lname" id="last-name" class="form-control input-lg" placeholder="Last Name" data-required >
 							<span class="fa fa-user signup-form-icon"></span>
 						</div>
 						<div id="req-lname" style="display:none;" class="alert alert-danger form-group" role="alert">
@@ -146,6 +146,7 @@
 				</div>
 			</form>
 		</div>
+
 		<!-- / Form -->
 	</div>
 	<div class="col-md-2"></div>
