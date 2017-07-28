@@ -24,7 +24,14 @@ handler.prototype.resetPassword = function() {
 		};
 
 		core.resource.cd_user.patch(data)
-		.then(function(result) {
+		.then(function(result){
+			$('#success-pass').fadeIn().delay(5000).fadeOut();
+			setTimeout(function() {
+				window.location = '/projects';
+			});
+		});
+		// we don't this since user already logged in
+		/*.then(function(result) {
 			return core.service.rest.post(core.config.api.base.replace('/v1', '') + '/oauth/access_token', {
 				username       : self.user.bam_cd_user.email1,
 				password       : pass1,
@@ -43,7 +50,7 @@ handler.prototype.resetPassword = function() {
 			setTimeout(function() {
 				window.location = '/projects';
 			}, 3000);
-		});
+		}); */
 	}
 }
 
