@@ -73,7 +73,7 @@
 					<span class="age font-size-normal-zz-lg"><i>,</i><span data-bind="<%= getAge() %>" class="age-area"></span></span>
 
 					<div class="talent-additional-info">
-						<div class="additional-info-item">City: <span data-bind="<%= getLocation() %>"></span></div>
+						<div class="additional-info-item city">City: <span data-bind="<%= getLocation() %>"></span></div>
 					</div>
 
 					<div class="talent-additional-info">
