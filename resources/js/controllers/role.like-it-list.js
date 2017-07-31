@@ -2,7 +2,10 @@ module.exports = function(core, user, projectId, roleId) {
 	var handler = require('../event-handlers/role.like-it-list.js')(core, user, projectId, roleId);
 
 	$('#roles-list').on('change', handler.refreshRole);
-	$('#search-button').on('click', handler.findMatches);
+	$('#search-button').on('click', function(e) {
+		handler.filter = 1;
+		handler.findMatches();
+	});
 
 	//refine search toggle location search
 	$(document).on('click', '#location-search-change-btn', function(e){

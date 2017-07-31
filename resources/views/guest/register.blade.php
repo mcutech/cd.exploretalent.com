@@ -38,7 +38,7 @@
 				<div class="row-fluid clearfix">
 					<div class="col-md-6">
 						<div class="form-group w-icon">
-							<input type="text" name="fname" id="first-name" class="form-control input-lg" placeholder="First Name" data-required>
+							<input type="text" name="fname" id="first-name" class="form-control input-lg" placeholder="First Name" data-required autofocus >
 							<span class="fa fa-user signup-form-icon"></span>
 						</div>
 						<div id="req-fname" style="display:none;" class="alert alert-danger form-group" role="alert">
@@ -50,7 +50,7 @@
 
 					<div class="col-md-6 form-group">
 						<div class="form-group w-icon">
-							<input type="text" name="lname" id="last-name" class="form-control input-lg" placeholder="Last Name" data-required autofocus>
+							<input type="text" name="lname" id="last-name" class="form-control input-lg" placeholder="Last Name" data-required >
 							<span class="fa fa-user signup-form-icon"></span>
 						</div>
 						<div id="req-lname" style="display:none;" class="alert alert-danger form-group" role="alert">
@@ -111,19 +111,17 @@
 							<input type="password" name="confirmPassword" id="confirm-password" class="form-control input-lg" placeholder="Confirm Password" data-required data-match="password">
 							<span class="fa fa-lock signup-form-icon"></span>
 						</div>
+						<div id="req-confirmpass" style="display:none;" class="alert alert-danger form-group" role="alert">
+							<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+							<span class="sr-only">Error:</span>
+							<span id="req-confirmpasstxt" style="display:none;"></span>
+							<span id="req-unmatchtxt" style="display:none;"></span>
+							<span id="req-uniqueemailtxt" style="display:none;"></span>
+						</div>
+                        <div id="req-confirmemail" class="alert alert-success form-group" style="display:none;" role="alert">
+                            <span id="req-ok" style="display:none;"></span>
+                        </div>
 					</div>
-					<div id="req-confirmpass" style="display:none;" class="alert alert-danger form-group col-md-12" role="alert">
-						<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-						<span class="sr-only">Error:</span>
-						<span id="req-confirmpasstxt" style="display:none;"></span>
-						<span id="req-unmatchtxt" style="display:none;"></span>
-						<span id="req-uniqueemailtxt"	style="display:none;"></span>
-					</div>
-
-                    <div id="req-confirmemail" class="alert alert-success form-group col-md-12" style="display:none;" role="alert">
-                        <span id="req-ok" style="display:none;"></span>
-                    </div>
-
 					<div class="col-md-12 form-group">
 						<div class="text-center">
 							<div class="form-actions" id="form-action-signup-btn">
@@ -148,6 +146,7 @@
 				</div>
 			</form>
 		</div>
+
 		<!-- / Form -->
 	</div>
 	<div class="col-md-2"></div>

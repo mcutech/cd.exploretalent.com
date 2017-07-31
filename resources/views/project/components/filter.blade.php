@@ -1,6 +1,6 @@
 <div class="col-md-12 refine-search-sidebar">
 	<form id="role-filter-form" onsubmit="return false">
-	<input type="hidden" id="address-search" name="address_search" value="1" />
+	<input type="hidden" id="address-search" name="address_search" value="0" />
 	<input type="hidden" id="lng-lat" name="lng_lat" value="[]" />
 	<div class="panel panel-talents-search">
 		<div class="panel-heading border-bottom-width-zero">
@@ -10,11 +10,11 @@
 
 		<div class="panel-body form-horizontal">
 			<ul class="nav nav-tabs">
-				<li role="presentation">
+				<li role="presentation" class="active">
 					<a data-toggle="tab" class="tabs" role="tab" href="#market-search">Search by Market</a>
 					<input type="hidden" value="0" />
 				</li>
-				<li role="presentation" class="active">
+				<li role="presentation">
 					<a  class="tabs" data-toggle="tab" data-search-by="locations" role="tab" href="#location-search">Search by Location</a>
 					<input type="hidden" value="1" />
 				</li>				
@@ -23,7 +23,7 @@
 
 		<div role="tabpanel" class="tab-pane tab-content panel-body form-horizontal padding-top-zero">
 			<div class="tab-content padding-zero">
-				<div role="tabpanel" class="tab-pane fade form-horizontal" id="market-search">
+				<div role="tabpanel" class="tab-pane in active" id="market-search">
 					<div id="location-search-display" class="row">
 						<label class="control-label pull-left padding-left-normal"><a id="location-search-display-btn" href="">United States</a> <span class="padding-left-small">or</span></label>
 						<div class="col-md-4 margin-top-normal-zz-xs">
@@ -104,7 +104,7 @@
 						
 					</div>
 				</div>
-				<div role="tabpanel" class="tab-pane fade in active" id="location-search">
+				<div role="tabpanel" class="tab-pane" id="location-search">
 					<div class="col-md-12 padding-zero-zz-sm">
 						<div class="col-md-5 margin-top-normal-zz-sm">
 							<label class="control-label">Search Address</label>
@@ -113,7 +113,7 @@
 								Distance from point <input type="text" value="5" id="place-miles-in" class="form-control" style="display: inline-block; width: 12%" readonly="readonly" /> Miles
 							</div>		
 							<div class="margin-top-normal">
-								<div id="place-miles" data-range="false" data-step="5" data-type="miles" data-slider></div>
+								<div id="place-miles" data-range="false" data-step="5" data-min="5" data-max="200" data-type="miles" data-slider></div>
 							</div>										
 						</div>
 						<div class="col-md-7 margin-top-normal-zz-sm">
