@@ -15,16 +15,14 @@ module.exports = function(core, user){
 		$(this).closest('.talent-item').find('.talent-functions-v2 ').show();
 	});
 
-	$('.search-button').on('click', function(e) {		
-		handler.filter = 1;		
-		handler.refresh();
-	});
+	$('.search-button').on('click', handler.refresh);		
+
 	$('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
-		$('#address-search').val($(this).siblings('input[type="hidden"').val());			
+		$('#address-search').val($(this).siblings('input[type="hidden"').val());
 	});
 
 
-	$('#place-miles').slider('value', $('#place-miles-in').val());	
+	$('#place-miles').slider('value', $('#place-miles-in').val());
 
 	$('#place-miles').on('slide', function(e, ui) {
 		$('#place-miles-in').val(ui.value);
