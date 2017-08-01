@@ -183,7 +183,7 @@ module.exports = function(core) {
 			}, function(){
 				$('#email').focus().css("border-color","#b94a48");
 				$('#req-confirmpass').show().delay(5000).fadeOut();
-				$('#req-uniqueemailtxt').text('The E-mail has already been taken, we\'ve sent you a message on your email address with a link to log in into your account').show().delay(5000).fadeOut();
+				$('#req-uniqueemailtxt').text('The E-mail has already been taken, we\'ve sent you a message on your email address with a link to log in into your account.').show().delay(5000).fadeOut();
 
 				$('#error-signup').show().delay(5000).fadeOut();
                 console.log('invalid');
