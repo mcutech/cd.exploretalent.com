@@ -13,7 +13,7 @@
 			<div class="col-md-2">
 			</div>
 			<div class="col-md-3 col-sm-4 col-xs-4" data-bind="<%= talent.user.id + '-' + role_id %>" data-bind-target="data-id">
-				<button id="add-to-like-it-list" class="btn btn-outline btn-sm btn-block add-to-like-it-list">
+				<button id="add-to-like-it-list" class="btn btn-sm btn-block add-to-like-it-list btn-primary">
 					<input type="hidden" class="like-it-list-schedule-id">
 					<i class="fa fa-plus"></i>
 					<span>Add to Like it List</span>
@@ -83,10 +83,9 @@
 							<div class="col-sm-6 col-xs-12 padding-zero talent-info-item" data-bind="<%= (heightText()) ? 1 : 0 %>" data-bind-target="visibility">
 								<div >
 									<div class="col-sm-6 col-xs-6">
-										<label>Height:</label>
-									</div>
-									<div class="col-sm-6 col-xs-6">
-										<span data-bind="<%= heightText() %>" >5'15"</span>
+										<label><span class="text-muted">Height:</span>
+                                        <span data-bind="<%= heightText() %>" >5'15"</span>
+                                        </label>
 									</div>
 								</div>
 							</div>
@@ -94,10 +93,9 @@
 							<div class="col-sm-6 col-xs-12 padding-zero talent-info-item" data-bind="<%= (bam_talentinfo2.ethnicity) ? 1 : 0 %>" data-bind-target="visibility">
 								<div>
 									<div class="col-sm-6 col-xs-6">
-										<label>Ethnicity:</label>
-									</div>
-									<div class="col-sm-6 col-xs-6">
-										<span data-bind="<%= bam_talentinfo2.ethnicity %>" > Cucasian</span>
+										<label><span class="text-muted">Ethnicity:</span>
+                                        <span data-bind="<%= bam_talentinfo2.ethnicity %>" > Cucasian</span>
+                                        </label>
 									</div>
 								</div>
 							</div>
@@ -105,10 +103,9 @@
 							<div class="col-sm-6 col-xs-12 padding-zero talent-info-item" data-bind="<%= (bam_talentinfo1.weightpounds) ? 1 : 0 %>" data-bind-target="visibility">
 								<div>
 									<div class="col-sm-6 col-xs-6">
-										<label>Weight:</label>
-									</div>
-									<div class="col-sm-6 col-xs-3">
-										<span data-bind="<%= bam_talentinfo1.weightpounds %>">120lbs</span>
+										<label><span class="text-muted">Weight:</span>
+                                        <span data-bind="<%= bam_talentinfo1.weightpounds %>">120lbs</span> lbs.
+                                        </label>
 									</div>
 								</div>
 							</div>
@@ -116,10 +113,9 @@
 							<div class="col-sm-6 col-xs-12 padding-zero talent-info-item" data-bind="<%= (bam_talentinfo1.haircolor) ? 1 : 0 %>" data-bind-target="visibility">
 								<div>
 									<div class="col-sm-6 col-xs-6">
-										<label>Hair Color:</label>
-									</div>
-									<div class="col-sm-6 col-xs-6">
-										<span data-bind="<%= bam_talentinfo1.haircolor %>"> Blonde</span>
+										<label><span class="text-muted">Hair Color:</span>
+                                        <span data-bind="<%= bam_talentinfo1.haircolor %>"> Blonde</span>
+                                        </label>
 									</div>
 								</div>
 							</div>
@@ -127,10 +123,9 @@
 							<div class="col-sm-6 col-xs-12 padding-zero talent-info-item" data-bind="<%= (bam_talentinfo1.build) ? 1 : 0 %>" data-bind-target="visibility">
 								<div>
 									<div class="col-sm-6 col-xs-6">
-										<label>Body Type:</label>
-									</div>
-									<div class="col-sm-6 col-xs-6">
+										<label><span class="text-muted">Body Type:</span>
 										<span data-bind="<%= bam_talentinfo1.build %>">Athletic</span>
+                                        </label>
 									</div>
 								</div>
 							</div>
@@ -138,10 +133,9 @@
 							<div class="col-sm-6 col-xs-12 padding-zero talent-info-item" data-bind="<%= (bam_talentinfo1.eyecolor) ? 1 : 0 %>" data-bind-target="visibility">
 								<div>
 									<div class="col-sm-6 col-xs-6">
-										<label>Eye Color:</label>
-									</div>
-									<div class="col-sm-6 col-xs-6">
+										<label><span class="text-muted">Eye Color:</span>
 										<span data-bind="<%= bam_talentinfo1.eyecolor %>">Hazel</span>
+                                        </label>
 									</div>
 								</div>
 							</div>
