@@ -133,13 +133,15 @@ module.exports = function(core, user, projectId, roleId) {
 		$('#height-range-slider').slider('values', 1, $(this).val());
 		$('input[name="height_max"]').val($(this).val());
 	});
-
+  $('#filter-warning').show();
 	$('#show_only_matched').on('click', function(){
 		if ($(this).is(':checked')) {
 			 handler.findMatches();
 			 $('#search-button').prop('disabled', true);
+			 $('#filter-warning').show();
 		} else {
 			$('#search-button').prop('disabled', false);
+			$('#filter-warning').hide();
 		}
 	});
 

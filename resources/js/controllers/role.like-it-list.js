@@ -106,13 +106,15 @@ module.exports = function(core, user, projectId, roleId) {
 		$(this).closest('.talent-item').find('.talent-photo-v2').hide();
 		$(this).closest('.talent-item').find('.talent-functions-v2 ').hide();
 	});
-
+  $('#filter-warning').hide();
 	$('#show_only_matched').on('click', function(){
 		if ($(this).is(':checked')) {
 			 handler.findMatches();
 			 $('#search-button').prop('disabled', true);
+			 $('#filter-warning').show();
 		} else {
 			$('#search-button').prop('disabled', false);
+			$('#filter-warning').hide();
 		}
 	});
 }

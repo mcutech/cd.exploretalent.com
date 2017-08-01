@@ -68,13 +68,15 @@ module.exports = function(core, user, projectId, roleId) {
 	});
 
 	$('.mark-talent-as-checked').hide();
-
+  $('#filter-warning').hide();
 	$('#show_only_matched').on('click', function(){
 		if ($(this).is(':checked')) {
 			 handler.findMatches();
 			 $('#search-button').prop('disabled', true);
+			 $('#filter-warning').show();
 		} else {
 			$('#search-button').prop('disabled', false);
+			$('#filter-warning').hide();
 		}
 	});
 
