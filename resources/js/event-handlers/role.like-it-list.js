@@ -186,16 +186,32 @@ handler.prototype.getFilters = function() {
 			[ 'where', 'bam_role_id', '=', $('#roles-list').val() ],
 			[ 'with', 'invitee.bam_talentci' ]
 		]
-	}	
+	}
 	return data;
 }
 
 handler.prototype.getFilters2 = function(data) {
-	var form = self.core.service.form.serializeObject('#role-filter-form');	
+	var form = self.core.service.form.serializeObject('#role-filter-form');
+
+	if ($('#show_only_matched').is(':checked') == true) {
+		var role = _.find(self.project.bam_roles, function(r) {
+			return r.role_id == $('#roles-list').val();
+		});
+
+		self.project.role = role;
+		self.project.role.bam_casting = self.project;
+
+		// change url
+		window.history.pushState({}, '', '/projects/' + role.casting_id + '/roles/' + role.role_id + '/like-it-list');
+
+		// update filter form
+		self.core.service.databind('#role-filter-form', self.project.role);
+
+	}
 
 	if (!self.first_load) {
-		
-		if (form.address_search == 0 && self.filter == 1) { // market filter
+
+		if (form.address_search == 0) { // market filter
 			if (form.markets) {
 				if (form.markets instanceof Array) {
 					var subquery = [];
@@ -224,22 +240,22 @@ handler.prototype.getFilters2 = function(data) {
 						]
 					]);
 				}
-			} 
-		} else if (form.address_search == 1 && self.filter == 1)  { // location filter
-			
-			var lngLat = JSON.parse(form.lng_lat);			
-		
-			if (lngLat.length > 0) {			
+			}
+		} else if (form.address_search == 1)  { // location filter
+
+			var lngLat = JSON.parse(form.lng_lat);
+
+			if (lngLat.length > 0) {
 				data.query.push(['join', 'bam.laret_users', 'bam.laret_users.bam_talentnum', '=', 'talentnum']);
-				data.query.push(['join', 'bam.laret_locations', 'bam.laret_locations.user_id', '=', 'bam.laret_users.id']);										
-				
+				data.query.push(['join', 'bam.laret_locations', 'bam.laret_locations.user_id', '=', 'bam.laret_users.id']);
+
 				data.query.push(['where', 'bam.laret_locations.longitude', '>=', lngLat[0].lng.min - 0.3]);
 				data.query.push(['where', 'bam.laret_locations.longitude', '<=', lngLat[0].lng.max + 0.3]);
-				
+
 				data.query.push(['where', 'bam.laret_locations.latitude', '>=', lngLat[0].lat.min - 0.3]);
-				data.query.push(['where', 'bam.laret_locations.latitude', '<=', lngLat[0].lat.max + 0.3]);										
+				data.query.push(['where', 'bam.laret_locations.latitude', '<=', lngLat[0].lat.max + 0.3]);
 			}
-		}		
+		}
 
 		if (parseInt(form.age_min)) {
 			data.query.push([ 'where', 'dobyyyy', '<=', new Date().getFullYear() - parseInt(form.age_min) ]);

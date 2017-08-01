@@ -2,12 +2,9 @@ module.exports = function(core, user, projectId, roleId) {
 	var handler = require('../event-handlers/role.publiclikeitlist.js')(core, user, projectId, roleId);
 
 	$('#roles-list').on('change', handler.refreshRole);
-	$('#search-button').on('click', function(e) {
-		handler.filter = 1;
-		handler.findMatches();
-	});	
+	$('#search-button').on('click', handler.findMatches);
 
-	$('#place-miles').slider('value', $('#place-miles-in').val());	
+	$('#place-miles').slider('value', $('#place-miles-in').val());
 
 	$('#place-miles').on('slide', function(e, ui) {
 		$('#place-miles-in').val(ui.value);
@@ -71,5 +68,16 @@ module.exports = function(core, user, projectId, roleId) {
 	});
 
 	$('.mark-talent-as-checked').hide();
+  $('#filter-warning').hide();
+	$('#show_only_matched').on('click', function(){
+		if ($(this).is(':checked')) {
+			 handler.findMatches();
+			 $('#search-button').prop('disabled', true);
+			 $('#filter-warning').show();
+		} else {
+			$('#search-button').prop('disabled', false);
+			$('#filter-warning').hide();
+		}
+	});
 
 };
