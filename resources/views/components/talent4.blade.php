@@ -88,5 +88,3 @@
 		</div>
 	</div>
 </div> {{-- talent item container --}}
-
-

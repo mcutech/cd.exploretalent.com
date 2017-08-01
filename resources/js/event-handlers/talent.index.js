@@ -56,7 +56,8 @@ handler.prototype.refresh = function(append) {
 
         return $.when.apply($, promises).then(function() {
             try {
-                console.log(talents);
+                // console.log(talents);
+								self.core.service.databind('#submission-total', talents);
                 self.core.service.databind('#talent-search-result', talents, append);
             }
             catch(e) {
@@ -163,7 +164,7 @@ handler.prototype.getFilters = function() {
 
 	if (self.xorigins.length > 0) {
 		data.query.push( [ 'whereIn', 'x_origin', self.xorigins ] );
-	}	
+	}
 
 	if (form.address_search == 0) { // market filter
 		if (form.markets) {
@@ -196,23 +197,23 @@ handler.prototype.getFilters = function() {
 			}
 		}
 	} else if (form.address_search == 1) { // location filter
-		
-		var lngLat = JSON.parse(form.lng_lat);		
-	
-		if (lngLat.length > 0) {			
-			
+
+		var lngLat = JSON.parse(form.lng_lat);
+
+		if (lngLat.length > 0) {
+
 			var d = lngLat.distance / 69;
 
 			data.query.push(['join', 'bam.laret_users', 'bam.laret_users.bam_talentnum', '=', 'talentnum']);
 			data.query.push(['join', 'bam.laret_locations', 'bam.laret_locations.user_id', '=', 'bam.laret_users.id']);
-						
+
 			data.query.push(['where', 'bam.laret_locations.longitude', '>=', lngLat[0].lng.min - 0.3]);
 			data.query.push(['where', 'bam.laret_locations.longitude', '<=', lngLat[0].lng.max + 0.3]);
-			
+
 			data.query.push(['where', 'bam.laret_locations.latitude', '>=', lngLat[0].lat.min - 0.3]);
-			data.query.push(['where', 'bam.laret_locations.latitude', '<=', lngLat[0].lat.max + 0.3]);						
+			data.query.push(['where', 'bam.laret_locations.latitude', '<=', lngLat[0].lat.max + 0.3]);
 		}
-		
+
 	}
 
 	if (parseInt(form.age_min)) {

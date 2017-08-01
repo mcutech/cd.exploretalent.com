@@ -20,6 +20,7 @@ function handler(core, user){
   self.refresh();
 }
 handler.prototype.refresh = function(append){
+
 	if (self.refreshing) {
 		return;
 	}
@@ -38,67 +39,73 @@ handler.prototype.refresh = function(append){
 	$('#search-loader').show();
 
 	if (!append) {
-		$('#talent-search-result').hide();
+		$('.talents-search-result').hide();
 	}
 
-	self.core.resource.favorite_talent.get({ page: self.page })
-	.then(function(result){		
-		self.done = (result.total < result.per_page);
+	var data = self.getFilters();
 
-		var talentnums = _.map(result.data, function(talent) {
-			return talent.bam_talentnum;
-		});
-
-		talentnums.push(0);
-
-		var data = {
-			query : [
-				[ 'whereIn', 'talentnum', talentnums ],
-				[ 'whereIn', 'x_origin', self.xorigins ]
-			]
-		};
-
-		if (self.filter == 1) data = self.getFilters(data);
-
-		return self.core.resource.talent.search(data)
-	})
+	self.core.resource.talent.search(data)
 	.then(function(res) {
-        talents = res;
 
-        var promises = [];
+		talents = res;
+
+		self.core.service.databind('#submission-total', res);
+
+		var promises = [];
 
 		_.each(talents.data, function(talent) {
 			talent.talent_role_id = 0;
 			talent.talent_project_id = 0;
-            promises.push(self.getTalentVideos(talent));
+			promises.push(self.getTalentVideos(talent));
 		});
 
-        return $.when.apply($, promises);
-    })
-    .then(function() {
-        try {
-		    self.core.service.databind('#favorite-result', talents, append);
-        }
-        catch(e) {
-            console.log(e);
-        }
+		return $.when.apply($, promises);
 
-		self.refreshing = false;
+	})
+	.then(function() {
 
-		$('#search-loader').hide();
-		if (!append) {
-			$('#talent-search-result').show();
-			 if (talents.total == 0) {
-			 		$('#talent-search-result').hide();
-			 		$('#no-favorite-talent').removeClass('hide');
-			 		$('#no-favorite-talent').show();
-			 }
-		}
+			self.done = (self.page == talents.last_page);
+
+					try {
+					//for total number of talent matches
+						self.core.service.databind('#favorite-result', talents, append);
+					}
+					catch(e) {
+							//console.log(e);
+					}
+
+			self.refreshing = false;
+
+			$('#search-loader').hide();
+
+			if (!append) {
+				$('.talents-search-result').show();
+				 if (talents.total == 0) {
+						$('.talents-search-result').hide();
+						$('#no-favorite-talent').removeClass('hide');
+						$('#no-favorite-talent').show();
+				 }
+			}
 	});
 };
 
 handler.prototype.getFilters = function(data) {
-	var form = self.core.service.form.serializeObject('#talent-filter-form');		
+	var data = {
+		query : [
+			['join', 'bam.laret_favorite_talents', 'bam.laret_favorite_talents.bam_talentnum', '=', 'talentnum'],
+			['where', 'bam.laret_favorite_talents.bam_cd_user_id', '=', self.user.bam_cd_user_id]
+		],
+		per_page : 24,
+		page : self.page
+	}
+
+	if (self.xorigins.length > 0) {
+		data.query.push( [ 'whereIn', 'x_origin', self.xorigins ] );
+	}
+
+	var form = self.core.service.form.serializeObject('#talent-filter-form');
+
+	console.log("FORM", form);
 
 	if (form.address_search == 0) { // market filter
 		if (form.markets) {
@@ -131,20 +138,20 @@ handler.prototype.getFilters = function(data) {
 			}
 		}
 	} else if (form.address_search == 1) { // location filter
-		
-		var lngLat = JSON.parse(form.lng_lat);		
-	
-		if (lngLat.length > 0) {			
+
+		var lngLat = JSON.parse(form.lng_lat);
+
+		if (lngLat.length > 0) {
 			data.query.push(['join', 'bam.laret_users', 'bam.laret_users.bam_talentnum', '=', 'talentnum']);
 			data.query.push(['join', 'bam.laret_locations', 'bam.laret_locations.user_id', '=', 'bam.laret_users.id']);
-						
+
 			data.query.push(['where', 'bam.laret_locations.longitude', '>=', lngLat[0].lng.min - 0.3]);
 			data.query.push(['where', 'bam.laret_locations.longitude', '<=', lngLat[0].lng.max + 0.3]);
-			
+
 			data.query.push(['where', 'bam.laret_locations.latitude', '>=', lngLat[0].lat.min - 0.3]);
-			data.query.push(['where', 'bam.laret_locations.latitude', '<=', lngLat[0].lat.max + 0.3]);						
+			data.query.push(['where', 'bam.laret_locations.latitude', '<=', lngLat[0].lat.max + 0.3]);
 		}
-		
+
 	}
 
 	if (parseInt(form.age_min)) {
