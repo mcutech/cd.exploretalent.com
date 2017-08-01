@@ -69,16 +69,17 @@
 			</div>
 			<div class="talent-information-parent row-fluid clearfix" data-bind="talent-body-<%= talentnum %>" data-bind-target="id">
 				<div class="col-md-12 padding-zero">
-					<span class="name font-size-normal-zz-lg" data-bind="<%= getFullName() %>"></span>
-					<span class="age font-size-normal-zz-lg"><i>,</i><span data-bind="<%= getAge() %>" class="age-area"></span></span>
-
+                    <div class="talent-additional-info margin-top-small">
+    					<span class="name font-size-normal-zz-lg" data-bind="<%= getFullName() %>"></span>
+                        <span class="age font-size-normal-zz-lg"><i>,</i> <span data-bind="<%= getAge() %>" class="age-area"></span></span>
+                    </div>
 					<div class="talent-additional-info">
 						<div class="additional-info-item city">City: <span data-bind="<%= getLocation() %>"></span></div>
 					</div>
 
 					<div class="talent-additional-info">
-						<div class="additional-info-item height">Height: <span data-bind="<%= getHeight() %>"></span></div>
-						<div class="additional-info-item body-type">Body: <span data-bind="<%= build %>">Athletic</span></div>
+						<div class="additional-info-item height">Height:<span data-bind="<%= getHeight() %>"></span></div>
+						<div class="additional-info-item body-type">Body:<span data-bind="<%= build %>">Athletic</span></div>
 					</div>
 				</div>
 			</div>
