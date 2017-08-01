@@ -8,9 +8,9 @@ module.exports = function(core, user, projectId, roleId) {
 		else   {
 			$("#radio-selected").text("Any");
 		}
-	});	
+	});
 
-	$('#place-miles').slider('value', $('#place-miles-in').val());	
+	$('#place-miles').slider('value', $('#place-miles-in').val());
 
 	$('#place-miles').on('slide', function(e, ui) {
 		$('#place-miles-in').val(ui.value);
@@ -101,7 +101,16 @@ module.exports = function(core, user, projectId, roleId) {
 		$('input[name="height_max"]').val($(this).val());
 	});
 
-	$('#show_only_matched').on('click', function(){		
-		handler.findMatches();		
+	$('#show_only_matched').on('click', function(){
+		if ($(this).is(':checked')) {
+			 handler.findMatches();
+			 $('#search-button').prop('disabled', true);
+		} else {
+			$('#search-button').prop('disabled', false);
+		}
 	});
+
+	$('#show_only_matched').prop('checked', true);
+	$('#search-button').prop('disabled', true);
+
 }

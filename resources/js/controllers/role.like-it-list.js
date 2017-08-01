@@ -2,10 +2,7 @@ module.exports = function(core, user, projectId, roleId) {
 	var handler = require('../event-handlers/role.like-it-list.js')(core, user, projectId, roleId);
 
 	$('#roles-list').on('change', handler.refreshRole);
-	$('#search-button').on('click', function(e) {
-		handler.filter = 1;
-		handler.findMatches();
-	});
+	$('#search-button').on('click', handler.findMatches);
 
 	//refine search toggle location search
 	$(document).on('click', '#location-search-change-btn', function(e){
@@ -108,5 +105,14 @@ module.exports = function(core, user, projectId, roleId) {
 		$(this).closest('.talent-item').find('.talent-note-v2').show();
 		$(this).closest('.talent-item').find('.talent-photo-v2').hide();
 		$(this).closest('.talent-item').find('.talent-functions-v2 ').hide();
+	});
+
+	$('#show_only_matched').on('click', function(){
+		if ($(this).is(':checked')) {
+			 handler.findMatches();
+			 $('#search-button').prop('disabled', true);
+		} else {
+			$('#search-button').prop('disabled', false);
+		}
 	});
 }

@@ -45,9 +45,9 @@ module.exports = function(core, user, projectId, roleId) {
 
 
 	$('#search-button').on('click', handler.findMatches);
-	$('#add-all-button').on('click', handler.addAll);	
+	$('#add-all-button').on('click', handler.addAll);
 
-	$('#place-miles').slider('value', $('#place-miles-in').val());	
+	$('#place-miles').slider('value', $('#place-miles-in').val());
 
 	$('#place-miles').on('slide', function(e, ui) {
 		$('#place-miles-in').val(ui.value);
@@ -109,7 +109,7 @@ module.exports = function(core, user, projectId, roleId) {
 	});
 
 	$(window).on('scroll', function() {
-		if ($(window).scrollTop() + $(window).height() > $(document).height() - 100) {			
+		if ($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
 			handler.findMatches(true);
 		}
 	});
@@ -137,7 +137,13 @@ module.exports = function(core, user, projectId, roleId) {
 	$('#show_only_matched').on('click', function(){
 		if ($(this).is(':checked')) {
 			 handler.findMatches();
+			 $('#search-button').prop('disabled', true);
+		} else {
+			$('#search-button').prop('disabled', false);
 		}
 	});
+
+	$('#show_only_matched').prop('checked', true);
+	$('#search-button').prop('disabled', true);
 
 };
