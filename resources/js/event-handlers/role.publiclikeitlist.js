@@ -39,6 +39,7 @@ handler.prototype.getDetails = function() {
 		.then(function(res) {
 			self.core.service.databind('#project-details', res)
 			self.core.service.databind('#role-filter-form', res);
+			self.filter = res;
 			self.findMatches();
 		});
 }
@@ -142,9 +143,13 @@ handler.prototype.getFilters = function(talentnums) {
 		]
 	}
 
+	if ($('#show_only_matched').is(':checked') == true) {
+		self.core.service.databind('#role-filter-form', self.filter);
+	}
+
 	if (!self.first_load) {
-		
-		if (form.address_search == 0 && self.filter == 1) { // market filter
+
+		if (form.address_search == 0) { // market filter
 			if (form.markets) {
 				if (form.markets instanceof Array) {
 					var subquery = [];
@@ -173,22 +178,22 @@ handler.prototype.getFilters = function(talentnums) {
 						]
 					]);
 				}
-			} 
-		} else if (form.address_search == 1 && self.filter == 1){ // location filter
-				
-			var lngLat = JSON.parse(form.lng_lat);			
-		
-			if (lngLat.length > 0) {			
+			}
+		} else if (form.address_search == 1){ // location filter
+
+			var lngLat = JSON.parse(form.lng_lat);
+
+			if (lngLat.length > 0) {
 				data.query.push(['join', 'bam.laret_users', 'bam.laret_users.bam_talentnum', '=', 'talentnum']);
-				data.query.push(['join', 'bam.laret_locations', 'bam.laret_locations.user_id', '=', 'bam.laret_users.id']);										
-				
+				data.query.push(['join', 'bam.laret_locations', 'bam.laret_locations.user_id', '=', 'bam.laret_users.id']);
+
 				data.query.push(['where', 'bam.laret_locations.longitude', '>=', lngLat[0].lng.min - 0.3]);
 				data.query.push(['where', 'bam.laret_locations.longitude', '<=', lngLat[0].lng.max + 0.3]);
-				
+
 				data.query.push(['where', 'bam.laret_locations.latitude', '>=', lngLat[0].lat.min - 0.3]);
-				data.query.push(['where', 'bam.laret_locations.latitude', '<=', lngLat[0].lat.max + 0.3]);										
+				data.query.push(['where', 'bam.laret_locations.latitude', '<=', lngLat[0].lat.max + 0.3]);
 			}
-		}		
+		}
 
 		if (parseInt(form.age_min)) {
 			data.query.push([ 'where', 'dobyyyy', '<=', new Date().getFullYear() - parseInt(form.age_min) ]);
