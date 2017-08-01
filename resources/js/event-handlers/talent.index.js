@@ -19,7 +19,6 @@ function handler(core, user){
     self.xorigins = self.xorigins.length == 0 ? [-1] : self.xorigins;
 
 	self.refresh();
-
 }
 
 handler.prototype.refresh = function(append) {
@@ -37,7 +36,7 @@ handler.prototype.refresh = function(append) {
 	self.refreshing = true;
 
 	var talents;
-	var promise;
+	var promises = [];
 
 	var data = self.getFilters();
 	$('#talent-search-loader').show();
@@ -49,22 +48,32 @@ handler.prototype.refresh = function(append) {
 	}
 
 	self.getTalents().then(function(talents) {
-		try {
-			self.core.service.databind('#talent-search-result', talents, append);
-		}
-		catch(e) {
-            console.log(e);
-        }
 
-		self.refreshing = false;
+        // check if talent has a greeting video
+        _.each(talents.data, function(value, index) {
+            promises.push(self.getTalentVideos(value));
+        });
 
-		$('#talent-search-loader').hide();
-		if (!append) {
-			$('#talent-search-result').show();
-			if(talents.total === 0) {
-				$('#no-talent-result').removeClass('hidden');
-			}
-		}
+        return $.when.apply($, promises).then(function() {
+            try {
+                // console.log(talents);
+								self.core.service.databind('#submission-total', talents);
+                self.core.service.databind('#talent-search-result', talents, append);
+            }
+            catch(e) {
+                console.log(e);
+            }
+
+            self.refreshing = false;
+
+            $('#talent-search-loader').hide();
+            if (!append) {
+                $('#talent-search-result').show();
+                if(talents.total === 0) {
+                    $('#no-talent-result').removeClass('hidden');
+                }
+            }
+        });
 	});
 }
 
@@ -155,7 +164,7 @@ handler.prototype.getFilters = function() {
 
 	if (self.xorigins.length > 0) {
 		data.query.push( [ 'whereIn', 'x_origin', self.xorigins ] );
-	}	
+	}
 
 	if (form.address_search == 0) { // market filter
 		if (form.markets) {
@@ -188,23 +197,23 @@ handler.prototype.getFilters = function() {
 			}
 		}
 	} else if (form.address_search == 1) { // location filter
-		
-		var lngLat = JSON.parse(form.lng_lat);		
-	
-		if (lngLat.length > 0) {			
-			
+
+		var lngLat = JSON.parse(form.lng_lat);
+
+		if (lngLat.length > 0) {
+
 			var d = lngLat.distance / 69;
 
 			data.query.push(['join', 'bam.laret_users', 'bam.laret_users.bam_talentnum', '=', 'talentnum']);
 			data.query.push(['join', 'bam.laret_locations', 'bam.laret_locations.user_id', '=', 'bam.laret_users.id']);
-						
+
 			data.query.push(['where', 'bam.laret_locations.longitude', '>=', lngLat[0].lng.min - 0.3]);
 			data.query.push(['where', 'bam.laret_locations.longitude', '<=', lngLat[0].lng.max + 0.3]);
-			
+
 			data.query.push(['where', 'bam.laret_locations.latitude', '>=', lngLat[0].lat.min - 0.3]);
-			data.query.push(['where', 'bam.laret_locations.latitude', '<=', lngLat[0].lat.max + 0.3]);						
+			data.query.push(['where', 'bam.laret_locations.latitude', '<=', lngLat[0].lat.max + 0.3]);
 		}
-		
+
 	}
 
 	if (parseInt(form.age_min)) {
@@ -330,6 +339,26 @@ handler.prototype.getFilters = function() {
 
 	return data;
 }
+
+handler.prototype.getTalentVideos = function(talent) {
+
+    var deferred = $.Deferred();
+    var data = {
+        query : [
+            [ 'where', 'talentnum', '=', talent.talentnum ],
+            [ 'where', 'type', '=', '6' ]
+        ]
+    };
+
+    self.core.resource.talent_videos.get(data)
+        .then(function(video){
+            talent.video_id = (video.data.length > 0) ? video.data[0].video_id : '';
+            deferred.resolve();
+        });
+
+    return deferred.promise();
+}
+
 module.exports = function(core, user) {
 	return new handler(core, user);
 };

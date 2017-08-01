@@ -2,7 +2,7 @@ function handler(core, user){
 	self = this;
 	self.core = core;
 	self.user = user;
-	self.talent = null;	
+	self.talent = null;
 	self.filter = 0;
 
 	self.xorigins = [];
@@ -20,6 +20,7 @@ function handler(core, user){
   self.refresh();
 }
 handler.prototype.refresh = function(append){
+
 	if (self.refreshing) {
 		return;
 	}
@@ -38,68 +39,73 @@ handler.prototype.refresh = function(append){
 	$('#search-loader').show();
 
 	if (!append) {
-		$('#talent-search-result').hide();
+		$('.talents-search-result').hide();
 	}
 
-	var data = {
-		page: self.page,
-		query: [
-			//['join', 'talentci', 'talentci.talentnum', '=', 'bam_talentnum']
-			//['whereIn', 'talentci.x_origin', self.x_origins]
-		]
-	};
+	var data = self.getFilters();
 
-	self.core.resource.favorite_talent.get(data)
-	.then(function(result){		
-		self.done = (result.total < result.per_page);
+	self.core.resource.talent.search(data)
+	.then(function(res) {
 
-		var talentnums = _.map(result.data, function(talent) {
-			return talent.bam_talentnum;
-		});
+		talents = res;
 
-		talentnums.push(0);
+		self.core.service.databind('#submission-total', res);
 
-		var data = {
-			query : [
-				[ 'whereIn', 'talentnum', talentnums ]
-				//[ 'whereIn', 'x_origin', self.xorigins ]
-			]
-		};
+		var promises = [];
 
-		if (self.filter == 1) data = self.getFilters(data);
-
-		return self.core.resource.talent.search(data);
-	})
-	.then(function(talents) {
 		_.each(talents.data, function(talent) {
 			talent.talent_role_id = 0;
 			talent.talent_project_id = 0;
+			promises.push(self.getTalentVideos(talent));
 		});
 
-        try {
-		    self.core.service.databind('#favorite-result', talents, append);
-        }
-        catch(e) {
-            console.log(e);
-        }
+		return $.when.apply($, promises);
 
-		self.refreshing = false;
+	})
+	.then(function() {
 
-		$('#search-loader').hide();
-		
-		if (!append) {
-			$('#talent-search-result').show();
-			 if (talents.total == 0) {
-			 		$('#talent-search-result').hide();
-			 		$('#no-favorite-talent').removeClass('hide');
-			 		$('#no-favorite-talent').show();
-			 } 
-		}
+			self.done = (self.page == talents.last_page);
+
+					try {
+					//for total number of talent matches
+						self.core.service.databind('#favorite-result', talents, append);
+					}
+					catch(e) {
+							//console.log(e);
+					}
+
+			self.refreshing = false;
+
+			$('#search-loader').hide();
+
+			if (!append) {
+				$('.talents-search-result').show();
+				 if (talents.total == 0) {
+						$('.talents-search-result').hide();
+						$('#no-favorite-talent').removeClass('hide');
+						$('#no-favorite-talent').show();
+				 }
+			}
 	});
 };
 
 handler.prototype.getFilters = function(data) {
-	var form = self.core.service.form.serializeObject('#talent-filter-form');		
+	var data = {
+		query : [
+			['join', 'bam.laret_favorite_talents', 'bam.laret_favorite_talents.bam_talentnum', '=', 'talentnum'],
+			['where', 'bam.laret_favorite_talents.bam_cd_user_id', '=', self.user.bam_cd_user_id]
+		],
+		per_page : 24,
+		page : self.page
+	}
+
+	if (self.xorigins.length > 0) {
+		data.query.push( [ 'whereIn', 'x_origin', self.xorigins ] );
+	}
+
+	var form = self.core.service.form.serializeObject('#talent-filter-form');
+
+	console.log("FORM", form);
 
 	if (form.address_search == 0) { // market filter
 		if (form.markets) {
@@ -132,20 +138,20 @@ handler.prototype.getFilters = function(data) {
 			}
 		}
 	} else if (form.address_search == 1) { // location filter
-		
-		var lngLat = JSON.parse(form.lng_lat);		
-	
-		if (lngLat.length > 0) {			
+
+		var lngLat = JSON.parse(form.lng_lat);
+
+		if (lngLat.length > 0) {
 			data.query.push(['join', 'bam.laret_users', 'bam.laret_users.bam_talentnum', '=', 'talentnum']);
 			data.query.push(['join', 'bam.laret_locations', 'bam.laret_locations.user_id', '=', 'bam.laret_users.id']);
-						
+
 			data.query.push(['where', 'bam.laret_locations.longitude', '>=', lngLat[0].lng.min - 0.3]);
 			data.query.push(['where', 'bam.laret_locations.longitude', '<=', lngLat[0].lng.max + 0.3]);
-			
+
 			data.query.push(['where', 'bam.laret_locations.latitude', '>=', lngLat[0].lat.min - 0.3]);
-			data.query.push(['where', 'bam.laret_locations.latitude', '<=', lngLat[0].lat.max + 0.3]);						
+			data.query.push(['where', 'bam.laret_locations.latitude', '<=', lngLat[0].lat.max + 0.3]);
 		}
-		
+
 	}
 
 	if (parseInt(form.age_min)) {
@@ -270,6 +276,25 @@ handler.prototype.getFilters = function(data) {
 	}
 
 	return data;
+}
+
+handler.prototype.getTalentVideos = function(talent) {
+
+    var deferred = $.Deferred();
+    var data = {
+        query : [
+            [ 'where', 'talentnum', '=', talent.talentnum ],
+            [ 'where', 'type', '=', '6' ]
+        ]
+    };
+
+    self.core.resource.talent_videos.get(data)
+        .then(function(video){
+            talent.video_id = (video.data.length > 0) ? video.data[0].video_id : '';
+            deferred.resolve();
+        });
+
+    return deferred.promise();
 }
 
 module.exports = function(core, user){
