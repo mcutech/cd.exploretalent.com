@@ -8,7 +8,7 @@
 	#favorite-result{
 	    margin: -11px;
 	}
-	
+
 	.button-float-bottom{
 		position: fixed;
 		z-index: 999;
@@ -335,16 +335,38 @@
 						color: #555555;
 						font-size: 15px;
 						padding: 0px;
+                        text-overflow: ellipsis;
+                        max-width: 148px;
+                        display: inline-block;
+                        white-space: nowrap;
+                        overflow: hidden;
 					}
 					.age{
+                        display: inline-block;
+                        white-space: nowrap;
+                        overflow: hidden;
 					}
-					.talent-additional-info{
-						color: #777777;
-						font-size: 12px;
-						padding: 0px;
-						display: flex;
-						.additional-info-item{
-							flex-grow: 1;
+                    .talent-additional-info{
+                        color: #777777;
+                        font-size: 12px;
+                        padding: 0px;
+                        display: flex;
+                        .additional-info-item{
+                            flex-grow: 1;
+                            &.city{
+                                text-overflow: ellipsis;
+                                max-width: 165px;
+                                white-space: nowrap;
+                                overflow: hidden;
+                                display: block !important;
+                            }
+                            &.body-type{
+                                text-overflow: ellipsis;
+                                max-width: 107px;
+                                white-space: nowrap;
+                                overflow: hidden;
+                                display: block !important;
+                            }
 						}
 					}
 				}

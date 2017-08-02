@@ -11,10 +11,15 @@
 
 		<div class="talents-search-filter-content">
 			<div class="row clearfix">
-			<div id="filter-content-modal" class="" tabindex="" role="dialog" aria-hidden="false">
-				<div class="display-block-sm-lg">
-					@include('talent.components.filter')
+				<div id="filter-content-modal" class="" tabindex="" role="dialog" aria-hidden="false">
+					<div class="display-block-sm-lg">
+						@include('talent.components.filter')
+					</div>
 				</div>
+				<div id="submission-total" class="row">
+					<div class="margin-left-small-normal  margin-bottom-medium col-md-12">
+					There are <span data-bind="<%= total %>"></span> talents that match your search criteria.
+					</div>
 				</div>
 				<div class="display-none-sm-lg col-md-12"><button id="filter-button-modal" data-toggle="modal" data-target="#filter-content-modal" class="btn btn-block btn-flat btn-primary border-radius-zero btn-lg button-float-bottom talents-index">Filter</button></div>
 			</div>
