@@ -17,9 +17,9 @@
 				<li role="presentation">
 					<a  class="tabs" data-toggle="tab" data-search-by="locations" role="tab" href="#location-search">Search by Location</a>
 					<input type="hidden" value="1" />
-				</li>				
+				</li>
 			</ul>
-		</div>		
+		</div>
 
 		<div role="tabpanel" class="tab-pane tab-content panel-body form-horizontal padding-top-zero">
 			<div class="tab-content padding-zero">
@@ -101,7 +101,7 @@
 								<option value="Vancouver, BC">Vancouver, BC</option>
 							</select>
 						</div>
-						
+
 					</div>
 				</div>
 				<div role="tabpanel" class="tab-pane" id="location-search">
@@ -111,17 +111,17 @@
 							<input id="location-search-box" type="text" name="locations" class="form-control" placeholder="Enter Address" />
 							<div class="margin-top-normal">
 								Distance from point <input type="text" value="5" id="place-miles-in" class="form-control" style="display: inline-block; width: 12%" readonly="readonly" /> Miles
-							</div>		
+							</div>
 							<div class="margin-top-normal">
 								<div id="place-miles" data-range="false" data-step="5" data-min="5" data-max="200" data-type="miles" data-slider></div>
-							</div>										
+							</div>
 						</div>
 						<div class="col-md-7 margin-top-normal-zz-sm">
 						<div id="location-filter-map" style="height: 200px"></div>
 						</div>
 					</div>
 				</div>
-			</div>						
+			</div>
 
 			<div id="location-search-change" class="col-md-9" hidden >
 				<div class="col-md-12 search-result-counter">
@@ -149,7 +149,7 @@
 			<div class="row margin-bottom-large">
 				<div class="col-md-3">
 					<label class="text-bold margin-bottom-zero">Age Range: <span class="text-normal">from</span>
-						<input id="age-min-input" class="text-normal" data-bind="<%= (age_min < 3) ? '<3' : age_min || 0 %>" style="width: 30px;"> 
+						<input id="age-min-input" class="text-normal" data-bind="<%= (age_min < 3) ? '<3' : age_min || 0 %>" style="width: 30px;">
 						<span class="text-normal">to</span>
 						<input id="age-max-input" class="text-normal" data-bind="<%= (age_max > 70) ? '70+' : age_max || 0 %>" style="width: 30px;">
 						<span class="text-normal">years</span>
@@ -196,12 +196,12 @@
 				<div class="col-md-3">
 					<label class="text-bold margin-bottom-zero">Height Range:
 						<select id="height-min-dropdown" data-bind="<%= height_min ? height_min : 22 %>">
-							<?php 
+							<?php
 								$bool = false;
 								for ($i = 22; $i <= 96; $i++) {
 									$feet = floor($i / 12);
 									$inches = $i % 12;
-									
+
 									if($i < 24) {
 										if($bool == false) {
 											echo "<option value=".$i."><2' 0\"</option>";
@@ -216,12 +216,12 @@
 						</select>
 						<span class="text-normal">to</span>
 						<select id="height-max-dropdown" data-bind="<%= height_max ? height_max : 96 %>">
-							<?php 
+							<?php
 								$bool = false;
 								for ($i = 22; $i <= 96; $i++) {
 									$feet = floor($i / 12);
 									$inches = $i % 12;
-									
+
 									if($i < 24) {
 										if($bool == false) {
 											echo "<option value=".$i."><2' 0\"</option>";
@@ -318,6 +318,7 @@
 				<div class="col-md-9">
 				<label class="checkbox-inline">
 					<input type="checkbox" id="show_only_matched"> <b>Only show talents that match the role criteria</b>
+					<p style="color: red" id="filter-warning"><em>Uncheck this checkbox to enable custom filtering</em></p>
 				</label>
 				</div>
 				<div class="col-md-3 pull-right margin-top-normal-zz-xs">
@@ -325,7 +326,7 @@
 				</div>
 			</div>
 		</div>
-		
+
 	</div>
 	</form>
 </div> {{-- refine-search-sidebar --}}

@@ -167,12 +167,24 @@ handler.prototype.getFilters = function() {
 		]
 	}
 
-	if (!self.first_load || $('#show_only_matched').is(':checked')==true) {
+	if ($('#show_only_matched').is(':checked') == true) {
+		var role = _.find(self.project.bam_roles, function(r) {
+			return r.role_id == $('#roles-list').val();
+		});
+
+		window.history.pushState({}, '', '/projects/' + self.projectId + '/roles/' + role.role_id + '/submissions');
+
+		role.bam_casting = self.project;
+		self.core.service.databind('#role-filter-form', role);
+
+	}
+
+	//if (!self.first_load) {
 
 		if (self.xorigins.length > 0) {
 			data.query.push( [ 'whereIn', 'x_origin', self.xorigins ] );
-		}		
-		
+		}
+
 		if (form.address_search == 0) { // market filter
 			if (form.markets) {
 				if (form.markets instanceof Array) {
@@ -205,18 +217,18 @@ handler.prototype.getFilters = function() {
 			}
 		} else { // location filter
 			var lngLat = JSON.parse(form.lng_lat);
-		
-			if (lngLat.length > 0) {			
+
+			if (lngLat.length > 0) {
 				//data.query.push(['join', 'bam.laret_users', 'bam.laret_users.bam_talentnum', '=', 'talentnum']);
 				data.query.push(['join', 'bam.laret_locations', 'bam.laret_locations.user_id', '=', 'bam.laret_users.id']);
-				
+
 				data.query.push(['where', 'bam.laret_locations.longitude', '>=', lngLat[0].lng.min - 0.3]);
 				data.query.push(['where', 'bam.laret_locations.longitude', '<=', lngLat[0].lng.max + 0.3]);
-				
+
 				data.query.push(['where', 'bam.laret_locations.latitude', '>=', lngLat[0].lat.min - 0.3]);
-				data.query.push(['where', 'bam.laret_locations.latitude', '<=', lngLat[0].lat.max + 0.3]);										
+				data.query.push(['where', 'bam.laret_locations.latitude', '<=', lngLat[0].lat.max + 0.3]);
 			}
-		}	 		
+		}
 
 		if (parseInt(form.age_min)) {
 			if(form.age_min <= 2){
@@ -338,8 +350,8 @@ handler.prototype.getFilters = function() {
 				]);
 			}
 		}
-		
-	}
+
+	//}
 		return data;
 }
 
