@@ -40,7 +40,7 @@ jscore.run(function(core) {
 		// run all components
 		var components = require('./components/**/*.js', { hash : true });
 
-		_.each(components, function(component) {			
+		_.each(components, function(component) {
 			component(core, user);
 		});
 
@@ -94,6 +94,7 @@ jscore.run(function(core) {
 	    .add('/messages/{projectId}/{roleId}'   , 'message')
 	    .add('/messages/{projectId}'            , 'message')
 	    .add('/messages'                        , 'message')
+        .add('/messaging-center'                , 'messaging-center')
 		.add('/feedback'                        , 'feedback')
 		.add('/unsubscribe'						, 'unsubscribe')
 
