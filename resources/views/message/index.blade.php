@@ -9,6 +9,20 @@
                 <li class="casting-invitation-menu"><a href="#casting-invitations" aria-controls="settings" role="tab" data-toggle="tab">Casting Invitations</a></li>
             </ul>
         </div>
+        <div class="message-functions">
+            <div class="btn-group">
+                <button type="button" class="btn btn-outline dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cog"></i></button>
+                <ul class="dropdown-menu">
+                    <li><a href="#"><i class="fa fa-times"></i> Remove from messages</a></li>
+                    <li><a href="#"><i class="fa fa-ban"></i> Report Abuse</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="personal-message-functions">
+            <div class="btn-container">
+                <button type="button" class="btn btn-outline" data-toggle="modal" data-target="#add-like-it-list-modal"><i class="fa fa-plus"></i> Add to Like it List</button>
+            </div>
+        </div>
         <div class="casting-invitation-functions hidden">
             <div class="form-horizontal">
                 <div class="display-inline-block">
@@ -70,6 +84,7 @@
                                 </div>
                                 <div class="message-notification">New Message</div>
                                 <div class="time-log">8/1/2017</div>
+                                <div class="remove-talent"><span class="text-label">Remove from messaging</span><i class="fa fa-times-circle fa-lg"></i></div>
                             </div>
                         </div>
                         <div class="talent-item">
@@ -91,6 +106,7 @@
                                 </div>
                                 <div class="message-notification hidden">New Message</div>
                                 <div class="time-log">8/1/2017</div>
+                                <div class="remove-talent"><span class="text-label">Remove from messaging</span><i class="fa fa-times-circle fa-lg"></i></div>
                             </div>
                         </div>
                         <div class="talent-item">
@@ -112,6 +128,7 @@
                                 </div>
                                 <div class="message-notification hidden">New Message</div>
                                 <div class="time-log">8/1/2017</div>
+                                <div class="remove-talent"><span class="text-label">Remove from messaging</span><i class="fa fa-times-circle fa-lg"></i></div>
                             </div>
                         </div>
                         <div class="talent-item">
@@ -133,6 +150,7 @@
                                 </div>
                                 <div class="message-notification hidden">New Message</div>
                                 <div class="time-log">8/1/2017</div>
+                                <div class="remove-talent"><span class="text-label">Remove from messaging</span><i class="fa fa-times-circle fa-lg"></i></div>
                             </div>
                         </div>
                         <div class="talent-item">
@@ -154,6 +172,7 @@
                                 </div>
                                 <div class="message-notification hidden">New Message</div>
                                 <div class="time-log">8/1/2017</div>
+                                <div class="remove-talent"><span class="text-label">Remove from messaging</span><i class="fa fa-times-circle fa-lg"></i></div>
                             </div>
                         </div>
                         <div class="talent-item">
@@ -175,6 +194,7 @@
                                 </div>
                                 <div class="message-notification hidden">New Message</div>
                                 <div class="time-log">8/1/2017</div>
+                                <div class="remove-talent"><span class="text-label">Remove from messaging</span><i class="fa fa-times-circle fa-lg"></i></div>
                             </div>
                         </div>
                         <div class="talent-item">
@@ -196,6 +216,7 @@
                                 </div>
                                 <div class="message-notification hidden">New Message</div>
                                 <div class="time-log">8/1/2017</div>
+                                <div class="remove-talent"><span class="text-label">Remove from messaging</span><i class="fa fa-times-circle fa-lg"></i></div>
                             </div>
                         </div>
                     </div>
@@ -258,6 +279,7 @@
                                     New Message
                                 </div>
                                 <div class="time-log">8/1/2017</div>
+                                <div class="remove-talent"><span class="text-label">Remove from messaging</span><i class="fa fa-times-circle fa-lg"></i></div>
                             </div>
                         </div>
                         <div class="talent-item">
@@ -280,6 +302,7 @@
                                     Role: Baby
                                 </div>
                                 <div class="time-log">8/1/2017</div>
+                                <div class="remove-talent"><span class="text-label">Remove from messaging</span><i class="fa fa-times-circle fa-lg"></i></div>
                             </div>
                         </div>
                         <div class="talent-item">
@@ -302,6 +325,7 @@
                                     Role: Baby
                                 </div>
                                 <div class="time-log">8/1/2017</div>
+                                <div class="remove-talent"><span class="text-label">Remove from messaging</span><i class="fa fa-times-circle fa-lg"></i></div>
                             </div>
                         </div>
                         <div class="talent-item">
@@ -324,6 +348,7 @@
                                     Role: Baby
                                 </div>
                                 <div class="time-log">8/1/2017</div>
+                                <div class="remove-talent"><span class="text-label">Remove from messaging</span><i class="fa fa-times-circle fa-lg"></i></div>
                             </div>
                         </div>
                         <div class="talent-item">
@@ -346,6 +371,7 @@
                                     Role: Baby
                                 </div>
                                 <div class="time-log">8/1/2017</div>
+                                <div class="remove-talent"><span class="text-label">Remove from messaging</span><i class="fa fa-times-circle fa-lg"></i></div>
                             </div>
                         </div>
                         <div class="talent-item">
@@ -368,6 +394,7 @@
                                     Role: Baby
                                 </div>
                                 <div class="time-log">8/1/2017</div>
+                                <div class="remove-talent"><span class="text-label">Remove from messaging</span><i class="fa fa-times-circle fa-lg"></i></div>
                             </div>
                         </div>
                         <div class="talent-item">
@@ -390,6 +417,7 @@
                                     Role: Baby
                                 </div>
                                 <div class="time-log">8/1/2017</div>
+                                <div class="remove-talent"><span class="text-label">Remove from messaging</span><i class="fa fa-times-circle fa-lg"></i></div>
                             </div>
                         </div>
                     </div>
@@ -418,5 +446,8 @@
             </div>
         </div>
     </div>
+</div>
+<div class="talents-content">
+    @include('components.modals.talent-add-to-like-it-list')
 </div>
 @stop
