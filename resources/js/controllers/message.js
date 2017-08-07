@@ -18,8 +18,10 @@ module.exports = function(core, user, projectId, roleId) {
 
     $('.casting-invitation-menu').on('click', function(){
         $('.casting-invitation-functions').removeClass('hidden');
+        $('.personal-message-functions').addClass('hidden');
     });
     $('.personal-message-menu').on('click', function(){
         $('.casting-invitation-functions').addClass('hidden');
+        $('.personal-message-functions').removeClass('hidden');
     });
 };

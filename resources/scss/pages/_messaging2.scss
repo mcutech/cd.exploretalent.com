@@ -1,11 +1,27 @@
 .message2-content-wrapper{
     .messages-header{
         display: flex;
+        position: relative;
         .messages-tabs{
             display: inline-block;
         }
         .casting-invitation-functions{
             display: inline-block;
+        }
+        .message-functions{
+            display: block;
+            position: absolute;
+            right: 0;
+            .dropdown-menu{
+                right: 0;
+                left: unset;
+            }
+        }
+        .personal-message-functions{
+            .btn-container{
+                position: absolute;
+                right: 45px;
+            }
         }
     }
     #messages-panel{
@@ -86,9 +102,36 @@
                         .time-log{
                             position: absolute;
                             top: 5px;
-                            right: 5px;
+                            right: 10px;
                             color: #9a9a9a;
                             font-size: 11px;
+                        }
+                        .remove-talent{
+                            position: absolute;
+                            top: 25px;
+                            right: 10px;
+                            i{
+                                color: rgba(0,0,0,0.15);
+                            }
+                            &:hover, &:active, &:focus{
+                                i{
+                                    color: rgba(0,0,0,0.35);
+                                }
+                                .text-label{
+                                    opacity: 1;
+                                    display: inline;
+                                }
+                            }
+                            .text-label{
+                                margin-right: 6px;
+                                opacity: 0;
+                                transition: 0.3s;
+                                color: #ffffff;
+                                background-color: rgba(0,0,0,0.45);
+                                padding: 5px 8px;
+                                font-size: 11px;
+                                display: none;
+                            }
                         }
                     }
                 }
