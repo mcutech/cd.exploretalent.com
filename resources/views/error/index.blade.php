@@ -1,4 +1,4 @@
-@extends('layouts.no-breadcrumb')
+@extends('layouts.blankpage')
 
 @section('sidebar.body')
 	<div id="error-page" class="panel padding-normal padding-top-normal-zz-xs">
