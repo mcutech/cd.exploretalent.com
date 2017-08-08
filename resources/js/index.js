@@ -31,7 +31,7 @@ jscore.run(function(core) {
 	function init(user) {
 		core.service.rest.settings.statusCode = {
 			401: function() {
-				if(window.location.pathname !== '/login' && window.location.pathname !== '/register' && window.location.pathname !== '/forgot-password' && window.location.pathname !== '/reset-password') {
+				if(window.location.pathname !== '/login' && window.location.pathname !== '/register' && window.location.pathname !== '/forgot-password' && window.location.pathname !== '/reset-password' && window.location.pathname !== '/error') {
 					window.location.href = '/login?redirect=' + encodeURIComponent(window.location);
 				}
 			}
@@ -94,8 +94,8 @@ jscore.run(function(core) {
 	    .add('/messages/{projectId}/{roleId}'   , 'message')
 	    .add('/messages/{projectId}'            , 'message')
 	    .add('/messages'                        , 'message')
-        .add('/messaging-center'                , 'messaging-center')
 		.add('/feedback'                        , 'feedback')
+        .add('/error'                           , 'error')
 		.add('/unsubscribe'						, 'unsubscribe')
 
 		// end routes
