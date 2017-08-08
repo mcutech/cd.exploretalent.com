@@ -4,6 +4,7 @@
 {{-- <i class="fa page-header-icon"></i> <b>Welcome!</b> --}}
 @stop
 
+
 @section('sidebar.body')
 	<div id="error-page" class="panel padding-normal padding-top-normal-zz-xs">
 		<div class="error-container">
