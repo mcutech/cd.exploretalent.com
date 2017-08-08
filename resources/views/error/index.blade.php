@@ -1,8 +1,4 @@
-@extends('layouts.no-breadcrumbs')
-
-@section('sidebar.page-header')
-{{-- <i class="fa page-header-icon"></i> <b>Welcome!</b> --}}
-@stop
+@extends('layouts.no-breadcrumb')
 
 @section('sidebar.body')
 	<div id="error-page" class="panel padding-normal padding-top-normal-zz-xs">

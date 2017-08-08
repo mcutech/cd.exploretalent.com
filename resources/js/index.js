@@ -94,9 +94,8 @@ jscore.run(function(core) {
 	    .add('/messages/{projectId}/{roleId}'   , 'message')
 	    .add('/messages/{projectId}'            , 'message')
 	    .add('/messages'                        , 'message')
-        .add('/messaging-center'                , 'messaging-center')
 		.add('/feedback'                        , 'feedback')
-        .add('/error'                           , 'error-page')
+        .add('/error'                           , 'error')
 		.add('/unsubscribe'						, 'unsubscribe')
 
 		// end routes
