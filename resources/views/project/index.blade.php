@@ -45,7 +45,7 @@
         <div class="col-xs-2 col-sm-2 display-none-zz-xs"><strong>Submission</strong></div>
         <div class="col-xs-2 col-sm-2 display-none-zz-sm"><strong>Posted</strong></div>
         <div class="col-xs-3 col-sm-3 col-md-1"><strong>Deadline</strong></div>
-        <div class="col-xs-3 col-sm-3"><strong>Status</strong></div>
+        <div class="col-xs-2 col-sm-2"><strong>Status</strong></div>
     </div>
 
     <div class="projects-wrapper panel border-zero">
@@ -75,7 +75,7 @@
                             <div class="col-xs-2 display-none-zz-xs" data-bind="<%= (snr == 2) ? 'Open Call' : 'Self Response' %>"></div>
                             <div class="col-xs-2 display-none-zz-sm" data-bind="<%= moment(sub_timestamp * 1000).format('MM-DD-YYYY') %>"></div>
                             <div class="col-xs-3 col-sm-3 col-md-1" data-bind="<%= asap ? moment(asap * 1000).format('MM-DD-YYYY') : 'N/A' %>"></div>
-                            <div class="col-xs-3 col-sm-3">
+                            <div class="col-xs-3 col-sm-2">
                                 <div class="label btn-block" data-bind="<%= parseInt(status) ? 'label-success' : 'label-danger' %>" data-bind-target="class">
                                     <span data-bind="<%= parseInt(status) ? 'Active' : 'Pending' %>"></span>
                                 </div>
