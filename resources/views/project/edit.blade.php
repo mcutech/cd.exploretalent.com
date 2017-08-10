@@ -230,17 +230,17 @@
                     </div>
 
                     {{-- upload image for casting --}}
-                    <div class="row">
-                        <div class="col-md-12">
+                    <div class="row upload-image-div">
+                        <div class="col-sm-4">
                             <div class="form-group">
                                 <input id="photo-uploader" type="file" name="file" accept="image/*" class="hide"/>
                                 <label class="control-label">Upload Casting Image<span class="text-success">*</span></label>
-                                <div class="casting-upload-image " id="main-casting-image-div">
+                                <div class="casting-upload-image" id="main-casting-image-div">
                                     <div class="img-width">
                                         <div class="img-holder" id="image-holder">
                                             <div class="img-preview-container">
-                                                <img src="blank" id="preview" >
-                                                <div class="default">
+                                                <img src="blank" id="preview" class="img-responsive">
+                                                <div id="default-image-preview">
                                                     <div class="item text-align-center">
                                                         <div><i class="fa fa-picture-o fa-5x"></i></div>
                                                         <div>Click here to Upload Casting Image</div>
@@ -248,8 +248,8 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="change-image-btn" id="remove-button">
-                                            <button class="btn btn-default btn-lg btn-block border-radius-zero">
+                                        <div class="change-image-btn" id="remove-button" hidden>
+                                            <button class="btn btn-outline btn-block border-radius-zero">
                                                 <i class="fa fa-times"></i> Remove Casting Image
                                             </button>
                                         </div>

@@ -4,7 +4,7 @@ module.exports = function(core, user, projectId) {
 
 	$('#update-project-btn').on('click', handler.updateProject);
 
-	$('.calendar-input').mask('9999-99-99');	
+	$('.calendar-input').mask('9999-99-99');
 
 	$('#bs-datepicker-submissiondeadline').datepicker({
 		defaultDate: +1,
@@ -26,7 +26,7 @@ module.exports = function(core, user, projectId) {
 		dateFormat: 'DD, MM dth',
 		minDate: 0
 	});
-	
+
 	$('#bs-timepicker-open-call-from').timepicker();
 	$('#bs-timepicker-open-call-to').timepicker();
 
@@ -35,7 +35,7 @@ module.exports = function(core, user, projectId) {
         $('#project-type-title').text('Self Submission Details');
         $("#open-call-option-content").hide();
     });
-    
+
     $("#open-call-option").on('click', function(){
         $("#open-call-option-content").show();
         $('#project-type-title').text('Open Call Details');
@@ -94,22 +94,22 @@ module.exports = function(core, user, projectId) {
 	});
 
 	function readURL(input) {
-        
+
         var reader = new FileReader();
-        
+
         reader.onload = function (e) {
             $('#preview').attr('src', e.target.result);
             $('#main-casting-image-div').addClass('uploaded');
             $('#main-casting-image-div').addClass('image-edited');
         }
-        
+
         reader.readAsDataURL(input.files[0]);
     }
-    
+
     $("#photo-uploader").change(function(){
-
     	if (this.files && this.files[0]) {
-
+            $('#default-image-preview').hide();
+            $('#remove-button').show();
     		// if(this.files[0].size > 528385){
 
     		// 	alert("Image Size should not be greater than 500Kb");
@@ -123,6 +123,7 @@ module.exports = function(core, user, projectId) {
     			$("#preview").attr("src","blank");
     			$('#main-casting-image-div').removeClass('uploaded');
     			return false;
+
     		}
     		// console.log("render");
         	readURL(this);
@@ -131,10 +132,11 @@ module.exports = function(core, user, projectId) {
 
 
     $(document).on('click', '#remove-button', function() {
-
+        $('#default-image-preview').show();
 		$('#main-casting-image-div').removeClass('uploaded');
 		$("#preview").attr("src","blank");
 		$('#main-casting-image-div').addClass('image-edited');
+
 
 	});
 
