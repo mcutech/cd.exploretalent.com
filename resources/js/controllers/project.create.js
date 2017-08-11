@@ -4,7 +4,7 @@ module.exports = function(core, user) {
 
 	$('#create-project-btn').on('click', handler.createNewProject);
 
-    $('.calendar-input').mask('9999-99-99');	
+    $('.calendar-input').mask('9999-99-99');
 
 	$('#bs-datepicker-submissiondeadline').datepicker({
 		defaultDate: +1,
@@ -26,7 +26,7 @@ module.exports = function(core, user) {
 		dateFormat: 'DD, MM dth',
 		minDate: 0
 	});
-	
+
 	$('#bs-timepicker-open-call-from').timepicker();
 	$('#bs-timepicker-open-call-to').timepicker();
 
@@ -35,7 +35,7 @@ module.exports = function(core, user) {
         $('#project-type-title').text('Self Submission Details');
         $("#open-call-option-content").hide();
     });
-    
+
     $("#open-call-option").on('click', function(){
         $("#open-call-option-content").show();
         $('#project-type-title').text('Open Call Details');
@@ -86,7 +86,7 @@ module.exports = function(core, user) {
 
 	});
 
-	
+
 	$(document).on('click', '#image-holder', function() {
 
 		$('#photo-uploader').click();
@@ -94,19 +94,18 @@ module.exports = function(core, user) {
 	});
 
 	function readURL(input) {
-        
+
         var reader = new FileReader();
-        
+
         reader.onload = function (e) {
             $('#preview').attr('src', e.target.result);
             $('#main-casting-image-div').addClass('uploaded');
         }
-        
+
         reader.readAsDataURL(input.files[0]);
     }
-    
-    $("#photo-uploader").change(function(){
 
+    $("#photo-uploader").change(function(){
     	if (this.files && this.files[0]) {
 
     		// if(this.files[0].size > 528385){
@@ -123,6 +122,10 @@ module.exports = function(core, user) {
     			$('#main-casting-image-div').removeClass('uploaded');
     			return false;
     		}
+        if(this.files[0].size) {
+            $('#remove-button').removeClass('hide');
+            $('#default').addClass('hide');
+        }
     		// console.log("render");
         	readURL(this);
     	}

@@ -258,7 +258,7 @@
                                         <div class="img-holder" id="image-holder">
                                             <div class="img-preview-container">
                                                 <img src="blank" class="img-responsive" id="preview">
-                                                <div class="default" id="default">
+                                                <div class="default" id="default" style="cursor:pointer;">
                                                     <div class="item text-align-center">
                                                         <div><i class="fa fa-picture-o fa-5x"></i></div>
 
@@ -267,7 +267,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="change-image-btn" id="remove-button">
+                                        <div class="change-image-btn hide"  id="remove-button" >
                                             <button class="btn btn-default btn-lg btn-block border-radius-zero">
                                                 <i class="fa fa-times"></i> Remove Casting Image
                                             </button>
