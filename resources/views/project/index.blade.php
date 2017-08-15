@@ -41,11 +41,11 @@
 
     <div class="panel padding-xs-vr padding-xs-hr margin-bottom-zero text-left row-fluid clearfix no-project-found-header-hide">
         <div class="col-xs-5 col-sm-2"><strong>Title</strong></div>
-        <div class="col-xs-4 col-sm-3"><strong>Type</strong></div>
+        <div class="col-xs-4 col-sm-3 display-none-zz-xs"><strong>Type</strong></div>
         <div class="col-xs-2 col-sm-2 display-none-zz-xs"><strong>Submission</strong></div>
         <div class="col-xs-2 col-sm-2 display-none-zz-sm"><strong>Posted</strong></div>
-        <div class="col-xs-2 col-sm-2 col-md-1"><strong>Deadline</strong></div>
-        <div class="col-xs-3 col-sm-2 display-none-zz-xs"><strong>Status</strong></div>
+        <div class="col-xs-3 col-sm-3 col-md-1"><strong>Deadline</strong></div>
+        <div class="col-xs-2 col-sm-2"><strong>Status</strong></div>
     </div>
 
     <div class="projects-wrapper panel border-zero">
@@ -71,11 +71,11 @@
                     <a class="col-md-12" data-bind="projects/<%= casting_id %>">
                         <div class="row-fluid clearfix">
                             <div class="col-xs-5 col-sm-2 text-bold" data-bind="<%= name %>"></div>
-                            <div class="col-xs-4 col-sm-3" data-bind="<%= (cat) ? getCategory() : 'N/A' %>"></div>
+                            <div class="col-xs-4 col-sm-3 display-none-zz-xs" data-bind="<%= (cat) ? getCategory() : 'N/A' %>"></div>
                             <div class="col-xs-2 display-none-zz-xs" data-bind="<%= (snr == 2) ? 'Open Call' : 'Self Response' %>"></div>
                             <div class="col-xs-2 display-none-zz-sm" data-bind="<%= moment(sub_timestamp * 1000).format('MM-DD-YYYY') %>"></div>
-                            <div class="col-xs-2 col-sm-2 col-md-1" data-bind="<%= asap ? moment(asap * 1000).format('MM-DD-YYYY') : 'N/A' %>"></div>
-                            <div class="col-xs-3 col-sm-2 display-none-zz-xs">
+                            <div class="col-xs-3 col-sm-3 col-md-1" data-bind="<%= asap ? moment(asap * 1000).format('MM-DD-YYYY') : 'N/A' %>"></div>
+                            <div class="col-xs-3 col-sm-2">
                                 <div class="label btn-block" data-bind="<%= parseInt(status) ? 'label-success' : 'label-danger' %>" data-bind-target="class">
                                     <span data-bind="<%= parseInt(status) ? 'Active' : 'Pending' %>"></span>
                                 </div>
