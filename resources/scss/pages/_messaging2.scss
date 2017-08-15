@@ -1,0 +1,196 @@
+.message2-content-wrapper{
+    .messages-header{
+        display: flex;
+        position: relative;
+        .messages-tabs{
+            display: inline-block;
+        }
+        .casting-invitation-functions{
+            display: inline-block;
+        }
+        .message-functions{
+            display: block;
+            position: absolute;
+            right: 0;
+            .dropdown-menu{
+                right: 0;
+                left: unset;
+            }
+        }
+        .personal-message-functions{
+            .btn-container{
+                position: absolute;
+                right: 45px;
+            }
+        }
+    }
+    #messages-panel{
+        .talents-list-content{
+            border-right: 1px solid #e0e0e0;
+            padding: 0px;
+            .search-talent-container{
+                padding: 7px;
+                background-color: #ffffff;
+                .input-group{
+                    input{
+                        border: 0px;
+                        background-color: rgba(0,0,0,0.07);
+                        box-shadow: none;
+                    }
+                    .input-group-btn{
+                        button[type="button"]{
+                            background-image: none;
+                            background-color: rgba(0,0,0,0.07);
+                            border: 1px solid #f2f2f2 !important;
+                            border-left: 0px;
+                            box-shadow: none;
+                            margin-left: 0px;
+                        }
+                    }
+                }
+            }
+            .talent-item-container{
+                height: calc(100% - 46px);
+                .talent-item{
+                    padding: 7px;
+                    position: relative;
+                    &.new-message, &:hover, &:active, &:focus{
+                        background-color: rgba(0,0,0,0.05);
+                        cursor: pointer;
+                        .message-info{
+                            .name-and-age{
+                                color: #000000;
+                            }
+                            .message-notification{
+                                @extend .name-and-age;
+                                color: #ffffff !important;
+                                font-size: 11px;
+                                background-color: #46ac46;
+                                padding: 1px 5px;
+                                display: inline-block;
+                            }
+                        }
+                    }
+                    .photo{
+                        display: inline-block;
+                        vertical-align: -webkit-baseline-middle;
+                        .photo-holder{
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            background-color: #e8e9ed;
+                            .img-item{
+                                background-position: 50% 15%;
+                                background-size: cover;
+                                transition-duration: .5s;
+                                transition-property: width,height;
+                                background-color: transparent;
+                                position: relative;
+                                z-index: 2;
+                                display: block;
+                                height: 80px;
+                                width: 55px;
+                            }
+                        }
+                    }
+                    .message-info{
+                        display: inline-block;
+                        vertical-align: top;
+                        margin-left: 5px;
+                        font-size: 12px;
+                        line-height: 1.32;
+                        .time-log{
+                            position: absolute;
+                            top: 5px;
+                            right: 10px;
+                            color: #9a9a9a;
+                            font-size: 11px;
+                        }
+                        .remove-talent{
+                            position: absolute;
+                            top: 25px;
+                            right: 10px;
+                            i{
+                                color: rgba(0,0,0,0.15);
+                            }
+                            &:hover, &:active, &:focus{
+                                i{
+                                    color: rgba(0,0,0,0.35);
+                                }
+                                .text-label{
+                                    opacity: 1;
+                                    display: inline;
+                                }
+                            }
+                            .text-label{
+                                margin-right: 6px;
+                                opacity: 0;
+                                transition: 0.3s;
+                                color: #ffffff;
+                                background-color: rgba(0,0,0,0.45);
+                                padding: 5px 8px;
+                                font-size: 11px;
+                                display: none;
+                            }
+                        }
+                    }
+                }
+            }
+            .slimScrollDiv{
+                height: calc(100% - 46px) !important;
+            }
+        }
+        .message-content{
+            height: 100%;
+            padding: 10px;
+            position: relative;
+
+            .messages-container{
+                height: calc(100% - 68px) !important;
+                .slimScrollDiv{
+                   height: calc(100% - 68px) !important;
+                }
+                .recepient-message{
+                    float: left;
+                    clear: both;
+                    padding: 8px;
+                    color: #333333;
+                    background-color: rgba(0,0,0,0.06);
+                    margin-bottom: 8px;
+                }
+                .user-message{
+                    float: right;
+                    clear: both;
+                    padding: 8px;
+                    color: #ffffff;
+                    background-color: rgb(29, 137, 207);
+                    margin-bottom: 8px;
+                }
+            }
+
+            .message-box{
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                padding: 8px;
+                z-index: 2;
+                textarea{
+                    background-color: #f2f2f2;
+                    resize: none;
+                }
+            }
+        }
+
+        .tab-content{
+            height: 100%;
+            .tab-pane{
+                height: 100%;
+                .talents-list-content, .messages-content{
+                    height: 100%;
+                }
+            }
+        }
+
+    }
+}

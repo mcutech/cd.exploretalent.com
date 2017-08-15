@@ -12,7 +12,7 @@
 			<form action="index.html" id="login-form">
 				<div class="row-fluid clearfix text-center">
 					<div class="col-md-12">
-						<img src="/images/logo-home-et.png" alt="">
+						<img src="/images/logo-home-et.png" style="max-width: 100%;">
 					</div>
 				</div>
 				<div class="signin-text">

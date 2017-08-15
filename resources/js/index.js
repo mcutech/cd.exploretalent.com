@@ -31,7 +31,7 @@ jscore.run(function(core) {
 	function init(user) {
 		core.service.rest.settings.statusCode = {
 			401: function() {
-				if(window.location.pathname !== '/login' && window.location.pathname !== '/register' && window.location.pathname !== '/forgot-password' && window.location.pathname !== '/reset-password') {
+				if(window.location.pathname !== '/login' && window.location.pathname !== '/register' && window.location.pathname !== '/forgot-password' && window.location.pathname !== '/reset-password' && window.location.pathname !== '/error') {
 					window.location.href = '/login?redirect=' + encodeURIComponent(window.location);
 				}
 			}
@@ -40,7 +40,7 @@ jscore.run(function(core) {
 		// run all components
 		var components = require('./components/**/*.js', { hash : true });
 
-		_.each(components, function(component) {			
+		_.each(components, function(component) {
 			component(core, user);
 		});
 
@@ -95,6 +95,7 @@ jscore.run(function(core) {
 	    .add('/messages/{projectId}'            , 'message')
 	    .add('/messages'                        , 'message')
 		.add('/feedback'                        , 'feedback')
+        .add('/error'                           , 'error')
 		.add('/unsubscribe'						, 'unsubscribe')
 
 		// end routes
