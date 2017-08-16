@@ -107,14 +107,9 @@ module.exports = function(core, user) {
 
     $("#photo-uploader").change(function(){
     	if (this.files && this.files[0]) {
+            $('#default-image-preview').hide();
+            $('#remove-button').show();
 
-    		// if(this.files[0].size > 528385){
-
-    		// 	alert("Image Size should not be greater than 500Kb");
-    		// 	$("#preview").attr("src","blank");
-    		// 	$('#main-casting-image-div').removeClass('uploaded');
-    		// 	return false;
-    		// }
     		if(this.files[0].type.indexOf("image")==-1){
 
     			alert("Invalid Type");
@@ -122,10 +117,6 @@ module.exports = function(core, user) {
     			$('#main-casting-image-div').removeClass('uploaded');
     			return false;
     		}
-        if(this.files[0].size) {
-            $('#remove-button').removeClass('hide');
-            $('#default').addClass('hide');
-        }
     		// console.log("render");
         	readURL(this);
     	}
@@ -133,10 +124,11 @@ module.exports = function(core, user) {
 
 
     $(document).on('click', '#remove-button', function() {
-
-		$('#main-casting-image-div').removeClass('uploaded');
-		$("#preview").attr("src","blank");
-
+        $('#default-image-preview').show();
+        $('#remove-button').hide();
+        $('#main-casting-image-div').removeClass('uploaded');
+        $("#preview").attr("src","blank");
+        $('#main-casting-image-div').addClass('image-edited');
 	});
 
 };

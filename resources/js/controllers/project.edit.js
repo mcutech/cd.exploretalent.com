@@ -133,11 +133,10 @@ module.exports = function(core, user, projectId) {
 
     $(document).on('click', '#remove-button', function() {
         $('#default-image-preview').show();
+        $('#remove-button').hide();
 		$('#main-casting-image-div').removeClass('uploaded');
 		$("#preview").attr("src","blank");
 		$('#main-casting-image-div').addClass('image-edited');
-
-
 	});
 
 };
