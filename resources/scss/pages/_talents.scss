@@ -103,13 +103,13 @@
 							min-height: 600px;
 							max-height: 600px;
 						}
-						@media only screen and (max-width: 480px){
-							min-height: 260px;
-							max-height: 260px;
+						@media only screen and (max-width: 479px){
+                            max-height: 261.92px;
+                            min-height: 261.92px;
 						}
 						@media only screen and (max-width: 320px){
-							min-height: 260px;
-							max-height: 260px;
+                            max-height: 261.92px;
+                            min-height: 261.92px;
 						}
 
 						.note-item {
@@ -232,6 +232,10 @@
 
 						}
 					}
+                    @media all and(max-width: 479px){
+                        min-height: 262.92px;
+                        max-height: 262.92px;
+                    }
 				}
 
 				.talent-photo-v2{
