@@ -30,6 +30,11 @@ module.exports = function(core, user) {
 	$('#bs-timepicker-open-call-from').timepicker();
 	$('#bs-timepicker-open-call-to').timepicker();
 
+    // var hideElem = document.getElementById("hide-open-call-onload");
+    $("#hide-option-2").ready( function() {
+        $("#open-call-option-content").hide();
+    });
+
 	$("#self-submission-option").on('click', function(){
         $("#self-submissions-option-content").show();
         $('#project-type-title').text('Self Submission Details');
