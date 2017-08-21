@@ -86,31 +86,7 @@
 
 					.note-item-container-holder {
 						height: auto;
-						min-height: 165px;
-						max-height: 165px;
 						overflow-y: scroll;
-
-						@media only screen and (max-width: 1200px){
-							min-height: 436px;
-							max-height: 436px;
-						}
-
-						@media only screen and (max-width: 992px){
-							min-height: 140px;
-							max-height: 140px;
-						}
-						@media only screen and (max-width: 768px){
-							min-height: 600px;
-							max-height: 600px;
-						}
-						@media only screen and (max-width: 479px){
-                            max-height: 261.92px;
-                            min-height: 261.92px;
-						}
-						@media only screen and (max-width: 320px){
-                            max-height: 261.92px;
-                            min-height: 261.92px;
-						}
 
 						.note-item {
 							padding-bottom: 10px;
@@ -164,7 +140,7 @@
 						display: block;
 						width: 100%;
 						position: relative;
-						height: 0;
+						height: 100%;
 						padding: 149.25% 0 0 0;
 					    overflow: hidden;
 					    background-color: #ffffff;
@@ -183,15 +159,18 @@
 
 						}
 						@media only screen and (max-width: 1200px){
-							padding: 150.25% 0 0 0;
+							padding: 120.25% 0 0 0;
 						}
 
-						@media only screen and (max-width: 768px){
+						@media only screen and (max-width: 767px){
 							padding: 98.25% 0 0 0;
 						}
 
-						@media only screen and (max-width: 480px){
+						@media only screen and (max-width: 479px){
 							padding: 150.25% 0 0 0;
+                            img, a{
+                                margin: 0px;
+                            }
 						}
 					}
 				}
@@ -200,18 +179,16 @@
 				// new layout for talents no sidebar
 				.talent-note-v2{
 					@extend .panel-body;
+                    min-height: unset;
+                    max-height: unset;
 					padding: 0px;
 					display: none;
 					background-color: #ffffff;
 					border: 1px solid #dddddd;
-					min-height: 251.77px;
-                    max-height: 251.77px;
 
 					.note-item-container-holder{
-						min-height: 251.77px - 30px;
-						max-height: 251.77px - 30px;
-
-						.note-item{
+						height: calc(249.77px - 30px);
+                        .note-item{
 							.name-date{
 								margin-left: 0px;
 							}
@@ -219,6 +196,10 @@
 								font-size: 11px;
 							}
 						}
+                        @media all and(max-height: 991px){
+                            height: calc(249.77px - 30px);
+                        }
+
 					}
 
 					.back-add-note-container{
@@ -232,13 +213,6 @@
 
 						}
 					}
-                    @media all and(max-width: 479px){
-                        min-height: 262.92px;
-                        max-height: 262.92px;
-                    }
-				}
-
-				.talent-photo-v2{
 				}
 
 				.talent-photo-and-note-container{
@@ -326,12 +300,12 @@
 				}
 
 				.talent-photo-v2{
+                    height: 251.77px;
 					@extend .talent-photo;
+                    @media all and(max-width: 479px){
+                        height: 235.77px;
+                    }
 
-					// .photo-user-container{
-					// 	min-height: 230px;
-					// 	max-height: 230px;
-					// }
 				}
 
 				.talent-information-parent{
