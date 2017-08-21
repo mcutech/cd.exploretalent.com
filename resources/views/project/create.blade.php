@@ -170,7 +170,7 @@
 
                     <div class="row">
                         <div class="col-md-5">
-                            <div class="form-group">
+                            <div id="hide-option-2" class="form-group">
                                 <label class="control-label">Submission Type<span class="text-success">*</span></label>
                                 <label class="radio checkbox-inline">
                                     <input type="radio" name="radioSubmissionType" id="self-submission-option" value="1" class="px" checked="checked">
@@ -232,6 +232,7 @@
                             </div>
                         </div>
                     </div> {{-- row-fluid --}}
+
                     <div class="row">
                         <div class="col-md-9">
                             <div class="form-group">
