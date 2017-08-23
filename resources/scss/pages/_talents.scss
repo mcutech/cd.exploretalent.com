@@ -164,12 +164,19 @@
 
 						@media only screen and (max-width: 767px){
 							padding: 98.25% 0 0 0;
+                            img, a{
+                                margin: 0px;
+                                margin-left: auto;
+                                margin-right: auto;
+                            }
 						}
 
 						@media only screen and (max-width: 479px){
 							padding: 150.25% 0 0 0;
                             img, a{
                                 margin: 0px;
+                                margin-left: auto;
+                                margin-right: auto;
                             }
 						}
 					}
@@ -213,6 +220,12 @@
 
 						}
 					}
+                    @media all and(max-width: 767px){
+                        height: 270.77px;
+                    }
+                    @media all and(max-width: 479px){
+                        height: 251.77px;
+                    }
 				}
 
 				.talent-photo-and-note-container{
@@ -302,8 +315,14 @@
 				.talent-photo-v2{
                     height: 251.77px;
 					@extend .talent-photo;
+                    @media all and(max-width:991px){
+                        height: 185.77px;
+                    }
+                    @media all and(max-width:767px){
+                        height: 270.77px;
+                    }
                     @media all and(max-width: 479px){
-                        height: 235.77px;
+                        height: 251.77px;
                     }
 
 				}
