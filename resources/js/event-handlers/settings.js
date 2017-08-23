@@ -77,30 +77,41 @@ handler.prototype.updatePassword = function(e) {
 	form.cdUserId = self.user.bam_cd_user_id;
 	form.pass = form.new_password;
 
-	if(form.new_password == form.conf_new_password){
+    var regEx = /^((?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+){5,})$/.test(form.new_password);
 
-		delete form.new_password;
-		delete form.conf_new_password;
+    if(!form.new_password && !form.conf_new_password) {
+        alert('Please enter a new password.');
+        return;
+    }
 
-		self.core.resource.cd_user.patch(form)
-				.then(function(res) {
-					//saved successfully
-					$('#update-password-success').removeClass('hide');
+    if(regEx) {
+        if(form.new_password == form.conf_new_password){
 
-					$("input[name='new_password']").val('');
-					$("input[name='conf_new_password']").val('');
+            delete form.new_password;
+            delete form.conf_new_password;
 
-					setTimeout(function() {
-						$('#settings-modal').modal('hide');
-						$('#update-password-success').addClass('hide');
-				 	}, 500);
-				},function(err){
-				//there's an error when trying to update password
-				});
-	}else{
-		$('#update-password-fail').removeClass('hide');
-	}
+            self.core.resource.cd_user.patch(form)
+                    .then(function(res) {
+                        //saved successfully
+                        $('#update-password-success').removeClass('hide');
 
+                        $("input[name='new_password']").val('');
+                        $("input[name='conf_new_password']").val('');
+
+                        setTimeout(function() {
+                            $('#settings-modal').modal('hide');
+                            $('#update-password-success').addClass('hide');
+                        }, 500);
+                    },function(err){
+                    //there's an error when trying to update password
+                    });
+        }else{
+            $('#update-password-fail').removeClass('hide');
+        }
+
+    }else {
+        alert('Your password must contain atleast 5 alphanumeric characters.');
+    }
 }
 
 handler.prototype.updateUser = function(e) {
