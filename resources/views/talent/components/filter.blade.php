@@ -7,18 +7,18 @@
 			<span class="panel-title talents-refine-title">Refine Search</span>
 			<button type="button" class="close hide" data-dismiss="modal" aria-hidden="true">×</button>
 		</div>
-		<div class="panel-body form-horizontal">
+		<div class="panel-body form-horizontal padding-small-zz-xs">
 			<ul class="nav nav-tabs">
 				<li role="presentation">
 					<a data-toggle="tab" class="tabs" role="tab" href="#market-search">Search by Market</a>
 					<input type="hidden" value="0" />
 				</li>
 				<li role="presentation" class="active">
-					<a  class="tabs" data-toggle="tab" data-search-by="locations" role="tab" href="#location-search">Search by Location</a>
+					<a  class="tabs" data-toggle="tab" data-search-by="locations" role="tab" href="#location-search"><span class="display-none-zz-xs">Search </span>by Location</a>
 					<input type="hidden" value="1" />
-				</li>				
+				</li>
 			</ul>
-		</div>		
+		</div>
 		<div class="tab-content padding-zero">
 			<div role="tabpanel" class="tab-pane fade form-horizontal" id="market-search">
 				<div id="location-search-display" class="col-md-9 padding-zero-zz-sm">
@@ -97,10 +97,10 @@
 							<option value="Toronto, ON">Toronto, ON</option>
 							<option value="Vancouver, BC">Vancouver, BC</option>
 						</select>
-					</div>	
+					</div>
 					<div class="col-xs-12 col-md-2 margin-top-normal-zz-sm">
 						<button id="search-button" name="market_search_btn" type="submit" class="btn btn-primary btn-block search-button">Search</button>
-					</div>				
+					</div>
 				</div>
 			</div>
 			<div role="tabpanel" class="tab-pane fade in active" id="location-search">
@@ -110,13 +110,13 @@
 						<input id="location-search-box" type="text" name="locations" class="form-control" placeholder="Enter Address" />
 						<div class="margin-top-normal">
 							Distance from point <input type="text" value="5" id="place-miles-in" class="form-control" style="display: inline-block; width: 12%" readonly="readonly" /> Miles
-						</div>		
+						</div>
 						<div class="margin-top-normal">
 							<div id="place-miles" data-range="false" data-min="5" data-max="200" data-step="5" data-type="miles" data-slider></div>
-						</div>	
+						</div>
 						<div class="col-md-4 margin-top-medium padding-zero">
 							<button type="submit" id="location_search_btn" name="location_search_btn" class="btn btn-primary btn-block search-button">Search</button>
-						</div>			
+						</div>
 					</div>
 					<div class="col-md-7 margin-top-normal-zz-sm">
 					<div id="location-filter-map" style="height: 200px"></div>
@@ -125,7 +125,7 @@
 			</div>
 		</div>
 		<div class="panel-body form-horizontal">
-			<div class="row text-center-zz-sm">				
+			<div class="row text-center-zz-sm">
 
 				<div id="location-search-change" class="col-md-9 padding-zero-zz-sm" hidden >
 					<div class="col-md-12 search-result-counter">
@@ -140,10 +140,10 @@
 						</div>
 						<div class="display-inline-block margin-left-normal margin-zero-zz-sm">
 							<button type="submit" class="btn btn-primary btn-block search-button">Search</button>
-						</div>						
+						</div>
 					</div>
-				</div>				
-			</div>			
+				</div>
+			</div>
 
 			<hr class="panel-wide margin-top-small-normal margin-bottom-small-normal">
 			<div class="row margin-bottom-large">
