@@ -47,6 +47,44 @@ jscore.run(function(core) {
 		// registers all controllers for the router to recognize
 		core.service.router.$$controllers = require('./controllers/**/*.js', { hash: true });
 
+
+
+
+		const cd = {
+			logo: '/images/logo-home-et.png',
+			slogan: 'Casting Director Module',
+		};
+
+		const auditions = {
+			logo: 'https://www.google.com.ph/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png',
+			slogan: 'Ask me anything',
+		};
+
+
+
+
+
+
+
+
+
+		//create deep nested property for skins to avoid variable override in templates
+		core.vars = {
+			skins: {}
+		};
+
+
+		if ( /auditions.net/.test(window.location.hostname) ) {
+			core.vars.skins = auditions;
+		}
+		else {
+			core.vars.skins = cd;
+		}
+
+		self.core.service.databind('.skins', core.vars);
+
+
+
 		// default parameters for all controllers
 		core.service.router.$$params = [core, user];
 
