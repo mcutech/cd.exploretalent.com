@@ -36,6 +36,7 @@ handler.prototype.refresh = function(append){
 
 	var talents;
 
+    $('#no-favorite-talent').addClass('hide');
 	$('#search-loader').show();
 
 	if (!append) {
@@ -81,6 +82,7 @@ handler.prototype.refresh = function(append){
 			if (!append) {
 				$('.talents-search-result').show();
 				 if (talents.total == 0) {
+                        self.done = true;
 						$('.talents-search-result').hide();
 						$('#no-favorite-talent').removeClass('hide');
 						$('#no-favorite-talent').show();
