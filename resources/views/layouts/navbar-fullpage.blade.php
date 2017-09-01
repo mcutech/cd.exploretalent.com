@@ -13,7 +13,7 @@
 				<div class="navbar-header">
 					<a id="navbar-main-logo" href="/welcome"
 						class="navbar-brand">
-						<img src="/images/logo-home-et-cd.png" width="180px" class="logo-for-desktop">
+						<img data-bind="<%= skins.loggedInLogo %>" width="180px" class="skins logo-for-desktop">
 					</a>
 				</div>
 
