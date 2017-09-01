@@ -51,13 +51,15 @@ jscore.run(function(core) {
 
 
 		const cd = {
-			logo: '/images/logo-home-et.png',
+			homeLogo: '/images/logo-home-et.png',
 			slogan: 'Casting Director Module',
+            loggedInLogo: '/images/logo-home-et-cd.png',
 		};
 
 		const auditions = {
-			logo: 'https://www.google.com.ph/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png',
-			slogan: 'Ask me anything',
+			homeLogo: '/images/Auditions-net/logo.png',
+			slogan: 'Casting Director Module',
+            loggedInLogo: '/images/Auditions-net/logo-loggedin.png',
 		};
 
 
