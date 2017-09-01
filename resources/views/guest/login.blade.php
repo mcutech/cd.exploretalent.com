@@ -13,6 +13,7 @@
 				<div class="row-fluid clearfix text-center">
 					<div class="col-md-12">
 						<img src="" data-bind="<%= skins.homeLogo %>" class="skins" style="max-width: 100%;">
+
 					</div>
 				</div>
 				<div class="signin-text">

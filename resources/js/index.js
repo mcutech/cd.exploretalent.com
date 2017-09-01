@@ -54,18 +54,15 @@ jscore.run(function(core) {
 			homeLogo: '/images/logo-home-et.png',
 			slogan: 'Casting Director Module',
             loggedInLogo: '/images/logo-home-et-cd.png',
+            bodyClass: 'cd',
 		};
 
 		const auditions = {
 			homeLogo: '/images/Auditions-net/logo.png',
 			slogan: 'Casting Director Module',
             loggedInLogo: '/images/Auditions-net/logo-loggedin.png',
+            bodyClass: 'auditions',
 		};
-
-
-
-
-
 
 
 
