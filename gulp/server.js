@@ -32,7 +32,15 @@ gulp.task('serve.start', function() {
 
 	browserSync({
 		proxy: host,
-		ghostMode: false
+		ghostMode: false,
+        snippetOptions: {
+        rule: {
+                match: /<head[^>]*>/i,
+                fn: function (snippet, match) {
+                    return match + snippet;
+                }
+            }
+        },
 	});
 
 	process.stdin.resume();
