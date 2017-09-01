@@ -24,7 +24,7 @@
 			<form action="index.html" id="signup-form">
 				<div class="row-fluid clearfix text-center">
 					<div class="col-md-12">
-						<img src="/images/logo-home-et.png" style="max-width:100%">
+						<img data-bind="<%= skins.homeLogo %>" class="skins" style="max-width:80%">
 					</div>
 				</div>
 				<div class="signup-text">

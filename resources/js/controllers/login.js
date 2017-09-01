@@ -1,4 +1,5 @@
 module.exports = function(core, user) {
+	console.log(core);
 	if (parseInt(user.bam_cd_user_id)) {
 		$('#redirect-login-page').fadeIn();
 		var qs = core.service.query_string();
