@@ -55,6 +55,7 @@ jscore.run(function(core) {
 			slogan: 'Casting Director Module',
             loggedInLogo: '/images/logo-home-et-cd.png',
             bodyClass: 'cd',
+            favicon: '/images/favicon.ico',
 		};
 
 		const auditions = {
@@ -62,6 +63,7 @@ jscore.run(function(core) {
 			slogan: 'Casting Director Module',
             loggedInLogo: '/images/Auditions-net/logo-loggedin.png',
             bodyClass: 'auditions',
+            favicon: '/images/Auditions-net/favicon.ico',
 		};
 
 
