@@ -16,6 +16,7 @@
 <!-- inject:css -->
 <!-- endinject -->
 <!-- endbuild -->
+<link rel="icon" type="text/css" href="" ng-bind="<%= skins.favicon %>">
 
 </head>
 <body class=" theme-default cd-custom-template main-menu-animated no-sidebar-layout @yield('master.class') gt-ie8 gt-ie9 not-ie pxajs" data-bind="<%= skins.bodyClass %>" data-bind-target="class">
