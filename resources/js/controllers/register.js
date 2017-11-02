@@ -157,7 +157,8 @@ module.exports = function(core) {
 				email1	: email,
 				phone1  : phone,
 				pass	: pass,
-				status	: 1
+				status	: 1,
+                app_ids : [1]
 			};
 
 			core.resource.cd_user.post(data)
