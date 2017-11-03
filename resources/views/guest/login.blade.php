@@ -12,11 +12,12 @@
 			<form action="index.html" id="login-form">
 				<div class="row-fluid clearfix text-center">
 					<div class="col-md-12">
-						<img src="/images/logo-home-et.png" style="max-width: 100%;">
+						<img src="" data-bind="<%= skins.homeLogo %>" class="skins" style="max-width: 100%;">
+
 					</div>
 				</div>
 				<div class="signin-text">
-					<span class="text-primary">Casting Director Module</span>
+					<span class="text-primary skins" data-bind="<%= skins.slogan %>" data-bind-target="text"></span>
 				</div>
 
 				<div class="form-group signin-input" style="display: none;">

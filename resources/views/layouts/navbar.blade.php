@@ -14,7 +14,10 @@
 				<div class="navbar-header">
 					<a href="/welcome"
 						class="navbar-brand">
-						<img src="/images/logo-home-et-cd.png" width="180px" class="logo-for-desktop">
+						<img data-bind="<%= skins.loggedInLogo %>" width="180px" class="skins logo-for-desktop">
+
+
+
 						<!-- <img src="../images/logo-home-et-cd-mobile2.png" class="logo-for-mobile"> -->
 					</a>
 				</div>
