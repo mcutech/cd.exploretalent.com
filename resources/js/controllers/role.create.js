@@ -126,7 +126,7 @@ module.exports = function(core, user, projectId) {
 	$(document).on('keyup', '#age-max-input', function() {
 		$('#age-range-slider').slider('values', 1, $(this).val());
 		$('input[name="age_max"]').val($(this).val());
-	});	
+	});
 
 	$(document).on('change', '#height-min-dropdown', function() {
 		$('#height-range-slider').slider('values', 0, $(this).val());
@@ -143,6 +143,27 @@ module.exports = function(core, user, projectId) {
 	$("input[type='checkbox']").change(function(){
 	    this.value = (Number(this.checked));
 	});
+
+    //set date for shoot, audition and expiry of roles
+    $('.calendar-input').mask('9999-99-99');
+
+    $('#datepicker-role-expiryDate').datepicker({
+        defaultDate: +1,
+        dateFormat: 'yy-mm-dd',
+        minDate: 0
+    });
+
+    $('#datepicker-role-auditionDate').datepicker({
+        defaultDate: +1,
+        dateFormat: 'yy-mm-dd',
+        minDate: 0
+    });
+
+    $('#datepicker-role-shootDate').datepicker({
+        defaultDate: +1,
+        dateFormat: 'yy-mm-dd',
+        minDate: 0
+    });
 
 	function dontAllowLetters(element) {
 		element.keydown(function (e) {
