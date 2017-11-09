@@ -40,6 +40,30 @@
 					    <textarea id="role-description-text" class="form-control" rows="3" style="resize: none;" data-bind="<%= des %>" data-validate="required" data-validate-error="This field is required.">test test</textarea>
 				  	</div>
 			    </div>
+                <div class="col-md-4">
+                    <label>Expiry Date:</label><span class="text-success">*</span>
+                        <div class="input-group date">
+                            <input type="text" id="datepicker-role-expiryDate" class="form-control calendar-input" style="cursor: pointer; background-color: #fff" data-bind="<%= expiration_timestamp ? moment(expiration_timestamp * 1000).format('YYYY-MM-DD') : 'N/A' %>">
+                            <span class="input-group-addon calendar-btn"><i class="fa fa-calendar"></i></span>
+                        </div>
+                        <div class="alert alert-page alert-danger deadline-error-required" style="display:none;">This field is required.</div>
+                </div>
+                <div class="col-md-4">
+                    <label>Audition Date:</label>
+                        <div class="input-group date">
+                            <input type="text" id="datepicker-role-auditionDate" class="form-control calendar-input" style="cursor: pointer; background-color: #fff" data-bind="<%= audition_timestamp ? moment(audition_timestamp * 1000).format('YYYY-MM-DD') : 'N/A' %>">
+                            <span class="input-group-addon calendar-btn"><i class="fa fa-calendar"></i></span>
+                        </div>
+                        <div class="alert alert-page alert-danger audition-date-error-invalid" style="display:none;">Audition date should be after or on the same day as submission deadline.</div>
+                </div>
+                <div class="col-md-4">
+                    <label>Shoot Date:</label>
+                        <div class="input-group date">
+                            <input type="text" id="datepicker-role-shootDate" class="form-control calendar-input" style="cursor: pointer; background-color: #fff" data-bind="<%= shoot_timestamp ? moment(shoot_timestamp * 1000).format('YYYY-MM-DD') : 'N/A' %>">
+                            <span class="input-group-addon calendar-btn"><i class="fa fa-calendar"></i></span>
+                        </div>
+                        <div class="alert alert-page alert-danger shoot-date-error-invalid" style="display:none;">Shoot date should be after audition date.</div>
+                </div>
 				<div class="col-md-3 margin-top-normal">
 					<label>Gender:</label>
 					<div>
@@ -68,7 +92,7 @@
 
 				<div class="col-md-4 margin-top-normal">
 					<label class="text-bold margin-bottom-zero">Age Range: <span class="text-normal">from</span>
-						<input id="age-min-input" class="text-normal" style="width: 30px;"> 
+						<input id="age-min-input" class="text-normal" style="width: 30px;">
 						<span class="text-normal">to</span>
 						<input id="age-max-input" class="text-normal" style="width: 30px;">
 						<span class="text-normal">years</span>
@@ -80,7 +104,7 @@
 							<input type="hidden" name="age_max" data-bind="<%= age_max || 0 %>" />
 						</div>
 					</div>
-				</div>				
+				</div>
 
 				<!-- <div class="col-md-3">
 					<label class="text-bold margin-bottom-zero">Height Range: <span id="height-min-text" class="text-normal" data-bind="<%= getHeightMinText() ||'< 2\'0&quot;' %>">&lt; 2'0"</span> -
@@ -98,12 +122,12 @@
 				<div class="col-md-4 margin-top-normal">
 					<label class="text-bold margin-bottom-zero">Height Range:
 						<select id="height-min-dropdown" data-bind="<%= height_min %>">
-							<?php 
+							<?php
 								$bool = false;
 								for ($i = 22; $i <= 96; $i++) {
 									$feet = floor($i / 12);
 									$inches = $i % 12;
-									
+
 									if($i < 24) {
 										if($bool == false) {
 											echo "<option value=".$i."><2' 0\"</option>";
@@ -118,12 +142,12 @@
 						</select>
 						<span class="text-normal">to</span>
 						<select id="height-max-dropdown" data-bind="<%= height_max %>">
-							<?php 
+							<?php
 								$bool = false;
 								for ($i = 22; $i <= 96; $i++) {
 									$feet = floor($i / 12);
 									$inches = $i % 12;
-									
+
 									if($i < 24) {
 										if($bool == false) {
 											echo "<option value=".$i."><2' 0\"</option>";
