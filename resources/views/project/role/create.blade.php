@@ -47,6 +47,30 @@
 				    <textarea id="role-description-text" class="form-control" rows="3" style="resize: none;" data-validate="required" data-validate-error="This field is required."></textarea>
 			  	</div>
 		    </div>
+            <div class="col-md-4">
+                <label>Expiry Date:</label><span class="text-success">*</span>
+                    <div class="input-group date">
+                        <input type="text" id="datepicker-role-expiryDate" class="form-control calendar-input" style="cursor: pointer; background-color: #fff">
+                        <span class="input-group-addon calendar-btn"><i class="fa fa-calendar"></i></span>
+                    </div>
+                    <div class="alert alert-page alert-danger deadline-error-required" style="display:none;">This field is required.</div>
+            </div>
+            <div class="col-md-4">
+                <label>Audition Date:</label>
+                    <div class="input-group date">
+                        <input type="text" id="datepicker-role-auditionDate" class="form-control calendar-input" style="cursor: pointer; background-color: #fff">
+                        <span class="input-group-addon calendar-btn"><i class="fa fa-calendar"></i></span>
+                    </div>
+                    <div class="alert alert-page alert-danger audition-date-error-invalid" style="display:none;">Audition date should be after or on the same day as submission deadline.</div>
+            </div>
+            <div class="col-md-4">
+                <label>Shoot Date:</label>
+                    <div class="input-group date">
+                        <input type="text" id="datepicker-role-shootDate" class="form-control calendar-input" style="cursor: pointer; background-color: #fff">
+                        <span class="input-group-addon calendar-btn"><i class="fa fa-calendar"></i></span>
+                    </div>
+                    <div class="alert alert-page alert-danger shoot-date-error-invalid" style="display:none;">Shoot date should be after audition date.</div>
+            </div>
 			<div class="col-md-3 margin-top-normal">
 				<label>Gender:</label>
 				<div>
