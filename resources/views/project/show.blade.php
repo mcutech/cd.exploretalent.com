@@ -101,7 +101,7 @@
 				</div>
 
 				<div class="row-fluid clearfix">
-					<div class="col-md-12">
+					<div class="col-md-8">
 						<ul class="list-unstyled margin-zero long-description">
 							<li class=""><div class="title">Body Type:</div>
 								<span class="body-type-label" data-bind="<%= getBuilds().length == 0 || getBuilds().length == 9 ? 'Any' : getBuilds().join(', ') %>"></span>
@@ -114,6 +114,19 @@
 							</li>
 							<li><div class="title">Description</div><p data-bind="<%= des %>"></p></li>
 
+						</ul>
+					</div>
+					<div class="col-md-4">
+						<ul class="list-unstyled margin-zero long-description">
+							<li class="hide-if-null"><div class="title hide-if-null">Expiry Date:</div>
+                                <span class="role-expiry hide-if-null" data-bind="<%= expiration_timestamp ? moment(expiration_timestamp * 1000).format('MM-DD-YYYY') : 'N/A' %>"></span>
+							</li>
+							<li class="hide-if-null"><div class="title hide-if-null">Audition Date:</div>
+                                <span class="role-expiry hide-if-null" data-bind="<%= audition_timestamp ? moment(audition_timestamp * 1000).format('MM-DD-YYYY') : 'N/A' %>"></span>
+							</li>
+							<li class="hide-if-null"><div class="title hide-if-null">Shoot Date:</div>
+                                <span class="role-expiry hide-if-null" data-bind="<%= shoot_timestamp ? moment(shoot_timestamp * 1000).format('MM-DD-YYYY') : 'N/A' %>"></span>
+							</li>
 						</ul>
 					</div>
 				</div>

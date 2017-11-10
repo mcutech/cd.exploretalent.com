@@ -19,7 +19,7 @@ handler.prototype.getProjectInfo = function(e) {
 
 	self.core.resource.project.get(data)
 		.then(function(res) {
-			self.project = res;			
+			self.project = res;
 			var markets = _.map(self.project.market.split('>'), function(m) {
 				return { name : m };
 			});
@@ -31,6 +31,7 @@ handler.prototype.getProjectInfo = function(e) {
 				self.project.markets.data[0].name = 'All of United States';
 
 			console.log(self.project);
+            console.log('bam_roles', self.project.bam_roles);
 			self.core.service.databind('#project-details', self.project);
 
 			// create dummy for faster databind
@@ -53,7 +54,18 @@ handler.prototype.getProjectInfo = function(e) {
 		})
 		.then(function() {
 			self.core.service.databind('.find-talents-wrapper', self.project)
-		});
+		})
+        .then(function() {
+            // to check role timestamp
+            // var timestamp = $('.role-expiry').text();
+            // console.log('timestamp', timestamp);
+            $('.role-expiry').each(function(index, value){
+                var $parent = $(this).parents('li');
+                if ($(this).is(':contains("N/A")')) {
+                    $parent.find('.hide-if-null').hide();
+                }
+            });
+        });
 }
 
 handler.prototype.getRoleStats = function(role) {

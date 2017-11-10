@@ -25,7 +25,8 @@ handler.prototype.getProjectInfo = function(e) {
 			});
 
 			self.project.markets = { data : markets };
-			console.log(self.project);
+			console.log('project(casting)', self.project);
+            console.log(self.project.casting_id);
 
 			self.core.service.databind('#project-details', self.project);
 			self.core.service.databind('#project-overview-link', self.project);
@@ -36,11 +37,45 @@ handler.prototype.saveNewRole = function(e) {
 
 	e.preventDefault();
 
+    function parseDate(inputDate){
+        var timestamp = new Date(),
+            revert    =( -1 *timestamp.getTimezoneOffset() * 60),
+            inputDate = inputDate.split('-');
+		return Date.UTC(inputDate[0], inputDate[1]-1, inputDate[2])/1000 - revert;
+    }
+
+    var shootDate           = $('#datepicker-role-shootDate').val();
+    var shootTimestamp      = parseDate(shootDate);
+    var auditionDate        = $('#datepicker-role-auditionDate').val();
+    var auditionTimestamp   = parseDate(auditionDate);
+    var expiryDate          = $('#datepicker-role-expiryDate').val();
+    console.log('expiryDate length', expiryDate.length);
+    var expirationTimestamp = parseDate(expiryDate);
+    var expirationValidation = new Date().getTime() / 1000 < expiryDate || !expiryDate;
+
+    console.log('validation', expirationValidation);
+
+    var asap;
+    var casting_id          = self.project.casting_id;
+    console.log('casting_id', casting_id);
+
+    if(!expiryDate){
+        var castingDataId = {
+            query: [
+                ['where', 'casting_id', casting_id ]
+            ]
+        };
+        self.core.resource.project.get(castingDataId)
+            .then(function(res) {
+                asap = res.data[0].asap;
+                console.log('ASAP:',res.data[0].asap);
+        });
+    }
+
 	//to be used later to determine where to link page
 	var buttonId = $(this).attr('id');
 	//var height = $('#heightinches').val(),
 		//height = height.split(",");
-
 
 
 	var age_min_val, age_max_val, height_min_val, height_max_val;
@@ -102,7 +137,10 @@ handler.prototype.saveNewRole = function(e) {
 		hair_grey : $('#hair-grey').val(),
 		hair_red : $('#hair-red').val(),
 		hair_salt_paper : $('#hair-salt-paper').val(),
-		hair_white : $('#hair-white').val()
+		hair_white : $('#hair-white').val(),
+        shoot_timestamp: shootTimestamp,
+        audition_timestamp: auditionTimestamp,
+        expiration_timestamp:expirationTimestamp
 	};
 
 	// if any is chosen, change all keys to 0 aside from any
@@ -128,60 +166,86 @@ handler.prototype.saveNewRole = function(e) {
 		}
 	}
 
-	if (self.core.service.form.validate('#create-role-div')) { // for required text fields
+    if(!expiryDate) {
+        $('.deadline-error-required').fadeIn().delay(3000).fadeOut();
+        $('#datepicker-role-expiryDate').focus();
+        $('.ui-datepicker').hide().delay(3000).fadeIn();
+    }
+
+    else if(auditionTimestamp < expirationTimestamp) {
+        $('.audition-date-error-invalid').fadeIn().delay(3000).fadeOut();
+        $('#datepicker-role-auditionDate').focus();
+        $('.ui-datepicker').hide().delay(3000).fadeIn();
+    }
+
+    else if(shootTimestamp <= auditionTimestamp) {
+        $('.shoot-date-error-invalid').fadeIn().delay(3000).fadeOut();
+        $('#datepicker-role-shootDate').focus();
+        $('.ui-datepicker').hide().delay(3000).fadeIn();
+    }
 
 
+    // if(expirationValidation){
+    //     alert('testing');
+    //     console.log( 'TRUE besh', expirationValidation);
+        //function to return evaluated conditions from cd_users selected date but no
+        //has to use promise because after button click needs futher evaluation
+        //even if expiry date has content, it hasnt fully satisfied all the conditions from audition and shoot dates
+        if (self.core.service.form.validate('#create-role-div')) { // for required text fields
 
-		if($('input[type="checkbox"][name="gender"]:checked').length < 1) {
-	        $('.gender-error-required').fadeIn().delay(3000).fadeOut();
-	        $('.gender-error-required').focus();
-		}
+            if($('input[type="checkbox"][name="gender"]:checked').length < 1) {
+                $('.gender-error-required').fadeIn().delay(3000).fadeOut();
+                $('.gender-error-required').focus();
+            }
 
-		else {
+            else {
 
-			if(buttonId=="save-and-add-role-btn"){
+                if($('input[type="checkbox"][name="ethnicity"]:checked').length < 1) {
+                    data["ethnicity_any"] = 1;
+                }
 
-				$(this).prop('disabled', true);
-				$('#loading_role').addClass('fa fa-spin fa-spinner');
-			}
+                if($('input[type="checkbox"][name="built"]:checked').length < 1) {
+                    data["built_any"] = 1;
+                }
 
-
-			if($('input[type="checkbox"][name="ethnicity"]:checked').length < 1) {
-		        data["ethnicity_any"] = 1;
-			}
-
-			if($('input[type="checkbox"][name="built"]:checked').length < 1) {
-		        data["built_any"] = 1;
-			}
-
-			if($('input[type="checkbox"][name="hair-color"]:checked').length < 1) {
-		        data["hair_any"] = 1;
-			}
+                if($('input[type="checkbox"][name="hair-color"]:checked').length < 1) {
+                    data["hair_any"] = 1;
+                }
 
 
-			return self.core.resource.job.post(data)
-			.then(function(res) {
-				var role = res;
-				$('.role-saved-success').fadeIn();
-				if(buttonId == 'save-role-btn') { // link to project overview page
-					self.core.resource.project.patch({projectId : self.projectId, status : 0})
-						.then(function(res) {
-							window.location = '/projects/' + self.projectId + "/roles/" + role.role_id + "/find-talents";
-						});
-				}
+                return self.core.resource.job.post(data)
+                .then(function(res) {
+                    var role = res;
 
-				else { // 'save-and-add-role-btn' just reloads page
-					self.core.resource.project.patch({projectId : self.projectId, status : 0})
-						.then(function(res) {
-							setTimeout(function(){
-								location.reload();
-							}, 3000);
-						});
-				}
+                    $('.role-saved-success').fadeIn();
+                        if(buttonId=="save-and-add-role-btn"){
+                            // $(this).prop('disabled', true);
+                            $("#save-and-add-role-btn").attr('disabled','disabled');
+                            $('#loading_role').addClass('fa fa-spin fa-spinner');
+                        }
+                        if(buttonId == 'save-role-btn') { // link to project overview page
+                            self.core.resource.project.patch({projectId : self.projectId, status : 0})
+                                .then(function(res) {
+                                    window.location = '/projects/' + self.projectId + "/roles/" + role.role_id + "/find-talents";
+                                });
+                        }
 
-			});
-		}
-	}
+                        else { // 'save-and-add-role-btn' just reloads page
+                            self.core.resource.project.patch({projectId : self.projectId, status : 0})
+                                .then(function(res) {
+                                    setTimeout(function(){
+                                        location.reload();
+                                    }, 3000);
+                                });
+                        }
+                    console.log('role', role);
+                });
+            }
+        }
+    // }else {
+    //     alert('thou shall not save');
+    //     console.log('not successful', expirationValidation);
+    // }
 
 }
 
