@@ -45,6 +45,7 @@
 				<div class="pull-right margin-right-zero padding-right-zero">
 					<a data-toggle="modal" data-target="#share-like-it-list" class="btn btn-primary">Share Like It List</a>
 					<a id="invitetoauditionbutton" data-toggle="modal" data-target="#invite-to-audition-modal" class="btn btn-success"><i class="fa fa-envelope-o"></i> Invite to Audition</a>
+					<a data-toggle="modal" data-target="#role-expiry-modal" class="btn btn-danger"><i class="fa fa-envelope-o"></i> Role Expired</a>
 				</div>
 			@endif
 		</div>
