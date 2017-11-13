@@ -186,11 +186,6 @@ handler.prototype.saveNewRole = function(e) {
 
 
     // if(expirationValidation){
-    //     alert('testing');
-    //     console.log( 'TRUE besh', expirationValidation);
-        //function to return evaluated conditions from cd_users selected date but no
-        //has to use promise because after button click needs futher evaluation
-        //even if expiry date has content, it hasnt fully satisfied all the conditions from audition and shoot dates
         if (self.core.service.form.validate('#create-role-div')) { // for required text fields
 
             if($('input[type="checkbox"][name="gender"]:checked').length < 1) {
@@ -242,10 +237,6 @@ handler.prototype.saveNewRole = function(e) {
                 });
             }
         }
-    // }else {
-    //     alert('thou shall not save');
-    //     console.log('not successful', expirationValidation);
-    // }
 
 }
 
