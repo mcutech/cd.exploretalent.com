@@ -47,6 +47,7 @@
 				    <textarea id="role-description-text" class="form-control" rows="3" style="resize: none;" data-validate="required" data-validate-error="This field is required."></textarea>
 			  	</div>
 		    </div>
+            {{-- Role Expiry --}}
             <div class="col-md-4">
                 <label>Expiry Date:</label><span class="text-success">*</span>
                     <div class="input-group date">
