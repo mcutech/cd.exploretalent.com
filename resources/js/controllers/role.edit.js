@@ -165,6 +165,10 @@ module.exports = function(core, user, projectId, roleId) {
         minDate: 0
     });
 
+	$(document).on('click', '.calendar-btn', function() {
+		$(this).siblings('input.calendar-input').datepicker().focus();
+	});
+
 	function dontAllowLetters(element) {
 		element.keydown(function (e) {
 		    // Allow: backspace, delete, tab, escape, and enter
