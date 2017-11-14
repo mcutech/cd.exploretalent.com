@@ -28,6 +28,8 @@ function handler(core, user, projectId, roleId) {
 }
 
 handler.prototype.getProjectInfo = function() {
+
+    var current_timestamp = parseInt(new Date().getTime()/1000);
 	var data = {
 		projectId : self.projectId,
 		query : [
@@ -38,7 +40,7 @@ handler.prototype.getProjectInfo = function() {
 	self.core.resource.project.get(data)
 		.then(function(res) {
 			self.project = res;
-
+            // console.log(self.project);
 			self.core.service.databind('.page-header', self.project);
 			self.core.service.databind('#project-details', self.project);
 			self.core.service.databind('#roles-list', { data : self.project.bam_roles });
@@ -48,6 +50,18 @@ handler.prototype.getProjectInfo = function() {
 			self.core.service.databind('#project-links', self.project )
 
 			self.refreshRole();
+
+            var asap = self.project.asap;
+            var roleExpiryTimestamp = self.project.role.expiration_timestamp;
+
+            // if role is expired
+            if(current_timestamp >= asap || current_timestamp >= roleExpiryTimestamp){
+                $('#invitetoauditionbutton').hide();
+                $('#role-active').hide();
+            }else {
+                $('#role-expiry-btn').hide();
+                $('#role-expired').hide();
+            }
 		});
 }
 

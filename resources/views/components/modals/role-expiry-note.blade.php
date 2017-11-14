@@ -6,11 +6,15 @@
 				<h4 class="modal-title">Role Expired</h4>
 			</div>
 			<div class="modal-body">
-				<div class="row">
+				<div class="row-fluid clearfix">
 					<form class="form-horizontal" role="form">
 						<div class="form-group">
-			    			<label class="control-label col-xs-12 col-sm-2">
+                            <div class="col-md-12">
+			    			<label>
+                        This role has already expired, you can't send invitations to talents for expired roles. Please extend the role's expiration date to send invitations.
+                        <a class="text-danger" href="#" data-bind="/projects/<%= casting_id %>/roles/<%= role.role_id %>/edit">Click here to edit role.</a>
 			    			</label>
+                            </div>
 			    			<div class="clearfix"></div>
 			    		</div>
 		    		</form>
