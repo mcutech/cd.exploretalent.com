@@ -10,7 +10,7 @@
 		</div>
 	</div>
 	<div class="row margin-top-small margin-bottom-small clearfix">
-		<div class="col-md-12 margin-bottom-small">
+		<div class="col-md-12 margin-bottom-small project-data">
 			<div class="col-md-5 alert alert-success margin-bottom-zero">
 				<button type="button" class="close" data-dismiss="alert">×</button>
 				Find Talents by looking through your Role Matches or through the Submissions and add them to your like it list by clicking on the "Add to Like it List" button under each talent.
@@ -21,7 +21,6 @@
 					Here are the list of talents that you've chosen to invite to your audition. Click here to send them a message.
 				</div>
                 {{-- <div id="roles-list"> --}}
-                    {{-- <div class="hide" data-bind-template="#roles-list" data-bind-value="bam_roles" data-bind="casting-role-<%= role_id %>" data-bind-target="visibility"> --}}
                     <div id="role-expired" class="col-md-4 alert alert-danger margin-bottom-zero pull-right">
                         <button type="button" class="close" data-dismiss="alert">×</button>
                         This role has already expired, you can't send invitations to talents for expired roles. Please extend the role's expiration date to send invitations.
@@ -36,7 +35,7 @@
 				</div>
 			@endif
 		</div>
-		<div id="project-links" class="col-md-12 margin-bottom-small">
+		<div class="col-md-12 margin-bottom-small project-data">
 			@if (isset($matches) && $matches)
 				<div id="invitetoaudition-text" class="row pull-right margin-right-small"></div>
 			@endif

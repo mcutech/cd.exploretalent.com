@@ -47,7 +47,7 @@ handler.prototype.getProjectInfo = function() {
 			$('#roles-list').val(self.roleId);
 
 			self.project.role = { role_id : self.roleId, likeitlist : { total : '' }, submissions : { total : '' } };
-			self.core.service.databind('#project-links', self.project )
+			self.core.service.databind('.project-data', self.project )
 
 			self.refreshRole();
 
@@ -88,7 +88,7 @@ handler.prototype.refreshRole = function() {
 		.then(function(count) {
 			self.project.role.submissions = { total : count };
 
-			self.core.service.databind('#project-links', self.project )
+			self.core.service.databind('.project-data', self.project )
 		});
 
 	// share like it list

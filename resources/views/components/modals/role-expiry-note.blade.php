@@ -1,4 +1,4 @@
-<div id="role-expiry-modal" class="modal fade modal-blur" tabindex="-1" role="dialog" style="display: none;">
+<div id="role-expiry-modal" class="project-data modal fade modal-blur" tabindex="-1" role="dialog" style="display: none;">
 	<div class="modal-dialog modal-medium">
 		<div class="modal-content">
 			<div class="modal-header">
