@@ -72,8 +72,8 @@ jscore.run(function(core) {
 			skins: {}
 		};
 
-
-		if ( /auditions.net/.test(window.location.hostname) ) {
+        // Check which version of the skin we want?
+		if ( /(.*)auditions\.net$/.test(window.location.hostname) ) {
 			core.vars.skins = auditions;
 		}
 		else {
