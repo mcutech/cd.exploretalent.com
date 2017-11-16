@@ -29,7 +29,8 @@ handler.prototype.getProjectInfo = function(e) {
 			});
 
 			self.project.markets = { data : markets };
-			console.log(self.project);
+			console.log('project(casting)', self.project);
+            console.log(self.project.casting_id);
 			self.core.service.databind('#project-details', self.project);
 			self.core.service.databind('#project-overview-link', self.project);
 		});
@@ -63,6 +64,43 @@ handler.prototype.getRoleInfo = function(e) {
 }
 
 handler.prototype.updateRole = function() {
+
+    e.preventDefault();
+
+    function parseDate(inputDate){
+        var timestamp = new Date(),
+            revert    =( -1 *timestamp.getTimezoneOffset() * 60),
+            inputDate = inputDate.split('-');
+		return Date.UTC(inputDate[0], inputDate[1]-1, inputDate[2])/1000 - revert;
+    }
+
+    var shootDate           = $('#datepicker-role-shootDate').val();
+    var shootTimestamp      = parseDate(shootDate);
+    var auditionDate        = $('#datepicker-role-auditionDate').val();
+    var auditionTimestamp   = parseDate(auditionDate);
+    var expiryDate          = $('#datepicker-role-expiryDate').val();
+    console.log('expiryDate length', expiryDate.length);
+    var expirationTimestamp = parseDate(expiryDate);
+    var expirationValidation = new Date().getTime() / 1000 < expiryDate || !expiryDate;
+
+    console.log('validation', expirationValidation);
+
+    var asap;
+    var casting_id          = self.project.casting_id;
+    console.log('casting_id', casting_id);
+
+    if(!expiryDate){
+        var castingDataId = {
+            query: [
+                ['where', 'casting_id', casting_id ]
+            ]
+        };
+        self.core.resource.project.get(castingDataId)
+            .then(function(res) {
+                asap = res.data[0].asap;
+                console.log('ASAP:',res.data[0].asap);
+        });
+    }
 	// to make sure all previous checked checkboxes are still saved
 	var checkedCheckboxes = $('input[type="checkbox"]:checked');
 
@@ -77,13 +115,13 @@ handler.prototype.updateRole = function() {
 		age_min_val = $('#age-min-input').val();
 	}
 	if($('#age-max-input').val()=='70+'){
-		age_max_val =70;	
+		age_max_val =70;
 	}else{
-		age_max_val = $('#age-max-input').val();	
+		age_max_val = $('#age-max-input').val();
 	}
 
 	height_min_val = $('#height-min-dropdown').val();
-	height_max_val = $('#height-max-dropdown').val();	
+	height_max_val = $('#height-max-dropdown').val();
 
 	var data = {
 		projectId : self.projectId,
@@ -96,10 +134,10 @@ handler.prototype.updateRole = function() {
 		// age_min : $('#age-min-text').text(),
 		// age_max : $('#age-max-text').text(),
 		// height_min : $('input[name="height_min"]').val(),
-		// height_max : $('input[name="height_max"]').val(),				
-		age_min : age_min_val,		
-		age_max: age_max_val,		
-		height_min: height_min_val,		
+		// height_max : $('input[name="height_max"]').val(),
+		age_min : age_min_val,
+		age_max: age_max_val,
+		height_min: height_min_val,
 		height_max: height_max_val,
 		ethnicity_any : $('#ethnicity-any').val(),
 		ethnicity_african : $('#ethnicity-african').val(),
@@ -130,7 +168,11 @@ handler.prototype.updateRole = function() {
 		hair_grey : $('#hair-grey').val(),
 		hair_red : $('#hair-red').val(),
 		hair_salt_paper : $('#hair-salt-paper').val(),
-		hair_white : $('#hair-white').val()
+		hair_white : $('#hair-white').val(),
+        shoot_timestamp: shootTimestamp,
+        audition_timestamp: auditionTimestamp,
+        expiration_timestamp:expirationTimestamp
+
 	};
 
 	// if any is chosen, change all keys to 0 aside from any
