@@ -1,20 +1,21 @@
 var gulp = require('gulp'),
-	$ = require('gulp-load-plugins')(),
-	_ = require('lodash'),
-	del = require('del'),
-	runSequence = require('run-sequence'),
-	uglifySaveLicense = require('uglify-save-license'),
-	mbf = require('main-bower-files'),
+    gulpUtil = require('gulp-util'),
+    $ = require('gulp-load-plugins')(),
+    _ = require('lodash'),
+    del = require('del'),
+    runSequence = require('run-sequence'),
+    uglifySaveLicense = require('uglify-save-license'),
+    mbf = require('main-bower-files'),
 
-	assets,
-	sources,
-	destination,
+    assets,
+    sources,
+    destination,
 
-	sources = [
-		'.tmp/layouts/master.blade.php'
-	];
+    sources = [
+        '.tmp/layouts/master.blade.php'
+    ];
 
-	destination = 'public';
+destination = 'public';
 
 gulp.task('clean', clean);
 gulp.task('clean.artifact', cleanArtifact);
@@ -25,69 +26,72 @@ gulp.task('copy.build', copyBuild);
 gulp.task('build', build);
 
 function clean(done) {
-	del([ '.tmp' ], function() {
-		done();
-	});
+    del([ '.tmp' ], function() {
+        done();
+    });
 }
 
 function cleanArtifact(done) {
-	del([
-		destination + '/assets',
-		destination + '/layouts'
-	], function() {
-		done();
-	});
+    del([
+        destination + '/assets',
+        destination + '/layouts'
+    ], function() {
+        done();
+    });
 }
 
 function fonts(destination) {
-	return gulp.src(mbf())
-		.pipe($.filter('**/*.{eot,svg,ttf,woff,woff2,otf}'))
-		.pipe(gulp.dest(destination + '/fonts'));
+    return gulp.src(mbf())
+        .pipe($.filter('**/*.{eot,svg,ttf,woff,woff2,otf}'))
+        .pipe(gulp.dest(destination + '/fonts'));
 }
 
 function buildFinalize() {
-	return gulp.src(sources)
+    return gulp.src(sources)
 
-	.pipe(assets = $.useref.assets({searchPath: './'}))
+        .pipe(assets = $.useref.assets({searchPath: './'}))
 
-	.pipe($.rev())
+        .pipe($.rev())
 
-	.pipe($.if('*.js',
-		$.uglify({preserveComments: uglifySaveLicense}))
-	)
+        .pipe($.if('*.js',
+            $.uglify().on('error', function(err) {
+                gulpUtil.log(gulpUtil.colors.red('[Error]'), err.toString());
+                this.emit('end');
+            })
+        ))
 
-	.pipe(assets.restore())
+        .pipe(assets.restore())
 
-	.pipe($.useref())
+        .pipe($.useref())
 
-	.pipe($.revReplace({
-		replaceInExtensions: ['.js', '.css', '.php']
-	}))
+        .pipe($.revReplace({
+            replaceInExtensions: ['.js', '.css', '.php']
+        }))
 
-	.pipe($.rename(function(path) {
-		if(path.extname === '.php') {
-			path.dirname = 'layouts';
-		}
-	}))
+        .pipe($.rename(function(path) {
+            if(path.extname === '.php') {
+                path.dirname = 'layouts';
+            }
+        }))
 
-	.pipe(gulp.dest('.tmp/' + destination));
+        .pipe(gulp.dest('.tmp/' + destination));
 
 }
 
 function copyBuild() {
-	return gulp.src('.tmp/' + destination + '/**/*')
-		.pipe(gulp.dest(destination));
+    return gulp.src('.tmp/' + destination + '/**/*')
+        .pipe(gulp.dest(destination));
 }
 
 function build() {
-	runSequence(
-		'clean',
-		['fonts', 'sass', 'browserify.build'],
-		'inject',
-		'build.finalize',
-		'clean.artifact',
-		'copy.build',
-		'clean'
-	);
+    runSequence(
+        'clean',
+        ['fonts', 'sass', 'browserify.build'],
+        'inject',
+        'build.finalize',
+        'clean.artifact',
+        'copy.build',
+        'clean'
+    );
 }
 
