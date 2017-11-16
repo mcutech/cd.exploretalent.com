@@ -132,7 +132,7 @@ module.exports = function(core, user, projectId, roleId) {
 	$(document).on('keyup', '#age-max-input', function() {
 		$('#age-range-slider').slider('values', 1, $(this).val());
 		$('input[name="age_max"]').val($(this).val());
-	});	
+	});
 
 	$(document).on('change', '#height-min-dropdown', function() {
 		$('#height-range-slider').slider('values', 0, $(this).val());
@@ -142,7 +142,32 @@ module.exports = function(core, user, projectId, roleId) {
 	$(document).on('change', '#height-max-dropdown', function() {
 		$('#height-range-slider').slider('values', 1, $(this).val());
 		$('input[name="height_max"]').val($(this).val());
-	});	
+	});
+
+    //set date for shoot, audition and expiry of roles
+    $('.calendar-input').mask('9999-99-99');
+
+    $('#datepicker-role-expiryDate').datepicker({
+        defaultDate: +1,
+        dateFormat: 'yy-mm-dd',
+        minDate: 0
+    });
+
+    $('#datepicker-role-auditionDate').datepicker({
+        defaultDate: +1,
+        dateFormat: 'yy-mm-dd',
+        minDate: 0
+    });
+
+    $('#datepicker-role-shootDate').datepicker({
+        defaultDate: +1,
+        dateFormat: 'yy-mm-dd',
+        minDate: 0
+    });
+
+	$(document).on('click', '.calendar-btn', function() {
+		$(this).siblings('input.calendar-input').datepicker().focus();
+	});
 
 	function dontAllowLetters(element) {
 		element.keydown(function (e) {
