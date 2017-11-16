@@ -10,16 +10,23 @@
 		</div>
 	</div>
 	<div class="row margin-top-small margin-bottom-small clearfix">
-		<div class="col-md-12 margin-bottom-small">
+		<div class="col-md-12 margin-bottom-small project-data">
 			<div class="col-md-5 alert alert-success margin-bottom-zero">
 				<button type="button" class="close" data-dismiss="alert">×</button>
 				Find Talents by looking through your Role Matches or through the Submissions and add them to your like it list by clicking on the "Add to Like it List" button under each talent.
 			</div>
 			@if (isset($likeitlistList) && $likeitlistList)
-				<div class="col-md-4 alert alert-success margin-bottom-zero pull-right">
+				<div id="role-active" class="col-md-4 alert alert-success margin-bottom-zero pull-right">
 					<button type="button" class="close" data-dismiss="alert">×</button>
 					Here are the list of talents that you've chosen to invite to your audition. Click here to send them a message.
 				</div>
+                {{-- <div id="roles-list"> --}}
+                    <div id="role-expired" class="col-md-4 alert alert-danger margin-bottom-zero pull-right">
+                        <button type="button" class="close" data-dismiss="alert">×</button>
+                        This role has already expired, you can't send invitations to talents for expired roles. Please extend the role's expiration date to send invitations.
+                        <a class="text-danger" href="#" data-bind="/projects/<%= casting_id %>/roles/<%= role.role_id %>/edit">Click here to edit role.</a>
+                    </div>
+                {{-- </div> --}}
 			@endif
 			@if (isset($talentList) && $talentList)
 				<div class="col-md-4 alert alert-success margin-bottom-zero pull-right">
@@ -28,7 +35,7 @@
 				</div>
 			@endif
 		</div>
-		<div id="project-links" class="col-md-12 margin-bottom-small">
+		<div class="col-md-12 margin-bottom-small project-data">
 			@if (isset($matches) && $matches)
 				<div id="invitetoaudition-text" class="row pull-right margin-right-small"></div>
 			@endif
@@ -45,6 +52,7 @@
 				<div class="pull-right margin-right-zero padding-right-zero">
 					<a data-toggle="modal" data-target="#share-like-it-list" class="btn btn-primary">Share Like It List</a>
 					<a id="invitetoauditionbutton" data-toggle="modal" data-target="#invite-to-audition-modal" class="btn btn-success"><i class="fa fa-envelope-o"></i> Invite to Audition</a>
+					<a id="role-expiry-btn" data-toggle="modal" data-target="#role-expiry-modal" class="btn btn-danger">Role Expired</a>
 				</div>
 			@endif
 		</div>
