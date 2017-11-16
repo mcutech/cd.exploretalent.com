@@ -1,2 +1,2 @@
 #!/bin/bash
-source ~/.nvm/nvm.sh && nvm use v8 && gulp build
+./usenode && gulp build
