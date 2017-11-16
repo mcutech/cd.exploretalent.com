@@ -1,1 +1,2 @@
-gulp serve --port 4000
+#!/bin/bash
+./usenode && gulp serve --port 4000
