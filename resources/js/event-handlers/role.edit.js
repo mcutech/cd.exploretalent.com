@@ -65,8 +65,6 @@ handler.prototype.getRoleInfo = function(e) {
 
 handler.prototype.updateRole = function() {
 
-    e.preventDefault();
-
     function parseDate(inputDate){
         var timestamp = new Date(),
             revert    =( -1 *timestamp.getTimezoneOffset() * 60),
