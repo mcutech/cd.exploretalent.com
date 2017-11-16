@@ -1,2 +1,2 @@
 #!/bin/bash
-./composer install && source ~/.nvm/nvm.sh && nvm use v8 && rm node_modules/jscore -rf && npm install && bower install
+./composer install && ./usenode && rm node_modules/jscore -rf && npm install && bower install
