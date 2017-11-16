@@ -1,3 +1,5 @@
+'use strict'
+
 var jscore = require('jscore');
 
 jscore.config(function(core) {
@@ -47,14 +49,14 @@ jscore.run(function(core) {
         // registers all controllers for the router to recognize
         core.service.router.$$controllers = require('./controllers/**/*.js', { hash: true });
 
-        const cd = {
+        var cd = {
             homeLogo: '/images/logo-home-et.png',
             slogan: 'Casting Director Module',
             loggedInLogo: '/images/logo-home-et-cd.png',
             bodyClass: 'cd',
         };
 
-        const auditions = {
+        var auditions = {
             homeLogo: '/images/Auditions-net/logo.png',
             slogan: 'Casting Director Module',
             loggedInLogo: '/images/Auditions-net/logo-loggedin.png',
