@@ -1,20 +1,20 @@
 deploy-development:
   script:
-  - ssh webber@api01 -C "cd ~/dev-cd/ && git fetch && git checkout -f origin/development && ./buildate"
+  - ssh webber@api01 -C "cd ~/dev-cd/   && git fetch && git checkout -f origin/development && ./buildate && echo $CI_BUILD_REF_NAME > public/version"
   type: deploy
   tags:
   only:
   - development
 deploy-testing:
   script:
-  - ssh webber@api01 -C "cd ~/stage-cd/ && git fetch && git checkout -f origin/testing && ./buildate"
+  - ssh webber@api01 -C "cd ~/stage-cd/ && git fetch && git checkout -f origin/testing     && ./buildate && echo $CI_BUILD_REF_NAME > public/version"
   type: deploy
   tags:
   only:
   - testing
 deploy-production:
   script:
-  - ssh webber@api01 -C "cd ~/cd/ && git fetch && git checkout -f $CI_BUILD_REF_NAME && ./buildate"
+  - ssh webber@api01 -C "cd ~/cd/       && git fetch && git checkout -f $CI_BUILD_REF_NAME && ./buildate && echo $CI_BUILD_REF_NAME > public/version"
   type: deploy
   tags:
   only:
