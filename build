@@ -1,2 +1,2 @@
 #!/bin/bash
-source ./usenode && gulp build
+source ./update && gulp build
