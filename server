@@ -1,2 +1,2 @@
 #!/bin/bash
-source ./usenode && gulp serve --port 4000
+source ./update && gulp serve --port 4000
