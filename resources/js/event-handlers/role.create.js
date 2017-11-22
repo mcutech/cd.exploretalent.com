@@ -6,6 +6,7 @@ function handler(core, user, projectId, roleId) {
 	self.user = user;
 	self.projectId = projectId;
 	self.getProjectInfo();
+    self.asap;
 }
 
 handler.prototype.getProjectInfo = function(e) {
@@ -30,7 +31,19 @@ handler.prototype.getProjectInfo = function(e) {
 
 			self.core.service.databind('#project-details', self.project);
 			self.core.service.databind('#project-overview-link', self.project);
-		});
+		})
+        .then(function(){
+            var casting_id          = self.project.casting_id;
+            var castingDataId = {
+                query: [
+                    ['where', 'casting_id', casting_id ]
+                ]
+            };
+            self.core.resource.project.get(castingDataId)
+                .then(function(res) {
+                    self.asap = res.data[0].asap;
+            });
+        });
 }
 
 handler.prototype.saveNewRole = function(e) {
@@ -55,22 +68,7 @@ handler.prototype.saveNewRole = function(e) {
 
     console.log('validation', expirationValidation);
 
-    var asap;
-    var casting_id          = self.project.casting_id;
-    console.log('casting_id', casting_id);
 
-    if(!expiryDate){
-        var castingDataId = {
-            query: [
-                ['where', 'casting_id', casting_id ]
-            ]
-        };
-        self.core.resource.project.get(castingDataId)
-            .then(function(res) {
-                asap = res.data[0].asap;
-                console.log('ASAP:',res.data[0].asap);
-        });
-    }
 
 	//to be used later to determine where to link page
 	var buttonId = $(this).attr('id');
@@ -143,6 +141,10 @@ handler.prototype.saveNewRole = function(e) {
         expiration_timestamp:expirationTimestamp
 	};
 
+    if(!data.expiration_timestamp){
+        data.expiration_timestamp = self.asap;
+    }
+
 	// if any is chosen, change all keys to 0 aside from any
 	if(data["ethnicity_any"] == 1) {
 		for(var key in data) {
@@ -168,19 +170,19 @@ handler.prototype.saveNewRole = function(e) {
 
     if(!expiryDate) {
         $('.deadline-error-required').fadeIn().delay(3000).fadeOut();
-        $('#datepicker-role-expiryDate').focus();
+        // $('#datepicker-role-expiryDate').focus();
         $('.ui-datepicker').hide().delay(3000).fadeIn();
     }
 
     else if(auditionTimestamp < expirationTimestamp) {
         $('.audition-date-error-invalid').fadeIn().delay(3000).fadeOut();
-        $('#datepicker-role-auditionDate').focus();
+        // $('#datepicker-role-auditionDate').focus();
         $('.ui-datepicker').hide().delay(3000).fadeIn();
     }
 
     else if(shootTimestamp <= auditionTimestamp) {
         $('.shoot-date-error-invalid').fadeIn().delay(3000).fadeOut();
-        $('#datepicker-role-shootDate').focus();
+        // $('#datepicker-role-shootDate').focus();
         $('.ui-datepicker').hide().delay(3000).fadeIn();
     }
 
