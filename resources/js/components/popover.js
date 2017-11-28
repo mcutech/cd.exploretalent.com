@@ -1,3 +1,3 @@
-module.exports = function() {
-	$('body').popover({ selector: '.popover-item' });
+module.exports = function () {
+  $('body').popover({ selector: '.popover-item' })
 }
