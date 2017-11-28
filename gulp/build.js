@@ -1,97 +1,102 @@
-var gulp = require('gulp'),
-    gulpUtil = require('gulp-util'),
-    $ = require('gulp-load-plugins')(),
-    _ = require('lodash'),
-    del = require('del'),
-    runSequence = require('run-sequence'),
-    uglifySaveLicense = require('uglify-save-license'),
-    mbf = require('main-bower-files'),
+let gulp = require('gulp'),
+  $ = require('gulp-load-plugins')(),
+  _ = require('lodash'),
+  composer = require('gulp-uglify/composer'),
+  del = require('del'),
+  gulpUtil = require('gulp-util'),
+  lazypipe = require('lazypipe'),
+  mbf = require('main-bower-files'),
+  pump = require('pump'),
+  runSequence = require('run-sequence'),
+  uglifyEs = require('uglify-es'),
+  uglifySaveLicense = require('uglify-save-license'),
+  assets,
+  destination = 'public',
+  sources = [
+    '.tmp/layouts/master.blade.php'
+  ]
 
-    assets,
-    sources,
-    destination,
+gulp.task('clean', clean)
+gulp.task('clean.artifact', cleanArtifact)
+gulp.task('fonts', _.partial(fonts, destination))
+gulp.task('fonts.tmp', _.partial(fonts, '.tmp'))
+gulp.task('build.finalize', buildFinalize)
+gulp.task('copy.build', copyBuild)
+gulp.task('build', build)
 
-    sources = [
-        '.tmp/layouts/master.blade.php'
-    ];
-
-destination = 'public';
-
-gulp.task('clean', clean);
-gulp.task('clean.artifact', cleanArtifact);
-gulp.task('fonts', _.partial(fonts, destination));
-gulp.task('fonts.tmp', _.partial(fonts, '.tmp'));
-gulp.task('build.finalize', buildFinalize);
-gulp.task('copy.build', copyBuild);
-gulp.task('build', build);
-
-function clean(done) {
-    del([ '.tmp' ], function() {
-        done();
-    });
+function clean (done) {
+  del([ '.tmp' ], function () {
+    done()
+  })
 }
 
-function cleanArtifact(done) {
-    del([
-        destination + '/assets',
-        destination + '/layouts'
-    ], function() {
-        done();
-    });
+function cleanArtifact (done) {
+  del([
+    destination + '/assets',
+    destination + '/layouts'
+  ], function () {
+    done()
+  })
 }
 
-function fonts(destination) {
-    return gulp.src(mbf())
-        .pipe($.filter('**/*.{eot,svg,ttf,woff,woff2,otf}'))
-        .pipe(gulp.dest(destination + '/fonts'));
+function fonts (destination) {
+  return gulp.src(mbf())
+    .pipe($.filter('**/*.{eot,svg,ttf,woff,woff2,otf}'))
+    .pipe(gulp.dest(destination + '/fonts'))
 }
 
-function buildFinalize() {
-    return gulp.src(sources)
+function buildFinalize () {
+  let minify = composer(uglifyEs, console)
 
-        .pipe(assets = $.useref.assets({searchPath: './'}))
+  return gulp.src(sources)
 
-        .pipe($.rev())
+    .pipe($.useref(
+      {searchPath: './'},
+      lazypipe().pipe($.sourcemaps.init, {loadMaps: true})
+    ))
 
-        .pipe($.if('*.js',
-            $.uglify().on('error', function(err) {
-                gulpUtil.log(gulpUtil.colors.red('[Error]'), err.toString());
-                this.emit('end');
-            })
-        ))
+    // generate cache bust only for non-php files
+    .pipe($.if('!*.php', $.rev()))
 
-        .pipe(assets.restore())
+    .pipe($.if(
+      '*.js',
+      minify({
+        output: {
+          comments: uglifySaveLicense
+        }
+      })
+    ))
 
-        .pipe($.useref())
+    .pipe($.if('*.css', $.cleanCss()))
 
-        .pipe($.revReplace({
-            replaceInExtensions: ['.js', '.css', '.php']
-        }))
+    .pipe($.revReplace({
+      replaceInExtensions: ['.php']
+    }))
 
-        .pipe($.rename(function(path) {
-            if(path.extname === '.php') {
-                path.dirname = 'layouts';
-            }
-        }))
+    .pipe($.rename(function (path) {
+      if (path.extname === '.php') {
+        path.dirname = 'layouts'
+      }
+    }))
 
-        .pipe(gulp.dest('.tmp/' + destination));
+    .pipe($.sourcemaps.write('maps'))
 
+    .pipe(gulp.dest('.tmp/' + destination))
 }
 
-function copyBuild() {
-    return gulp.src('.tmp/' + destination + '/**/*')
-        .pipe(gulp.dest(destination));
+function copyBuild () {
+  return gulp.src('.tmp/' + destination + '/**/*')
+    .pipe(gulp.dest(destination))
 }
 
-function build() {
-    runSequence(
-        'clean',
-        ['fonts', 'sass', 'browserify.build'],
-        'inject',
-        'build.finalize',
-        'clean.artifact',
-        'copy.build',
-        'clean'
-    );
+function build () {
+  runSequence(
+    'clean',
+    ['fonts', 'sass', 'browserify.build'],
+    'inject',
+    'build.finalize',
+    'clean.artifact',
+    'copy.build',
+    'clean'
+  )
 }
-
