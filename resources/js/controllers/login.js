@@ -45,7 +45,7 @@ module.exports = function (core, user) {
         },
         function (error) {
           if (error.responseText) {
-            let error = JSON.parse(error.responseText)
+            error = JSON.parse(error.responseText)
 
             if (error.errors && error.errors.auth && error.errors.auth == 'You shall not pass!') {
               $('#invalid-user').show()

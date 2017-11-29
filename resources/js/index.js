@@ -77,14 +77,7 @@ jscore.run(function (core) {
       core.vars.skins = cd
     }
 
-    // Check which version of the skin we want?
-    if (/(.*)auditions\.net$/.test(window.location.hostname)) {
-      core.lets.skins = auditions
-    } else {
-      core.lets.skins = cd
-    }
-
-    self.core.service.databind('.skins', core.lets)
+    self.core.service.databind('.skins', core.vars)
 
     // default parameters for all controllers
     core.service.router.$$params = [core, user]
