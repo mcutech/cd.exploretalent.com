@@ -4,7 +4,6 @@ let jscore = require('jscore')
 
 jscore.config(function (core) {
   // @if ENV='development'
-  // core.config.api.base = 'http://localhost:8000/api/v1';
   core.config.api.base = 'https://dev-api.exploretalent.com/api/v1'
   // @endif
   // @if ENV='production'
