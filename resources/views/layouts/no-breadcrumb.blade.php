@@ -1,6 +1,6 @@
 @extends('layouts.navbar')
 
-@section('title', 'CD ExploreTalent')
+@section('title', '')
 
 @section('navbar.body')
 
