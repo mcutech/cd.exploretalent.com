@@ -1,6 +1,6 @@
 @extends('layouts.navbar-fullpage')
 
-@section('title', 'CD ExploreTalent')
+@section('title', '')
 
 @section('navbar.body')
 

@@ -49,6 +49,7 @@ jscore.run(function (core) {
     core.service.router.$$controllers = require('./controllers/**/*.js', { hash: true })
 
     var cd = {
+      title: 'CD Exploretalent',
       homeLogo: '/images/logo-home-et.png',
       slogan: 'Casting Director Module',
       loggedInLogo: '/images/logo-home-et-cd.png',
@@ -57,6 +58,7 @@ jscore.run(function (core) {
     }
 
     var auditions = {
+      title: 'CD Auditions',
       homeLogo: '/images/Auditions-net/logo.png',
       slogan: 'Casting Director Module',
       loggedInLogo: '/images/Auditions-net/logo-loggedin.png',
@@ -66,7 +68,8 @@ jscore.run(function (core) {
 
     // create deep nested property for skins to avoid variable override in templates
     core.vars = {
-      skins: {}
+      skins: {},
+      getFullName: function() { return 'Loading...' }
     }
 
     // Check which version of the skin we want?
@@ -76,7 +79,7 @@ jscore.run(function (core) {
       core.vars.skins = cd
     }
 
-    self.core.service.databind('.skins', core.vars)
+    self.core.service.databind('html', core.vars)
 
     // default parameters for all controllers
     core.service.router.$$params = [core, user]
