@@ -18,7 +18,7 @@
 @section('sidebar.body')
 	<div class="alert alert-success alert-dismissible" role="alert">
 	  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	  <span>At Exploretalent, we value our customers and appreciate your feedback. We want to hear from you if you have comments or suggestions as to how we can improve our service. If you have a complaint or feedback, please let us know by clicking on the Add Feedback button at the top of this page. We'll do what we can to cater to your needs.</span>
+    <span>At <span data-bind="<%= skins.title %>"></span>, we value our customers and appreciate your feedback. We want to hear from you if you have comments or suggestions as to how we can improve our service. If you have a complaint or feedback, please let us know by clicking on the Add Feedback button at the top of this page. We'll do what we can to cater to your needs.</span>
 	</div>
 	<div id="all-feedbacks-div" class="feedback-wrapper">
 		<div class="panel-group panel-group-primary project-item" data-bind="accordion-feedback-<%= id %>" data-bind-target="id" data-bind-template="#all-feedbacks-div" data-bind-value="data">
