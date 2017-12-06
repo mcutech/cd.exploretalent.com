@@ -29,8 +29,6 @@ handler.prototype.getProjectInfo = function (e) {
       // if market is N/A change market value
       if (self.project.markets.data[0].name == 'N/A') { self.project.markets.data[0].name = 'All of United States' }
 
-      console.log(self.project)
-      console.log('bam_roles', self.project.bam_roles)
       self.core.service.databind('#project-details', self.project)
 
       // create dummy for faster databind

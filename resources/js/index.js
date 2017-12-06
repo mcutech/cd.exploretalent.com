@@ -79,7 +79,8 @@ jscore.run(function (core) {
       core.vars.skins = cd
     }
 
-    self.core.service.databind('html', core.vars)
+    self.core.service.databind('head', core.vars)
+    self.core.service.databind('.skins', core.vars)
 
     // default parameters for all controllers
     core.service.router.$$params = [core, user]
