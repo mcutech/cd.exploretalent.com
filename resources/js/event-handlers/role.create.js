@@ -211,13 +211,16 @@ handler.prototype.saveNewRole = function (e) {
 
           $('.role-saved-success').fadeIn()
           if (buttonId == 'save-and-add-role-btn') {
-            // $(this).prop('disabled', true);
+            $('#save-role-btn').attr('disabled', 'disabled')
             $('#save-and-add-role-btn').attr('disabled', 'disabled')
             $('#loading_role').addClass('fa fa-spin fa-spinner')
           }
           if (buttonId == 'save-role-btn') { // link to project overview page
             self.core.resource.project.patch({projectId: self.projectId, status: 0})
               .then(function (res) {
+                $('#save-role-btn').attr('disabled', 'disabled')
+                $('#save-and-add-role-btn').attr('disabled', 'disabled')
+                $('#loading_role_match').addClass('fa fa-spin fa-spinner')
                 window.location = '/projects/' + self.projectId + '/roles/' + role.role_id + '/find-talents'
               })
           } else { // 'save-and-add-role-btn' just reloads page
