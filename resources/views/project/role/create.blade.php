@@ -315,7 +315,7 @@
 <div class="row-fluid clearfix action-buttons-div">
 	<div class="col-md-12">
 		<div id="project-overview-link" class="form-group margin-top-normal">
-			<a id="save-role-btn" class="btn btn-primary">Save and View Matched Talents</a>
+			<a id="save-role-btn" class="btn btn-primary">Save and View Matched Talents <i class="fa" id="loading_role_match"></i></a>
 			<button id="save-and-add-role-btn" class="btn btn-success margin-left-small" type="submit">Save and Add a New Role   <i class="fa" id="loading_role"></i></button>
 			<a data-bind="/projects/<%= casting_id %>" id="cancel-role-btn" class="btn btn-default margin-left-small">Cancel</a>
 			<span class="text-success margin-left-normal role-saved-success" style="display: none;">New role has been saved.</span>
