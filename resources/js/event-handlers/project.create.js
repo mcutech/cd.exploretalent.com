@@ -232,6 +232,7 @@ handler.prototype.createNewProject = function (e) {
 
           return self.core.resource.project.post(data)
             .then(function (res) {
+              $('#create-project-btn').prop('disabled', true)
               body1.casting_id = res.casting_id
               body2.casting_id = res.casting_id
               if ($('#main-casting-image-div').addClass('uploaded')) {
