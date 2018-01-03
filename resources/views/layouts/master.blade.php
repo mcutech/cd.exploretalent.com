@@ -5,7 +5,8 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-<title data-bind="<%= skins.title %>" data-bind-target="title">@yield('title')</title>
+{{-- <title data-bind="<%= skins.title %>" data-bind-target="title">@yield('title')</title> --}}
+<title>Casting Director Interface</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 

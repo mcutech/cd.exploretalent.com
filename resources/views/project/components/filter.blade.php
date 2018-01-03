@@ -10,11 +10,11 @@
 
 		<div class="panel-body form-horizontal">
 			<ul class="nav nav-tabs">
-				<li role="presentation" class="active">
+				<li role="presentation" >
 					<a data-toggle="tab" class="tabs" role="tab" href="#market-search">Search by Market</a>
 					<input type="hidden" value="0" />
 				</li>
-				<li role="presentation">
+				<li role="presentation" class="active">
 					<a  class="tabs" data-toggle="tab" data-search-by="locations" role="tab" href="#location-search">Search by Location</a>
 					<input type="hidden" value="1" />
 				</li>
