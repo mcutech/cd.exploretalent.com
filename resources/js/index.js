@@ -49,6 +49,7 @@ jscore.run(function (core) {
     core.service.router.$$controllers = require('./controllers/**/*.js', { hash: true })
 
     var cd = {
+      email: 'cd@exploretalent.com',
       title: 'CD Exploretalent',
       homeLogo: '/images/logo-home-et.png',
       slogan: 'Casting Director Module',
@@ -58,6 +59,7 @@ jscore.run(function (core) {
     }
 
     var auditions = {
+      email: 'cd@auditions.net',
       title: 'CD Auditions',
       homeLogo: '/images/Auditions-net/logo.png',
       slogan: 'Casting Director Module',
