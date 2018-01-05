@@ -10,12 +10,13 @@
 
 		<div class="panel-body form-horizontal">
 			<ul class="nav nav-tabs">
-				<li role="presentation" >
-					<a data-toggle="tab" class="tabs" role="tab" href="#market-search">Search by Market</a>
+				{{-- <li role="presentation" class="active"> --}}
+				<li role="presentation">
+					<a data-toggle="tab" class="tabs" role="tab" href="#market-search" id="search-by-market">Search by Market</a>
 					<input type="hidden" value="0" />
 				</li>
-				<li role="presentation" class="active">
-					<a  class="tabs" data-toggle="tab" data-search-by="locations" role="tab" href="#location-search">Search by Location</a>
+				<li role="presentation">
+					<a  class="tabs" data-toggle="tab" data-search-by="locations" id="search-by-location" role="tab" href="#location-search">Search by Location</a>
 					<input type="hidden" value="1" />
 				</li>
 			</ul>
@@ -23,7 +24,7 @@
 
 		<div role="tabpanel" class="tab-pane tab-content panel-body form-horizontal padding-top-zero">
 			<div class="tab-content padding-zero">
-				<div role="tabpanel" class="tab-pane in active" id="market-search">
+				<div role="tabpanel" class="tab-pane" id="market-search">
 					<div id="location-search-display" class="row">
 						<label class="control-label pull-left padding-left-normal"><a id="location-search-display-btn" href="">United States</a> <span class="padding-left-small">or</span></label>
 						<div class="col-md-4 margin-top-normal-zz-xs">
@@ -104,7 +105,7 @@
 
 					</div>
 				</div>
-				<div role="tabpanel" class="tab-pane" id="location-search">
+				<div role="tabpanel" class="tab-pane in active" id="location-search">
 					<div class="col-md-12 padding-zero-zz-sm">
 						<div class="col-md-5 margin-top-normal-zz-sm">
 							<label class="control-label">Search Address</label>
