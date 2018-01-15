@@ -158,7 +158,7 @@
 	</div>
 	</div> {{-- row-fluid --}}
 
-	<div class="row-fluid clearfix success-benefits-container">
+	<div class="hide row-fluid clearfix success-benefits-container">
 		<div class="col-md-1"></div>
 		<div class="col-md-5">
 			<div class="panel success-benefits-item panel-design">
@@ -205,7 +205,7 @@
 		<div class="col-md-1"></div>
 	</div> {{-- row-fluid --}}
 
-	<div class="row-fluid clearfix">
+	<div class="hide row-fluid clearfix">
 		<div class="col-md-1"></div>
 		<div class="col-md-10">
 			<div class="panel panel-design">
@@ -231,7 +231,7 @@
 		<div class="col-md-1"></div>
 	</div> {{-- row-fluid --}}
 
-	<div class="row-fluid clearfix">
+	<div class="hide row-fluid clearfix">
 		<div class="col-md-1"></div>
 		<div class="col-md-10">
 			<div class="panel text-center panel-design">
@@ -246,7 +246,7 @@
 		<div class="col-md-1"></div>
 	</div> {{-- row-fluid --}}
 
-	<div class="row-fluid clearfix panel footer-area margin-zero">
+	<div class="hide row-fluid clearfix panel footer-area margin-zero">
 		<div class="col-md-1"></div>
 		<div class="col-md-10">
 			<div class="panel-body">
