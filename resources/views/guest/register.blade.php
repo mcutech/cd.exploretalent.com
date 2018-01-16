@@ -129,7 +129,7 @@
 							</div>
 							<div class="form-group padding-top-normal">
 								<div>By creating this account you agree to our <a href="" type="button" data-toggle="modal" data-target="#terms-conditions" original-title="">Terms of Use</a></div>
-                <div>(Forget your login name or password? Call 702-446-0888 or email <a href="" original-title="" data-bind="<%= 'mailto:' + skins.email %>" ><span data-bind="<%= skins.email %>"></span></a></div>
+                <div class="hide">(Forget your login name or password? Call 702-446-0888 or email <a href="" original-title="" data-bind="<%= 'mailto:' + skins.email %>" ><span data-bind="<%= skins.email %>"></span></a></div>
 							</div>
 						</div>
 
