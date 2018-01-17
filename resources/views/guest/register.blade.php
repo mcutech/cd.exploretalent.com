@@ -129,7 +129,7 @@
 							</div>
 							<div class="form-group padding-top-normal">
 								<div>By creating this account you agree to our <a href="" type="button" data-toggle="modal" data-target="#terms-conditions" original-title="">Terms of Use</a></div>
-                <div>(Forget your login name or password? Call 702-446-0888 or email <a href="" original-title="" data-bind="<%= 'mailto:' + skins.email %>" ><span data-bind="<%= skins.email %>"></span></a></div>
+                <div class="hide">(Forget your login name or password? Call 702-446-0888 or email <a href="" original-title="" data-bind="<%= 'mailto:' + skins.email %>" ><span data-bind="<%= skins.email %>"></span></a></div>
 							</div>
 						</div>
 
@@ -158,7 +158,7 @@
 	</div>
 	</div> {{-- row-fluid --}}
 
-	<div class="row-fluid clearfix success-benefits-container">
+	<div class="hide row-fluid clearfix success-benefits-container">
 		<div class="col-md-1"></div>
 		<div class="col-md-5">
 			<div class="panel success-benefits-item panel-design">
@@ -205,7 +205,7 @@
 		<div class="col-md-1"></div>
 	</div> {{-- row-fluid --}}
 
-	<div class="row-fluid clearfix">
+	<div class="hide row-fluid clearfix">
 		<div class="col-md-1"></div>
 		<div class="col-md-10">
 			<div class="panel panel-design">
@@ -231,7 +231,7 @@
 		<div class="col-md-1"></div>
 	</div> {{-- row-fluid --}}
 
-	<div class="row-fluid clearfix">
+	<div class="hide row-fluid clearfix">
 		<div class="col-md-1"></div>
 		<div class="col-md-10">
 			<div class="panel text-center panel-design">
@@ -246,7 +246,7 @@
 		<div class="col-md-1"></div>
 	</div> {{-- row-fluid --}}
 
-	<div class="row-fluid clearfix panel footer-area margin-zero">
+	<div class="hide row-fluid clearfix panel footer-area margin-zero">
 		<div class="col-md-1"></div>
 		<div class="col-md-10">
 			<div class="panel-body">
