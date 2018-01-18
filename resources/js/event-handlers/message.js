@@ -31,6 +31,7 @@ handler.prototype.showConversation = (e) => {
       for (let i = 0, len = res.data.length; i < len; i++) {
        res.data[i].mine = res.data[i].user_id == self.me.id
       }
+      res.data = res.data.reverse()
       self.conversations.messages = res
       self.conversations.loadingMessages = false
       self.updateDataBind()
@@ -52,14 +53,32 @@ handler.prototype.showConversation = (e) => {
 handler.prototype.checkSendMessage = (e) => {
   let element = $(e.target)
   let id = element.attr('data-id')
-  element.attr('disabled', true)
-
-  element.attr('disabled', false)
+  if (e.keyCode == 13) {
+    e.preventDefault()
+    element.attr('disabled', true)
+    self.core.resource.message.post({
+      conversationId: id,
+      body: element.val()
+    })
+    .then((res) => {
+      res.mine = true
+      self.conversations.messages.total += 1
+      self.conversations.messages.data.push(res)
+      self.updateDataBind()
+      element.attr('disabled', false)
+      element.val('')
+      element.focus()
+    }, (err) => {
+      element.attr('disabled', false)
+    })
+  }
 }
 
 handler.prototype.updateDataBind = (e) => {
   self.conversations.current = self.conversations[self.type]
   self.core.service.databind('.inbox-container', self.conversations)
+  let container = $('.messages-container')
+  container.scrollTop(container[0].scrollHeight)
 }
 
 handler.prototype.removeConversation = (e) => {

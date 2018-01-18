@@ -15,13 +15,14 @@ module.exports = function (core, user, projectId, roleId) {
     handler.type = 'job'
     handler.updateDataBind()
   })
-  $(document).on('keyup', '.message-box textarea', handler.checkSendMessage)
+  $(document).on('keypress', '.message-box textarea', handler.checkSendMessage)
 
   $('.talent-item-container').slimScroll({
-    height: '100%'
+    height: '100%',
   })
   $('.messages-container').slimScroll({
-    height: '100%'
+    height: '100%',
+    start: 'bottom'
   })
 
   let windowHeight = window.innerHeight - 157
