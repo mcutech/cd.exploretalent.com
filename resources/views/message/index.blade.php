@@ -6,7 +6,7 @@
         <div class="messages-tabs">
             <ul class="nav nav-tabs" role="tablist">
                 <li class="personal-message-menu active"><a href="#personal-message" aria-controls="settings" role="tab" data-toggle="tab">Personal Message</a></li>
-                <li class="casting-invitation-menu"><a href="#casting-invitations" aria-controls="settings" role="tab" data-toggle="tab">Casting Invitations</a></li>
+                <li class="casting-invitation-menu"><a href="#casting-invitations" aria-controls="settings" role="tab" data-toggle="tab" id="casting-list">Casting Invitations</a></li>
             </ul>
         </div>
         <div class="message-functions">
@@ -25,26 +25,22 @@
         </div>
         <div class="casting-invitation-functions hidden">
             <div class="form-horizontal">
-                <div class="display-inline-block">
-                    <div class="row">
-                        <label class="control-label col-sm-5 padding-right-zero text-sm">Select Project:</label>
+                <div class="display-inline-block" >
+                    <div class="row" >
+                        <label class="control-label col-sm-5 padding-right-zero text-sm">Project:</label>
                         <div class="col-sm-7 padding-right-zero">
-                            <select class="form-control input-sm">
-                                <option>Cat and Dog Series</option>
-                                <option>Batman and Spongebob Returns</option>
-                                <option>Mouse and Bat</option>
+                            <select style="width: 200px" data-select class="form-control" id="projects-list">
+                              <option data-bind-template="#projects-list" data-bind-value="data" data-bind="<%= JSON.stringify({key : casting_id, value : name}) %>"></option>
                             </select>
                         </div>
                     </div>
                 </div>
                 <div class="display-inline-block margin-left-large">
                     <div class="row">
-                        <label class="control-label col-sm-5 padding-right-zero text-sm">Select Role:</label>
+                        <label class="control-label col-sm-5 padding-right-zero text-sm">Role:</label>
                         <div class="col-sm-7 padding-right-zero">
-                            <select class="form-control input-sm">
-                                <option>Baby Sitter</option>
-                                <option>Baho Tiil Man</option>
-                                <option>Baho Ilok Man</option>
+                            <select style="width: 200px" data-select class="form-control" id="roles-list">
+                              <option data-bind-template="#roles-list" data-bind-value="data" data-bind="<%= JSON.stringify({key : role_id, value : name}) %>"></option>
                             </select>
                         </div>
                     </div>

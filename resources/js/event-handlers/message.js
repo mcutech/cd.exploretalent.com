@@ -18,81 +18,38 @@ handler.prototype.refreshProjects = function () {
   }
   self.core.resource.project.get(data)
     .then(function (res) {
-      self.projects = res
-      self.core.service.databind('#projects-list', self.projects)
+      self.core.service.databind('#projects-list', res)
+    })
+}
 
-      if (self.projectId) {
-        $('#projects-list').val(self.projectId)
-        self.refreshRoles()
-      } else {
-        self.refreshConversations()
-      }
+handler.prototype.refreshInbox = (e) => {
+  self.jobId = e.val
+  let data = {
+    query : [
+      ['join', 'schedules', 'schedules.id', 'schedule_id'],
+      ['where', 'schedule_id', self.jobId],
+      ['with', 'schedule']
+    ]
+  }
+  self.core.resource.conversation.get(data)
+    .then(function (res){
+      console.log(res)
     })
 }
 
 handler.prototype.refreshRoles = function (e) {
   self.projectId = $('#projects-list').val()
-
-  if (e) {
-    let url = '/messages/' + self.projectId
-    window.history.pushState(null, null, url)
-  }
-
-  self.project = _.find(self.projects.data, function (project) {
-    return project.casting_id == self.projectId
-  })
-
-  self.core.service.databind('#roles-list', self.project)
-
-  if (self.roleId) {
-    $('#roles-list').val(self.roleId)
-  }
-
-  self.refreshConversations()
-}
-
-handler.prototype.refreshConversations = function (e) {
-  self.roleId = $('#roles-list').val()
-
-  if (e) {
-    let url = '/messages/' + self.projectId + '/' + self.roleId
-    window.history.pushState(null, null, url)
-  }
-
   let data = {
-    query: [
-      [ 'with', 'conversation.users.bam_talentci.bam_talent_media2' ],
-      [ 'with', 'conversation.messages.user.bam_talentci' ],
-      [ 'with', 'conversation.messages.user.bam_cd_user' ]
-    ]
+    projectId: self.projectId,
   }
 
-  if (self.roleId) {
-    data.query.push([ 'where', 'bam_role_id', '=', self.roleId ])
-  } else {
-    let role_ids = _.map(self.project.bam_roles, function (role) {
-      return role.role_id
-    })
+  self.core.service.databind('#roles-list', [])
 
-    role_ids.push(0)
-
-    data.query.push([ 'whereIn', 'bam_role_id', role_ids ])
-  }
-
-  self.core.resource.schedule.get(data)
+  self.core.resource.job.get(data)
     .then(function (res) {
-      _.remove(res.data, function (schedule) {
-        return schedule.conversation == null
-      })
-
-      _.each(res.data, function (schedule) {
-        schedule.conversation.talent = _.find(schedule.conversation.users, function (user) {
-          return user.bam_talentci
-        })
-      })
-
-      self.schedules = res
-      self.core.service.databind('#conversations-list', res)
+      let roles = res
+      self.core.service.databind('#roles-list', roles)
+      console.log(roles)
     })
 }
 
