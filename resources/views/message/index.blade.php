@@ -52,14 +52,14 @@
         <div class="panel-body padding-zero tab-content">
             <div class="row-fluid clearfix tab-pane active" id="personal-message" role="tabpanel">
                 <div class="col-sm-4 talents-list-content">
-                    <div class="search-talent-container">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search for talent...">
-                            <span class="input-group-btn">
-                                <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
-                            </span>
-                        </div>
-                    </div>
+                    {{-- <div class="search-talent-container"> --}}
+                    {{--     <div class="input-group"> --}}
+                    {{--         <input type="text" class="form-control" placeholder="Search for talent..."> --}}
+                    {{--         <span class="input-group-btn"> --}}
+                    {{--             <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button> --}}
+                    {{--         </span> --}}
+                    {{--     </div> --}}
+                    {{-- </div> --}}
                     <div class="talent-item-container" id="personal-messages">
                         <div class="talent-item new-message" data-bind-template="#personal-messages" data-bind-value="personal.data">
                             <div class="photo">
@@ -80,7 +80,7 @@
                                   <span data-bind="<%= unread_count %>">#</span> New Message/s
                                 </div>
                                 <div class="time-log" data-bind="<%= moment(updated_at).format('MM/DD/YYYY') %>">Date</div>
-                                <div class="remove-talent"><span class="text-label">Remove from messaging</span><i class="fa fa-times-circle fa-lg"></i></div>
+                                <div class="remove-talent" data-bind="<%= id %>" data-bind-target="data-id"><span class="text-label">Remove from messaging</span><i class="fa fa-times-circle fa-lg"></i></div>
                             </div>
                         </div>
                     </div>
@@ -89,17 +89,6 @@
                 <div class="col-sm-8 message-content">
                     <div class="messages-container">
                         <div class="user-message">I would like to Invite you to become as the batman baby role,  I am very excited to be a part of your project.</div>
-                        <div class="recepient-message">Hello Casting Director I am Jake Zyrus a Talent on Explore Talent.</div>
-                        <div class="recepient-message">Okay Thank you very much.</div>
-                        <div class="user-message">Great your hired!.</div>
-                        <div class="user-message">You will start starting monday, September 1, 2030</div>
-                        <div class="recepient-message">Really? Thank You, I can't wait until 2030</div>
-                        <div class="user-message">Good, Prepare yourself and Practice</div>
-                        <div class="user-message">and Don't forget to Take a bath</div>
-                        <div class="recepient-message">Thank you, I will take note of that</div>
-                        <div class="user-message">Very Good Then, See you in 2030</div>
-                        <div class="user-message">I am so glad I finally found someone for the role</div>
-                        <div class="user-message">You are perfect</div>
                     </div>
 
                     <div class="message-box">
@@ -110,14 +99,14 @@
 
             <div class="row-fluid clearfix tab-pane" id="casting-invitations" role="tabpanel">
                 <div class="col-sm-4 talents-list-content">
-                    <div class="search-talent-container">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search for talent...">
-                            <span class="input-group-btn">
-                                <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
-                            </span>
-                        </div>
-                    </div>
+                    {{-- <div class="search-talent-container"> --}}
+                    {{--     <div class="input-group"> --}}
+                    {{--         <input type="text" class="form-control" placeholder="Search for talent..."> --}}
+                    {{--         <span class="input-group-btn"> --}}
+                    {{--             <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button> --}}
+                    {{--         </span> --}}
+                    {{--     </div> --}}
+                    {{-- </div> --}}
                     <div class="talent-item-container" id="personal-messages">
                         <div class="talent-item new-message" data-bind-template="#personal-messages" data-bind-value="personal.data">
                             <div class="photo">
@@ -138,7 +127,7 @@
                                   <span data-bind="<%= unread_count %>">#</span> New Message/s
                                 </div>
                                 <div class="time-log" data-bind="<%= moment(updated_at).format('MM/DD/YYYY') %>">Date</div>
-                                <div class="remove-talent"><span class="text-label">Remove from messaging</span><i class="fa fa-times-circle fa-lg"></i></div>
+                                <div class="remove-talent" data-bind="<%= id %>" data-bind-target="data-id"><span class="text-label">Remove from messaging</span><i class="fa fa-times-circle fa-lg"></i></div>
                             </div>
                         </div>
                     </div>

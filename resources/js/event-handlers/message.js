@@ -14,14 +14,29 @@ function handler (core, user, projectId, roleId) {
   self.jobId = false
 }
 
-handler.prototype.refreshProjects = function () {
+handler.prototype.removeConversation = (e) => {
+  let id = $(e.target).parent().attr('data-id')
+  self.core.resource.conversation.delete({ conversationId: id })
+    .then((res) => {
+      self.conversations.personal.data = _.filter(self.conversations.personal.data, (conv) => {
+        return conv.id != id
+      })
+      self.conversations.job.data = _.filter(self.conversations.job.data, (conv) => {
+        return conv.id != id
+      })
+
+      self.core.service.databind('.inbox-container', self.conversations)
+    })
+}
+
+handler.prototype.refreshProjects = () => {
   let data = {
     query: [
       [ 'with', 'bam_roles' ]
     ]
   }
   self.core.resource.project.get(data)
-    .then(function (res) {
+    .then((res) => {
       self.core.service.databind('#projects-list', res)
     })
 }
@@ -51,7 +66,7 @@ handler.prototype.refreshInbox = (e) => {
   data.query.push(['with', 'users.bam_cd_user'])
 
   self.core.resource.conversation.get(data)
-    .then(function (res) {
+    .then((res) => {
       for (let i = 0, len = res.data.length; i < len; i++) {
         if (res.data[i].name === '') {
           res.data[i].name = []
@@ -68,9 +83,13 @@ handler.prototype.refreshInbox = (e) => {
 
             if (user.id != self.me.id) {
               if (user.bam_talentnum > 0) {
-                res.data[i].pic = self.cdn + _.filter(user.bam_talentci.bam_talent_media2, (media) => {
+                let pics = _.filter(user.bam_talentci.bam_talent_media2, (media) => {
                   return media.type == 2
-                })[0].bam_media_path_full
+                })
+
+                if (pics.length) {
+                  res.data[i].pic = self.cdn + pics[0].bam_media_path_full
+                }
 
                 // ?????
                 res.data[i].location = user.bam_talentci.city + ', ' +  user.bam_talentci.state
@@ -98,7 +117,7 @@ handler.prototype.refreshInbox = (e) => {
     })
 }
 
-handler.prototype.refreshRoles = function (e) {
+handler.prototype.refreshRoles = (e) => {
   self.projectId = $('#projects-list').val()
   let data = {
     projectId: self.projectId,
@@ -107,13 +126,13 @@ handler.prototype.refreshRoles = function (e) {
   self.core.service.databind('#roles-list', [])
 
   self.core.resource.job.get(data)
-    .then(function (res) {
+    .then((res) => {
       let roles = res
       self.core.service.databind('#roles-list', roles)
       console.log(roles)
     })
 }
 
-module.exports = function (core, user, projectId, roleId) {
+module.exports = (core, user, projectId, roleId) => {
   return new handler(core, user, projectId, roleId)
 }
