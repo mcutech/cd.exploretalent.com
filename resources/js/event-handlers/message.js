@@ -10,21 +10,20 @@ function handler (core, user, projectId, roleId) {
   self.roleId = roleId
   self.refreshProjects()
   self.refreshInbox()
+  self.type = 'personal'
   self.conversations = {
+    currentConversationId: false,
     loadingMessages: false,
     personal : [],
     job: [],
-    messages: {
-      personal : [],
-      job: []
-    }
+    messages: []
   }
   self.jobId = false
 }
 
 handler.prototype.showConversation = (e) => {
   let id = $(e.target).attr('data-id')
-  let type = $(e.target).attr('data-type')
+  self.conversations.currentConversationId = id
   self.conversations.loadingMessages = true
   self.updateDataBind()
   self.core.resource.message.get({conversationId: id})
@@ -32,16 +31,16 @@ handler.prototype.showConversation = (e) => {
       for (let i = 0, len = res.data.length; i < len; i++) {
        res.data[i].mine = res.data[i].user_id == self.me.id
       }
-      self.conversations.messages[type] = res
+      self.conversations.messages = res
       self.conversations.loadingMessages = false
       self.updateDataBind()
 
       // Mark as READ
       self.core.resource.conversation.patch({conversationId: id, read: 1})
         .then((res) => {
-          for (let i = 0, len = self.conversations[type].data.length; i < len; i++) {
-            if (self.conversations[type].data[i].id == id) {
-              self.conversations[type].data[i].unread_count = 0
+          for (let i = 0, len = self.conversations[self.type].data.length; i < len; i++) {
+            if (self.conversations[self.type].data[i].id == id) {
+              self.conversations[self.type].data[i].unread_count = 0
             }
           }
 
@@ -50,7 +49,16 @@ handler.prototype.showConversation = (e) => {
     })
 }
 
+handler.prototype.checkSendMessage = (e) => {
+  let element = $(e.target)
+  let id = element.attr('data-id')
+  element.attr('disabled', true)
+
+  element.attr('disabled', false)
+}
+
 handler.prototype.updateDataBind = (e) => {
+  self.conversations.current = self.conversations[self.type]
   self.core.service.databind('.inbox-container', self.conversations)
 }
 

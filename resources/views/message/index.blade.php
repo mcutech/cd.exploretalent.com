@@ -9,7 +9,7 @@
           <li class="casting-invitation-menu"><a href="#casting-invitations" aria-controls="settings" role="tab" data-toggle="tab" id="casting-list">Casting Invitations</a></li>
         </ul>
       </div>
-      <div class="casting-invitation-functions hidden">
+      <div class="casting-invitation-functions" style="display: none;">
         <div class="form-horizontal">
           <div class="display-inline-block" >
             <div class="row" >
@@ -39,8 +39,8 @@
         <div class="row-fluid clearfix tab-pane active" id="personal-message" role="tabpanel">
           <div class="col-sm-4 talents-list-content">
             <div class="talent-item-container" id="personal-messages">
-              <div class="talent-item new-message" data-bind-template="#personal-messages" data-bind-value="personal.data">
-                <div class="show-conversation" data-bind="<%= id %>" data-bind-target="data-id" data-type="personal">
+              <div class="talent-item new-message" data-bind-template="#personal-messages" data-bind-value="current.data">
+                <div class="show-conversation" data-bind="<%= id %>" data-bind-target="data-id">
                   <div class="photo">
                     <div class="photo-holder">
                       <i class="img-item" data-bind="background-image: url(<%= pic %>);" data-bind-target="style"></i>
@@ -72,7 +72,7 @@
                 <div class="alert alert-info text-align-center"><i class="fa fa-circle-o-notch fa-spin"></i> Loading messages...</div>
               </div>
               <div id="personal-inbox-messages" data-bind-target="visibility" data-bind="<%= loadingMessages ? 0 : 1 %>" hidden>
-                <div data-bind-template="#personal-inbox-messages" data-bind-value="messages.personal.data">
+                <div data-bind-template="#personal-inbox-messages" data-bind-value="messages.data">
                   <div data-bind="<%= mine ? 'user-message' : 'recepient-message' %>" data-bind-target="class">
                     <span data-bind="<%= body %>"></span>
                   </div>
@@ -80,55 +80,8 @@
               </div>
             </div>
 
-            <div class="message-box">
-              <textarea class="form-control" rows="3" placeholder="Enter a Message..."></textarea>
-            </div>
-          </div>
-        </div>
-
-        <div class="row-fluid clearfix tab-pane" id="casting-invitations" role="tabpanel">
-          <div class="col-sm-4 talents-list-content">
-            <div class="talent-item-container" id="job-messages">
-              <div class="talent-item new-message" data-bind-template="#job-messages" data-bind-value="job.data">
-                <div class="show-conversation" data-bind="<%= id %>" data-bind-target="data-id" data-type="job">
-                  <div class="photo">
-                    <div class="photo-holder">
-                      <i class="img-item" data-bind="background-image: url(<%= pic %>);" data-bind-target="style"></i>
-                    </div>
-                  </div>
-                  <div class="message-info">
-                    <div class="name-and-age">
-                      <b data-bind="<%= name %>">Name</b>
-                    </div>
-                    <div class="location" data-bind="<%= location %>">Location</div>
-                    <div class="project text-muted">
-                    </div>
-                    <div class="role text-muted">
-                    </div>
-                    <div class="message-notification" data-bind="<%= unread_count > 0 ? 1 : 0 %>" data-bind-target="visibility">
-                      <span data-bind="<%= unread_count %>">#</span> New Message/s
-                    </div>
-                    <div class="time-log" data-bind="<%= moment(updated_at).format('MM/DD/YYYY') %>">Date</div>
-                    <div class="remove-talent" data-bind="<%= id %>" data-bind-target="data-id"><span class="text-label">Remove from messaging</span><i class="fa fa-times-circle fa-lg"></i></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-sm-8 message-content">
-            <div class="messages-container">
-              <div id="job-inbox-messages">
-                <div data-bind-template="#job-inbox-messages" data-bind-value="messages.job.data">
-                  <div data-bind="<%= mine ? 'user-message' : 'recepient-message' %>" data-bind-target="class">
-                    <span data-bind="<%= body %>"></span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="message-box">
-              <textarea class="form-control" rows="3" placeholder="Enter a Message..."></textarea>
+            <div class="message-box" data-bind="<%= currentConversationId ? 1 : 0 %>" data-bind-target="visibility" hidden>
+              <textarea class="form-control" rows="3" placeholder="Enter a Message..." data-bind="<%= currentConversationId %>" data-bind-target="data-id"></textarea>
             </div>
           </div>
         </div>

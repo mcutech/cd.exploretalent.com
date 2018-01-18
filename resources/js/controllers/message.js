@@ -4,10 +4,18 @@ module.exports = function (core, user, projectId, roleId) {
   $(document).on('change', '#projects-list', handler.refreshRoles)
   $(document).on('change', '#roles-list', handler.refreshInbox)
   $(document).on('click', '.remove-talent', handler.removeConversation)
-  $(document).on('click', '.conversation-item', handler.refreshMessages)
   $(document).on('click', '.show-conversation', handler.showConversation)
-
-  $(document).on('click', '.send-btn', handler.sendMessage)
+  $(document).on('click', '.personal-message-menu', () => {
+    $('.casting-invitation-functions').hide()
+    handler.type = 'personal'
+    handler.updateDataBind()
+  })
+  $(document).on('click', '.casting-invitation-menu', () => {
+    $('.casting-invitation-functions').show()
+    handler.type = 'job'
+    handler.updateDataBind()
+  })
+  $(document).on('keyup', '.message-box textarea', handler.checkSendMessage)
 
   $('.talent-item-container').slimScroll({
     height: '100%'
