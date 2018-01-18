@@ -48,7 +48,7 @@
             </div>
         </div>
     </div>
-    <div class="panel panel-default margin-zero" id="messages-panel">
+    <div class="panel panel-default margin-zero inbox-container" id="messages-panel">
         <div class="panel-body padding-zero tab-content">
             <div class="row-fluid clearfix tab-pane active" id="personal-message" role="tabpanel">
                 <div class="col-sm-4 talents-list-content">
@@ -60,158 +60,26 @@
                             </span>
                         </div>
                     </div>
-                    <div class="talent-item-container">
-                        <div class="talent-item new-message">
+                    <div class="talent-item-container" id="personal-messages">
+                        <div class="talent-item new-message" data-bind-template="#personal-messages" data-bind-value="personal.data">
                             <div class="photo">
                                 <div class="photo-holder">
-                                    <i class="img-item" style="background-image: url(images/talents-sample-image.jpg);"></i>
+                                  <i class="img-item" data-bind="background-image: url(<%= pic %>);" data-bind-target="style"></i>
                                 </div>
                             </div>
                             <div class="message-info">
                                 <div class="name-and-age">
-                                    <b>John Testerman</b><span>, 37</span>
+                                  <b data-bind="<%= name %>">Name</b>
                                 </div>
-                                <div class="location">
-                                    Los Angeles, CA
-                                </div>
+                                <div class="location" data-bind="<%= location %>">Location</div>
                                 <div class="project text-muted">
                                 </div>
                                 <div class="role text-muted">
                                 </div>
-                                <div class="message-notification">New Message</div>
-                                <div class="time-log">8/1/2017</div>
-                                <div class="remove-talent"><span class="text-label">Remove from messaging</span><i class="fa fa-times-circle fa-lg"></i></div>
-                            </div>
-                        </div>
-                        <div class="talent-item">
-                            <div class="photo">
-                                <div class="photo-holder">
-                                    <i class="img-item" style="background-image: url(images/talents-sample-image.jpg);"></i>
+                                <div class="message-notification" data-bind="<%= unread_count > 0 %>" data-bind-target="visibility">
+                                  <span data-bind="<%= unread_count %>">#</span> New Message/s
                                 </div>
-                            </div>
-                            <div class="message-info">
-                                <div class="name-and-age">
-                                    <b>John Testerman</b><span>, 37</span>
-                                </div>
-                                <div class="location">
-                                    Los Angeles, CA
-                                </div>
-                                <div class="project text-muted">
-                                </div>
-                                <div class="role text-muted">
-                                </div>
-                                <div class="message-notification hidden">New Message</div>
-                                <div class="time-log">8/1/2017</div>
-                                <div class="remove-talent"><span class="text-label">Remove from messaging</span><i class="fa fa-times-circle fa-lg"></i></div>
-                            </div>
-                        </div>
-                        <div class="talent-item">
-                            <div class="photo">
-                                <div class="photo-holder">
-                                    <i class="img-item" style="background-image: url(images/talents-sample-image.jpg);"></i>
-                                </div>
-                            </div>
-                            <div class="message-info">
-                                <div class="name-and-age">
-                                    <b>Phoenix Marie</b><span>, 37</span>
-                                </div>
-                                <div class="location">
-                                    Los Angeles, CA
-                                </div>
-                                <div class="project text-muted">
-                                </div>
-                                <div class="role text-muted">
-                                </div>
-                                <div class="message-notification hidden">New Message</div>
-                                <div class="time-log">8/1/2017</div>
-                                <div class="remove-talent"><span class="text-label">Remove from messaging</span><i class="fa fa-times-circle fa-lg"></i></div>
-                            </div>
-                        </div>
-                        <div class="talent-item">
-                            <div class="photo">
-                                <div class="photo-holder">
-                                    <i class="img-item" style="background-image: url(images/talents-sample-image.jpg);"></i>
-                                </div>
-                            </div>
-                            <div class="message-info">
-                                <div class="name-and-age">
-                                    <b>Joyce Jimenez</b><span>, 37</span>
-                                </div>
-                                <div class="location">
-                                    Los Angeles, CA
-                                </div>
-                                <div class="project text-muted">
-                                </div>
-                                <div class="role text-muted">
-                                </div>
-                                <div class="message-notification hidden">New Message</div>
-                                <div class="time-log">8/1/2017</div>
-                                <div class="remove-talent"><span class="text-label">Remove from messaging</span><i class="fa fa-times-circle fa-lg"></i></div>
-                            </div>
-                        </div>
-                        <div class="talent-item">
-                            <div class="photo">
-                                <div class="photo-holder">
-                                    <i class="img-item" style="background-image: url(images/talents-sample-image.jpg);"></i>
-                                </div>
-                            </div>
-                            <div class="message-info">
-                                <div class="name-and-age">
-                                    <b>Yam Concepcion</b><span>, 37</span>
-                                </div>
-                                <div class="location">
-                                    Los Angeles, CA
-                                </div>
-                                <div class="project text-muted">
-                                </div>
-                                <div class="role text-muted">
-                                </div>
-                                <div class="message-notification hidden">New Message</div>
-                                <div class="time-log">8/1/2017</div>
-                                <div class="remove-talent"><span class="text-label">Remove from messaging</span><i class="fa fa-times-circle fa-lg"></i></div>
-                            </div>
-                        </div>
-                        <div class="talent-item">
-                            <div class="photo">
-                                <div class="photo-holder">
-                                    <i class="img-item" style="background-image: url(images/talents-sample-image.jpg);"></i>
-                                </div>
-                            </div>
-                            <div class="message-info">
-                                <div class="name-and-age">
-                                    <b>Ina Remondo</b><span>, 37</span>
-                                </div>
-                                <div class="location">
-                                    Los Angeles, CA
-                                </div>
-                                <div class="project text-muted">
-                                </div>
-                                <div class="role text-muted">
-                                </div>
-                                <div class="message-notification hidden">New Message</div>
-                                <div class="time-log">8/1/2017</div>
-                                <div class="remove-talent"><span class="text-label">Remove from messaging</span><i class="fa fa-times-circle fa-lg"></i></div>
-                            </div>
-                        </div>
-                        <div class="talent-item">
-                            <div class="photo">
-                                <div class="photo-holder">
-                                    <i class="img-item" style="background-image: url(images/talents-sample-image.jpg);"></i>
-                                </div>
-                            </div>
-                            <div class="message-info">
-                                <div class="name-and-age">
-                                    <b>Jane Smith</b><span>, 37</span>
-                                </div>
-                                <div class="location">
-                                    Los Angeles, CA
-                                </div>
-                                <div class="project text-muted">
-                                </div>
-                                <div class="role text-muted">
-                                </div>
-                                <div class="message-notification hidden">New Message</div>
-                                <div class="time-log">8/1/2017</div>
+                                <div class="time-log" data-bind="<%= moment(updated_at).format('MM/DD/YYYY') %>">Date</div>
                                 <div class="remove-talent"><span class="text-label">Remove from messaging</span><i class="fa fa-times-circle fa-lg"></i></div>
                             </div>
                         </div>
@@ -250,175 +118,32 @@
                             </span>
                         </div>
                     </div>
-                    <div class="talent-item-container">
-                        {{-- add 'new-message' class if message is new --}}
-                        <div class="talent-item new-message">
+                    <div class="talent-item-container" id="personal-messages">
+                        <div class="talent-item new-message" data-bind-template="#personal-messages" data-bind-value="personal.data">
                             <div class="photo">
                                 <div class="photo-holder">
-                                    <i class="img-item" style="background-image: url(images/talents-sample-image.jpg);"></i>
+                                  <i class="img-item" data-bind="background-image: url(<%= pic %>);" data-bind-target="style"></i>
                                 </div>
                             </div>
                             <div class="message-info">
                                 <div class="name-and-age">
-                                    <b>John Testerman</b><span>, 37</span>
+                                  <b data-bind="<%= name %>">Name</b>
                                 </div>
-                                <div class="location">
-                                    Los Angeles, CA
-                                </div>
+                                <div class="location" data-bind="<%= location %>">Location</div>
                                 <div class="project text-muted">
-                                    Casting: Batman Within
                                 </div>
                                 <div class="role text-muted">
-                                    Role: Baby
                                 </div>
-                                <div class="message-notification">
-                                    New Message
+                                <div class="message-notification" data-bind="<%= unread_count > 0 %>" data-bind-target="visibility">
+                                  <span data-bind="<%= unread_count %>">#</span> New Message/s
                                 </div>
-                                <div class="time-log">8/1/2017</div>
-                                <div class="remove-talent"><span class="text-label">Remove from messaging</span><i class="fa fa-times-circle fa-lg"></i></div>
-                            </div>
-                        </div>
-                        <div class="talent-item">
-                            <div class="photo">
-                                <div class="photo-holder">
-                                    <i class="img-item" style="background-image: url(images/talents-sample-image.jpg);"></i>
-                                </div>
-                            </div>
-                            <div class="message-info">
-                                <div class="name-and-age">
-                                    <b>John Testerman</b><span>, 37</span>
-                                </div>
-                                <div class="location">
-                                    Los Angeles, CA
-                                </div>
-                                <div class="project text-muted">
-                                    Casting: Batman Within
-                                </div>
-                                <div class="role text-muted">
-                                    Role: Baby
-                                </div>
-                                <div class="time-log">8/1/2017</div>
-                                <div class="remove-talent"><span class="text-label">Remove from messaging</span><i class="fa fa-times-circle fa-lg"></i></div>
-                            </div>
-                        </div>
-                        <div class="talent-item">
-                            <div class="photo">
-                                <div class="photo-holder">
-                                    <i class="img-item" style="background-image: url(images/talents-sample-image.jpg);"></i>
-                                </div>
-                            </div>
-                            <div class="message-info">
-                                <div class="name-and-age">
-                                    <b>John Testerman</b><span>, 37</span>
-                                </div>
-                                <div class="location">
-                                    Los Angeles, CA
-                                </div>
-                                <div class="project text-muted">
-                                    Casting: Batman Within
-                                </div>
-                                <div class="role text-muted">
-                                    Role: Baby
-                                </div>
-                                <div class="time-log">8/1/2017</div>
-                                <div class="remove-talent"><span class="text-label">Remove from messaging</span><i class="fa fa-times-circle fa-lg"></i></div>
-                            </div>
-                        </div>
-                        <div class="talent-item">
-                            <div class="photo">
-                                <div class="photo-holder">
-                                    <i class="img-item" style="background-image: url(images/talents-sample-image.jpg);"></i>
-                                </div>
-                            </div>
-                            <div class="message-info">
-                                <div class="name-and-age">
-                                    <b>John Testerman</b><span>, 37</span>
-                                </div>
-                                <div class="location">
-                                    Los Angeles, CA
-                                </div>
-                                <div class="project text-muted">
-                                    Casting: Batman Within
-                                </div>
-                                <div class="role text-muted">
-                                    Role: Baby
-                                </div>
-                                <div class="time-log">8/1/2017</div>
-                                <div class="remove-talent"><span class="text-label">Remove from messaging</span><i class="fa fa-times-circle fa-lg"></i></div>
-                            </div>
-                        </div>
-                        <div class="talent-item">
-                            <div class="photo">
-                                <div class="photo-holder">
-                                    <i class="img-item" style="background-image: url(images/talents-sample-image.jpg);"></i>
-                                </div>
-                            </div>
-                            <div class="message-info">
-                                <div class="name-and-age">
-                                    <b>John Testerman</b><span>, 37</span>
-                                </div>
-                                <div class="location">
-                                    Los Angeles, CA
-                                </div>
-                                <div class="project text-muted">
-                                    Casting: Batman Within
-                                </div>
-                                <div class="role text-muted">
-                                    Role: Baby
-                                </div>
-                                <div class="time-log">8/1/2017</div>
-                                <div class="remove-talent"><span class="text-label">Remove from messaging</span><i class="fa fa-times-circle fa-lg"></i></div>
-                            </div>
-                        </div>
-                        <div class="talent-item">
-                            <div class="photo">
-                                <div class="photo-holder">
-                                    <i class="img-item" style="background-image: url(images/talents-sample-image.jpg);"></i>
-                                </div>
-                            </div>
-                            <div class="message-info">
-                                <div class="name-and-age">
-                                    <b>John Testerman</b><span>, 37</span>
-                                </div>
-                                <div class="location">
-                                    Los Angeles, CA
-                                </div>
-                                <div class="project text-muted">
-                                    Casting: Batman Within
-                                </div>
-                                <div class="role text-muted">
-                                    Role: Baby
-                                </div>
-                                <div class="time-log">8/1/2017</div>
-                                <div class="remove-talent"><span class="text-label">Remove from messaging</span><i class="fa fa-times-circle fa-lg"></i></div>
-                            </div>
-                        </div>
-                        <div class="talent-item">
-                            <div class="photo">
-                                <div class="photo-holder">
-                                    <i class="img-item" style="background-image: url(images/talents-sample-image.jpg);"></i>
-                                </div>
-                            </div>
-                            <div class="message-info">
-                                <div class="name-and-age">
-                                    <b>John Testerman</b><span>, 37</span>
-                                </div>
-                                <div class="location">
-                                    Los Angeles, CA
-                                </div>
-                                <div class="project text-muted">
-                                    Casting: Batman Within
-                                </div>
-                                <div class="role text-muted">
-                                    Role: Baby
-                                </div>
-                                <div class="time-log">8/1/2017</div>
+                                <div class="time-log" data-bind="<%= moment(updated_at).format('MM/DD/YYYY') %>">Date</div>
                                 <div class="remove-talent"><span class="text-label">Remove from messaging</span><i class="fa fa-times-circle fa-lg"></i></div>
                             </div>
                         </div>
                     </div>
-
                 </div>
+
                 <div class="col-sm-8 message-content">
                     <div class="messages-container">
                         <div class="user-message">I would like to Invite you to become as the batman baby role,  I am very excited to be a part of your project.</div>

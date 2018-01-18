@@ -4,10 +4,14 @@ let _ = require('lodash')
 function handler (core, user, projectId, roleId) {
   self = this
   self.core = core
-  self.user = user
+  self.cdn = '//etdownload.s3.amazonaws.com/'
+  self.me = user
   self.projectId = projectId
   self.roleId = roleId
   self.refreshProjects()
+  self.refreshInbox()
+  self.conversations = { personal : [], job: [] }
+  self.jobId = false
 }
 
 handler.prototype.refreshProjects = function () {
@@ -23,17 +27,74 @@ handler.prototype.refreshProjects = function () {
 }
 
 handler.prototype.refreshInbox = (e) => {
-  self.jobId = e.val
+  if (e && e.val) {
+    self.jobId = e.val
+  }
+
   let data = {
     query : [
-      ['join', 'schedules', 'schedules.id', 'schedule_id'],
-      ['where', 'schedule_id', self.jobId],
-      ['with', 'schedule']
+      ['whereNull', 'schedule_id'],
     ]
   }
+
+  if (self.jobId) {
+    data = {
+      query : [
+        ['join', 'schedules', 'schedules.id', 'schedule_id'],
+        ['where', 'schedule_id', self.jobId],
+        ['with', 'schedule']
+      ]
+    }
+  }
+
+  data.query.push(['with', 'users.bam_talentci.bam_talent_media2'])
+  data.query.push(['with', 'users.bam_cd_user'])
+
   self.core.resource.conversation.get(data)
-    .then(function (res){
-      console.log(res)
+    .then(function (res) {
+      for (let i = 0, len = res.data.length; i < len; i++) {
+        if (res.data[i].name === '') {
+          res.data[i].name = []
+
+          let users = _.filter(res.data[i].users, (user) => {
+            return user.id != self.me.id
+          })
+
+          res.data[i].pic = '/images/filler.jpg'
+          res.data[i].location = false
+
+          for (let x = 0, len = users.length; x < len; x++) {
+            let user = users[x]
+
+            if (user.id != self.me.id) {
+              if (user.bam_talentnum > 0) {
+                res.data[i].pic = self.cdn + _.filter(user.bam_talentci.bam_talent_media2, (media) => {
+                  return media.type == 2
+                })[0].bam_media_path_full
+
+                // ?????
+                res.data[i].location = user.bam_talentci.city + ', ' +  user.bam_talentci.state
+
+                res.data[i].name.push(user.bam_talentci.fname + ' ' + user.bam_talentci.lname)
+              } else if (user.bam_cd_user_id > 0) {
+                res.data[i].name.push(user.bam_cd_user.fname + ' ' + user.bam_cd_user.lname)
+              } else {
+                res.data[i].name.push('Unknown')
+              }
+            }
+          }
+
+          res.data[i].name = res.data[i].name.join(',')
+        }
+      }
+
+      if (!self.jobId) {
+        self.conversations.personal = res
+      } else {
+        self.conversations.job = res
+      }
+      console.log(self.conversations)
+      self.core.service.databind('.inbox-container', self.conversations)
     })
 }
 
@@ -51,42 +112,6 @@ handler.prototype.refreshRoles = function (e) {
       self.core.service.databind('#roles-list', roles)
       console.log(roles)
     })
-}
-
-handler.prototype.refreshMessages = function () {
-  $('.conversation-item').removeClass('active')
-  $(this).addClass('active')
-  self.conversationId = parseInt($(this).attr('data-id'))
-
-  let schedule = _.find(self.schedules.data, function (schedule) {
-    return schedule.conversation.id == self.conversationId
-  })
-
-  self.core.service.databind('#messages-container', schedule)
-  $('#messages').animate({ scrollTop: $('#messages')[0].scrollHeight })
-}
-
-handler.prototype.sendMessage = function () {
-  if ($('#message-text').val()) {
-    let data = {
-      conversationId: self.conversationId,
-      body: $('#message-text').val()
-    }
-
-    self.core.resource.message.post(data)
-      .then(function (res) {
-        let $element = $('[data-bind-template].conversation-box').clone()
-        let data2 = res
-        data2.user = self.user
-
-        $element.removeAttr('data-bind-template')
-        $element.removeAttr('data-bind-value')
-        self.core.service.databind($element, data2)
-        $('#messages').append($element)
-        $('#messages').animate({ scrollTop: $('#messages')[0].scrollHeight })
-        $('#message-text').val('')
-      })
-  }
 }
 
 module.exports = function (core, user, projectId, roleId) {
