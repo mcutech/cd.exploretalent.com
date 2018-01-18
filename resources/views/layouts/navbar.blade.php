@@ -30,6 +30,12 @@
 							</a>
 						</li>
 						<li>
+							<a href="/messages" class="nav-link">
+								<div class="primary-nav-icon"><i class="fa fa-envelope-o"></i></div>
+								<div class="primary-nav-text">Messages</div>
+							</a>
+						</li>
+						<li>
 							<a href="/projects/create" class="nav-link">
 								<div class="primary-nav-icon"><i class="fa fa-plus"></i></div>
 								<div class="primary-nav-text">Create Project</div>

@@ -10,8 +10,48 @@ function handler (core, user, projectId, roleId) {
   self.roleId = roleId
   self.refreshProjects()
   self.refreshInbox()
-  self.conversations = { personal : [], job: [] }
+  self.conversations = {
+    loadingMessages: false,
+    personal : [],
+    job: [],
+    messages: {
+      personal : [],
+      job: []
+    }
+  }
   self.jobId = false
+}
+
+handler.prototype.showConversation = (e) => {
+  let id = $(e.target).attr('data-id')
+  let type = $(e.target).attr('data-type')
+  self.conversations.loadingMessages = true
+  self.updateDataBind()
+  self.core.resource.message.get({conversationId: id})
+    .then((res) => {
+      for (let i = 0, len = res.data.length; i < len; i++) {
+       res.data[i].mine = res.data[i].user_id == self.me.id
+      }
+      self.conversations.messages[type] = res
+      self.conversations.loadingMessages = false
+      self.updateDataBind()
+
+      // Mark as READ
+      self.core.resource.conversation.patch({conversationId: id, read: 1})
+        .then((res) => {
+          for (let i = 0, len = self.conversations[type].data.length; i < len; i++) {
+            if (self.conversations[type].data[i].id == id) {
+              self.conversations[type].data[i].unread_count = 0
+            }
+          }
+
+          self.updateDataBind()
+        })
+    })
+}
+
+handler.prototype.updateDataBind = (e) => {
+  self.core.service.databind('.inbox-container', self.conversations)
 }
 
 handler.prototype.removeConversation = (e) => {
@@ -25,7 +65,7 @@ handler.prototype.removeConversation = (e) => {
         return conv.id != id
       })
 
-      self.core.service.databind('.inbox-container', self.conversations)
+      self.updateDataBind()
     })
 }
 
@@ -112,8 +152,7 @@ handler.prototype.refreshInbox = (e) => {
       } else {
         self.conversations.job = res
       }
-      console.log(self.conversations)
-      self.core.service.databind('.inbox-container', self.conversations)
+      self.updateDataBind()
     })
 }
 
