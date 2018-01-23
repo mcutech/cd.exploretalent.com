@@ -30,15 +30,15 @@
 							</a>
 						</li>
 						<li>
-							<a href="/messages" class="nav-link">
-								<div class="primary-nav-icon"><i class="fa fa-envelope-o"></i></div>
-								<div class="primary-nav-text">Messages</div>
-							</a>
-						</li>
-						<li>
 							<a href="/projects/create" class="nav-link">
 								<div class="primary-nav-icon"><i class="fa fa-plus"></i></div>
 								<div class="primary-nav-text">Create Project</div>
+							</a>
+						</li>
+						<li>
+							<a href="/messages" class="nav-link">
+								<div class="primary-nav-icon"><i class="fa fa-envelope-o"></i></div>
+								<div class="primary-nav-text">Messages</div>
 							</a>
 						</li>
 						<li>
@@ -81,7 +81,7 @@
 							<a href="/settings" class="nav-link"><i class="dropdown-icon fa fa-cog"></i> <span class="secondary-nav-text">Settings</span></a>
 						</li>
 						<li>
-							<a href="#" class="nav-link logout"><i class="dropdown-icon fa fa-power-off"></i> <span class="secondary-nav-text">Logout</span></a>
+							<a href="#" class="nav-link logout" title="Logout"><i class="dropdown-icon fa fa-power-off"></i></a>
 						</li>
 					</ul>
 				</div>
