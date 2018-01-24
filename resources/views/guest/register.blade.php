@@ -14,7 +14,7 @@
 		<h4 class="text-bold">Post your Casting, Project or Job for Free</h4>
 
 		<a href="" type="button" data-toggle="modal" data-target="#quick-post" original-title="">Click Here</a>
-		to Quickly Post Your Job or call us at (702) 446-0888
+    to Quickly Post Your Job or call us at <b class="skins" data-bind="<%= skins.phoneNumber %>" ></b>
 
 	</div>
 	<div class="col-md-2"></div>
@@ -129,7 +129,10 @@
 							</div>
 							<div class="form-group padding-top-normal">
 								<div>By creating this account you agree to our <a href="" type="button" data-toggle="modal" data-target="#terms-conditions" original-title="">Terms of Use</a></div>
-                <div class="hide">(Forget your login name or password? Call 702-446-0888 or email <a href="" original-title="" data-bind="<%= 'mailto:' + skins.email %>" ><span data-bind="<%= skins.email %>"></span></a></div>
+                <div class="hide">
+                  (Forget your login name or password? Call <b class="skins" data-bind="<%= skins.phoneNumber %>"></b> or email
+                  <a href="" original-title="" data-bind="<%= 'mailto:' + skins.email %>" ><span data-bind="<%= skins.email %>"></span></a>
+                </div>
 							</div>
 						</div>
 
