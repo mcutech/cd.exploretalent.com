@@ -9,7 +9,7 @@
 		<div>
 			<h2><b>Welcome to Our New CD Interface</b></h2>
 			<p class="margin-zero">Our tools are always 100% FREE for you to cast talents for your projects.</p>
-			<p>We're here to help. Call us at <b class="text-primary">702-446-0888</b> or <a href="/feedback" class="text-primary"><b>Leave Message</b></a></p>
+			<p>We're here to help. Call us at <b class="text-primary skins" data-bind="<%= skins.phoneNumber %>"></b> or <a href="/feedback" class="text-primary"><b>Leave Message</b></a></p>
 		</div>
 		<div class="video-btn">
 			See what we can do for you

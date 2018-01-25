@@ -55,7 +55,8 @@ jscore.run(function (core) {
       slogan: 'Casting Director Module',
       loggedInLogo: '/images/logo-home-et-cd.png',
       bodyClass: 'cd',
-      favicon: '/images/favicon.ico'
+      favicon: '/images/favicon.ico',
+      phoneNumber: '702-446-0888'
     }
 
     var auditions = {
@@ -65,7 +66,8 @@ jscore.run(function (core) {
       slogan: 'Casting Director Module',
       loggedInLogo: '/images/Auditions-net/logo-loggedin.png',
       bodyClass: 'auditions',
-      favicon: '/images/Auditions-net/favicon.ico'
+      favicon: '/images/Auditions-net/favicon.ico',
+      phoneNumber: '424-781-1200'
     }
 
     // create deep nested property for skins to avoid variable override in templates
