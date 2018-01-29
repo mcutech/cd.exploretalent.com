@@ -227,7 +227,7 @@ module.exports = function (core, user) {
     };
 
     $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-      $('#address-search').val($(this).siblings('input[type="hidden"').val())
+      $('#address-search').val($(this).siblings('input[type="hidden"]').val())
       if ($('#address-search').val() == 1 && !isInit) {
         init({})
         isInit = true
