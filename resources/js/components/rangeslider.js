@@ -66,8 +66,6 @@ module.exports = function (core) {
             feet2 = '< 2'
           }
 
-          $('#height-min-text').text(feet1 + "'" + inches1 + '"')
-          $('#height-max-text').text(feet2 + "'" + inches2 + '"')
 
           if (ui.values[0] == '23') {
             ui.values[0] == '22'
