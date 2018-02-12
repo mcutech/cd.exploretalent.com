@@ -17,13 +17,13 @@ handler.prototype.refresh = function () {
       [ 'with', 'bam_talentinfo1' ],
       [ 'with', 'bam_talentinfo2' ],
       [ 'with', 'bam_talent_music' ],
-      [ 'with', 'bam_talent_dance' ],
-      [ 'with', 'user' ]
+      [ 'with', 'bam_talent_dance' ], [ 'with', 'user' ]
     ]
   }
   self.core.resource.talent.get(data)
     .then(function (res) {
       self.talent = res
+      console.log(self.talent.talentnum)
 
       let data = {
         q: [
@@ -35,7 +35,6 @@ handler.prototype.refresh = function () {
     })
     .then(function (res) {
       self.talent.favorite = _.first(res.data)
-      console.log(self.talent.bam_talent_music)
       self.getRoleInfo()
 
       if (!self.talent.heightText() && !self.talent.bam_talentinfo2.ethnicity && !self.talent.bam_talentinfo1.weightpounds && !self.talent.bam_talentinfo1.haircolor && !self.talent.bam_talentinfo1.build && !self.talent.bam_talentinfo1.eyecolor && !self.talent.bam_talentinfo2.special_skills) {
@@ -104,7 +103,7 @@ handler.prototype.getRoleInfo = function () {
         self.core.service.databind('#project-role-actions', res)
       })
   } else {
-    self.core.service.databind('#add-to-like-it-list', { talent: self.talent, role_id: 0 })
+    self.core.service.databind('#add-to-like-it-list-bind', { talent: self.talent, role_id: 0 })
     self.core.service.databind('.favorite-button', { talent: self.talent, role_id: 0 })
   }
 }
