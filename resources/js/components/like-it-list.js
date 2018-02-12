@@ -6,16 +6,21 @@ module.exports = function (core, user) {
 
   $(document).on('click', '.add-to-like-it-list', function () {
     if (!$(this).hasClass('liked-talent')) { // Add
+      console.log($(this))
       $('#add-like-it-list-modal #casting-list').val(-1).select2()
       $('#add-like-it-list-modal #role-list').val(-1).select2()
 
       let promise = $.when()
       let $this = $(this)
       $button = $this
+      console.log($button,'button')
 
       let id = $this.parent().attr('data-id')
       id = id.split('-')
+      console.log(this)
+      console.log(id)
       user_id = id[0]
+      console.log(user_id)
 
       if (id.length > 1 && parseInt(id[1])) {
         bam_role_id = id[1]
@@ -103,6 +108,7 @@ module.exports = function (core, user) {
 
     core.resource.schedule.get(data)
       .then(function (res) {
+        console.log(res)
         let schedule = _.first(res.data)
 
         if (schedule) {
