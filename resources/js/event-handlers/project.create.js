@@ -166,6 +166,7 @@ handler.prototype.createNewProject = function (e) {
         let selfSubEmail = $('#self-sub-email').val()
         let selfSubAddress = $('#self-sub-address').val()
 
+      $('#create-project-btn').attr('disabled', 'disabled')
         if (selfSubEmail.length < 1 && selfSubAddress.length < 1) {
           $('.self-sub-error-required').fadeIn().delay(3000).fadeOut()
           $('#self-sub-email').focus()
@@ -198,7 +199,6 @@ handler.prototype.createNewProject = function (e) {
               self.core.resource.project_app.post(body2).then(function (res) {
                 console.log('result from AU psot')
                 console.log(res)
-                $('#create-project-btn').attr('disabled', 'disabled')
                 setTimeout(function () {
                   window.location = '/projects/' + res.casting_id + '/roles/create'
                 }, 3000)
@@ -206,6 +206,7 @@ handler.prototype.createNewProject = function (e) {
             })
         }
       } else if (projecttype == '2') {
+        $('#create-project-btn').attr('disabled', 'disabled')
         if ($('#bs-datepicker-open-call').val().length < 1) {
           $('.open-call-date-error-required').fadeIn().delay(3000).fadeOut()
           $('#bs-datepicker-open-call').focus()
@@ -232,7 +233,6 @@ handler.prototype.createNewProject = function (e) {
 
           return self.core.resource.project.post(data)
             .then(function (res) {
-              $('#create-project-btn').prop('disabled', true)
               body1.casting_id = res.casting_id
               body2.casting_id = res.casting_id
               if ($('#main-casting-image-div').addClass('uploaded')) {

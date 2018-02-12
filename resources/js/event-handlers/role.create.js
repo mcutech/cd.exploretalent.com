@@ -189,6 +189,9 @@ handler.prototype.saveNewRole = function (e) {
 
   // if(expirationValidation){
   if (self.core.service.form.validate('#create-role-div')) { // for required text fields
+    $('#save-and-add-role-btn').attr('disabled', 'disabled')
+    $('#save-role-btn').attr('disabled', 'disabled')
+
     if ($('input[type="checkbox"][name="gender"]:checked').length < 1) {
       $('.gender-error-required').fadeIn().delay(3000).fadeOut()
       $('.gender-error-required').focus()
@@ -211,15 +214,11 @@ handler.prototype.saveNewRole = function (e) {
 
           $('.role-saved-success').fadeIn()
           if (buttonId == 'save-and-add-role-btn') {
-            $('#save-role-btn').attr('disabled', 'disabled')
-            $('#save-and-add-role-btn').attr('disabled', 'disabled')
             $('#loading_role').addClass('fa fa-spin fa-spinner')
           }
           if (buttonId == 'save-role-btn') { // link to project overview page
             self.core.resource.project.patch({projectId: self.projectId, status: 0})
               .then(function (res) {
-                $('#save-role-btn').attr('disabled', 'disabled')
-                $('#save-and-add-role-btn').attr('disabled', 'disabled')
                 $('#loading_role_match').addClass('fa fa-spin fa-spinner')
                 window.location = '/projects/' + self.projectId + '/roles/' + role.role_id + '/find-talents'
               })
