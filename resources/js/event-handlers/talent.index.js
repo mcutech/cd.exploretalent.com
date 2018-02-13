@@ -120,6 +120,7 @@ handler.prototype.searchTalents = function (nextPage) {
   }
 
   promise.then(function (talents) {
+    console.log(talents)
     if (!talents.data) {
       talents.schedule = {}
       talents.favorite = null
