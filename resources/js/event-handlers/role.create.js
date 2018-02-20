@@ -189,8 +189,6 @@ handler.prototype.saveNewRole = function (e) {
 
   // if(expirationValidation){
   if (self.core.service.form.validate('#create-role-div')) { // for required text fields
-    $('#save-and-add-role-btn').attr('disabled', 'disabled')
-    $('#save-role-btn').attr('disabled', 'disabled')
 
     if ($('input[type="checkbox"][name="gender"]:checked').length < 1) {
       $('.gender-error-required').fadeIn().delay(3000).fadeOut()
@@ -207,6 +205,9 @@ handler.prototype.saveNewRole = function (e) {
       if ($('input[type="checkbox"][name="hair-color"]:checked').length < 1) {
         data['hair_any'] = 1
       }
+
+      $('#save-and-add-role-btn').attr('disabled', 'disabled')
+      $('#save-role-btn').attr('disabled', 'disabled')
 
       return self.core.resource.job.post(data)
         .then(function (res) {
