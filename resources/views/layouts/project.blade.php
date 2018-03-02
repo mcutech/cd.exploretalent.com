@@ -34,7 +34,7 @@
 							<li><div class="title">Project ID:</div> <span data-bind="<%= casting_id %>"></span></li>
 							<li><div class="title">Project Type:</div> <span data-bind="<%= (project_type || project_type == 0) ? getProjectType() : 'N/A' %>"></span></li>
 							<li><div class="title">Location:</div> <span data-bind="<%= location %>"></span></li>
-							<li><div class="title">Rate/Pay:</div> <span data-bind="$<%= rate %>"></span> <span data-bind="<%= (rate_des) ? 'per ' + getRate() : '' %>"></span></li>
+              <li><div class="title">Rate/Pay:</div> <span data-bind="<%= (rate_des == 0 || rate_des == 6) ? ' ' : '$' %>"> </span> <span data-bind="<%= getRateText() %>"></span></li>
 							<li><div class="title">Audition Date:</div> <span data-bind="<%= aud_timestamp ? moment(aud_timestamp * 1000).format('MM-DD-YYYY') : 'N/A' %>"></span></li>
 							<li><div class="title">Shoot Date:</div> <span data-bind="<%= shoot_timestamp ? moment(shoot_timestamp * 1000).format('MM-DD-YYYY') : 'N/A' %>"></span></li>
 						</ul>
