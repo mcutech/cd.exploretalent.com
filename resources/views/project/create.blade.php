@@ -145,6 +145,7 @@
                                                 <option value="3">day</option>
                                                 <option value="4">week</option>
                                                 <option value="5">month</option>
+                                                <option value="6">negotiable</option>
                                             </select>
                                         </div>
                                         <div class="alert alert-page alert-danger rate-error-required" style="display:none;">This field is required.</div>
