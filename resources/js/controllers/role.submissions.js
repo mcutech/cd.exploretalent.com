@@ -1,6 +1,10 @@
 module.exports = function (core, user, projectId, roleId) {
   let handler = require('../event-handlers/role.submissions.js')(core, user, projectId, roleId)
 
+  setTimeout(function(){
+    $('#search-by-location').click()
+  }, 500)
+
   $('#hasphotoForm').click(function () {
     if ($('#has-photo').is(':checked')) {
       $('#radio-selected').text('Yes')
