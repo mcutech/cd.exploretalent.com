@@ -5,7 +5,7 @@ module.exports = function (core, user) {
     let id
 
     // Bind null data first
-    self.core.service.databind('html', {
+    self.core.service.databind('#talent-photos-modal, #talent-view-photos-modal', {
       getFullName: function () { return 'Loading' },
       getAge: function () { return 'Loading' },
       bam_talent_media2: []
@@ -23,9 +23,6 @@ module.exports = function (core, user) {
         'bam_talent_media2',
         'bam_talentinfo1'
       ]
-      // wheres : [
-      //   [ 'where', 'talent_media2.type', '=', '1' ],
-      // ]
     }
 
     return self.core.resource.talent.get(data)
