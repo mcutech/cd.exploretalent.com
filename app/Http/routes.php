@@ -39,9 +39,9 @@ Route::resource('projects.schedules'                                            
 Route::get('talents'                       , 'TalentController@index');
 Route::get('talents/favorite'              , 'TalentController@favorite');
 Route::get('talents/{talentId}'            , 'TalentController@talentresume');
-Route::get('messages/{projectId}/{roleId}' , 'MessageController@index');
-Route::get('messages/{projectId}'          , 'MessageController@index');
-Route::get('messages'                      , 'MessageController@index');
+/* Route::get('messages/{projectId}/{roleId}' , 'MessageController@index'); */
+/* Route::get('messages/{projectId}'          , 'MessageController@index'); */
+/* Route::get('messages'                      , 'MessageController@index'); */
 Route::get('settings'                      , 'ProfileController@settings');
 Route::get('welcome'                       , 'WelcomeController@index');
 Route::get('error'	                       , 'ErrorController@index');
