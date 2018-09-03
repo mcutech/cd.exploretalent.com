@@ -53,7 +53,6 @@ handler.prototype.addNewFeedback = function () {
       contentType: false, // Set content type to false as jQuery will tell the server its a query string request,
       crossDomain: true,
       xhrFields: {
-        withCredentials: true,
         onprogress: function (progress) {
           let percentage = Math.floor((progress.total / progress.total) * 100)
           // console.log('PROGRESS: ' + percentage);
