@@ -3,13 +3,10 @@
 let jscore = require('jscore')
 
 jscore.config(function (core) {
-  // @if NODE_ENV='development'
+  // @if ENV='development'
   core.config.api.base = 'https://dev.api.exploretalent.com/v1'
   // @endif
-  // @if NODE_ENV='staging'
-  core.config.api.base = 'https://stage.api.exploretalent.com/v1'
-  // @endif
-  // @if NODE_ENV='production'
+  // @if ENV='production'
   core.config.api.base = 'https://api.exploretalent.com/v1'
   // @endif
 
