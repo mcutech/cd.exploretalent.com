@@ -13,7 +13,7 @@ module.exports = function (core, user) {
       let promise = $.when()
       let $this = $(this)
       $button = $this
-      console.log($button,'button')
+      console.log($button, 'button')
 
       let id = $this.parent().attr('data-id')
       id = id.split('-')

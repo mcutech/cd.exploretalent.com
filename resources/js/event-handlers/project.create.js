@@ -28,8 +28,9 @@ handler.prototype.createNewProject = function (e) {
   let submissiondeadline = $('#bs-datepicker-submissiondeadline').val()
   let asaptimestamp = parseDate(submissiondeadline)
 
-  let dd = new Date(),
-    dn = dd.getFullYear() + '-' + (dd.getMonth() + 1) + '-' + dd.getDate()
+  let dd = new Date()
+
+  let dn = dd.getFullYear() + '-' + (dd.getMonth() + 1) + '-' + dd.getDate()
   let submissiontimestamp = parseDate(dn)
 
   let rate = $('#project-rate').val()
@@ -166,7 +167,7 @@ handler.prototype.createNewProject = function (e) {
         let selfSubEmail = $('#self-sub-email').val()
         let selfSubAddress = $('#self-sub-address').val()
 
-      $('#create-project-btn').attr('disabled', 'disabled')
+        $('#create-project-btn').attr('disabled', 'disabled')
         if (selfSubEmail.length < 1 && selfSubAddress.length < 1) {
           $('.self-sub-error-required').fadeIn().delay(3000).fadeOut()
           $('#self-sub-email').focus()
@@ -240,11 +241,11 @@ handler.prototype.createNewProject = function (e) {
               }
 
               self.core.resource.project_app.post(body1).then(function (res) {
-                                // console.log('results from ET post');
+                // console.log('results from ET post');
                 console.log(res)
               })
               self.core.resource.project_app.post(body2).then(function (res) {
-                                // console.log('results from AU post');
+                // console.log('results from AU post');
                 console.log(res)
                 setTimeout(function () {
                   window.location = '/projects/' + res.casting_id + '/roles/create'

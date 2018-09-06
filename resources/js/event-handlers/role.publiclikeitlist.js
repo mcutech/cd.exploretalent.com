@@ -165,10 +165,10 @@ handler.prototype.getFilters = function (talentnums) {
           data.query.push([ 'where', subquery ])
         } else {
           data.query.push([ 'where', [
-              [ 'where', 'city', '=', form.markets ],
-              [ 'orWhere', 'city1', '=', form.markets ],
-              [ 'orWhere', 'city2', '=', form.markets ],
-              [ 'orWhere', 'city3', '=', form.markets ]
+            [ 'where', 'city', '=', form.markets ],
+            [ 'orWhere', 'city1', '=', form.markets ],
+            [ 'orWhere', 'city2', '=', form.markets ],
+            [ 'orWhere', 'city3', '=', form.markets ]
           ]
           ])
         }
@@ -243,14 +243,14 @@ handler.prototype.getFilters = function (talentnums) {
       } else {
         if (form.ethnicity == 'African') {
           data.query.push(['where', [
-              [ 'where', 'ethnicity', '=', 'African' ],
-              [ 'orWhere', 'ethnicity', '=', 'African American' ]
+            [ 'where', 'ethnicity', '=', 'African' ],
+            [ 'orWhere', 'ethnicity', '=', 'African American' ]
           ]
           ])
         } else if (form.ethnicity == 'African American') {
           data.query.push(['where', [
-              [ 'where', 'ethnicity', '=', 'African American' ],
-              [ 'orWhere', 'ethnicity', '=', 'African' ]
+            [ 'where', 'ethnicity', '=', 'African American' ],
+            [ 'orWhere', 'ethnicity', '=', 'African' ]
           ]
           ])
         } else {
@@ -272,18 +272,18 @@ handler.prototype.getFilters = function (talentnums) {
     if (form.union) {
       if (form.union == '1') {
         data.query.push([ 'where', [
-            [ 'where', 'union_aea', '=', 'Yes' ],
-            [ 'orWhere', 'union_aftra', '=', 'Yes' ],
-            [ 'orWhere', 'union_other', '=', 'Yes' ],
-            [ 'orWhere', 'union_sag', '=', 'Yes' ]
+          [ 'where', 'union_aea', '=', 'Yes' ],
+          [ 'orWhere', 'union_aftra', '=', 'Yes' ],
+          [ 'orWhere', 'union_other', '=', 'Yes' ],
+          [ 'orWhere', 'union_sag', '=', 'Yes' ]
         ]
         ])
       } else {
         data.query.push([ 'where', [
-            [ 'where', 'union_aea', '=', 'No' ],
-            [ 'orWhere', 'union_aftra', '=', 'No' ],
-            [ 'orWhere', 'union_other', '=', 'No' ],
-            [ 'orWhere', 'union_sag', '=', 'No' ]
+          [ 'where', 'union_aea', '=', 'No' ],
+          [ 'orWhere', 'union_aftra', '=', 'No' ],
+          [ 'orWhere', 'union_other', '=', 'No' ],
+          [ 'orWhere', 'union_sag', '=', 'No' ]
         ]
         ])
       }
@@ -307,19 +307,19 @@ handler.prototype.refreshInvitation = function () {
   }
 
   self.core.resource.campaign.get(data)
-  .then(function (res) {
-    let campaign = _.first(res.data)
-    if (campaign && (campaign.status > 0 || campaign.status == 0)) {
-      $('#invitetoaudition-text')
-        .html('<span class="text-muted">You have already sent an invitation on</span> ' + campaign.updated_at +
+    .then(function (res) {
+      let campaign = _.first(res.data)
+      if (campaign && (campaign.status > 0 || campaign.status == 0)) {
+        $('#invitetoaudition-text')
+          .html('<span class="text-muted">You have already sent an invitation on</span> ' + campaign.updated_at +
             '<a href="/projects/' + self.project.role.casting_id + '/roles/' + self.project.role.role_id + '/worksheet" class="btn-link margin-left-small"><i class="fa fa-pencil"></i> Manage Here</a>')
 
-      $('#invitetoauditionbutton').attr('disabled', true)
-    } else {
-      $('#invitetoaudition-text').text('')
-      $('#invitetoauditionbutton').attr('disabled', false)
-    }
-  })
+        $('#invitetoauditionbutton').attr('disabled', true)
+      } else {
+        $('#invitetoaudition-text').text('')
+        $('#invitetoauditionbutton').attr('disabled', false)
+      }
+    })
 }
 
 handler.prototype.sendInvites = function () {

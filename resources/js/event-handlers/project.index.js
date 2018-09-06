@@ -25,10 +25,10 @@ handler.prototype.refreshList = function () {
 
   if (searchterm) {
     data.query.push([ 'where', [
-        [ 'where', 'project', 'LIKE', '%' + searchterm + '%' ],
-        [ 'orWhere', 'name', 'LIKE', '%' + searchterm + '%' ],
-        [ 'orWhere', 'name_original', 'LIKE', '%' + searchterm + '%' ],
-        [ 'orWhere', 'casting_id', '=', searchterm ]
+      [ 'where', 'project', 'LIKE', '%' + searchterm + '%' ],
+      [ 'orWhere', 'name', 'LIKE', '%' + searchterm + '%' ],
+      [ 'orWhere', 'name_original', 'LIKE', '%' + searchterm + '%' ],
+      [ 'orWhere', 'casting_id', '=', searchterm ]
     ]
     ])
   }
@@ -38,12 +38,12 @@ handler.prototype.refreshList = function () {
   if (status) {
     if (status == '1') { // ACTIVE
       data.query.push([ 'where', [
-          [ 'where', 'status', '=', 1 ]
+        [ 'where', 'status', '=', 1 ]
       ]
       ])
     } else if (status == '0') { // PENDING REVIEW
       data.query.push([ 'where', [
-          [ 'where', 'status', '=', 0 ]
+        [ 'where', 'status', '=', 0 ]
       ]
       ])
     } else { // ALL

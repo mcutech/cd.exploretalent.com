@@ -52,17 +52,17 @@ handler.prototype.getProjectInfo = function (e) {
     .then(function () {
       self.core.service.databind('.find-talents-wrapper', self.project)
     })
-        .then(function () {
-            // to check role timestamp
-            // let timestamp = $('.role-expiry').text();
-            // console.log('timestamp', timestamp);
-          $('.role-expiry').each(function (index, value) {
-            let $parent = $(this).parents('li')
-            if ($(this).is(':contains("N/A")')) {
-              $parent.find('.hide-if-null').hide()
-            }
-          })
-        })
+    .then(function () {
+      // to check role timestamp
+      // let timestamp = $('.role-expiry').text();
+      // console.log('timestamp', timestamp);
+      $('.role-expiry').each(function (index, value) {
+        let $parent = $(this).parents('li')
+        if ($(this).is(':contains("N/A")')) {
+          $parent.find('.hide-if-null').hide()
+        }
+      })
+    })
 }
 
 handler.prototype.getRoleStats = function (role) {
@@ -73,26 +73,26 @@ handler.prototype.getRoleStats = function (role) {
 
     return role.getSchedulesCount(2)
   })
-  .then(function (total) {
-    role.callbacks = { total: total }
+    .then(function (total) {
+      role.callbacks = { total: total }
 
-    return role.getSchedulesCount(3)
-  })
-  .then(function (total) {
-    role.booked = { total: total }
+      return role.getSchedulesCount(3)
+    })
+    .then(function (total) {
+      role.booked = { total: total }
 
-    let data = {
-      query: [
-        [ 'where', 'bam_role_id', '=', role.role_id ]
-      ]
-    }
+      let data = {
+        query: [
+          [ 'where', 'bam_role_id', '=', role.role_id ]
+        ]
+      }
 
-    return self.core.resource.campaign.get(data)
-  })
-  .then(function (res) {
-    role.campaign = _.first(res.data)
-    deferred.resolve()
-  })
+      return self.core.resource.campaign.get(data)
+    })
+    .then(function (res) {
+      role.campaign = _.first(res.data)
+      deferred.resolve()
+    })
 
   return deferred.promise()
 }

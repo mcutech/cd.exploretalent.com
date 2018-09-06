@@ -14,7 +14,7 @@ function handler (core, user, projectId, roleId) {
   self.conversations = {
     currentConversationId: false,
     loadingMessages: false,
-    personal : [],
+    personal: [],
     job: [],
     messages: []
   }
@@ -26,10 +26,10 @@ handler.prototype.showConversation = (e) => {
   self.conversations.currentConversationId = id
   self.conversations.loadingMessages = true
   self.updateDataBind()
-  self.core.resource.message.get({conversationId: id})
+  self.core.resource.message.get({ conversationId: id })
     .then((res) => {
       for (let i = 0, len = res.data.length; i < len; i++) {
-       res.data[i].mine = res.data[i].user_id == self.me.id
+        res.data[i].mine = res.data[i].user_id == self.me.id
       }
       res.data = res.data.reverse()
       self.conversations.messages = res
@@ -37,7 +37,7 @@ handler.prototype.showConversation = (e) => {
       self.updateDataBind()
 
       // Mark as READ
-      self.core.resource.conversation.patch({conversationId: id, read: 1})
+      self.core.resource.conversation.patch({ conversationId: id, read: 1 })
         .then((res) => {
           for (let i = 0, len = self.conversations[self.type].data.length; i < len; i++) {
             if (self.conversations[self.type].data[i].id == id) {
@@ -60,17 +60,17 @@ handler.prototype.checkSendMessage = (e) => {
       conversationId: id,
       body: element.val()
     })
-    .then((res) => {
-      res.mine = true
-      self.conversations.messages.total += 1
-      self.conversations.messages.data.push(res)
-      self.updateDataBind()
-      element.attr('disabled', false)
-      element.val('')
-      element.focus()
-    }, (err) => {
-      element.attr('disabled', false)
-    })
+      .then((res) => {
+        res.mine = true
+        self.conversations.messages.total += 1
+        self.conversations.messages.data.push(res)
+        self.updateDataBind()
+        element.attr('disabled', false)
+        element.val('')
+        element.focus()
+      }, (err) => {
+        element.attr('disabled', false)
+      })
   }
 }
 
@@ -114,14 +114,14 @@ handler.prototype.refreshInbox = (e) => {
   }
 
   let data = {
-    query : [
-      ['whereNull', 'schedule_id'],
+    query: [
+      ['whereNull', 'schedule_id']
     ]
   }
 
   if (self.jobId) {
     data = {
-      query : [
+      query: [
         ['join', 'schedules', 'schedules.id', 'schedule_id'],
         ['where', 'schedule_id', self.jobId],
         ['with', 'schedule']
@@ -159,7 +159,7 @@ handler.prototype.refreshInbox = (e) => {
                 }
 
                 // ?????
-                res.data[i].location = user.bam_talentci.city + ', ' +  user.bam_talentci.state
+                res.data[i].location = user.bam_talentci.city + ', ' + user.bam_talentci.state
 
                 res.data[i].name.push(user.bam_talentci.fname + ' ' + user.bam_talentci.lname)
               } else if (user.bam_cd_user_id > 0) {
@@ -186,7 +186,7 @@ handler.prototype.refreshInbox = (e) => {
 handler.prototype.refreshRoles = (e) => {
   self.projectId = $('#projects-list').val()
   let data = {
-    projectId: self.projectId,
+    projectId: self.projectId
   }
 
   self.core.service.databind('#roles-list', [])

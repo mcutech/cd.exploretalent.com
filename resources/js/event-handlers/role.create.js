@@ -189,7 +189,6 @@ handler.prototype.saveNewRole = function (e) {
 
   // if(expirationValidation){
   if (self.core.service.form.validate('#create-role-div')) { // for required text fields
-
     if ($('input[type="checkbox"][name="gender"]:checked').length < 1) {
       $('.gender-error-required').fadeIn().delay(3000).fadeOut()
       $('.gender-error-required').focus()
@@ -218,13 +217,13 @@ handler.prototype.saveNewRole = function (e) {
             $('#loading_role').addClass('fa fa-spin fa-spinner')
           }
           if (buttonId == 'save-role-btn') { // link to project overview page
-            self.core.resource.project.patch({projectId: self.projectId, status: 0})
+            self.core.resource.project.patch({ projectId: self.projectId, status: 0 })
               .then(function (res) {
                 $('#loading_role_match').addClass('fa fa-spin fa-spinner')
                 window.location = '/projects/' + self.projectId + '/roles/' + role.role_id + '/find-talents'
               })
           } else { // 'save-and-add-role-btn' just reloads page
-            self.core.resource.project.patch({projectId: self.projectId, status: 0})
+            self.core.resource.project.patch({ projectId: self.projectId, status: 0 })
               .then(function (res) {
                 setTimeout(function () {
                   location.reload()

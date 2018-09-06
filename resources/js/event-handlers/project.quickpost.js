@@ -35,8 +35,8 @@ handler.prototype.addToBooking = function () {
     self.core.resource.quickpost.post(form)
       .then(function (result) {
         $('#success-div').removeClass('hide')
-        $("input[name='name']").val('')
-        $("textarea[name='body']").val('')
+        $('input[name=\'name\']').val('')
+        $('textarea[name=\'body\']').val('')
         self.refresh()
       })
   }

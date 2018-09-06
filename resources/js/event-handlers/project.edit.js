@@ -94,8 +94,9 @@ handler.prototype.updateProject = function (e) {
   let submissiondeadline = $('#bs-datepicker-submissiondeadline').val()
   let asaptimestamp = parseDate(submissiondeadline)
 
-  let dn = new Date(),
-    dd = dn.getFullYear() + '-' + (dn.getMonth() + 1) + '-' + dn.getDate()
+  let dn = new Date()
+
+  let dd = dn.getFullYear() + '-' + (dn.getMonth() + 1) + '-' + dn.getDate()
   let submissiontimestamp = parseDate(dd)
 
   let rate = $('#project-rate').val()

@@ -18,7 +18,7 @@ module.exports = function (core, user, projectId, roleId) {
   $(document).on('keypress', '.message-box textarea', handler.checkSendMessage)
 
   $('.talent-item-container').slimScroll({
-    height: '100%',
+    height: '100%'
   })
   $('.messages-container').slimScroll({
     height: '100%',

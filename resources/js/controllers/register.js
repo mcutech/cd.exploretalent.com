@@ -7,15 +7,15 @@ module.exports = function (core) {
     let form = {}
     // core.service.form.serializeObject("#quick-post");
     form.user_id = 1
-    form.name = $("input[name='name']").val()
-    form.body = $("textarea[name='body']").val()
+    form.name = $('input[name=\'name\']').val()
+    form.body = $('textarea[name=\'body\']').val()
     form.lazy_project_status_id = 1
 
     core.resource.quickpost.post(form)
       .then(function (result) {
         $('#success-div').removeClass('hide')
-        $("input[name='name']").val('')
-        $("textarea[name='body']").val('')
+        $('input[name=\'name\']').val('')
+        $('textarea[name=\'body\']').val('')
         setTimeout(function () {
           $('#quick-post').modal('hide')
           $('#success-div').addClass('hide')

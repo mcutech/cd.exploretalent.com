@@ -1,7 +1,7 @@
 module.exports = function (core, user, projectId, roleId) {
   let handler = require('../event-handlers/role.find-talents.js')(core, user, projectId, roleId)
 
-  setTimeout(function(){
+  setTimeout(function () {
     $('#search-by-location').click()
   }, 500)
 

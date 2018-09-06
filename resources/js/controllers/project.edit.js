@@ -43,16 +43,16 @@ module.exports = function (core, user, projectId) {
 
   function dontAllowLetters (element) {
     element.keydown(function (e) {
-        // Allow: backspace, delete, tab, escape, and enter
+      // Allow: backspace, delete, tab, escape, and enter
       if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110]) !== -1 ||
-             // Allow: Ctrl+A, Command+A
+      // Allow: Ctrl+A, Command+A
             (e.keyCode == 65 && (e.ctrlKey === true || e.metaKey === true)) ||
-             // Allow: home, end, left, right, down, up
+      // Allow: home, end, left, right, down, up
             (e.keyCode >= 35 && e.keyCode <= 40)) {
-                 // let it happen, don't do anything
+        // let it happen, don't do anything
         return
       }
-        // Ensure that it is a number and stop the keypress
+      // Ensure that it is a number and stop the keypress
       if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
         e.preventDefault()
       }
@@ -103,20 +103,20 @@ module.exports = function (core, user, projectId) {
     if (this.files && this.files[0]) {
       $('#default-image-preview').hide()
       $('#remove-button').show()
-        // if(this.files[0].size > 528385){
+      // if(this.files[0].size > 528385){
 
-        //   alert("Image Size should not be greater than 500Kb");
-        //   $("#preview").attr("src","blank");
-        //   $('#main-casting-image-div').removeClass('uploaded');
-        //   return false;
-        // }
+      //   alert("Image Size should not be greater than 500Kb");
+      //   $("#preview").attr("src","blank");
+      //   $('#main-casting-image-div').removeClass('uploaded');
+      //   return false;
+      // }
       if (this.files[0].type.indexOf('image') == -1) {
         alert('Invalid Type')
         $('#preview').attr('src', 'blank')
         $('#main-casting-image-div').removeClass('uploaded')
         return false
       }
-        // console.log("render");
+      // console.log("render");
       readURL(this)
     }
   })

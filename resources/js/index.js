@@ -35,7 +35,7 @@ jscore.run(function (core) {
   function init (user) {
     core.service.rest.settings.statusCode = {
       401: function () {
-        if (window.location.pathname !== '/login' && window.location.pathname !== '/register' && window.location.pathname !== '/forgot-password' && window.location.pathname !== '/reset-password' && window.location.pathname !== '/error') {
+        if (window.location.pathname !== '/' && window.location.pathname !== '/login' && window.location.pathname !== '/register' && window.location.pathname !== '/forgot-password' && window.location.pathname !== '/reset-password' && window.location.pathname !== '/error') {
           window.location.href = '/login?redirect=' + encodeURIComponent(window.location)
         }
       }
@@ -76,7 +76,7 @@ jscore.run(function (core) {
     // create deep nested property for skins to avoid variable override in templates
     core.vars = {
       skins: {},
-      getFullName: function() { return 'Loading...' }
+      getFullName: function () { return 'Loading...' }
     }
 
     // Check which version of the skin we want?
@@ -95,6 +95,7 @@ jscore.run(function (core) {
     core.service.router
 
     // add routes here
+      .add('/', 'login')
       .add('/login', 'login')
       .add('/register', 'register')
       .add('/settings', 'settings')

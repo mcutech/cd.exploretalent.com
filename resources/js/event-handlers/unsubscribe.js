@@ -59,30 +59,30 @@ handler.prototype.saveChanges = function () {
   }
 
   self.core.resource.cd_user_subscription.get(data)
-  .then(function (res) {
-    if (res.total == 0) {
-      let data = {
-        bam_cd_user_id: self.user.user_id,
-        sms: $('#emailchck').is(':checked') ? 0 : 1,
-        email: $('#smschck').is(':checked') ? 0 : 1
-      }
-      self.core.resource.cd_user_subscription.post(data)
-      .then(function (res) {
-        window.location = '/'
-      })
-    } else {
-      let data = {
-        subscriptionId: res.data[0].id,
-        sms: $('#emailchck').is(':checked') ? 0 : 1,
-        email: $('#smschck').is(':checked') ? 0 : 1
-      }
+    .then(function (res) {
+      if (res.total == 0) {
+        let data = {
+          bam_cd_user_id: self.user.user_id,
+          sms: $('#emailchck').is(':checked') ? 0 : 1,
+          email: $('#smschck').is(':checked') ? 0 : 1
+        }
+        self.core.resource.cd_user_subscription.post(data)
+          .then(function (res) {
+            window.location = '/'
+          })
+      } else {
+        let data = {
+          subscriptionId: res.data[0].id,
+          sms: $('#emailchck').is(':checked') ? 0 : 1,
+          email: $('#smschck').is(':checked') ? 0 : 1
+        }
 
-      self.core.resource.cd_user_subscription.patch(data)
-      .then(function (res) {
-        window.location = '/'
-      })
-    }
-  })
+        self.core.resource.cd_user_subscription.patch(data)
+          .then(function (res) {
+            window.location = '/'
+          })
+      }
+    })
 
   let user_option_data = {
     query: [

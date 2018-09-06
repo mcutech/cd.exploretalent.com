@@ -17,8 +17,8 @@ module.exports = function (core, user) {
   let el2 = $('#lng-lat')
 
   let addMarker = function (location, map, options) {
-    let marker = new google.Marker($.extend({map: map, position: location}, options))
-      // listen to dragend event
+    let marker = new google.Marker($.extend({ map: map, position: location }, options))
+    // listen to dragend event
     marker.addListener('dragend', function (event) {
       location.LAT = event.latLng.lat()
       location.LNG = event.latLng.lng()
@@ -63,9 +63,9 @@ module.exports = function (core, user) {
         updateCircleRadius(circles[index])
 
         let range = calculateRange(
-                      place.lng,
-                      place.lat,
-                      $('#place-miles-in').val())
+          place.lng,
+          place.lat,
+          $('#place-miles-in').val())
         if (lngLat.length == 0) {
           lngLat.push(range)
         } else {
@@ -90,10 +90,10 @@ module.exports = function (core, user) {
     if (DISTANCE_UNIT == 'm') r = 3963.1676
     else r = 6378.1
 
-      // new latitude in degrees
+    // new latitude in degrees
     let newLat = GeoPoint.radiansToDegrees(Math.asin(Math.sin(GeoPoint.degreesToRadians(lat)) * Math.cos(distance / r) + Math.cos(GeoPoint.degreesToRadians(lat)) * Math.sin(distance / r) * Math.cos(GeoPoint.degreesToRadians(bearing))))
 
-      // new longitude in degrees
+    // new longitude in degrees
     let newLng = GeoPoint.radiansToDegrees(GeoPoint.degreesToRadians(lng) + Math.atan2(Math.sin(GeoPoint.degreesToRadians(bearing)) * Math.sin(distance / r) * Math.cos(GeoPoint.degreesToRadians(lat)), Math.cos(distance / r) - Math.sin(GeoPoint.degreesToRadians(lat)) * Math.sin(GeoPoint.degreesToRadians(newLat))))
 
     return {
@@ -145,7 +145,7 @@ module.exports = function (core, user) {
 
     addCircle(opt.center, 8046.72, map)
 
-    placesLngLat.push({lng: location.LNG, lat: location.LAT})
+    placesLngLat.push({ lng: location.LNG, lat: location.LAT })
 
     el2.val(JSON.stringify(lngLat))
 
@@ -184,9 +184,9 @@ module.exports = function (core, user) {
         }
 
         let range = calculateRange(
-                      place.geometry.location.lng(),
-                      place.geometry.location.lat(),
-                      $('#place-miles-in').val())
+          place.geometry.location.lng(),
+          place.geometry.location.lat(),
+          $('#place-miles-in').val())
         if (lngLat.length == 0) {
           lngLat.push(range)
         } else {
@@ -198,7 +198,7 @@ module.exports = function (core, user) {
           lngLat[0].lat.min = _.min([lngLat[0].lat.min, range.lat.min])
         }
 
-        placesLngLat.push({lng: place.geometry.location.lng(), lat: place.geometry.location.lat()})
+        placesLngLat.push({ lng: place.geometry.location.lng(), lat: place.geometry.location.lat() })
 
         addCircle(place.geometry.location, radius(), map)
 

@@ -23,11 +23,11 @@ module.exports = function () {
 
         // create favorite
         self.core.resource.favorite_talent.post(data)
-        .then(function (res) {
+          .then(function (res) {
           // change color
-          if ($this.hasClass('producers-pick-btn')) { $this.removeClass('btn-outline').addClass('producers-pick') } else { $this.removeClass('btn-outline').addClass('btn-warning') }
-          $this.find('.favorite-button-text').text('Added to Favorites')
-        })
+            if ($this.hasClass('producers-pick-btn')) { $this.removeClass('btn-outline').addClass('producers-pick') } else { $this.removeClass('btn-outline').addClass('btn-warning') }
+            $this.find('.favorite-button-text').text('Added to Favorites')
+          })
       }
       // already favorite, remove favorite!
       else if ($this.hasClass('btn-warning') || $this.hasClass('producers-pick')) {
@@ -38,11 +38,11 @@ module.exports = function () {
 
         // remove favorite
         self.core.resource.favorite_talent.delete(data)
-        .then(function (res) {
+          .then(function (res) {
           // change color
-          if ($this.hasClass('producers-pick')) { $this.removeClass('producers-pick').addClass('btn-outline') } else { $this.removeClass('btn-warning').addClass('btn-outline') }
-          $this.find('.favorite-button-text').text('Add to Favorites')
-        })
+            if ($this.hasClass('producers-pick')) { $this.removeClass('producers-pick').addClass('btn-outline') } else { $this.removeClass('btn-warning').addClass('btn-outline') }
+            $this.find('.favorite-button-text').text('Add to Favorites')
+          })
       }
     }
   })

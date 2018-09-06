@@ -39,7 +39,7 @@ handler.prototype.getProjectInfo = function () {
   self.core.resource.project.get(data)
     .then(function (res) {
       self.project = res
-            // console.log(self.project);
+      // console.log(self.project);
       self.core.service.databind('.page-header', self.project)
       self.core.service.databind('#project-details', self.project)
       self.core.service.databind('#roles-list', { data: self.project.bam_roles })
@@ -53,7 +53,7 @@ handler.prototype.getProjectInfo = function () {
       let asap = self.project.asap
       let roleExpiryTimestamp = self.project.role.expiration_timestamp
 
-            // if role is expired
+      // if role is expired
       if (current_timestamp >= asap || current_timestamp >= roleExpiryTimestamp) {
         $('#invitetoauditionbutton').hide()
         $('#role-active').hide()
@@ -91,7 +91,7 @@ handler.prototype.refreshRole = function () {
     })
 
   // share like it list
-  let link = window.location.origin + '/login?' + $.param({ access_token: localStorage.getItem('access_token'), /* refresh_token : localStorage.getItem('refresh_token'), */ redirect: encodeURIComponent(window.location.href.replace(/like-it-list/, '')) + 'public-like-it-list'})
+  let link = window.location.origin + '/login?' + $.param({ access_token: localStorage.getItem('access_token'), /* refresh_token : localStorage.getItem('refresh_token'), */ redirect: encodeURIComponent(window.location.href.replace(/like-it-list/, '')) + 'public-like-it-list' })
   $('#share-like-list-link').val(link)
 
   self.findMatches()
@@ -239,10 +239,10 @@ handler.prototype.getFilters2 = function (data) {
           data.query.push([ 'where', subquery ])
         } else {
           data.query.push([ 'where', [
-              [ 'where', 'city', '=', form.markets ],
-              [ 'orWhere', 'city1', '=', form.markets ],
-              [ 'orWhere', 'city2', '=', form.markets ],
-              [ 'orWhere', 'city3', '=', form.markets ]
+            [ 'where', 'city', '=', form.markets ],
+            [ 'orWhere', 'city1', '=', form.markets ],
+            [ 'orWhere', 'city2', '=', form.markets ],
+            [ 'orWhere', 'city3', '=', form.markets ]
           ]
           ])
         }
@@ -317,14 +317,14 @@ handler.prototype.getFilters2 = function (data) {
       } else {
         if (form.ethnicity == 'African') {
           data.query.push(['where', [
-              [ 'where', 'ethnicity', '=', 'African' ],
-              [ 'orWhere', 'ethnicity', '=', 'African American' ]
+            [ 'where', 'ethnicity', '=', 'African' ],
+            [ 'orWhere', 'ethnicity', '=', 'African American' ]
           ]
           ])
         } else if (form.ethnicity == 'African American') {
           data.query.push(['where', [
-              [ 'where', 'ethnicity', '=', 'African American' ],
-              [ 'orWhere', 'ethnicity', '=', 'African' ]
+            [ 'where', 'ethnicity', '=', 'African American' ],
+            [ 'orWhere', 'ethnicity', '=', 'African' ]
           ]
           ])
         } else {
@@ -346,18 +346,18 @@ handler.prototype.getFilters2 = function (data) {
     if (form.union) {
       if (form.union == '1') {
         data.query.push([ 'where', [
-            [ 'where', 'union_aea', '=', 'Yes' ],
-            [ 'orWhere', 'union_aftra', '=', 'Yes' ],
-            [ 'orWhere', 'union_other', '=', 'Yes' ],
-            [ 'orWhere', 'union_sag', '=', 'Yes' ]
+          [ 'where', 'union_aea', '=', 'Yes' ],
+          [ 'orWhere', 'union_aftra', '=', 'Yes' ],
+          [ 'orWhere', 'union_other', '=', 'Yes' ],
+          [ 'orWhere', 'union_sag', '=', 'Yes' ]
         ]
         ])
       } else {
         data.query.push([ 'where', [
-            [ 'where', 'union_aea', '=', 'No' ],
-            [ 'orWhere', 'union_aftra', '=', 'No' ],
-            [ 'orWhere', 'union_other', '=', 'No' ],
-            [ 'orWhere', 'union_sag', '=', 'No' ]
+          [ 'where', 'union_aea', '=', 'No' ],
+          [ 'orWhere', 'union_aftra', '=', 'No' ],
+          [ 'orWhere', 'union_other', '=', 'No' ],
+          [ 'orWhere', 'union_sag', '=', 'No' ]
         ]
         ])
       }
@@ -381,30 +381,30 @@ handler.prototype.refreshInvitation = function () {
   }
 
   self.core.resource.campaign.get(data)
-  .then(function (res) {
-    let campaign = _.first(res.data)
-    if (campaign && (campaign.status > 0 || campaign.status == 0)) {
-      $('#invitetoaudition-text')
-        .html('<span class="text-muted">You have already sent an invitation on</span> ' + campaign.updated_at +
+    .then(function (res) {
+      let campaign = _.first(res.data)
+      if (campaign && (campaign.status > 0 || campaign.status == 0)) {
+        $('#invitetoaudition-text')
+          .html('<span class="text-muted">You have already sent an invitation on</span> ' + campaign.updated_at +
             '<a href="/projects/' + self.project.role.casting_id + '/roles/' + self.project.role.role_id + '/worksheet" class="btn-link margin-left-small"><i class="fa fa-pencil"></i> Manage Here</a>')
 
-      $('#invitetoauditionbutton').attr('disabled', true)
-    } else {
-      let role = _.find(self.project.bam_roles, function (r) {
-        return r.role_id == $('#roles-list').val()
-      })
-
-      role.getLikeItListCount(self.xorigins)
-        .then(function (count) {
-          role.likeitlist = { total: count }
-
-          self.core.service.databind('#invite-to-audition-modal', role)
+        $('#invitetoauditionbutton').attr('disabled', true)
+      } else {
+        let role = _.find(self.project.bam_roles, function (r) {
+          return r.role_id == $('#roles-list').val()
         })
 
-      $('#invitetoaudition-text').text('')
-      $('#invitetoauditionbutton').attr('disabled', false)
-    }
-  })
+        role.getLikeItListCount(self.xorigins)
+          .then(function (count) {
+            role.likeitlist = { total: count }
+
+            self.core.service.databind('#invite-to-audition-modal', role)
+          })
+
+        $('#invitetoaudition-text').text('')
+        $('#invitetoauditionbutton').attr('disabled', false)
+      }
+    })
 }
 
 handler.prototype.sendInvites = function () {
@@ -505,10 +505,10 @@ handler.prototype.countCheckedTalents = function () {
 handler.prototype.removeAllLikeItList = function () {
   if (confirm('Are you sure you want to remove all Like It List entries?')) {
     self.project.role.deleteLikeItList()
-    .then(function () {
-      alert('Like It List entries removed.')
-      self.getProjectInfo()
-    })
+      .then(function () {
+        alert('Like It List entries removed.')
+        self.getProjectInfo()
+      })
   }
 }
 

@@ -28,8 +28,8 @@ handler.prototype.addNewFeedback = function () {
       let reader = new FileReader()
       reader.readAsText(attachedFile)
       reader.onload = function (e) {
-              // browser completed reading file - display it
-              // console.log(e.target.result);
+        // browser completed reading file - display it
+        // console.log(e.target.result);
       }
     }
 
@@ -59,10 +59,10 @@ handler.prototype.addNewFeedback = function () {
         }
       }
     })
-    .then(function (res) {
-      $('#add-feedback-modal').modal('toggle') // close modal
-      self.getAllFeedbacks()
-    })
+      .then(function (res) {
+        $('#add-feedback-modal').modal('toggle') // close modal
+        self.getAllFeedbacks()
+      })
   }
 }
 

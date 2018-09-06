@@ -203,10 +203,10 @@ handler.prototype.getFilters = function () {
         data.query.push([ 'where', subquery ])
       } else {
         data.query.push([ 'where', [
-            [ 'where', 'city', '=', form.markets ],
-            [ 'orWhere', 'city1', '=', form.markets ],
-            [ 'orWhere', 'city2', '=', form.markets ],
-            [ 'orWhere', 'city3', '=', form.markets ]
+          [ 'where', 'city', '=', form.markets ],
+          [ 'orWhere', 'city1', '=', form.markets ],
+          [ 'orWhere', 'city2', '=', form.markets ],
+          [ 'orWhere', 'city3', '=', form.markets ]
         ]
         ])
       }
@@ -232,14 +232,14 @@ handler.prototype.getFilters = function () {
     } else {
       // data.query.push([ 'where', 'dobyyyy', '<=', new Date().getFullYear() - parseInt(form.age_min) ]);
       data.query.push([ 'where', [
-          [ 'where', 'dobyyyy', '<', new Date().getFullYear() - parseInt(form.age_min) ],
+        [ 'where', 'dobyyyy', '<', new Date().getFullYear() - parseInt(form.age_min) ],
         [ 'orWhere', [
-            [ 'where', 'dobyyyy', '=', new Date().getFullYear() - parseInt(form.age_min) ],
+          [ 'where', 'dobyyyy', '=', new Date().getFullYear() - parseInt(form.age_min) ],
           [ 'where', [
-              [ 'where', 'dobmm', '<', new Date().getMonth() + 1 ],
+            [ 'where', 'dobmm', '<', new Date().getMonth() + 1 ],
             [ 'orWhere', [
-                [ 'where', 'dobmm', '=', new Date().getMonth() + 1 ],
-                [ 'where', 'dobdd', '<=', new Date().getDate() ]
+              [ 'where', 'dobmm', '=', new Date().getMonth() + 1 ],
+              [ 'where', 'dobdd', '<=', new Date().getDate() ]
             ]]
           ]]
         ]]
@@ -303,14 +303,14 @@ handler.prototype.getFilters = function () {
     } else {
       if (form.ethnicity == 'African') {
         data.query.push(['where', [
-            [ 'where', 'ethnicity', '=', 'African' ],
-            [ 'orWhere', 'ethnicity', '=', 'African American' ]
+          [ 'where', 'ethnicity', '=', 'African' ],
+          [ 'orWhere', 'ethnicity', '=', 'African American' ]
         ]
         ])
       } else if (form.ethnicity == 'African American') {
         data.query.push(['where', [
-            [ 'where', 'ethnicity', '=', 'African American' ],
-            [ 'orWhere', 'ethnicity', '=', 'African' ]
+          [ 'where', 'ethnicity', '=', 'African American' ],
+          [ 'orWhere', 'ethnicity', '=', 'African' ]
         ]
         ])
       } else {
@@ -332,18 +332,18 @@ handler.prototype.getFilters = function () {
   if (form.union) {
     if (form.union == '1') {
       data.query.push([ 'where', [
-          [ 'where', 'union_aea', '=', 'Yes' ],
-          [ 'orWhere', 'union_aftra', '=', 'Yes' ],
-          [ 'orWhere', 'union_other', '=', 'Yes' ],
-          [ 'orWhere', 'union_sag', '=', 'Yes' ]
+        [ 'where', 'union_aea', '=', 'Yes' ],
+        [ 'orWhere', 'union_aftra', '=', 'Yes' ],
+        [ 'orWhere', 'union_other', '=', 'Yes' ],
+        [ 'orWhere', 'union_sag', '=', 'Yes' ]
       ]
       ])
     } else {
       data.query.push([ 'where', [
-          [ 'where', 'union_aea', '=', 'No' ],
-          [ 'orWhere', 'union_aftra', '=', 'No' ],
-          [ 'orWhere', 'union_other', '=', 'No' ],
-          [ 'orWhere', 'union_sag', '=', 'No' ]
+        [ 'where', 'union_aea', '=', 'No' ],
+        [ 'orWhere', 'union_aftra', '=', 'No' ],
+        [ 'orWhere', 'union_other', '=', 'No' ],
+        [ 'orWhere', 'union_sag', '=', 'No' ]
       ]
       ])
     }

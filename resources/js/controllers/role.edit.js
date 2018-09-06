@@ -59,8 +59,8 @@ module.exports = function (core, user, projectId, roleId) {
       feet2 = '< 2'
     }
 
-    $('#height-min-span').html(feet1 + "' " + inches1 + '"')
-    $('#height-max-span').html(feet2 + "' " + inches2 + '"')
+    $('#height-min-span').html(feet1 + '\' ' + inches1 + '"')
+    $('#height-max-span').html(feet2 + '\' ' + inches2 + '"')
 
     if (ui.values[0] == '23') {
       ui.values[0] == '22'
@@ -114,7 +114,7 @@ module.exports = function (core, user, projectId, roleId) {
   })
 
   // for checkbox values convert to 1 (if checked) and 0 (if not checked)
-  $("input[type='checkbox']").change(function () {
+  $('input[type=\'checkbox\']').change(function () {
     this.value = (Number(this.checked))
   })
 
@@ -138,7 +138,7 @@ module.exports = function (core, user, projectId, roleId) {
     $('input[name="height_max"]').val($(this).val())
   })
 
-    // set date for shoot, audition and expiry of roles
+  // set date for shoot, audition and expiry of roles
   $('.calendar-input').mask('9999-99-99')
 
   $('#datepicker-role-expiryDate').datepicker({
@@ -165,16 +165,16 @@ module.exports = function (core, user, projectId, roleId) {
 
   function dontAllowLetters (element) {
     element.keydown(function (e) {
-        // Allow: backspace, delete, tab, escape, and enter
+      // Allow: backspace, delete, tab, escape, and enter
       if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110]) !== -1 ||
-             // Allow: Ctrl+A, Command+A
+      // Allow: Ctrl+A, Command+A
             (e.keyCode == 65 && (e.ctrlKey === true || e.metaKey === true)) ||
-             // Allow: home, end, left, right, down, up
+      // Allow: home, end, left, right, down, up
             (e.keyCode >= 35 && e.keyCode <= 40)) {
-                 // let it happen, don't do anything
+        // let it happen, don't do anything
         return
       }
-        // Ensure that it is a number and stop the keypress
+      // Ensure that it is a number and stop the keypress
       if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
         e.preventDefault()
       }

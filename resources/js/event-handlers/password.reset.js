@@ -10,8 +10,9 @@ function handler (core, user) {
 }
 
 handler.prototype.resetPassword = function () {
-  let pass1 = $('#enter-password').val(),
-    pass2 = $('#confirm-password').val()
+  let pass1 = $('#enter-password').val()
+
+  let pass2 = $('#confirm-password').val()
 
   if (!pass1 || !pass2 || pass1 != pass2) {
     $('#invalid-pass').fadeIn().delay(5000).fadeOut()
@@ -22,12 +23,12 @@ handler.prototype.resetPassword = function () {
     }
 
     core.resource.cd_user.patch(data)
-    .then(function (result) {
-      $('#success-pass').fadeIn().delay(5000).fadeOut()
-      setTimeout(function () {
-        window.location = '/projects'
+      .then(function (result) {
+        $('#success-pass').fadeIn().delay(5000).fadeOut()
+        setTimeout(function () {
+          window.location = '/projects'
+        })
       })
-    })
     // we don't this since user already logged in
     /* .then(function(result) {
       return core.service.rest.post(core.config.api.base.replace('/v1', '') + '/oauth/access_token', {

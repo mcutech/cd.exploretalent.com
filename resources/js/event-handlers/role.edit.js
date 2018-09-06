@@ -86,14 +86,14 @@ handler.prototype.updateRole = function () {
   if (!expiryDate) {
     let castingDataId = {
       query: [
-                ['where', 'casting_id', casting_id ]
+        ['where', 'casting_id', casting_id ]
       ]
     }
     self.core.resource.project.get(castingDataId)
-            .then(function (res) {
-              asap = res.data[0].asap
-              console.log('ASAP:', res.data[0].asap)
-            })
+      .then(function (res) {
+        asap = res.data[0].asap
+        console.log('ASAP:', res.data[0].asap)
+      })
   }
   // to make sure all previous checked checkboxes are still saved
   let checkedCheckboxes = $('input[type="checkbox"]:checked')
@@ -210,18 +210,18 @@ handler.prototype.updateRole = function () {
       }
 
       return self.core.resource.job.patch(data)
-      .then(function (res) {
-        $('.role-updated-success').fadeIn()
-
-        self.core.resource.project.patch({projectId: self.projectId, status: 0})
         .then(function (res) {
-          console.log(res)
-        })
+          $('.role-updated-success').fadeIn()
 
-        setTimeout(function () {
-          self.getRoleInfo()
-        }, 3000)
-      })
+          self.core.resource.project.patch({ projectId: self.projectId, status: 0 })
+            .then(function (res) {
+              console.log(res)
+            })
+
+          setTimeout(function () {
+            self.getRoleInfo()
+          }, 3000)
+        })
     }
   }
 }

@@ -8,9 +8,9 @@ function handler (core, user) {
   self.userOption()
 
   self.core.resource.cd_user_campaign_subscription.get()
-        .then(function (res) {
-          console.log(res)
-        })
+    .then(function (res) {
+      console.log(res)
+    })
 }
 
 handler.prototype.userOption = function () {
@@ -58,12 +58,12 @@ handler.prototype.refresh = function () {
       }
 
       self.core.resource.cd_user_campaign_subscription.get(data)
-      .then(function (res2) {
-        console.log('RES2')
-        console.log(res2)
-        res.cd_user_campaign_subscription = res2
-        self.core.service.databind('#settings', res)
-      })
+        .then(function (res2) {
+          console.log('RES2')
+          console.log(res2)
+          res.cd_user_campaign_subscription = res2
+          self.core.service.databind('#settings', res)
+        })
     })
 }
 
@@ -88,20 +88,20 @@ handler.prototype.updatePassword = function (e) {
       delete form.conf_new_password
 
       self.core.resource.cd_user.patch(form)
-                    .then(function (res) {
-                        // saved successfully
-                      $('#update-password-success').removeClass('hide')
+        .then(function (res) {
+          // saved successfully
+          $('#update-password-success').removeClass('hide')
 
-                      $("input[name='new_password']").val('')
-                      $("input[name='conf_new_password']").val('')
+          $('input[name=\'new_password\']').val('')
+          $('input[name=\'conf_new_password\']').val('')
 
-                      setTimeout(function () {
-                        $('#settings-modal').modal('hide')
-                        $('#update-password-success').addClass('hide')
-                      }, 500)
-                    }, function (err) {
-                    // there's an error when trying to update password
-                    })
+          setTimeout(function () {
+            $('#settings-modal').modal('hide')
+            $('#update-password-success').addClass('hide')
+          }, 500)
+        }, function (err) {
+          // there's an error when trying to update password
+        })
     } else {
       $('#update-password-fail').removeClass('hide')
     }
@@ -121,7 +121,7 @@ handler.prototype.updateUser = function (e) {
         console.log(res)
         // update cd user subscription
         let subscription_form = {}
-        self.core.resource.cd_user_subscription.get({bam_cd_user_id: self.user.bam_cd_user_id})
+        self.core.resource.cd_user_subscription.get({ bam_cd_user_id: self.user.bam_cd_user_id })
           .then(function (res) {
             console.log(res)
 
@@ -193,7 +193,7 @@ handler.prototype.updateUser = function (e) {
           userOption_tsn_form.OK = 0
         }
 
-        self.core.resource.cd_user_campaign_subscription.get({bam_cd_user_id: self.user.bam_cd_user_id})
+        self.core.resource.cd_user_campaign_subscription.get({ bam_cd_user_id: self.user.bam_cd_user_id })
           .then(function (res) {
             console.log('does the campaign exist')
             console.log(res)
@@ -203,28 +203,28 @@ handler.prototype.updateUser = function (e) {
 
             if (res.total > 0) {
               self.core.resource.cd_user_campaign_subscription.patch(userOption_trn_form)
-                      .then(function (res) {
-                        console.log('Patching TRN')
-                        console.log(res)
-                      })
+                .then(function (res) {
+                  console.log('Patching TRN')
+                  console.log(res)
+                })
 
               self.core.resource.cd_user_campaign_subscription.patch(userOption_tsn_form)
-                      .then(function (res) {
-                        console.log('Patching TSN')
-                        console.log(res)
-                      })
+                .then(function (res) {
+                  console.log('Patching TSN')
+                  console.log(res)
+                })
             } else {
               self.core.resource.cd_user_campaign_subscription.post(userOption_trn_form)
-                      .then(function (res) {
-                        console.log('Posting TRN')
-                        console.log(res)
-                      })
+                .then(function (res) {
+                  console.log('Posting TRN')
+                  console.log(res)
+                })
 
               self.core.resource.cd_user_campaign_subscription.post(userOption_tsn_form)
-                      .then(function (res) {
-                        console.log('Posting TSN')
-                        console.log(res)
-                      })
+                .then(function (res) {
+                  console.log('Posting TSN')
+                  console.log(res)
+                })
             }
           })
 

@@ -169,10 +169,10 @@ handler.prototype.getFilters = function (type) {
       data.query.push([ 'where', subquery ])
     } else {
       data.query.push([ 'where', [
-          [ 'where', 'city', '=', form.markets ],
-          [ 'orWhere', 'city1', '=', form.markets ],
-          [ 'orWhere', 'city2', '=', form.markets ],
-          [ 'orWhere', 'city3', '=', form.markets ]
+        [ 'where', 'city', '=', form.markets ],
+        [ 'orWhere', 'city1', '=', form.markets ],
+        [ 'orWhere', 'city2', '=', form.markets ],
+        [ 'orWhere', 'city3', '=', form.markets ]
       ]
       ])
     }
@@ -233,14 +233,14 @@ handler.prototype.getFilters = function (type) {
     } else {
       if (form.ethnicity == 'African') {
         data.query.push(['where', [
-            [ 'where', 'ethnicity', '=', 'African' ],
-            [ 'orWhere', 'ethnicity', '=', 'African American' ]
+          [ 'where', 'ethnicity', '=', 'African' ],
+          [ 'orWhere', 'ethnicity', '=', 'African American' ]
         ]
         ])
       } else if (form.ethnicity == 'African American') {
         data.query.push(['where', [
-            [ 'where', 'ethnicity', '=', 'African American' ],
-            [ 'orWhere', 'ethnicity', '=', 'African' ]
+          [ 'where', 'ethnicity', '=', 'African American' ],
+          [ 'orWhere', 'ethnicity', '=', 'African' ]
         ]
         ])
       } else {
@@ -263,7 +263,7 @@ handler.prototype.confirmCdInfo = function () {
   $('#ghost-onboarding-modal').show()
   $('#onboarding-confirm-email').show()
   // modal settings
-  $('#ghost-onboarding-modal').modal({backdrop: 'static', keyboard: false})
+  $('#ghost-onboarding-modal').modal({ backdrop: 'static', keyboard: false })
 
   return self.core.service.databind('#ghost-onboarding', self.user.bam_cd_user)
 }
