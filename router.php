@@ -16,24 +16,23 @@ $folders = ['bower_components', '.tmp'];
 $path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $ext = pathinfo($path, PATHINFO_EXTENSION);
 
-if($path[0] === '/') {
-  $path = substr($path, 1);
+if ($path[0] === '/') {
+    $path = substr($path, 1);
 }
 
 $serve_assets = false;
 
-foreach($folders as $folder) {
-  $serve_assets = $serve_assets || strpos($path, $folder) == 0;
+foreach ($folders as $folder) {
+    $serve_assets = $serve_assets || strpos($path, $folder) == 0;
 }
 
 $serve_assets = $serve_assets &&
   isset($extensions[$ext]) &&
   file_exists($path);
 
-if($serve_assets) {
-  header('Content-Type: ' . $extensions[$ext]);
-  echo file_get_contents($path);
+if ($serve_assets) {
+    header('Content-Type: ' . $extensions[$ext]);
+    echo file_get_contents($path);
 }
 
 return $serve_assets;
-

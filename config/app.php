@@ -13,7 +13,7 @@ return [
   |
    */
 
-  'debug' => true,
+    'debug' => true,
 
   /*
   |--------------------------------------------------------------------------
@@ -26,7 +26,7 @@ return [
   |
    */
 
-  'url' => 'http://localhost',
+    'url' => 'http://localhost',
 
   /*
   |--------------------------------------------------------------------------
@@ -39,7 +39,7 @@ return [
   |
    */
 
-  'timezone' => 'UTC',
+    'timezone' => 'UTC',
 
   /*
   |--------------------------------------------------------------------------
@@ -52,7 +52,7 @@ return [
   |
    */
 
-  'locale' => 'en',
+    'locale' => 'en',
 
   /*
   |--------------------------------------------------------------------------
@@ -65,7 +65,7 @@ return [
   |
    */
 
-  'fallback_locale' => 'en',
+    'fallback_locale' => 'en',
 
   /*
   |--------------------------------------------------------------------------
@@ -78,9 +78,9 @@ return [
   |
    */
 
-  'key' => env('APP_KEY', 'SomeRandomString'),
+    'key' => env('APP_KEY', 'SomeRandomString'),
 
-  'cipher' => MCRYPT_RIJNDAEL_128,
+    'cipher' => MCRYPT_RIJNDAEL_128,
 
   /*
   |--------------------------------------------------------------------------
@@ -95,7 +95,7 @@ return [
   |
    */
 
-  'log' => 'daily',
+    'log' => 'daily',
 
   /*
   |--------------------------------------------------------------------------
@@ -108,27 +108,28 @@ return [
   |
    */
 
-  'providers' => [
+    'providers' => [
 
-    /*
-     * Laravel Framework Service Providers...
-     */
-    'Illuminate\Foundation\Providers\ArtisanServiceProvider',
-    'Illuminate\Foundation\Providers\ConsoleSupportServiceProvider',
-    'Illuminate\Routing\ControllerServiceProvider',
-    'Illuminate\Filesystem\FilesystemServiceProvider',
-    'Illuminate\Foundation\Providers\FoundationServiceProvider',
-    'Illuminate\Validation\ValidationServiceProvider',
-    'Illuminate\View\ViewServiceProvider',
+        /*
+         * Laravel Framework Service Providers...
+         */
+        Illuminate\Foundation\Providers\ConsoleSupportServiceProvider::class,
+        Illuminate\Database\DatabaseServiceProvider::class,
+        Illuminate\Filesystem\FilesystemServiceProvider::class,
+        Illuminate\Foundation\Providers\FoundationServiceProvider::class,
+        Illuminate\Translation\TranslationServiceProvider::class,
+        Illuminate\Cache\CacheServiceProvider::class,
+        Illuminate\Queue\QueueServiceProvider::class,
+        Illuminate\View\ViewServiceProvider::class,
 
-    /*
-     * Application Service Providers...
-     */
-    'App\Providers\AppServiceProvider',
-    'App\Providers\ConfigServiceProvider',
-    'App\Providers\RouteServiceProvider',
+        /*
+         * Application Service Providers...
+         */
+        App\Providers\AppServiceProvider::class,
+        App\Providers\ConfigServiceProvider::class,
+        App\Providers\RouteServiceProvider::class,
 
-  ],
+    ],
 
   /*
   |--------------------------------------------------------------------------
@@ -141,23 +142,22 @@ return [
   |
    */
 
-  'aliases' => [
+    'aliases' => [
 
-    'App'       => 'Illuminate\Support\Facades\App',
-    'Artisan'   => 'Illuminate\Support\Facades\Artisan',
-    'Blade'     => 'Illuminate\Support\Facades\Blade',
-    'Config'    => 'Illuminate\Support\Facades\Config',
-    'File'      => 'Illuminate\Support\Facades\File',
-    'Input'     => 'Illuminate\Support\Facades\Input',
-    'Log'       => 'Illuminate\Support\Facades\Log',
-    'Redirect'  => 'Illuminate\Support\Facades\Redirect',
-    'Request'   => 'Illuminate\Support\Facades\Request',
-    'Response'  => 'Illuminate\Support\Facades\Response',
-    'Route'     => 'Illuminate\Support\Facades\Route',
-    'URL'       => 'Illuminate\Support\Facades\URL',
-    'Validator' => 'Illuminate\Support\Facades\Validator',
-    'View'      => 'Illuminate\Support\Facades\View',
+        'App'       => Illuminate\Support\Facades\App::class,
+        'Artisan'   => Illuminate\Support\Facades\Artisan::class,
+        'Blade'     => Illuminate\Support\Facades\Blade::class,
+        'Config'    => Illuminate\Support\Facades\Config::class,
+        'File'      => Illuminate\Support\Facades\File::class,
+        'Input'     => Illuminate\Support\Facades\Input::class,
+        'Log'       => Illuminate\Support\Facades\Log::class,
+        'Redirect'  => Illuminate\Support\Facades\Redirect::class,
+        'Request'   => Illuminate\Support\Facades\Request::class,
+        'Response'  => Illuminate\Support\Facades\Response::class,
+        'Route'     => Illuminate\Support\Facades\Route::class,
+        'URL'       => Illuminate\Support\Facades\URL::class,
+        'View'      => Illuminate\Support\Facades\View::class,
 
-  ],
+    ],
 
 ];
