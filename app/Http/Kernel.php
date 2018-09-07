@@ -16,6 +16,7 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $middleware = [
+        \App\Http\Middleware\NewRelic::class,
         \Matthewbdaly\ETagMiddleware\ETag::class
     ];
 
