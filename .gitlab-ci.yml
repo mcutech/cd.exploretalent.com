@@ -1,20 +1,20 @@
 deploy-development:
   script:
-  - ssh webber@api01 -C "cd /var/www/webber/dev.cd.exploretalent.com   && git fetch --tags && git checkout -f origin/development && ./build && echo $CI_BUILD_REF_NAME > public/version"
+    - ssh webber@api01 -C "cd /var/www/webber/dev.cd.exploretalent.com   && git fetch --tags && git checkout -f origin/development && ./build && echo \"$CI_BUILD_REF_NAME:`git rev-parse HEAD`\" > public/version"
   type: deploy
   tags:
   only:
   - development
 deploy-testing:
   script:
-  - ssh webber@api01 -C "cd /var/www/webber/stage.cd.exploretalent.com && git fetch --tags && git checkout -f origin/testing     && ./build && echo $CI_BUILD_REF_NAME > public/version"
+    - ssh webber@api01 -C "cd /var/www/webber/stage.cd.exploretalent.com && git fetch --tags && git checkout -f origin/testing     && ./build && echo \"$CI_BUILD_REF_NAME:`git rev-parse HEAD`\" > public/version"
   type: deploy
   tags:
   only:
   - testing
 deploy-production:
   script:
-  - ssh webber@api01 -C "cd /var/www/webber/cd.exploretalent.com       && git fetch --tags && git checkout -f $CI_BUILD_REF_NAME && ./build && echo $CI_BUILD_REF_NAME > public/version"
+    - ssh webber@api01 -C "cd /var/www/webber/cd.exploretalent.com       && git fetch --tags && git checkout -f $CI_BUILD_REF_NAME && ./build && echo \"$CI_BUILD_REF_NAME:`git rev-parse HEAD`\" > public/version"
   type: deploy
   tags:
   only:
