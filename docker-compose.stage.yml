@@ -1,9 +1,0 @@
-version: '3.6'
-services:
-  app:
-    build : docker/stage
-    volumes:
-      - .:/app
-      - /home/webber/.ssh:/root/.ssh
-    expose:
-      - 80

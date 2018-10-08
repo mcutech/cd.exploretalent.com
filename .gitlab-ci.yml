@@ -1,20 +1,22 @@
-deploy-development:
+deploy-dev:
   script:
-    - ssh webber@api01 -C "cd /apps/com.exploretalent.cd.dev   && git fetch --tags && git checkout -f origin/development && docker-compose -f ./docker-compose.dev.yml   up -d --build && docker-compose -f ./docker-compose.dev.yml exec -T -w /app app ./build && echo \"$CI_BUILD_REF_NAME:`git rev-parse HEAD`\" > public/version"
+    - ssh webber@api01 -C "cd /apps/com.exploretalent.cd.dev   && git fetch --tags && git checkout -f origin/development && docker-compose up -d --build && docker-compose exec -T -w /app app ./build && echo \"$CI_BUILD_REF_NAME:`git rev-parse HEAD`\" > public/version"
   type: deploy
   tags:
   only:
   - development
-deploy-testing:
+
+deploy-stage:
   script:
-    - ssh webber@api01 -C "cd /apps/com.exploretalent.cd.stage && git fetch --tags && git checkout -f origin/testing     && docker-compose -f ./docker-compose.stage.yml up -d --build && docker-compose -f ./docker-compose.dev.yml exec -T -w /app app ./build && echo \"$CI_BUILD_REF_NAME:`git rev-parse HEAD`\" > public/version"
+    - ssh webber@api01 -C "cd /apps/com.exploretalent.cd.stage && git fetch --tags && git checkout -f origin/testing     && docker-compose up -d --build && docker-compose exec -T -w /app app ./build && echo \"$CI_BUILD_REF_NAME:`git rev-parse HEAD`\" > public/version"
   type: deploy
   tags:
   only:
   - testing
-deploy-production:
+
+deploy:
   script:
-    - ssh webber@api01 -C "cd /apps/com.exploretalent.cd       && git fetch --tags && git checkout -f $CI_BUILD_REF_NAME && docker-compose -f ./docker-compose.prod.yml  up -d --build && docker-compose -f ./docker-compose.dev.yml exec -T -w /app app ./build && echo \"$CI_BUILD_REF_NAME:`git rev-parse HEAD`\" > public/version"
+    - ssh webber@api01 -C "cd /apps/com.exploretalent.cd       && git fetch --tags && git checkout -f $CI_BUILD_REF_NAME && docker-compose up -d --build && docker-compose  exec -T -w /app app ./build && echo \"$CI_BUILD_REF_NAME:`git rev-parse HEAD`\" > public/version"
   type: deploy
   tags:
   only:
