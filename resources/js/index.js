@@ -6,8 +6,13 @@ jscore.config(function (core) {
   // @if ENV='development'
   core.config.api.base = 'https://dev.api.exploretalent.com/v1'
   // @endif
+
   // @if ENV='production'
+  // Check which version of the skin we want?
   core.config.api.base = 'https://api.exploretalent.com/v1'
+  if (/(.*)auditions\.net$/.test(window.location.hostname)) {
+    core.config.api.base = 'https://api.auditions.net/v1'
+  }
   // @endif
 
   core.config.gapi.key = 'AIzaSyDrPvalUo7Qc6hGNU9jpyyXhZOvSOf6ock'
@@ -137,8 +142,6 @@ jscore.run(function (core) {
       .add('/feedback', 'feedback')
       .add('/error', 'error')
       .add('/unsubscribe', 'unsubscribe')
-
-    // end routes
 
       .finalize()
   }
