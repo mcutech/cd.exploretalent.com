@@ -159,7 +159,7 @@ handler.prototype.getFilters = function () {
     query: [
       [ 'join', 'bam.laret_users', 'bam.laret_users.bam_talentnum', '=', 'search.talents.talentnum' ],
       [ 'leftJoin', 'bam.laret_schedules', 'bam.laret_schedules.invitee_id', '=', 'bam.laret_users.id' ],
-      [ 'where', 'bam.laret_schedules.submission', '=', 1 ],
+      [ 'where', 'bam.laret_schedules.submission', '>', 0 ],
       [ 'where', 'bam.laret_schedules.bam_role_id', '=', $('#roles-list').val() ]
     ]
   }
