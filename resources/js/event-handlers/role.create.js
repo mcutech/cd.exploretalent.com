@@ -106,7 +106,7 @@ handler.prototype.saveNewRole = function (e) {
     ethnicity_hispanic: $('#ethnicity-hispanic').val(),
     ethnicity_mediterranean: $('#ethnicity-mediterranean').val(),
     ethnicity_middle_est: $('#ethnicity-middle-est').val(),
-    ethnicity_american_in: $('#ethnicity-american-in').val(),
+    ethnicity_native_am: $('#ethnicity-american-in').val(),
     built_any: $('#built-any').val(),
     built_medium: $('#built-medium').val(),
     built_athletic: $('#built-athletic').val(),

@@ -216,7 +216,7 @@
 					  <span class="lbl">Middle Eastern</span>
 					</label>
 					<label class="checkbox-inline margin-bottom-normal">
-					  <input type="checkbox" class="px" name="ethnicity" id="ethnicity-american-in" value="0" data-bind="<%= ethnicity_american_in %>">
+					  <input type="checkbox" class="px" name="ethnicity" id="ethnicity-american-in" value="0" data-bind="<%= ethnicity_native_am %>">
 					  <span class="lbl">American Indian</span>
 					</label>
 					<div class="alert alert-page alert-danger ethnicity-error-required" style="display: none;">This field is required.</div>
