@@ -1,291 +1,291 @@
 @extends('layouts.sidebar', ['pages' => [ [ 'name' => 'My Projects', 'url' => '/projects' ], [ 'name' => 'Edit Project', 'url' => '/projects/'.$projectId.'/edit', 'active' => true ] ] ])
 
 @section('sidebar.page-header')
-<i class="fa fa-file-text"></i> Edit Project
+    <i class="fa fa-file-text"></i> Edit Project
 @stop
 
 @section('sidebar.body')
-<div class="edit-project-wrapper">
-	<div class="projects-content">
-		<div class="panel">
-			<div class="panel-body">
-				<div class="container-fluid">
-					<div class="row-fluid">
-						<div class="col-md-6">
-							<div class="form-group">
-								<label class="control-label">Project Name <span class="text-success">*</span></label>
-								<input type="text" class="form-control" id="project-name" placeholder="Enter Project Name" data-bind="<%= project %>" maxlength="40">
-								<div class="alert alert-page alert-danger project-name-error-five" style="display:none;">This field must be at least 5 characters.</div>
-								<div class="alert alert-page alert-danger project-name-error-required" style="display:none;">This field is required.</div>
-							</div>
-
-                            <div class="form-group">
-                                <label class="control-label">Submission Deadline <span class="text-success">*</span></label>
-                                <div class="input-group date">
-                                    <input type="text" id="bs-datepicker-submissiondeadline" class="form-control calendar-input" style="cursor: pointer; background-color: #fff" data-bind="<%= asap ? moment(asap * 1000).format('YYYY-MM-DD') : 'N/A' %>">
-
-                                    <span class="input-group-addon calendar-btn"><i class="fa fa-calendar"></i></span>
+    <div class="edit-project-wrapper">
+        <div class="projects-content">
+            <div class="panel">
+                <div class="panel-body">
+                    <div class="container-fluid">
+                        <div class="row-fluid">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Project Name <span class="text-success">*</span></label>
+                                    <input type="text" class="form-control" id="project-name" placeholder="Enter Project Name" data-bind="<%= project %>" maxlength="40">
+                                    <div class="alert alert-page alert-danger project-name-error-five" style="display:none;">This field must be at least 5 characters.</div>
+                                    <div class="alert alert-page alert-danger project-name-error-required" style="display:none;">This field is required.</div>
                                 </div>
-                                <div class="alert alert-page alert-danger submission-deadline-error-required" style="display:none;">This field is required.</div>
-                            </div>
 
-                            <div class="form-group col-md-6 padding-left-zero-md-lg">
-                                <label class="control-label">Audition Date</label>
-                                <div class="input-group date">
-                                    <input type="text" id="bs-datepicker-audition" class="form-control calendar-input" style="cursor: pointer; background-color: #fff" data-bind="<%= aud_timestamp ? moment(aud_timestamp * 1000).format('YYYY-MM-DD') : 'N/A' %>">
-                                    <span class="input-group-addon calendar-btn"><i class="fa fa-calendar"></i></span>
+                                <div class="form-group">
+                                    <label class="control-label">Submission Deadline <span class="text-success">*</span></label>
+                                    <div class="input-group date">
+                                        <input type="text" id="bs-datepicker-submissiondeadline" class="form-control calendar-input" style="cursor: pointer; background-color: #fff" data-bind="<%= asap ? moment(asap * 1000).format('YYYY-MM-DD') : 'N/A' %>">
+
+                                        <span class="input-group-addon calendar-btn"><i class="fa fa-calendar"></i></span>
+                                    </div>
+                                    <div class="alert alert-page alert-danger submission-deadline-error-required" style="display:none;">This field is required.</div>
                                 </div>
-                                <div class="alert alert-page alert-danger audition-date-error-invalid" style="display:none;">Audition date should be after or on the same day as submission deadline.</div>
-                            </div>
 
-                            <div class="form-group col-md-6 padding-right-zero-md-lg">
-                                <label class="control-label">Shoot Date</label>
-                                <div class="input-group date">
-                                    <input type="text" id="bs-datepicker-shootdate" class="form-control calendar-input" style="cursor: pointer; background-color: #fff" data-bind="<%= shoot_timestamp ? moment(shoot_timestamp * 1000).format('YYYY-MM-DD') : 'N/A' %>">
-                                    <span class="input-group-addon calendar-btn"><i class="fa fa-calendar"></i></span>
+                                <div class="form-group col-md-6 padding-left-zero-md-lg">
+                                    <label class="control-label">Audition Date</label>
+                                    <div class="input-group date">
+                                        <input type="text" id="bs-datepicker-audition" class="form-control calendar-input modif-ph" style="cursor: pointer; background-color: #fff" data-bind="<%= aud_timestamp ? moment(aud_timestamp * 1000).format('YYYY-MM-DD') : 'N/A' %>" placeholder="(Optional)">
+                                        <span class="input-group-addon calendar-btn"><i class="fa fa-calendar"></i></span>
+                                    </div>
+                                    <div class="alert alert-page alert-danger audition-date-error-invalid" style="display:none;">Audition date should be after or on the same day as submission deadline.</div>
                                 </div>
-                                <div class="alert alert-page alert-danger shoot-date-error-invalid" style="display:none;">Shoot date should be after audition date.</div>
-                            </div>
 
-                        </div> {{-- col-md-6 --}}
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="control-label">Category <span class="text-success">*</span></label>
-                                <select class="form-control" id="project-category" name="cat" data-bind="<%= cat %>">
-                                    <optgroup label="Acting">
-                                        <option value="1" selected="">Commercials</option>
-                                        <option value="9">Feature Film - SAG</option>
-                                        <option value="14">Feature Film - Independent</option>
-                                        <option value="11">Student Films</option>
-                                        <option value="12">Short Film</option>
-                                        <option value="13">Documentaries</option>
-                                        <option value="59">Reality TV</option>
-                                        <option value="22">Theatre - Equity (Union)</option>
-                                        <option value="23">Theatre - Non-Equity</option>
-                                        <option value="26">Voice-Over</option>
-                                        <option value="27">Internet</option>
-                                        <option value="17">Industrial/Training Films</option>
-                                        <option value="43">Acrobatics/Stunts</option>
-                                        <option value="41">Comedy/Clown</option>
-                                    {{--    <option value="61">Other</option>
-                                        <option value="42">Variety Acts</option> --}}
-                                    </optgroup>
-                                    <optgroup label="Modeling">
-                                        <option value="18">Runway</option>
-                                        <option value="19">Hair/Cosmetics</option>
-                                        <option value="20">Print</option>
-                                        <option value="24">Trade Shows/Live Events/Promo Model</option>
-                                    </optgroup>
-                                    <optgroup label="Dance">
-                                        <option value="3">Ballet/Classic</option>
-                                        <option value="56">Choreography</option>
-                                        <option value="54">Club/Gogo</option>
-                                        <option value="53">HipHop</option>
-                                        <option value="4">Modern/Jazz</option>
-                                        <option value="58">Other/General</option>
-                                        <option value="57">Teacher</option>
-                                        <option value="55">Traditional/Latin</option>
-                                    </optgroup>
-                                    <optgroup label="Music">
-                                        <option value="21">Music Videos</option>
-                                        <option value="44">Band</option>
-                                        <option value="45">DJ/Sound</option>
-                                        <option value="30">Horns</option>
-                                        <option value="32">Drums</option>
-                                        <option value="31">Keyboards</option>
-                                        <option value="33">Other</option>
-                                        <option value="29">Strings</option>
-                                        <option value="46">Teacher</option>
-                                        <option value="28">Vocals</option>
-                                    </optgroup>
-                                    <optgroup label="Crew">
-                                        <option value="16">Assistant &amp; Entry Level</option>
-                                        <option value="49">Accounting/Payroll/HR</option>
-                                        <option value="35">Camera/Editor</option>
-                                        <option value="48">Graphic/Web/Animate</option>
-                                        <option value="34">Lighting/Sound</option>
-                                        <option value="37">Make Up/Stylist</option>
-                                        <option value="51">Management</option>
-                                        <option value="25">Marketing / PR</option>
-                                        <option value="38">Other</option>
-                                        <option value="36">Producer/Director</option>
-                                        <option value="40">Showbiz Internship</option>
-                                        {{-- <option value="52">Crew - Talent/Casting Mgmt</option> --}}
-                                        <option value="50">Technology/MIS</option>
-                                        <option value="47">TV/Radio</option>
-                                        <option value="39">Writing/Script/Edit</option>
-                                    </optgroup>
-                                    {{-- <option value="5">Episodic TV - Pilots</option>
-                                    <option value="6">Episodic TV - SAG</option>
+                                <div class="form-group col-md-6 padding-right-zero-md-lg">
+                                    <label class="control-label">Shoot Date</label>
+                                    <div class="input-group date">
+                                        <input type="text" id="bs-datepicker-shootdate" class="form-control calendar-input modif-ph" style="cursor: pointer; background-color: #fff" data-bind="<%= shoot_timestamp ? moment(shoot_timestamp * 1000).format('YYYY-MM-DD') : 'N/A' %>" placeholder="(Optional)">
+                                        <span class="input-group-addon calendar-btn"><i class="fa fa-calendar"></i></span>
+                                    </div>
+                                    <div class="alert alert-page alert-danger shoot-date-error-invalid" style="display:none;">Shoot date should be after audition date.</div>
+                                </div>
+
+                            </div> {{-- col-md-6 --}}
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Category <span class="text-success">*</span></label>
+                                    <select class="form-control" id="project-category" name="cat" data-bind="<%= cat %>">
+                                        <optgroup label="Acting">
+                                            <option value="1" selected="">Commercials</option>
+                                            <option value="9">Feature Film - SAG</option>
+                                            <option value="14">Feature Film - Independent</option>
+                                            <option value="11">Student Films</option>
+                                            <option value="12">Short Film</option>
+                                            <option value="13">Documentaries</option>
+                                            <option value="59">Reality TV</option>
+                                            <option value="22">Theatre - Equity (Union)</option>
+                                            <option value="23">Theatre - Non-Equity</option>
+                                            <option value="26">Voice-Over</option>
+                                            <option value="27">Internet</option>
+                                            <option value="17">Industrial/Training Films</option>
+                                            <option value="43">Acrobatics/Stunts</option>
+                                            <option value="41">Comedy/Clown</option>
+                                            {{--    <option value="61">Other</option>
+                                            <option value="42">Variety Acts</option> --}}
+                                        </optgroup>
+                                        <optgroup label="Modeling">
+                                            <option value="18">Runway</option>
+                                            <option value="19">Hair/Cosmetics</option>
+                                            <option value="20">Print</option>
+                                            <option value="24">Trade Shows/Live Events/Promo Model</option>
+                                        </optgroup>
+                                        <optgroup label="Dance">
+                                            <option value="3">Ballet/Classic</option>
+                                            <option value="56">Choreography</option>
+                                            <option value="54">Club/Gogo</option>
+                                            <option value="53">HipHop</option>
+                                            <option value="4">Modern/Jazz</option>
+                                            <option value="58">Other/General</option>
+                                            <option value="57">Teacher</option>
+                                            <option value="55">Traditional/Latin</option>
+                                        </optgroup>
+                                        <optgroup label="Music">
+                                            <option value="21">Music Videos</option>
+                                            <option value="44">Band</option>
+                                            <option value="45">DJ/Sound</option>
+                                            <option value="30">Horns</option>
+                                            <option value="32">Drums</option>
+                                            <option value="31">Keyboards</option>
+                                            <option value="33">Other</option>
+                                            <option value="29">Strings</option>
+                                            <option value="46">Teacher</option>
+                                            <option value="28">Vocals</option>
+                                        </optgroup>
+                                        <optgroup label="Crew">
+                                            <option value="16">Assistant &amp; Entry Level</option>
+                                            <option value="49">Accounting/Payroll/HR</option>
+                                            <option value="35">Camera/Editor</option>
+                                            <option value="48">Graphic/Web/Animate</option>
+                                            <option value="34">Lighting/Sound</option>
+                                            <option value="37">Make Up/Stylist</option>
+                                            <option value="51">Management</option>
+                                            <option value="25">Marketing / PR</option>
+                                            <option value="38">Other</option>
+                                            <option value="36">Producer/Director</option>
+                                            <option value="40">Showbiz Internship</option>
+                                            {{-- <option value="52">Crew - Talent/Casting Mgmt</option> --}}
+                                            <option value="50">Technology/MIS</option>
+                                            <option value="47">TV/Radio</option>
+                                            <option value="39">Writing/Script/Edit</option>
+                                        </optgroup>
+                                        {{-- <option value="5">Episodic TV - Pilots</option>
+                                            <option value="6">Episodic TV - SAG</option>
                                     <option value="7">Episodic TV - AFTRA</option>
                                     <option value="8">Episodic TV - Non-Union</option>
                                     <option value="60">Extras</option>
                                     <option value="10">Feature Film - Non-SAG</option>
-                                    <option value="15">Infomercials</option> --}}
-                                </select>
-                                <div class="alert alert-page alert-danger category-error-required" style="display:none;">This field is required.</div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="control-label">Rate <span class="text-success">*</span></label>
-                                <form class="form-inline">
-                                    <div class="form-group">
-                                        <span class="display-inline font-size-normal">$</span>
-                                        <input type="text" id="project-rate" class="form-control" data-bind="<%= rate %>">
-                                        <span class="padding-left-small padding-right-small">per</span>
-                                        <select name="" id="project-rate-desc" class="form-control" data-bind="<%= rate_des %>">
-                                            <option value="0">n/a</option>
-                                            <option value="1">event</option>
-                                            <option value="2">hour</option>
-                                            <option value="3">day</option>
-                                            <option value="4">week</option>
-                                            <option value="5">month</option>
-                                            <option value="6">negotiable</option>
-                                        </select>
-                                        <div class="alert alert-page alert-danger rate-error-required" style="display:none;">This field is required.</div>
-                                    </div>
-                                </form>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="control-label">Union <span class="text-success">*</span></label>
-                                <div class="margin-bottom-small-normal form-inline">
-                                    <label class="radio checkbox-inline">
-                                        <input type="radio" name="radioUnion" value="0" class="px" data-bind="<%= (union2 == '0') ? '1' : '0' %>">
-                                        <span class="lbl">No</span>
-                                    </label>
-                                    <label class="radio checkbox-inline">
-                                        <input type="radio" name="radioUnion" value="1" class="px" data-bind="<%= (union2 == '1') ? '1' : '0' %>">
-                                        <span class="lbl">Yes</span>
-                                    </label>
+                                <option value="15">Infomercials</option> --}}
+                                    </select>
+                                    <div class="alert alert-page alert-danger category-error-required" style="display:none;">This field is required.</div>
                                 </div>
-                            </div>
 
-                        </div> {{-- col-md-6 --}}
-                    </div> {{-- row-fluid --}}
-
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <div class="form-group margin-bottom-medium">
-                                    <label class="control-label">Submission Type<span class="text-success">*</span></label>
-                                    <label class="radio checkbox-inline">
-                                        <input type="radio" name="radioSubmissionType" id="self-submission-option" value="1" class="px">
-                                        <span class="lbl">Self Submission</span>
-                                    </label>
-                                    <label class="radio checkbox-inline">
-                                        <input type="radio" name="radioSubmissionType" id="open-call-option" value="2" class="px">
-                                        <span class="lbl">Open Call</span>
-                                    </label>
-                                </div>
-                                <div class=""><strong><span class="control-label" id="project-type-title" data-bind="<%= (snr == '2') ? 'Open Call Details:' : 'Self Submission Details:' %>"></span></strong></div>
-                                <div class="panel display-none" id="self-submissions-option-content">
-                                    <div class="panel-body">
+                                <div class="form-group">
+                                    <label class="control-label">Rate <span class="text-success">*</span></label>
+                                    <form class="form-inline">
                                         <div class="form-group">
-                                            <label class="control-label"><i class="fa fa-envelope"></i> Please enter email address for talent submissions</label>
-                                            <input type="text" id="self-sub-email" class="form-control" placeholder="Enter Email Address" data-bind="<%= (snr_email) ? snr_email : '' %>">
+                                            <span class="display-inline font-size-normal">$</span>
+                                            <input type="text" id="project-rate" class="form-control" data-bind="<%= rate %>">
+                                            <span class="padding-left-small padding-right-small">per</span>
+                                            <select name="" id="project-rate-desc" class="form-control" data-bind="<%= rate_des %>">
+                                                <option value="0">n/a</option>
+                                                <option value="1">event</option>
+                                                <option value="2">hour</option>
+                                                <option value="3">day</option>
+                                                <option value="4">week</option>
+                                                <option value="5">month</option>
+                                                <option value="6">negotiable</option>
+                                            </select>
+                                            <div class="alert alert-page alert-danger rate-error-required" style="display:none;">This field is required.</div>
                                         </div>
-                                        <div class="form-group">
-                                            <label class="control-label">and / or postal address</label>
-                                            <textarea id="self-sub-address" class="form-control" rows="5" placeholder="Address" style="resize: none;" data-bind="<%= (srn_address) ? srn_address : '' %>"></textarea>
-                                            <div class="alert alert-page alert-danger self-sub-error-required" style="display:none;">This field is required.</div>
-                                        </div>
-                                    </div>
-                                </div> {{-- self-submission-option-content --}}
-
-                                <div class="panel display-none" id="open-call-option-content">
-                                    <div class="panel-body">
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label class="control-label">Date and Time of Open Call <span class="text-success">*</span></label>
-                                                <textarea id="open-call-details" class="form-control" rows="5" placeholder="Details" style="resize: none;" data-bind="<%= (app_date_time) ? app_date_time : '' %>"></textarea>
-                                                <div class="alert alert-page alert-danger open-call-date-error-required" style="display:none;">This field is required.</div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="checkbox-inline">
-                                                    <input type="checkbox" id="appointment-only-checkbox" class="px" name="by_app_only" data-bind="<%= by_app_only %>"> <span class="lbl">If Appointment only, check</span>
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-8">
-                                            <div class="form-group">
-                                                <label class="control-label">Enter location(s) & telephone(s) <span class="text-success">*</span></label>
-                                                <textarea id="open-call-location" class="form-control" rows="5" placeholder="Address & Telephone" style="resize: none;" data-bind="<%= (app_loc) ? app_loc : '' %>"></textarea>
-                                                <div class="alert alert-page alert-danger open-call-location-error-required" style="display:none;">This field is required.</div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    </form>
                                 </div>
-                            </div>
-                        </div>
-                    </div> {{-- row-fluid --}}
 
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label class="control-label">General Audition Info / Storyline / Synopsis / Logline <span class="text-success">*</span></label>
-                                <textarea id="audition-description" class="form-control" rows="4" cols="50" placeholder="Message" style="resize:vertical; box-sizzing: border-box;" data-bind="<%= des %>"></textarea>
-                                <div class="alert alert-page alert-danger audition-description-error-required" style="display:none;">This field is required.</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    {{-- upload image for casting --}}
-                    <div class="row upload-image-div">
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <input id="photo-uploader" type="file" name="file" accept="image/*" class="hide"/>
-                                <label class="control-label">Upload Casting Image<span class="text-success">*</span></label>
-                                <div class="casting-upload-image" id="main-casting-image-div">
-                                    <div class="img-width">
-                                        <div class="img-holder" id="image-holder">
-                                            <div class="img-preview-container">
-                                                <img src="blank" id="preview" class="img-responsive">
-                                                <div id="default-image-preview">
-                                                    <div class="item text-align-center">
-                                                        <div><i class="fa fa-picture-o fa-5x"></i></div>
-                                                        <div>Click here to Upload Casting Image</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="change-image-btn" id="remove-button" hidden>
-                                            <button class="btn btn-outline btn-block border-radius-zero">
-                                                <i class="fa fa-times"></i> Remove Casting Image
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="row">
-                            <div class="col-md-6 padding-top-normal">
-                                <div class="form-group margin-bottom-small">
-                                    <label class="control-label">What area would you like to accept talents from? <span class="text-success">*</span></label>
-                                <label class="checkbox-inline margin-left-normal" title="Mark as nationwide casting">
-                                    <input class="px" type="checkbox" name="nationwide-market-checkbox" id="nationwide-market-checkbox" value="0">
-                                    <span class="lbl">All of United States</span>
-                                </label>
-                                <div class="input-group hide-if-nationwide">
-                                    <input type="text" id="zip-code" class="form-control" placeholder="Enter Zip Code" data-bind="<%= zip %>">
-                                    <span class="input-group-btn">
-                                        <button id="find-markets-btn" class="btn" type="button">Auto Select Markets</button>
-                                    </span>
-                                </div>
-                                <div class="input-group auto-markets-div margin-top-normal hide-if-nationwide">
-                                    <div class="hide" data-bind-template=".auto-markets-div" data-bind-value="data">
-                                        <label>
-                                            <input type="checkbox" name="market-checkbox" checked="">
-                                            <span class="lbl" data-bind="<%= city + ', ' +  state %>"></span>
+                                <div class="form-group">
+                                    <label class="control-label">Union <span class="text-success">*</span></label>
+                                    <div class="margin-bottom-small-normal form-inline">
+                                        <label class="radio checkbox-inline">
+                                            <input type="radio" name="radioUnion" value="0" class="px" data-bind="<%= (union2 == '0') ? '1' : '0' %>">
+                                            <span class="lbl">No</span>
+                                        </label>
+                                        <label class="radio checkbox-inline">
+                                            <input type="radio" name="radioUnion" value="1" class="px" data-bind="<%= (union2 == '1') ? '1' : '0' %>">
+                                            <span class="lbl">Yes</span>
                                         </label>
                                     </div>
                                 </div>
-                                <div class="alert alert-page alert-danger zipcode-error-required" style="display:none;">This field is required.</div>
-                                <div class="alert alert-page alert-danger zipcode-error-invalid" style="display:none;">Please enter a valid zip code.</div>
-                                <div class="alert alert-page alert-danger markets-error-required" style="display:none;">Please choose at least one market.</div>
+
+                            </div> {{-- col-md-6 --}}
+                        </div> {{-- row-fluid --}}
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <div class="form-group margin-bottom-medium">
+                                        <label class="control-label">Submission Type<span class="text-success">*</span></label>
+                                        <label class="radio checkbox-inline">
+                                            <input type="radio" name="radioSubmissionType" id="self-submission-option" value="1" class="px">
+                                            <span class="lbl">Self Submission</span>
+                                        </label>
+                                        <label class="radio checkbox-inline">
+                                            <input type="radio" name="radioSubmissionType" id="open-call-option" value="2" class="px">
+                                            <span class="lbl">Open Call</span>
+                                        </label>
+                                    </div>
+                                    <div class=""><strong><span class="control-label" id="project-type-title" data-bind="<%= (snr == '2') ? 'Open Call Details:' : 'Self Submission Details:' %>"></span></strong></div>
+                                    <div class="panel display-none" id="self-submissions-option-content">
+                                        <div class="panel-body">
+                                            <div class="form-group">
+                                                <label class="control-label"><i class="fa fa-envelope"></i> Please enter email address for talent submissions</label>
+                                                <input type="text" id="self-sub-email" class="form-control" placeholder="Enter Email Address" data-bind="<%= (snr_email) ? snr_email : '' %>">
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label">and / or postal address</label>
+                                                <textarea id="self-sub-address" class="form-control" rows="5" placeholder="Address" style="resize: none;" data-bind="<%= (srn_address) ? srn_address : '' %>"></textarea>
+                                                <div class="alert alert-page alert-danger self-sub-error-required" style="display:none;">This field is required.</div>
+                                            </div>
+                                        </div>
+                                    </div> {{-- self-submission-option-content --}}
+
+                                    <div class="panel display-none" id="open-call-option-content">
+                                        <div class="panel-body">
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label class="control-label">Date and Time of Open Call <span class="text-success">*</span></label>
+                                                    <textarea id="open-call-details" class="form-control" rows="5" placeholder="Details" style="resize: none;" data-bind="<%= (app_date_time) ? app_date_time : '' %>"></textarea>
+                                                    <div class="alert alert-page alert-danger open-call-date-error-required" style="display:none;">This field is required.</div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="checkbox-inline">
+                                                        <input type="checkbox" id="appointment-only-checkbox" class="px" name="by_app_only" data-bind="<%= by_app_only %>"> <span class="lbl">If Appointment only, check</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="form-group">
+                                                    <label class="control-label">Enter location(s) & telephone(s) <span class="text-success">*</span></label>
+                                                    <textarea id="open-call-location" class="form-control" rows="5" placeholder="Address & Telephone" style="resize: none;" data-bind="<%= (app_loc) ? app_loc : '' %>"></textarea>
+                                                    <div class="alert alert-page alert-danger open-call-location-error-required" style="display:none;">This field is required.</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> {{-- row-fluid --}}
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="control-label">General Audition Info / Storyline / Synopsis / Logline <span class="text-success">*</span></label>
+                                    <textarea id="audition-description" class="form-control" rows="4" cols="50" placeholder="Message" style="resize:vertical; box-sizzing: border-box;" data-bind="<%= des %>"></textarea>
+                                    <div class="alert alert-page alert-danger audition-description-error-required" style="display:none;">This field is required.</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {{-- upload image for casting --}}
+                        <div class="row upload-image-div">
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <input id="photo-uploader" type="file" name="file" accept="image/*" class="hide"/>
+                                    <label class="control-label">Upload Casting Image<span class="text-success">*</span></label>
+                                    <div class="casting-upload-image" id="main-casting-image-div">
+                                        <div class="img-width">
+                                            <div class="img-holder" id="image-holder">
+                                                <div class="img-preview-container">
+                                                    <img src="blank" id="preview" class="img-responsive">
+                                                    <div id="default-image-preview">
+                                                        <div class="item text-align-center">
+                                                            <div><i class="fa fa-picture-o fa-5x"></i></div>
+                                                            <div>Click here to Upload Casting Image</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="change-image-btn" id="remove-button" hidden>
+                                                <button class="btn btn-outline btn-block border-radius-zero">
+                                                    <i class="fa fa-times"></i> Remove Casting Image
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-md-6 padding-top-normal">
+                                <div class="form-group margin-bottom-small">
+                                    <label class="control-label">What area would you like to accept talents from? <span class="text-success">*</span></label>
+                                    <label class="checkbox-inline margin-left-normal" title="Mark as nationwide casting">
+                                        <input class="px" type="checkbox" name="nationwide-market-checkbox" id="nationwide-market-checkbox" value="0">
+                                        <span class="lbl">All of United States</span>
+                                    </label>
+                                    <div class="input-group hide-if-nationwide">
+                                        <input type="text" id="zip-code" class="form-control" placeholder="Enter Zip Code" data-bind="<%= zip %>">
+                                        <span class="input-group-btn">
+                                            <button id="find-markets-btn" class="btn" type="button">Auto Select Markets</button>
+                                        </span>
+                                    </div>
+                                    <div class="input-group auto-markets-div margin-top-normal hide-if-nationwide">
+                                        <div class="hide" data-bind-template=".auto-markets-div" data-bind-value="data">
+                                            <label>
+                                                <input type="checkbox" name="market-checkbox" checked="">
+                                                <span class="lbl" data-bind="<%= city + ', ' +  state %>"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="alert alert-page alert-danger zipcode-error-required" style="display:none;">This field is required.</div>
+                                    <div class="alert alert-page alert-danger zipcode-error-invalid" style="display:none;">Please enter a valid zip code.</div>
+                                    <div class="alert alert-page alert-danger markets-error-required" style="display:none;">Please choose at least one market.</div>
                                 </div>
                             </div>
                             <div class="col-md-12 input-group margin-top-small hide-if-nationwide">
@@ -522,26 +522,26 @@
                     </div>
 
                     <!-- Modal -->
-                      <div class="modal fade" id="confirmUpdateModal" role="dialog">
+                    <div class="modal fade" id="confirmUpdateModal" role="dialog">
                         <div class="modal-dialog">
 
-                          <!-- Modal content-->
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <button type="button" class="close" data-dismiss="modal">&times;</button>
-                              <h4 class="modal-title">Confirm Update</h4>
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Confirm Update</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Pending review, normally reviewed within 6-12 business hours.</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button href="#" id="update-project-btn" class="btn btn-success" data-dismiss="modal">Continue Update</button>
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                </div>
                             </div>
-                            <div class="modal-body">
-                              <p>Pending review, normally reviewed within 6-12 business hours.</p>
-                            </div>
-                            <div class="modal-footer">
-                              <button href="#" id="update-project-btn" class="btn btn-success" data-dismiss="modal">Continue Update</button>
-                              <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                            </div>
-                          </div>
 
                         </div>
-                      </div>
+                    </div>
 
                     <div class="row">
                         <div class="col-md-12">
@@ -557,5 +557,5 @@
             </div> {{-- panel-body --}}
         </div> {{-- panel --}}
     </div>
-</div>
+    </div>
 @stop
