@@ -34,7 +34,7 @@
                             <div class="form-group">
                                 <label class="control-label">Audition Date</label>
                                 <div class="input-group date">
-                                    <input type="text" id="bs-datepicker-audition" class="form-control calendar-input" style="cursor: pointer; background-color: #fff">
+                                    <input type="text" id="bs-datepicker-audition" class="form-control calendar-input modif-ph" style="cursor: pointer; background-color: #fff" placeholder="(Optional)">
                                     <span class="input-group-addon calendar-btn"><i class="fa fa-calendar"></i></span>
                                 </div>
                                 <div class="alert alert-page alert-danger audition-date-error-invalid" style="display:none;">Audition date should be after or on the same day as submission deadline.</div>
@@ -43,7 +43,7 @@
                             <div class="form-group">
                                 <label class="control-label">Shoot Date</label>
                                 <div class="input-group date">
-                                    <input type="text" id="bs-datepicker-shootdate" class="form-control calendar-input" style="cursor: pointer; background-color: #fff">
+                                    <input type="text" id="bs-datepicker-shootdate" class="form-control calendar-input modif-ph" style="cursor: pointer; background-color: #fff" placeholder="(Optional)">
                                     <span class="input-group-addon calendar-btn"><i class="fa fa-calendar"></i></span>
                                 </div>
                                 <div class="alert alert-page alert-danger shoot-date-error-invalid" style="display:none;">Shoot date should be after audition date.</div>
