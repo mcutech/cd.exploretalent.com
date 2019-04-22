@@ -5,8 +5,6 @@ function handler (core, user) {
   self = this
   self.core = core
   self.user = user
-
-  console.log(user)
 }
 
 handler.prototype.resetPassword = function () {
@@ -29,27 +27,6 @@ handler.prototype.resetPassword = function () {
           window.location = '/projects'
         })
       })
-    // we don't this since user already logged in
-    /* .then(function(result) {
-      return core.service.rest.post(core.config.api.base.replace('/v1', '') + '/oauth/access_token', {
-        username       : self.user.bam_cd_user.email1,
-        password       : pass1,
-        client_id      : '74d89ce4c4838cf495ddf6710796ae4d5420dc91',
-        client_secret  : '61c9b2b17db77a27841bbeeabff923448b0f6388',
-        grant_type     : 'password',
-        user_type      : 'bam_cd_user'
-      });
-    })
-    .then(function(result){
-      localStorage.setItem('access_token', result.access_token);
-      core.service.rest.settings.header = { Authorization : 'Bearer ' + result.access_token };
-
-      $('#success-pass').fadeIn().delay(5000).fadeOut();
-
-      setTimeout(function() {
-        window.location = '/projects';
-      }, 3000);
-    }); */
   }
 }
 

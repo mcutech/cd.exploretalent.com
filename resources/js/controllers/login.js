@@ -27,7 +27,7 @@ module.exports = function (core, user) {
         return
       }
 
-      core.service.rest.post(core.config.api.base.replace('/v1', '') + '/oauth/access_token', {
+      core.service.rest.post(core.config.api.base.replace('/v1', '') + '/oauth/token', {
         username: email,
         password: pass,
         user_type: 'bam_cd_user',

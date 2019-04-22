@@ -33,6 +33,7 @@ module.exports = {
   "globals": {
     "$": true,
     "_": true,
+    "core": true,
     "self": true
   }
 }

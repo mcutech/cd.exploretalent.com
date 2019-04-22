@@ -153,7 +153,7 @@ module.exports = function (core) {
 
     core.resource.cd_user.post(data)
       .then(function (result) {
-        return core.service.rest.post(core.config.api.base.replace('/v1', '') + '/oauth/access_token', {
+        return core.service.rest.post(core.config.api.base.replace('/v1', '') + '/oauth/token', {
           username: email,
           password: pass,
           client_id: '74d89ce4c4838cf495ddf6710796ae4d5420dc91',
