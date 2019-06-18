@@ -42,6 +42,6 @@ Route::get('error', 'ErrorController@index');
 Route::resource('feedback', 'FeedbackController');
 
 // Disabled routes...
-/* Route::get('messages/{projectId}/{roleId}' , 'MessageController@index'); */
-/* Route::get('messages/{projectId}'          , 'MessageController@index'); */
-/* Route::get('messages', 'MessageController@index'); */
+Route::get('messages/{projectId}/{roleId}' , 'MessageController@index');
+Route::get('messages/{projectId}'          , 'MessageController@index');
+Route::get('messages', 'MessageController@index');

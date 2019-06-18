@@ -5,11 +5,11 @@
     <div class="messages-header">
       <div class="messages-tabs">
         <ul class="nav nav-tabs" role="tablist">
-          <li class="personal-message-menu active"><a href="#personal-message" aria-controls="settings" role="tab" data-toggle="tab">Personal Message</a></li>
-          <li class="casting-invitation-menu"><a href="#casting-invitations" aria-controls="settings" role="tab" data-toggle="tab" id="casting-list">Casting Invitations</a></li>
+          <li class="personal-message-menu active"><a href="#personal-message" aria-controls="settings" role="tab" data-toggle="tab">Messages</a></li>
+          <li class="casting-invitation-menu"><a href="#casting-invitations" aria-controls="settings" role="tab" data-toggle="tab" id="casting-list">Requests</a></li>
         </ul>
       </div>
-      <div class="casting-invitation-functions" style="display: none;">
+      <div class="casting-invitation-functions">
         <div class="form-horizontal">
           <div class="display-inline-block" >
             <div class="row" >
@@ -37,6 +37,7 @@
     <div class="panel panel-default margin-zero inbox-container" id="messages-panel">
       <div class="panel-body padding-zero tab-content">
         <div class="row-fluid clearfix tab-pane active" id="personal-message" role="tabpanel">
+
           <div class="col-sm-4 talents-list-content">
             <div class="talent-item-container" id="personal-messages">
               <div class="talent-item new-message" data-bind-template="#personal-messages" data-bind-value="current.data">
@@ -67,11 +68,14 @@
           </div>
 
           <div class="col-sm-8 message-content">
+              <div class="alert alert-success">
+                    Seeking for regular looking people as commercial young models young and old, glamorous, sport, mature business, lifestyle, any and all aspiring models for video interview on hopes, dreams and aspirations of modelling hopefuls of all types. Whether you would like to make a few extra bucks as a side hustle or spend your life in the fashion industry, this show wants to get your point of view. Let's make this a great project. Looking forward to meeting and working with some great talent.
+              </div>
             <div class="messages-container">
-              <div data-bind-target="visibility" data-bind="<%= loadingMessages ? 1 : 0 %>" hidden>
+              <div data-bind-target="visibility" data-bind="<%= loadingMessages ? 1 : 0 %>" >
                 <div class="alert alert-info text-align-center"><i class="fa fa-circle-o-notch fa-spin"></i> Loading messages...</div>
               </div>
-              <div id="personal-inbox-messages" data-bind-target="visibility" data-bind="<%= loadingMessages ? 0 : 1 %>" hidden>
+              <div id="personal-inbox-messages" data-bind-target="visibility" data-bind="<%= loadingMessages ? 0 : 1 %>" >
                 <div data-bind-template="#personal-inbox-messages" data-bind-value="messages.data">
                   <div data-bind="<%= mine ? 'user-message' : 'recepient-message' %>" data-bind-target="class">
                     <span data-bind="<%= body %>"></span>
@@ -80,7 +84,7 @@
               </div>
             </div>
 
-            <div class="message-box" data-bind="<%= currentConversationId ? 1 : 0 %>" data-bind-target="visibility" hidden>
+            <div class="message-box" data-bind="<%= currentConversationId ? 1 : 0 %>" data-bind-target="visibility">
               <textarea class="form-control" rows="3" placeholder="Enter a Message..." data-bind="<%= currentConversationId %>" data-bind-target="data-id"></textarea>
             </div>
           </div>
