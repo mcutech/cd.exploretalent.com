@@ -6,9 +6,9 @@ module.exports = function (core, user, projectId, roleId) {
   // $(document).on('click', '.remove-talent', handler.removeConversation)
   // $(document).on('click', '.show-conversation', handler.showConversation)
   // $(document).on('click', '.personal-message-menu', () => {
-    // $('.casting-invitation-functions').hide()
-    // handler.type = 'personal'
-    // handler.updateDataBind()
+  // $('.casting-invitation-functions').hide()
+  // handler.type = 'personal'
+  // handler.updateDataBind()
   // })
   // $(document).on('click', '.casting-invitation-menu', () => {
   //   $('.casting-invitation-functions').show()
@@ -17,12 +17,14 @@ module.exports = function (core, user, projectId, roleId) {
   // })
   // $(document).on('keypress', '.message-box textarea', handler.checkSendMessage)
 
-  $('.talent-item-container').slimScroll({
-    height: '100%'
-  })
+  // $('.talent-item-container').slimScroll({
+  //   height: '100%',
+  //   start: 'top'
+  // })
+
   $('.messages-container').slimScroll({
-    height: '100%',
-    start: 'bottom'
+    height: '80%',
+    start: 'top'
   })
 
   let windowHeight = window.innerHeight - 157
