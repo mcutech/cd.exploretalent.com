@@ -50,7 +50,9 @@
                 }
             }
             .talent-item-container{
-                height: calc(100% - 46px);
+                // height: calc(100% - 46px);
+                border-bottom: 1px solid #ddd;
+                // overflow-y:scroll;
                 .talent-item{
                     padding: 7px;
                     position: relative;
@@ -150,6 +152,9 @@
                 .slimScrollDiv{
                    height: calc(100% - 68px) !important;
                 }
+                .message-time-log{
+                  color :#aca7a6;
+                }
                 .recepient-message{
                     float: left;
                     clear: both;
@@ -157,6 +162,7 @@
                     color: #333333;
                     background-color: rgba(0,0,0,0.06);
                     margin-bottom: 8px;
+                    border-radius:4px;
                 }
                 .user-message{
                     float: right;
@@ -165,6 +171,7 @@
                     color: #ffffff;
                     background-color: rgb(29, 137, 207);
                     margin-bottom: 8px;
+                    border-radius:4px;
                 }
             }
 
@@ -175,10 +182,6 @@
                 width: 100%;
                 padding: 8px;
                 z-index: 2;
-                textarea{
-                    background-color: #f2f2f2;
-                    resize: none;
-                }
             }
         }
 
