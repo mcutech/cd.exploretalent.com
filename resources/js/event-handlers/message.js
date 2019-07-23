@@ -1,24 +1,23 @@
 'use strict'
-function Handler (core, user, projectId, roleId) {
+function Handler (core, user) {
   self = this
   self.core = core
   self.cdn = '//etdownload.s3.amazonaws.com/'
   self.me = user
-  self.projectId = projectId
-  self.roleId = roleId
   self.me = user.id
   self.getConversations()
+  console.log(self.me)
 }
 
-Handler.prototype.getConversations = function () {
+Handler.prototype.getConversations = () => {
   let data = {
     query: [
       [ 'with', 'users.bam_user' ],
       [ 'with', 'users.bam_cd_user' ],
       [ 'with', 'users.bam_talentci.bam_talent_media2_profile' ],
+      [ 'orderBy', 'updated_at', 'DESC' ],
       [ 'with', { messages: [
-        [ 'limit', 1 ],
-        [ 'orderBy', 'id', 'DESC' ]
+        [ 'orderBy', 'created_at', 'ASC' ]
       ] } ]
     ]
   }
@@ -26,15 +25,17 @@ Handler.prototype.getConversations = function () {
     .then(conversations => {
       _.each(conversations.data, (c, i) => {
         _.each(c.users, user => {
+          c.me = self.me
+          self.messages = c.mesages
           c.name = 'Unknown'
           c.photo = '/images/filler.jpg'
           c.message = '...'
           c.created_at = moment(c.created_at)
           if (c.messages.length > 0) {
-            c.created_at = moment(c.messages[0].created_at)
-            c.message = c.messages[0].body
-            if (c.message.length > 60) {
-              c.message = c.message.slice(0, 60) + '...'
+            c.created_at = moment(c.last_message.created_at)
+            c.message = c.last_message.body
+            if (c.message.length > 45) {
+              c.message = c.message.slice(0, 45) + '...'
             }
           }
 
@@ -61,15 +62,40 @@ Handler.prototype.getConversations = function () {
 
       self.conversations = conversations
       self.renderConversations()
+
+      // Load first conversation
+      if (conversations.data.length) {
+        self.renderMessages(conversations.data[0].id)
+      }
     })
 }
 
 Handler.prototype.renderConversations = () => {
-  self.core.service.databind('#from', self.conversations)
+  self.core.service.databind('.from', self.conversations)
 }
 
-Handler.prototype.renderMessages = () => {
-  self.core.service.databind('#to', self.messages)
+Handler.prototype.renderMessages = (id) => {
+  let conversations = self.conversations
+
+  let conversation = _.find(conversations.data, (i) => {
+    return i.id == id
+  })
+
+  let messages = conversation.messages
+
+  self.core.service.databind('#to', { messages })
+  self.core.service.databind('#reply', conversation)
+}
+
+Handler.prototype.reply = () => {
+  let form = self.core.service.form.serializeObject('#message-reply')
+  console.log(form)
+
+  core.resource.message.post(form)
+    .then((res) => {
+      console.log(res)
+      $(e.target).find('[name=body]').val('')
+    })
 }
 
 module.exports = (core, user, projectId, roleId) => {

@@ -47,9 +47,9 @@
                      </button>
                  </span>
               </div>
-            <div class="talent-item-container" id="from">
-              <div class="talent-item new-message" data-bind-template="#from" data-bind-value="data">
-                <div class="show-conversation">
+            <div class="talent-item-container from">
+              <div class="talent-item new-message" data-bind-template=".from" data-bind-value="data">
+                  <div class="show-conversation" data-bind="<%= id %>" data-bind-target="data-id">
                   <div class="photo">
                     <div class="photo-holder">
                         <img class="img-item" data-bind="<%= photo %>"/>
@@ -81,37 +81,25 @@
                   </div>
               </div>
                 <div class="messages-container" id="to">
-                    <div class="message-time-log clearfix">
-                        <div class="time-log text-center">June 6, 2019 - 6:30 PM</div>
-                        <div class="recepient-message">Hello Im interested how do I apply?</div>
-                        <div class="user-message">Just follow the instructions on the invite</div>
-                    </div>
-                    <div class="message-time-log clearfix">
-                        <div class="time-log text-center">Yesterday - 1:23 PM</div>
-                        <div class="recepient-message">Great! How long I have to wait?</div>
-                        <div class="recepient-message">Great! How long I have to wait?</div>
-                        <div class="recepient-message">Great! How long I have to wait?</div>
-                    </div>
-                    <div class="message-time-log clearfix">
-                        <div class="time-log text-center">Yesterday - 3:23 PM</div>
-                        <div class="recepient-message">Great! How long I have to wait?</div>
-                        <div class="recepient-message">Great! How long I have to wait?</div>
-                        <div class="recepient-message">Great! How long I have to wait?</div>
-                        <div class="user-message">Hi will contact you later.</div>
-                    </div>
-                    <div class="message-time-log clearfix">
-                        <div class="time-log text-center">Today - 3:23 PM</div>
-                        <div class="user-message">Hi congratulations you have chosen to get the role for Darna</div>
-                        <div class="user-message">So how are feeling?</div>
-                        <div class="recepient-message">Really, Im so glad to hear that</div>
-                        <div class="recepient-message">I will do my best for this role, thank you so much for the oppurtunity!</div>
-                        <div class="user-message">Woow thats great! Looking forward to see you on set.</div>
+                    <div data-bind-template="#to" data-bind-value="messages">
+                        <div class="message-time-log clearfix">
+                            <div class="time-log text-center" data-bind="<%= created_at %>"></div>
+                            <div data-bind="<%= (user_id == self.me) ? 'user-message' : 'recepient-message' %>" class="messages" data-bind-target="class">
+                                <div class="message-body" data-bind="<%= body %>"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="input-group message-box clearfix">
-                  <input class="form-control" placeholder="Enter a Message...">
-                     <span class="input-group-btn">
+                <div class="input-group message-box clearfix" id="reply">
+                    <form id="message-reply">
+                        <input hidden class="id" data-bind="<%= id %>" name="conversationId" data-bind-target="value">
+                        <input class="form-control message-box" name="body" placeholder="Enter a Message...">
+                    </form>
+                     <div class="input-group-btn">
+                         <button class="btn btn-success reply" data-toggle="tooltip" data-placement="top" title="Send">
+                             Send
+                         </button>
                          <button class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Confirmed Invitation Invite">
                              <i class="fa fa-check"></i>
                          </button>
@@ -127,9 +115,11 @@
                          <button class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Set for a Callback">
                              <i class="fa fa-thumbs-up"></i>
                          </button>
-                     </span>
+                     </div>
                 </div>
+
              </div>
+
         </div>
       </div>
     </div>
