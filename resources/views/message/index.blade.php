@@ -95,7 +95,6 @@
                     <form id="message-reply">
                         <input hidden class="id" data-bind="<%= id %>" name="conversationId" data-bind-target="value">
                         <input class="form-control message-box" name="body" placeholder="Enter a Message...">
-                    </form>
                      <div class="input-group-btn">
                          <button class="btn btn-success reply" data-toggle="tooltip" data-placement="top" title="Send">
                              Send
@@ -115,6 +114,7 @@
                          <button class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Set for a Callback">
                              <i class="fa fa-thumbs-up"></i>
                          </button>
+                    </form>
                      </div>
                 </div>
 

@@ -139,7 +139,7 @@
                 }
             }
             .slimScrollDiv{
-                height: calc(100% - 46px) !important;
+                height: calc(100% - 30px) !important;
             }
         }
         .message-content{
@@ -163,6 +163,7 @@
                     background-color: rgba(0,0,0,0.06);
                     margin-bottom: 8px;
                     border-radius:4px;
+                    max-width:65%;
                 }
                 .user-message{
                     float: right;
@@ -172,6 +173,7 @@
                     background-color: rgb(29, 137, 207);
                     margin-bottom: 8px;
                     border-radius:4px;
+                    max-width:65%;
                 }
             }
 
@@ -180,7 +182,7 @@
                 bottom: 0;
                 left: 0;
                 width: 100%;
-                padding: 8px;
+                // padding: 8px;
                 z-index: 2;
             }
         }
@@ -195,5 +197,8 @@
             }
         }
 
+    }
+    #message-reply {
+      float:right;
     }
 }
