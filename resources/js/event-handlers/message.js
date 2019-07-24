@@ -80,21 +80,35 @@ Handler.prototype.renderMessages = (id) => {
   let conversation = _.find(conversations.data, (i) => {
     return i.id == id
   })
+  console.log(conversation)
+  let data = {
+    conversationId: id,
+    query: [
+      ['orderBy', 'created_at', 'ASC']
+    ]
+  }
 
-  let messages = conversation.messages
+  core.resource.message.get(data)
+    .then((message) => {
+      console.log(message)
+      core.service.databind('#to', message)
+    })
 
-  self.core.service.databind('#to', { messages })
-  self.core.service.databind('#reply', conversation)
+  // let messages = conversation.messages
+  core.service.databind('#reply', conversation)
 }
 
-Handler.prototype.reply = () => {
+Handler.prototype.reply = (e) => {
+  e.preventDefault()
   let form = self.core.service.form.serializeObject('#message-reply')
   console.log(form)
 
   core.resource.message.post(form)
     .then((res) => {
-      console.log(res)
-      $(e.target).find('[name=body]').val('')
+      console.log('message',res)
+      self.renderMessages(res.conversation_id)
+      self.getConversations()
+      $(e.target).find('input[name=body]').val(' ')
     })
 }
 
