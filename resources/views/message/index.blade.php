@@ -81,9 +81,9 @@
                   </div>
               </div>
                 <div class="messages-container" id="to">
-                    <div data-bind-template="#to" data-bind-value="messages">
+                    <div data-bind-template="#to" data-bind-value="data">
                         <div class="message-time-log clearfix">
-                            <div class="time-log text-center" data-bind="<%= created_at %>"></div>
+                            <div class="time-log padding-normal text-center" data-bind="<%= moment(created_at).calendar() %>"></div>
                             <div data-bind="<%= (user_id == self.me) ? 'user-message' : 'recepient-message' %>" class="messages" data-bind-target="class">
                                 <div class="message-body" data-bind="<%= body %>"></div>
                             </div>
