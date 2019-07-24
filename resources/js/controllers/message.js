@@ -8,7 +8,7 @@ module.exports = function (core, user, projectId, roleId) {
 
   $('.messages-container').slimScroll({
     height: '80%',
-    start: 'top'
+    start: 'bottom'
   })
 
   $(document).on('click', '.show-conversation', e => {
@@ -16,6 +16,7 @@ module.exports = function (core, user, projectId, roleId) {
     let id = $(e.target).attr('data-id')
     Handler.renderMessages(id)
   })
+
   $(document).on('click', '.reply', Handler.reply)
 
   let windowHeight = window.innerHeight - 157
