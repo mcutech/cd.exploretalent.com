@@ -3,19 +3,25 @@ module.exports = function (core, user, projectId, roleId) {
 
   $('.talent-item-container').slimScroll({
     height: '100%',
-    start: 'top'
+    start: 'bottom'
   })
 
   $('.messages-container').slimScroll({
-    height: '80%',
-    start: 'top'
+    height: '470px'
   })
+
+
 
   $(document).on('click', '.show-conversation', e => {
     e.preventDefault()
+    $('.talent-item').removeClass('active')
+    $('.talent-item').find('.active').removeClass('active')
+    $(e.target).parent().addClass('active')
+
     let id = $(e.target).attr('data-id')
     Handler.renderMessages(id)
   })
+
   $(document).on('click', '.reply', Handler.reply)
 
   let windowHeight = window.innerHeight - 157
