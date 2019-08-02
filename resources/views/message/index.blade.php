@@ -49,6 +49,7 @@
               </div>
             <div class="talent-item-container from">
               <div class="talent-item new-message" data-bind-template=".from" data-bind-value="data">
+
                   <div class="show-conversation" data-bind="<%= id %>" data-bind-target="data-id">
                   <div class="photo">
                     <div class="photo-holder">
@@ -56,21 +57,18 @@
                     </div>
                   </div>
                   <div class="message-info">
-                    <div class="name-and-age">
-                        <span data-bind="<%= name %>"><b></b></span>
-                    </div>
+                    <div data-bind="<%= name %>"><b></b></div>
+                    <div data-bind="<%= id %>"><b></b></div>
                     <div class="location"></div>
-                    <div class="project text-muted">
-                    </div>
-                    <div class="role text-muted" data-bind="<%= message %>">
-                    </div>
-                    <div class="time-log" data-bind="<%= created_at.fromNow() %>">06/12/19</div>
+                    <div class="project text-muted"></div>
+                    <div class="role text-muted" data-bind="<%= message %>"></div>
+                    <div class="time-log" data-bind="<%= created_at.fromNow() %>"></div>
                     <div class="remove-talent"><span class="text-label">Remove from messaging</span><i class="fa fa-times-circle fa-lg"></i></div>
                   </div>
                 </div>
+
               </div>
             </div>
-
 
           </div>
 
@@ -82,7 +80,7 @@
               </div>
                 <div class="messages-container" id="to">
                     <div data-bind-template="#to" data-bind-value="data">
-                        <div class="message-time-log clearfix">
+                        <div class="message-time-log clearfix ">
                             <div class="time-log padding-normal text-center" data-bind="<%= moment(created_at).calendar() %>"></div>
                             <div data-bind="<%= (user_id == self.me) ? 'user-message' : 'recepient-message' %>" class="messages" data-bind-target="class">
                                 <div class="message-body" data-bind="<%= body %>"></div>

@@ -76,12 +76,13 @@ Handler.prototype.renderConversations = () => {
 
 Handler.prototype.renderMessages = (id) => {
   let conversations = self.conversations
-
+  let qs = core.service.query_string
   let conversation = _.find(conversations.data, (i) => {
     return i.id == id
   })
   console.log(conversation)
   let data = {
+    page: qs.page || 1,
     conversationId: id,
     query: [
       ['orderBy', 'created_at', 'ASC']
@@ -103,13 +104,15 @@ Handler.prototype.reply = (e) => {
   let form = self.core.service.form.serializeObject('#message-reply')
   console.log(form)
 
-  core.resource.message.post(form)
-    .then((res) => {
-      console.log('message',res)
-      self.renderMessages(res.conversation_id)
-      self.getConversations()
-      $(e.target).find('input[name=body]').val(' ')
-    })
+  if (form.body.length) {
+    core.resource.message.post(form)
+      .then((res) => {
+        console.log('message', res)
+        self.renderMessages(res.conversation_id)
+        self.getConversations()
+        $(e.target).parent().parent().find('input[name=body]').val('')
+      })
+  }
 }
 
 module.exports = (core, user, projectId, roleId) => {
