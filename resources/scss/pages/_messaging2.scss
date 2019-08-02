@@ -57,7 +57,7 @@
                     padding: 7px;
                     position: relative;
                     &.new-message, &:hover, &:active, &:focus{
-                        background-color: rgba(0,0,0,0.05);
+                        // background-color: rgba(0,0,0,0.05);
                         cursor: pointer;
                         .message-info{
                             .name-and-age{
@@ -136,6 +136,9 @@
                             }
                         }
                     }
+                }
+                .active {
+                  background-color : #ebebeb;
                 }
             }
             .slimScrollDiv{
