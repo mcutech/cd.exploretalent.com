@@ -82,7 +82,6 @@ Handler.prototype.renderMessages = (id) => {
     return i.id == id
   })
 
-  console.log(conversation)
   let data = {
     page: qs.page || 1,
     conversationId: id,
@@ -102,8 +101,11 @@ Handler.prototype.renderMessages = (id) => {
 
 Handler.prototype.reply = (e) => {
   e.preventDefault()
+  let container = $(e.target).parents('.message-content').find('.messages-container')
+
   let form = self.core.service.form.serializeObject('#message-reply')
   if (form.body.length) {
+    console.log(container)
     core.resource.message.post(form)
       .then((res) => {
         console.log('message', res)
@@ -111,6 +113,7 @@ Handler.prototype.reply = (e) => {
         self.getConversations()
         $(e.target).parent().parent().find('input[name=body]').val('')
       })
+        container.scrollTop(9999)
   }
 }
 

@@ -50,9 +50,9 @@
                 }
             }
             .talent-item-container{
-                // height: calc(100% - 46px);
+                height: calc(100% - 30px);
                 border-bottom: 1px solid #ddd;
-                // overflow-y:scroll;
+                overflow-y:scroll;
                 .talent-item{
                     padding: 7px;
                     position: relative;
@@ -151,10 +151,8 @@
             position: relative;
 
             .messages-container{
-                height: calc(100% - 68px) !important;
-                .slimScrollDiv{
-                   height: calc(100% - 68px) !important;
-                }
+                overflow-y: auto;
+                height: 405px;
                 .message-time-log{
                   color :#aca7a6;
                 }
