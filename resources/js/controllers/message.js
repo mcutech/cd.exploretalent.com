@@ -1,17 +1,6 @@
 module.exports = function (core, user, projectId, roleId) {
   let Handler = require('../event-handlers/message.js')(core, user, projectId, roleId)
 
-  $('.talent-item-container').slimScroll({
-    height: '100%',
-    start: 'bottom'
-  })
-
-  $('.messages-container').slimScroll({
-    height: '470px'
-  })
-
-
-
   $(document).on('click', '.show-conversation', e => {
     e.preventDefault()
     $('.talent-item').removeClass('active')
