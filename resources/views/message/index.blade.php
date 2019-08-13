@@ -49,7 +49,6 @@
               </div>
             <div class="talent-item-container from">
               <div class="talent-item new-message" data-bind-template=".from" data-bind-value="data">
-
                   <div class="show-conversation" data-bind="<%= id %>" data-bind-target="data-id">
                   <div class="photo">
                     <div class="photo-holder">
@@ -57,13 +56,15 @@
                     </div>
                   </div>
                   <div class="message-info">
-                    <div data-bind="<%= name %>"><b></b></div>
-                    <div data-bind="<%= id %>"><b></b></div>
-                    <div class="location"></div>
-                    <div class="project text-muted"></div>
-                    <div class="role text-muted" data-bind="<%= message %>"></div>
-                    <div class="time-log" data-bind="<%= created_at.fromNow() %>"></div>
-                    <div class="remove-talent"><span class="text-label">Remove from messaging</span><i class="fa fa-times-circle fa-lg"></i></div>
+                    <p data-bind="<%= name %>"><b></b></p>
+                    <p data-bind="<%= id %>"><b></b></p>
+                    <p class="location"></p>
+                    <p class="project text-muted"></p>
+                    <p class="role text-muted" data-bind="<%= message %>"></p>
+                    <p class="time-log" data-bind="<%= created_at.fromNow() %>"></p>
+                    <div>
+                        <div class="remove-talent"><span class="text-label">Remove from messaging</span><i class="fa fa-times-circle fa-lg" data-bind="<%= id %>" data-bind-target="data-id"></i></div>
+                    </div>
                   </div>
                 </div>
 
