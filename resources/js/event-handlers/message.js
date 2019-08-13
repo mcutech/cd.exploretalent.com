@@ -113,7 +113,19 @@ Handler.prototype.reply = (e) => {
         self.getConversations()
         $(e.target).parent().parent().find('input[name=body]').val('')
       })
-        container.scrollTop(9999)
+    container.scrollTop(9999)
+  }
+}
+
+Handler.prototype.deleteConvo = (e) => {
+  let del = $(e.target).attr('data-id')
+  console.log(del)
+
+  if (confirm('Are you sure you want to delete this conversation?')) {
+    core.resource.conversation.delete({ conversationId: del })
+      .then((res) => {
+        self.getConversations()
+      })
   }
 }
 
