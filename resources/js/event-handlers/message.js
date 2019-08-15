@@ -71,6 +71,12 @@ Handler.prototype.getConversations = () => {
       // Load first conversation
       if (conversations.data.length) {
         self.renderMessages(conversations.data[0].id)
+        self.renderConversations()
+        $('.show-conversation:visible').each((i, e) => {
+          if (i === 0) {
+            $(e).parents('.talent-item').addClass('active')
+          }
+        })
       }
     })
 }
@@ -129,6 +135,9 @@ Handler.prototype.deleteConvo = (e) => {
         self.getConversations()
       })
   }
+}
+
+Handler.prototype.activeFirst = () => {
 }
 
 module.exports = (core, user, projectId, roleId) => {
