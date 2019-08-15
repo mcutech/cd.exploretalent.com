@@ -24,6 +24,7 @@ Handler.prototype.getConversations = () => {
   }
   core.resource.conversation.get(data)
     .then(conversations => {
+      console.log(conversations)
       _.each(conversations.data, (c, i) => {
         _.each(c.users, user => {
           c.me = self.me
@@ -42,6 +43,7 @@ Handler.prototype.getConversations = () => {
 
           if (user.bam_talentnum > 0) {
             c.name = user.bam_talentci.fname + ' ' + user.bam_talentci.lname
+            c.address = user.bam_talentci.address1
             if (user.bam_talentci.bam_talent_media2_profile.length > 0) {
               c.photo = self.cdn + user.bam_talentci.bam_talent_media2_profile[0].bam_media_path_full
             }
@@ -49,10 +51,12 @@ Handler.prototype.getConversations = () => {
 
           if (user.bam_cd_user_id > 0) {
             c.name = user.bam_cd_user.fname + ' ' + user.bam_cd_user.lname
+            c.address = user.bam_cd_user.address1
           }
 
           if (user.bam_user_id > 0) {
             c.name = user.bam_user.fname + ' ' + user.bam_user.lname
+            c.address = user.bam_user.address1
           }
         })
 
@@ -108,7 +112,6 @@ Handler.prototype.reply = (e) => {
     console.log(container)
     core.resource.message.post(form)
       .then((res) => {
-        console.log('message', res)
         self.renderMessages(res.conversation_id)
         self.getConversations()
         $(e.target).parent().parent().find('input[name=body]').val('')
@@ -119,7 +122,6 @@ Handler.prototype.reply = (e) => {
 
 Handler.prototype.deleteConvo = (e) => {
   let del = $(e.target).attr('data-id')
-  console.log(del)
 
   if (confirm('Are you sure you want to delete this conversation?')) {
     core.resource.conversation.delete({ conversationId: del })
