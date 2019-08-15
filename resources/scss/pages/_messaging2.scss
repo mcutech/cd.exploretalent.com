@@ -152,7 +152,7 @@
 
             .messages-container{
                 overflow-y: auto;
-                height: 405px;
+                height: cal(100vh - 345px);
                 .message-time-log{
                   color :#aca7a6;
                 }

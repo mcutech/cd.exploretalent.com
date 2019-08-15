@@ -56,12 +56,11 @@
                     </div>
                   </div>
                   <div class="message-info">
-                    <p data-bind="<%= name %>"><b></b></p>
-                    <p data-bind="<%= id %>"><b></b></p>
-                    <p class="location"></p>
-                    <p class="project text-muted"></p>
-                    <p class="role text-muted" data-bind="<%= message %>"></p>
-                    <p class="time-log" data-bind="<%= created_at.fromNow() %>"></p>
+                    <div data-bind="<%= name %>" class="text-capitalize"><b></b></div>
+                    <div data-bind="<%= address %>" class="text-capitalize"></div>
+                    <div class="project text-muted"></div>
+                    <div class="role text-muted" data-bind="<%= message %>"></div>
+                    <div class="time-log" data-bind="<%= created_at.fromNow() %>"></div>
                     <div>
                         <div class="remove-talent"><span class="text-label">Remove from messaging</span><i class="fa fa-times-circle fa-lg" data-bind="<%= id %>" data-bind-target="data-id"></i></div>
                     </div>
@@ -82,7 +81,7 @@
                 <div class="messages-container" id="to">
                     <div data-bind-template="#to" data-bind-value="data" class="content">
                         <div class="message-time-log clearfix ">
-                            <div class="time-log padding-normal text-center" data-bind="<%= moment(created_at).calendar() %>"></div>
+                            <div class="time-log padding-normal text-center"><span data-bind="<%= moment(created_at).calendar() %>"></span> <span data-bind="<%= moment(created_at).format('LT')%>"></span></div>
                             <div data-bind="<%= (user_id == self.me) ? 'user-message' : 'recepient-message' %>" class="messages" data-bind-target="class">
                                 <div class="message-body" data-bind="<%= body %>"></div>
                             </div>
