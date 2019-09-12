@@ -1,204 +1,145 @@
 'use strict'
-let _ = require('lodash')
-
-function handler (core, user, projectId, roleId) {
+function Handler (core, user) {
   self = this
   self.core = core
   self.cdn = '//etdownload.s3.amazonaws.com/'
-  self.me = user
-  self.projectId = projectId
-  self.roleId = roleId
-  // self.refreshProjects()
-  // self.refreshInbox()
-  // self.type = 'personal'
-  // self.conversations = {
-  //   currentConversationId: false,
-  //   loadingMessages: false,
-  //   personal: [],
-  //   job: [],
-  //   messages: []
-  // }
-  // self.jobId = false
-// }
+  self.user = user
+  self.me = user.id
+  self.getConversations()
+  console.log(self.me)
+  console.log(self.me)
+}
 
-// // handler.prototype.showConversation = (e) => {
-//   let id = $(e.target).attr('data-id')
-//   self.conversations.currentConversationId = id
-//   self.conversations.loadingMessages = true
-//   self.updateDataBind()
-//   self.core.resource.message.get({ conversationId: id })
-//     .then((res) => {
-//       for (let i = 0, len = res.data.length; i < len; i++) {
-//         res.data[i].mine = res.data[i].user_id == self.me.id
-//       }
-//       res.data = res.data.reverse()
-//       self.conversations.messages = res
-//       self.conversations.loadingMessages = false
-//       self.updateDataBind()
+Handler.prototype.getConversations = () => {
+  let data = {
+    query: [
+      [ 'with', 'users.bam_user' ],
+      [ 'with', 'users.bam_cd_user' ],
+      [ 'with', 'users.bam_talentci.bam_talent_media2_profile' ],
+      [ 'orderBy', 'updated_at', 'DESC' ],
+      [ 'with', { messages: [
+        [ 'orderBy', 'created_at', 'ASC' ]
+      ] } ]
+    ]
+  }
+  core.resource.conversation.get(data)
+    .then(conversations => {
+      console.log(conversations)
+      _.each(conversations.data, (c, i) => {
+        _.each(c.users, user => {
+          c.me = self.me
+          self.messages = c.mesages
+          c.name = 'Unknown'
+          c.photo = '/images/filler.jpg'
+          c.message = '...'
+          c.created_at = moment(c.created_at)
+          if (c.messages.length > 0) {
+            c.created_at = moment(c.last_message.created_at)
+            c.message = c.last_message.body
+            if (c.message.length > 45) {
+              c.message = c.message.slice(0, 45) + '...'
+            }
+          }
 
-//       // Mark as READ
-//       self.core.resource.conversation.patch({ conversationId: id, read: 1 })
-//         .then((res) => {
-//           for (let i = 0, len = self.conversations[self.type].data.length; i < len; i++) {
-//             if (self.conversations[self.type].data[i].id == id) {
-//               self.conversations[self.type].data[i].unread_count = 0
-//             }
-//           }
+          if (user.bam_talentnum > 0) {
+            c.name = user.bam_talentci.fname + ' ' + user.bam_talentci.lname
+            c.address = user.bam_talentci.address1
+            if (user.bam_talentci.bam_talent_media2_profile.length > 0) {
+              c.photo = self.cdn + user.bam_talentci.bam_talent_media2_profile[0].bam_media_path_full
+            }
+          }
 
-//           self.updateDataBind()
-//         })
-//     })
-// }
+          if (user.bam_cd_user_id > 0) {
+            c.name = user.bam_cd_user.fname + ' ' + user.bam_cd_user.lname
+            c.address = user.bam_cd_user.address1
+          }
 
-// handler.prototype.checkSendMessage = (e) => {
-//   let element = $(e.target)
-//   let id = element.attr('data-id')
-//   if (e.keyCode == 13) {
-//     e.preventDefault()
-//     element.attr('disabled', true)
-//     self.core.resource.message.post({
-//       conversationId: id,
-//       body: element.val()
-//     })
-//       .then((res) => {
-//         res.mine = true
-//         self.conversations.messages.total += 1
-//         self.conversations.messages.data.push(res)
-//         self.updateDataBind()
-//         element.attr('disabled', false)
-//         element.val('')
-//         element.focus()
-//       }, (err) => {
-//         element.attr('disabled', false)
-//       })
-//   }
-// }
+          if (user.bam_user_id > 0) {
+            c.name = user.bam_user.fname + ' ' + user.bam_user.lname
+            c.address = user.bam_user.address1
+          }
+        })
 
-// handler.prototype.updateDataBind = (e) => {
-//   self.conversations.current = self.conversations[self.type]
-//   self.core.service.databind('.inbox-container', self.conversations)
-//   let container = $('.messages-container')
-//   container.scrollTop(container[0].scrollHeight)
-// }
+        c.user = _.find(c.users, u => {
+          return u.id === c.user_id
+        })
+      })
 
-// handler.prototype.removeConversation = (e) => {
-//   let id = $(e.target).parent().attr('data-id')
-//   self.core.resource.conversation.delete({ conversationId: id })
-//     .then((res) => {
-//       self.conversations.personal.data = _.filter(self.conversations.personal.data, (conv) => {
-//         return conv.id != id
-//       })
-//       self.conversations.job.data = _.filter(self.conversations.job.data, (conv) => {
-//         return conv.id != id
-//       })
+      self.conversations = conversations
+      self.renderConversations()
 
-//       self.updateDataBind()
-//     })
-// }
+      // Load first conversation
+      if (conversations.data.length) {
+        self.renderMessages(conversations.data[0].id)
+        self.renderConversations()
+        $('.show-conversation:visible').each((i, e) => {
+          if (i === 0) {
+            $(e).parents('.talent-item').addClass('active')
+          }
+        })
+      }
+    })
+}
 
-// handler.prototype.refreshProjects = () => {
-//   let data = {
-//     query: [
-//       [ 'with', 'bam_roles' ]
-//     ]
-//   }
-//   self.core.resource.project.get(data)
-//     .then((res) => {
-//       self.core.service.databind('#projects-list', res)
-//     })
-// }
+Handler.prototype.renderConversations = () => {
+  self.core.service.databind('.from', self.conversations)
+}
 
-// handler.prototype.refreshInbox = (e) => {
-//   if (e && e.val) {
-//     self.jobId = e.val
-//   }
+Handler.prototype.renderMessages = (id) => {
+  let conversations = self.conversations
+  let qs = core.service.query_string
+  let conversation = _.find(conversations.data, (i) => {
+    return i.id == id
+  })
 
-//   let data = {
-//     query: [
-//       ['whereNull', 'schedule_id']
-//     ]
-//   }
+  let data = {
+    page: qs.page || 1,
+    conversationId: id,
+    query: [
+      ['orderBy', 'created_at', 'ASC']
+    ]
+  }
 
-//   if (self.jobId) {
-//     data = {
-//       query: [
-//         ['join', 'schedules', 'schedules.id', 'schedule_id'],
-//         ['where', 'schedule_id', self.jobId],
-//         ['with', 'schedule']
-//       ]
-//     }
-//   }
+  core.resource.message.get(data)
+    .then((message) => {
+      console.log(message)
+      core.service.databind('#to', message)
+    })
 
-//   data.query.push(['with', 'users.bam_talentci.bam_talent_media2'])
-//   data.query.push(['with', 'users.bam_cd_user'])
+  core.service.databind('#reply', conversation)
+}
 
-//   self.core.resource.conversation.get(data)
-//     .then((res) => {
-//       for (let i = 0, len = res.data.length; i < len; i++) {
-//         if (res.data[i].name === '') {
-//           res.data[i].name = []
+Handler.prototype.reply = (e) => {
+  e.preventDefault()
+  let container = $(e.target).parents('.message-content').find('.messages-container')
 
-//           let users = _.filter(res.data[i].users, (user) => {
-//             return user.id != self.me.id
-//           })
+  let form = self.core.service.form.serializeObject('#message-reply')
+  if (form.body.length) {
+    console.log(container)
+    core.resource.message.post(form)
+      .then((res) => {
+        self.renderMessages(res.conversation_id)
+        self.getConversations()
+        $(e.target).parent().parent().find('input[name=body]').val('')
+      })
+    container.scrollTop(9999)
+  }
+}
 
-//           res.data[i].pic = '/images/filler.jpg'
-//           res.data[i].location = false
+Handler.prototype.deleteConvo = (e) => {
+  let del = $(e.target).attr('data-id')
 
-//           for (let x = 0, len = users.length; x < len; x++) {
-//             let user = users[x]
+  if (confirm('Are you sure you want to delete this conversation?')) {
+    core.resource.conversation.delete({ conversationId: del })
+      .then((res) => {
+        self.getConversations()
+      })
+  }
+}
 
-//             if (user.id != self.me.id) {
-//               if (user.bam_talentnum > 0) {
-//                 let pics = _.filter(user.bam_talentci.bam_talent_media2, (media) => {
-//                   return media.type == 2
-//                 })
-
-//                 if (pics.length) {
-//                   res.data[i].pic = self.cdn + pics[0].bam_media_path_full
-//                 }
-
-//                 // ?????
-//                 res.data[i].location = user.bam_talentci.city + ', ' + user.bam_talentci.state
-
-//                 res.data[i].name.push(user.bam_talentci.fname + ' ' + user.bam_talentci.lname)
-//               } else if (user.bam_cd_user_id > 0) {
-//                 res.data[i].name.push(user.bam_cd_user.fname + ' ' + user.bam_cd_user.lname)
-//               } else {
-//                 res.data[i].name.push('Unknown')
-//               }
-//             }
-//           }
-
-//           res.data[i].name = res.data[i].name.join(',')
-//         }
-//       }
-
-//       if (!self.jobId) {
-//         self.conversations.personal = res
-//       } else {
-//         self.conversations.job = res
-//       }
-//       self.updateDataBind()
-//     })
-// }
-
-// handler.prototype.refreshRoles = (e) => {
-//   self.projectId = $('#projects-list').val()
-//   let data = {
-//     projectId: self.projectId
-//   }
-
-//   self.core.service.databind('#roles-list', [])
-
-//   self.core.resource.job.get(data)
-//     .then((res) => {
-//       let roles = res
-//       self.core.service.databind('#roles-list', roles)
-//       console.log(roles)
-//     })
+Handler.prototype.activeFirst = () => {
 }
 
 module.exports = (core, user, projectId, roleId) => {
-  return new handler(core, user, projectId, roleId)
+  return new Handler(core, user, projectId, roleId)
 }

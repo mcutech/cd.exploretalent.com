@@ -50,14 +50,14 @@
                 }
             }
             .talent-item-container{
-                // height: calc(100% - 46px);
+                height: calc(100% - 30px);
                 border-bottom: 1px solid #ddd;
-                // overflow-y:scroll;
+                overflow-y:scroll;
                 .talent-item{
                     padding: 7px;
                     position: relative;
                     &.new-message, &:hover, &:active, &:focus{
-                        background-color: rgba(0,0,0,0.05);
+                        // background-color: rgba(0,0,0,0.05);
                         cursor: pointer;
                         .message-info{
                             .name-and-age{
@@ -137,9 +137,12 @@
                         }
                     }
                 }
+                .active {
+                  background-color : #ebebeb;
+                }
             }
             .slimScrollDiv{
-                height: calc(100% - 46px) !important;
+                height: calc(100% - 30px) !important;
             }
         }
         .message-content{
@@ -148,10 +151,8 @@
             position: relative;
 
             .messages-container{
-                height: calc(100% - 68px) !important;
-                .slimScrollDiv{
-                   height: calc(100% - 68px) !important;
-                }
+                overflow-y: auto;
+                height: calc(100% - 30%);
                 .message-time-log{
                   color :#aca7a6;
                 }
@@ -163,6 +164,7 @@
                     background-color: rgba(0,0,0,0.06);
                     margin-bottom: 8px;
                     border-radius:4px;
+                    max-width:65%;
                 }
                 .user-message{
                     float: right;
@@ -172,6 +174,7 @@
                     background-color: rgb(29, 137, 207);
                     margin-bottom: 8px;
                     border-radius:4px;
+                    max-width:65%;
                 }
             }
 
@@ -180,7 +183,7 @@
                 bottom: 0;
                 left: 0;
                 width: 100%;
-                padding: 8px;
+                // padding: 8px;
                 z-index: 2;
             }
         }
@@ -195,5 +198,8 @@
             }
         }
 
+    }
+    #message-reply {
+      float:right;
     }
 }
