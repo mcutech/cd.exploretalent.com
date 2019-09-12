@@ -1,6 +1,6 @@
 'use strict'
 
-function handler (core, user, projectId, roleId) {
+function Handler (core, user, projectId, roleId) {
   self = this
   self.core = core
   self.user = user
@@ -18,12 +18,12 @@ function handler (core, user, projectId, roleId) {
     })
   }
 
-  self.xorigins = self.xorigins.length == 0 ? [-1] : self.xorigins
+  self.xorigins = self.xorigins.length === 0 ? [-1] : self.xorigins
 
   self.getProjectInfo()
 }
 
-handler.prototype.getProjectInfo = function () {
+Handler.prototype.getProjectInfo = function () {
   let data = {
     projectId: self.projectId,
     query: [
@@ -47,12 +47,12 @@ handler.prototype.getProjectInfo = function () {
     })
 }
 
-handler.prototype.refreshRole = function () {
+Handler.prototype.refreshRole = function () {
   self.done = false
   self.refreshing = false
   self.roleId = $('#roles-list').val()
   let role = _.find(self.project.bam_roles, function (r) {
-    return r.role_id == $('#roles-list').val()
+    return r.role_id === parseInt($('#roles-list').val())
   })
 
   window.history.pushState({}, '', '/projects/' + self.projectId + '/roles/' + role.role_id + '/find-talents')
@@ -80,7 +80,7 @@ handler.prototype.refreshRole = function () {
   self.findMatches()
 }
 
-handler.prototype.findMatches = function (append) {
+Handler.prototype.findMatches = function (append) {
   if (self.refreshing) {
     return
   }
@@ -95,7 +95,6 @@ handler.prototype.findMatches = function (append) {
   self.page = append ? self.page + 1 : 1
   self.refreshing = true
   let data = self.getFilters()
-  let talents, talentnums
 
   $('#search-loader').show()
 
@@ -109,21 +108,13 @@ handler.prototype.findMatches = function (append) {
 
   self.core.resource.talent.search(data, options)
     .then(function (talents) {
-      if (talents.data.length == 0) {
+      if (talents.data.length === 0) {
         $('#search-loader').addClass('hide')
       }
 
       self.done = (talents.total < talents.per_page)
 
-      let results
-
       _.each(talents.data, function (talent, ind) {
-        // for specific date for birthday
-        // if(talent.dobyyyy <= new Date().getFullYear()) {
-        //   if(talent.dobmm > (new Date().getMonth() + 1)) {
-        //     delete talents.data[ind];
-        //   }
-        // }
         talent.talent_role_id = self.roleId
         talent.talent_project_id = self.projectId
 
@@ -140,7 +131,7 @@ handler.prototype.findMatches = function (append) {
       talents.data = null // empty the array
       talents.data = sortResult // replace with sorted result
 
-      if (talents.total == 0) {
+      if (talents.total === 0) {
         $('#add-all-div').addClass('hide')
       } else {
         $('#add-all-div').removeClass('hide')
@@ -162,19 +153,18 @@ handler.prototype.findMatches = function (append) {
     })
 }
 
-handler.prototype.getFilters = function () {
+Handler.prototype.getFilters = function () {
   let form = self.core.service.form.serializeObject('#role-filter-form')
 
   let data = {
     per_page: 24,
     page: self.page,
-    query: [
-    ]
+    query: [ ]
   }
 
-  if ($('#show_only_matched').is(':checked') == true) {
+  if ($('#show_only_matched').is(':checked') === true) {
     let role = _.find(self.project.bam_roles, function (r) {
-      return r.role_id == $('#roles-list').val()
+      return r.role_id === parseInt($('#roles-list').val())
     })
 
     window.history.pushState({}, '', '/projects/' + self.projectId + '/roles/' + role.role_id + '/find-talents')
@@ -183,13 +173,13 @@ handler.prototype.getFilters = function () {
     self.core.service.databind('#role-filter-form', role)
   }
 
-  if (form.address_search == 0) { // market filter
+  if (parseInt(form.address_search) === 0) { // market filter
     if (form.markets) {
       if (form.markets instanceof Array) {
         let subquery = []
 
         _.each(form.markets, function (market) {
-          if (subquery.length == 0) {
+          if (subquery.length === 0) {
             subquery.push([ 'where', 'city', 'like', '%' + market + '%' ])
           } else {
             subquery.push([ 'orWhere', 'city', 'like', '%' + market + '%' ])
@@ -293,21 +283,21 @@ handler.prototype.getFilters = function () {
   if (form.ethnicity) {
     // African and African American are both searched if either is chosen
     if (form.ethnicity instanceof Array) {
-      if (form.ethnicity.indexOf('African') > -1 && form.ethnicity.indexOf('African American') == -1) {
+      if (form.ethnicity.indexOf('African') > -1 && form.ethnicity.indexOf('African American') === -1) {
         form.ethnicity.push('African American')
-      } else if (form.ethnicity.indexOf('African American') > -1 && form.ethnicity.indexOf('African') == -1) {
+      } else if (form.ethnicity.indexOf('African American') > -1 && form.ethnicity.indexOf('African') === -1) {
         form.ethnicity.push('African')
       }
 
       data.query.push([ 'whereIn', 'ethnicity', form.ethnicity ])
     } else {
-      if (form.ethnicity == 'African') {
+      if (form.ethnicity === 'African') {
         data.query.push(['where', [
           [ 'where', 'ethnicity', '=', 'African' ],
           [ 'orWhere', 'ethnicity', '=', 'African American' ]
         ]
         ])
-      } else if (form.ethnicity == 'African American') {
+      } else if (form.ethnicity === 'African American') {
         data.query.push(['where', [
           [ 'where', 'ethnicity', '=', 'African American' ],
           [ 'orWhere', 'ethnicity', '=', 'African' ]
@@ -330,7 +320,7 @@ handler.prototype.getFilters = function () {
   }
 
   if (form.union) {
-    if (form.union == '1') {
+    if (parseInt(form.union) === 1) {
       data.query.push([ 'where', [
         [ 'where', 'union_aea', '=', 'Yes' ],
         [ 'orWhere', 'union_aftra', '=', 'Yes' ],
@@ -349,8 +339,8 @@ handler.prototype.getFilters = function () {
     }
   }
 
-  if (form.has_photo == 'true') {
-    data.query.push([ 'where', 'has_photos', '=', form.has_photo == 'true' ? 1 : 0 ])
+  if (form.has_photo === 'true') {
+    data.query.push([ 'where', 'has_photos', '=', form.has_photo === 'true' ? 1 : 0 ])
   }
 
   if (self.xorigins.length > 0) {
@@ -360,7 +350,7 @@ handler.prototype.getFilters = function () {
   return data
 }
 
-handler.prototype.addAll = function () {
+Handler.prototype.addAll = function () {
   let data = self.getFilters()
 
   self.core.service.rest.post(self.core.config.api.base + '/cd/talentci/import/' + self.roleId, data)
@@ -371,5 +361,5 @@ handler.prototype.addAll = function () {
 }
 
 module.exports = function (core, user, projectId, roleId) {
-  return new handler(core, user, projectId, roleId)
+  return new Handler(core, user, projectId, roleId)
 }
