@@ -101,6 +101,7 @@ jscore.run(function (core) {
       .add('/login', 'login')
       .add('/register', 'register')
       .add('/settings', 'settings')
+      .add('/alternate-emails', 'profile.alternate-emails')
       .add('/welcome', 'welcome')
       .add('/reset-password', 'password.reset')
       .add('/forgot-password', 'password.forgot')
