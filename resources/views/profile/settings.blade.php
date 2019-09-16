@@ -153,9 +153,6 @@
 						<div class="form-group no-margin-hr">
 							<label for="email1" class="control-label">Email 1 *</label>
 							<input data-bind="<%= email1 %>" type="email" class="form-control" id="emailid" name="email1" placeholder="Email 1" data-validate="email" data-validate-error="This is not a valid e-mail address." />
-                            <div class="padding-small">
-                               <a href="/alternate-emails">Alternate email</a>
-                            </div>
 						</div>
 					</div>
 					<div class="col-sm-3">
@@ -185,12 +182,13 @@
 				<!--  -->
 				<div class="row">
 					<div class="col-md-12">
-					<button id="update-settings-button" type="submit" class="btn btn-primary"><i class="fa fa-fw fa-user"></i> Update information</button>
+                        <a class="btn btn-primary" href="/alternate-emails"><i class="fa fa-fw fa-envelope"></i> Manage alternate emails</a>
+                        <button id="update-settings-button" type="submit" class="btn btn-primary"><i class="fa fa-fw fa-user"></i> Update information</button>
 
-					<button id="update-password" type="submit" class="btn btn-primary" data-toggle="modal" data-target="#settings-modal">
-					<i class="fa fa-fw fa-lock"></i> Change Password</button>
-					<span id="update-settings-success" class="text-success margin-left-medium" style="display: none;"><i class="fa fa-check"></i> Settings successfully updated.</span>
-					<span id="update-settings-fail" class="text-danger margin-left-medium" style="display: none;"><i class="fa fa-close"></i> Duplicate Email.</span>
+                        <button id="update-password" type="submit" class="btn btn-primary" data-toggle="modal" data-target="#settings-modal">
+                        <i class="fa fa-fw fa-lock"></i> Change Password</button>
+                        <span id="update-settings-success" class="text-success margin-left-medium" style="display: none;"><i class="fa fa-check"></i> Settings successfully updated.</span>
+                        <span id="update-settings-fail" class="text-danger margin-left-medium" style="display: none;"><i class="fa fa-close"></i> Duplicate Email.</span>
 					</div>
 				</div>
 

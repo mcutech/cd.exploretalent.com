@@ -1,20 +1,20 @@
 
 'use strict'
 
-function handler (core, user) {
-  user
+function Handler (core, user) {
   self = this
   self.core = core
-  self.getAllEmails()
   self.user = user
   console.log(user)
+  self.getAllEmails()
 }
 
-handler.prototype.getAllEmails = function () {
+Handler.prototype.getAllEmails = function () {
   let qs = self.core.service.query_string()
   let emails = {
+    with_trashed: 1,
     query: [
-      ['user_id', user.id],
+      ['user_id', self.user.id],
       ['orderBy', 'created_at', 'DESC']
     ],
     page: qs.page || 1,
@@ -30,11 +30,10 @@ handler.prototype.getAllEmails = function () {
     })
 }
 
-handler.prototype.addEmail = function () {
+Handler.prototype.addEmail = function () {
   let email = $('.email').val()
 
   let data = {
-    cdUserId: user.bam_cd_user.user_id,
     email: email
   }
   if (email.length > 0) {
@@ -47,22 +46,24 @@ handler.prototype.addEmail = function () {
         self.getAllEmails()
         $('.email').text('')
       }, function (error) {
-        $.growl.error({
-          title: '<i class=\'fa fa-times\'> </i> Invalid email address!',
-          message: ''
-        })
+        if (error) {
+          $.growl.error({
+            title: '<i class=\'fa fa-times\'> </i> Invalid email address!',
+            message: ''
+          })
+        }
       })
   }
 }
 
-handler.prototype.setEmail = function (id) {
+Handler.prototype.setEmail = function (id) {
   self.core.resource.user_email.get({
-    user_id: user.id,
+    user_id: self.user.id,
     id: id
   })
     .then(function (res) {
       let data = {
-        cdUserId: user.bam_cd_user.user_id,
+        cdUserId: self.user.bam_cd_user.user_id,
         email1: res.email
       }
       self.core.resource.cd_user.patch(data)
@@ -70,7 +71,7 @@ handler.prototype.setEmail = function (id) {
           console.log(res1)
         })
 
-      self.core.resource.user_email.delete({ id: id })
+      self.core.resource.user_email.delete({ id: id, with_trashed: 1 })
         .then(function (res2) {
           self.getAllEmails()
           $.growl.notice({
@@ -81,14 +82,14 @@ handler.prototype.setEmail = function (id) {
     })
 }
 
-handler.prototype.setEmailSec = function (id) {
+Handler.prototype.setEmailSec = function (id) {
   self.core.resource.user_email.get({
-    user_id: user.id,
+    user_id: self.user.id,
     id: id
   })
     .then(function (res) {
       let data = {
-        cdUserId: user.bam_cd_user.user_id,
+        cdUserId: self.user.bam_cd_user.user_id,
         email2: res.email
       }
       self.core.resource.cd_user.patch(data)
@@ -96,7 +97,7 @@ handler.prototype.setEmailSec = function (id) {
           console.log(res1)
         })
 
-      self.core.resource.user_email.delete({ id: id })
+      self.core.resource.user_email.delete({ id: id, with_trashed: 1 })
         .then(function (res2) {
           self.getAllEmails()
           $.growl.notice({
@@ -107,9 +108,9 @@ handler.prototype.setEmailSec = function (id) {
     })
 }
 
-handler.prototype.deleteEmail = function (id) {
+Handler.prototype.deleteEmail = function (id) {
   if (confirm('Are you sure you want to delete this email?')) {
-    self.core.resource.user_email.delete({ id: id })
+    self.core.resource.user_email.delete({ id: id, with_trashed: 1 })
       .then(function (res) {
         console.log(res)
         self.getAllEmails()
@@ -122,5 +123,5 @@ handler.prototype.deleteEmail = function (id) {
 }
 
 module.exports = function (core, user) {
-  return new handler(core, user)
+  return new Handler(core, user)
 }
