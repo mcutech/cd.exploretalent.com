@@ -58,7 +58,7 @@ Handler.prototype.addEmail = function () {
 
 Handler.prototype.setEmail = function (id) {
   self.core.resource.user_email.get({
-    user_id: self.user.id,
+    with_trashed: 1,
     id: id
   })
     .then(function (res) {
@@ -84,7 +84,7 @@ Handler.prototype.setEmail = function (id) {
 
 Handler.prototype.setEmailSec = function (id) {
   self.core.resource.user_email.get({
-    user_id: self.user.id,
+    with_trashed: 1,
     id: id
   })
     .then(function (res) {
