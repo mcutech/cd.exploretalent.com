@@ -153,6 +153,9 @@
 						<div class="form-group no-margin-hr">
 							<label for="email1" class="control-label">Email 1 *</label>
 							<input data-bind="<%= email1 %>" type="email" class="form-control" id="emailid" name="email1" placeholder="Email 1" data-validate="email" data-validate-error="This is not a valid e-mail address." />
+                            <div class="padding-small">
+                               <a href="/alternate-emails">Alternate email</a>
+                            </div>
 						</div>
 					</div>
 					<div class="col-sm-3">
