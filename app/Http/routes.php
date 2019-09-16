@@ -37,6 +37,7 @@ Route::get('talents', 'TalentController@index');
 Route::get('talents/favorite', 'TalentController@favorite');
 Route::get('talents/{talentId}', 'TalentController@talentresume');
 Route::get('settings', 'ProfileController@settings');
+Route::get('alternate-emails', 'AlternateEmailsController@index');
 Route::get('welcome', 'WelcomeController@index');
 Route::get('error', 'ErrorController@index');
 Route::resource('feedback', 'FeedbackController');
