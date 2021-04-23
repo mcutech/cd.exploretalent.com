@@ -35,12 +35,12 @@
 								<div class="primary-nav-text">Create Project</div>
 							</a>
 						</li>
-						<li class="">
+						{{-- <li class="">
 							<a href="/messages" class="nav-link">
 								<div class="primary-nav-icon"><i class="fa fa-envelope-o"></i></div>
 								<div class="primary-nav-text">Messages</div>
 							</a>
-						</li>
+						</li> --}}
 						<li>
 							<a href="/talents" class="nav-link">
 								<div class="primary-nav-icon"><i class="fa fa-search"></i></div>
