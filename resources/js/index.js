@@ -89,7 +89,7 @@ jscore.run(function (core) {
     };
 
     var auditions = {
-      email: "cd@auditions.net",
+      email: "cd@auditions.com",
       title: "CD Auditions",
       homeLogo: "/images/Auditions-net/logo.png",
       slogan: "Casting Director Module",
