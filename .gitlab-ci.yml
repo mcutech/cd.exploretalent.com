@@ -14,7 +14,7 @@ deploy-stage:
 
 deploy:
   script:
-    - ssh webber@api01 -C "cd /apps/com.exploretalent.cd       && git fetch --tags && git checkout -f $CI_BUILD_REF_NAME && docker-compose up -d --build && docker-compose  exec -T -w /app app ./build && echo \"$CI_BUILD_REF_NAME:`git rev-parse HEAD`\" > public/version"
+    - ssh webber@api01 -C "cd /apps/com.exploretalent.cd       && git fetch --tags &&  git checkout -f master && docker-compose up -d --build && docker-compose  exec -T -w /app app ./build && echo \"$CI_BUILD_REF_NAME:`git rev-parse HEAD`\" > public/version"
   stage: deploy
   only:
   - master
