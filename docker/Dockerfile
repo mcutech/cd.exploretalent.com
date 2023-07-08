@@ -18,7 +18,7 @@ RUN touch /root/.profile
 
 RUN apk add php7-common php7-fpm php7-gd php7-imap php7-mbstring php7-mcrypt php7-pdo_mysql php7-pdo php7-opcache php7-xml php7-curl php7-pdo_sqlite php7-zip unzip php7-pdo php7-mysqli php7-json php7-curl php7-xml php7-simplexml php7-tokenizer php7-phar php7-fileinfo php7-dom php7-xmlwriter php7-openssl
 
-RUN apk add bash git curl unzip nodejs nodejs-npm openssh-client
+RUN apk add bash git curl unzip nodejs npm openssh-client
 
 RUN apk add tzdata && cp /usr/share/zoneinfo/America/Los_Angeles /etc/localtime && echo "America/Los_Angeles" > /etc/timezone && apk del tzdata
 
