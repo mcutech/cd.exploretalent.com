@@ -1,23 +1,20 @@
 deploy-dev:
   script:
     - ssh webber@api01 -C "cd /apps/com.exploretalent.cd.dev   && git fetch --tags && git checkout -f origin/development && docker-compose up -d --build && docker-compose exec -T -w /app app ./build && echo \"$CI_BUILD_REF_NAME:`git rev-parse HEAD`\" > public/version"
-  type: deploy
-  tags:
+  stage: deploy
   only:
   - development
 
 deploy-stage:
   script:
     - ssh webber@api01 -C "cd /apps/com.exploretalent.cd.stage && git fetch --tags && git checkout -f origin/testing     && docker-compose up -d --build && docker-compose exec -T -w /app app ./build && echo \"$CI_BUILD_REF_NAME:`git rev-parse HEAD`\" > public/version"
-  type: deploy
-  tags:
+  stage: deploy
   only:
   - testing
 
 deploy:
   script:
     - ssh webber@api01 -C "cd /apps/com.exploretalent.cd       && git fetch --tags && git checkout -f $CI_BUILD_REF_NAME && docker-compose up -d --build && docker-compose  exec -T -w /app app ./build && echo \"$CI_BUILD_REF_NAME:`git rev-parse HEAD`\" > public/version"
-  type: deploy
-  tags:
+  stage: deploy
   only:
   - /^v([0-9]+).([0-9]+).([0-9]+)$/
